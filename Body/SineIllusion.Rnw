@@ -1438,7 +1438,6 @@ According to this analysis, the optimum transformation value for $x$ is \Sexpr{r
 
 While these results suggest that the transformation is useful and that complete transformation is not necessary, we can get more precise bounds on the range of acceptable transformation weights using a linear model that can incorporate starting points other than 0 and 1, and at the same time allow for user-specific variability.
 
-\subsubsection{Random Effects Model and Detailed Results}\label{model}
 In order to account for user-level variability, we fit a random effects model for the adjusted weight value as a function of  starting weight and trial type, with a random intercept for each participant. 
 
 Let $W_{ij}$ denote the final adjustment to weight by participant $i$, $ 1 \le i \le \Sexpr{nparticipant2}$ , on trial $j$, $1 \le j \le n_i$. 
@@ -1475,7 +1474,7 @@ fixefsCIs <- fixefsCIs[,c(4,5,6,7)]
 fixefsCIs$Transformation <- c("X", "", "Y", "")
 names(fixefsCIs)[4] <- "95% C.I."
 fixeftab <- xtable(fixefsCIs, align=c("c","c", "c", "c", "c"), digits=3)
-print(fixeftab, include.rownames=FALSE, file=paste(imgdir, "fixef.txt", sep=""), floating=FALSE)
+# print(fixeftab, include.rownames=FALSE, file=paste(imgdir, "fixef.txt", sep=""), floating=FALSE)
 
 
 #####################
@@ -1501,7 +1500,7 @@ ranefCIs <- ranefCIs[,4:7]
 names(ranefCIs)[4] <- "95% C.I."
 
 ranefCIstab <- xtable(ranefCIs, align=c("r","r", "c", "c", "c"), digits=3)
-print(ranefCIstab, include.rownames=FALSE, file=paste(imgdir, "ranef.txt", sep=""), floating=FALSE)
+# print(ranefCIstab, include.rownames=FALSE, file=paste(imgdir, "ranef.txt", sep=""), floating=FALSE)
 @
 \begin{table}[htbp]\centering
 \begin{tabular}{cclcc}
