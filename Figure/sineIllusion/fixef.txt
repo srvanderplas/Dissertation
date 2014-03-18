@@ -1,0 +1,12 @@
+% latex table generated in R 3.0.3 by xtable 1.7-1 package
+% Tue Mar 18 13:01:34 2014
+\begin{tabular}{cccc}
+  \hline
+Transformation & Threshold & Estimate & 95\% C.I. \\ 
+  \hline
+X & Lower & 0.097 & (0.048, 0.149) \\ 
+   & Upper & 0.625 & (0.570, 0.684) \\ 
+  Y & Lower & 0.143 & (0.094, 0.187) \\ 
+   & Upper & 0.671 & (0.622, 0.717) \\ 
+   \hline
+\end{tabular}
