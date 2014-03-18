@@ -1,0 +1,98 @@
+% Template file for a standard thesis
+\documentclass[11pt]{isuthesis}\usepackage[]{graphicx}\usepackage[]{color}
+%% maxwidth is the original width if it is less than linewidth
+%% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
+\usepackage{graphicx}
+% Standard, old-style thesis
+\usepackage{isutraditional}   \chaptertitle
+% Old-style, thesis numbering down to subsubsection
+\alternate
+\usepackage{rotating}
+% Bibliography without numbers or labels
+\usepackage{natbib}
+\bibliographystyle{apa}
+%\includeonly{titletoc,chapter1}
+%Optional Package to add PDF bookmarks and hypertext links
+\usepackage[pdftex,hypertexnames=false,linktocpage=true]{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,anchorcolor=blue,citecolor=blue,filecolor=blue,urlcolor=blue,bookmarksnumbered=true,pdfview=FitB}
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\begin{document}
+\DeclareGraphicsExtensions{.jpg,.pdf,.mps,.png}
+\include{Preface/titlepage}
+% Optional thesis dedication
+\include{Preface/dedication}
+% Table of Contents, List of Tables and List of Figures
+\pdfbookmark[1]{TABLE OF CONTENTS}{table}
+\tableofcontents
+\addtocontents{toc}{\def\protect\@chapapp{}} \cleardoublepage \phantomsection
+\addcontentsline{toc}{chapter}{LIST OF TABLES}
+\listoftables
+\cleardoublepage \phantomsection \addcontentsline{toc}{chapter}{LIST OF FIGURES}
+\listoffigures
+% Comment out the next line if NOT using chaptertitle
+\addtocontents{toc}{\def\protect\@chapapp{CHAPTER\ }}
+%Optional Acknowledgements
+% \cleardoublepage \phantomsection
+% \include{Preface/acknowl}
+%Optional thesis abstract
+% \cleardoublepage \phantomsection
+% \include{Preface/abstract}
+\newpage
+\pagenumbering{arabic}
+% \include{Body/chapter1}
+% \include{Body/chapter2}
+% \include{Body/chapter3}
+% \include{Body/chapter4}
+% \include{Body/chapter5}
+% \include{Appendix/appendix1}
+% \include{Appendix/appendix2}
+% \include{Reference/bibtex}
+%\include{Reference/biblio}
+\end{document}
