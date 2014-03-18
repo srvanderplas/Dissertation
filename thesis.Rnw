@@ -13,6 +13,26 @@
 %Optional Package to add PDF bookmarks and hypertext links
 \usepackage[pdftex,hypertexnames=false,linktocpage=true]{hyperref}
 \hypersetup{colorlinks=true,linkcolor=blue,anchorcolor=blue,citecolor=blue,filecolor=blue,urlcolor=blue,bookmarksnumbered=true,pdfview=FitB}
+
+%---------------------------------------------------
+\usepackage{color}
+\usepackage[dvipsnames,svgnames]{xcolor}
+\usepackage{wrapfig,float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{url}
+\usepackage{ulem}
+\usepackage[section]{placeins}
+\usepackage{sidecap}
+\usepackage{multirow}
+\usepackage{bbm}
+\usepackage[colorinlistoftodos]{todonotes}
+
+%---------------------------------------------------
+
 \begin{document}
 \DeclareGraphicsExtensions{.jpg,.pdf,.mps,.png}
 %-------------------------------------------------------------------------------
@@ -43,6 +63,8 @@
 \newpage
 \pagenumbering{arabic}
 %-------------------------------------------------------------------------------
+<<sineIllusion, child='Body/SineIllusion.Rnw'>>=
+@
 % \include{Body/chapter1}
 % \include{Body/chapter2}
 % \include{Body/chapter3}

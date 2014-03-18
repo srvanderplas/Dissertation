@@ -1,0 +1,1771 @@
+\graphicspath{{../Figure/sineIllusion/}}
+\renewcommand{\floatpagefraction}{.99}
+
+\newcommand{\range}[1]{{\text{range}\left(#1\right)}}
+\newcommand{\s}[2]{{_{#1}s^{ #2}}}
+\newcommand{\atan}[1]{\text{atan}\left({#1}\right)}
+\newcommand{\xR}{\mathbb{R}}
+
+\newcommand{\done}[2][inline]{\todo[color=SpringGreen, #1]{#2}}  % for todos that have been seen and dealt with
+\newcommand{\meh}[2][inline]{\todo[color=White, #1]{#2}}   % for todos that may no longer be relevant 
+\newcommand{\comment}[2][inline]{\todo[color=SkyBlue, #1]{#2}} % for comments that may not be "to-do"s
+\newcommand{\mcomment}[1]{\todo[color=SkyBlue]{#1}} % for margin comments
+
+\newcommand{\newtext}[1]{\todo[inline, color=White]{ \color{OliveGreen}{#1}}} % new text - not necessarily something to be done
+\newcommand{\newdo}[1]{\todo[inline, color=Plum]{#1}} % new to do item
+\newcommand{\move}[1]{\todo[inline, color=Lime]{#1}} % new to do item
+
+
+<<setup, fig.keep='all', cache=FALSE, echo=FALSE, eval=TRUE>>=
+rm(list=ls())
+warning(getwd())
+options(replace.assign=TRUE,width=70,scipen=3)
+require(knitr)
+opts_chunk$set(fig.path='../Figure/sineIllusion/fig-', cache.path='cache/', fig.align='center', fig.width=5, fig.height=5, fig.show='hold', par=TRUE, cache=TRUE, concordance=TRUE, autodep=TRUE)
+library(reshape2)
+suppressMessages(library(ggplot2))
+library(plyr)
+suppressMessages(library(gridExtra))
+
+source("../Code/sineIllusion/functions.r")
+
+@
+
+
+
+
+\chapter{Signs of the Sine Illusion -- why we need to care}
+
+% Graphical representations have to be true to the data they display. Computational tools ensure this on a technical level. But we also need to take `flaws' of the human perceptual system into account. The sine illusion provides an example where human perception leads to systematic bias in the assessment of the optical stimulus, with a particularly notable impact on perception of time-series data with a seasonal component. In this paper, we discuss the reasons for the illusion and various strategies  useful to break the illusion or reduce its strength. We demonstrate the presence of the illusion in real-world and theoretical situations. We also present data from a user study which demonstrate the dramatic effect the sine illusion can have on conclusions drawn from displayed data.
+
+
+\section{Introduction}
+Graphics are powerful tools for summarizing large or complex data, but they rely on the main premise that any graphical representation of the data has to be ``true'' to the data \citep[see e.g.][]{tufte, wainer:2000, robbins:2005}. That is, a measurable quantity of a graphical element in the representation has to  directly reflect some aspect of the underlying data. Generally, we see a lot of discussion on keeping true to the data in the framework of (ab)using three dimensional effects in graphics. \citep{tufte} goes as far as defining a {\it lie-factor} of a chart as the ratio of the size of an effect in the data compared to the size of an effect shown, with the premise that any large deviations from one indicate a misuse of graphical techniques. Computational tools help us ensure technical trueness -- but this brings up the additional question of how we deal with situations that involve innate inability or trigger learned misperceptions in the audience. In this paper we want to raise awareness for one of these situations, show that it occurs frequently in our dealings with graphics and provide a set of strategies for solving or avoiding it.
+
+<<example,echo=FALSE, include=FALSE>>=
+#source("../Data/sineIllusion/NewOzoneData.R")
+datasub <- read.csv("../Data/sineIllusion/Ozone-subset.csv")
+nsite <- length(unique(datasub$SiteID))
+qplot(data=datasub, x=jitter(Tmax), y=Ozone, geom="point", shape=I(1), colour=I("grey40"), alpha=I(.5), xlab="Temperature (F)", ylab="8-hour Average Ozone Concentration (ppm)") + geom_line(aes(x=Tmax, y=fit), size=1.25, colour="black") + theme_bw()
+qplot(data=datasub, x=jitter(Tmax), y=resid, geom="point", shape=I(1), colour=I("grey40"), alpha=I(.5), xlab="Temperature (F)", ylab="Residual Ozone Concentration (ppm)") + geom_line(aes(x=Tmax, y=0*resid), size=1.25, colour="black") + theme_bw()
+@
+
+\begin{figure}[h!tbp]\centering
+\begin{subfigure}[b]{.45\linewidth}
+  \centering
+  \includegraphics[width=\textwidth]{fig-example1}
+  \caption{\small Scatterplot of Ozone and Temperature in Houston, 2011. A loess fit is overlaid to show the overall trend.}
+  \label{fig:example1}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{.45\linewidth}
+  \centering
+  \includegraphics[width=\textwidth]{fig-example2}
+  \caption{\small Scatterplots of Ozone and Temperature de-trended according to the loess fit in (a). \\ \phantom{text to get to the next line}}
+  \label{fig:example2}
+\end{subfigure}
+\caption{\label{fig:exampleFull1} Scatterplots of Ozone and Temperature in Houston, 2011. The increase in variability over the temperature range is more pronounced in the de-trended plot on the right.}
+\end{figure}
+
+As a first example let us consider the relationship between ozone concentration and temperature. Ozone concentrations were measured from \Sexpr{nsite} locations in the Houston area \citep{epa}, and temperature data is provided by the NCDC \citep{noaa} site at Hobby International Airport, located near the center of Houston. 
+
+Figure~\ref{fig:example1} shows daily measurements of 8-hour average ozone concentration and temperature at several sites in Houston, for days in 2011 with temperatures above $45^\circ$F  and dew points of less than $60^\circ$F. %(as ozone concentration is related to temperature and humidity)
+A loess smooth line is added for reference. 
+These types of plots are often used to give an overview of the relationship between two variables. The trendline summarizes this relationship, while the points show raw measurement to allow an assessment of the overall size of the data, the amount of (marginal) variability presented, as well as the (conditional) variability along the trendline. It is the latter task that we cannot satisfactorily complete. While
+we might agree that there is an increase in variability of ozone concentrations for temperatures above $80^\circ$F, we will not doubt homogeneity  elsewhere based on figure~\ref{fig:example1}. 
+
+% Is the variance trend in (a) consistent with the residual plot in (b)?
+% 
+% Figure~\ref{fig:example2} shows a residual plot of the same data, created by subtracting the loess fit line from the observed data, leaving only the variability behind. 
+%\done{I like this example! But we still need to suggest that the trumpet shape in the residuals comes as a surprise to lots of people.}
+
+
+This evaluation changes when considering figure~\ref{fig:example2}: the scatterplot shows a loess based de-trended residual of temperature. A previously almost invisible increase in variability of ozone measurements with increasing temperatures now becomes apparent.
+%The steady increase in variance over the temperature range is much more pronounced than in the  plot on the left.
+This phenomenon, caused by the change in the slope of the trend line,  is  known as the  {\it sine illusion} in the literature on cognition and human perception  or {\it line width illusion} in the statistical graphics literature. 
+
+
+%The change in slope of the trend is causing this phenomenon, which is  known as
+% in the Figure \ref{fig:example1} due to the changes in slope, but is very obvious in the residual plot in Figure \ref{fig:example2}. The sine illusion is responsible for the appearance of constant variance in Figure \ref{fig:example1}, but once the trend has been removed, and thus the corresponding changes in slope are no longer a factor, the increase variance becomes more visible.
+
+The illusion is a frequent occurrence in statistical graphics, and  displays should therefore be thoughtfully considered to minimize its effect visually and acknowledge its influence. 
+In the cognitive literature, \cite{day:1991} first documented the illusion in the context of vertical lines along a sinusoidal curve. Figure~\ref{fig:original} shows a sketch of this: line segments are centered evenly spaced along the curve. Line segments are of equal length but appear longer in the peaks and troughs due to the illusion. 
+The parameters that influence the strength of the illusion are the amplitude of the curve and the length of the line segments.
+As the length of the line segments increases,  the apparent difference in the length of the line segments decreases. Any modification that increases the change in slope under which the curve appears, such as an increase in the amplitude of the curve or a more extreme aspect ratio, reinforces the apparent difference in line lengths. 
+
+
+<<functions, echo=FALSE, eval=TRUE>>=
+f <- function(x) 2*sin(x)
+fprime <- function(x) 2*cos(x)
+f2prime <- function(x) -2*sin(x)
+@
+<<original, dependson='functions', echo=FALSE, fig.width=5, fig.height=4, include=FALSE>>=
+qplot(x=x, xend=xend, y = ystart, yend=yend, geom="segment", data=createSine(40, 1, f=f, fprime=fprime, f2prime)) +
+  theme(panel.grid.major=element_blank(), panel.background = element_rect(fill = "white", 
+                colour = "black"), plot.margin = unit(c(0,0,-0.5,-0.5), "cm"), 
+       panel.grid.minor=element_blank(), panel.background=element_blank(),
+       axis.title = element_blank(), axis.ticks = element_blank(), 
+       axis.text = element_blank()) + coord_equal(ratio=1)
+@
+<<original-redo, echo=FALSE, fig.keep='none', results='hide', fig.keep='all'>>=
+cairo_pdf("../Figure/sineIllusion/fig-original-redo.pdf", width=5, height=5)
+df1 <- createSine(20,1, f=f, fprime=fprime, f2prime=f2prime)
+df1$colour <- c(rep("A", 5), "A", rep("A", 13), "A")
+qplot(x=xstart, xend=xend, y = ystart, yend=yend, geom="segment", data=df1, colour=I("grey20")) +
+  theme(panel.grid.major=element_blank(), 
+        panel.background = element_rect(fill = "white", colour = "black"),
+        panel.grid.minor=element_blank(), panel.background=element_blank(),
+        axis.title = element_blank(), axis.ticks = element_blank(), 
+        axis.text = element_blank()) + coord_equal(ratio=1) + 
+  geom_segment(x=-pi/12, xend=2*pi+pi/12, y=0, yend=0, colour="grey80", linetype=2)+
+  geom_segment(aes(x=x, xend=xend, y=y, yend=yend), colour="grey50", 
+               data=data.frame(x=c(df1$x[6],  mean(df1$x[5:6]), mean(df1$x[5:6])), 
+                               xend = c(mean(df1$x[5:6]), mean(df1$x[5:6]), df1$x[6]),
+                               y = c(df1$y[6], df1$y[6], 0), 
+                               yend = c(df1$y[6], 0, 0)), size=1) + 
+  geom_text(aes(x=df1$x[5], y=df1$y[6]/2, label="s"), hjust=1, vjust=.5, size=10, colour="grey50") + 
+  geom_segment(aes(x=x, xend=xend, y=y, yend=yend), colour="grey60", 
+             data=data.frame(x=c(df1$x[20],  mean(df1$x[19:20]), mean(df1$x[19:20])), 
+                             xend = c(mean(df1$x[19:20]), mean(df1$x[19:20]), df1$x[20]),
+                             y = c(df1$ystart[20], df1$ystart[20], df1$yend[20]), 
+                             yend = c(df1$ystart[20], df1$yend[20], df1$yend[20])), size=1) +
+  geom_text(aes(x=df1$x[19], y=df1$y[20], label="\u2113"), hjust=1, vjust=.5, size=10, colour="grey60") + theme(plot.margin = unit(c(-1,0,-3,0), "cm"))
+dev.off()
+@
+\begin{SCfigure}[2][hbtp]
+\centering
+\caption{The original sine illusion was demonstrated on evenly spaced vertical lines centered around a sinusoidal curve of $f(x) = \sin(x)$. The lines in the peak and trough of the curve appear to be longer than in the other regions.\label{fig:original}}
+\includegraphics[keepaspectratio=true, width=.4\linewidth]{fig-original}
+\end{SCfigure}
+%The first documentation we could find of this illusion,
+More recently the illusion has been shown in non-sinusoidal curves \citep{cleveland:1984, schonlau:2003, robbins:2005, marie:2013}, but the underlying effect seems to be the same, in the sense that the illusion is not triggered by the periodic nature of the underlying trendline but only by  changes to its slope. Figure \ref{fig:twoillusions-simulation} shows three panels, which all exhibit the illusion. From left to right, the trend stems from (a) a periodic function, (b) a periodic component added to an exponential function, and (c) an exponential function on its own.
+While all three graphs seem to show nonconstant variance along the main trend; in reality, it is constant. Clearly, the illusion does not rely on the periodicity of the function for which it was named, but is a symptom of the change in curvature that comes with the periodicity.
+%, instead the ``line width illusion" and the ``sine illusion" are symptoms of the same phenomenon, even though the cognitive literature and the graphics literature refer to the illusion differently. 
+
+
+<<simulation1Sine, echo=FALSE, fig.width=4, fig.height=4, include=FALSE>>=
+alph <- .25
+x <- rep(seq(0,2*pi*2, length=120), each=50)
+y <- rnorm(n=length(x), mean=sin(x), sd=0.2)
+qplot(x,y, geom="jitter", alpha=I(alph))+ 
+  geom_line(y=0*x) + 
+  scale_x_continuous(breaks=seq(0, 4*pi, by=pi), 
+                     labels=c("0", expression(paste(pi)), 
+                              expression(paste("2", pi)), 
+                              expression(paste("3", pi)), 
+                              expression(paste("4", pi)))) +
+  theme_bw()
+#x <- rep(seq(0,2*pi*2, length=120), each=100)
+y <- rnorm(n=length(x), mean=1/10*(-x+pi)^2+sin(x), sd=0.2)
+qplot(x,y, geom="jitter", alpha=I(alph))+ 
+  geom_line(y=1/10*(-x+pi)^2) + 
+  scale_x_continuous(breaks=seq(0, 4*pi, by=pi), 
+                     labels=c("0", expression(paste(pi)), 
+                              expression(paste("2", pi)), 
+                              expression(paste("3", pi)), 
+                              expression(paste("4", pi)))) +
+  theme_bw()
+#x <- rep(seq(0,2*pi*2, length=120), each=100)
+y <- rnorm(n=length(x), mean=1/10*(-x+pi)^2, sd=0.2)
+qplot(x,y, geom="jitter", alpha=I(alph))+ 
+  geom_line(y=1/10*(-x+pi)^2) + 
+  scale_x_continuous(breaks=seq(0, 4*pi, by=pi), 
+                     labels=c("0", expression(paste(pi)), 
+                              expression(paste("2", pi)), 
+                              expression(paste("3", pi)), 
+                              expression(paste("4", pi)))) +
+  theme_bw()
+@
+\begin{figure}[h!tbp]\centering
+\begin{subfigure}[b]{.31\linewidth}
+  \centering
+  \includegraphics[keepaspectratio=TRUE,width=\linewidth]{fig-simulation1Sine1}
+  \caption{\small Seasonality, No Trend}
+  \label{simulation1}
+\end{subfigure}
+\begin{subfigure}[b]{.31\linewidth}\centering
+  \includegraphics[keepaspectratio=TRUE,width=\linewidth]{fig-simulation1Sine2}
+  \caption{\small Seasonality and Trend}
+  \label{simulation2}
+\end{subfigure}
+\begin{subfigure}[b]{.31\linewidth}\centering
+  \includegraphics[keepaspectratio=TRUE,width=\linewidth]{fig-simulation1Sine3}
+  \caption{\small Trend, No Seasonality}
+  \label{simulation3}
+\end{subfigure}
+\caption{Set of three scatterplots of simulated data with constant variance. Plot (a) shows seasonality without any underlying trend, (b) shows seasonality superimposed on a quadratic trend, and (c) shows a quadratic trend without seasonality. Though all three sets of simulated data have constant variance, none of the variances appear constant due to the sine illusion.}\label{fig:twoillusions-simulation}
+\end{figure}
+
+Next, %Sections  \ref{statisticalgraphics} and \ref{perceptualexplanations}
+we give an overview of the perceptual and statistical literature regarding this illusion.
+%\FloatBarrier
+\paragraph{The Sine Illusion in Statistical Graphics}\label{statisticalgraphics}\hfill\newline
+The sine illusion demonstrated in figures \ref{fig:exampleFull1} and \ref{fig:original} has been frequently noted in statistical graphics, though usually not as an optical illusion. Rather, the problem is typically identified as the difficulty of visually subtracting two curves, and the resulting erroneous conclusions when this process goes awry. Figure \ref{fig:playfair-debt} presents the possibly oldest example of this common phenomenon \citep{playfair, playfair2}: Playfair's chart of the balance of trade between England and the East Indies shows time series of the trade value for imports  and exports between the countries in the 18th century. The shaded area on the chart is named ``balance against England", suggesting that the difference between the lines is of main importance. This difference in trading values is encoded as the difference between the lines along the vertical axis. However, the vertical distance  between  two lines provides a  much less visually salient cue than the orthogonal width between the lines. This results in  an underestimation \citep{cleveland:1984} of the difference in trades around 1763, which is of a much higher (about 1.5 fold) magnitude as around 1770, but appears much smaller. In more modern visualizations, bivariate area charts and ``stream graphs'' \citep{stackedgraphs} commonly produce the illusion (see an example at \url{http://bl.ocks.org/mbostock/3894205}). 
+
+\begin{figure}[h!tbp]
+\centering
+\includegraphics[keepaspectratio=TRUE,width=.7\linewidth]{Images/sineIllusion/PlayfairExportImports}
+\caption{Playfair's graph of exports to and imports from the East Indies demonstrates that the line width illusion is not only found on sinusoidal curves but is present whenever the slope of the lines change dramatically. The increase in both imports and exports circa 1763 does not appear to portray as large of a deficit as that in 1710, even though they are of similar magnitude.}
+\label{fig:playfair-debt}
+\end{figure}
+
+%Another example of the illusion is shown in Figure \ref{fig:robbins-graph} \citep{robbins:2005}, which contains two  exponential curves shifted vertically by a constant.%, i.e.~$f_1(x) = e^x$ and $f_2(x) = e^x + 1$.  
+%In spite of this constant vertical distance, the lines appear to be closing in on each other. %$x=2.5$ than at $x=0$, even though mathematically it is obvious that the distance between them is constant. 
+%
+%The line width illusion is triggered by the change in slope -- as the slope increases, the apparent distance between the two lines decreases. %, even though the lines represent a constant vertical shift.
+%<<effectivegraphsfig,echo=FALSE, include=FALSE>>=
+%x <- seq(0, 2.5, .01)
+%y1 <- exp(x)
+%y2 <- exp(x)+1
+%df <- data.frame(x=x, y=y1, y2=y2)
+%qplot(data=df, x=x, y=y, geom="line") + geom_line(aes(y=y2)) + theme_bw()
+%@
+%\begin{SCfigure}
+%\centering
+%\includegraphics[width=.45\linewidth]{fig-effectivegraphsfig}
+%\caption{Graphs of two vertically shifted exponential curves, $y=e^x$ and $y=e^x+1$. Due to the line width illusion the graphs appear to converge as $x$ increases.  \citep[This chart is a replication of Figure 2.16 in][]{robbins:2005}\label{fig:robbins-graph}}
+%\end{SCfigure}
+
+%\FloatBarrier
+\paragraph{Perceptual Explanations for the Sine Illusion}\label{perceptualexplanations}\hfill\newline
+While not thoroughly examined in the sensation and perception literature, the sine illusion has been classified as part of a group of geometrical optical misperceptions  related to the M\"uller-Lyer illusion \citep{day:1991} or the Poggendorf illusion \citep{poggendorf}, which puts the illusion into the framework of context-based illusions. \cite{day:1991} suggest that the sine illusion occurs due to misapplication of perceptual experience with the three-dimensional world to a two-dimensional ``artificial" display of data.  
+
+Experience with real-world objects suggests that the stimulus of figure~\ref{fig:original} is very similar to a slightly angled top view of the 3-dimensional figure of a strip or ribbon describing waves in a third dimension, such as e.g.~a road does on rolling hills. This is sketched out in figure~\ref{ribbon1}. Our experience suggests immediately that changes in the width of the road are unlikely and resolves the illusion. While figure~\ref{ribbon1} shows the line segments slightly angled towards each other, figure \ref{ribbon2} shows a variation of the same plot with a  vanishing point set further away from the viewer. This makes the line segments almost parallel to each other and therefore more closely resembles the sketch of figure~\ref{fig:original}, in which the sine illusion was originally presented.
+
+%By treating the graph as a two-dimensional projection of a three-dimensional figure, the illusion disappears and the line widths seem once more to be constant.
+
+
+% Figure \ref{fig:ribbon-illusion} shows a possible three-dimensional context for the classical sine illusion; two ribbons are shown at varying perspective strengths. \todo[inline]{OK, we need to slow down here, but I'm not sure how to say it. That's why I'm asking all these questions.}
+% \todo[inline]{How do the perspective plots relate to the illusion - in words. I can see it, but we need to describe it in the text as well. }
+% \todo[inline]{Does the 3d perspective resolve the illusion?}
+% 
+% \todo[inline]{What is the difference between the first and the second perspective plot?}
+% The first appears more natural \todo[inline]{What do you mean by more 'natural'?}, but the second still appears three-dimensional \todo[inline]{Why?} and is much closer to the sine illusion stimuli \todo[inline]{Why is it closer?}  with added shading. 
+
+\begin{figure}[h!tbp]\centering
+<<ribbon-illusion,echo=FALSE, include=FALSE, fig.width=5, fig.height=5>>=
+
+f <- function(x) 2*sin(x)
+fprime <- function(x) 2*cos(x)
+f2prime <- function(x) -2*sin(x)
+
+x <- seq(0, 2*pi, length=42)[2:41]
+data <- do.call("rbind", lapply(seq(-.5, .5, 1), function(i) data.frame(x=x, y=2*sin(x), z=i)))
+
+data.persp <- acast(data, x~z, value.var="y")
+x <- sort(unique(data$x))
+y <- sort(unique(data$y))
+z <- sort(unique(data$z))
+
+persp(x, z, data.persp,  xlab="", ylab="", zlab="", theta=0, phi=45, border="black", shade=.35, col="white", xlim=c(-pi/12, 2*pi+pi/12), ylim=c(-1.75, 1.75), scale=FALSE, box=FALSE, expand=3/pi, d=3) # , ltheta=0, lphi=-15
+persp(x, z, data.persp,  xlab="", ylab="", zlab="", theta=0, phi=45, border="black", shade=.35, col="white", xlim=c(-pi/12, 2*pi+pi/12), ylim=c(-1.75, 1.75), scale=FALSE, box=FALSE, expand=3/pi, d=50) # , ltheta=0, lphi=-15
+
+@
+\begin{subfigure}[t]{.49\linewidth}\centering
+\includegraphics[width=\linewidth, keepaspectratio=TRUE, trim=0in 1.5in 0in 1.5in]{fig-ribbon-illusion1}
+\caption{Perspective plot of sine illusion\label{ribbon1}}
+\end{subfigure}
+\begin{subfigure}[t]{.49\linewidth}\centering
+\includegraphics[width=\linewidth, keepaspectratio=TRUE, trim=0in 1.5in 0in 1.5in]{fig-ribbon-illusion2}
+\caption{Perspective plot, vanishing point near infinity.\label{ribbon2}}
+\end{subfigure}
+\caption{Two different perspective projections of the same data responsible for the sine illusion. The first projection angles the lines and appears more natural, but the second projection suggests that the lines do not need to be angled to create the same three-dimensional impression.\label{ribbon}}
+\end{figure}
+
+
+
+<<originalgrid, dependson='data', echo=FALSE, include=FALSE, fig.width=5, fig.height=4>>=
+f <- function(x) 2*sin(x)
+fprime <- function(x) 2*cos(x)
+f2prime <- function(x) -2*sin(x)
+
+dframe <- createSine(n = 40, len = 1, f=f, fprime=fprime, f2prime)
+require(grid)
+qplot(x=x, xend=xend, y = ystart*ell, yend=yend*ell, geom="segment", data=dframe) +
+  theme(panel.grid.major.y=element_line(colour="grey75"), 
+        panel.grid.minor.y=element_line(colour="grey85"), 
+        panel.grid.major.x=element_blank(),
+        panel.background = element_rect(fill = "white", 
+                colour = "black"),
+       panel.grid.minor.x=element_blank(), panel.background=element_blank(),
+       axis.title = element_blank(), axis.ticks = element_blank(), 
+       axis.text = element_blank(), 
+        plot.margin = unit(c(0,-.5,-.5,-1), "cm")) + coord_equal(ratio=1) + 
+  geom_segment(size=1.5, data=dframe[c(31, 38),]) 
+@
+\begin{SCfigure}
+\centering
+\caption{\label{fig:original-grid} The sine illusion with two individual lines highlighted. Horizontal grid lines do not help  to resolve the illusion, even though they provide a clear basis for comparison of line lengths. Readers are much better at assessing the length of the two singled out line segments; they are equal.}
+\includegraphics[width=.4\linewidth]{fig-originalgrid}
+\end{SCfigure}
+
+Recreating the three-dimensional context of the sine illusion might resolve the distortion, even if increasing the dimensionality of a graph is generally not recommended \citep{tufte, cleveland:1984} (though \citet{spence:1990} suggests that in certain cases additional dimensions are not misleading). While creating a three-dimensional projection of two-dimensional data might counteract the illusion, the process of projecting the data accurately into a higher dimension is not simple. The projection that best resolves the illusion likely is highly subjective and influenced by choices of angle and color gradient for depth cues. As there is not a single three-dimensional projection that corresponds to the two-dimensional data, this approach would only produce further visual ambiguity.
+%and would also lead to distortions and instability in the visual display. In particular, there does not seem to be an simple guideline for determining the projection angle or color gradient  to create the illusory depth to remove the optical illusion. 
+
+%That is, the illusion breaks down if the visual heuristic is pre-empted by an attempt to view the graph as if it were three dimensional or if each piece is considered without the surrounding context. 
+Further complicating the situation, the illusion itself is insidious -- we trust our vision implicitly, to the point that when we understand something, we say ``I see''. This trust in our visual perception is seldom called into question, for our perception is optimized for interaction with a three-dimensional world. Artificial two-dimensional situations (such as graphs and pictures) may accurately represent the data and still produce a misleading perceptual experience.
+
+The contextual cues of the overall trend are critical to the sine illusion's effect;  the illusion  only  holds when a substantial portion of the graph is considered simultaneously, which triggers our innate ability of perceiving one whole rather than the individual parts it consists of \citep[principle of grouping; ][]{wolfe2012sensation}.
+%without regard to the perceptual mechanisms at play. 
+Considering only two line segments at a time resolves the illusion. The bold lines in figure~\ref{fig:original-grid} are clearly of the same length.  Comparisons of individual line lengths is visually a fairly simple task, and is done with a relatively high accuracy \citep{cleveland:1984}. 
+\citet{day:1991} contains a more thorough discussion of how much surrounding context is required for the illusion to persist. 
+%The illusion arises when sufficient context is available to induce an ambiguously three-dimensional figure.
+
+%\FloatBarrier
+\paragraph{Geometry of the Illusion}\hfill\newline
+%We have previously alluded to the fact that the sine illusion depends on the change in the slope of the underlying function; what follows is a geometric explanation of why this occurs. 
+%Our perceptual system is particularly well optimized for three dimensions; in figure~\ref{fig:original}  this leads us to perceive the  shortest line between the top and bottom curves as the distance between the curves, i.e. the {\it orthogonal} width,  rather than the vertical distance. 
+In figure~\ref{fig:original} we have seen that the our preference in evaluating line width is to assess {\it orthogonal} width rather than the difference along the vertical axis. 
+Figure~\ref{fig:OrthogonalWidth} demonstrates the change in orthogonal width as the slope of the line tangent to the graph of $f$ changes; these changes correspond to our perception of apparent line length. 
+<<transform-illustration,echo=FALSE, message=FALSE, warning=FALSE, include=FALSE, fig.width=8.5, fig.height=5>>=
+f <- function(x) 2*sin(x)
+fprime <- function(x) 2*cos(x)
+f2prime <- function(x) -2*sin(x)
+library(plyr)
+dframe <- createSine(n = 150, len = 1, f=f, fprime=fprime, f2prime=f2prime)
+dframe$ystartcts <- dframe$ystart
+dframe$yendcts <- dframe$yend
+dframe[1:150,c(2, 3, 5, 6)] <- NA
+dframe[(1:15)*10-5, c(2, 3)] <- dframe[(1:15)*10-5, 1] 
+dframe[(1:15)*10-5, 5] <- dframe[(1:15)*10-5, 4] - .5
+dframe[(1:15)*10-5, 6] <- dframe[(1:15)*10-5, 4] + .5
+dframe$type <- "Vertical Width"
+
+idx <- which(!is.na(dframe$xstart))
+dframe$ell <- dframe$ell/2
+dframe.1 <- getSecantSegment(dframe$xstart[idx], dframe, f, fprime, f2prime)
+dframe.1$x <- dframe$x[idx]
+dframe.1$y <- dframe$y[idx]
+dframe.1$ystartcts <- dframe$ystartcts[idx]
+dframe.1$yendcts <- dframe$yendcts[idx]
+names(dframe.1) <- c("x", "y", "deriv", "xstart", "xend", "ystart", "yend", "ell", "ell.quad1", "ell.quad2", "type", "a", "ystartcts", "yendcts")
+dframe.1$vangle <- with(dframe.1, atan(deriv))
+dframe <- rbind.fill(dframe, dframe.1)
+dframe$type <- factor(dframe$type)
+
+p1 <- qplot(x=x, y=y, geom="line", data=dframe, colour=I("grey50")) + theme_bw() + 
+  geom_line(aes(y=ystartcts), colour="grey50", linetype=4) + 
+  geom_line(aes(y=yendcts), colour="grey50", linetype=4) +
+  geom_segment(data=subset(dframe, !is.na(type)), 
+               aes(x=xstart, xend = xend, y=ystart, yend=yend, colour=type, linetype=type), size=0.8)  + 
+  xlab("") + ylab("")  +
+  coord_equal(ratio=1) + scale_colour_manual("", values=c("blue", "grey30")) + 
+  geom_text(aes(label=paste("theta", "%~~%", round(abs(vangle)/pi*180), "^o", sep=""), 
+                x=pmax(xstart, xend)/2+x/2+.35 , y=y-sign(vangle)*.6+.02), colour="blue",
+            data=dframe.1, parse=TRUE, hjust=.9, vjust=.5, size=3) + 
+  scale_x_continuous(breaks=seq(0, 2*pi, by=pi/2), 
+                     labels=c("0", expression(paste(pi,"/2")), expression(pi), 
+                              expression(paste("3",pi, "/2")), expression(paste("2",pi)))) +
+  scale_linetype_manual("", values=c(1,2)) + 
+  theme(legend.key.width = unit(3, "line"), plot.margin = unit(c(0,0,0,0), "cm"), legend.position=c(.25, .2)) 
+
+f <- function(x) 2*sin(x)
+fprime <- function(x) 2*cos(x)
+f2prime <- function(x) -2*sin(x)
+library(plyr)
+dframe <- createSine(n = 150, len = 1, f=f, fprime=fprime, f2prime=f2prime)
+dframe$ystartcts <- dframe$ystart
+dframe$yendcts <- dframe$yend
+dframe[1:150,c(2, 3, 5, 6)] <- NA
+dframe[(1:15)*10-5, c(2, 3)] <- dframe[(1:15)*10-5, 1] 
+dframe[(1:15)*10-5, 5] <- dframe[(1:15)*10-5, 4] - .5
+dframe[(1:15)*10-5, 6] <- dframe[(1:15)*10-5, 4] + .5
+dframe$type <- "Vertical Width"
+
+asp <- 2
+idx <- which(!is.na(dframe$xstart))
+dframe$ell <- dframe$ell/2
+dframe.1 <- getSecantSegment(dframe$xstart[idx], dframe, f, fprime, f2prime)
+dframe.1$x <- dframe$x[idx]
+dframe.1$y <- dframe$y[idx]
+dframe.1$ystartcts <- dframe$ystartcts[idx]
+dframe.1$yendcts <- dframe$yendcts[idx]
+names(dframe.1) <- c("x", "y", "deriv", "xstart", "xend", "ystart", "yend", "ell", "ell.quad1", "ell.quad2", "type", "a", "ystartcts", "yendcts")
+dframe.1$vangle <- with(dframe.1, atan(deriv*1/asp))
+dframe <- rbind.fill(dframe, dframe.1)
+dframe$type <- factor(dframe$type)
+
+p2 <- qplot(x=x, y=y, geom="line", data=dframe, colour=I("grey50")) + theme_bw() + 
+  geom_line(aes(y=ystartcts), colour="grey50", linetype=4) + 
+  geom_line(aes(y=yendcts), colour="grey50", linetype=4) +
+  geom_segment(data=subset(dframe, !is.na(type)), 
+               aes(x=xstart, xend = xend, y=ystart, yend=yend, colour=type, linetype=type), size=0.8)  + 
+  xlab("") + ylab("")  +
+  coord_equal(ratio=2) + scale_colour_manual("",guide="none", values=c("blue", "grey30")) + 
+  geom_text(aes(label=paste("theta", "%~~%", round(abs(vangle)/pi*180), "^o", sep=""), 
+                x=pmax(xstart, xend)/2+x/2+.65 + 
+                  c(.35, .35, .15, -.15, .3, .3, .3, .3, .3, .3, 0, -.05, .35, .35, .35) , 
+                y=y-sign(vangle)*.35+.17 + 
+                  c(0, -.05, -.2, .8, -.05, -0.15, -.2, -.2, -.2, -.2, 0, -.4, -.05, -0.01, 0)), colour="blue",
+            data=dframe.1, parse=TRUE, hjust=.9, vjust=.5, size=3) + 
+  scale_x_continuous(breaks=seq(0, 2*pi, by=pi/2), 
+                     labels=c("0", expression(paste(pi,"/2")), expression(pi), 
+                              expression(paste("3",pi, "/2")), expression(paste("2",pi)))) +
+  scale_linetype_manual("", values=c(1,2), guide="none") + 
+  theme(legend.key.width = unit(3, "line"), plot.margin = unit(c(0,0,0,0), "cm"), axis.text.y=element_blank()) 
+
+grid.arrange(p1, p2, widths=c(.9, .5), nrow=1)
+@
+\begin{figure}[h!tbp]
+\includegraphics[width=.9\linewidth, keepaspectratio=TRUE]{fig-transform-illustration}
+\centering
+\caption{\label{fig:OrthogonalWidth} The sine illusion with lines orthogonal to the tangent line at $f(x)$. The perception that the vertical length changes with $f(x)$ corresponds to changes in actual orthogonal width due to the change in the visual (plotted) secant angle. The strength of the perceptual effect depends in part on the aspect ratio of the graph, as shown in the second image, which has an aspect ratio of 2 compared to the first figure's aspect ratio of 1. This correspondingly multiplies the strength of the effect by 2. 
+}
+\end{figure}
+%Secants and vertical lines are both shown  in figure~\ref{fig:OrthogonalWidth}. 
+The illusion is most pronounced in regions where the angle between the orthogonal  and the vertical line is large. Changes to the aspect ratio therefore have a major impact on the strength of the sine illusion. Any change that alleviates the difference between perceived width and the perpendicular width, such as banking to 45$^\circ$ \citep{cleveland:88}, will alleviate the effect but not completely overcome it. 
+The perceived length of the vertical line changes with the angle of the line perpendicular to the slope of $\sin(x)$, suggesting that the sine illusion stems from a conflict between the visual system's perception of figure width and the mathematical judgement necessary to determine the length of the vertical lines. 
+
+<<geometry,echo=FALSE, fig.height=2.1, fig.width=3.5, include=FALSE>>=
+f <- function(x, a=1, b=0) a*x + b
+x  <- seq(-.2,.2, .1)
+ell <- .1
+a <- 1
+intx <- ell/(a + 1/a)
+ribbon <- data.frame(x = x, ytop = f(x) + ell, ybottom = f(x)-ell)
+aline <- data.frame(xtop = 0,    xbottom = 0,   ytop = f(0) + ell,  ybottom = f(0) - ell, label="vertical width")
+bline <- data.frame(xtop = -intx, xbottom = intx, ytop = f(-intx)+ell, ybottom = f(intx)-ell, label="extant width")
+widths <- rbind(aline, bline)
+qplot(data=ribbon, x=x, ymin=ybottom, ymax=ytop, geom="ribbon", fill=I("grey")) +
+  theme(panel.grid.major=element_blank(), 
+#        panel.background = element_rect(fill = "white", colour = "black"),
+        panel.grid.minor=element_blank(), panel.background=element_blank(),
+        axis.title = element_blank(), axis.ticks = element_blank(), 
+        axis.text = element_blank()) +  
+  geom_segment(data=widths, aes(x=xbottom, xend = xtop, y=ybottom, yend=ytop, linetype=label)) +
+  geom_text(data=widths, aes(x=mean(c(xbottom[1], xbottom[2], 0)), y=mean(c(ybottom[1], ybottom[2], ybottom[2])), label="theta"), parse=TRUE) +
+  coord_equal(ratio=1) + scale_linetype("") + theme(plot.margin = unit(c(-1,-1,-2,-2), "lines"))
+@
+
+Our preference for assessing figure width based on the orthogonal width suggests that the underlying illusion may be a function of geometry rather than some unknown visual or neural process that occurs subconsciously. In this  case it may be  possible to correct the graphical display for the illusion to minimize its misleading effect. A geometrical correction that  --at least temporarily-- counteracts the illusion would be a valuable tool in visual analysis, as this illusion very persistently affects our judgment of very common tasks  such as e.g.~the assessment of conditional variability of data along a trend line.
+
+Simply raising people's awareness of the presence of this illusion is not enough,
+as it is incredibly difficult, if not impossible, to overcome this illusion even when we are aware of its presence: our brains simply cannot ``un-see" it. 
+
+What follows is a compilation of several approaches to correct for or mitigate the effect of the illusion. Our primary intention here is to demonstrate the persaviness of the illusion is and the extreme measures necessary to remove its effect. 
+% do not change this to its'
+
+\section{Breaking the Illusion}
+The sine  illusion is caused by a conflict between vertical width, which is the width that we want onlookers to assess visually, and orthogonal width, which is the width that the onlooker perceives. This difference can be expressed as a function in the slope of the underlying trend line. This provides the basis for adjusting the vertical width for the perceived orthogonal width. 
+
+We consider the following three approaches:  
+\begin{enumerate}
+\item separating the trend and the variability, 
+\item transformation of $x$: adjusting the slope to be constant by reparametrizing the $x$ axis, and
+\item transformation of $y$: adjusting $y$ values to make conditional variability  appear correctly by adjusting accordingto orthogonal width. 
+\end{enumerate}
+Each of these ideas is discussed in more detail in this section.
+
+\subsection{Trend Removal}
+% \newdo{Emphasize that multiple plots imply higher cognitive load (Wainer 1984) and that good  charts usually have to answer multiple questions.}
+\cite{cleveland:1984, cleveland:1985} discuss the perceptual difficulty of judging the difference between two curves plotted in the same chart, and alternatively, recommend to display the difference between the two curves directly. This is in line with  recommendations  for good graphics to `show the data' rather than make the reader derive some aspect of it \citep[e.g.][]{wainer:2000}. In particular, de-trending data to focus on residual structure is the generally accepted procedure for assessing model fit. 
+ Figure \ref{fig:cleveland-figure}(a) shows a scatterplot of data with a trend. A loess smooth is used to estimate the trendline. A visual assessment of variability along this trendline
+might result in a description such as `homogeneous variance or slightly increasing variance for  negative $x$, followed by a dramatic decrease in vertical variability for positive $x$'.  
+Once the residuals are separated from the trendline as shown on the right hand side of the figure, it becomes apparent that this first assessment of conditional variability was not correct, and the decreasing variance along the horizontal axis becomes visible.
+ 
+While the illusion is not apparent when trend line and variability in the  residual structure are shown separately, the separation 
+makes it  more difficult to evaluate the overall  pattern in the data, as we  must base any judgment on two charts; either by combining information from two graphs or by mentally re-composing the original graph (at which point, the sine illusion becomes a factor). To minimize cognitive demands we ideally want to tell the whole story with a single graph, in particular because in many situations we may not be able to show multiple graphs. 
+
+<<cleveland, echo=FALSE, fig.width=6, fig.height=6, include=FALSE>>=
+f <- function(x) -x^2
+sdf <- function(x) (4-0.5*x)/5
+  
+x <- seq(-2,2.5, by=0.1)
+
+id <- 1:30
+dframe <- expand.grid(x=x, id=id)
+dframe$y <- with(dframe, rnorm(n=nrow(dframe), mean=f(x), sd=sdf(x)/2))
+qplot(x,y, data=dframe, geom="jitter") + theme_bw()
+dframe$Trend <- f(dframe$x)
+dframe$Residuals <- dframe$y - dframe$Trend
+
+x <- seq(-2,2.5, by=0.01)
+p1 <- qplot(x=x, y=f(x), ylab="Trend", geom="line") + theme_bw()
+p2 <- qplot(x=x, y=Residuals, data=dframe, geom="jitter") + theme_bw()
+p <- grid.arrange(p1, p2, nrow=2)
+p
+@
+\begin{figure} \hfill
+\begin{subfigure}[b]{.45\linewidth}
+  \centering
+  \includegraphics[width=\textwidth]{fig-cleveland1}
+  \caption{\small Data}
+  \label{fig:clevelandsubfig1}
+\end{subfigure} \hfill\hfill
+\begin{subfigure}[b]{.45\linewidth}
+  \centering
+  \includegraphics[width=\textwidth]{fig-cleveland2}
+  \caption{\small Trend and Residuals}
+  \label{fig:clevelandsubfig2}
+\end{subfigure} \hfill
+\caption{Describe the conditional variability of the points along the $x$ axis in (a). Is your description consistent with the residual plot in (b)?}
+\label{fig:cleveland-figure}
+\end{figure}
+
+%From a cognitive perspective, separating out the trendline and the variance creates a barrier to understanding the data in its original form; as the original graph must be mentally re-constructed.
+Additionally, removing the trend requires an initial model, making any plots produced using that fit conditional on the assumptions necessary to obtain that model fit. In many situations, this may be undesireable. In particular, we typically view the data before fitting even a rudimentary model, and the sine illusion may influence even these initial modeling decisions.
+
+\subsection{Transformation of the $X$-Axis}
+As the sine illusion is driven by changes in the slope of trends between variables, we can counteract the illusion by removing these changes, transforming the $x$ axis such that the absolute value of the slope is constant and forcing the corresponding orthogonal width to represent the conditional variability.
+In order to describe this transformation of the $x$ axis mathematically, 
+let us assume that the relationship between variables $X$ and $Y$ is given by a  model of the form 
+\[
+y = f(x) + \varepsilon,
+\]
+where $f$ is some underlying function (either previously known or based on a model fit). Further let us assume that  $f$ is differentiable over the region of observed data.
+
+Ideally, the correction would force all lines to appear under the same slope, i.e.~we want to find a transformation $T(x)$ of $x$, such that $f(T(x))$ is a  piece-wise linear function, where each piece has the same absolute slope. This transformation has an effect similar to ``banking to 45$^\circ$" in a piecewise manner. 
+
+Let $a$ and $b$ be the minimum and maximum of the $x$-range under consideration. Then for any value $x \in (a,b)$ the following transformation results in a function with constant absolute slope (see appendix~\ref{app.xtrans} for a derivation of the equation):
+\begin{equation}\label{eqn.xtrans}
+(f \circ T)(x) = a + (b-a)\left(\int_{a}^x |f^\prime(z)| dz\right)/\left(\int_{a}^{b}|f^\prime(z)| dz\right),
+\end{equation}
+
+\begin{subsubsection}{Derivation of the X Transformation}\label{app.xtrans}
+As the slope is determined by the aspect ratio, we are free to choose it and w.l.o.g. we get for each piece $T_i$: 
+\[
+f(T_i(x)) = \pm a x + b_i.
+\]
+This means that $T_i$ is essentially an inverse of function $f$, with each piece defined by the   intervals on which the inverse of $f$ exists: let $\left\{x_0 = \min(x), x_1, ..., x_{K-1}, x_K = \max(x) \right\}$ be the set of values with local extrema enhanced by the boundaries of the $x$-range, i.e.  $f^\prime(x_i) = 0$ for  $i = 1, ... , K-1$ and $f^\prime(x) \neq 0$ for any other values of $x$. 
+Then each interval of the form $(x_{i-1}, x_i)$ defines one piece $T_i$ of the transformation function $T(x)$. We will define $T_i$ now as a combination of a linear scaling function and the inverse of $f$, which we know exists for interval $(x_{i-1}, x_i)$.
+
+Let function $s = \s{[a,b]}{[c,d]}$ be the linear scaling function that maps  the interval $(a,b)$ linearly to the interval $(c,d)$. This function is formally defined as
+\[
+s(x) = \s{[a,b]}{[c,d]} (x) = (x-a)/(b-a) \cdot (d-c) + c \text{ for all } x \in (a,b).
+\]
+Note that the slope of function $s$ is given as
+\[
+s^\prime(x) = (d-c)/(b-a).
+\]
+%
+Two scaling functions can be evaluated one after the other, only if the image (i.e. $y$-range) of the first coincides with the domain (i.e. $x$-range) of the second. This consecutive execution results in another linear scaling: 
+\[
+\s{[e,f]}{[c,d]}  \left(  \s{[a,b]}{[e,f]}(x) \right) = \s{[a,b]}{[c,d]} (x)
+\]
+
+
+In our situation let the scaling function $s$ be given as:
+\[
+\s{[c,d]}{f([x_{i-1}, x_i])}(x) = f(x_{i-1}) + (x-c)/(d-c) \cdot (f(x_{i}) - f(x_{i-1}))),
+\]
+where $f([x_{i-1}, x_i])$ is defined as the interval given by $(\min(f(x_{i-1}), f(x_i)), \max(f(x_{i-1}), f(x_i)))$.
+Note that $s$ has either a positive or negative slope depending on whether $f(x_{i-1})$ is smaller or larger than $f(x_i)$, respectively.
+
+Then the transformation in the $x$-axis, $T(x)$ is defined piecewise as a combination of $T_i$, where each $T_i$ is given as:
+\begin{eqnarray}\label{eq.x.transformation}
+T_i(x) &=& f^{-1}\left( \s{[c_i,d_i]}{f([x_{i-1}, x_i])}(x) \right). 
+\end{eqnarray}
+%
+Using this definition for the transformation makes $f(T(x))$ a piece-wise linear function with parameters $c_i$ and $d_i$, i.e. for $x \in (c_i,d_i)$ we have
+\[
+f(T(x)) = f (f^{-1}(\s{[c_i,d_i]}{f([x_{i-1}, x_i])}(x))) = \s{[c_i,d_i]}{f([x_{i-1}, x_i])}(x).
+\]
+Correspondingly, the slope of $f(T_i(x))$ is $(f(x_{i}) - f(x_{i-1})))/(d_i-c_i)$.
+In order to make the slope the same on all pieces $T_i$ of $T$, we need to define $c_i$ and $d_i$ with respect to the function values on the interval $(x_{i-1}, x_i)$. There are various options, depending on how closely the $x$-range of $T$ should reflect the original range:
+for $[c_i, d_i] = \range {f([x_{i-1}, x_i])}$ the new $x$-range is the range of $f$ on $(x_{i-1}, x_i)$, but with the advantage that the scaling function simplifies to the identity or a simple shift.
+
+In order to preserve the original $x$-range, we need to invest into a bit more work for the scaling. With an identity scaling, each $T_i$ maps from the range of $f$ on $(x_{i-1}, x_i)$ to the same range. Overall we can therefore set up the function $T$ to map from the interval given by the sum of the function's `ups' and `downs', i.e.
+$(0, \sum_{i=0}^K |f(x_i) - f(x_{i-1})|)$, to the range of $f$ on $(x_0, x_K)$.  This ensures that all pieces $f(T_i)$ have the same slope (of $|1|$).We can then use another - global - linear scaling function to map from the range of $x$, i.e. interval $(x_0, x_K)$ to $(0, \sum_{i=0}^K |f(x_i) - f(x_{i-1})|)$, yielding a transformation function $T$ of
+
+\[
+T (x) =  (f^{-1} \circ \s{[c_i,d_i]}{f([x_{i-1}, x_i])} \circ \s{(x_0, x_K)}{(0, \sum_{i=0}^K |f(x_i) - f(x_{i-1})|)}) (x),  
+\]
+where $c_i$ and $d_i$ are given as 
+\[
+c_i = \sum_{j=0}^{i-1} |f(x_j) - f(x_{j-1})| \text{ and } d_i = \sum_{j=0}^{i} |f(x_j) - f(x_{j-1})|.
+\]
+We can write the difference $|f(x_j) - f(x_{j-1})|$ as $\int_{x_{j-1}}^{x_j} |f^\prime(z)|dz$. This shows equation (\ref{eqn.xtrans}).
+\end{subsubsection}
+
+ As the sine illusion depends on changing slope in the overall trend,  re-parametrizing the $x$-axis in terms of the slope will make the data  appear under a  constant slope, thereby removing the effect of the illusion, while the transformed $x$-axis is changed from a linear representation of the $x$ values to a `warped' axis that continuously changes the scale of $x$ to compensate for the changes in the slope.
+ To emphasize this change in scale along the $x$ axis,  dots are drawn at  the bottom of the chart  to show the transformation's effect on equally spaced points along the $x$-axis.   
+
+Results from this transformation are demonstrated in Figure \ref{fig:xtrans1}.
+ 
+
+<<xtransform, echo=FALSE, fig.width=4, fig.height=2, include=FALSE>>=
+correctx <- function(z, fprime, a=0, b=2*pi, w=1) {
+  # w = 1/(shrink+1)
+  const <- integrate(function(x) abs(fprime(x)), a, b)$value
+  trans <- sapply(z, function(i) integrate(function(x) abs(fprime(x)), a, i)$value*(b-a)/const + a)
+  # alternatively to the rowMeans, you could report back  
+  # trans*(1-w) + z*w
+  trans*w + z*(1-w)
+}
+f <- sin
+fprime <- cos
+f2prime <- function(x) -sin(x)
+dframe <- createSine(40 , len=1, f=f, fprime=fprime, f2prime=f2prime)
+minor.axis.correction <- correctx(seq(0, 2*pi, pi/8), fprime)
+
+dframe$xtrans <- correctx(dframe$x, fprime=fprime)
+
+dots <- data.frame(x = rep(minor.axis.correction, times=1), y=rep(c(-2), each=length(minor.axis.correction)))
+
+ggplot(aes(x=xtrans, xend=xtrans, y = ystart, yend=yend), data=dframe) +
+  geom_abline(aes(slope = 0, intercept=0), colour="grey70") +
+  geom_segment(colour="grey20") +
+  theme_bw() + coord_fixed(ratio=1) + xlab("x") + ylab("y")+ 
+  scale_x_continuous(breaks=seq(0, 2*pi, by=pi/2), minor_breaks=minor.axis.correction,
+                     labels=c("0", expression(paste(pi,"/2")), expression(pi), expression(paste("3",pi, "/2")), expression(paste("2",pi)))) + 
+  geom_point(data=dots, aes(x=x, y=y), inherit.aes=FALSE) + 
+  theme(plot.margin = unit(c(.1,.1,-.5,.1), "cm"))
+
+dots$x2 <- correctx(seq(0, 2*pi, pi/8), fprime, w=.5)
+
+dframe$xtrans2 <- correctx(dframe$x, fprime=fprime, w=.5)
+
+ggplot(aes(x=xtrans2, xend=xtrans2, y = ystart, yend=yend), data=dframe) +
+  geom_abline(aes(slope = 0, intercept=0), colour="grey70") +
+  geom_segment(colour="grey20") +
+  theme_bw() + coord_fixed(ratio=1) + 
+  xlab("x") + ylab("y")+ 
+  scale_x_continuous(breaks=seq(0, 2*pi, by=pi/2), minor_breaks=minor.axis.correction,
+                     labels=c("0", expression(paste(pi,"/2")), expression(pi), expression(paste("3",pi, "/2")), expression(paste("2",pi)))) + 
+  geom_point(data=dots, aes(x=x2, y=y), inherit.aes=FALSE)  + 
+  theme(plot.margin = unit(c(.1,.1,-.5,.1), "cm"))
+
+dots$x3 <- correctx(seq(0, 2*pi, pi/8), fprime, w=1/3)
+
+dframe$xtrans3 <- correctx(dframe$x, fprime=fprime, w=1/3)
+
+ggplot(aes(x=xtrans3, xend=xtrans3, y = ystart, yend=yend), data=dframe) +
+  geom_abline(aes(slope = 0, intercept=0), colour="grey70") +
+  geom_segment(colour="grey20") +
+  theme_bw() + coord_fixed(ratio=1) + 
+  xlab("x") + ylab("y")+  
+  scale_x_continuous(breaks=seq(0, 2*pi, by=pi/2), minor_breaks=minor.axis.correction,
+                     labels=c("0", expression(paste(pi,"/2")), expression(pi), expression(paste("3",pi, "/2")), expression(paste("2",pi))))+ 
+  geom_point(data=dots, aes(x=x3, y=y), inherit.aes=FALSE) + 
+  theme(plot.margin = unit(c(.1,.1,-.5,.1), "cm"))
+
+dots$x4 <- correctx(seq(0, 2*pi, pi/8), fprime, w=1/4)
+
+dframe$xtrans4 <- correctx(dframe$x, fprime=fprime, w=1/4)
+
+ggplot(aes(x=xtrans4, xend=xtrans4, y = ystart, yend=yend), data=dframe) +
+  geom_abline(aes(slope = 0, intercept=0), colour="grey70") +
+  geom_segment(colour="grey20") +
+  theme_bw() + coord_fixed(ratio=1) + 
+  xlab("x") + ylab("y") +
+  scale_x_continuous(breaks=seq(0, 2*pi, by=pi/2), minor_breaks=minor.axis.correction,
+                     labels=c("0", expression(paste(pi,"/2")), expression(pi), expression(paste("3",pi, "/2")), expression(paste("2",pi))))+ 
+  geom_point(data=dots, aes(x=x4, y=y), inherit.aes=FALSE) + 
+  theme(plot.margin = unit(c(.1,.1,-.5,.1), "cm"))
+@
+\begin{figure}[h!tbp]\centering
+\begin{subfigure}[b]{.45\linewidth}\centering 
+\includegraphics[keepaspectratio=TRUE,width=\linewidth]{fig-xtransform1}
+\caption[$X$ axis transformation]{$X$ axis transformation based on eqn.~(\ref{eqn.xtrans}), corresponding to weighting of $w=0$.}
+\label{fig:xtrans1}
+\end{subfigure} \hfill\hfill
+\begin{subfigure}[b]{.45\linewidth}\centering
+\includegraphics[keepaspectratio=TRUE,width=\linewidth]{fig-xtransform2} 
+\caption[Weighted transformation]{Weighted Transformation, $w=1/2$ (based on eqn.~(\ref{eqn.xtrans.weighted}))}
+\label{fig:xtrans2}
+\end{subfigure}
+
+\begin{subfigure}[b]{.45\linewidth}\centering 
+\includegraphics[keepaspectratio=TRUE,width=\linewidth]{fig-xtransform3}
+\caption[Weighted transformation]{Weighted Transformation, $w=1/3$}
+\label{fig:xtrans3}
+\end{subfigure} \hfill
+\begin{subfigure}[b]{.45\linewidth}\centering
+\includegraphics[keepaspectratio=TRUE,width=\linewidth]{fig-xtransform4}
+\caption[Weighted transformation]{Weighted Transformation, $w=1/4$}
+\label{fig:xtrans4}
+\end{subfigure}
+\caption[X axis transformations]{Examples of $X$ axis transformations in the sine curve.  Dots at the bottom of the graph show the transformation's effect on equally spaced points along the $x$-axis. Different amounts of weighting $w$ correspond to differently strong corrections. In (a),   $x$-spacing of the lines changes the extant width such that the absolute value of the slope is uniform across the whole range of the $x$ axis resulting in the largest amount of correction.  (b) - (d) reduce the correction in (a) towards successively more uniform spacings in $x$ while still breaking the effects of the illusion.}
+\label{fig:xtrans}
+\end{figure}
+While the transformation in equation (\ref{eqn.xtrans}) effectively removes the appearance of changing line lengths, we can see in practice that the illusion can be broken by a much less severe transformation of the $x$ axis. 
+For that we introduce a shrinkage factor $w \in (0,1)$ that allows a weighted approach in counteracting the illusion as: 
+%
+\begin{equation}\label{eqn.xtrans.weighted}
+(f \circ T_w)(x) = (1-w) \cdot x + w \cdot (f \circ T)(x)
+\end{equation}
+%
+Note that for $w=1$ the $x$-transformation is completely warped, while smaller values of $w$ indicate a less severe adjustment against the sine illusion.  Under  weaker transformation,s the data more closely reflect the original function $f(x)$. 
+Figures \ref{fig:xtrans2} - \ref{fig:xtrans4} show the effect of different shrinkage coefficients $w$. As $w$ decreases, the lines become more evenly spaced and the illusion begins to return. 
+
+The extent  to which we can shrink the adjustment back to the original function  varies with the aspect ratio of the chart and the shape of the function. It might also be influenced by the audience's experience with the sine illusion, resulting in very subjective choices of an ``optimal weighting" for specific situations which minimizes distortion and maximizes the correspondence between inferences made from the data and inferences made using the visual display.
+
+
+Note, that we only make use of the transformation $T$ in the form of $f \circ T$. This allows us to avoid an explicit calculation of the transformation $T$, which in particular  involves a computation of the inverse of $f$ leading to potentially computation-intense solutions. 
+
+<<xtrans-example, echo=FALSE, include=FALSE, dependson='xtransform', fig.width=6, fig.height=6>>=
+library(locfit)
+
+datasub <- read.csv("../Data/sineIllusion/Ozone/Ozone-subset.csv")
+model <- locfit(data=datasub, Ozone~Tmax)
+deriv <- locfit(data=datasub, Ozone~Tmax, deriv=1)
+
+f <- function(x) predict(model, newdata=data.frame(Tmax=x))
+fprime <- function(x) predict(deriv, newdata=data.frame(Tmax=x))
+
+datasub$TmaxCorrect <- correctx(datasub$Tmax, fprime, a=45, b=95, w=1)
+datasub$TmaxCorrect2 <- correctx(datasub$Tmax, fprime, a=45, b=95, w=1/2)
+
+
+dots <- data.frame(Tmax=seq(45, 95, length=11), Ozone=0)
+dots$TmaxCorrect <- correctx(dots$Tmax, fprime, a=45, b=95, w=1)
+dots$TmaxCorrect2 <- correctx(dots$Tmax, fprime, a=45, b=95, w=1/2)
+
+breaks <- data.frame(labels=as.character(seq(50, 90, 5)), breaks=seq(50, 90, 5))
+breaks$breaks1 <- correctx(breaks$breaks, fprime, a=45, b=95, w=1)
+breaks$breaks2 <- correctx(breaks$breaks, fprime, a=45, b=95, w=1/2)
+
+nsite <- length(unique(datasub$SiteID))
+
+qplot(data=datasub, x=Tmax, y=Ozone, geom="jitter", shape=I(1), colour=I("grey40"), alpha=I(.5), 
+      xlab="Temperature (F)", ylab="8-hour Average Ozone Concentration (ppm)") + 
+  geom_line(aes(x=Tmax, y=fit), size=1.25, colour="black") + theme_bw()+ 
+  geom_point(data=dots, aes(x=Tmax))
+qplot(data=datasub, x=TmaxCorrect, y=Ozone, geom="jitter", shape=I(1), colour=I("grey40"), alpha=I(.5), 
+      xlab="Temperature (F)", ylab="8-hour Average Ozone Concentration (ppm)") + 
+  geom_line(aes(x=TmaxCorrect, y=fit), size=1.25, colour="black") + theme_bw() + 
+  geom_point(data=dots) + 
+  scale_x_continuous(breaks=breaks$breaks1, minor_breaks=dots$TmaxCorrect, labels=breaks$labels) 
+qplot(data=datasub, x=TmaxCorrect2, y=Ozone, geom="jitter", colour=I("grey20"), alpha=I(.5), 
+      xlab="Temperature (F)", ylab="8-hour Average Ozone Concentration (ppm)") + 
+  geom_line(aes(x=TmaxCorrect2, y=fit), size=1.25, colour="steelblue") + theme_bw() + 
+  geom_point(data=dots) + 
+  scale_x_continuous(breaks=breaks$breaks2, minor_breaks=dots$TmaxCorrect, labels=breaks$labels)
+
+@
+
+In the example of the Ozone data shown in figure \ref{fig:exampleFull1}, we can base a transformation of the $x$-axis on a loess fit of ozone concentration in daily temperature. Loess is particularly convenient for this transformation, as it enforces continuity conditions including differentiability of the fitted function; software allows us to obtain fits of both the function values and their derivatives.
+
+Figure \ref{fig:xtrans-example} shows the original data side-by-side with the transformed $x$-axis, demonstrating not only the effect of transformation of the $x$-axis, but also that the transformation is not overly misleading in this example. The granularity of the data in this example provides an implicit measure of the strength of the transformation along the $x$-axis and the transformation is also clearly evident in the labels along the $x$-axis. 
+%
+\begin{figure}[h!]\centering
+\begin{subfigure}[b]{.48\linewidth}\centering
+\includegraphics[keepaspectratio=TRUE,width=\linewidth]{fig-xtrans-example1}
+\caption{Original Data}\label{fig:xtrans-example-original}
+\end{subfigure}
+\begin{subfigure}[b]{.48\linewidth}\centering
+\includegraphics[keepaspectratio=TRUE,width=\linewidth]{fig-xtrans-example2}
+\caption{Transformed $X$ Axis}\label{fig:xtrans-example-trans}
+\end{subfigure}
+\caption{Original data and data after $x$-transformation. The increasing variance is easier to see when $x$ has been transformed, because the slope is now uniform.\label{fig:xtrans-example}}
+\end{figure}
+
+
+\subsection{Transformation in $Y$}
+Understanding the geometry of the sine illusion leads to another approach to counteracting  the conflict between the orthogonal width and the vertical length of the segment. 
+
+<<trigFix, echo=FALSE, include=FALSE, fig.width=4, fig.height=3>>=
+dframe <- createSine(40,1, f=f, fprime=fprime, f2prime=f2prime)
+ qplot(x=x, xend=xend, y = f(x) -ell/2, yend=f(x) +ell/2, geom="segment", data=dframe) +
+   theme(panel.background=element_blank(), axis.title = element_blank()) + 
+   coord_equal(ratio=1)+ 
+   xlab("x") + ylab("y") +
+   scale_x_continuous(breaks=seq(0, 2*pi, by=pi/2), minor_breaks=minor.axis.correction,
+                      labels=c("0", expression(paste(pi,"/2")), expression(pi), expression(paste("3",pi, "/2")), expression(paste("2",pi))))
+  
+ qplot(x=x, xend=xend, y = f(x) -ellx/2, yend=f(x) +ellx/2, geom="segment", data=dframe) +
+   theme(panel.background=element_blank(), axis.title = element_blank()) + 
+   coord_equal(ratio=1)+ 
+   xlab("x") + ylab("y") +
+   scale_x_continuous(breaks=seq(0, 2*pi, by=pi/2), minor_breaks=minor.axis.correction,
+                      labels=c("0", expression(paste(pi,"/2")), expression(pi), expression(paste("3",pi, "/2")), expression(paste("2",pi)))) 
+  
+#  
+#  qplot(x=x, xend=xend, y = f(x) -ellx2/2, yend=f(x) +ellx2/2, geom="segment", data=dframe) +
+#    theme(panel.background=element_blank(), axis.title = element_blank()) + 
+#    coord_equal(ratio=1)+ 
+#    xlab("x") + ylab("y") +
+#    scale_x_continuous(breaks=seq(0, 2*pi, by=pi/2), minor_breaks=minor.axis.correction,
+#                       labels=c("0", expression(paste(pi,"/2")), expression(pi), expression(paste("3",pi, "/2")), expression(paste("2",pi)))) 
+ @
+Let again the function $f$ describe the general relationship between variables $X$ and $Y$. 
+
+
+As sketched out in figure~\ref{fig:GeneralCorrection} we want to first find the orthogonal (extant) width in a point $(x_0, f(x_o))$ on the graph, which corresponds to the  perceived width, and then correct the vertical width accordingly to match with the audience's expectation.
+
+\begin{SCfigure}[2]
+\centering
+\includegraphics[keepaspectratio=TRUE,width=.33\linewidth]{fig-generalcorrectioncartoon3}
+\caption[General correction approach]{ General correction approach. This approach may require numerical optimization to obtain exact solutions for $(x_1, y_1)$ and $(x_2, y_2)$.}\label{fig:GeneralCorrection}
+\end{SCfigure}
+
+The orthogonal width (see sketch in figure~\ref{fig:GeneralCorrection}) is given as the line segment between endpoints $(x_1, f_1(x_1))$ and $(x_2, f_2(x_2))$, where $f_1$ and $f_2$ denote the vertical shifts of function $f$ by $-\ell/2$ and $\ell/2$, respectively, where $\ell$ is defined as the overall line length, $\ell > 0, \ell \in \xR$.
+These endpoints are determined as the intersection of the line  orthogonal to the tangent line in $(x, f(x))$ and the graphs resulting from the vertical shifts of $f$.
+
+The function describing the orthogonal line through $(x_o, f(x_o))$ is given in point-vector form as 
+\[
+{x_o \choose f(x_o)} + \lambda {f^\prime(x_o) \choose 1}, 
+\]
+for any real-valued $\lambda$.
+The advantage of using point vector form is that it allows us to solve for parameter $\lambda$ easily, which gives us easy access to the extant (half-)widths,  as: 
+\begin{equation}\label{eqn.halfwidth}
+|\lambda| \sqrt{1 + f^\prime(x_o)^2}.
+\end{equation}
+Eqn. (\ref{eqn.halfwidth}) describes the quantity that we perceive rather than the quantity that we want to display ($\ell/2$), which leads us to a general expression of the correction factor as
+\begin{eqnarray*}
+ \ell/2 \cdot \left(|\lambda| \sqrt{1 + f^\prime(x_o)^2}\right)^{-1}.
+\end{eqnarray*}
+Note that this yields in general two solutions: one for positive, one for negative values of $\lambda$ corresponding to upper and lower (half-)extant width.
+
+In order to get  actual numeric values for $\lambda$, we need to find end points of the extant line width as solutions of intersecting the orthogonal line and  the graphs of $f_1$ and $f_2$. We find these end points  as solutions in $x$ and $\lambda$ of the system of equations:
+\begin{eqnarray}\label{eqn.general}
+ x - x_o &=& \lambda f^\prime(x_o)\\ \label{eqn.general.2}
+ f(x) - f(x_o) &=& -\lambda \pm \ell/2
+\end{eqnarray}
+
+
+Note that  the above system of equations involves function values $f(x)$, which implies that solving this system  requires numerical optimization for any but the most simple functions $f$.
+
+In the following two sections we make use of Taylor approximations of first and second order to find approximate solutions to end points as sketched out in figure \ref{fig:linear.quadratic}.
+
+<<generalcorrectioncartoon,echo=FALSE, include=FALSE, fig.width=4, fig.height=4>>=
+f <- function(x) 2*sin(x)
+fprime <- function(x) 2*cos(x)
+f2prime <- function(x) -2*sin(x)
+df <- createSine(40 , len=1, f=f, fprime=fprime, f2prime=f2prime)[5:16,]
+
+a <- 9
+df.real <- data.frame(x=seq(df$x[1], df$x[12], by=.001))
+df.real$y <- f(df.real$x)
+df.real$yupper <- df.real$y+.5
+df.real$ylower <- df.real$y-.5
+dfsec <- getSecantSegment(df$x[a], df, f, fprime, f2prime)
+dfslope <- data.frame(xstart=df$x[a]+.5, xend=df$x[a]-.9, ystart=fprime(df$x[a])*.5+df$y[a], yend=-.9*fprime(df$x[a])+df$y[a])
+dfslope2 <- data.frame(xstart=df$x[a]+.5, xend=df$x[a]-.3, ystart=fprime(df$x[a])*.5+df$y[a]+.5, yend=-.3*fprime(df$x[a])+df$y[a]+.5)
+qplot(data=df.real, x=x, y=y, geom="line") + 
+  theme(panel.grid.major=element_blank(), 
+        panel.grid.minor=element_blank(), panel.background=element_blank(),
+        axis.title = element_blank(), axis.ticks = element_blank(), 
+        axis.text = element_blank()) +  
+  geom_line(data=df.real,aes(y=yupper), linetype=3) + 
+  geom_line(data=df.real,aes(y=ylower), linetype=4) + 
+  geom_segment(data=df, aes(x=xstart, y=ystart, xend=xend, yend=yend), colour="grey50") + 
+  geom_segment(data=df[a,], aes(x=xstart, y=ystart, xend=xend, yend=yend), colour="black", size=1.5)+
+  geom_segment(data=dfsec, aes(x=sec.xstart, xend=sec.xend, y=sec.ystart, yend=sec.yend)) + 
+  geom_point(data=dfsec, aes(x=sec.xstart, y=sec.ystart)) + geom_point(data=dfsec, aes(x=sec.xend, y=sec.yend)) +
+  geom_segment(data=dfslope, aes(x=xstart, y=ystart, xend=xend, yend=yend), linetype=2) + 
+  geom_text(data=dfsec, aes(x=sec.xstart, y=sec.ystart+.05, label="paste(group('(',list(x[2],y[2]),')'))"), parse=TRUE, hjust=0) + 
+  geom_text(data=dfsec, aes(x=sec.xend, y=sec.yend-.08, label="paste(group('(',list(x[1],y[1]),')'))"), parse=TRUE, hjust=.9) +   
+  geom_text(data=dfslope, aes(x=xend+.1, y=yend+.1, label="slope: paste(f, \"'\", (x))"), parse=TRUE, hjust=.75, vjust=1) +
+  coord_equal(ratio=1) + theme(axis.title=element_blank(), axis.text=element_blank(), axis.ticks=element_blank(), axis.line=element_blank(), panel.grid=element_blank(), plot.margin = unit(c(-1,-1,-2,-2), "lines")) 
+
+df <- createSine(40 , len=1, f=f, fprime=fprime, f2prime=f2prime)[5:16,]
+
+a <- 9
+df.real <- data.frame(x=seq(df$x[1], df$x[12], by=.001))
+df.real$y <- f(df.real$x)
+df.real$yupper <- fprime(df$x[a])*(df.real$x-df$x[a])+f(df$x[a])+.5
+df.real$yupper[which(abs(df.real$x-2)>.5)] <- NA
+df.real$ylower <- fprime(df$x[a])*(df.real$x-df$x[a])+f(df$x[a])-.5
+df.real$ylower[which(abs(df.real$x-2)>.5)] <- NA
+df.real$sec <- -1/fprime(df$x[a])*(df.real$x-df$x[a])+f(df$x[a])
+df.real$sec[which(abs(df.real$x-2)>.5)] <- NA
+df.real$sec[which(df.real$sec>df.real$yupper | df.real$sec<df.real$ylower)] <- NA
+dfslope <- data.frame(xstart=df$x[a]+.5, xend=df$x[a]-.9, ystart=fprime(df$x[a])*.5+df$y[a], yend=-.9*fprime(df$x[a])+df$y[a])
+dfslope2 <- data.frame(xstart=df$x[a]+.5, xend=df$x[a]-.3, ystart=fprime(df$x[a])*.5+df$y[a]+.5, yend=-.3*fprime(df$x[a])+df$y[a]+.5)
+qplot(data=df.real, x=x, y=y, geom="line")+
+  theme(panel.grid.major=element_blank(), 
+        panel.grid.minor=element_blank(), panel.background=element_blank(),
+        axis.title = element_blank(), axis.ticks = element_blank(), 
+        axis.text = element_blank(),
+        plot.margin = unit(rep(0,4), "lines")) +
+  coord_equal(ratio=1) +
+  geom_line(data=df.real,aes(y=yupper), linetype=3) + 
+  geom_line(data=df.real,aes(y=ylower), linetype=4) + 
+  geom_segment(data=df, aes(x=xstart, y=ystart, xend=xend, yend=yend), colour="grey50") + 
+  geom_segment(data=df[a,], aes(x=xstart, y=ystart, xend=xend, yend=yend), colour="black", size=1.5)+
+  geom_line(data=df.real, aes(y=sec)) + 
+  geom_point(data=df.real[which.min(df.real$sec),], aes(x=x, y=sec), size=2) + 
+  geom_point(data=df.real[which.max(df.real$sec),], aes(x=x, y=sec), size=2) +
+  geom_segment(data=dfslope, aes(x=xstart, y=ystart, xend=xend, yend=yend), linetype=2) + 
+  geom_text(data=df.real[which.min(df.real$sec),], aes(x=x, y=sec-0.08, label="paste(group('(',list(x[1],y[1]),')'))"), 
+            parse=TRUE, hjust=1, vjust=.25) + 
+  geom_text(data=df.real[which.max(df.real$sec),], aes(x=x-.05, y=sec+.05, label="paste(group('(',list(x[2],y[2]),')'))"), 
+            parse=TRUE, hjust=0, vjust=.25)  + 
+  theme(axis.title=element_blank(), axis.text=element_blank(), axis.ticks=element_blank(), axis.line=element_blank(), panel.grid=element_blank(), plot.margin=unit(c(0,0,-1,0), "cm"))
+
+
+df <- createSine(40 , len=1, f=f, fprime=fprime, f2prime=f2prime)[5:16,]
+
+a <- 9
+df.real <- data.frame(x=seq(df$x[1], df$x[12], by=.001))
+df.real$y <- f(df.real$x)
+df.real$yupper <- .5*f2prime(df$x[a])*(df.real$x-df$x[a])^2 + fprime(df$x[a])*(df.real$x-df$x[a])+f(df$x[a])+.5
+df.real$yupper[which(abs(df.real$x-2)>.5)] <- NA
+df.real$ylower <- .5*f2prime(df$x[a])*(df.real$x-df$x[a])^2 + fprime(df$x[a])*(df.real$x-df$x[a])+f(df$x[a])-.5
+df.real$ylower[which(abs(df.real$x-2)>.5)] <- NA
+df.real$sec <- -1/fprime(df$x[a])*(df.real$x-df$x[a])+f(df$x[a])
+df.real$sec[which(abs(df.real$x-2)>.5)] <- NA
+df.real$sec[which(df.real$sec>df.real$yupper | df.real$sec<df.real$ylower)] <- NA
+dfslope <- data.frame(xstart=df$x[a]+.5, xend=df$x[a]-.9, ystart=fprime(df$x[a])*.5+df$y[a], yend=-.9*fprime(df$x[a])+df$y[a])
+dfslope2 <- data.frame(xstart=df$x[a]+.5, xend=df$x[a]-.3, ystart=fprime(df$x[a])*.5+df$y[a]+.5, yend=-.3*fprime(df$x[a])+df$y[a]+.5)
+qplot(data=df.real, x=x, y=y, geom="line") + 
+  theme(panel.grid.major=element_blank(), 
+        panel.grid.minor=element_blank(), panel.background=element_blank(),
+        axis.title = element_blank(), axis.ticks = element_blank(), 
+        axis.text = element_blank(),
+        plot.margin = unit(rep(0,4), "lines")) +  
+  coord_equal(ratio=1) +
+  geom_line(data=df.real,aes(y=yupper), linetype=3) + 
+  geom_line(data=df.real,aes(y=ylower), linetype=4) + 
+  geom_segment(data=df, aes(x=xstart, y=ystart, xend=xend, yend=yend), colour="grey50") + 
+  geom_segment(data=df[a,], aes(x=xstart, y=ystart, xend=xend, yend=yend), colour="black", size=1.5)+
+  geom_line(data=df.real, aes(y=sec)) + 
+  geom_point(data=df.real[which.min(df.real$sec),], aes(x=x, y=sec), size=2) + 
+  geom_point(data=df.real[which.max(df.real$sec),], aes(x=x, y=sec), size=2) +
+  geom_segment(data=dfslope, aes(x=xstart, y=ystart, xend=xend, yend=yend), linetype=2) + 
+  geom_text(data=df.real[which.min(df.real$sec),], aes(x=x, y=sec-0.08, label="paste(group('(',list(x[1],y[1]),')'))"), 
+            parse=TRUE, hjust=1, vjust=.25) + 
+  geom_text(data=df.real[which.max(df.real$sec),], aes(x=x-.05, y=sec+.05, label="paste(group('(',list(x[2],y[2]),')'))"), 
+            parse=TRUE, hjust=0, vjust=.25)  + 
+  theme(axis.title=element_blank(), axis.text=element_blank(), axis.ticks=element_blank(), axis.line=element_blank(), panel.grid=element_blank(),
+        plot.margin=unit(c(0,0,-1,0), "cm"))
+@
+
+
+\begin{figure}[h!]\centering
+\begin{subfigure}[t]{0.4\textwidth}\centering
+\includegraphics[keepaspectratio=TRUE,width=0.9\textwidth]{fig-generalcorrectioncartoon2}
+\caption{Linear Approximation}\label{fig:linear-GeneralCorrection}
+\end{subfigure}
+\begin{subfigure}[t]{0.4\textwidth}\centering
+\includegraphics[keepaspectratio=TRUE,width=0.9\textwidth]{fig-generalcorrectioncartoon3}
+\caption{Quadratic Approximation}\label{fig:quadratic-GeneralCorrection}
+\end{subfigure}
+\caption[Methods based on Approximations to f(x)]{(a) uses a first-order Taylor series approximation to $f(x)$ and (b) uses a second-order Taylor series approximation to $f(x)$. The intersection of the function $f(x) \pm \ell/2$ and the orthogonal line,  $(x_1, y_1), (x_2, y_2)$ must be obtained to determine the necessary correction factor.}\label{fig:linear.quadratic} 
+\end{figure}
+
+\subsection{Linear Approximation to $f(x)$}\hfill\newline
+For the linear approximation we make use of $f(x) \approx f(x_0) + (x - x_0) f^\prime(x_0)$, which together with  equations~\ref{eqn.general} and \ref{eqn.general.2} yields a correction factor in $x_0$ of
+\[
+\ell_{\text{new}}(x_0) = \ell_{\text{old}} \sqrt{1 +  f^\prime(x_0)^2}.
+\]
+
+Note that the linear method gives the same result as a varying slope extension from a trigonometric approach  suggested by \citet{schonlau:2003} and used in \citet{marie:2013}
+
+A second-order Taylor polynomial approximation to $f(x)$ additionally accounts for the asymmetry in the extant widths on either side of the center trendline.
+
+\subsection{Quadratic Approximation to $f(x)$}\hfill\newline
+Using the approximation $f(x) \approx f(x_0) + f^\prime(x_0)(x-x_0) + 1/2 f^{\prime\prime}(x_0)(x-x_0)^2$, the system of equations~\ref{eqn.general} and~\ref{eqn.general.2}  simplifies to the following  quadratic equation in $\lambda$:
+\begin{eqnarray*}
+f^{\prime\prime}(x_0)  f^\prime(x_0)^2 \lambda^2  + 2(f^\prime(x_0)^2 + 1) \lambda  \pm \ell = 0,
+\end{eqnarray*}
+which leads us to corrections for the half lengths as (see appendix \ref{app.quadratic} for details):
+\begin{eqnarray}\label{eqn.q1}
+\ell_{\text{new}_1}(x_0) &=& 1 /2 \cdot  \left(v + \sqrt{ v^2 +  f^{\prime\prime}(x_0) f^\prime(x_0)^2\cdot  \ell_{\text{old}}}\right) \cdot v^{-1/2} \\\label{eqn.q2}
+\ell_{\text{new}_2}(x_0) &=& 1 /2 \cdot  \left(v + \sqrt{ v^2 -  f^{\prime\prime}(x_0) f^\prime(x_0)^2\cdot  \ell_{\text{old}}}\right) \cdot v^{-1/2} 
+\end{eqnarray}
+where $v = 1 + f^\prime(x_0)^2$.
+
+\begin{subsubsection*}{Proof: Reformulation of the quadratic approximation}\label{app.quadratic}
+A quadratic equation in $\lambda$ of the form 
+\begin{equation}\label{quadratic.equation}
+a\lambda^2 + b\lambda + c = 0,
+\end{equation}
+where $a, b,$ and $c$ are real-valued parameters the solutions take on the form
+\[
+\lambda_{\pm} = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}  \stackrel{*}{=} 2c\left(-b \pm \sqrt{b^2 - 4ac}\right)^{-1}.
+\]
+$^*$ if $b \neq \pm \sqrt{b^2 - 4ac}$, i.~e. $a, c \neq 0$.
+\paragraph{Application to quadratic approximation to $f$:}
+in the example, we have the following equivalencies:
+\begin{eqnarray*}
+a &=& f^{\prime\prime}(x_0) f^\prime(x_0)^2 \\
+b &=& 2(1 + f^\prime(x_0)^2) \hspace{.5in} > 0 \text{ for all } x \\
+c &=& \pm \ell 
+\end{eqnarray*}
+For a valid solution for the correction factor, we have to assume that $\lambda$ is a factor that extends the original extant width (in absolute value). 
+
+\begin{eqnarray*}
+\lambda_{1/2} &=& \ell \left(v + \sqrt{ v^2 \pm  f^{\prime\prime}(x_0) f^\prime(x_0)^2\cdot \ell}\right)^{-1} 
+\end{eqnarray*}
+for $v = 1 + f^\prime(x_0)$. 
+This gives the results as shown in equations (\ref{eqn.q1}) and (\ref{eqn.q2})
+\end{subsubsection*}
+
+\begin{figure}[h!btp]
+\begin{subfigure}[b]{.32\textwidth}\centering
+<<UncorRresults, echo=FALSE, fig.width=4, fig.height=3, out.width='\\linewidth'>>=
+dframe <- createSine(40,1, f=f, fprime=fprime, f2prime=f2prime)
+ qplot(x=x, xend=xend, y = f(x) -ell/2, yend=f(x) +ell/2, geom="segment", data=dframe) +
+  theme_bw() + 
+   theme(axis.title = element_blank(), plot.margin=unit(rep(0,4), "lines")) + 
+   coord_equal(ratio=1)+ 
+   xlab("x") + ylab("y") +
+   scale_x_continuous(breaks=seq(0, 2*pi, by=pi/2), minor_breaks=seq(pi/4, 2*pi-pi/4, by=pi/2),
+                      labels=c("0", expression(paste(pi,"/2")), expression(pi), expression(paste("3",pi, "/2")), expression(paste("2",pi))))
+@
+\caption{Uncorrected}
+\end{subfigure}
+\begin{subfigure}[b]{.32\textwidth}\centering
+% \includegraphics[width=\linewidth,keepaspectratio=TRUE]{fig-trigFix2}
+<<LinearResults,echo=FALSE, fig.width=4, fig.height=3, out.width='\\linewidth'>>=
+dframe <- createSine(40,1, f=f, fprime=fprime, f2prime=f2prime)
+ qplot(x=x, xend=xend, y = f(x) -ellx/2, yend=f(x) +ellx/2, geom="segment", data=dframe) +
+     theme_bw() + 
+   theme(axis.title = element_blank(), plot.margin=unit(rep(0,4), "lines")) + 
+   coord_equal(ratio=1)+ 
+   xlab("x") + ylab("y") +
+   scale_x_continuous(breaks=seq(0, 2*pi, by=pi/2), minor_breaks=minor.axis.correction,
+                      labels=c("0", expression(paste(pi,"/2")), expression(pi), expression(paste("3",pi, "/2")), expression(paste("2",pi))))
+@
+\caption{Linear correction}
+\end{subfigure}
+%
+\begin{subfigure}[b]{.32\textwidth}\centering
+<<CtsAdjustedResults,echo=FALSE, dependson='CtsQuadratic', fig.width=4, fig.height=3, out.width='\\linewidth'>>=
+dframe <- createSine(n = 40, len = 1, f=f, fprime=fprime, f2prime=f2prime) 
+qplot(x=x, xend=x, y=y+ellx4.u, yend=y-ellx4.l, geom="segment", data=dframe, linetype=I(1)) +   
+     theme_bw() + 
+   theme(axis.title = element_blank(), plot.margin=unit(rep(0,4), "lines")) + 
+   coord_equal(ratio=1)+ 
+   xlab("x") + ylab("y") +
+   scale_x_continuous(breaks=seq(0, 2*pi, by=pi/2), minor_breaks=minor.axis.correction,
+                      labels=c("0", expression(paste(pi,"/2")), expression(pi), expression(paste("3",pi, "/2")), expression(paste("2",pi))))
+@
+\caption{Quadratic correction}
+\end{subfigure}
+\caption[Quadratic Approximation]{
+In the quadratic approximation top and bottom segments of the vertical lines are adjusted separately.}
+\label{fig:GeneralQuadraticCorrection} 
+\end{figure}
+
+Adjusting the top and bottom segments of the vertical lines separately so that the extant width is constant breaks the illusion, but slightly distorts the sinusoidal shape of the peaks.
+
+Figure~\ref{fig:GeneralQuadraticCorrection} shows the correction factor based on a quadratic approximation compared to the untransformed data. 
+Unlike the linear solution, the half-segments here are not necessarily of the same length, and thus there are separate correction factors for each half-segment. 
+<<CtsQuadratic, echo=FALSE, include=FALSE, fig.width=6, fig.height=4>>=
+f <- function(x) 2*sin(x)
+fprime <- function(x) 2*cos(x)
+f2prime <- function(x) -2*sin(x)
+
+suppressMessages(library(ggplot2))
+dframe <- createSine(n = 400, len = 1, f=f, fprime=fprime, f2prime=f2prime)
+library(reshape2)
+dfm <- melt(dframe, id.var="x", measure.vars=c("ellx4.l", "ellx4.u"))
+levels(dfm$variable) <- c("Bottom Segment", "Top Segment")
+cairo_pdf("Figure/sineIllusion/fig-CtsQuadratic.pdf", width=6, height=4)
+ggplot(aes(x=x, y=value, group=variable, linetype=variable), data=dfm) + geom_line() + 
+  scale_x_continuous(breaks=seq(0, 2*pi, by=pi/2), 
+                     labels=c("0", expression(paste(pi,"/2")), 
+                              expression(pi), 
+                              expression(paste("3",pi, "/2")), 
+                              expression(paste("2",pi)))) + 
+  ylab(expression(frac('\u2113', 2))) + xlab("") + 
+  theme_bw() + theme(legend.position="bottom", axis.title.y=element_text(angle=0)) +
+  scale_linetype_discrete(expression('Adjusted ' * frac('\u2113', 2)*'  '))
+dev.off()
+@
+
+%\subsection{Mathematical Properties of Transformation}
+The quadratic correction breaks whenever the expression in the square root of eqn.~(\ref{eqn.q1}) becomes negative, i.e.~whenever $v^2 \pm \ell\cdot f^{\prime\prime}(x)\cdot f^\prime(x)^2 < 0$.
+This happens for  combinations of large values of $\ell$, which signify a large vertical extent, or large conditional variability $E[Y|X]$, and simultaneous large changes in the slope of the main trend, i.e.~large values of the curvature $f^{\prime\prime}(x)$. In the linear approximation of $f$ the same situation leads to a massive overcorrection of the vertical lines, changing the shape of the `corrected' function beyond recognition.
+
+Similar to the correction of the $x$-axis,  we can use a weighted approach to find a balance between counteracting the illusion and representating the  original data:
+\begin{equation}\label{eqn.ytrans.weighted}
+\ell_{new_w}(x) = (1-w) \cdot \ell_{old} + w \cdot \ell_{new}(x)
+\end{equation}
+
+%Note that for the quadratic correction in $y$ half-segment lengths must be weighted separatel.%y; a single segment weighting will suffice for the linear correction in $y$. 
+
+% % 
+% % $1 + 2f^\prime(x)^2 + f^\prime(x)^4 \pm \ell\cdot f^{\prime\prime}(x)\cdot f^\prime(x)^2 < 0$
+% % 
+% % $1 + (2  \pm \ell\cdot f^{\prime\prime}(x)) \cdot f^\prime(x)^2 + f^\prime(x)^4 < 0$
+% % 
+% % $\frac{1  + f^\prime(x)^4}{f^\prime(x)^2} < - (2  \pm \ell\cdot f^{\prime\prime}(x)) $
+% 
+% \todo[inline]{Add pictures comparing the 3 transformations to the untransformed data under both normal and extreme conditions.}
+% \todo[inline]{Discussion: Hammock/Trig/linear breaks first,  quadratic breaks after, full optimization breaks eventually}
+% As with the trigonometry correction, the linear adjustment is prone to the same overcorrection distortion shown in Figure \ref{fig:linearFixOvercorrect}.
+% 
+% \begin{figure}[h!tbp]
+% \centering
+% <<linearFixOvercorrect, dependson='data', echo=FALSE, include=FALSE>>=
+% g <- function(x) 5*sin(x)
+% gprime <- function(x) 5*cos(x)
+% g2prime <- function(x) -5*sin(x)
+% dframe <- createSine(75, len=1, f=g, fprime=gprime, f2prime=g2prime)
+% ar <- 1
+% qplot(x=x, xend=xend, y = g(x) -ell/2, yend=g(x) +ell/2, geom="segment", data=dframe) +
+%   theme(panel.grid.major=element_blank(), 
+%        panel.grid.minor=element_blank(), panel.background=element_blank(),
+%        axis.title = element_blank(), axis.ticks = element_blank(), 
+%        axis.text = element_blank()) + coord_equal(ratio=ar)
+% 
+% qplot(x=x, xend=xend, y = g(x) -ellx/2, yend=g(x) +ellx/2, geom="segment", data=dframe) +
+%   theme(panel.grid.major=element_blank(), 
+%        panel.grid.minor=element_blank(), panel.background=element_blank(),
+%        axis.title = element_blank(), axis.ticks = element_blank(), 
+%        axis.text = element_blank()) + coord_equal(ratio=ar)
+% 
+% qplot(x=x, xend=xend, y = g(x) -ellx4.l, yend=g(x) +ellx4.u, geom="segment", data=dframe) +
+%   theme(panel.grid.major=element_blank(), panel.background = element_rect(fill = "white", 
+%                 colour = "black"),
+%        panel.grid.minor=element_blank(), panel.background=element_blank(),
+%        axis.title = element_blank(), axis.ticks = element_blank(), 
+%        axis.text = element_blank()) + coord_equal(ratio=ar)
+% @
+% 
+% \begin{subfigure}[b]{.3\linewidth}\centering
+% \includegraphics[width=\linewidth,keepaspectratio=TRUE]{fig-linearFixOvercorrect1}
+% \caption{$\ell=5$, Uncorrected}
+% \end{subfigure}
+% \begin{subfigure}[b]{.3\linewidth}\centering
+% \includegraphics[width=\linewidth,keepaspectratio=TRUE]{fig-linearFixOvercorrect2}
+% \caption{Corrected by eqn. \ref{trigCorrection}}
+% \end{subfigure}
+% \begin{subfigure}[b]{.3\linewidth}\centering
+% \includegraphics[width=\linewidth,keepaspectratio=TRUE]{fig-linearFixOvercorrect3}
+% \caption{Corrected by eqns (\ref{eqn.q1}) and (\ref{eqn.q2})}
+% \end{subfigure}
+% \caption{The ratio of the length of the line to amplitude of the function needs to be included in the correction. Here, the amplitude is still 1, but the length of the line is 5. The correction factor leads to a massive over correction that makes the function almost unrecognizable. The plot on the left is uncorrected, the plot on the right is `corrected'.\label{fig:linearFixOvercorrect}}
+% \end{figure}
+
+\section{Transformations in Practice -- a User Study}
+
+In order to more fully understand the sine illusion and test the proposed corrections, we created an applet to allow users to investigate the illusion's prominence with respect to its parameters. Users can examine the sine illusion by changing line length, the function's amplitude, and compare corrections in $x$-axis and $y$-values to uncorrected data.  All corrections proposed in this paper are  implemented in the applet located at \url{http://glimmer.rstudio.com/srvanderplas/SineIllusion/}.
+
+We employed a second applet to collect data on users' preferences on the amount of correction used, i.e.~we are interested in identifying a range of `optimal weights' in each of the corrections. This applet presents users with a graph that is the result of a correction in $x$ or $y$ with a randomly selected starting weight value. Users are asked to adjust the graph until the illusion  (a) is no longer apparent (adjustment of weights from the bottom) or (b) becomes visible (adjustments of weights from the top).
+
+Both applets are implemented in {\tt shiny} \citep{shiny}. 
+
+The graphs in the data-collection applet are adjusted using a plus/minus button to either increase or decrease the amount of correction used. Underlying this adjustment is the value of the weight $w$ as defined in eqns.~(\ref{eqn.xtrans.weighted}) and~(\ref{eqn.ytrans.weighted}). The numerical value of $w$ was hidden from the user to prevent anchoring to a specific numerical value.
+
+A low  initial weight ($w_0$ close to 0) indicates that the amount of correction is low and the response from a trial like this will give us an idea of the minimal amount of weight necessary to break the illusion, while a high initial weight ($w_0$ close to 1) indicates that the data is fully corrected. We asked participants to change the amount of adjustment until the lines appear to be the same length assumes that the correction is overcorrecting in practice, and a response from this type of trial gives us an upper boundary for the amount of weighting preferred. Generally, responses from the two different types of trials do not result in the same threshold weight, but rather lead to a range of acceptable weights.
+
+It is of additional interest to determine whether and how much these optimal weights are subject-specific or population-based, whether they depend on the initial weight, and how much within-subject variability we find compared to between-subject variability. 
+
+\begin{figure}\centering
+\includegraphics[width=.8\linewidth]{Images/sineIllusion/shiny.pdf}
+\caption{\label{fig:shiny.app} Screenshot of the shiny application used to collect information of observers' preference with respect to an optimal correction for the illusion under each of the  transformations discussed in the previous section. }
+\end{figure}
+
+Figure~\ref{fig:shiny.app} shows a screenshot of the applet used to collect user data. This applet is  available online at \url{http://glimmer.rstudio.com/srvanderplas/SineIllusionShiny/}. 
+Line length and function are controlled in this app, and we used the linear transformation for adjusting $y$ values; the transformation does not break under any combination of parameters tested in this experiment. 
+
+
+\noindent
+We deployed the applet to participants recruited online, collecting their responses and other metadata. The results of the analysis suggest that the correction factors in $X$ and $Y$ are both preferrable to uncorrected data, but that a full correction is not necessary to break the illusion.
+
+<<study-weight-dist,include=FALSE,eval=TRUE, fig.width=8.5, fig.height=1.5>>=
+# Weight values possible in the Shiny App.
+diffs <- c(0, .5, .5, .5, .5, .25, .25, .25, .25, .25, .25, .25, .25, .1, .1, .05, .05, .05, .05, .05, .05, .025, .025, .025, .025, .025, .025, .025, .025, .025, .025, .025, .025, .05, .05, .05, .05, .1, .1, .1, .1, .1, .25, .25, .25, .25, .25, .25, .5, .5, .5, .5)
+wopts <- -4 +cumsum(diffs)
+w01 <- wopts[(wopts <= 0.75) & (wopts >= 0.25)]
+ggplot() + geom_vline(xintercept =c(0,1), colour="grey80") + theme_bw() + ylab("") + ylim(c(0.8, 1.2)) + xlab("Starting weight") + geom_point(aes(x=w01, y=rep(1, length(w01))), size=4) + theme(axis.ticks.y=element_blank(), axis.text.y=element_blank())  + geom_point(aes(x=c(0, 1), y=rep(1, 2)),  size=6) + theme(axis.ticks.y=element_blank(), axis.text.y=element_blank(), plot.margin=unit(c(0,0,0,0), "cm")) + xlim(c(-0.25,1.21))
+@
+
+\subsection{Study Design}
+The study aims to determine the range of ``optimal'' transformation weights for each transformation type. Psychophysics methodology typically approaches threshold estimation by using the method of adjustment \citep{goldstein}, where  stimuli are provided showing states both above and below the hypothesized optimal value and  participants adjust the stimuli until the stated goal is met (in this case, until the lines appear to have equal length). It is expected that there will be a difference in user-reported values from below and from above, and these values are typically averaged to produce a single threshold value. Beyond averaging these values, we use a mixed model to compare user responses for different starting points in a more continuous fashion, incorporating some of the advantages of the method of constant stimuli to more robustly estimate the range of optimal transformation weights. % For a review of general psychophysics methodology, the method of adjustment, and the method of constant stimuli, see \citet{goldstein}.
+
+The study is set up as a fractional factorial design of correction type ($x$ or $y$ correction) and starting weight $w_0$. Each participant is asked to evaluate a total of twelve situations, six of each correction type.
+Starting weights were chosen as follows: each user was given a trial of each type starting at 0 and 1. The remaining four trials of each type had starting weights chosen with equal probability from $0.25$ to $0.75$ 
+(see figure~\ref{fig:weightdist}). 
+We decided to  have a higher coverage density for starting weights around 0.6 after a pilot study indicated a preference for that value. Using a distribution with a wide coverage allows us to more fully explore the space of plausible weights $w$ while focusing on the $(0,1)$ interval and enabling precise estimation of the optimal weight in the region indicated by the pilot study.
+
+\begin{figure}[ht]\centering
+\includegraphics[keepaspectratio=TRUE,width=0.8\linewidth]{fig-study-weight-dist}
+\caption{Overview of possible starting weights. Weight values are discrete, but staggered so as to provide fine-grained adjustments around 0.6 and more coarse discriminatory information toward the outside.}\label{fig:weightdist}
+\end{figure}
+
+A trial begins with the presentation of a graph at the chosen starting weight $w_0$. Participants adjust the graph using increment and decrement buttons. A trial ends with the participant clicking the `submit' button, at which point the weight for the final adjustment is recorded. This provides a clear starting value and ending value, allowing us to assess the range of optimal values for each participant. In addition to starting weight, correction type, and anonymized user-specific data (partial IP address, hashed IP address, and hashed browser characteristics), each incremental user chosen weight is recorded with a corresponding timestamp. The user-specific browser data is sufficient to provide a `fingerprint' to distinguish and recognize individual users (or rather their computer settings) in an anonymous fashion. 
+
+Each participant is provided with two initial ``training'' trials in which the  graph of the underlying mean function is superimposed on the line segments to give participants some idea of the  function the lines represent. This approach was taken to reduce  incidences of extremely high  correction values under the $X$ transformation, as large adjustment values do not change the impression of same line length, but the resulting function bears little resemblance to a sine function, see figure~\ref{fig:overtransform} for examples of overcorrection.
+<<overcorrectlimits, out.width='.45\\linewidth', fig.width=6.5, fig.height=3, dependson='xtransform', echo=FALSE, include=FALSE>>=
+# what do the different corrections look like outside of the boundary region for outliers?
+f <- sin
+fprime <- cos
+f2prime <- function(x) -sin(x)
+dframe <- createSine(40 , len=1, f=f, fprime=fprime, f2prime=f2prime)
+wlowy <- -2.5
+whighy <- 3.5
+wlowx <- -2
+whighx <- 2
+ycorrlow <- with(dframe, data.frame(x=x, xstart=xstart, xend=xend, 
+                                    y=y, ystart = y - ((1-wlowy)*ell/2 + (wlowy)*ellx4.l), 
+                                    yend = y + ((1-wlowy)*ell/2 + (wlowy)*ellx4.u),
+                                    corr = "Y", level = "low"))
+ycorrhigh <- with(dframe, data.frame(x=x, xstart=xstart, xend=xend, 
+                                     y=y, ystart = y - ((1-whighy)*ell/2+(whighy)*ellx4.l), 
+                                     yend = y + ((1-whighy)*ell/2 + (whighy)*ellx4.u),
+                                     corr = "Y", level = "high"))
+
+xcorrlow <- with(dframe, data.frame(x=correctx(x, fprime, w=wlowx), 
+                                    xstart=correctx(x, fprime, w=wlowx),
+                                    xend=correctx(x, fprime, w=wlowx), 
+                                    y=y, ystart=ystart, yend=yend,
+                                    corr = "X", level = "low"))
+xcorrhigh <- with(dframe, data.frame(x=correctx(x, fprime, w=whighx), 
+                                    xstart=correctx(x, fprime, w=whighx),
+                                    xend=correctx(x, fprime, w=whighx), 
+                                    y=y, ystart=ystart, yend=yend,
+                                    corr = "X", level = "high"))
+correction.extremes <- rbind(ycorrlow,ycorrhigh,xcorrlow,xcorrhigh)
+qplot(data=correction.extremes, geom="segment", x=xstart, xend=xend, y=ystart, yend=yend) +
+  facet_grid(corr~level) + ylab("") + xlab("")  +
+  theme(panel.grid.major=element_blank(), panel.background = element_rect(fill = "white", 
+                colour = "black"), plot.margin = unit(c(0,0,0,0), "cm"), 
+       panel.grid.minor=element_blank(), panel.background=element_blank(),
+       axis.title = element_blank(), axis.ticks = element_blank(), 
+       axis.text = element_blank()) + coord_equal(ratio=1)
+@
+
+<<results-analysis,echo=FALSE, cache=TRUE, include=FALSE, fig.width=8, fig.height=6, dependson='overcorrectlimits'>>=
+trial.sum <- read.csv("../Data/sineIllusion/SummaryTable.csv", row.names=1, stringsAsFactors=FALSE)
+trial.sequence <- read.csv("../Data/sineIllusion/IndivTrajectory.csv", row.names=1, stringsAsFactors=FALSE)
+library(lubridate)
+trial.sequence$time2 <- ymd_hms(trial.sequence$time2)
+
+# ------ Data Cleaning ------#
+wlowy <- -2.5
+whighy <- 3.5
+wlowx <- -2
+whighx <- 2
+
+is.outlier <- function(z, type){
+#   qs <- as.numeric(quantile(x, c(.25, .75)))
+#   iqr <- diff(qs)
+#   lims <- qs + c(-1, 1)*1.5*iqr
+#   !(x>=lims[1] & x <= lims[2]) & !(x>=-1 & x<=2)
+  wlow <- c(wlowx, wlowy)
+  whigh <- c(whighx, whighy)
+  names(wlow) <- c("x", "y")
+  names(whigh) <- c("x", "y")
+#  browser()
+  !(z>=wlow[type] & z<=whigh[type])
+}
+
+trial.sum <- ddply(trial.sum, .(startweight), transform, 
+                      incl.startwt = startweight<=1 & startweight>=0,
+                      incl.trials = ntrials>3,
+                      endwt.outlier = is.outlier(endweight, as.character(type))) 
+# compute outliers for each possible start weight
+
+# #--- Plot to compare bivar. density before/after trimming
+# temp <- rbind.fill(cbind(trial.sum, dataset="full"), cbind(lm.data, dataset="trimmed"))
+# # not much has changed density wise...
+# ggplot(data=temp, aes(x=startweight, y=endweight)) + 
+#   geom_contour(aes(group=dataset, colour=dataset), stat="density2d") + 
+#   scale_colour_manual("Data", values=c("red", "blue"))+
+#   xlab("Starting Weight") + ylab("Submitted \"Correct\" Weight") + 
+#   facet_wrap(~type) + ggtitle("The Effect of Starting Weight on Submitted Weight")
+# rm("temp")
+
+# polygon contour plot of submitted vs starting weight for x and y
+# ggplot(data=lm.data, aes(x=startweight, y=endweight)) + geom_polygon(aes(fill=..level.., group=..piece..), stat="density2d", alpha=.5) + xlab("Starting Weight") + ylab("Submitted \"Correct\" Weight") + facet_wrap(~type) + ggtitle("The Effect of Starting Weight on Submitted Weight") + xlim(c(-.2, 1.15))
+
+sub0 <- subset(trial.sum, incl.startwt)
+
+# stats
+nparticipants <- length(unique(sub0$fingerprint))
+ntrials <- nrow(sub0)
+
+# remove participants who did not have at least 4 trials.
+sub1 <- subset(sub0, incl.trials)
+nparttrials <- length(unique(sub1$fingerprint))
+ntrials2 <- nrow(sub1)
+
+# remove trials which were outside of the bounds
+sub2 <- subset(sub1, !endwt.outlier)
+sub2.rem <- subset(sub1, endwt.outlier)
+noutliers <- nrow(sub2.rem)
+noutliers.x <- nrow(subset(sub2.rem, type=="x"))
+noutliers.y <- nrow(subset(sub2.rem, type=="y"))
+
+lm.data <- sub2
+nparticipant2 <- length(unique(lm.data$fingerprint))
+
+trials.per.participant <- mean(ddply(lm.data, .(fingerprint), summarise, ntrials=mean(ntrials))$ntrials)
+
+#--- Flat Averages ---#
+end.trials <- (lm.data$startweight == 0 | lm.data$startweight == 1)
+
+user.avg <- ddply(subset(lm.data, end.trials), # include trials starting at 0, 1
+                  .(fingerprint, type), function(df){
+                    avg.0 <- with(subset(df, startweight==0), mean(endweight, na.rm=TRUE))
+                    avg.1 <- with(subset(df, startweight==1), mean(endweight, na.rm=TRUE))
+                    return(data.frame(fingerprint=df$fingerprint[1], type=df$type[1], 
+                                      avg.0=avg.0, avg.1=avg.1, ntrials=df$ntrials[1], 
+                                      ntrials.sub = nrow(df)))
+                  })
+
+user.avg.all <- subset(user.avg, !is.nan(rowSums(user.avg[,3:4])))
+user.avg.all$avg <- rowMeans(user.avg.all[,3:4])
+user.avg.all <- ddply(user.avg.all, .(type), transform, overall.avg = mean(avg))
+user.avg.x <- unique(subset(user.avg.all, type=="x")$overall.avg)
+user.avg.y <- unique(subset(user.avg.all, type=="y")$overall.avg)
+
+
+#--- Mixed Model ---#
+set.seed(82187)
+library(lme4)
+library(multcomp)
+library(memisc) # latex output for lmer 
+library(xtable)
+library(stringr)
+# Much more complicated to examine...
+lm.data$type <- relevel(factor(lm.data$type), ref="y")
+
+modeltest <- lmer(endweight ~ type -1 + startweight + (type-1|fingerprint), data=lm.data)
+# summary(modeltest)
+# conclusion - within-user variance is reasonably similar for different trial types
+
+fixedmodel <- lm(endweight~(type-1) +startweight + training, data=lm.data)
+
+model <- lmer(data=lm.data, endweight~ (type-1) + startweight + (1|fingerprint))
+model2 <- lmer(data=lm.data, endweight~ (type-1) + startweight + (type|fingerprint))
+model3 <- lmer(data=lm.data, endweight~ (type-1) + type:startweight + (type|fingerprint))
+
+
+if (!file.exists("../Data/sineIllusion/modelsim.RData")) {
+  # summary(model)
+  N <- 1000
+  
+  model2.sim <- simulate(model2, nsim=N)
+  res <- llply(model2.sim, function(x) model2 <- lmer(data=lm.data, x~ (type-1) + 
+                                                        startweight+ (type-1|fingerprint)))
+  save(res, file="../Data/sineIllusion/modelsim.RData")
+} else {
+  load("../Data/sineIllusion/modelsim.RData")
+}
+
+# extract pieces for confidence intervals
+ranefs <- ldply(res, function(x) attr(VarCorr(x)$fingerprint, which="stddev"))
+ranefCIs <- ldply(ranefs[,-1], function(x) quantile(x, probs=c(0.025, 0.975)))
+
+dframe  <- ldply(res, function(x) {
+  out <- ranef(x)$fingerprint
+  out$fingerprint <- rownames(ranef(x)$fingerprint)
+  out$starty <-   out$typey + fixef(x)[1]
+  out$endy <-   out$typey + fixef(x)[1] + fixef(x)[3]
+  out$startx <-   out$typex + fixef(x)[2]
+  out$endx <-   out$typex + fixef(x)[2] + fixef(x)[3]
+  out
+})
+
+
+sigma2 <- ldply(res, function(x) sigma(x))
+sigmaCI <- quantile(sigma2[,2], probs=c(0.025, 0.975))
+
+fixefs <- ldply(res, fixef)
+fixefs$upperX <- with(fixefs, typex+startweight)
+fixefs$upperY <- with(fixefs, typey+startweight)
+fixefsCIs <- ldply(fixefs[,-c(1,4)], function(x) quantile(x, probs=c(0.025, 0.975)))
+
+# pieces for graph
+ints  <- fixefsCIs
+ints$x <- c(colMeans(fixefs[,2:3]), colMeans(fixefs[,5:6]))
+ints$type <- paste(toupper(str_sub(ints$'.id', -1, -1)), " Transformation", sep="")
+ints$limit <- str_sub(ints$'.id', 1, -2)
+ints$limit <- gsub("type", "From Below", gsub("upper", "From Above", ints$limit, fixed=TRUE), fixed=TRUE)
+ints <- ints[,-which(names(ints)==".id")]
+ints <- ints[,c(4, 5, 1, 3, 2)]
+names(ints) <- c("type", "limit", "xmin", "x", "xmax")
+ints$label <- c("alpha[y]", "alpha[x]", "alpha[x] + beta", "alpha[y] + beta")
+
+sim.fixed <- melt(fixefs, id.vars='.id', measure.vars=2:3)
+names(sim.fixed) <- c(".id", "type", "lower")
+sim.fixed$type <- toupper(gsub("type", "", sim.fixed$type, fixed=TRUE))
+temp <- melt(fixefs, id.vars='.id', measure.vars=5:6)
+names(temp) <- c(".id", "type", "upper")
+temp$type <- toupper(gsub("upper", "", temp$type, fixed=TRUE))
+sim.fixed <- merge(sim.fixed, temp)
+sim.fixed <- melt(sim.fixed, id.vars=1:2, measure.vars=3:4)
+names(sim.fixed)[3] <- "limit"
+sim.fixed$limit <- gsub("lower", "From Below", gsub("upper", "From Above", sim.fixed$limit))
+sim.fixed$type <- paste(sim.fixed$type, "Transformation")
+
+indiv.effects <- ldply(res, function(x){ 
+  a <- ranef(x)$fingerprint
+  a$fingerprint <- rownames(a)
+  as.data.frame(a)
+})
+names(indiv.effects) <- c(".id", "rdm.y", "rdm.x", "fingerprint")
+indiv.effects <- merge(indiv.effects, structure(fixefs[,1:4], names=c(".id", "fixed.y", "fixed.x", "startweight")))
+indiv.effects$lowery <- with(indiv.effects, rdm.y+fixed.y)
+indiv.effects$lowerx <- with(indiv.effects, rdm.x+fixed.x)
+indiv.effects$uppery <- with(indiv.effects, lowery+startweight)
+indiv.effects$upperx <- with(indiv.effects, lowerx+startweight)
+indiv.effects <- melt(indiv.effects, id.vars=c(1,4), measure.vars=8:11)
+indiv.effects$fingerprint <- as.numeric(factor(indiv.effects$fingerprint))
+indiv.effects$limit <- str_sub(indiv.effects$variable, 1, -2)
+indiv.effects$limit <- gsub("lower", "From Below", gsub("upper", "From Above", indiv.effects$limit))
+indiv.effects$type <- paste(toupper(str_sub(indiv.effects$variable, -1, -1)), "Transformation")
+indiv.effects$group <- as.numeric(with(indiv.effects, interaction(fingerprint, limit)))
+# indiv.effects <- indiv.effects[,-which(names(indiv.effects)%in%c(".id", "variable"))]
+
+ints.all <- ddply(ints, .(type), summarise, xmin = min(x), xmax=max(x), ymin=-Inf, ymax=Inf)
+ints.all$x <- rowMeans(ints.all[,2:3])
+
+ests <- data.frame(ests = c(fixef(model2)[1:2], fixef(model2)[1:2]+fixef(model2)[3]), type=rep(c("Y Transformation", "X Transformation"), 2))
+
+var2 <- as.numeric(c(attr(VarCorr(model2)$fingerprint, "stddev"), attr(VarCorr(model2), "sc")))
+
+anovaprob <- anova(model2, model3)$`Pr(>Chisq)`[2]
+@
+<<results-analysis1,echo=FALSE, include=FALSE, fig.width=8, fig.height=4, dependson='results-analysis'>>=
+ggplot() + theme_bw() + facet_grid(type~., scales="free") + ylim(c(0, 27)) +
+  geom_rect(data=ints.all, aes(xmin=xmin, xmax=xmax, ymin=ymin, ymax=ymax), 
+            fill="grey75", alpha=.5) +
+  geom_histogram(data=sim.fixed, aes(x=value, y=..density.., group=limit, fill=limit), binwidth=.01, position="identity") + 
+  geom_histogram(data=sim.fixed, aes(x=value, y=..density.., group=limit, fill=limit, colour=limit), binwidth=.01, position="identity", show_guide=FALSE) + 
+  geom_vline(xintercept=c(0,1)) +
+  geom_line(data=indiv.effects, 
+            aes(x=value, y=..density.., group=factor(group), color = limit), 
+            alpha=.1, stat='density', trim=TRUE) + 
+  ylab("Density") + xlab("Weight w") + 
+  scale_colour_manual("Approach", values=c("#B2182B", "#2166AC"),
+                      breaks=c("From Below", "From Above"))  +
+  scale_fill_manual("Approach", values=c("#d6604d", "#4393c3"),
+                    breaks=c("From Below", "From Above")) + 
+  geom_errorbarh(aes(xmin=xmin, x=x, xmax=xmax, y=20, color=limit), data=ints) + 
+  geom_point(aes(x=ests, y=20), data=ests) +
+  xlim(c(-.2, 1.2)) +
+  geom_text(data=ints, aes(x=x, y=22.5, label=label), parse=TRUE) + 
+  geom_text(data=ints.all, colour="grey30", aes(x=x, y=15.5, label="Range of\nacceptable weights")) + theme(plot.margin=unit(c(0,0,0,0), unit="cm"), legend.position=c(.92, .85))
+@
+\begin{figure}[htbp]\centering
+\includegraphics[keepaspectratio=TRUE,width=.8\linewidth]{fig-overcorrectlimits}
+\caption[ Overcorrected transformations excluded from the analysis]{Transformation weights outside of the intervals $[\Sexpr{wlowy}, \Sexpr{whighy}]$ for $y$ and $[\Sexpr{wlowx}, \Sexpr{whighx}]$ for $x$  produce figures which do not maintain the underlying function shape (in $x$) or which are composed of extremely uneven length lines (in $y$). Trials with final results that were more extreme than these examples were excluded from the analysis.}
+\label{fig:overtransform}
+\end{figure}
+
+\subsection{Results}
+
+Participants were recruited from Amazon Mechanical Turk and the \href{http://reddit.com/r/SampleSize}{reddit} community.
+
+As this study was conducted outside a laboratory setting, we can not gauge a participant's willingness to follow the guidelines and put in their best effort. This, besides potential technical issues (server outage, speed of response) make a careful selection of data going into the analysis unavoidable. The following exclusion criteria were used:
+\begin{itemize}
+\item Participants did not interact with the applet: we required participants to use the adjustment at least once in order to include data for this trial (592 trials removed).
+\item Participants finished fewer than four trials: while participants were asked to complete twelve trials, some did not finish all of those. In order to stabilize predictions of random effects, participants' data were excluded if there were fewer than four trials (\Sexpr{nparticipants-nparttrials} out of a total of \Sexpr{nparticipants} participants).
+\item Out-of-bounds results: weights leading to severely over- or undercorrected results were excluded from the analysis. 
+For trials to adjust $Y$-values, weights outside of [\Sexpr{wlowy}, \Sexpr{whighy}]  show dramatically unequal line lengths; weights from $X$-transformations outside the range of [\Sexpr{wlowx}, \Sexpr{whighx}] do not preserve the underlying function shape and concavity. 
+Figure~\ref{fig:overtransform} shows results at the threshold of acceptability. Only more severely distorted results were excluded from the analysis (\Sexpr{noutliers.x} of the $X$ and \Sexpr{noutliers.y} of the $Y$ trials out of \Sexpr{ntrials2} trials remaining after application of other criteria).
+\end{itemize}
+
+
+The following analysis is based on the cleaned data, consisting of \Sexpr{nparticipant2} participants with \Sexpr{nrow(lm.data)} valid trial results. The psychophysics model shown in figure \ref{fig:psycho} is based on  weighted averages (by adjustment type) of all trials with starting weights $w_0 = 0$ and 1.
+
+
+\begin{SCfigure}[2][htbp]\centering
+\caption{Estimated density of participant-level means using the standard psychophysics method of limits analysis described in \citet{goldstein}. The overall means are both near 0.4, however, there is quite a bit of user-level variability.}\label{fig:psycho}
+<<meanDists,echo=FALSE,out.width='.5\\linewidth', dependson='results-analysis', fig.width=6, fig.height=4, message=FALSE, warning=FALSE>>=
+dt.int <- ddply(user.avg.all, .(type), summarize, overall.avg=unique(overall.avg), sd=sd(avg))
+model <- lm(avg~type-1, data=user.avg.all)
+temp <- as.data.frame(cbind(coef(model), confint(model)))
+temp$CI <- sprintf("(%.04f, %.04f)", temp[,2], temp[,3])
+rownames(temp) <- c("X", "Y")
+psycho.ints <- temp
+names(psycho.ints) <- c("Estimate", "Lower", "Upper", "CI")
+psycho.ints$Type <- rownames(psycho.ints)
+psycho.ints <- melt(psycho.ints[,-4], id.vars=c("Type"), value.name="x", variable.name="est.type")
+psycho.ints$est <- "95% CI"
+psycho.ints$est[which(psycho.ints$est.type=="Estimate")] <- "Mean"
+psycho.ints$est <- factor(psycho.ints$est, levels=c("Mean", "95% CI"))
+
+user.avg.all$Type <- toupper(user.avg.all$type)
+ggplot(data=user.avg.all) + 
+  geom_density(aes(x=avg, fill=type), alpha=0.8) + 
+  geom_segment(data=psycho.ints, aes(x=x, xend=x, y=Inf, yend=-Inf, linetype=est, group=est.type)) +
+  geom_rug(aes(x=avg, colour=type)) +
+  facet_grid(Type~.) +
+  scale_fill_manual("Transformation", values=c("#d6604d", "#4393c3"), guide="none") +
+  scale_colour_manual("Transformation", values=c("#d6604d", "#4393c3"), guide="none") +
+  scale_linetype_discrete("Model") +
+  theme_bw() + #theme(legend.position="bottom") +
+  xlim(c(-.2, 1.2)) + xlab("Optimal Weight") + ylab("Density") +
+  theme(legend.position=c(.9,.8))
+@
+\end{SCfigure}
+
+<<psycho, echo=FALSE, results='asis', ref.label='psychotable'>>=
+require(xtable)
+dt.int <- ddply(user.avg.all, .(type), summarize, overall.avg=unique(overall.avg), sd=sd(avg))
+model <- lm(avg~type-1, data=user.avg.all)
+temp <- as.data.frame(cbind(coef(model), confint(model)))
+temp$CI <- sprintf("(%.04f, %.04f)", temp[,2], temp[,3])
+rownames(temp) <- c("X", "Y")
+names(temp)[1] <- "Estimate"
+temp <- temp[,c(1, 4)]
+dt <- xtable(temp)
+print(dt)
+@
+
+According to this analysis, the optimum transformation value for $x$ is \Sexpr{round(user.avg.x, 2)}, and the optimum transformation value for $y$ is \Sexpr{round(user.avg.y, 2)}. Figure \ref{fig:psycho} shows the estimates and 95\% Wald intervals for the mean, as well as estimated density of participant-level responses. 
+
+While these results suggest that the transformation is useful and that complete transformation is not necessary, we can get more precise bounds on the range of acceptable transformation weights using a linear model that can incorporate starting points other than 0 and 1, and at the same time allow for user-specific variability.
+
+\subsubsection{Random Effects Model and Detailed Results}\label{model}
+In order to account for user-level variability, we fit a random effects model for the adjusted weight value as a function of  starting weight and trial type, with a random intercept for each participant. 
+
+Let $W_{ij}$ denote the final adjustment to weight by participant $i$, $ 1 \le i \le \Sexpr{nparticipant2}$ , on trial $j$, $1 \le j \le n_i$. 
+We model the final weight $W_{ij}$ as a function of the correction type $T(i,j)$  (where $T(i,j) \in  \{X, Y\}$), and starting weight $X_{ij}$, with a random intercept for participant to account for subject-specific ability: 
+\begin{align}\label{model1}
+W_{ij} &= \alpha_{T(i,j)} + \beta X_{ij} + \gamma_{i, T(i,j)} + \epsilon_{ij}\\
+& \gamma_{iX} \stackrel{\text{ i.i.d.}}{\sim} N(0, \eta_X^2) , \ \gamma_{iY} \stackrel{\text{ i.i.d.}}{\sim} N(0, \eta_Y^2) ,\notag  \\
+& \epsilon_{ij} \stackrel{\text{ i.i.d.}}{\sim} N(0, \sigma^2)  \text{ and } \text{Cov}(\gamma, \epsilon) = 0\notag 
+\end{align}
+ $\alpha_{T(i,j)}$ is either $\alpha_X$ or $\alpha_Y$, describing the lower threshold of the acceptable range for each of the types of correction, while $\alpha_X+\beta$ and $\alpha_Y + \beta$ describe the upper thresholds for the respective correction.
+
+We can therefore interpret $\beta$ as the length of the interval of plausible weights. Additionally, this allows the interpretation of the quantity $(\alpha_* + \beta/2)$ as equivalent to the estimate of the optimal weight based on the psychophysics methodology.
+
+\noindent
+The fitted model parameters are shown in tables \ref{fixedeffectsresults} and \ref{randomeffectsresults}. 
+
+<<modelres, echo=FALSE, results='hide', dependson='results-analysis'>>=
+require(xtable)
+
+###
+# fixed effects table
+fixefsCIs$Transformation <- NA
+fixefsCIs$Transformation[grep("[y|Y]$", fixefsCIs$.id)] <- "Y"
+fixefsCIs$Transformation[grep("[x|X]$", fixefsCIs$.id)] <- "X"
+
+fixefsCIs$Threshold <- "Lower"
+fixefsCIs$Threshold[grep("upper", fixefsCIs$.id)] <- "Upper"
+
+fixefsCIs$Estimate <- c(fixef(model2)[1:2], fixef(model2)[2:1]+fixef(model2)[3])
+
+fixefsCIs <- fixefsCIs[with(fixefsCIs,order(Transformation, Threshold)),]
+fixefsCIs$interval <- with(fixefsCIs, sprintf("(%.3f, %.3f)", `2.5%`, `97.5%`))
+fixefsCIs <- fixefsCIs[,c(4,5,6,7)]
+fixefsCIs$Transformation <- c("X", "", "Y", "")
+names(fixefsCIs)[4] <- "95% C.I."
+fixeftab <- xtable(fixefsCIs, align=c("c","c", "c", "c", "c"), digits=3)
+print(fixeftab, include.rownames=FALSE, file="../Figure/sineIllusion/fixef.txt", floating=FALSE)
+
+
+#####################
+# random effects table
+
+ranefCIs <- ldply(ranefs[,-1], function(x) quantile(x, probs=c(0.025, 0.975)))
+
+
+ranefCIs$Groups <- "Participant"
+ranefCIs$Correction <- c("Y", "X")
+ranefCIs$Estimate <- attr(VarCorr(model2)$fingerprint, "stddev")
+ranefCIs <- data.frame(ranefCIs)
+
+sigmaCIs <- data.frame(t(quantile(sigma2[,2], probs=c(0.025, 0.975))))
+sigmaCIs$Groups <- "Residual"
+sigmaCIs$Correction <- NA
+sigmaCIs$Estimate <- sigma(model2)
+sigmaCIs$.id <- "Residual"
+
+ranefCIs <- rbind(ranefCIs, sigmaCIs)
+ranefCIs$interval <- with(ranefCIs, sprintf("(%.3f, %.3f)", X2.5., X97.5.))
+ranefCIs <- ranefCIs[,4:7]
+names(ranefCIs)[4] <- "95% C.I."
+
+ranefCIstab <- xtable(ranefCIs, align=c("r","r", "c", "c", "c"), digits=3)
+print(ranefCIstab, include.rownames=FALSE, file="../Figure/sineIllusion/ranef.txt", floating=FALSE)
+@
+\begin{table}[htbp]\centering
+\begin{tabular}{cclcc}
+  \hline
+Transformation & Threshold &  \multicolumn{1}{c}{Parameter} & Estimate & 95\% C.I. \\ 
+  \hline
+X & Lower & $\alpha_X$ & 0.097 & (0.045, 0.150) \\ 
+   & Upper& $\alpha_X + \beta$  & 0.625 & (0.570, 0.682) \\ 
+  Y & Lower& $\alpha_Y$  & 0.143 & (0.097, 0.188) \\ 
+   & Upper& $\alpha_Y + \beta$  & 0.671 & (0.626, 0.718) \\ 
+   \hline
+\end{tabular}
+\caption{Fixed effect estimates of model~(\ref{model1}) for the boundaries for reasonable weights. In parentheses,  95\% parametric bootstrap confidence intervals are given based on model (\ref{model1}) ($N$=1000).}\label{fixedeffectsresults}
+\end{table}
+\begin{table}[hbtp]\centering
+\begin{tabular}{rcccc}
+  \hline
+Groups & Correction & Parameter & Estimate & 95\% C.I. \\ 
+  \hline
+  Participant & X &$\eta_X$  & 0.171 & (0.167, 0.247) \\ 
+  Participant & Y &$\eta_Y$ &  0.145 & (0.107, 0.179) \\ 
+  Residual &  &$\sigma$ &  0.304 & (0.290, 0.317) \\ 
+   \hline
+\end{tabular}
+\caption{Overview of random effects for model~(\ref{model1}), including 95\% confidence intervals based on parameteric boostrap results ($N$=1000).}\label{randomeffectsresults}
+\end{table}
+
+Table \ref{randomeffectsresults} gives an overview of the variance estimates. 95\% confidence intervals are, based on 1000-fold paramteric bootstrap of model~\ref{model1}. All variance components are significant and relevant; variability within a single individual's trials is about half the size of variability across  participants. 
+
+We use parametric bootstrap to generate responses for each correction type and each participant from the model, which we use to both  create user-level densities, population-level densities, and bootstrap intervals for model parameters. 
+
+
+The variability of the random effects for each trial type is similar; but the model benefits significantly from allowing separate random effects for individual's variability by correction type (\Sexpr{var2[1]} and \Sexpr{var2[2]} for $Y$ and $X$ transformations, respectively, as opposed to \Sexpr{var2[3]} for the overall variability). The interaction between starting weight and trial type was not significant, however, and was thus removed from the model ($p$-value = \Sexpr{anovaprob}).
+
+\begin{figure}[hbtp]
+\centering
+\includegraphics[keepaspectratio=TRUE, width=.85\linewidth]{fig-results-analysis1}
+\caption{Simulation results from the fitted model, facetted by correction type. Fixed effects results are shown as histograms; the red values display the results when starting from an uncorrected plot and are concentrated around $w=\Sexpr{round(subset(ints, type=="X Transformation" & limit=="From Below")$x, 2)}$ for $X$ and $w=\Sexpr{round(subset(ints, type=="Y Transformation" & limit=="From Below")$x, 2)}$ for $Y$; the blue values represent user-chosen weights when starting from a fully corrected plot and are concentrated around $w=\Sexpr{round(subset(ints, type=="X Transformation" & limit=="From Above")$x, 2)}$ for $X$ and $w=\Sexpr{round(subset(ints, type=="Y Transformation" & limit=="From Above")$x, 2)}$ for $Y$. Additionally, 95\% bootstrap intervals are shown as horizontal line segments above the histograms; these intervals are for the lower and upper bounds of the ``preferred weight interval" tested in the experiment. User-level density curves show the individual variability around  fixed effects $\alpha_*$ and $\alpha_*+\beta$.}\label{fig:MixedModelResults}
+\end{figure}
+Figure \ref{fig:MixedModelResults} gives an overview of the relationship between starting weights and  user-preferred weight values. Higher starting weights are associated with higher user-submitted values, and lower starting weights are associated with lower user-submitted values.
+
+The ranges of optimal weights are similar under both transformations. Boundaries for the $X$ transformation are slightly lower than boundaries for $Y$. 
+
+Bootstrap simulations for each of the coefficients suggest that the range of optimal $w$ is between \Sexpr{round(ints$x[2], 3)} and \Sexpr{round(ints$x[3], 3)} for $x$ and \Sexpr{round(ints$x[1], 3)} and \Sexpr{round(ints$x[4], 3)} for $y$, where the lower value is the estimate starting at $w=0$ and moving up, and the upper value is the estimate starting at $w=1$ and moving down. This suggests that either correction is preferrable to an uncorrected graph, and that a weighted correction is preferrable to the fully corrected graph, as neither 0 nor 1 is contained in any overall interval. In addition to showing the strength of the correction, this experiment also demonstrates the strength of the illusion itself: a correction appears more uniform than the uncorrected values, even though the corrected values are not uniform and the uncorrected values are completely uniform. 
+
+\section{Application: US Gas Prices}
+Figure~\ref{fig:gasprices} shows daily gas prices for a time frame between 1995 to 2014 as published in the Energy Information Administration's historical database of gas prices \citep{EIA}. This data includes prices for all three grades of gasoline as well as two chemical formulations which are sold in different geographic areas across the United States \citep[for more information, see ][]{EIA-reformulated}. 
+<<gasprices,echo=FALSE, cache=T, message=F, warning=F>>=
+library(lubridate)
+library(plyr)
+library(ggplot2)
+library(scales)
+library(gridExtra)
+library(quantreg)
+
+gasprices <- read.csv("../Data/sineIllusion/GasPrices.csv", stringsAsFactors=F)
+gasprices$date <- ymd(gasprices$date)
+gasprices$year <- year(gasprices$date)
+gasprices <- subset(gasprices, year>=1995)
+gasprices$month <- floor_date(gasprices$date, "month")+days(14)
+gasprices$season <- c(rep("Winter", 2), rep("Spring", 3), rep("Summer", 3), rep("Fall", 3), "Winter")[month(gasprices$date)]
+gasprices$round.year <- ifelse(month(gasprices$date)==12, gasprices$year+1, gasprices$year)
+gasprices <- ddply(gasprices, .(round.year, season), transform, season.date=median(date))
+gasprices <- ddply(gasprices, .(date), transform, avg=mean(price), sd=sd(price))
+monthly <- ddply(gasprices, .(month), summarize, min=min(price), max=max(price), median=median(price), sd=sd(price-avg), var=var(price-avg), sd.avg=sd(avg), price=mean(price), year=year(month[1]))
+monthly <- ddply(monthly, .(year), transform, avg.sd=mean(sd))
+seasonal <- ddply(gasprices, .(round.year, season), summarize, date=mean(decimal_date(date)), sd=sd(price-avg), var=var(price-avg))
+
+model <- smooth.spline(x=decimal_date(gasprices$date), y=gasprices$price, keep.data=TRUE, nknots=230)
+
+gas <- gasprices[,c("date", "price")]
+gas$date <- decimal_date(gas$date)
+
+f <- function(x){as.data.frame(predict(model, x=x))$y}
+fprime <- function(x){as.data.frame(predict(model, x=x, deriv=1))$y}
+f2prime <- function(x){as.data.frame(predict(model, x=x, deriv=2))$y}
+
+gas$pred <- f(gas$date)
+gas.pred <- as.data.frame(predict(model))
+gas.full <- gas
+gas <- unique(gas[,c(1,3)])
+@
+\begin{figure}[h!tbp]
+<<gasprices-pictures,echo=F, include=T, fig.width=8, fig.height=2.5, out.width=".98\\textwidth", dependson='gasprices'>>=
+ggplot(data=gasprices)  +
+  geom_jitter(aes(decimal_date(date), price), data=subset(gasprices, year>=1995), size=I(1), #size=I(1.5), shape=I(1), 
+              colour=I("grey40"), alpha=I(.75))+ 
+#  geom_line(data=gas.pred, aes(x=x, y=y), inherit.aes=FALSE) + 
+  ylab("Price per gallon (USD)") + theme_bw()+ xlab("Time")  + geom_point(aes(x=1995, y=0), size=0.1) + theme(plot.margin=unit(c(0,0.5,0,0), "cm"))
+#  ggtitle("Price of Gasoline in the US, 1995-2014")
+@
+\caption{US Gas prices from 1995 to 2014. %The dark trendline fit uses smoothing splines, and provides first and second derivatives necessary for the proposed corrections. 
+Gas prices steadily increase over the time frame, with some dramatic short-term developments. Peaks and troughs seem to exhibit more variability in daily prices than times of dramatic changes. This is an effect of the sine-illusion, which hides a fairly steady increase in variance in daily gas prices over time.}\label{fig:gasprices}
+\end{figure}
+\begin{SCfigure}\centering
+\caption{Standard deviation of daily gas prices between 1995 and 2014. The doubling of the standard deviation over the time frame is masked in figure \ref{fig:gasprices}.\label{fig:gasvariance}}
+<<gaspricevariance,echo=F,include=T, fig.width=6, fig.height=2.5, out.width=".7\\textwidth", dependson='gasprices'>>=
+ggplot( data=subset(monthly, year(month)>=1995) ) + geom_point(aes(month, sd)) + ylab("Standard deviation of daily gas prices")  + xlab("Time")+ theme_bw() + #ggtitle("Standard Deviation of Gas Prices")
+  theme(plot.margin=unit(c(0,.5,0,0), "cm")) + geom_smooth(aes(month, sd), method="loess") + ylim(c(0,0.17))
+@
+\end{SCfigure}
+There is a clear increase in daily gas prices over time as well as several dramatic price changes. These developments mask the steady increase in variance shown in figure~\ref{fig:gasvariance}. Instead, we perceive an increase in variability in the frequent ups and downs along the overall trend. In particular, the strong decrease in gas prices at the end of 2008 seems to be associated with a low variance. This is an effect of the sine illusion, and the actual variability in Oct 2008 is higher than previous months. In order to better judge variability along the trendline we applied the two different corrections to this data. 
+
+For either of the corrections we use a trendline fit based on smoothing splines, which provides the necessary first and second derivatives.
+
+<<gaspricesCorrection, eval=F, echo=FALSE>>=
+asp <- .5 # image vs coordinate aspect ratio 
+startyear <- 1994
+gridlines <- seq(startyear+1, 2014, 1/3)
+minor.axis.correction <- 
+  c(correct("x", "y", data.frame(x=gridlines, y=f(gridlines)), type="x", f=f, fprime=fprime, f2prime=f2prime, weight=1)$x.correctx, 
+    correct("x", "y", data.frame(x=gridlines, y=f(gridlines)), type="x", f=f, fprime=fprime, f2prime=f2prime, weight=.36)$x.correctx
+  )
+
+dots <- data.frame(x = minor.axis.correction, 
+                   y = rep(-10, length(minor.axis.correction)), 
+                   variable = rep(c("Corrected (w=1)", "Corrected (w=0.36)"), 
+                                  each=length(gridlines)))
+
+
+gas.cor <- correct("date", "price", gas, type="x", f=f, fprime=fprime, f2prime=f2prime, weight=1)
+gas.cor <- merge(gas.cor, gas.full)
+gas.cor <- melt(gas.cor, id.vars=c(2, 4, 5))
+gas.cor$variable <- gsub("date.correctx", "Corrected (w=1)", gas.cor$variable)
+gas.cor$variable <- gsub("date", "Uncorrected", gas.cor$variable)
+
+gas.cor2 <- correct("date", "price", gas, type="x", f=f, fprime=fprime, f2prime=f2prime, weight=.36)
+gas.cor2 <- merge(gas.cor2, gas.full)
+gas.cor2 <- melt(gas.cor2, id.vars=c(2, 4, 5))
+gas.cor2$variable <- gsub("date.correctx", "Corrected (w=0.36)", gas.cor2$variable)
+gas.cor2$variable <- gsub("date", "Uncorrected", gas.cor2$variable)
+
+gas.cor.x <- rbind(gas.cor, subset(gas.cor2, variable!="Uncorrected"))
+gas.cor.x <- subset(gas.cor.x, variable!="Uncorrected")
+# gas.cor.x$variable <- factor(gas.cor.x$variable, levels=c("Corrected (w=1)", "Corrected (w=0.36)", "Uncorrected"))
+gas.cor.x$variable <- factor(gas.cor.x$variable, levels=c("Corrected (w=1)", "Corrected (w=0.36)"))
+rm(list=c("gas.cor", "gas.cor2"))
+
+gas.cor <- correct("date", "price", gas.full, type="y", f=f, fprime=fprime, f2prime=f2prime, weight=1)
+gas.cor <- melt(gas.cor, id.vars=c(1, 3, 5))
+gas.cor$variable <- gsub("price.correcty", "Corrected (w=1)", gas.cor$variable)
+gas.cor$variable <- gsub("price", "Uncorrected", gas.cor$variable)
+
+gas.cor2 <- correct("date", "price", gas.full, type="y", f=f, fprime=fprime, f2prime=f2prime, weight=.40)
+gas.cor2 <- melt(gas.cor2, id.vars=c(1, 3, 5))
+gas.cor2$variable <- gsub("price.correcty", "Corrected (w=0.40)", gas.cor2$variable)
+gas.cor2$variable <- gsub("price", "Uncorrected", gas.cor2$variable)
+
+gas.cor.y <- rbind(gas.cor, subset(gas.cor2, variable!="Uncorrected"))
+gas.cor.y <- subset(gas.cor.y, variable!="Uncorrected")
+# gas.cor.y$variable <- factor(gas.cor.y$variable, levels=c("Corrected (w=1)", "Corrected (w=0.40)", "Uncorrected"))
+gas.cor.y$variable <- factor(gas.cor.y$variable, levels=c("Corrected (w=1)", "Corrected (w=0.40)"))
+rm(list=c("gas.cor", "gas.cor2"))
+
+save.image("../Data/sineIllusion/gasprices.RData")
+@
+<<gaspricesCorrectionPlots,echo=F,include=F,cache=T>>=
+load("../Data/sineIllusion/gasprices.RData")
+ggplot(data=gas.cor.x) + 
+  geom_point(aes(x=value, y=price, group=variable), size=1.5, shape=I(1), colour=I("grey40"), alpha=I(.75))+ 
+  facet_grid(variable~.) +
+  geom_line(data=gas.cor.x, aes(x=value, y=price.fit), colour="black", size=1.5) + 
+  geom_rug(data=dots, aes(x=x))+
+  xlab("Time") +  
+  ylab("Price of Gasoline (USD)") + 
+  theme_bw() + geom_point(aes(x=1995, y=0), size=0.1) + 
+  theme(plot.margin=unit(c(0,0,0,0), "cm"))
+ggsave(file="../Figure/sineIllusion/gas-x-corrected.pdf", width=8, height=4)
+
+ggplot(data=gas.cor.y) + 
+  geom_point(aes(x=date, y=value, group=variable), size=1.5, shape=I(1), colour=I("grey40"), alpha=I(.75))+ 
+  facet_grid(variable~.) +
+  geom_line(data=gas.cor.y, aes(x=date, y=price.fit), colour="black", size=1.5) + 
+  xlab("Time") +  
+  ylab("Adj. Price of Gasoline (USD)") + 
+  theme_bw() + geom_point(aes(x=1995, y=0), size=0.1) + 
+  theme(plot.margin=unit(c(0,0,0,0), "cm"))
+ggsave(file="../Figure/sineIllusion/gas-y-corrected.pdf", width=8, height=4)
+
+@
+
+Figure \ref{fig:gasprices-x-correct} shows the results from the $X$ transformation applied to the gas prices. The figure on top is a fully corrected version, while the one below only uses $w=0.36$, the midpoint of the range of experimentally determined acceptable values,  for the transformation. At $w=1$, the transformation is severe, but it becomes clear that the variance between 1995 and 2000 is lower than it is between 2009 and 2014. When $w=0.36$, the transformation is much less noticable but yields a near-constant absolute slope of the fitted line.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[keepaspectratio=TRUE,width=.92\linewidth]{gas-x-corrected}
+\caption{Gas price data corrected using the $X$ transformation with $w=1$ and with $w=0.36$. }
+\label{fig:gasprices-x-correct}
+\end{figure}
+The minor effect of the weighted transformation on individual x-values contrasts with the effectiveness of the transformation in reducing the illusion; this is best seen in the fitted line, which is distinctly (piecewise) curved in the uncorrected data and appears to be much more piecewise linear in the corrected data, even at the reduced weighted value. 
+
+Similar to the $X$ transformation, the $Y$ transformation highlights local fluctuation in the variability of daily gas prices much more than the untransformed data. Figure~\ref{fig:gasprices-y-correct} shows $Y$ transformations for the data. Again, we show a full transformation (top) and a transformation based on the midpoint of the previously determined acceptable region of $w=0.40$.
+in the full transformation  it is clear that the variance is nearly constant between 1995 and 2000 and then begins to increase with the price of gas. When $w=0.40$, the transformation is much less noticable, and the resulting $y$-axis scale is much more similar to the uncorrected data. 
+
+\begin{figure}[h]
+\centering
+\includegraphics[keepaspectratio=TRUE,width=.92\linewidth]{gas-y-corrected}
+\caption{Gas price data corrected using the $Y$ transformation with $w=1$ and with $w=0.40$. }
+\label{fig:gasprices-y-correct}
+\end{figure}
+
+\section{Conclusions}
+The sine illusion is a persistent and powerful illusion that is very difficult to counteract without modifying the visual stimulus directly. While systematically modifying the data is uncommon in the statistical world, this approach is not out of place in the visual arts or architecture; as far back as 400 BC the builders of the Parthenon ensured a straight appearance of the columns from afar, by widening columns at the center, thereby counteracting the effects of the Hering illusion \citep{naturalscenes,hering}. Similarly, painters often exaggerate color hues used in shadows to account for color constancy in the brain. The systematic modifications we suggest here are also comparable to chloropleth maps, which scale a region's area based on some other variable. 
+
+We cannot counteract the illusion and represent the data visually without an intervention that is drastic enough to counteract the three-dimensional context the sine-illusion induces. The proposals in this paper for transformations in $x$ and $y$ provide the means to temporarily correct the data as a diagnostic measure, perhaps using an applet or R package for that purpose. These corrections are significant not only because of their implications for statistical graphics, but because previous attempts to resolve optical illusions using geometry have not met with success \citep{westheimer2008illusions}. These corrections are only a first step and could be improved upon; currently, the corrections break down for extreme (secant) values, but multiple iterations of the correction procedure will likely resolve some of these issues (though iteration removes the convenience of a functional form for the transformation). Similarly, the $y$ corrections proposed here extend the line lengths (or for actual data, increase the deviation from the smooth line) -- some normalization might make the necessary corrections less noticeable. 
+
+Our primary goal is to raise awareness of the illusion and its implications for statistics; the use of plots to guide the modeling process can leave us vulnerable to overlooking changes in the variance due to the illusion. While best practice has  been to plot the residuals separately, this removes the context of the data and is not practical before there is a model. In addition, viewer attention spans may be limited if multiple graphs are presented. The proposed transformations require only a nonparametric smooth, maintain the context of the data, and are readily interpretable. 
+
+The data for this study was collected with approval from  IRB-ID 13-257.
+
