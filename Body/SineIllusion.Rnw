@@ -1,4 +1,4 @@
-\graphicspath{{../Figure/sineIllusion/}}
+\graphicspath{{../Figure/sineIllusion/}{../Images/sineIllusion/}}
 \Sexpr{set_parent('../thesis.Rnw')}
 \renewcommand{\floatpagefraction}{.99}
 
@@ -19,16 +19,27 @@
 
 <<setup, fig.keep='all', cache=FALSE, echo=FALSE, eval=TRUE>>=
 rm(list=ls())
-warning(getwd())
+wd <- getwd()
+if("Body" %in% list.files()){
+  opts_chunk$set(fig.path='Figure/sineIllusion/fig-', cache.path='cache/', fig.align='center', fig.width=5, fig.height=5, fig.show='hold', par=TRUE, cache=TRUE, concordance=TRUE, autodep=TRUE)
+  datadir <- "Data/sineIllusion/"
+  imgdir <- "Figure/sineIllusion/"
+  codedir <- "Code/sineIllusion/"
+} else {
+  opts_chunk$set(fig.path='../Figure/sineIllusion/fig-', cache.path='cache/', fig.align='center', fig.width=5, fig.height=5, fig.show='hold', par=TRUE, cache=TRUE, concordance=TRUE, autodep=TRUE, root.dir="../")
+  datadir <- "../Data/sineIllusion/"
+  imgdir <- "../Figure/sineIllusion/"
+  codedir <- "../Code/sineIllusion/"
+}
 options(replace.assign=TRUE,width=70,scipen=3)
 require(knitr)
-opts_chunk$set(fig.path='../Figure/sineIllusion/fig-', cache.path='cache/', fig.align='center', fig.width=5, fig.height=5, fig.show='hold', par=TRUE, cache=TRUE, concordance=TRUE, autodep=TRUE, root.dir="../")
+
 library(reshape2)
 suppressMessages(library(ggplot2))
 library(plyr)
 suppressMessages(library(gridExtra))
 
-source("../Code/sineIllusion/functions.r")
+source(paste(codedir, "functions.r", sep=""))
 @
 
 
@@ -43,8 +54,8 @@ source("../Code/sineIllusion/functions.r")
 Graphics are powerful tools for summarizing large or complex data, but they rely on the main premise that any graphical representation of the data has to be ``true'' to the data \citep[see e.g.][]{tufte, wainer:2000, robbins:2005}. That is, a measurable quantity of a graphical element in the representation has to  directly reflect some aspect of the underlying data. Generally, we see a lot of discussion on keeping true to the data in the framework of (ab)using three dimensional effects in graphics. \citep{tufte} goes as far as defining a {\it lie-factor} of a chart as the ratio of the size of an effect in the data compared to the size of an effect shown, with the premise that any large deviations from one indicate a misuse of graphical techniques. Computational tools help us ensure technical trueness -- but this brings up the additional question of how we deal with situations that involve innate inability or trigger learned misperceptions in the audience. In this paper we want to raise awareness for one of these situations, show that it occurs frequently in our dealings with graphics and provide a set of strategies for solving or avoiding it.
 
 <<example,echo=FALSE, include=FALSE>>=
-#source("../Data/sineIllusion/NewOzoneData.R")
-datasub <- read.csv("../Data/sineIllusion/Ozone-subset.csv")
+#source(paste(datadir, "NewOzoneData.R", sep=""))
+datasub <- read.csv(paste(datadir, "Ozone-subset.csv", sep=""))
 nsite <- length(unique(datasub$SiteID))
 qplot(data=datasub, x=jitter(Tmax), y=Ozone, geom="point", shape=I(1), colour=I("grey40"), alpha=I(.5), xlab="Temperature (F)", ylab="8-hour Average Ozone Concentration (ppm)") + geom_line(aes(x=Tmax, y=fit), size=1.25, colour="black") + theme_bw()
 qplot(data=datasub, x=jitter(Tmax), y=resid, geom="point", shape=I(1), colour=I("grey40"), alpha=I(.5), xlab="Temperature (F)", ylab="Residual Ozone Concentration (ppm)") + geom_line(aes(x=Tmax, y=0*resid), size=1.25, colour="black") + theme_bw()
@@ -96,7 +107,7 @@ qplot(x=x, xend=xend, y = ystart, yend=yend, geom="segment", data=createSine(40,
        axis.text = element_blank()) + coord_equal(ratio=1)
 @
 <<original-redo, echo=FALSE, fig.keep='none', results='hide', fig.keep='all'>>=
-cairo_pdf("../Figure/sineIllusion/fig-original-redo.pdf", width=5, height=5)
+cairo_pdf(paste(imgdir, "fig-original-redo.pdf", sep=""), width=5, height=5)
 df1 <- createSine(20,1, f=f, fprime=fprime, f2prime=f2prime)
 df1$colour <- c(rep("A", 5), "A", rep("A", 13), "A")
 qplot(x=xstart, xend=xend, y = ystart, yend=yend, geom="segment", data=df1, colour=I("grey20")) +
@@ -192,7 +203,7 @@ The sine illusion demonstrated in figures \ref{fig:exampleFull1} and \ref{fig:or
 
 \begin{figure}[h!tbp]
 \centering
-\includegraphics[keepaspectratio=TRUE,width=.7\textwidth]{Images/sineIllusion/PlayfairExportImports}
+\includegraphics[keepaspectratio=TRUE,width=.7\textwidth]{PlayfairExportImports}
 \caption{Playfair's graph of exports to and imports from the East Indies demonstrates that the line width illusion is not only found on sinusoidal curves but is present whenever the slope of the lines change dramatically. The increase in both imports and exports circa 1763 does not appear to portray as large of a deficit as that in 1710, even though they are of similar magnitude.}
 \label{fig:playfair-debt}
 \end{figure}
@@ -684,7 +695,7 @@ Note, that we only make use of the transformation $T$ in the form of $f \circ T$
 <<xtrans-example, echo=FALSE, include=FALSE, dependson='xtransform', fig.width=6, fig.height=6>>=
 library(locfit)
 
-datasub <- read.csv("../Data/sineIllusion/Ozone/Ozone-subset.csv")
+datasub <- read.csv(paste(datadir, "Ozone/Ozone-subset.csv", sep=""))
 model <- locfit(data=datasub, Ozone~Tmax)
 deriv <- locfit(data=datasub, Ozone~Tmax, deriv=1)
 
@@ -945,7 +956,7 @@ which leads us to corrections for the half lengths as:
 \end{eqnarray}
 where $v = 1 + f^\prime(x_0)^2$.
 
-\begin{subsubsection*}{Proof: Reformulation of the quadratic approximation}\label{app.quadratic}
+\begin{subsubsection}{Reformulation of the quadratic approximation}\label{app.quadratic}
 A quadratic equation in $\lambda$ of the form 
 \begin{equation}\label{quadratic.equation}
 a\lambda^2 + b\lambda + c = 0,
@@ -969,7 +980,7 @@ For a valid solution for the correction factor, we have to assume that $\lambda$
 \end{eqnarray*}
 for $v = 1 + f^\prime(x_0)$. 
 This gives the results as shown in equations (\ref{eqn.q1}) and (\ref{eqn.q2})
-\end{subsubsection*}
+\end{subsubsection}
 
 \begin{figure}[h!btp]
 \begin{subfigure}[b]{.32\textwidth}\centering
@@ -1031,7 +1042,7 @@ dframe <- createSine(n = 400, len = 1, f=f, fprime=fprime, f2prime=f2prime)
 library(reshape2)
 dfm <- melt(dframe, id.var="x", measure.vars=c("ellx4.l", "ellx4.u"))
 levels(dfm$variable) <- c("Bottom Segment", "Top Segment")
-cairo_pdf("../Figure/sineIllusion/fig-CtsQuadratic.pdf", width=6, height=4)
+cairo_pdf(paste(imgdir, "fig-CtsQuadratic.pdf", sep=""), width=6, height=4)
 ggplot(aes(x=x, y=value, group=variable, linetype=variable), data=dfm) + geom_line() + 
   scale_x_continuous(breaks=seq(0, 2*pi, by=pi/2), 
                      labels=c("0", expression(paste(pi,"/2")), 
@@ -1068,7 +1079,7 @@ A low  initial weight ($w_0$ close to 0) indicates that the amount of correction
 It is of additional interest to determine whether and how much these optimal weights are subject-specific or population-based, whether they depend on the initial weight, and how much within-subject variability we find compared to between-subject variability. 
 
 \begin{figure}\centering
-\includegraphics[width=.8\textwidth]{../Images/sineIllusion/shiny.pdf}
+\includegraphics[width=.8\textwidth]{shiny}
 \caption{\label{fig:shiny.app} Screenshot of the shiny application used to collect information of observers' preference with respect to an optimal correction for the illusion under each of the  transformations discussed in the previous section. }
 \end{figure}
 
@@ -1143,8 +1154,8 @@ qplot(data=correction.extremes, geom="segment", x=xstart, xend=xend, y=ystart, y
 @
 
 <<results-analysis,echo=FALSE, cache=TRUE, include=FALSE, fig.width=8, fig.height=6, dependson='overcorrectlimits'>>=
-trial.sum <- read.csv("../Data/sineIllusion/SummaryTable.csv", row.names=1, stringsAsFactors=FALSE)
-trial.sequence <- read.csv("../Data/sineIllusion/IndivTrajectory.csv", row.names=1, stringsAsFactors=FALSE)
+trial.sum <- read.csv(paste(datadir, "SummaryTable.csv", sep=""), row.names=1, stringsAsFactors=FALSE)
+trial.sequence <- read.csv(paste(datadir, "IndivTrajectory.csv", sep=""), row.names=1, stringsAsFactors=FALSE)
 library(lubridate)
 trial.sequence$time2 <- ymd_hms(trial.sequence$time2)
 
@@ -1249,16 +1260,16 @@ model2 <- lmer(data=lm.data, endweight~ (type-1) + startweight + (type|fingerpri
 model3 <- lmer(data=lm.data, endweight~ (type-1) + type:startweight + (type|fingerprint))
 
 
-if (!file.exists("../Data/sineIllusion/modelsim.RData")) {
+if (!file.exists(paste(datadir, "modelsim.RData", sep=""))) {
   # summary(model)
   N <- 1000
   
   model2.sim <- simulate(model2, nsim=N)
   res <- llply(model2.sim, function(x) model2 <- lmer(data=lm.data, x~ (type-1) + 
                                                         startweight+ (type-1|fingerprint)))
-  save(res, file="../Data/sineIllusion/modelsim.RData")
+  save(res, file=paste(datadir, "modelsim.RData", sep=""))
 } else {
-  load("../Data/sineIllusion/modelsim.RData")
+  load(paste(datadir, "modelsim.RData", sep=""))
 }
 
 # extract pieces for confidence intervals
@@ -1464,7 +1475,7 @@ fixefsCIs <- fixefsCIs[,c(4,5,6,7)]
 fixefsCIs$Transformation <- c("X", "", "Y", "")
 names(fixefsCIs)[4] <- "95% C.I."
 fixeftab <- xtable(fixefsCIs, align=c("c","c", "c", "c", "c"), digits=3)
-print(fixeftab, include.rownames=FALSE, file="../Figure/sineIllusion/fixef.txt", floating=FALSE)
+print(fixeftab, include.rownames=FALSE, file=paste(imgdir, "fixef.txt", sep=""), floating=FALSE)
 
 
 #####################
@@ -1490,7 +1501,7 @@ ranefCIs <- ranefCIs[,4:7]
 names(ranefCIs)[4] <- "95% C.I."
 
 ranefCIstab <- xtable(ranefCIs, align=c("r","r", "c", "c", "c"), digits=3)
-print(ranefCIstab, include.rownames=FALSE, file="../Figure/sineIllusion/ranef.txt", floating=FALSE)
+print(ranefCIstab, include.rownames=FALSE, file=paste(imgdir, "ranef.txt", sep=""), floating=FALSE)
 @
 \begin{table}[htbp]\centering
 \begin{tabular}{cclcc}
@@ -1546,7 +1557,7 @@ library(scales)
 library(gridExtra)
 library(quantreg)
 
-gasprices <- read.csv("../Data/sineIllusion/GasPrices.csv", stringsAsFactors=F)
+gasprices <- read.csv(paste(datadir, "GasPrices.csv", sep=""), stringsAsFactors=F)
 gasprices$date <- ymd(gasprices$date)
 gasprices$year <- year(gasprices$date)
 gasprices <- subset(gasprices, year>=1995)
@@ -1644,10 +1655,10 @@ gas.cor.y <- subset(gas.cor.y, variable!="Uncorrected")
 gas.cor.y$variable <- factor(gas.cor.y$variable, levels=c("Corrected (w=1)", "Corrected (w=0.40)"))
 rm(list=c("gas.cor", "gas.cor2"))
 
-save.image("../Data/sineIllusion/gasprices.RData")
+save.image(paste(datadir, "gasprices.RData", sep=""))
 @
 <<gaspricesCorrectionPlots,echo=F,include=F,cache=T>>=
-load("../Data/sineIllusion/gasprices.RData")
+load(paste(datadir, "gasprices.RData", sep=""))
 ggplot(data=gas.cor.x) + 
   geom_point(aes(x=value, y=price, group=variable), size=1.5, shape=I(1), colour=I("grey40"), alpha=I(.75))+ 
   facet_grid(variable~.) +
@@ -1657,7 +1668,7 @@ ggplot(data=gas.cor.x) +
   ylab("Price of Gasoline (USD)") + 
   theme_bw() + geom_point(aes(x=1995, y=0), size=0.1) + 
   theme(plot.margin=unit(c(0,0,0,0), "cm"))
-ggsave(file="../Figure/sineIllusion/gas-x-corrected.pdf", width=8, height=4)
+ggsave(file=paste(imgdir, "gas-x-corrected.pdf", sep=""), width=8, height=4)
 
 ggplot(data=gas.cor.y) + 
   geom_point(aes(x=date, y=value, group=variable), size=1.5, shape=I(1), colour=I("grey40"), alpha=I(.75))+ 
@@ -1667,7 +1678,7 @@ ggplot(data=gas.cor.y) +
   ylab("Adj. Price of Gasoline (USD)") + 
   theme_bw() + geom_point(aes(x=1995, y=0), size=0.1) + 
   theme(plot.margin=unit(c(0,0,0,0), "cm"))
-ggsave(file="../Figure/sineIllusion/gas-y-corrected.pdf", width=8, height=4)
+ggsave(file=paste(imgdir, "gas-y-corrected.pdf", sep=""), width=8, height=4)
 
 @
 
