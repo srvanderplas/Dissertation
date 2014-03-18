@@ -13,7 +13,6 @@
 %Optional Package to add PDF bookmarks and hypertext links
 \usepackage[pdftex,hypertexnames=false,linktocpage=true]{hyperref}
 \hypersetup{colorlinks=true,linkcolor=blue,anchorcolor=blue,citecolor=blue,filecolor=blue,urlcolor=blue,bookmarksnumbered=true,pdfview=FitB}
-
 %---------------------------------------------------
 \usepackage{color}
 \usepackage[dvipsnames,svgnames]{xcolor}
@@ -81,6 +80,6 @@ opts_chunk$set(fig.path='Figure', cache.path='cache/', fig.align='center', fig.w
 % \include{Appendix/appendix1}
 % \include{Appendix/appendix2}
 %-------------------------------------------------------------------------------
-% \include{Reference/bibtex}
+\include{Reference/bibtex}
 %\include{Reference/biblio} % Not used... stick with bibtex
 \end{document}
