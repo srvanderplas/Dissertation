@@ -32,6 +32,13 @@
 \usepackage[colorinlistoftodos]{todonotes}
 
 %---------------------------------------------------
+<<root-setup, fig.keep='all', cache=FALSE, echo=FALSE, eval=TRUE>>=
+rm(list=ls())
+warning(getwd())
+options(replace.assign=TRUE,width=70,scipen=3)
+require(knitr)
+opts_chunk$set(fig.path='Figure', cache.path='cache/', fig.align='center', fig.width=5, fig.height=5, fig.show='hold', par=TRUE, cache=TRUE, concordance=TRUE, autodep=TRUE)
+@
 
 \begin{document}
 \DeclareGraphicsExtensions{.jpg,.pdf,.mps,.png}
