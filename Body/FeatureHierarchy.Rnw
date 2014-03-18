@@ -1,0 +1,3 @@
+\chapter{STATISTICAL GRAPHICS AND FEATURE HIERARCHY}
+
+Paper about lineups and feature hierarchy

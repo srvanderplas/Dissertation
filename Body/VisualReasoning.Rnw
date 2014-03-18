@@ -1,0 +1,3 @@
+\chapter{VISUAL REASONING AND STATISTICAL GRAPHICS}
+
+Paper about lineup ability and army tests of visual reasoning

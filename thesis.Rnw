@@ -69,13 +69,14 @@ opts_chunk$set(fig.path='Figure', cache.path='cache/', fig.align='center', fig.w
 \newpage
 \pagenumbering{arabic}
 %-------------------------------------------------------------------------------
+<<litReview, child='Body/LitReview.Rnw'>>=
+@
 <<sineIllusion, child='Body/SineIllusion.Rnw'>>=
 @
-% \include{Body/chapter1}
-% \include{Body/chapter2}
-% \include{Body/chapter3}
-% \include{Body/chapter4}
-% \include{Body/chapter5}
+<<visualaReasoning, child='Body/VisualReasoning.Rnw'>>=
+@
+<<featureHierarchy, child='Body/FeatureHierarchy.Rnw'>>=
+@
 %-------------------------------------------------------------------------------
 % \include{Appendix/appendix1}
 % \include{Appendix/appendix2}
