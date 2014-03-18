@@ -32,3 +32,5 @@
 *.tdo
 .Rproj.user
 cache
+Dissertation.Rproj
+thesis-concordance.tex
