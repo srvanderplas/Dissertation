@@ -121,6 +121,34 @@
 
 Introduction and literature review.
 
+Outline: 
+\begin{enumerate}
+\item Importance of designing graphics for the human perceptual system
+\begin{enumerate}
+  \item Human visual system overview (preattentive vs. attentive, parallel processing of visual features, sensation vs perception vs stored ``gist")
+  \begin{itemize}
+    \item Psychophysics info goes here mostly
+    \item Pretty diagrams of human visual processing from Sensation \& Perception book?
+  \end{itemize}
+  \item Perceptually optimal graphics
+  \item Optical illusions and statistical graphics
+  \item Interactive graphics?
+\end{enumerate}
+\item Methodology for testing graphical perception in humans
+\begin{enumerate}
+  \item Tukey
+  \item Cleveland & McGill
+  \item Lineups
+\end{enumerate}
+\item ??
+\end{enumerate}
+
+\section{Statistical Graphics and the Human Visual System}
+
+\section{Testing Statistical Graphics}
+
+\section{??}
+
 
 
 \graphicspath{{Figure/sineIllusion/}{Images/sineIllusion/}}
@@ -766,7 +794,7 @@ Each participant is provided with two initial ``training'' trials in which the  
 
 \begin{figure}\centering
 \includegraphics[keepaspectratio=TRUE,width=.8\textwidth]{fig-overcorrectlimits}
-\caption[ Overcorrected transformations excluded from the analysis]{Transformation weights outside of the intervals $[-2.5, 3.5]$ for $y$ and $[-2, 2]$ for $x$  produce figures which do not maintain the underlying function shape (in $x$) or which are composed of extremely uneven length lines (in $y$). Trials with final results that were more extreme than these examples were excluded from the analysis.}
+\caption[ Overcorrected transformations excluded from the analysis]{Transformation weights outside of the intervals $[\ensuremath{-2.5}, 3.5]$ for $y$ and $[\ensuremath{-2}, 2]$ for $x$  produce figures which do not maintain the underlying function shape (in $x$) or which are composed of extremely uneven length lines (in $y$). Trials with final results that were more extreme than these examples were excluded from the analysis.}
 \label{fig:overtransform}
 \end{figure}
 
@@ -779,7 +807,7 @@ As this study was conducted outside a laboratory setting, we can not gauge a par
 \item Participants did not interact with the applet: we required participants to use the adjustment at least once in order to include data for this trial (592 trials removed).
 \item Participants finished fewer than four trials: while participants were asked to complete twelve trials, some did not finish all of those. In order to stabilize predictions of random effects, participants' data were excluded if there were fewer than four trials (78 out of a total of 203 participants).
 \item Out-of-bounds results: weights leading to severely over- or undercorrected results were excluded from the analysis. 
-For trials to adjust $Y$-values, weights outside of [-2.5, 3.5]  show dramatically unequal line lengths; weights from $X$-transformations outside the range of [-2, 2] do not preserve the underlying function shape and concavity. 
+For trials to adjust $Y$-values, weights outside of [\ensuremath{-2.5}, 3.5]  show dramatically unequal line lengths; weights from $X$-transformations outside the range of [\ensuremath{-2}, 2] do not preserve the underlying function shape and concavity. 
 Figure~\ref{fig:overtransform} shows results at the threshold of acceptability. Only more severely distorted results were excluded from the analysis (12 of the $X$ and 5 of the $Y$ trials out of 1227 trials remaining after application of other criteria).
 \end{itemize}
 

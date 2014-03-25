@@ -24,3 +24,9 @@ Outline:
 \end{enumerate}
 \item ??
 \end{enumerate}
+
+\section{Statistical Graphics and the Human Visual System}
+
+\section{Testing Statistical Graphics}
+
+\section{??}
