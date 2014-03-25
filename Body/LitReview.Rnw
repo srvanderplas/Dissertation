@@ -1,32 +1,32 @@
 % Chapter 1 of the Thesis Template File
 \chapter{OVERVIEW}
 
-Introduction and literature review.
+\section{Statistical Graphics and the Human Visual System}
+Importance of designing graphics for the human perceptual system
 
-Outline: 
-\begin{enumerate}
-\item Importance of designing graphics for the human perceptual system
-\begin{enumerate}
-  \item Human visual system overview (preattentive vs. attentive, parallel processing of visual features, sensation vs perception vs stored ``gist")
+\subsection{The Human Visual System}
+Human visual system overview (preattentive vs. attentive, parallel processing of visual features, sensation vs perception vs stored ``gist")
   \begin{itemize}
-    \item Psychophysics info goes here mostly
+    \item Psychophysics info goes here mostly - models of perception, etc. Cite Carswell article and Conti article. 
     \item Pretty diagrams of human visual processing from Sensation \& Perception book?
   \end{itemize}
-  \item Perceptually optimal graphics
-  \item Optical illusions and statistical graphics
-  \item Interactive graphics?
-\end{enumerate}
-\item Methodology for testing graphical perception in humans
-\begin{enumerate}
-  \item Tukey
-  \item Cleveland & McGill
-  \item Lineups
-\end{enumerate}
-\item ??
-\end{enumerate}
+\subsection{Perceptually optimal graphics}
+Talk about Cleveland \& McGill study results, preattentive and other work by Healey, etc. Overview of Gestalt principles (Kosslyn) 
 
-\section{Statistical Graphics and the Human Visual System}
+Mention color choice (Light (2005) article) and prevalence of colorblindness. Logarithmic perception (Sun \& Varshney) and Weber-Fechner. 
+
+Models for graphical perception (HCI handbook)
+
+\subsection{Optical illusions and statistical graphics}
+Accounting for perceptual oddities that are inherent in the visual system, how to avoid triggering those heuristics. Hermann grid, cafe wall, ponzo illusion
+
+\subsection{Interactive graphics?} Not sure if this should be a subsection, but graphics that respond to human interaction violate the two-dimensional graphic paradigm somewhat, which means there are a whole 'nother set of issues to consider... motion illusions, grouping, etc.
 
 \section{Testing Statistical Graphics}
-
+Methodology for testing graphical perception in humans. Talk about masking, the power of suggestion, habituation, etc. as well as paradigms - search and find, response time, numerical judgments, signal detection, eye tracking. 
+\begin{itemize}
+  \item Tukey
+  \item Cleveland \& McGill
+  \item Lineups
+\end{itemize}
 \section{??}
