@@ -2,3 +2,25 @@
 \chapter{OVERVIEW}
 
 Introduction and literature review.
+
+Outline: 
+\begin{enumerate}
+\item Importance of designing graphics for the human perceptual system
+\begin{enumerate}
+  \item Human visual system overview (preattentive vs. attentive, parallel processing of visual features, sensation vs perception vs stored ``gist")
+  \begin{itemize}
+    \item Psychophysics info goes here mostly
+    \item Pretty diagrams of human visual processing from Sensation \& Perception book?
+  \end{itemize}
+  \item Perceptually optimal graphics
+  \item Optical illusions and statistical graphics
+  \item Interactive graphics?
+\end{enumerate}
+\item Methodology for testing graphical perception in humans
+\begin{enumerate}
+  \item Tukey
+  \item Cleveland & McGill
+  \item Lineups
+\end{enumerate}
+\item ??
+\end{enumerate}
