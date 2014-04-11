@@ -81,6 +81,15 @@
 \usepackage[pdftex,hypertexnames=false,linktocpage=true]{hyperref}
 \hypersetup{colorlinks=true,linkcolor=blue,anchorcolor=blue,citecolor=blue,filecolor=blue,urlcolor=blue,bookmarksnumbered=true,pdfview=FitB}
 
+\newcommand{\done}[2][inline]{\todo[color=SpringGreen, #1]{#2}}  % for todos that have been seen and dealt with
+\newcommand{\meh}[2][inline]{\todo[color=White, #1]{#2}}   % for todos that may no longer be relevant 
+\newcommand{\comment}[2][inline]{\todo[color=SkyBlue, #1]{#2}} % for comments that may not be "to-do"s
+\newcommand{\mcomment}[1]{\todo[color=SkyBlue]{#1}} % for margin comments
+
+\newcommand{\newtext}[1]{\todo[inline, color=White]{ \color{OliveGreen}{#1}}} % new text - not necessarily something to be done
+
+\newcommand{\move}[1]{\todo[inline, color=Lime]{#1}} % new to do item
+
 %---------------------------------------------------
 
 
@@ -116,29 +125,102 @@
 \pagenumbering{arabic}
 %-------------------------------------------------------------------------------
 
+
+\graphicspath{{Figure/LitReview/}{Images/LitReview/}}
+\renewcommand{\floatpagefraction}{.99}
+
+
+
+
+
 % Chapter 1 of the Thesis Template File
 \chapter{OVERVIEW}
 
-\section{Statistical Graphics and the Human Visual System}
-Importance of designing graphics for the human perceptual system
+\section{Goals of Statistical Graphics}
 
-\subsection{The Human Visual System}
-Human visual system overview (preattentive vs. attentive, parallel processing of visual features, sensation vs perception vs stored ``gist")
-  \begin{itemize}
-    \item Psychophysics info goes here mostly - models of perception, etc. Cite Carswell article and Conti article. 
-    \item Pretty diagrams of human visual processing from Sensation \& Perception book?
-  \end{itemize}
-\subsection{Perceptually optimal graphics}
-Talk about Cleveland \& McGill study results, preattentive and other work by Healey, etc. Overview of Gestalt principles (Kosslyn) 
+\section{The Human Visual System}
+Basic overview of structure, to serve as a reference
 
-Mention color choice (Light (2005) article) and prevalence of colorblindness. Logarithmic perception (Sun \& Varshney) and Weber-Fechner. 
+In order to design graphics for the human perceptual system, we must understand, at a basic level, the makeup of the perceptual system. There are multiple levels of perception that must correctly function in order to perceive visual stimuli successfully, but a somewhat simplistic higher-level analogy would be that we must understand both the hardware and software of the human visual system to create effective graphics.
+The ``hardware", in this analogy, consists of the neurons that make up the eyes, optic nerve, and the brain itself. The higher-level functions (object recognition, working memory, etc.) comprise the ``software" component. In addition, much like computer software, there are different programs running simultaneously; these programs may interact with each other, run sequentially, or run in parallel. The following sections provide an overview of the grey-matter (hardware) components of the visual system as well as the higher-level cognitive heuristics (software) that order the raw input and construct our visual environment. 
 
-Models for graphical perception (HCI handbook)
+\subsection{Hardware}
+The physiology of perception is complex; what follows is a high-level overview of the physiology of perception, focusing on the areas most important to the perception of statistical graphics. This physiological information is important in understanding the difference between the sensation (i.e. the retinal image) and the perception (the corresponding mental representation), which is an important distinction in understanding how statistical graphics are perceived. 
+
+\paragraph{The Eye}
+The eye is a complex apparatus, but for our purposes, the primary component of the eye is the retina, which contains the sensory cells responsible for transforming light waves into electrical information in the form of neural signals. 
+These sensory cells are specialized neurons, known as rods and cones, which perceive light intensity (brightness) and wavelength (color), respectively. One section of the retina, known as the fovea, contains only cones; the rest of the retina contains a mixture of rods and cones. Figure \ref{fig:retina} depicts the structure of the eye with a closeup of the retina. 
+
+\begin{figure}
+\centering
+\includegraphics[width=.8\textwidth, keepaspectratio=TRUE]{Figure/LitReview/Retina}
+\caption[The human eye, with closeup of receptor cells in the retina]{The human eye, with closeup of receptor cells in the retina (image from \protect\citealt{goldstein}, chap 3.1).} \label{fig:retina}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=.8\textwidth, keepaspectratio=TRUE]{Figure/LitReview/AbsorptionSpectra}
+\caption[Absorption spectra of retinal cells]{Absorption spectra of rods and short, medium, and long wave cones. (image from \protect\citealt{goldstein}, chap 3.3).} \label{fig:ColorRange}
+\end{figure}
+
+Figure \ref{fig:ColorRange} shows the responsiveness of rods and each of the three types of cones to wavelengths of light in the visual spectrum. This image suggests that we have relatively good visual discrimination of the yellow-green portion of the color spectrum, but relatively poor discrimination of colors in the red and blue portions of the color spectrum. As a result, rainbow-style color schemes are seldom appropriate for conveying numerical values, because the correspondance between the perceived information and the displayed information is not accurately maintained by the visual system \citep{rainbowcolor}. In addition, if any of the cones are missing or damaged as a result of genetic mutations, color perception is impaired, resulting in a smaller range of distinguishable colors. This set of impairments is known coloquially as color-blindness, and occurs in an estimated 5\% of the population. 
+
+\paragraph{The Brain}
+Once light hits the retina and causes a signal in the receptor cells, the information travels along the optic nerve and into the brain. Multiple neighboring rods are connected to the same neuron, where each cone is connected to its' own neuron. The combined wiring of rod cells is responsible for the Hermann grid illusion and the Mach bands seen in Figure \ref{fig:InhibitionIllusions}. Both of these illusions are a product of lateral inhibition, which is a result of the wiring of rod cells in the retina.  The specifics of the wiring of the receptor cells are somewhat complex; a more thorough explanation can be found in \citet{goldstein}, chapter 3.4. 
+
+\begin{figure}
+\centering
+\begin{subfigure}[b]{.45\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{Figure/LitReview/HermannGrid}
+  \caption{\small Hermann Grid Illusion \label{fig:hermanngrid}}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{.45\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{Figure/LitReview/MachBands}
+  \caption{\small Mach Bands. 
+  \label{fig:machbands}}
+\end{subfigure}
+\caption[Inhibition Illusions]{Optical Illusions resulting from lateral inhibition. The Hermann Grid illusion causes dark circles to appear at the intersection of white lines; the Mach bands illusion causes the borders of adjacent rectangles to appear more strongly defined.} \label{fig:InhibitionIllusions}
+\end{figure}
+
+Once neural impulses have left the retina through the optic nerve, they travel to the visual cortex by way of several specialized structures within the brain that process lower-level signals. Receptor cells in the visual cortext respond to specific angles, spatial locations, colors, and intensities, and arrays of these special 'feature detector cells' process the information into a form that higher-level processes can utilize. These higher-level processes are what we have previously called 'software': they are not directly related to the physical brain, but they do seem to process information heuristically to produce higher-level reasoning and conclusions. In the next section, we explore some of the higher-level processes responsible for visual perception.
+
+\subsection{Software}
+\begin{itemize}
+\item Attention and perception
+
+\item parallel processing - HCI handbook picture: summary of graphical perception
+
+\item gestalt movement - wholistic approach
+
+\item stored ``gist" and cognitive psych
+
+\item Mention color choice (Light (2005) article) and prevalence of colorblindness. Logarithmic perception (Sun \& Varshney) and Weber-Fechner. 
+\end{itemize}
+
+\subsection{Bugs}
+\begin{itemize}
+\item Optical Illusions - Accounting for perceptual oddities that are inherent in the visual system, how to avoid triggering those heuristics. Hermann grid, cafe wall, ponzo illusion
+\item Colorblindness
+\item 
+\end{itemize}
+
+
+\section{Statistical Graphics}
+\begin{itemize}
+\item Cleveland \& McGill
+\item Healey
+\item Heuristic guidelines i.e. Kosslyn and Tufte
+\item Grammar of graphics allows us to test graphics which display the same information in different ways for comparable accuracy
+\end{itemize}
+Emphasize the low-level stuff vs. the higher-level stuff that focuses on preattentive information (i.e. not what we care about) and the gap in the middle where graphics are tested in more practical scenarios.
 
 \subsection{Optical illusions and statistical graphics}
-Accounting for perceptual oddities that are inherent in the visual system, how to avoid triggering those heuristics. Hermann grid, cafe wall, ponzo illusion
+three-dimensional context, other ways to trigger optical illusions with graphics. Importance of being aware of the heuristics the brain uses so that problematic graphics can be avoided. 
 
-\subsection{Interactive graphics?} Not sure if this should be a subsection, but graphics that respond to human interaction violate the two-dimensional graphic paradigm somewhat, which means there are a whole 'nother set of issues to consider... motion illusions, grouping, etc.
+\subsection{Interactive graphics?} 
+Not sure if this should be a subsection, but graphics that respond to human interaction violate the two-dimensional graphic paradigm somewhat, which means there are a whole 'nother set of issues to consider... motion illusions, grouping, etc.
 
 \section{Testing Statistical Graphics}
 Methodology for testing graphical perception in humans. Talk about masking, the power of suggestion, habituation, etc. as well as paradigms - search and find, response time, numerical judgments, signal detection, eye tracking. 
@@ -147,7 +229,7 @@ Methodology for testing graphical perception in humans. Talk about masking, the 
   \item Cleveland \& McGill
   \item Lineups
 \end{itemize}
-\section{??}
+
 
 
 
@@ -159,14 +241,6 @@ Methodology for testing graphical perception in humans. Talk about masking, the 
 \newcommand{\atan}[1]{\text{atan}\left({#1}\right)}
 \newcommand{\xR}{\mathbb{R}}
 
-\newcommand{\done}[2][inline]{\todo[color=SpringGreen, #1]{#2}}  % for todos that have been seen and dealt with
-\newcommand{\meh}[2][inline]{\todo[color=White, #1]{#2}}   % for todos that may no longer be relevant 
-\newcommand{\comment}[2][inline]{\todo[color=SkyBlue, #1]{#2}} % for comments that may not be "to-do"s
-\newcommand{\mcomment}[1]{\todo[color=SkyBlue]{#1}} % for margin comments
-
-\newcommand{\newtext}[1]{\todo[inline, color=White]{ \color{OliveGreen}{#1}}} % new text - not necessarily something to be done
-\newcommand{\newdo}[1]{\todo[inline, color=Plum]{#1}} % new to do item
-\newcommand{\move}[1]{\todo[inline, color=Lime]{#1}} % new to do item
 
 
 
