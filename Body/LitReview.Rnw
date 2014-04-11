@@ -31,14 +31,13 @@ suppressMessages(library(gridExtra))
 
 \section{Goals of Statistical Graphics}
 
-\section{Designing graphics for the human perceptual system}
-\subsection{The Human Visual System}
+\section{The Human Visual System}
 Basic overview of structure, to serve as a reference
 
 In order to design graphics for the human perceptual system, we must understand, at a basic level, the makeup of the perceptual system. There are multiple levels of perception that must correctly function in order to perceive visual stimuli successfully, but a somewhat simplistic higher-level analogy would be that we must understand both the hardware and software of the human visual system to create effective graphics.
 The ``hardware", in this analogy, consists of the neurons that make up the eyes, optic nerve, and the brain itself. The higher-level functions (object recognition, working memory, etc.) comprise the ``software" component. In addition, much like computer software, there are different programs running simultaneously; these programs may interact with each other, run sequentially, or run in parallel. The following sections provide an overview of the grey-matter (hardware) components of the visual system as well as the higher-level cognitive heuristics (software) that order the raw input and construct our visual environment. 
 
-\subsubsection{Hardware}
+\subsection{Hardware}
 The physiology of perception is complex; what follows is a high-level overview of the physiology of perception, focusing on the areas most important to the perception of statistical graphics. This physiological information is important in understanding the difference between the sensation (i.e. the retinal image) and the perception (the corresponding mental representation), which is an important distinction in understanding how statistical graphics are perceived. 
 
 \paragraph{The Eye}
@@ -80,7 +79,7 @@ Once light hits the retina and causes a signal in the receptor cells, the inform
 
 Once neural impulses have left the retina through the optic nerve, they travel to the visual cortex by way of several specialized structures within the brain that process lower-level signals. Receptor cells in the visual cortext respond to specific angles, spatial locations, colors, and intensities, and arrays of these special 'feature detector cells' process the information into a form that higher-level processes can utilize. These higher-level processes are what we have previously called 'software': they are not directly related to the physical brain, but they do seem to process information heuristically to produce higher-level reasoning and conclusions. In the next section, we explore some of the higher-level processes responsible for visual perception.
 
-\subsubsection{Software}
+\subsection{Software}
 \begin{itemize}
 \item Attention and perception
 
@@ -93,7 +92,7 @@ Once neural impulses have left the retina through the optic nerve, they travel t
 \item Mention color choice (Light (2005) article) and prevalence of colorblindness. Logarithmic perception (Sun \& Varshney) and Weber-Fechner. 
 \end{itemize}
 
-\subsubsection{Bugs}
+\subsection{Bugs}
 \begin{itemize}
 \item Optical Illusions - Accounting for perceptual oddities that are inherent in the visual system, how to avoid triggering those heuristics. Hermann grid, cafe wall, ponzo illusion
 \item Colorblindness
