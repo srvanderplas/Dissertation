@@ -1,3 +1,31 @@
+\Sexpr{set_parent('../thesis.Rnw')}
+\graphicspath{{Figure/LitReview/}{Images/LitReview/}}
+\renewcommand{\floatpagefraction}{.99}
+
+<<litreview-setup, fig.keep='all', cache=FALSE, echo=FALSE, eval=TRUE>>=
+rm(list=ls())
+wd <- getwd()
+if("Body" %in% list.files()){
+  opts_chunk$set(fig.path='Figure/LitReview/fig-', cache.path='cache/', fig.align='center', fig.width=5, fig.height=5, fig.show='hold', par=TRUE, cache=TRUE, concordance=TRUE, autodep=TRUE)
+  datadir <- "Data/LitReview/"
+  imgdir <- "Figure/LitReview/"
+  codedir <- "Code/LitReview/"
+} else {
+  opts_chunk$set(fig.path='../Figure/LitReview/fig-', cache.path='cache/', fig.align='center', fig.width=5, fig.height=5, fig.show='hold', par=TRUE, cache=TRUE, concordance=TRUE, autodep=TRUE, root.dir="../")
+  datadir <- "../Data/LitReview/"
+  imgdir <- "../Figure/LitReview/"
+  codedir <- "../Code/LitReview/"
+}
+options(replace.assign=TRUE,width=70,scipen=3)
+require(knitr)
+
+library(reshape2)
+suppressMessages(library(ggplot2))
+library(plyr)
+suppressMessages(library(gridExtra))
+@
+
+
 % Chapter 1 of the Thesis Template File
 \chapter{OVERVIEW}
 
