@@ -1,26 +1,57 @@
 % Chapter 1 of the Thesis Template File
 \chapter{OVERVIEW}
 
-\section{Statistical Graphics and the Human Visual System}
-Importance of designing graphics for the human perceptual system
+\section{Goals of Statistical Graphics}
 
+\section{Designing graphics for the human perceptual system}
 \subsection{The Human Visual System}
-Human visual system overview (preattentive vs. attentive, parallel processing of visual features, sensation vs perception vs stored ``gist")
-  \begin{itemize}
-    \item Psychophysics info goes here mostly - models of perception, etc. Cite Carswell article and Conti article. 
-    \item Pretty diagrams of human visual processing from Sensation \& Perception book?
-  \end{itemize}
-\subsection{Perceptually optimal graphics}
-Talk about Cleveland \& McGill study results, preattentive and other work by Healey, etc. Overview of Gestalt principles (Kosslyn) 
+Basic overview of structure, to serve as a reference
 
-Mention color choice (Light (2005) article) and prevalence of colorblindness. Logarithmic perception (Sun \& Varshney) and Weber-Fechner. 
 
-Models for graphical perception (HCI handbook)
+\subsubsection{Hardware}
+\begin{itemize}
+\item Specific biology of the visual system - retina, optic nerve, cortex, etc. 
+
+\item Difference between ``sensation" and ``perception"
+
+\item Motion? (for interactive graphics)
+\end{itemize}
+
+\subsubsection{Software}
+\begin{itemize}
+\item Attention and perception
+
+\item parallel processing - HCI handbook picture: summary of graphical perception
+
+\item gestalt movement - wholistic approach
+
+\item stored ``gist" and cognitive psych
+
+\item Mention color choice (Light (2005) article) and prevalence of colorblindness. Logarithmic perception (Sun \& Varshney) and Weber-Fechner. 
+\end{itemize}
+
+\subsubsection{Bugs}
+\begin{itemize}
+\item Optical Illusions - Accounting for perceptual oddities that are inherent in the visual system, how to avoid triggering those heuristics. Hermann grid, cafe wall, ponzo illusion
+\item Colorblindness
+\item 
+\end{itemize}
+
+
+\section{Statistical Graphics}
+\begin{itemize}
+\item Cleveland \& McGill
+\item Healey
+\item Heuristic guidelines i.e. Kosslyn and Tufte
+\item Grammar of graphics allows us to test graphics which display the same information in different ways for comparable accuracy
+\end{itemize}
+Emphasize the low-level stuff vs. the higher-level stuff that focuses on preattentive information (i.e. not what we care about) and the gap in the middle where graphics are tested in more practical scenarios.
 
 \subsection{Optical illusions and statistical graphics}
-Accounting for perceptual oddities that are inherent in the visual system, how to avoid triggering those heuristics. Hermann grid, cafe wall, ponzo illusion
+three-dimensional context, other ways to trigger optical illusions with graphics. Importance of being aware of the heuristics the brain uses so that problematic graphics can be avoided. 
 
-\subsection{Interactive graphics?} Not sure if this should be a subsection, but graphics that respond to human interaction violate the two-dimensional graphic paradigm somewhat, which means there are a whole 'nother set of issues to consider... motion illusions, grouping, etc.
+\subsection{Interactive graphics?} 
+Not sure if this should be a subsection, but graphics that respond to human interaction violate the two-dimensional graphic paradigm somewhat, which means there are a whole 'nother set of issues to consider... motion illusions, grouping, etc.
 
 \section{Testing Statistical Graphics}
 Methodology for testing graphical perception in humans. Talk about masking, the power of suggestion, habituation, etc. as well as paradigms - search and find, response time, numerical judgments, signal detection, eye tracking. 
@@ -29,4 +60,4 @@ Methodology for testing graphical perception in humans. Talk about masking, the 
   \item Cleveland \& McGill
   \item Lineups
 \end{itemize}
-\section{??}
+
