@@ -7,14 +7,6 @@
 \newcommand{\atan}[1]{\text{atan}\left({#1}\right)}
 \newcommand{\xR}{\mathbb{R}}
 
-\newcommand{\done}[2][inline]{\todo[color=SpringGreen, #1]{#2}}  % for todos that have been seen and dealt with
-\newcommand{\meh}[2][inline]{\todo[color=White, #1]{#2}}   % for todos that may no longer be relevant 
-\newcommand{\comment}[2][inline]{\todo[color=SkyBlue, #1]{#2}} % for comments that may not be "to-do"s
-\newcommand{\mcomment}[1]{\todo[color=SkyBlue]{#1}} % for margin comments
-
-\newcommand{\newtext}[1]{\todo[inline, color=White]{ \color{OliveGreen}{#1}}} % new text - not necessarily something to be done
-\newcommand{\newdo}[1]{\todo[inline, color=Plum]{#1}} % new to do item
-\newcommand{\move}[1]{\todo[inline, color=Lime]{#1}} % new to do item
 
 
 <<sineillusion-setup, fig.keep='all', cache=FALSE, echo=FALSE, eval=TRUE>>=
