@@ -42,21 +42,42 @@ The ``hardware", in this analogy, consists of the neurons that make up the eyes,
 The physiology of perception is complex; what follows is a high-level overview of the physiology of perception, focusing on the areas most important to the perception of statistical graphics. This physiological information is important in understanding the difference between the sensation (i.e. the retinal image) and the perception (the corresponding mental representation), which is an important distinction in understanding how statistical graphics are perceived. 
 
 \paragraph{The Eye}
-The receptors which translate wavelengths of light into neural impulses are located in the retina, at the back of the eye. These receptors are specialized neurons, known as rods and cones, which perceive light intensity and wavelength, respectively. One section of the retina, known as the fovea, contains only cones; the rest of the retina contains a mixture of rods and cones. These rods and cones are responsible for translating the information contained in visual-spectrum electromagnetic waves into neural signals. Figure \ref{fig:retina} depicts the structure of the eye with a closeup of the retina (image from \citet{goldstein}, chapter 3). Disorders which affect these receptor cells, such as color blindness, can affect how we create statistical graphics. 
+The eye is a complex apparatus, but for our purposes, the primary component of the eye is the retina, which contains the sensory cells responsible for transforming light waves into electrical information in the form of neural signals. 
+These sensory cells are specialized neurons, known as rods and cones, which perceive light intensity (brightness) and wavelength (color), respectively. One section of the retina, known as the fovea, contains only cones; the rest of the retina contains a mixture of rods and cones. Figure \ref{fig:retina} depicts the structure of the eye with a closeup of the retina. 
 
 \begin{figure}
 \centering
 \includegraphics[width=.8\textwidth, keepaspectratio=TRUE]{Figure/LitReview/Retina}
-\caption{The human eye, with closeup of receptor cells in the retina.} \label{fig:retina}
+\caption[The human eye, with closeup of receptor cells in the retina]{The human eye, with closeup of receptor cells in the retina (image from \protect\citealt{goldstein}, chap 3.1).} \label{fig:retina}
 \end{figure}
 
-\begin{itemize}
-\item Specific biology of the visual system - retina, optic nerve, cortex, etc. 
+\begin{figure}
+\centering
+\includegraphics[width=.8\textwidth, keepaspectratio=TRUE]{Figure/LitReview/AbsorptionSpectra}
+\caption[Absorption spectra of retinal cells]{Absorption spectra of rods and short, medium, and long wave cones. (image from \protect\citealt{goldstein}, chap 3.3).} \label{fig:ColorRange}
+\end{figure}
 
-\item Difference between ``sensation" and ``perception"
+Figure \ref{fig:ColorRange} shows the responsiveness of rods and each of the three types of cones to wavelengths of light in the visual spectrum. This image suggests that we have relatively good visual discrimination of the yellow-green portion of the color spectrum, but relatively poor discrimination of colors in the red and blue portions of the color spectrum. As a result, rainbow-style color schemes are seldom appropriate for conveying numerical values, because the correspondance between the perceived information and the displayed information is not accurately maintained by the visual system \citep{rainbowcolor}. In addition, if any of the cones are missing or damaged as a result of genetic mutations, color perception is impaired, resulting in a smaller range of distinguishable colors. This set of impairments is known coloquially as color-blindness, and occurs in an estimated 5\% of the population. 
 
-\item Motion? (for interactive graphics)
-\end{itemize}
+Once light hits the retina and causes a signal in the receptor cells, the information travels along the optic nerve and into the brain. Multiple neighboring rods are connected to the same neuron, where each cone is connected to its' own neuron. The combined wiring of rod cells is responsible for the Hermann grid illusion and the Mach bands seen in Figure \ref{fig:InhibitionIllusions}. Both of these illusions are a product of lateral inhibition, which is a result of the wiring of rod cells in the retina.  The specifics of the wiring of the receptor cells are somewhat complex; a more thorough explanation can be found in \citet{goldstein}, chapter 3.4. 
+
+\begin{figure}
+\centering
+\begin{subfigure}[b]{.45\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{Figure/LitReview/HermannGrid}
+  \caption{\small Hermann Grid Illusion \label{fig:hermanngrid}}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{.45\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{Figure/LitReview/MachBands}
+  \caption{\small Mach Bands. 
+  \label{fig:machbands}}
+\end{subfigure}
+\caption[Inhibition Illusions]{Optical Illusions resulting from lateral inhibition. The Hermann Grid illusion causes dark circles to appear at the intersection of white lines; the Mach bands illusion causes the borders of adjacent rectangles to appear more strongly defined.} \label{fig:InhibitionIllusions}
+\end{figure}
+
+Once neural impulses have left the retina through the optic nerve, they travel to the visual cortex by way of several specialized structures within the brain that process lower-level signals. Receptor cells in the visual cortext respond to specific angles, spatial locations, colors, and intensities, and arrays of these special 'feature detector cells' process the information into a form that higher-level processes can utilize. These higher-level processes are what we have previously called 'software': they are not directly related to the physical brain, but they do seem to process information heuristically to produce higher-level reasoning and conclusions. In the next section, we explore some of the higher-level processes responsible for visual perception.
 
 \subsubsection{Software}
 \begin{itemize}
