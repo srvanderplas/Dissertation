@@ -17,7 +17,7 @@
 \newcommand{\move}[1]{\todo[inline, color=Lime]{#1}} % new to do item
 
 
-<<setup, fig.keep='all', cache=FALSE, echo=FALSE, eval=TRUE>>=
+<<sineillusion-setup, fig.keep='all', cache=FALSE, echo=FALSE, eval=TRUE>>=
 rm(list=ls())
 wd <- getwd()
 if("Body" %in% list.files()){
