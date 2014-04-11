@@ -39,6 +39,17 @@ In order to design graphics for the human perceptual system, we must understand,
 The ``hardware", in this analogy, consists of the neurons that make up the eyes, optic nerve, and the brain itself. The higher-level functions (object recognition, working memory, etc.) comprise the ``software" component. In addition, much like computer software, there are different programs running simultaneously; these programs may interact with each other, run sequentially, or run in parallel. The following sections provide an overview of the grey-matter (hardware) components of the visual system as well as the higher-level cognitive heuristics (software) that order the raw input and construct our visual environment. 
 
 \subsubsection{Hardware}
+The physiology of perception is complex; what follows is a high-level overview of the physiology of perception, focusing on the areas most important to the perception of statistical graphics. This physiological information is important in understanding the difference between the sensation (i.e. the retinal image) and the perception (the corresponding mental representation), which is an important distinction in understanding how statistical graphics are perceived. 
+
+\paragraph{The Eye}
+The receptors which translate wavelengths of light into neural impulses are located in the retina, at the back of the eye. These receptors are specialized neurons, known as rods and cones, which perceive light intensity and wavelength, respectively. One section of the retina, known as the fovea, contains only cones; the rest of the retina contains a mixture of rods and cones. These rods and cones are responsible for translating the information contained in visual-spectrum electromagnetic waves into neural signals. Figure \ref{fig:retina} depicts the structure of the eye with a closeup of the retina (image from \citet{goldstein}, chapter 3). Disorders which affect these receptor cells, such as color blindness, can affect how we create statistical graphics. 
+
+\begin{figure}
+\centering
+\includegraphics[width=.8\textwidth, keepaspectratio=TRUE]{Figure/LitReview/Retina}
+\caption{The human eye, with closeup of receptor cells in the retina.} \label{fig:retina}
+\end{figure}
+
 \begin{itemize}
 \item Specific biology of the visual system - retina, optic nerve, cortex, etc. 
 
