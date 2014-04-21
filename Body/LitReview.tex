@@ -1,4 +1,6 @@
-\documentclass[11pt]{../isuthesis}\usepackage[]{graphicx}\usepackage[]{color}
+
+\documentclass[11pt]{isuthesis}
+\usepackage[]{graphicx}\usepackage[]{color}
 %% maxwidth is the original width if it is less than linewidth
 %% otherwise use linewidth (to make sure the graphics do not exceed the margin)
 \makeatletter
@@ -48,14 +50,58 @@
 \newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
 
 \usepackage{alltt}
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{library}\hlstd{(knitr)}
-\end{alltt}
-\end{kframe}
-\end{knitrout}
+\newcommand{\SweaveOpts}[1]{}  % do not interfere with LaTeX
+\newcommand{\SweaveInput}[1]{} % because they are not real TeX commands
+\newcommand{\Sexpr}[1]{}       % will only be parsed by R
 
+
+\usepackage{graphicx}
+%---------------------------------------------------
+\usepackage{color}
+\usepackage[dvipsnames,svgnames]{xcolor}
+\usepackage{wrapfig,float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{url}
+\usepackage{ulem}
+\usepackage[section]{placeins}
+\usepackage{sidecap}
+\usepackage{multirow}
+\usepackage{bbm}
+\usepackage[colorinlistoftodos]{todonotes}
+%---------------------------------------------------
+
+% Standard, old-style thesis
+\usepackage{isutraditional}   \chaptertitle
+% Old-style, thesis numbering down to subsubsection
+\alternate
+\usepackage{rotating}
+% Bibliography without numbers or labels
+\usepackage{natbib}
+\bibliographystyle{apa}
+%\includeonly{titletoc,chapter1}
+%Optional Package to add PDF bookmarks and hypertext links
+\usepackage[pdftex,hypertexnames=false,linktocpage=true]{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,anchorcolor=blue,citecolor=blue,filecolor=blue,urlcolor=blue,bookmarksnumbered=true,pdfview=FitB}
+
+\newcommand{\done}[2][inline]{\todo[color=SpringGreen, #1]{#2}}  % for todos that have been seen and dealt with
+\newcommand{\meh}[2][inline]{\todo[color=White, #1]{#2}}   % for todos that may no longer be relevant 
+\newcommand{\comment}[2][inline]{\todo[color=SkyBlue, #1]{#2}} % for comments that may not be "to-do"s
+\newcommand{\mcomment}[1]{\todo[color=SkyBlue]{#1}} % for margin comments
+
+\newcommand{\newtext}[1]{\todo[inline, color=White]{ \color{OliveGreen}{#1}}} % new text - not necessarily something to be done
+
+\newcommand{\move}[1]{\todo[inline, color=Lime]{#1}} % new to do item
+
+%---------------------------------------------------
+
+
+
+
+\begin{document}
 
 \graphicspath{{Figure/LitReview/}{Images/LitReview/}}
 \renewcommand{\floatpagefraction}{.99}
@@ -118,9 +164,31 @@ Once light hits the retina and causes a signal in the receptor cells, the inform
 Once neural impulses have left the retina through the optic nerve, they travel to the visual cortex by way of several specialized structures within the brain that process lower-level signals. Receptor cells in the visual cortext respond to specific angles, spatial locations, colors, and intensities, and arrays of these special 'feature detector cells' process the information into a form that higher-level processes can utilize. These higher-level processes are what we have previously called 'software': they are not directly related to the physical brain, but they do seem to process information heuristically to produce higher-level reasoning and conclusions. In the next section, we explore some of the higher-level processes responsible for visual perception.
 
 \subsection{Software}
-Many of the processes for visual perception run simultaneously; in absence of a temporal ordering, we will start with the more basic tasks of visual perception and proceed towards higher-level processes. We will begin with object perception. 
+Many of the processes for visual perception run simultaneously; in absence of a temporal ordering, we will start with the more basic tasks of visual perception and proceed towards higher-level processes. We will begin with attention.
 
-\subsubsection{Object Perception}
+\subsubsection{Attention and Perception} \label{AttentionPerception}
+In many tasks, it is necessary to pay attention to many different input streams simultaneously; this is particularly true for complex tasks like driving a car. These tasks demand divided attention; the brain must process many different sources of information in parallel. By contrast, most image recognition tasks require selective attention, that is, focusing on specific objects and ignoring everything else. The brain accomplishes this attention through several mechanisms. 
+
+Selective attention is accomplished by focusing the fovea (the area with the highest visual acuity) on the object. For instance, if the object is a page of text, each word will pass through the fovea, producing a focused stream of visual input. This stream of input consists of saccades (jumps between points of focus) and pauses in which the visual information is relayed to the brain. Figure \ref{fig:saccadestext} shows the saccades (lines) and pauses (circles) resulting when someone scans a paragraph of text. These saccades and pauses are utilized in eye-tracking technology to determine which parts of an image the observer is focusing on (and by extension, which information is being encoded by the brain). 
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=.5\textwidth]{SaccadesText}
+\caption{A plot of saccades made while reading text. Saccades, shown by the lines, indicate ``jumps", while pauses are shown by circles, with size proportional to the time spent focusing on that area.}\label{fig:saccadestext}
+\end{figure}
+
+Selective attention is generally necessary for perception to occur, though there is some information that is encoded automatically. Experiments such as the fairly famous \href{http://www.theinvisiblegorilla.com/videos.html}{"gorilla" film}\footnote{\url{http://www.theinvisiblegorilla.com/videos.html}} demonstrate that even when there is attention focused on a task, information extraneous to that task is not always encoded, that is, even when participants focused on counting the number of passes of the basketball, they did not notice the obvious gorilla walking through the scene. It is important to understand which parts of a visual stimulus are the focus of a given perceptual task, because most of the information encoded by the brain is a result of selective attention. Eye-tracking can be an important tool useful to understand these perceptual processes, but participants are often able to report which parts of a stimulus contributed to their decision as well.
+
+Within the brain, attention is important because it allows different regions of the brain which process color, shape, and position to integrate these perceptions into a multifaceted mental representation of the object \citep{goldstein}. This process, known as binding, is essential to coherently encode a scene into working memory. Feature integration theory \citep{treisman1980feature} suggests that these separate streams of information are initially encoded in the preattentive stage of object perception; focusing on the object triggers the binding of these separate streams into a single coherent stream of information. Many single features, such as color, length, and texture are \emph{preattentive}, because they can be pinpointed in an image without focused attention (and thus can be located faster), but specific combinations of color and shape require attention (because the features must be bound together) and are thus more difficult to search. Preattentive features are generally processed in parallel (that is, the entire scene is processed nearly simultaneously), while features requiring attention are processed serially. Examples of features processed  serially and in parallel are shown in Figure \ref{fig:parallelSerialFeatures}, taken from Chapter 6 of \citet{helander1997handbook}. The importance of preattentive processing to statistical graphics is discussed in Section \ref{LowLevelGraphics}. 
+
+\begin{figure}[h]\centering
+\includegraphics[width=.7\linewidth]{ParallelSerialFeatures}
+\caption{Examples of features detected serially or in parallel (Chapter 6, \protect\citealt{helander1997handbook})}\label{fig:parallelSerialFeatures}
+\end{figure}
+
+Feature integration as a result of attention enables the brain to process a figure holistically. This processing is important for the most basic visual processes we take for granted, including object perception. 
+
+\subsubsection{Object Perception} \label{ObjectPerception}
 The most basic task of the visual system is to perceive objects in the world around us. This is an inherently difficult task, however, because the retina is a flat, two-dimensional surface responsible for conveying a three-dimensional visual scene. This dimensional reduction means that there are multiple three-dimensional stimuli that can produce the same visual image on the retina. This is known as the inverse projection problem - an infinite number of three-dimensional objects produce the same two-dimensional image. Less relevant to statistical graphics, but still complicating the object perception process, a single object can be viewed from a multitude of angles, in many different situations which may affect the retinal image (lighting, partial obstruction, etc). These problems mean that the brain must utilize many different heuristics to increase the accuracy of the perceived world relative to an ambiguous stimulus. 
 
 The most commonly cited set of heuristics for object perception (and the set most relevant to statistical graphics) are known as the \emph{Gestalt Laws of Perceptual Organization} (\citealt{goldstein}, Chapter 5.2). These laws are related to the idea ``the whole is greater than the sum of the parts'', that is, that the components of a visual stimulus, when combined, create something that is more meaningful than the separate components considered individually. 
@@ -158,9 +226,11 @@ The most commonly cited set of heuristics for object perception (and the set mos
 
 
 \section{Statistical Graphics}
+\subsection{Low-level perception of graphics}\label{LowLevelGraphics}
+Healey's preattentive feature integration stuff
+\subsection{Higher-level graphical perception}\label{HighLevelGraphics}
 \begin{itemize}
 \item Cleveland \& McGill
-\item Healey
 \item Heuristic guidelines i.e. Kosslyn and Tufte
 \item Grammar of graphics allows us to test graphics which display the same information in different ways for comparable accuracy
 \end{itemize}
@@ -180,3 +250,4 @@ Methodology for testing graphical perception in humans. Talk about masking, the 
   \item Lineups
 \end{itemize}
 
+\end{document}
