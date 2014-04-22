@@ -87,7 +87,7 @@ In many tasks, it is necessary to pay attention to many different input streams 
 
 Selective attention is accomplished by focusing the fovea (the area with the highest visual acuity) on the object. For instance, if the object is a page of text, each word will pass through the fovea, producing a focused stream of visual input. This stream of input consists of saccades (jumps between points of focus) and pauses in which the visual information is relayed to the brain. Figure \ref{fig:saccadestext} shows the saccades (lines) and pauses (circles) resulting when someone scans a paragraph of text. These saccades and pauses are utilized in eye-tracking technology to determine which parts of an image the observer is focusing on (and by extension, which information is being encoded by the brain). 
 
-\begin{figure}[h]
+\begin{figure}[htbp]
 \centering
 \includegraphics[width=.5\textwidth]{SaccadesText}
 \caption[Saccades and Pauses]{A plot of saccades made while reading text. Saccades, shown by the lines, indicate ``jumps", while pauses are shown by circles, with size proportional to the time spent focusing on that area.}\label{fig:saccadestext}
@@ -97,7 +97,7 @@ Selective attention is generally necessary for perception to occur, though there
 
 Within the brain, attention is important because it allows different regions of the brain which process color, shape, and position to integrate these perceptions into a multifaceted mental representation of the object \citep{goldstein}. This process, known as binding, is essential to coherently encode a scene into working memory. Feature integration theory \citep{treisman1980feature} suggests that these separate streams of information are initially encoded in the preattentive stage of object perception; focusing on the object triggers the binding of these separate streams into a single coherent stream of information. Many single features, such as color, length, and texture are \emph{preattentive}, because they can be pinpointed in an image without focused attention (and thus can be located faster), but specific combinations of color and shape require attention (because the features must be bound together) and are thus more difficult to search. Preattentive features are generally processed in parallel (that is, the entire scene is processed nearly simultaneously), while features requiring attention are processed serially. Examples of features processed  serially and in parallel are shown in Figure \ref{fig:parallelSerialFeatures}, taken from Chapter 6 of \citet{helander1997handbook}. The importance of preattentive processing to statistical graphics is discussed in Section \ref{LowLevelGraphics}. 
 
-\begin{figure}[h]\centering
+\begin{figure}[htbp]\centering
 \includegraphics[width=.8\linewidth]{ParallelSerialFeatures}
 \caption[Parallel and Serial Feature Detection]{Examples of features detected serially or in parallel (Chapter 6, \protect\citealt{helander1997handbook})}\label{fig:parallelSerialFeatures}
 \end{figure}
@@ -125,7 +125,7 @@ The most commonly cited set of heuristics for object perception (and the set mos
 We have discussed how visual stimuli are perceived and how objects are recognized; we now must examine how visual stimuli are encoded into memory. Most researchers believe that visual perceptions are encoded in an analog fashion, so that the memory of an image is closely related to the perception of that same image \citep{cognition}. Other theories suggest that visual perceptions are encoded semantically, that is, the description of a visual scene would be encoded, rather than a mental ``image" of that scene. Both theories are likely at least partially correct, but the analog encoding of visual images is more relevant to statistical graphics because the accuracty of the stored image has the potential to affect recall of the contents of that image (and thus what people remember about a particular graphic). Experimental evidence for analog encoding includes the mental rotation task, where participants must determine whether or not a figure is a rotation of a target figure, as shown in Figure \ref{fig:mentalRotation}. \citet{shepard1988mental} showed that reaction time was proportional to the angle of rotation of the stimuli, which suggests that participants were mentally rotating the figure as they would rotate a three-dimensional figure in space. 
 
 
-\begin{figure}[h]\centering
+\begin{figure}[htbp]\centering
 \includegraphics[width=.7\textwidth]{RotationTask}
 \caption[Rotation Task]{Rotation task \protect\citep{shepard1988mental}. Are the two images the same?}\label{fig:mentalRotation}
 \end{figure}
@@ -134,7 +134,7 @@ In addition, \citet{kosslyn1978visual} showed that mental representation of dist
 
 Another facet of visual memory that will be important to understanding perception and memory of statistical graphics is that the ``gist" of an image is stored along with the image. In these cases, recall ability is more consistent with the semantic encoding of images; that is, when shown an ambiguous figure (such as Figure \ref{fig:ambiguousrabbit}) and asked to describe it initially, participants could not give an alternate interpretation of the figure after the experiment was complete. In the case of  Figure \ref{fig:ambiguousrabbit}, participants who initially said the figure was a duck could not describe the figure as a rabbit later, even though the image is consistent with either interpretation. This suggests that in some cases, verbal encoding of a figure (i.e. describing it as a duck) disrupts the mental representation of the picture. This is common in other types of memories as well: when the gist of a passage is stored, the actual content of the passage is no longer accessible. In other words, we would expect that if someone had to interpret a graph, they would remember the interpretation much more strongly than the actual graph, even if that interpretation was incorrect or incomplete. 
 
-\begin{figure}[h]\centering
+\begin{figure}[htbp]\centering
 \includegraphics[width=.4\textwidth]{DuckRabbitIllusion}
 \caption[Ambiguous Images]{An ambiguous image that could be either a rabbit or a duck. When participants were asked to identify the image initially, they could not provide an alternate interpretation of the figure later.}\label{fig:ambiguousrabbit}
 \end{figure}
@@ -161,14 +161,13 @@ From a statistical graphics point of view, then, log-transformed scales should b
 \subsubsection{Colorblindness and color perception}
 Another common ``bug" in the visual system are mutations that change (or remove entirely) the cones in the retina. Such mutations are commonly termed ``colorblindness" and encompass many different types of mutations, shifts and deletions that affect color perception in the visual system. These mutations affect up to 5\% of the population, and are generally more common in males than they are in females, as two of the three genes producing cones are found on the X chromosome. Evolutionarily, these mutations are maladaptive for gathering plants, but may be adaptive for seeing camoflauged objects \citep{morgan1992dichromats}. In statistical graphics, however, these mutations often disrupt perception of standard color schemes used in maps, heatmaps, and divergent color scalings. Figure \ref{fig:USflag} shows the us flag as seen by those with different types of color-blindness; the red and blue hues look radically different to those with different mutations. 
 
-\begin{figure}[h]\centering
+\begin{figure}[htbp]\centering
 \includegraphics[width=.3\textwidth]{USflagColorBlind}
 \caption[Colorblindness and US Flags]{An 1895 illustration of the US flag as seen by those with different types of colorblindness.}\label{fig:USflag}
 \end{figure}
 
-In the natural world, many strategies can be used to compensate for colorblindness; the most common of these strategies is to look for textural variation instead of color variation (which may be why camoflauged objects are easier to see), but these strategies fail when viewing abstract, constructed visual stimuli, such as graphics. Compounding this problem, the rainbow color schemes that are commonly used are particularly vulnerable to misinterpretation by colorblind viewers. Figure \ref{fig:colorblindrainbow} shows a map using a rainbow color scheme (first shown in \citet{light2004end}) and simulated images showing what that map would look like to those with missing cones (-anopia) and cones with altered wavelengths (-anomaly). These simulations show that rainbow color schemes are incredibly difficult for color-deficient individuals to read. \citet{light2004end} provides color schemes that are more appropriate for those with color deficiencies, but not all of these schemes are appropriate for all types of color blindness. \citet{silva2011using} suggest many tools to recommend appropriate color schemes for colorblind users as well as tools to preview graphics as they might look to color-deficient or colorblind users. 
 
-\begin{figure}[h]\centering
+\begin{figure}[htbp]\centering
 \begin{subfigure}[b]{.4\textwidth}\centering
   \includegraphics[width=\textwidth]{RainbowScaleOrig}
   \caption{Original Figure}
@@ -203,6 +202,9 @@ In the natural world, many strategies can be used to compensate for colorblindne
 \end{figure}
 \comment{I can't tell a difference between the Protan* and Deuteran* pictures in Figure \ref{fig:colorblindrainbow} at all. Is that just me?}
 
+In the natural world, many strategies can be used to compensate for colorblindness; the most common of these strategies is to look for textural variation instead of color variation (which may be why camoflauged objects are easier to see), but these strategies fail when viewing abstract, constructed visual stimuli, such as graphics. Compounding this problem, the rainbow color schemes that are commonly used are particularly vulnerable to misinterpretation by colorblind viewers. Figure \ref{fig:colorblindrainbow} shows a map using a rainbow color scheme (first shown in \citet{light2004end}) and simulated images showing what that map would look like to those with missing cones (-anopia) and cones with altered wavelengths (-anomaly). These simulations show that rainbow color schemes are incredibly difficult for color-deficient individuals to read. \citet{light2004end} provides color schemes that are more appropriate for those with color deficiencies, but not all of these schemes are appropriate for all types of color blindness. \citet{silva2011using} suggest many tools to recommend appropriate color schemes for colorblind users as well as tools to preview graphics as they might look to color-deficient or colorblind users. 
+
+
 \todo[inline]{Need to add paragraph on appropriately spaced colors and perception - i.e. green is a good color because we can see a TON of different shades of green, but we have to map to the range of colors we can discriminate. I can't find the citation, though.}
 
 \subsubsection{Optical Illusions}
@@ -210,9 +212,9 @@ The ``software" programs presented in section \ref{Software} are generally effic
 
 \paragraph{Physiological Illusions} The illusions shown in Figure \ref{fig:InhibitionIllusions} are illusions which occur due to the wiring of the brain. These illusions can generally be avoided, but are difficult to mitigate once they occur. 
 
-\paragraph{Gestalt Illusions} Some illusions occur due to a conflict of gestalt principles. Two of these illusions are shown in Figure \ref{fig:GestaltIllusions}: the figure/ground illusion, and the illusory contour illusion. The figure/ground illusion depends on the color of the top and bottom edges of the picture; if the edges are black, the vase appears to be the central part of the image; if the edges are white, the faces appear to be the central part of the image. When the edges are omitted, the image seems to oscillate between the vase and the faces. This is a result of ambiguity in identifying which part of the image is the background; when the top and bottom edges are present, that cue is sufficient to resolve the illusion. The Kanizsa triangle demonstrates the Gestalt principles of good form and continuity: We perceive objects that are partially obscured by a floating white triangle, even though no such triangle actually exists. The illusory triangle produces an image that is much simpler (3 circles, a black triangle outline, and a white triangle) than the objects that are actually displayed (3 partial circles and three V shapes arranged pointing in toward a central point). In general, these gestalt principles make sense of the natural world, but when applied to artificial contexts, they occasionally produce unexpected results. 
+\paragraph{Gestalt Illusions} Some illusions occur due to a conflict of gestalt principles. Two of these illusions are shown in Figure \ref{fig:GestaltIllusions}: the figure/ground illusion, and the illusory contour illusion. 
 
-\begin{figure}[h]\centering
+\begin{figure}[htbp]\centering
 \hfil
 \begin{subfigure}[b]{.4\textwidth}\centering
   \includegraphics[width=\textwidth]{FigureVase}
@@ -225,9 +227,12 @@ The ``software" programs presented in section \ref{Software} are generally effic
 \caption[Gestalt Illusions]{Illusions due to misapplied or ambiguous Gestalt rules.}\label{fig:GestaltIllusions}
 \end{figure}
 
+The figure/ground illusion depends on the color of the top and bottom edges of the picture; if the edges are black, the vase appears to be the central part of the image; if the edges are white, the faces appear to be the central part of the image. When the edges are omitted, the image seems to oscillate between the vase and the faces. This is a result of ambiguity in identifying which part of the image is the background; when the top and bottom edges are present, that cue is sufficient to resolve the illusion. The Kanizsa triangle demonstrates the Gestalt principles of good form and continuity: We perceive objects that are partially obscured by a floating white triangle, even though no such triangle actually exists. The illusory triangle produces an image that is much simpler (3 circles, a black triangle outline, and a white triangle) than the objects that are actually displayed (3 partial circles and three V shapes arranged pointing in toward a central point). In general, these gestalt principles make sense of the natural world, but when applied to artificial contexts, they occasionally produce unexpected results. 
+
+
 \paragraph{Depth illusions} Other optical illusions occur due to the optimization of the visual system for three-dimensional perception. These three-dimensional heuristics can produce unexpected or misleading results when applied to two dimensional objects. 
 
-\begin{figure}[h]\centering
+\begin{figure}[htbp]\centering
 \hfil
 \begin{subfigure}[b]{.4\textwidth}\centering
   \includegraphics[width=\textwidth]{PonzoIllusion}
@@ -252,7 +257,7 @@ The ``software" programs presented in section \ref{Software} are generally effic
 \end{figure}
 Figure \ref{fig:DepthIllusions} contains four of the more interesting optical illusions that result from ambiguous figures that trigger depth cues. The Ponzo illusion (Figure \ref{fig:Ponzo}) suggests that the top line is longer than the bottom line, because of the implied convergence of the two vertical lines (to understand the natural scenario behind this illusion, consider railroad tracks converging at the horizon). The Necker Cube, shown in figure \ref{fig:NeckerCube}, can be seen such that the top-right face is closest to the viewer or alternately such that the bottom-left face is closest to the viewer. Due to the ambiguity in the image, it will often seem to "flip" when the viewer loses focus on the image momentarily. The Muller-Lyer illusion (Figure \ref{fig:MullerLyer}) is generally believed to result from misapplied depth cues as well - the left-most image would occur in nature as the exterior corner of a building, the middle image would occur when viewing an interior corner of the same building, further away from the viewer. As a result of the illusion, the middle line appears to be longer than the first or third lines. Figure \ref{fig:mullerlyerhouse} shows the first two parts of the illusion in a context which removes the ambiguity through additional depth cues. The additional cues result in the resolution of the illusion. Finally, the color constancy illusion shown in Figure \ref{fig:ColorConstancy} suggests that the square marked A is much darker than the square marked B, even though the two squares are the same color. This illusion results from our experiences with depth and shadows: square B is perceived to be the same color as the lighter-colored squares outside the shadow, while square A is perceived to be the same color as the other dark squares in the tile pattern, regardless of the actual color due to the shadow. 
 
-\begin{figure}[h]\centering
+\begin{figure}[htbp]\centering
 \includegraphics[width=.5\textwidth]{mullerlyerhouse}
 \caption[Muller Lyer Illusion]{The Muller-Lyer illusion in a non-ambiguous three-dimensional context.}\label{fig:mullerlyerhouse}
 \end{figure}
