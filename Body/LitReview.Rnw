@@ -254,7 +254,7 @@ Figure \ref{fig:DepthIllusions} contains four of the more interesting optical il
 
 \begin{figure}[h]\centering
 \includegraphics[width=.5\textwidth]{mullerlyerhouse}
-\caption[Muller Lyer Illusion]{The Muller-Lyer illusion in a non-ambiguous three-dimensional context.}\label{mullerlyerhouse}
+\caption[Muller Lyer Illusion]{The Muller-Lyer illusion in a non-ambiguous three-dimensional context.}\label{fig:mullerlyerhouse}
 \end{figure}
 
 \section{Statistical Graphics}
