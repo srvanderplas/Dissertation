@@ -109,17 +109,17 @@ The most basic task of the visual system is to perceive objects in the world aro
 
 The most commonly cited set of heuristics for object perception (and the set most relevant to statistical graphics) are known as the \emph{Gestalt Laws of Perceptual Organization} (\citealt{goldstein}, Chapter 5.2). These laws are related to the idea ``the whole is greater than the sum of the parts'', that is, that the components of a visual stimulus, when combined, create something that is more meaningful than the separate components considered individually. 
 
-\begin{enumerate}
-\item Pragnanz - the law of good figure. Every stimulus pattern is seen so that the resulting structure is as simple as possible. 
-\item Proximity. Things that are close in space appear to be grouped. 
-\item Similarity. Similar items appear to be grouped together. The law of similarity is usually subordinate to the law of proximity. 
-\item Good Continuation. Points that can be connected to form straight lines or smooth curves seem to belong together, and lines seem to follow the smoothest path. 
-\item Common Fate. Things moving in the same direction are part of a single group.
-\item Familiarity. Things are more likely to form groups if the groups are familiar. 
-\item Common Region. Things that are in the same region (container) appear to be grouped together
-\item Uniform Connectedness. A connected region of objects is perceived as a single unit.
-\item Synchrony. Events occurring at the same time will be perceived as belonging together.
-\end{enumerate}
+\begin{itemize}
+\item \textbf{Pragnanz - the law of good figure}. Every stimulus pattern is seen so that the resulting structure is as simple as possible. 
+\item \textbf{Proximity}. Things that are close in space appear to be grouped. 
+\item \textbf{Similarity}. Similar items appear to be grouped together. The law of similarity is usually subordinate to the law of proximity. 
+\item \textbf{Good Continuation}. Points that can be connected to form straight lines or smooth curves seem to belong together, and lines seem to follow the smoothest path. 
+\item \textbf{Common Fate}. Things moving in the same direction are part of a single group.
+\item \textbf{Familiarity}. Things are more likely to form groups if the groups are familiar. 
+\item \textbf{Common Region}. Things that are in the same region (container) appear to be grouped together
+\item \textbf{Uniform Connectedness}. A connected region of objects is perceived as a single unit.
+\item \textbf{Synchrony}. Events occurring at the same time will be perceived as belonging together.
+\end{itemize}
 
 \subsubsection{Visual Memory}
 We have discussed how visual stimuli are perceived and how objects are recognized; we now must examine how visual stimuli are encoded into memory. Most researchers believe that visual perceptions are encoded in an analog fashion, so that the memory of an image is closely related to the perception of that same image \citep{cognition}. Other theories suggest that visual perceptions are encoded semantically, that is, the description of a visual scene would be encoded, rather than a mental ``image" of that scene. Both theories are likely at least partially correct, but the analog encoding of visual images is more relevant to statistical graphics because the accuracty of the stored image has the potential to affect recall of the contents of that image (and thus what people remember about a particular graphic). Experimental evidence for analog encoding includes the mental rotation task, where participants must determine whether or not a figure is a rotation of a target figure, as shown in Figure \ref{fig:mentalRotation}. \citet{shepard1988mental} showed that reaction time was proportional to the angle of rotation of the stimuli, which suggests that participants were mentally rotating the figure as they would rotate a three-dimensional figure in space. 
