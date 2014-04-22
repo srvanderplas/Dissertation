@@ -144,7 +144,7 @@ The ``software" of the visual system is of course more complex than the few prog
 \subsection{Bugs and Peculiarities of the Visual System}
 We have discussed the neural ``hardware" of the visual system and some of the higher-level processing that contributes to our ability to create and understand meaning in the world around us. Occasionally, our highly tuned perceptual system fails in unusual ways due to the heuristics and algorithms that were optimized for operation in a three-dimensional world where the main tasks were hunting, gathering, and avoiding predators. We will examine three interesting results of this tuning that are important to the design of statistical graphics as we transition from the psychophysics and cognitive psychology literature to statistics and human-computer interaction literature. 
 
-\paragraph{Logarithmic perception} One of the earliest psychophysics researchers, Ernst Weber, discovered that the difference threshold, the smallest detectable difference between two sensory stimuli, increased proportionately with the magnitude of the stimulus. This statement, known now as Weber's Law, holds true for a large range of intensities of a number of senses. Numerically, Weber's Law is stated as 
+\subsubsection{Logarithmic perception} One of the earliest psychophysics researchers, Ernst Weber, discovered that the difference threshold, the smallest detectable difference between two sensory stimuli, increased proportionately with the magnitude of the stimulus. This statement, known now as Weber's Law, holds true for a large range of intensities of a number of senses. Numerically, Weber's Law is stated as 
 \begin{equation}\label{weberlaw}
 \frac{\triangle S}{S} = K
 \end{equation}
@@ -152,9 +152,9 @@ where $K$ is a constant called the Weber fraction, $S$ is the value of the stand
 
 
 
-\paragraph{Colorblindness and color perception}
+\subsubsection{Colorblindness and color perception}
 
-\paragraph{Optical Illusions}
+\subsubsection{Optical Illusions}
 
 
 \section{Statistical Graphics}
