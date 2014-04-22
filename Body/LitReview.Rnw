@@ -141,6 +141,8 @@ Another facet of visual memory that will be important to understanding perceptio
 
 The ``software" of the visual system is of course more complex than the few programs listed here, but understanding attention, object perception concepts, and how images are stored for later retrieval in the brain will make designing statistical graphics for the visual system easier and will also help with evaluating graphics based on the capabilities of the human visual system. 
 
+\subsubsection{Cognitive Load} Short term memory and other considerations
+
 \subsection{Bugs and Peculiarities of the Visual System}
 We have discussed the neural ``hardware" of the visual system and some of the higher-level processing that contributes to our ability to create and understand meaning in the world around us. Occasionally, our highly tuned perceptual system fails in unusual ways due to the heuristics and algorithms that were optimized for operation in a three-dimensional world where the main tasks were hunting, gathering, and avoiding predators. We will examine three interesting results of this tuning that are important to the design of statistical graphics as we transition from the psychophysics and cognitive psychology literature to statistics and human-computer interaction literature. 
 
@@ -162,8 +164,41 @@ Another common ``bug" in the visual system are mutations that change (or remove 
 \caption{An 1895 illustration of the US flag as seen by those with different types of colorblindness.}\label{fig:USflag}
 \end{figure}
 
+In the natural world, many strategies can be used to compensate for colorblindness; the most common of these strategies is to look for textural variation instead of color variation (which may be why camoflauged objects are easier to see), but these strategies fail when viewing abstract, constructed visual stimuli, such as graphics. Compounding this problem, the rainbow color schemes that are commonly used are particularly vulnerable to misinterpretation by colorblind viewers. 
 
+\begin{figure}[h]\centering
+\begin{subfigure}[b]{.4\textwidth}\centering
+  \includegraphics[width=\textwidth]{RainbowScaleOrig}
+  \caption{Original Figure}
+\end{subfigure}\\
 
+\begin{subfigure}[b]{.3\textwidth}\centering
+  \includegraphics[width=\textwidth]{RainbowScaleOrig-protanopia}
+  \caption{Protanopia}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{.3\textwidth}\centering
+  \includegraphics[width=\textwidth]{RainbowScaleOrig-deuteranopia}
+  \caption{Deuteranopia}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{.3\textwidth}\centering
+  \includegraphics[width=\textwidth]{RainbowScaleOrig-tritanopia}
+  \caption{Tritanopia}
+\end{subfigure}\hfill
+
+\begin{subfigure}[b]{.3\textwidth}\centering
+  \includegraphics[width=\textwidth]{RainbowScaleOrig-protanomaly}
+  \caption{Protanomaly}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{.3\textwidth}\centering
+  \includegraphics[width=\textwidth]{RainbowScaleOrig-deuteranomaly}
+  \caption{Deuteranomaly}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{.3\textwidth}\centering
+  \includegraphics[width=\textwidth]{RainbowScaleOrig-tritanomaly}
+  \caption{Tritanomaly}
+\end{subfigure}\hfill
+\caption[Colorblindness and Rainbow Color Schemes]{Rainbow color scheme with simulations of each of the three types of colorblindness in which a cone is entirely missing. The original image is from }
+\end{figure}
 \subsubsection{Optical Illusions}
 
 
