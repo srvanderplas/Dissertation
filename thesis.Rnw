@@ -1,6 +1,5 @@
 % Template file for a standard thesis
 \documentclass[11pt]{isuthesis}
-\usepackage{graphicx}
 %---------------------------------------------------
 \usepackage{color}
 \usepackage[dvipsnames,svgnames]{xcolor}
