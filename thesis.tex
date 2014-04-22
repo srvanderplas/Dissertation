@@ -185,7 +185,7 @@ Once light hits the retina and causes a signal in the receptor cells, the inform
 
 Once neural impulses have left the retina through the optic nerve, they travel to the visual cortex by way of several specialized structures within the brain that process lower-level signals. Receptor cells in the visual cortext respond to specific angles, spatial locations, colors, and intensities, and arrays of these special 'feature detector cells' process the information into a form that higher-level processes can utilize. These higher-level processes are what we have previously called 'software': they are not directly related to the physical brain, but they do process information heuristically to produce higher-level reasoning and conclusions. In the next section, we explore some of the higher-level processes responsible for visual perception.
 
-\subsection{Software}
+\subsection{Software}\label{Software}
 Many of the processes for visual perception run simultaneously; in absence of a temporal ordering, we will start with the more basic tasks of visual perception and proceed towards higher-level processes. We will begin with attention.
 
 \subsubsection{Attention and Perception} \label{AttentionPerception}
@@ -312,7 +312,50 @@ In the natural world, many strategies can be used to compensate for colorblindne
 \todo[inline]{Need to add paragraph on appropriately spaced colors and perception - i.e. green is a good color because we can see a TON of different shades of green, but we have to map to the range of colors we can discriminate. I can't find the citation, though.}
 
 \subsubsection{Optical Illusions}
+The ``software" programs presented in section \ref{Software} are generally efficient at completing everyday tasks: navigating the environment, avoiding predators (lions or cars, as the case may be), and identifying situations and objects relevant to the task at hand. As with most heuristic-based algorithms, though, these approaches produce suboptimal results when applied to more artificial tasks, such as reading statistical graphics. As such, it is important to understand where conflicts between sensation and perception may occur, so that these conflicts can be dealt with or avoided entirely. In this section, we will discuss several optical illusions and explanations for their occurence based on the visual system.
 
+\paragraph{Physiological Illusions} The illusions shown in Figure \ref{fig:InhibitionIllusions} are illusions which occur due to the wiring of the brain. These illusions can generally be avoided, but are difficult to mitigate once they occur. 
+
+\paragraph{Gestalt Illusions} Some illusions occur due to a conflict of gestalt principles. Two of these illusions are shown in Figure \ref{fig:GestaltIllusions}: the figure/ground illusion, and the illusory contour illusion. The figure/ground illusion depends on the color of the top and bottom edges of the picture; if the edges are black, the vase appears to be the central part of the image; if the edges are white, the faces appear to be the central part of the image. When the edges are omitted, the image seems to oscillate between the vase and the faces. This is a result of ambiguity in identifying which part of the image is the background; when the top and bottom edges are present, that cue is sufficient to resolve the illusion. The Kanizsa triangle demonstrates the Gestalt principles of good form and continuity: We perceive objects that are partially obscured by a floating white triangle, even though no such triangle actually exists. The illusory triangle produces an image that is much simpler (3 circles, a black triangle outline, and a white triangle) than the objects that are actually displayed (3 partial circles and three V shapes arranged pointing in toward a central point). In general, these gestalt principles make sense of the natural world, but when applied to artificial contexts, they occasionally produce unexpected results. 
+
+\begin{figure}[h]\centering
+\hfil
+\begin{subfigure}[b]{.4\textwidth}\centering
+  \includegraphics[width=\textwidth]{FigureVase}
+  \caption{Figure-Ground Illusion}
+\end{subfigure}\hfil
+\begin{subfigure}[b]{.4\textwidth}\centering
+  \includegraphics[width=\textwidth]{IllusoryContour}
+  \caption{Kanizsa Triangle Illusion}
+\end{subfigure}\hfil
+\caption[Gestalt Illusions]{Illusions due to misapplied or ambiguous Gestalt rules.}\label{fig:GestaltIllusions}
+\end{figure}
+
+\paragraph{Depth illusions} Other optical illusions occur due to the optimization of the visual system for three-dimensional perception. These three-dimensional heuristics can produce unexpected or misleading results when applied to two dimensional objects. Figure \ref{fig:DepthIllusions} demonstrates 
+
+\begin{figure}[h]\centering
+\hfil
+\begin{subfigure}[b]{.4\textwidth}\centering
+  \includegraphics[width=\textwidth]{PonzoIllusion}
+  \caption{Ponzo Illusion}
+\end{subfigure}\hfil
+\begin{subfigure}[b]{.4\textwidth}\centering
+  \includegraphics[width=\textwidth]{NeckerCube}
+  \caption{Necker Cube}
+\end{subfigure}\hfil
+
+\hfil
+\begin{subfigure}[b]{.4\textwidth}\centering
+  \includegraphics[width=\textwidth]{MullerLyer}
+  \caption{Muller-Lyer Illusion}
+\end{subfigure}\hfil
+\begin{subfigure}[b]{.4\textwidth}\centering
+  \includegraphics[width=\textwidth]{CheckerShadow}
+  \caption{Color Constancy Illusion}
+\end{subfigure}\hfil
+
+\caption[Depth Illusions]{Illusions due to misapplied depth perception.}\label{fig:DepthIllusions}
+\end{figure}
 
 \section{Statistical Graphics}
 \subsection{Low-level perception of graphics}\label{LowLevelGraphics}
