@@ -331,30 +331,36 @@ The ``software" programs presented in section \ref{Software} are generally effic
 \caption[Gestalt Illusions]{Illusions due to misapplied or ambiguous Gestalt rules.}\label{fig:GestaltIllusions}
 \end{figure}
 
-\paragraph{Depth illusions} Other optical illusions occur due to the optimization of the visual system for three-dimensional perception. These three-dimensional heuristics can produce unexpected or misleading results when applied to two dimensional objects. Figure \ref{fig:DepthIllusions} demonstrates 
+\paragraph{Depth illusions} Other optical illusions occur due to the optimization of the visual system for three-dimensional perception. These three-dimensional heuristics can produce unexpected or misleading results when applied to two dimensional objects. 
 
 \begin{figure}[h]\centering
 \hfil
 \begin{subfigure}[b]{.4\textwidth}\centering
   \includegraphics[width=\textwidth]{PonzoIllusion}
-  \caption{Ponzo Illusion}
+  \caption{Ponzo Illusion}\label{fig:Ponzo}
 \end{subfigure}\hfil
 \begin{subfigure}[b]{.4\textwidth}\centering
   \includegraphics[width=\textwidth]{NeckerCube}
-  \caption{Necker Cube}
+  \caption{Necker Cube}\label{fig:NeckerCube}
 \end{subfigure}\hfil
 
 \hfil
 \begin{subfigure}[b]{.4\textwidth}\centering
-  \includegraphics[width=\textwidth]{MullerLyer}
-  \caption{Muller-Lyer Illusion}
+  \includegraphics[width=\textwidth, angle=90]{MullerLyer}
+  \caption{Muller-Lyer Illusion}\label{fig:MullerLyer}
 \end{subfigure}\hfil
 \begin{subfigure}[b]{.4\textwidth}\centering
   \includegraphics[width=\textwidth]{CheckerShadow}
-  \caption{Color Constancy Illusion}
+  \caption{Color Constancy Illusion}\label{fig:ColorConstancy}
 \end{subfigure}\hfil
 
 \caption[Depth Illusions]{Illusions due to misapplied depth perception.}\label{fig:DepthIllusions}
+\end{figure}
+Figure \ref{fig:DepthIllusions} contains four of the more interesting optical illusions that result from ambiguous figures that trigger depth cues. The Ponzo illusion (Figure \ref{fig:Ponzo}) suggests that the top line is longer than the bottom line, because of the implied convergence of the two vertical lines (to understand the natural scenario behind this illusion, consider railroad tracks converging at the horizon). The Necker Cube, shown in figure \ref{fig:NeckerCube}, can be seen such that the top-right face is closest to the viewer or alternately such that the bottom-left face is closest to the viewer. Due to the ambiguity in the image, it will often seem to "flip" when the viewer loses focus on the image momentarily. The Muller-Lyer illusion (Figure \ref{fig:MullerLyer}) is generally believed to result from misapplied depth cues as well - the left-most image would occur in nature as the exterior corner of a building, the middle image would occur when viewing an interior corner of the same building, further away from the viewer. As a result of the illusion, the middle line appears to be longer than the first or third lines. Figure \ref{fig:mullerlyerhouse} shows the first two parts of the illusion in a context which removes the ambiguity through additional depth cues. The additional cues result in the resolution of the illusion. Finally, the color constancy illusion shown in Figure \ref{fig:ColorConstancy} suggests that the square marked A is much darker than the square marked B, even though the two squares are the same color. This illusion results from our experiences with depth and shadows: square B is perceived to be the same color as the lighter-colored squares outside the shadow, while square A is perceived to be the same color as the other dark squares in the tile pattern, regardless of the actual color due to the shadow. 
+
+\begin{figure}[h]\centering
+\includegraphics[width=.5\textwidth]{mullerlyerhouse}
+\caption[Muller Lyer Illusion]{The Muller-Lyer illusion in a non-ambiguous three-dimensional context.}\label{mullerlyerhouse}
 \end{figure}
 
 \section{Statistical Graphics}
