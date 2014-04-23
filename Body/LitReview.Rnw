@@ -46,13 +46,13 @@ These sensory cells are specialized neurons, known as rods and cones, which perc
 
 \begin{figure}
 \centering
-\includegraphics[width=.8\textwidth, keepaspectratio=TRUE]{Figure/LitReview/Retina}
+\includegraphics[width=.8\textwidth, keepaspectratio=TRUE]{Retina}
 \caption[The human eye, with closeup of receptor cells in the retina]{The human eye, with closeup of receptor cells in the retina (image from \protect\citealt{goldstein}, chap 3.1).} \label{fig:retina}
 \end{figure}
 
 \begin{figure}
 \centering
-\includegraphics[width=.8\textwidth, keepaspectratio=TRUE]{Figure/LitReview/AbsorptionSpectra}
+\includegraphics[width=.8\textwidth, keepaspectratio=TRUE]{AbsorptionSpectra}
 \caption[Absorption spectra of retinal cells]{Absorption spectra of rods and short, medium, and long wave cones. (image from \protect\citealt{goldstein}, chap 3.3).} \label{fig:ColorRange}
 \end{figure}
 
@@ -65,12 +65,12 @@ Once light hits the retina and causes a signal in the receptor cells, the inform
 \centering
 \begin{subfigure}[b]{.45\textwidth}
   \centering
-  \includegraphics[width=\textwidth]{Figure/LitReview/HermannGrid}
+  \includegraphics[width=\textwidth]{HermannGrid}
   \caption{\small Hermann Grid Illusion \label{fig:hermanngrid}}
 \end{subfigure}\hfill
 \begin{subfigure}[b]{.45\textwidth}
   \centering
-  \includegraphics[width=\textwidth]{Figure/LitReview/MachBands}
+  \includegraphics[width=\textwidth]{MachBands}
   \caption{\small Mach Bands. 
   \label{fig:machbands}}
 \end{subfigure}
