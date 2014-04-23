@@ -273,12 +273,9 @@ Certain illusions do not lend themselves to simple classification. While many il
 \caption[The Poggendorff Illusion]{The Poggendorff Illusion. The left figure shows a black line which is obscured by a grey rectangle; it appears that the blue line would intersect the black line if the rectangle were not present. In fact, the black line and the red line are co-linear, and the blue line is parallel to both other lines.}\label{fig:poggendorff}
 \end{figure}
 
-\citet{gregory1963distortion, gregory1997knowledge} suggests the Poggendorff illusion is similar to the Muller-Lyer illusion in that it results from misapplied depth cues, but \citet{green1963poggendorff, ward1977case} found no evidence that participants viewed this illusion in any three-dimensional context. Instead, \citet{green1963poggendorff} suggests that the illusion results from a tendency to perceive acute angles as less acute and obtuse angles as less obtuse than the image suggests. As the illusion disappears as the angle of the line segment approaches horizontal, this seems to be a reasonable explanation, but it is almost certainly not complete \citep{morgan1999poggendorff}, as the illusion survives in forms which do not preserve the acute angle intersections. Regardless, this illusion can make it difficult to read certain graphs \citep{amer2005bias} if proper precautions are not taken.
-
-\todo[inline]{Add citation to Geometric illusions in reading graphs. Poulton, E. C. (1985) when the paper arrives from ILL if it is appropriate.}
+\citet{gregory1963distortion, gregory1997knowledge} suggests the Poggendorff illusion is similar to the Muller-Lyer illusion in that it results from misapplied depth cues, but \citet{green1963poggendorff, ward1977case} found no evidence that participants viewed this illusion in any three-dimensional context. Instead, \citet{green1963poggendorff} suggests that the illusion results from a tendency to perceive acute angles as less acute and obtuse angles as less obtuse than the image suggests. As the illusion disappears as the angle of the line segment approaches horizontal, this seems to be a reasonable explanation, but it is almost certainly not complete \citep{morgan1999poggendorff}, as the illusion survives in forms which do not preserve the acute angle intersections. Regardless, this illusion can make it difficult to read certain graphs \citep{amer2005bias, poulton1985geometric} if proper precautions are not taken.
 
 The second of these illusions is the cafe wall illusion, shown in figure \ref{fig:cafewall}, named because this tile pattern is apparently common in cafes. 
-
 
 <<cafewall,echo=F, include=F, eval=T, cache=T, fig.height=5.14, fig.width=8>>=
 df <- data.frame(x=rep(1:13, times=9), y=rep(1:9, each=13), color=rep(c("A", "B", "A", "B", "A", "B", "A", "B", "A", "B", "A", "B", "A"), times=9))
@@ -311,8 +308,7 @@ qplot(data=df, xmin=x, xmax=xend, ymin=y, ymax=y+1, fill=color, geom="rect") +
 
 The cafe wall illusion is in part due to the contrast between light and dark zones (as in the mach bands and hermann grid illusion), and much of the illusion is resolved when the black and white tiles are replaced with isoluminant colors, but some of the illusion still remains. \citet{westheimer2007irradiation} suggests that this portion of the illusion is because the position of a black-white border will be biased to appear closer to the black side of its physical location, an effect which is compounded in the cafe wall illusion to produce the appearance of tilted lines. This illusion, while not directly relevant to statistical graphics, shows that even simple (and pleasant) configurations of geometric objects can wreak havoc in the brain under the right circumstances. In fact, the illusion is so simple that it is also known as the ``Kindergarten illusion", but it still has not been fully explained by psychologists or neuroscientists. It is on this cautionary note that we move into the research on graphical perception in statistics, as opposed to that in psychology. 
 
-The psychology research in this domain is typically very low-level, concerned with the underlying mechanisms of effects within the brain. In statistics, the literature is somewhat more variable; \citet{cleveland:1985} produced the seminal paper on the subject, but outside of their work, there are relatively few papers that examine the accuracy of judgments made from graphs through user studies that mimic the way graphs are used in practice.
-
+The psychology research in this domain is typically very low-level, concerned with the underlying mechanisms of effects within the brain. In statistics, the literature is somewhat more variable; \citet{cleveland:1985} produced the seminal paper on the subject, but outside of their work, there are relatively few papers that examine the accuracy of judgments made from graphs through user studies that mimic the way graphs are used in practice. We will begin with the lower-level graphical perception literature and conclude with studies that have more external validity and are applicable to statistical practice. 
 
 \section{Statistical Graphics}
 \subsection{Low-level perception of graphics}\label{LowLevelGraphics}
@@ -324,8 +320,6 @@ Healey's preattentive feature integration stuff
 \item Grammar of graphics allows us to test graphics which display the same information in different ways for comparable accuracy
 \end{itemize}
 Emphasize the low-level stuff vs. the higher-level stuff that focuses on preattentive information (i.e. not what we care about) and the gap in the middle where graphics are tested in more practical scenarios.
-
-These illusions are but a sampling of the 
 
 \subsection{Interactive graphics?} 
 Not sure if this should be a subsection, but graphics that respond to human interaction violate the two-dimensional graphic paradigm somewhat, which means there are a whole 'nother set of issues to consider... motion illusions, grouping, etc.
