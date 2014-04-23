@@ -11,10 +11,10 @@ if("Body" %in% list.files()){
   imgdir <- "Figure/LitReview/"
   codedir <- "Code/LitReview/"
 } else {
-  opts_chunk$set(fig.path='../Figure/LitReview/fig-', cache.path='cache/', fig.align='center', fig.width=5, fig.height=5, fig.show='hold', par=TRUE, cache=TRUE, concordance=TRUE, autodep=TRUE, root.dir="../")
-  datadir <- "../Data/LitReview/"
-  imgdir <- "../Figure/LitReview/"
-  codedir <- "../Code/LitReview/"
+  opts_chunk$set(fig.path='Figure/LitReview/fig-', cache.path='cache/', fig.align='center', fig.width=5, fig.height=5, fig.show='hold', par=TRUE, cache=TRUE, concordance=TRUE, autodep=TRUE, root.dir="../")
+  datadir <- "Data/LitReview/"
+  imgdir <- "Figure/LitReview/"
+  codedir <- "Code/LitReview/"
 }
 options(replace.assign=TRUE,width=70,scipen=3)
 require(knitr)
@@ -261,6 +261,58 @@ Figure \ref{fig:DepthIllusions} contains four of the more interesting optical il
 \includegraphics[width=.5\textwidth]{mullerlyerhouse}
 \caption[Muller Lyer Real World Context]{The Muller-Lyer illusion in a non-ambiguous three-dimensional context.}\label{fig:mullerlyerhouse}
 \end{figure}
+
+Depth illusions in particular result from a conflict between our experience with the three-dimensional world and the appearance of two-dimensional ambiguous stimuli. The Necker cube ``flips" because there are two physical objects that could produce the same retinal image, the Muller-Lyer illusion exists because our experience with the three-dimensional world is harnessed inappropriately for a two-dimensional figure, and the color-constancy illusion exists because our brains automatically correct a pseudo three-dimensional image to represent the reality of that image in the real world. These conflicts occur in statistical graphics as well; Chapter \ref{SineIllusionChapter} provides more information on a class of statistical graphics that trigger three-dimensional heuristics in the brain, producing misleading conclusions.
+
+There are other optical illusions that have the potential to appear in statistical graphics but are not easily classified (or necessarily easily explained). These illusions are detailed in the next section. 
+\paragraph{Other Important Optical Illusions}
+Certain illusions do not lend themselves to simple classification. While many illusions are the result of multiple concurrent processes in the brain, these illusions may not even be fully understood. The Poggendorff illusion, shown in figure \ref{fig:poggendorff}, is one such illusion. 
+
+\begin{figure}[htbp]\centering
+\includegraphics[width=.4\linewidth]{Poggendorff}
+\caption[The Poggendorff Illusion]{The Poggendorff Illusion. The left figure shows a black line which is obscured by a grey rectangle; it appears that the blue line would intersect the black line if the rectangle were not present. In fact, the black line and the red line are co-linear, and the blue line is parallel to both other lines.}\label{fig:poggendorff}
+\end{figure}
+
+\citet{gregory1963distortion, gregory1997knowledge} suggests the Poggendorff illusion is similar to the Muller-Lyer illusion in that it results from misapplied depth cues, but \citet{green1963poggendorff, ward1977case} found no evidence that participants viewed this illusion in any three-dimensional context. Instead, \citet{green1963poggendorff} suggests that the illusion results from a tendency to perceive acute angles as less acute and obtuse angles as less obtuse than the image suggests. As the illusion disappears as the angle of the line segment approaches horizontal, this seems to be a reasonable explanation, but it is almost certainly not complete \citep{morgan1999poggendorff}, as the illusion survives in forms which do not preserve the acute angle intersections. Regardless, this illusion can make it difficult to read certain graphs \citep{amer2005bias} if proper precautions are not taken.
+
+\todo[inline]{Add citation to Geometric illusions in reading graphs. Poulton, E. C. (1985) when the paper arrives from ILL if it is appropriate.}
+
+The second of these illusions is the cafe wall illusion, shown in figure \ref{fig:cafewall}, named because this tile pattern is apparently common in cafes. 
+
+
+<<cafewall,echo=F, include=F, eval=T, cache=T, fig.height=5.14, fig.width=8>>=
+df <- data.frame(x=rep(1:13, times=9), y=rep(1:9, each=13), color=rep(c("A", "B", "A", "B", "A", "B", "A", "B", "A", "B", "A", "B", "A"), times=9))
+shift <- rep(c(0, .25, .5, .25), each=13, times=5)
+
+df$x <- df$x-shift[1:nrow(df)]
+df$xend <- df$x+1
+lines <- data.frame(x=0, xend=max(df$xend+0.5), y=1:10, yend=1:10)
+
+library(ggplot2)
+library(grid)
+qplot(data=df, xmin=x, xmax=xend, ymin=y, ymax=y+1, fill=color, geom="rect") + 
+  geom_segment(aes(x=x, xend=xend, y=y, yend=yend), data=lines, inherit.aes=F, size=2, color="#555555") + 
+  scale_fill_manual(guide='none', values=c("#7F0080", "#007F80")) + 
+  coord_equal() + theme_bw() + theme(axis.text=element_blank(), axis.ticks=element_blank(), axis.title=element_blank(), panel.grid=element_blank(), panel.border=element_blank(), panel.background=element_blank(), axis.line=element_blank(), plot.margin=unit(c(0,0,0,0),"mm")) 
+@
+
+\begin{figure}[htbp]\centering
+\hfil
+\begin{subfigure}[b]{.4\textwidth}\centering
+  \includegraphics[width=\textwidth]{CafeWall}
+  \caption{Original Cafe Wall Illusion}\label{fig:CafeWallOrig}
+\end{subfigure}\hfil
+\begin{subfigure}[b]{.4\textwidth}\centering
+  \includegraphics[width=\textwidth]{fig-cafewall}
+  \caption{Isoluminant Cafe Wall Illusion}\label{fig:CafeWallIso}
+\end{subfigure}\hfil
+\caption[Cafe Wall Illusion]{The Cafe Wall illusion. The lines between rows of black and white tiles are parallel but appear to be tilted. The second image shows the isoluminant version, which mitigates some of the illusion but does not entirely eliminate the effect.}\label{fig:cafewall}
+\end{figure}
+
+The cafe wall illusion is in part due to the contrast between light and dark zones (as in the mach bands and hermann grid illusion), and much of the illusion is resolved when the black and white tiles are replaced with isoluminant colors, but some of the illusion still remains. \citet{westheimer2007irradiation} suggests that this portion of the illusion is because the position of a black-white border will be biased to appear closer to the black side of its physical location, an effect which is compounded in the cafe wall illusion to produce the appearance of tilted lines. This illusion, while not directly relevant to statistical graphics, shows that even simple (and pleasant) configurations of geometric objects can wreak havoc in the brain under the right circumstances. In fact, the illusion is so simple that it is also known as the ``Kindergarten illusion", but it still has not been fully explained by psychologists or neuroscientists. It is on this cautionary note that we move into the research on graphical perception in statistics, as opposed to that in psychology. 
+
+The psychology research in this domain is typically very low-level, concerned with the underlying mechanisms of effects within the brain. In statistics, the literature is somewhat more variable; \citet{cleveland:1985} produced the seminal paper on the subject, but outside of their work, there are relatively few papers that examine the accuracy of judgments made from graphs through user studies that mimic the way graphs are used in practice.
+
 
 \section{Statistical Graphics}
 \subsection{Low-level perception of graphics}\label{LowLevelGraphics}

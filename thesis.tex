@@ -152,13 +152,13 @@ These sensory cells are specialized neurons, known as rods and cones, which perc
 
 \begin{figure}
 \centering
-\includegraphics[width=.8\textwidth, keepaspectratio=TRUE]{Figure/LitReview/Retina}
+\includegraphics[width=.8\textwidth, keepaspectratio=TRUE]{Retina}
 \caption[The human eye, with closeup of receptor cells in the retina]{The human eye, with closeup of receptor cells in the retina (image from \protect\citealt{goldstein}, chap 3.1).} \label{fig:retina}
 \end{figure}
 
 \begin{figure}
 \centering
-\includegraphics[width=.8\textwidth, keepaspectratio=TRUE]{Figure/LitReview/AbsorptionSpectra}
+\includegraphics[width=.8\textwidth, keepaspectratio=TRUE]{AbsorptionSpectra}
 \caption[Absorption spectra of retinal cells]{Absorption spectra of rods and short, medium, and long wave cones. (image from \protect\citealt{goldstein}, chap 3.3).} \label{fig:ColorRange}
 \end{figure}
 
@@ -171,12 +171,12 @@ Once light hits the retina and causes a signal in the receptor cells, the inform
 \centering
 \begin{subfigure}[b]{.45\textwidth}
   \centering
-  \includegraphics[width=\textwidth]{Figure/LitReview/HermannGrid}
+  \includegraphics[width=\textwidth]{HermannGrid}
   \caption{\small Hermann Grid Illusion \label{fig:hermanngrid}}
 \end{subfigure}\hfill
 \begin{subfigure}[b]{.45\textwidth}
   \centering
-  \includegraphics[width=\textwidth]{Figure/LitReview/MachBands}
+  \includegraphics[width=\textwidth]{MachBands}
   \caption{\small Mach Bands. 
   \label{fig:machbands}}
 \end{subfigure}
@@ -368,6 +368,43 @@ Figure \ref{fig:DepthIllusions} contains four of the more interesting optical il
 \caption[Muller Lyer Real World Context]{The Muller-Lyer illusion in a non-ambiguous three-dimensional context.}\label{fig:mullerlyerhouse}
 \end{figure}
 
+Depth illusions in particular result from a conflict between our experience with the three-dimensional world and the appearance of two-dimensional ambiguous stimuli. The Necker cube ``flips" because there are two physical objects that could produce the same retinal image, the Muller-Lyer illusion exists because our experience with the three-dimensional world is harnessed inappropriately for a two-dimensional figure, and the color-constancy illusion exists because our brains automatically correct a pseudo three-dimensional image to represent the reality of that image in the real world. These conflicts occur in statistical graphics as well; Chapter \ref{SineIllusionChapter} provides more information on a class of statistical graphics that trigger three-dimensional heuristics in the brain, producing misleading conclusions.
+
+There are other optical illusions that have the potential to appear in statistical graphics but are not easily classified (or necessarily easily explained). These illusions are detailed in the next section. 
+\paragraph{Other Important Optical Illusions}
+Certain illusions do not lend themselves to simple classification. While many illusions are the result of multiple concurrent processes in the brain, these illusions may not even be fully understood. The Poggendorff illusion, shown in figure \ref{fig:poggendorff}, is one such illusion. 
+
+\begin{figure}[htbp]\centering
+\includegraphics[width=.4\linewidth]{Poggendorff}
+\caption[The Poggendorff Illusion]{The Poggendorff Illusion. The left figure shows a black line which is obscured by a grey rectangle; it appears that the blue line would intersect the black line if the rectangle were not present. In fact, the black line and the red line are co-linear, and the blue line is parallel to both other lines.}\label{fig:poggendorff}
+\end{figure}
+
+\citet{gregory1963distortion, gregory1997knowledge} suggests the Poggendorff illusion is similar to the Muller-Lyer illusion in that it results from misapplied depth cues, but \citet{green1963poggendorff, ward1977case} found no evidence that participants viewed this illusion in any three-dimensional context. Instead, \citet{green1963poggendorff} suggests that the illusion results from a tendency to perceive acute angles as less acute and obtuse angles as less obtuse than the image suggests. As the illusion disappears as the angle of the line segment approaches horizontal, this seems to be a reasonable explanation, but it is almost certainly not complete \citep{morgan1999poggendorff}, as the illusion survives in forms which do not preserve the acute angle intersections. Regardless, this illusion can make it difficult to read certain graphs \citep{amer2005bias} if proper precautions are not taken.
+
+\todo[inline]{Add citation to Geometric illusions in reading graphs. Poulton, E. C. (1985) when the paper arrives from ILL if it is appropriate.}
+
+The second of these illusions is the cafe wall illusion, shown in figure \ref{fig:cafewall}, named because this tile pattern is apparently common in cafes. 
+
+
+
+
+
+\begin{figure}[htbp]\centering
+\hfil
+\begin{subfigure}[b]{.4\textwidth}\centering
+  \includegraphics[width=\textwidth]{CafeWall}
+  \caption{Original Cafe Wall Illusion}\label{fig:CafeWallOrig}
+\end{subfigure}\hfil
+\begin{subfigure}[b]{.4\textwidth}\centering
+  \includegraphics[width=\textwidth]{fig-cafewall}
+  \caption{Isoluminant Cafe Wall Illusion}\label{fig:CafeWallIso}
+\end{subfigure}\hfil
+\caption[Cafe Wall Illusion]{The Cafe Wall illusion. The lines between rows of black and white tiles are parallel but appear to be tilted. The second image shows the isoluminant version, which mitigates some of the illusion but does not entirely eliminate the effect.}\label{fig:cafewall}
+\end{figure}
+
+The cafe wall illusion is in part due to the contrast between light and dark zones (as in the mach bands and hermann grid illusion), and much of the illusion is resolved when the black and white tiles are replaced with isoluminant colors, but some of the illusion still remains. \citet{westheimer2007irradiation} suggests that this portion of the illusion is because the position of a black-white border will be biased to appear closer to the black side of its physical location, an affect which is compounded in the cafe wall illusion to produce the appearance of tilted lines. 
+
+
 \section{Statistical Graphics}
 \subsection{Low-level perception of graphics}\label{LowLevelGraphics}
 Healey's preattentive feature integration stuff
@@ -411,7 +448,7 @@ Methodology for testing graphical perception in humans. Talk about masking, the 
 
 
 
-\chapter{SIGNS OF THE SINE ILLUSION -- WHY WE NEED TO CARE}
+\chapter{SIGNS OF THE SINE ILLUSION -- WHY WE NEED TO CARE}\label{SineIllusionChapter}
 %% Abstract
 % Graphical representations have to be true to the data they display. Computational tools ensure this on a technical level. But we also need to take `flaws' of the human perceptual system into account. The sine illusion provides an example where human perception leads to systematic bias in the assessment of the optical stimulus, with a particularly notable impact on perception of time-series data with a seasonal component. In this paper, we discuss the reasons for the illusion and various strategies  useful to break the illusion or reduce its strength. We demonstrate the presence of the illusion in real-world and theoretical situations. We also present data from a user study which demonstrate the dramatic effect the sine illusion can have on conclusions drawn from displayed data.
 
