@@ -1,614 +1,743 @@
-@article{amer2005bias,
-  title={Bias due to visual illusion in the graphical presentation of accounting information},
-  author={Amer, TS},
-  journal={Journal of Information Systems},
-  volume={19},
-  number={1},
-  pages={1--18},
-  year={2005}
+% This file was created with JabRef 2.7b.
+% Encoding: UTF-8
+
+@MISC{pcp:1885,
+  author = {Maurice d'Ocagne},
+  title = {Coordonn\'ees parall\`eles et axiales : M\'ethode de transformation
+	g\'eom\'etrique et proc\'ed\'e nouveau de calcul graphique d{\'e}duits
+	de la consid\'eration des coordonn\'ees parall\`eles},
+  howpublished = {Gauthier-Villars},
+  year = {1885},
+  address = {Paris}
 }
 
-@article{coren1983subjective,
-  title={Subjective contours and apparent depth: A direct test},
-  author={Coren, Stanley and Porac, Clare},
-  journal={Attention, Perception, \& Psychophysics},
-  volume={33},
+@ARTICLE{amer2005bias,
+  author = {Amer, TS},
+  title = {Bias due to visual illusion in the graphical presentation of accounting
+	information},
+  journal = {Journal of Information Systems},
+  year = {2005},
+  volume = {19},
+  pages = {1--18},
+  number = {1}
+}
+
+@MISC{bach,
+  author = {Michael Bach},
+  title = {Sine Illusion from Visual Phenomena \& Optical Illusions},
+  year = {2007},
+  bdsk-url-1 = {http://www.michaelbach.de/ot/sze_sineIllusion/index.html},
+  url = {http://www.michaelbach.de/ot/sze_sineIllusion/index.html}
+}
+
+@MISC{bbc:2009,
+  author = {Michael Blastland},
+  title = {Go Figure: How to understand risk in 13 clicks},
+  year = {March 11 2009},
+  bdsk-url-1 = {http://news.bbc.co.uk/2/hi/uk%7B%5C_%7Dnews/magazine/7937382.stm},
+  journal = {BBC Magazine},
+  url = {http://news.bbc.co.uk/2/hi/uk{\_}news/magazine/7937382.stm}
+}
+
+@ARTICLE{stackedgraphs,
+  author = {Byron, Lee and Wattenberg, Martin},
+  title = {Stacked Graphs -- Geometry and Aesthetics},
+  journal = {IEEE Trans. Vis. Comput. Graph.},
+  year = {2008},
+  volume = {14},
+  pages = {1245--1252},
+  number = {6}
+}
+
+@ARTICLE{cleveland:88,
+  author = {Cleveland, William S. and McGill, Marilyn E. and McGill Robert},
+  title = {{The Shape Parameter of a Two-Variable Graph}},
+  journal = {Journal of the American Statistical Association},
+  year = {1988},
+  volume = {83},
+  pages = {289--300},
+  number = {402},
+  doi = {10.2307/2288843}
+}
+
+@ARTICLE{cleveland:1985,
+  author = {W. S. Cleveland and R. McGill},
+  title = {Graphical Perception and Graphical Methods for Analyzing Scientific
+	Data},
+  journal = {Science},
+  year = {1985},
+  volume = {229},
+  pages = {828--833},
+  number = {4716}
+}
+
+@ARTICLE{cleveland:1984,
+  author = {Cleveland, William S. and McGill, Robert},
+  title = {Graphical Perception: Theory, Experimentation, and Application to
+	the Development of Graphical Methods},
+  journal = {Journal of the American Statistical Association},
+  year = {1984},
+  volume = {79},
+  pages = {pp. 531-554},
+  number = {387},
+  abstract = {The subject of graphical methods for data analysis and for data presentation
+	needs a scientific foundation. In this article we take a few steps
+	in the direction of establishing such a foundation. Our approach
+	is based on graphical perception-the visual decoding of information
+	encoded on graphs-and it includes both theory and experimentation
+	to test the theory. The theory deals with a small but important piece
+	of the whole process of graphical perception. The first part is an
+	identification of a set of elementary perceptual tasks that are carried
+	out when people extract quantitative information from graphs. The
+	second part is an ordering of the tasks on the basis of how accurately
+	people perform them. Elements of the theory are tested by experimentation
+	in which subjects record their judgments of the quantitative information
+	on graphs. The experiments validate these elements but also suggest
+	that the set of elementary tasks should be expanded. The theory provides
+	a guideline for graph construction: Graphs should employ elementary
+	tasks as high in the ordering as possible. This principle is applied
+	to a variety of graphs, including bar charts, divided bar charts,
+	pie charts, and statistical maps with shading. The conclusion is
+	that radical surgery on these popular graphs is needed, and as replacements
+	we offer alternative graphical forms-dot charts, dot charts with
+	grouping, and framed-rectangle charts.},
+  bdsk-url-1 = {http://www.jstor.org/stable/2288400},
+  copyright = {Copyright {\copyright} 1984 American Statistical Association},
+  issn = {01621459},
+  jstor_articletype = {research-article},
+  jstor_formatteddate = {Sep., 1984},
+  language = {English},
+  publisher = {American Statistical Association},
+  url = {http://www.jstor.org/stable/2288400}
+}
+
+@ARTICLE{coren1983subjective,
+  author = {Coren, Stanley and Porac, Clare},
+  title = {Subjective contours and apparent depth: A direct test},
+  journal = {Attention, Perception, \& Psychophysics},
+  year = {1983},
+  volume = {33},
+  pages = {197--200},
+  number = {2},
+  publisher = {Springer}
+}
+
+@ARTICLE{day:1991,
+  author = {Ross H Day and Erica J Stecher},
+  title = {Sine of an illusion},
+  journal = {Perception},
+  year = {1991},
+  volume = {20},
+  pages = {49--55}
+}
+
+@MISC{EIA,
+  author = {{EIA}},
+  title = {Weekly Retail Gasoline and Diesel Prices},
+  howpublished = {\url{http://www.eia.gov/dnav/pet/pet_pri_gnd_dcus_nus_w.htm}},
+  year = {2014},
+  note = {[Online; accessed 28-Feb-2014]},
+  url = {http://www.eia.gov/dnav/pet/pet_pri_gnd_dcus_nus_w.htm}
+}
+
+@MISC{EIA-reformulated,
+  author = {{EIA}},
+  title = {Gasoline and Diesel Fuel Update},
+  howpublished = {\url{http://www.eia.gov/petroleum/gasdiesel/reformulated_map.cfm}},
+  year = {2014},
+  note = {[Online; accessed 28-Feb-2014]},
+  url = {http://www.eia.gov/petroleum/gasdiesel/reformulated_map.cfm}
+}
+
+@MISC{epa,
+  author = {{Environmental Protection Agency}},
+  title = {Air Quality Data},
+  howpublished = {\url{http://www.epa.gov/airdata/ad_data_daily.html}},
+  year = {2011},
+  note = {[Online; accessed 25-Oct-2013]},
+  bdsk-url-1 = {http://www.epa.gov/airdata/ad_data_daily.html}
+}
+
+@ARTICLE{fisher1970experimental,
+  author = {Fisher, Gerald H},
+  title = {An experimental and theoretical appraisal of the perspective and
+	size-constancy theories of illusions},
+  journal = {The Quarterly journal of experimental psychology},
+  year = {1970},
+  volume = {22},
+  pages = {631--652},
+  number = {4},
+  publisher = {Taylor \& Francis}
+}
+
+@BOOK{goldstein,
+  title = {Sensation and Perception},
+  publisher = {Thomson Wadsworth},
+  year = {2009},
+  author = {E. B. Goldstein},
+  address = {Belmont, CA},
+  edition = {Eighth},
+  isbn = {0495601497}
+}
+
+@ARTICLE{green1963poggendorff,
+  author = {Green, RT and Hoyle, EM},
+  title = {The Poggendorff illusion as a constancy phenomenon},
+  journal = {Nature},
+  year = {1963},
+  volume = {200},
+  pages = {611--612}
+}
+
+@ARTICLE{gregory1997knowledge,
+  author = {Gregory, Richard L},
+  title = {Knowledge in perception and illusion},
+  journal = {Philosophical Transactions of the Royal Society of London. Series
+	B: Biological Sciences},
+  year = {1997},
+  volume = {352},
+  pages = {1121--1127},
+  number = {1358},
+  publisher = {The Royal Society}
+}
+
+@INPROCEEDINGS{gregory1968perceptual,
+  author = {Gregory, Richard L},
+  title = {Perceptual illusions and brain models},
+  booktitle = {Proc. R. Soc. Lond. B},
+  year = {1968},
+  volume = {171},
+  pages = {179--196},
+  organization = {Citeseer}
+}
+
+@ARTICLE{gregory1963distortion,
+  author = {Gregory, Richard L},
+  title = {Distortion of visual space as inappropriate constancy scaling},
+  journal = {Nature},
+  year = {1963},
+  volume = {199},
+  pages = {1},
+  number = {678-91}
+}
+
+@ARTICLE{colorbrewer,
+  author = {Mark A. Harrower and Cynthia A. Brewer},
+  title = {{ColorBrewer.org: An Online Tool for Selecting Color Schemes for
+	Maps}},
+  journal = {{The Cartographic Journal}},
+  year = {2003},
+  volume = {40},
+  pages = {27--37},
+  number = {1}
+}
+
+@article{healey1996high,
+  title={High-speed visual estimation using preattentive processing},
+  author={Healey, Christopher G and Booth, Kellogg S and Enns, James T},
+  journal={ACM Transactions on Computer-Human Interaction (TOCHI)},
+  volume={3},
   number={2},
-  pages={197--200},
-  year={1983},
+  pages={107--135},
+  year={1996},
+  publisher={ACM}
+}
+
+@article{healey1999large,
+  title={Large datasets at a glance: Combining textures and colors in scientific visualization},
+  author={Healey, Christopher G and Enns, James T},
+  journal={Visualization and Computer Graphics, IEEE Transactions on},
+  volume={5},
+  number={2},
+  pages={145--167},
+  year={1999},
+  publisher={IEEE}
+}
+
+@article{healey2012attention,
+  title={Attention and visual memory in visualization and computer graphics},
+  author={Healey, Christopher G and Enns, James T},
+  journal={Visualization and Computer Graphics, IEEE Transactions on},
+  volume={18},
+  number={7},
+  pages={1170--1188},
+  year={2012},
+  publisher={IEEE}
+}
+
+@inproceedings{healey1993harnessing,
+  title={Harnessing preattentive processes for multivariate data visualization},
+  author={Healey, Christopher G and Booth, Kellogg S and Enns, James T},
+  booktitle={Graphics Interface},
+  pages={107--107},
+  year={1993},
+  organization={CANADIAN INFORMATION PROCESSING SOCIETY}
+}
+
+@BOOK{helander1997handbook,
+  title = {Handbook of human-computer interaction},
+  publisher = {Elsevier},
+  year = {1997},
+  author = {Helander, Martin G and Landauer, Thomas K and Prabhu, Prasad V}
+}
+
+@BOOK{hering,
+  title = {Beitr{\"a}ge zur Physiologie},
+  publisher = {Engelmann},
+  year = {1861},
+  author = {E. Hering},
+  address = {Leipzig}
+}
+
+@ARTICLE{marie:2013,
+  author = {Hofmann, Heike and Vendettuoli, Marie},
+  title = {{Common Angle Plots} as perception-true visualizations of categorical
+	associations},
+  journal = {IEEE Transactions on Visualization and Computer Graphics},
+  year = {2013},
+  volume = {19},
+  pages = {2297--2305},
+  number = {12}
+}
+
+@ARTICLE{naturalscenes,
+  author = {Howe, Catherine Q. and Purves, Dale},
+  title = {Natural-scene geometry predicts the perception of angles and line
+	orientation},
+  journal = {Proceedings of the National Academy of Sciences of the United States
+	of America},
+  year = {2005},
+  volume = {102},
+  pages = {1228-1233},
+  number = {4},
+  abstract = {Visual stimuli that entail the intersection of two or more straight
+	lines elicit a variety of well known perceptual anomalies. Preeminent
+	among these anomalies are the systematic overestimation of acute
+	angles, the underestimation of obtuse angles, and the misperceptions
+	of line orientation exemplified in the classical tilt, Zöllner, and
+	Hering illusions. Here we show that the probability distributions
+	of the possible real-world sources of projected lines and angles
+	derived from a range-image database of natural scenes accurately
+	predict each of these perceptual peculiarities. These findings imply
+	that the perception of angles and oriented lines is determined by
+	the statistical relationship between geometrical stimuli and their
+	physical sources in typical visual environments.},
+  doi = {10.1073/pnas.0409311102},
+  eprint = {http://www.pnas.org/content/102/4/1228.full.pdf+html},
+  url = {http://www.pnas.org/content/102/4/1228.abstract}
+}
+
+@ARTICLE{inselberg:1985,
+  author = {Alfred Inselberg},
+  title = {The Plane with Parallel Coordinates},
+  journal = {The Visual Computer},
+  year = {1985},
+  volume = {1},
+  pages = {69--91},
+  number = {2}
+}
+
+@ARTICLE{kitaoka2004contrast,
+  author = {Kitaoka, Akiyoshi and Pinna, Baingio and Brelstaff, Gavin},
+  title = {Contrast polarities determine the direction of Caf{\'e} Wall tilts},
+  journal = {PERCEPTION-LONDON-},
+  year = {2004},
+  volume = {33},
+  pages = {11--20},
+  number = {1},
+  publisher = {PION LTD}
+}
+
+@ARTICLE{kosara:2006,
+  author = {Kosara, Robert and Bendix, Fabian and Hauser, Helwig},
+  title = {Parallel Sets: Interactive Exploration and Visual Analysis of Categorical
+	Data},
+  journal = {IEEE Transactions on Visualization and Computer Graphics},
+  year = {2006},
+  volume = {12},
+  pages = {558--568},
+  number = {4},
+  month = jul,
+  acmid = {1137510},
+  address = {Piscataway, NJ, USA},
+  bdsk-url-1 = {http://dx.doi.org/10.1109/TVCG.2006.76},
+  doi = {10.1109/TVCG.2006.76},
+  issn = {1077-2626},
+  issue_date = {July 2006},
+  keywords = {Information visualization, Information visualization, interaction,
+	nominal data, categorical data, multivariate data., categorical data,
+	interaction, multivariate data., nominal data},
+  numpages = {11},
+  publisher = {IEEE Educational Activities Department},
+  url = {http://dx.doi.org/10.1109/TVCG.2006.76}
+}
+
+@ARTICLE{kosslyn1978visual,
+  author = {Kosslyn, Stephen M and Ball, Thomas M and Reiser, Brian J},
+  title = {Visual images preserve metric spatial information: evidence from
+	studies of image scanning.},
+  journal = {Journal of experimental psychology: Human perception and performance},
+  year = {1978},
+  volume = {4},
+  pages = {47},
+  number = {1},
+  publisher = {American Psychological Association}
+}
+
+@ARTICLE{light2004end,
+  author = {Light, Adam and Bartlein, Patrick J},
+  title = {The end of the rainbow? Color schemes for improved data graphics},
+  journal = {Eos, Transactions American Geophysical Union},
+  year = {2004},
+  volume = {85},
+  pages = {385--391},
+  number = {40},
+  publisher = {Wiley Online Library}
+}
+
+@BOOK{cognition,
+  title = {Cognition},
+  publisher = {Wiley},
+  year = {2005},
+  author = {Matlin, Margaret W},
+  edition = {6th},
+  isbn = {0471450073}
+}
+
+@BOOK{meilgaard,
+  title = {{Sensory Evaluation Techniques}},
+  publisher = {CRC Press},
+  year = {2006},
+  author = {Morten C. Meilgaard and B. Thomas Carr and Gail Vance Civille},
+  edition = {4}
+}
+
+@TECHREPORT{ushcn2,
+  author = {Menne, M.J. and Williams, C.N. and Vose, R.S. },
+  title = {United States Historical Climatology Network Daily Temperature, Precipitation,
+	and Snow Data.},
+  institution = {Oak Ridge National Laboratory},
+  year = {2013},
+  address = {Oak Ridge, Tennessee}
+}
+
+@ARTICLE{ushcn,
+  author = {Menne, M.J. and Williams, C.N. and Vose, R.S. },
+  title = {The United States Historical Climatology Network monthly temperature
+	data Version 2.x},
+  journal = {Bulletin of the American Meteorological Society},
+  year = {2009},
+  pages = {993--1007},
+  number = {90}
+}
+
+@MISC{minard:1812,
+  author = {Charles Minard},
+  title = {Carte figurative des pertes successives en hommes de l'{A}rm\'ee
+	{F}ran\c{c}aise dans la campagne de {R}ussie 1812-1813},
+  year = {1869},
+  comment = {The aim of my carte figurative is less to express statistical results,
+	better done by numbers, than to convey promptly to the eye the relation
+	not given quickly by numbers requiring mental calculation},
+  publisher = {Regnier et Dourdet, Paris}
+}
+
+@ARTICLE{morgan1999poggendorff,
+  author = {M.J. Morgan},
+  title = {The Poggendorff illusion: a bias in the estimation of the orientation
+	of virtual lines by second-stage filters },
+  journal = {Vision Research },
+  year = {1999},
+  volume = {39},
+  pages = {2361 - 2380},
+  number = {14},
+  doi = {http://dx.doi.org/10.1016/S0042-6989(98)00243-0},
+  issn = {0042-6989},
+  keywords = {Poggendorff bias},
+  url = {http://www.sciencedirect.com/science/article/pii/S0042698998002430}
+}
+
+@ARTICLE{morgan1992dichromats,
+  author = {Morgan, MJ and Adam, A and Mollon, JD},
+  title = {Dichromats detect colour-camouflaged objects that are not detected
+	by trichromats},
+  journal = {Proceedings of the Royal Society of London. Series B: Biological
+	Sciences},
+  year = {1992},
+  volume = {248},
+  pages = {291--295},
+  number = {1323},
+  publisher = {The Royal Society}
+}
+
+@MISC{noaa,
+  author = {{National Climate Data Center}},
+  title = {Quality Controlled Local Climatological Data},
+  howpublished = {\url{http://cdo.ncdc.noaa.gov/qclcd_ascii/}},
+  year = {2011},
+  note = {[Online; accessed 25-Oct-2013]},
+  bdsk-url-1 = {http://cdo.ncdc.noaa.gov/qclcd_ascii/}
+}
+
+@MANUAL{RColorBrewer,
+  title = {RColorBrewer: ColorBrewer palettes},
+  author = {Erich Neuwirth},
+  year = {2011},
+  note = {{R} package version 1.0-5},
+  bdsk-url-1 = {http://CRAN.R-project.org/package=RColorBrewer},
+  url = {http://CRAN.R-project.org/package=RColorBrewer}
+}
+
+@BOOK{playfair,
+  title = {Commercial and Political Atlas},
+  year = {1786},
+  author = {William Playfair},
+  address = {London}
+}
+
+@BOOK{playfair2,
+  title = {Playfair's Commercial and Political Atlas and Statistical Breviary},
+  publisher = {Cambridge University Press},
+  year = {2005},
+  author = {William Playfair and Howard Wainer and Ian Spence}
+}
+
+@article{poulton1985geometric,
+  title={Geometric illusions in reading graphs},
+  author={Poulton, EC},
+  journal={Perception \& psychophysics},
+  volume={37},
+  number={6},
+  pages={543--548},
+  year={1985},
   publisher={Springer}
 }
 
-@article{kitaoka2004contrast,
-  title={Contrast polarities determine the direction of Caf{\'e} Wall tilts},
-  author={Kitaoka, Akiyoshi and Pinna, Baingio and Brelstaff, Gavin},
-  journal={PERCEPTION-LONDON-},
-  volume={33},
-  number={1},
-  pages={11--20},
-  year={2004},
-  publisher={PION LTD}
+@MANUAL{R,
+  title = {{R}: A Language and Environment for Statistical Computing},
+  author = {{R Core Team}},
+  organization = {{R} Foundation for Statistical Computing},
+  address = {Vienna, Austria},
+  year = {2012},
+  note = {{ISBN} 3-900051-07-0},
+  bdsk-url-1 = {http://www.R-project.org/},
+  url = {http://www.R-project.org/}
 }
 
-
-@article{green1963poggendorff,
-  title={The Poggendorff illusion as a constancy phenomenon},
-  author={Green, RT and Hoyle, EM},
-  journal={Nature},
-  volume={200},
-  pages={611--612},
-  year={1963}
+@BOOK{robbins:2005,
+  title = {Creating More Effective Graphs},
+  publisher = {Wiley},
+  year = {2005},
+  author = {Naomi Robbins}
 }
 
-@article{gregory1997knowledge,
-  title={Knowledge in perception and illusion},
-  author={Gregory, Richard L},
-  journal={Philosophical Transactions of the Royal Society of London. Series B: Biological Sciences},
-  volume={352},
-  number={1358},
-  pages={1121--1127},
-  year={1997},
-  publisher={The Royal Society}
+@MANUAL{shiny,
+  title = {shiny: Web Application Framework for {R}},
+  author = {{RStudio Inc.}},
+  year = {2013},
+  note = {{R} package version 0.6.0.99},
+  url = {http://www.rstudio.com/shiny/}
 }
 
-@inproceedings{gregory1968perceptual,
-  title={Perceptual illusions and brain models},
-  author={Gregory, Richard L},
-  booktitle={Proc. R. Soc. Lond. B},
-  volume={171},
-  pages={179--196},
-  year={1968},
-  organization={Citeseer}
+@ARTICLE{schmidt:2008,
+  author = {Mario Schmidt},
+  title = {The {S}ankey Diagram in Energy and Material Flow Management},
+  journal = {Journal of Industrial Ecology},
+  year = {2008},
+  pages = {173--185},
+  number = {12},
+  bdsk-url-1 = {http://dx.doi.org/10.1111/j.1530-9290.2008.00015.x},
+  doi = {10.1111/j.1530-9290.2008.00015.x}
 }
 
-@article{gregory1963distortion,
-  title={Distortion of visual space as inappropriate constancy scaling},
-  author={Gregory, Richard L},
-  journal={Nature},
-  volume={199},
-  number={678-91},
-  pages={1},
-  year={1963}
+@INPROCEEDINGS{schonlau:2003,
+  author = {Matthias Schonlau},
+  title = {Visualizing Categorical Data Arising in the Health Sciences Using
+	Hammock Plots},
+  booktitle = {Proceedings of the Section on Statistical Graphics (JSM '03)},
+  year = {2003},
+  organization = {American Statistical Association}
 }
 
-@article{fisher1970experimental,
-  title={An experimental and theoretical appraisal of the perspective and size-constancy theories of illusions},
-  author={Fisher, Gerald H},
-  journal={The Quarterly journal of experimental psychology},
-  volume={22},
-  number={4},
-  pages={631--652},
-  year={1970},
-  publisher={Taylor \& Francis}
+@ARTICLE{shepard1988mental,
+  author = {Shepard, Shenna and Metzler, Douglas},
+  title = {Mental rotation: Effects of dimensionality of objects and type of
+	task.},
+  journal = {Journal of Experimental Psychology: Human Perception and Performance},
+  year = {1988},
+  volume = {14},
+  pages = {3},
+  number = {1},
+  publisher = {American Psychological Association}
 }
 
-@article{morgan1999poggendorff,
-title = "The Poggendorff illusion: a bias in the estimation of the orientation of virtual lines by second-stage filters ",
-journal = "Vision Research ",
-volume = "39",
-number = "14",
-pages = "2361 - 2380",
-year = "1999",
-note = "",
-issn = "0042-6989",
-doi = "http://dx.doi.org/10.1016/S0042-6989(98)00243-0",
-url = "http://www.sciencedirect.com/science/article/pii/S0042698998002430",
-author = "M.J. Morgan",
-keywords = "Poggendorff bias",
-keywords = "Muller–Lyer illusion",
-keywords = "Gaussian blur "
+@ARTICLE{silva2011using,
+  author = {Silva, Samuel and Sousa Santos, Beatriz and Madeira, Joaquim},
+  title = {Using color in visualization: A survey},
+  journal = {Computers \& Graphics},
+  year = {2011},
+  volume = {35},
+  pages = {320--333},
+  number = {2},
+  publisher = {Elsevier}
 }
 
-@article{rainbowcolor,
-  title={Why Should Engineers and Scientists Be Worried About Color?},
-  author={Treinish, Lloyd A and others}
+@ARTICLE{spence:1990,
+  author = {Spence, Ian},
+  title = {Visual Psychophysics of Simple Graphical Elements},
+  journal = {Journal of Experimental Psychology: Human Perception and Performance},
+  year = {1990},
+  volume = {16},
+  pages = {683--692},
+  number = {4}
 }
 
-@article{light2004end,
-  title={The end of the rainbow? Color schemes for improved data graphics},
-  author={Light, Adam and Bartlein, Patrick J},
-  journal={Eos, Transactions American Geophysical Union},
-  volume={85},
-  number={40},
-  pages={385--391},
-  year={2004},
-  publisher={Wiley Online Library}
+@ARTICLE{sun2012framework,
+  author = {Sun, John Z and Wang, Grace I and Goyal, Vivek K and Varshney, Lav
+	R},
+  title = {A framework for Bayesian optimality of psychophysical laws},
+  journal = {Journal of Mathematical Psychology},
+  year = {2012},
+  volume = {56},
+  pages = {495--501},
+  number = {6},
+  publisher = {Elsevier}
 }
 
-@article{morgan1992dichromats,
-  title={Dichromats detect colour-camouflaged objects that are not detected by trichromats},
-  author={Morgan, MJ and Adam, A and Mollon, JD},
-  journal={Proceedings of the Royal Society of London. Series B: Biological Sciences},
-  volume={248},
-  number={1323},
-  pages={291--295},
-  year={1992},
-  publisher={The Royal Society}
+@ARTICLE{rainbowcolor,
+  author = {Treinish, Lloyd A and others},
+  title = {Why Should Engineers and Scientists Be Worried About Color?}
 }
 
-@article{sun2012framework,
-  title={A framework for Bayesian optimality of psychophysical laws},
-  author={Sun, John Z and Wang, Grace I and Goyal, Vivek K and Varshney, Lav R},
-  journal={Journal of Mathematical Psychology},
-  volume={56},
-  number={6},
-  pages={495--501},
-  year={2012},
-  publisher={Elsevier}
+@ARTICLE{treisman1980feature,
+  author = {Treisman, Anne M and Gelade, Garry},
+  title = {A feature-integration theory of attention},
+  journal = {Cognitive psychology},
+  year = {1980},
+  volume = {12},
+  pages = {97--136},
+  number = {1},
+  publisher = {Elsevier}
 }
 
-@article{varshney2013we,
-  title={Why do we perceive logarithmically?},
-  author={Varshney, Lav R and Sun, John Z},
-  journal={Significance},
-  volume={10},
-  number={1},
-  pages={28--31},
-  year={2013},
-  publisher={Wiley Online Library}
+@BOOK{tufte,
+  title = {{The Visual Display of Quantitative Information}},
+  publisher = {Graphics Press},
+  year = {1991},
+  author = {Edward Tufte},
+  address = {USA},
+  edition = {2}
 }
 
-@article{treisman1980feature,
-  title={A feature-integration theory of attention},
-  author={Treisman, Anne M and Gelade, Garry},
-  journal={Cognitive psychology},
-  volume={12},
-  number={1},
-  pages={97--136},
-  year={1980},
-  publisher={Elsevier}
+@ARTICLE{varshney2013we,
+  author = {Varshney, Lav R and Sun, John Z},
+  title = {Why do we perceive logarithmically?},
+  journal = {Significance},
+  year = {2013},
+  volume = {10},
+  pages = {28--31},
+  number = {1},
+  publisher = {Wiley Online Library}
 }
 
-@book{helander1997handbook,
-  title={Handbook of human-computer interaction},
-  author={Helander, Martin G and Landauer, Thomas K and Prabhu, Prasad V},
-  year={1997},
-  publisher={Elsevier}
+@BOOK{wainer:2000,
+  title = {Visual Revelations},
+  publisher = {Psychology Press},
+  year = {2000},
+  author = {Howard Wainer}
 }
 
-
-@book{cognition,
-  title={Cognition},
-  author={Matlin, Margaret W},
-  year={2005},
-  publisher={Wiley},
-  isbn={0471450073},
-  edition={6th}
+@ARTICLE{ward1977case,
+  author = {Ward, Lawrence M and Porac, Clare and Coren, Stanley and Girgus,
+	Joan S},
+  title = {The case of misapplied constancy scaling: Depth associations elicited
+	by illusion configurations},
+  journal = {American Journal of Psychology},
+  year = {1977},
+  volume = {90},
+  pages = {609--620},
+  number = {4}
 }
 
-@article{shepard1988mental,
-  title={Mental rotation: Effects of dimensionality of objects and type of task.},
-  author={Shepard, Shenna and Metzler, Douglas},
-  journal={Journal of Experimental Psychology: Human Perception and Performance},
-  volume={14},
-  number={1},
-  pages={3},
-  year={1988},
-  publisher={American Psychological Association}
+@ARTICLE{wegman:1990,
+  author = {Wegman, Edward J.},
+  title = {Hyperdimensional Data Analysis Using Parallel Coordinates},
+  journal = {Journal of the American Statistical Association},
+  year = {1990},
+  volume = {85},
+  pages = {pp. 664-675},
+  number = {411},
+  abstract = {This article presents the basic results of using the parallel coordinate
+	representation as a high-dimensional data analysis tool. Several
+	alternatives are reviewed. The basic algorithm for parallel coordinates
+	is laid out and a discussion of its properties as a projective transformation
+	is given. Several duality results are discussed along with their
+	interpretations as data analysis tools. Permutations of the parallel
+	coordinate axes are discussed, and some examples are given. Some
+	extensions of the parallel coordinate idea are given. The article
+	closes with a discussion of implementation and some of my experiences.},
+  bdsk-url-1 = {http://www.jstor.org/stable/2290001},
+  copyright = {Copyright {\copyright} 1990 American Statistical Association},
+  issn = {01621459},
+  jstor_articletype = {research-article},
+  jstor_formatteddate = {Sep., 1990},
+  language = {English},
+  publisher = {American Statistical Association},
+  url = {http://www.jstor.org/stable/2290001}
 }
 
-@article{kosslyn1978visual,
-  title={Visual images preserve metric spatial information: evidence from studies of image scanning.},
-  author={Kosslyn, Stephen M and Ball, Thomas M and Reiser, Brian J},
-  journal={Journal of experimental psychology: Human perception and performance},
-  volume={4},
-  number={1},
-  pages={47},
-  year={1978},
-  publisher={American Psychological Association}
+@ARTICLE{poggendorf,
+  author = {D. J. Weintraub and D. H. Krantz and T. P. Olson},
+  title = {The Poggendorf Illusion: Consider all the Angles},
+  journal = {Journal of Experimental Psychology: Human Perception and Performance},
+  year = {1980},
+  volume = {6},
+  pages = {718--725}
 }
 
-@article{cleveland:88,
-    author={Cleveland, William S. and McGill, Marilyn E. and  McGill Robert},
-    title={{The Shape Parameter of a Two-Variable Graph}},
-    journal={Journal of the American Statistical Association},
-    volume={83},
-    number={402},
-    pages={289--300}, 
-    year={1988},
-    doi={10.2307/2288843}
+@ARTICLE{westheimer2008illusions,
+  author = {Gerald Westheimer},
+  title = {Illusions in the spatial sense of the eye: Geometrical-optical illusions
+	and the neural representation of space},
+  journal = {Vision Research},
+  year = {2008},
+  volume = {48},
+  pages = {2128--2142},
+  number = {20},
+  doi = {http://dx.doi.org/10.1016/j.visres.2008.05.016},
+  issn = {0042-6989},
+  keywords = {Metrical properties of visual space},
+  url = {http://www.sciencedirect.com/science/article/pii/S0042698908002800}
 }
 
-@book{meilgaard,
-  author={Morten C. Meilgaard and B. Thomas Carr and Gail Vance Civille},
-  title={{Sensory Evaluation Techniques}},
-  edition={4},
-  year=2006,
-  publisher={CRC Press}
+@ARTICLE{westheimer2007irradiation,
+  author = {Westheimer, Gerald},
+  title = {Irradiation, border location, and the shifted-chessboard pattern},
+  journal = {Perception},
+  year = {2007},
+  volume = {36},
+  pages = {483},
+  number = {4}
 }
 
-@Manual{shiny,
-    title = {shiny: Web Application Framework for {R}},
-    author = {{RStudio Inc.}},
-    year = {2013},
-    note = {{R} package version 0.6.0.99},
-    url = {http://www.rstudio.com/shiny/},
-  }
-
-@article{marie:2013,
-  author={Hofmann, Heike and Vendettuoli, Marie},
-  title={{Common Angle Plots} as perception-true visualizations of categorical associations}, 
-  journal={IEEE Transactions on Visualization and Computer Graphics}, 
-   volume={19}, 
-  number={12},
-  year=2013,
-  pages = {2297--2305}
+@BOOK{ggplot2,
+  title = {ggplot2: elegant graphics for data analysis},
+  publisher = {Springer New York},
+  year = {2009},
+  author = {Hadley Wickham},
+  bdsk-url-1 = {http://had.co.nz/ggplot2/book},
+  isbn = {978-0-387-98140-6},
+  url = {http://had.co.nz/ggplot2/book}
 }
 
-@article{spence:1990,
-  author={Spence, Ian},
-  title={Visual Psychophysics of Simple Graphical Elements}, 
-  journal={Journal of Experimental Psychology: Human Perception and Performance}, 
-   volume={16}, 
-  number={4},
-  year=1990,
-  pages = {683--692}
+@BOOK{wolfe2012sensation,
+  title = {{Sensation and Perception}},
+  publisher = {Sinauer Associates, Incorporated},
+  year = {2012},
+  author = {Wolfe, J.M. and Kluender, K.R. and Levi, D.M.},
+  edition = {3},
+  isbn = {9780878935727},
+  lccn = {2011036497},
+  url = {http://books.google.com/books?id=sec4XwAACAAJ}
 }
 
-@article{stackedgraphs,
-  author={Byron, Lee and Wattenberg, Martin},
-  title={Stacked Graphs -- Geometry and Aesthetics}, 
-  journal={IEEE Trans. Vis. Comput. Graph.}, 
-   volume={14}, 
-  number={6},
-  year=2008,
-  pages = {1245--1252}
-}
-
-@book{wolfe2012sensation,
-  title={{Sensation and Perception}},
-  author={Wolfe, J.M. and Kluender, K.R. and Levi, D.M.},
-  isbn={9780878935727},
-  lccn={2011036497},
-  url={http://books.google.com/books?id=sec4XwAACAAJ},
-  year={2012},
-  edition={3},
-  publisher={Sinauer Associates, Incorporated}
-}
-
-@article{ushcn,
-  author={Menne, M.J. and Williams, C.N.  and Vose, R.S. },
-  year={2009},
-  title={The United States Historical 	Climatology Network monthly temperature data Version 2.x},
-  journal={Bulletin of the American 
-	Meteorological Society},
-  number={90}, 
-  pages={993--1007}
-}
-
-
-@misc{EIA,
-  author={{EIA}},
-  year={2014},
-  title={Weekly Retail Gasoline and Diesel Prices},
-  Url={http://www.eia.gov/dnav/pet/pet_pri_gnd_dcus_nus_w.htm},
-  howpublished = {\url{http://www.eia.gov/dnav/pet/pet_pri_gnd_dcus_nus_w.htm}},
-  note = "[Online; accessed 28-Feb-2014]"
-}
-
-@misc{EIA-reformulated,
-  author={{EIA}},
-  year={2014},
-  howpublished = {\url{http://www.eia.gov/petroleum/gasdiesel/reformulated_map.cfm}},
-  title={Gasoline and Diesel Fuel Update},
-  Url={http://www.eia.gov/petroleum/gasdiesel/reformulated_map.cfm},
-  note = "[Online; accessed 28-Feb-2014]"
-}
-
-@techreport{ushcn2,
-  author={Menne, M.J. and Williams, C.N.  and Vose, R.S. },
-  title={United States Historical Climatology Network Daily Temperature, Precipitation, and Snow Data.},
-  institution={Oak Ridge National Laboratory},
-  address={Oak Ridge, Tennessee},
-  year={2013}
-}
-
-@article{colorbrewer,
-	Author = {Mark A. Harrower and Cynthia A. Brewer},
-	Journal = {{The Cartographic Journal}},
-	Number = 1,
-	Pages = {27--37},
-	Title = {{ColorBrewer.org: An Online Tool for Selecting Color Schemes for Maps}},
-	Volume = 40,
-	Year = 2003}
-
-@manual{RColorBrewer,
-	Author = {Erich Neuwirth},
-	Note = {{R} package version 1.0-5},
-	Title = {RColorBrewer: ColorBrewer palettes},
-	Url = {http://CRAN.R-project.org/package=RColorBrewer},
-	Year = {2011},
-	Bdsk-Url-1 = {http://CRAN.R-project.org/package=RColorBrewer}}
-
-@book{tufte,
-	Address = {USA},
-	Author = {Edward Tufte},
-	Edition = 2,
-	Publisher = {Graphics Press},
-	Title = {{The Visual Display of Quantitative Information}},
-	Year = {1991}}
-
-
-@article{schmidt:2008,
-	Author = {Mario Schmidt},
-	Doi = {10.1111/j.1530-9290.2008.00015.x},
-	Journal = {Journal of Industrial Ecology},
-	Number = {12},
-	Pages = {173--185},
-	Title = {The {S}ankey Diagram in Energy and Material Flow Management},
-	Year = {2008},
-	Bdsk-Url-1 = {http://dx.doi.org/10.1111/j.1530-9290.2008.00015.x}}
-
-@misc{minard:1812,
-	Author = {Charles Minard},
-	Comment = {The aim of my carte figurative is less to express statistical results, better done by numbers, than to convey promptly to the eye the relation not given quickly by numbers requiring mental calculation},
-	Publisher = {Regnier et Dourdet, Paris},
-	Title = {Carte figurative des pertes successives en hommes de l'{A}rm\'ee {F}ran\c{c}aise dans la campagne de {R}ussie 1812-1813},
-	Year = {1869}}
-
-@article{day:1991,
-	Author = {Ross H Day and Erica J Stecher},
-	Journal = {Perception},
-	Pages = {49--55},
-	Title = {Sine of an illusion},
-	Volume = {20},
-	Year = {1991}}
-
-@misc{bach,
-	Author = {Michael Bach},
-	Title = {Sine Illusion from Visual Phenomena \& Optical Illusions},
-	Url = {http://www.michaelbach.de/ot/sze_sineIllusion/index.html},
-	Bdsk-Url-1 = {http://www.michaelbach.de/ot/sze_sineIllusion/index.html},
-  year={2007}
-}
-
-@misc{noaa,
-  Author = {{National Climate Data Center}},
-	Title = {Quality Controlled Local Climatological Data},
-	howpublished = {\url{http://cdo.ncdc.noaa.gov/qclcd_ascii/}},
-	Bdsk-Url-1 = {http://cdo.ncdc.noaa.gov/qclcd_ascii/},
-  year={2011},
-  note = "[Online; accessed 25-Oct-2013]"
-}
-
-@misc{epa,
-  Author = {{Environmental Protection Agency}},
-	Title = {Air Quality Data},
-	howpublished = {\url{http://www.epa.gov/airdata/ad_data_daily.html}},
-	Bdsk-Url-1 = {http://www.epa.gov/airdata/ad_data_daily.html},
-  year={2011},
-  note = "[Online; accessed 25-Oct-2013]"
-}
-
-@book{ggplot2,
-	Author = {Hadley Wickham},
-	Isbn = {978-0-387-98140-6},
-	Publisher = {Springer New York},
-	Title = {ggplot2: elegant graphics for data analysis},
-	Url = {http://had.co.nz/ggplot2/book},
-	Year = {2009},
-	Bdsk-Url-1 = {http://had.co.nz/ggplot2/book}}
-
-@manual{R,
-	Address = {Vienna, Austria},
-	Author = {{R Core Team}},
-	Note = {{ISBN} 3-900051-07-0},
-	Organization = {{R} Foundation for Statistical Computing},
-	Title = {{R}: A Language and Environment for Statistical Computing},
-	Url = {http://www.R-project.org/},
-	Year = {2012},
-	Bdsk-Url-1 = {http://www.R-project.org/}}
-
-@misc{pcp:1885,
-	Address = {Paris},
-	Author = {Maurice d'Ocagne},
-	Howpublished = {Gauthier-Villars},
-	Title = {Coordonn\'ees parall\`eles et axiales : M\'ethode de transformation g\'eom\'etrique et proc\'ed\'e nouveau de calcul graphique d{\'e}duits de la consid\'eration des coordonn\'ees parall\`eles},
-	Year = 1885}
-
-@article{inselberg:1985,
-	Author = {Alfred Inselberg},
-	Journal = {The Visual Computer},
-	Number = {2},
-	Pages = {69--91},
-	Title = {The Plane with Parallel Coordinates},
-	Volume = {1},
-	Year = {1985}}
-
-@article{wegman:1990,
-	Abstract = {This article presents the basic results of using the parallel coordinate representation as a high-dimensional data analysis tool. Several alternatives are reviewed. The basic algorithm for parallel coordinates is laid out and a discussion of its properties as a projective transformation is given. Several duality results are discussed along with their interpretations as data analysis tools. Permutations of the parallel coordinate axes are discussed, and some examples are given. Some extensions of the parallel coordinate idea are given. The article closes with a discussion of implementation and some of my experiences.},
-	Author = {Wegman, Edward J.},
-	Copyright = {Copyright {\copyright} 1990 American Statistical Association},
-	Issn = {01621459},
-	Journal = {Journal of the American Statistical Association},
-	Jstor_Articletype = {research-article},
-	Jstor_Formatteddate = {Sep., 1990},
-	Language = {English},
-	Number = {411},
-	Pages = {pp. 664-675},
-	Publisher = {American Statistical Association},
-	Title = {Hyperdimensional Data Analysis Using Parallel Coordinates},
-	Url = {http://www.jstor.org/stable/2290001},
-	Volume = {85},
-	Year = {1990},
-	Bdsk-Url-1 = {http://www.jstor.org/stable/2290001}}
-
-@article{cleveland:1984,
-	Abstract = {The subject of graphical methods for data analysis and for data presentation needs a scientific foundation. In this article we take a few steps in the direction of establishing such a foundation. Our approach is based on graphical perception-the visual decoding of information encoded on graphs-and it includes both theory and experimentation to test the theory. The theory deals with a small but important piece of the whole process of graphical perception. The first part is an identification of a set of elementary perceptual tasks that are carried out when people extract quantitative information from graphs. The second part is an ordering of the tasks on the basis of how accurately people perform them. Elements of the theory are tested by experimentation in which subjects record their judgments of the quantitative information on graphs. The experiments validate these elements but also suggest that the set of elementary tasks should be expanded. The theory provides a guideline for graph construction: Graphs should employ elementary tasks as high in the ordering as possible. This principle is applied to a variety of graphs, including bar charts, divided bar charts, pie charts, and statistical maps with shading. The conclusion is that radical surgery on these popular graphs is needed, and as replacements we offer alternative graphical forms-dot charts, dot charts with grouping, and framed-rectangle charts.},
-	Author = {Cleveland, William S. and McGill, Robert},
-	Copyright = {Copyright {\copyright} 1984 American Statistical Association},
-	Issn = {01621459},
-	Journal = {Journal of the American Statistical Association},
-	Jstor_Articletype = {research-article},
-	Jstor_Formatteddate = {Sep., 1984},
-	Language = {English},
-	Number = {387},
-	Pages = {pp. 531-554},
-	Publisher = {American Statistical Association},
-	Title = {Graphical Perception: Theory, Experimentation, and Application to the Development of Graphical Methods},
-	Url = {http://www.jstor.org/stable/2288400},
-	Volume = {79},
-	Year = {1984},
-	Bdsk-Url-1 = {http://www.jstor.org/stable/2288400}}
-
-@book{wainer:2000,
-	Author = {Howard Wainer},
-	Publisher = {Psychology Press},
-	Title = {Visual Revelations},
-	Year = {2000}}
-
-@book{robbins:2005,
-	Author = {Naomi Robbins},
-	Publisher = {Wiley},
-	Title = {Creating More Effective Graphs},
-	Year = {2005}}
-
-@book{playfair2,
-	Author = {William Playfair and Howard Wainer and Ian Spence},
-	Publisher = {Cambridge University Press},
-	Title = {Playfair's Commercial and Political Atlas and Statistical Breviary},
-	Year = {2005}}
-
-@book{playfair,
-	Address = {London},
-	Author = {William Playfair},
-	Title = {Commercial and Political Atlas},
-	Year = {1786}}
-
-@article{kosara:2006,
-	Acmid = {1137510},
-	Address = {Piscataway, NJ, USA},
-	Author = {Kosara, Robert and Bendix, Fabian and Hauser, Helwig},
-	Doi = {10.1109/TVCG.2006.76},
-	Issn = {1077-2626},
-	Issue_Date = {July 2006},
-	Journal = {IEEE Transactions on Visualization and Computer Graphics},
-	Keywords = {Information visualization, Information visualization, interaction, nominal data, categorical data, multivariate data., categorical data, interaction, multivariate data., nominal data},
-	Month = jul,
-	Number = {4},
-	Numpages = {11},
-	Pages = {558--568},
-	Publisher = {IEEE Educational Activities Department},
-	Title = {Parallel Sets: Interactive Exploration and Visual Analysis of Categorical Data},
-	Url = {http://dx.doi.org/10.1109/TVCG.2006.76},
-	Volume = {12},
-	Year = {2006},
-	Bdsk-Url-1 = {http://dx.doi.org/10.1109/TVCG.2006.76}}
-
-@misc{bbc:2009,
-	Author = {Michael Blastland},
-	Journal = {BBC Magazine},
-	Title = {Go Figure: How to understand risk in 13 clicks},
-	Url = {http://news.bbc.co.uk/2/hi/uk{\_}news/magazine/7937382.stm},
-	Year = {March 11 2009},
-	Bdsk-Url-1 = {http://news.bbc.co.uk/2/hi/uk%7B%5C_%7Dnews/magazine/7937382.stm}}
-
-@inproceedings{schonlau:2003,
-	Author = {Matthias Schonlau},
-	Booktitle = {Proceedings of the Section on Statistical Graphics (JSM '03)},
-	Organization = {American Statistical Association},
-	Title = {Visualizing Categorical Data Arising in the Health Sciences Using Hammock Plots},
-	Year = {2003}}
-
-
-@Book{goldstein,
- author = "E. B. Goldstein",
- title = "Sensation and Perception",
- publisher = "Thomson Wadsworth",
- address = "Belmont, CA",
- year = 2009,
- isbn = "0495601497",
- edition = "Eighth",
-}
-
-@article{silva2011using,
-  title={Using color in visualization: A survey},
-  author={Silva, Samuel and Sousa Santos, Beatriz and Madeira, Joaquim},
-  journal={Computers \& Graphics},
-  volume={35},
-  number={2},
-  pages={320--333},
-  year={2011},
-  publisher={Elsevier}
-}
-
-@Book{hering,
- author = "E. Hering",
- title = "Beitr{\"a}ge zur Physiologie",
- publisher = "Engelmann",
- address = "Leipzig",
- year = 1861,
-}
-
-@article{poggendorf,
- author = "D. J. Weintraub and D. H. Krantz and T. P. Olson",
- title = "The Poggendorf Illusion: Consider all the Angles",
- Journal = "Journal of Experimental Psychology: Human Perception and Performance",
- Volume = 6,
- Year = 1980,
- Pages = {718--725}
-}
-
-@article{cleveland:1985,
-author = "W. S. Cleveland and R. McGill",
-title = "Graphical Perception and Graphical Methods for Analyzing Scientific Data",
-Journal = "Science",
-Volume = 229,
-Number = {4716},
-Pages = {828--833},
-Year = 1985
-}
-
-@article{naturalscenes,
-author = {Howe, Catherine Q. and Purves, Dale}, 
-title = {Natural-scene geometry predicts the perception of angles and line orientation},
-volume = {102}, 
-number = {4}, 
-pages = {1228-1233}, 
-year = {2005}, 
-doi = {10.1073/pnas.0409311102}, 
-abstract ={Visual stimuli that entail the intersection of two or more straight lines elicit a variety of well known perceptual anomalies. Preeminent among these anomalies are the systematic overestimation of acute angles, the underestimation of obtuse angles, and the misperceptions of line orientation exemplified in the classical tilt, Zöllner, and Hering illusions. Here we show that the probability distributions of the possible real-world sources of projected lines and angles derived from a range-image database of natural scenes accurately predict each of these perceptual peculiarities. These findings imply that the perception of angles and oriented lines is determined by the statistical relationship between geometrical stimuli and their physical sources in typical visual environments.}, 
-URL = {http://www.pnas.org/content/102/4/1228.abstract}, 
-eprint = {http://www.pnas.org/content/102/4/1228.full.pdf+html}, 
-journal = {Proceedings of the National Academy of Sciences of the United States of America} 
-}
-
-
-@article{ward1977case,
-  title={The case of misapplied constancy scaling: Depth associations elicited by illusion configurations},
-  author={Ward, Lawrence M and Porac, Clare and Coren, Stanley and Girgus, Joan S},
-  journal={American Journal of Psychology},
-  volume={90},
-  number={4},
-  pages={609--620},
-  year={1977}
-}
-
-@article{westheimer2008illusions,
-title = "Illusions in the spatial sense of the eye: Geometrical-optical illusions and the neural representation of space",
-journal = "Vision Research",
-volume = "48",
-number = "20",
-pages = "2128--2142",
-year = "2008",
-issn = "0042-6989",
-doi = "http://dx.doi.org/10.1016/j.visres.2008.05.016",
-url = "http://www.sciencedirect.com/science/article/pii/S0042698908002800",
-author = "Gerald Westheimer",
-keywords = "Metrical properties of visual space",
-keywords = "Contours",
-keywords = "Spatial primitives",
-keywords = "Perceptual rules",
-keywords = "Hierarchical order "
-}
-
-
-@article{westheimer2007irradiation,
-  title={Irradiation, border location, and the shifted-chessboard pattern},
-  author={Westheimer, Gerald},
-  journal={Perception},
-  volume={36},
-  number={4},
-  pages={483},
-  year={2007}
-}
