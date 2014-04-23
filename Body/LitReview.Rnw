@@ -56,7 +56,7 @@ These sensory cells are specialized neurons, known as rods and cones, which perc
 \caption[Absorption spectra of retinal cells]{Absorption spectra of rods and short, medium, and long wave cones. (image from \protect\citealt{goldstein}, chap 3.3).} \label{fig:ColorRange}
 \end{figure}
 
-Figure \ref{fig:ColorRange} shows the responsiveness of rods and each of the three types of cones to wavelengths of light in the visual spectrum. This image suggests that we have relatively good visual discrimination of the yellow-green portion of the color spectrum, but relatively poor discrimination of colors in the red and blue portions of the color spectrum. As a result, rainbow-style color schemes are seldom appropriate for conveying numerical values, because the correspondance between the perceived information and the displayed information is not accurately maintained by the visual system \citep{rainbowcolor}. In addition, if any of the cones are missing or damaged as a result of genetic mutations, color perception is impaired, resulting in a smaller range of distinguishable colors. This set of impairments is known coloquially as color-blindness, and occurs in an estimated 5\% of the population. 
+Figure \ref{fig:ColorRange} shows the responsiveness of rods and each of the three types of cones to wavelengths of light in the visual spectrum. This image suggests that we have relatively good visual discrimination of the yellow-green portion of the color spectrum, but relatively poor discrimination of colors in the red and blue portions of the color spectrum. As a result, rainbow-style color schemes are seldom appropriate for conveying numerical values, because the correspondance between the perceived information and the displayed information is not accurately maintained by the visual system \citeauthor{rainbowcolor}. In addition, if any of the cones are missing or damaged as a result of genetic mutations, color perception is impaired, resulting in a smaller range of distinguishable colors. This set of impairments is known coloquially as color-blindness, and occurs in an estimated 5\% of the population. 
 
 \paragraph{The Brain}
 Once light hits the retina and causes a signal in the receptor cells, the information travels along the optic nerve and into the brain. Multiple neighboring rods are connected to the same neuron, where each cone is connected to its' own neuron. The combined wiring of rod cells is responsible for the Hermann grid illusion and the Mach bands seen in Figure \ref{fig:InhibitionIllusions}. Both of these illusions are a product of lateral inhibition, which is a result of the wiring of rod cells in the retina.  The specifics of the wiring of the receptor cells are somewhat complex; a more thorough explanation can be found in \citet{goldstein}, chapter 3.4. 
@@ -159,53 +159,52 @@ From a statistical graphics point of view, then, log-transformed scales should b
 \todo[inline]{Expand this? Move? }
 
 \subsubsection{Colorblindness and color perception}
-Another common ``bug" in the visual system are mutations that change (or remove entirely) the cones in the retina. Such mutations are commonly termed ``colorblindness" and encompass many different types of mutations, shifts and deletions that affect color perception in the visual system. These mutations affect up to 5\% of the population, and are generally more common in males than they are in females, as two of the three genes producing cones are found on the X chromosome. Evolutionarily, these mutations are maladaptive for gathering plants, but may be adaptive for seeing camoflauged objects \citep{morgan1992dichromats}. In statistical graphics, however, these mutations often disrupt perception of standard color schemes used in maps, heatmaps, and divergent color scalings. Figure \ref{fig:USflag} shows the us flag as seen by those with different types of color-blindness; the red and blue hues look radically different to those with different mutations. 
+Another common ``bug" in the visual system are mutations that change (or remove entirely) the cones in the retina. Such mutations are commonly termed ``colorblindness" and encompass many different types of mutations, shifts and deletions that affect color perception in the visual system. These mutations affect up to 5\% of the population, and are generally more common in males than they are in females, as two of the three genes producing cones are found on the X chromosome. Evolutionarily, these mutations are maladaptive for gathering plants, but may be adaptive for seeing camoflauged objects \citep{morgan1992dichromats}. In statistical graphics, however, these mutations often disrupt perception of standard color schemes used in maps, heatmaps, and divergent color scalings. 
+% Figure \ref{fig:USflag} shows the United States flag as seen by those with different types of color-blindness; the red and blue hues look radically different to those with different mutations. 
+% 
+% \begin{figure}[htbp]\centering
+% \includegraphics[width=.3\textwidth]{USflagColorBlind}
+% \caption[Colorblindness and US Flags]{An 1895 illustration of the US flag as seen by those with different types of colorblindness.}\label{fig:USflag}
+% \end{figure}
+% 
 
-\begin{figure}[htbp]\centering
-\includegraphics[width=.3\textwidth]{USflagColorBlind}
-\caption[Colorblindness and US Flags]{An 1895 illustration of the US flag as seen by those with different types of colorblindness.}\label{fig:USflag}
-\end{figure}
-
-
-\begin{figure}[htbp]\centering
-\begin{subfigure}[b]{.4\textwidth}\centering
+\begin{figure}[!htbp]\centering
+\begin{center}\begin{subfigure}[b]{.36\textwidth}\centering
   \includegraphics[width=\textwidth]{RainbowScaleOrig}
   \caption{Original Figure}
-\end{subfigure}\\
-
-\begin{subfigure}[b]{.3\textwidth}\centering
+\end{subfigure}\end{center}
+\noindent\hfil\begin{subfigure}[b]{.27\textwidth}\centering
   \includegraphics[width=\textwidth]{RainbowScaleOrig-protanopia}
   \caption{Protanopia}
-\end{subfigure}\hfill
-\begin{subfigure}[b]{.3\textwidth}\centering
+\end{subfigure}\hfil
+\begin{subfigure}[b]{.27\textwidth}\centering
   \includegraphics[width=\textwidth]{RainbowScaleOrig-deuteranopia}
   \caption{Deuteranopia}
-\end{subfigure}\hfill
-\begin{subfigure}[b]{.3\textwidth}\centering
+\end{subfigure}\hfil
+\begin{subfigure}[b]{.27\textwidth}\centering
   \includegraphics[width=\textwidth]{RainbowScaleOrig-tritanopia}
   \caption{Tritanopia}
-\end{subfigure}\hfill
+\end{subfigure}\hfil
 
-\begin{subfigure}[b]{.3\textwidth}\centering
+\noindent\hfil\begin{subfigure}[b]{.27\textwidth}\centering
   \includegraphics[width=\textwidth]{RainbowScaleOrig-protanomaly}
   \caption{Protanomaly}
-\end{subfigure}\hfill
-\begin{subfigure}[b]{.3\textwidth}\centering
+\end{subfigure}\hfil
+\begin{subfigure}[b]{.27\textwidth}\centering
   \includegraphics[width=\textwidth]{RainbowScaleOrig-deuteranomaly}
   \caption{Deuteranomaly}
-\end{subfigure}\hfill
-\begin{subfigure}[b]{.3\textwidth}\centering
+\end{subfigure}\hfil
+\begin{subfigure}[b]{.27\textwidth}\centering
   \includegraphics[width=\textwidth]{RainbowScaleOrig-tritanomaly}
   \caption{Tritanomaly}
-\end{subfigure}\hfill
-\caption[Colorblindness and Rainbow Color Schemes]{Rainbow color scheme with simulations of each of the three types of colorblindness in which a cone is entirely missing. The original image is from \protect\citet{light2004end}, and simulations of color deficiencies were provided by \url{http://www.color-blindness.com/coblis-color-blindness-simulator/}}\label{fig:colorblindrainbow}
+\end{subfigure}\hfil
+\caption[Colorblindness and Rainbow Color Schemes]{Rainbow color scheme with simulations of each of the three types of colorblindness in which a cone is entirely missing. The original image is from \protect\citet{light2004end}}\label{fig:colorblindrainbow}
 \end{figure}
 \comment{I can't tell a difference between the Protan* and Deuteran* pictures in Figure \ref{fig:colorblindrainbow} at all. Is that just me?}
 
-In the natural world, many strategies can be used to compensate for colorblindness; the most common of these strategies is to look for textural variation instead of color variation (which may be why camoflauged objects are easier to see), but these strategies fail when viewing abstract, constructed visual stimuli, such as graphics. Compounding this problem, the rainbow color schemes that are commonly used are particularly vulnerable to misinterpretation by colorblind viewers. Figure \ref{fig:colorblindrainbow} shows a map using a rainbow color scheme (first shown in \citet{light2004end}) and simulated images showing what that map would look like to those with missing cones (-anopia) and cones with altered wavelengths (-anomaly). These simulations show that rainbow color schemes are incredibly difficult for color-deficient individuals to read. \citet{light2004end} provides color schemes that are more appropriate for those with color deficiencies, but not all of these schemes are appropriate for all types of color blindness. \citet{silva2011using} suggest many tools to recommend appropriate color schemes for colorblind users as well as tools to preview graphics as they might look to color-deficient or colorblind users. 
+In the natural world, many strategies can be used to compensate for colorblindness; the most common of these strategies is to look for textural variation instead of color variation (which may be why camoflauged objects are easier to see), but these strategies fail when viewing abstract, constructed visual stimuli, such as graphics. Compounding this problem, the rainbow color schemes that are commonly used are particularly vulnerable to misinterpretation by colorblind viewers. Figure \ref{fig:colorblindrainbow} shows a map using a rainbow color scheme (first shown in \citet{light2004end}) and simulated images showing what that map would look like to those with missing cones (-anopia) and cones with altered wavelengths (-anomaly). , These simulations\footnote{provided by \url{http://www.color-blindness.com/coblis-color-blindness-simulator/}} show that rainbow color schemes are incredibly difficult for color-deficient individuals to read. \citet{light2004end} provides color schemes that are more appropriate for those with color deficiencies, but not all of these schemes are appropriate for all types of color blindness. \citet{silva2011using} suggest many tools to recommend appropriate color schemes for colorblind users as well as tools to preview graphics as they might look to color-deficient or colorblind users. 
 
-
-\todo[inline]{Need to add paragraph on appropriately spaced colors and perception - i.e. green is a good color because we can see a TON of different shades of green, but we have to map to the range of colors we can discriminate. I can't find the citation, though.}
+Appropriately colored maps and graphs are not only useful for those who have impaired color vision, they can also be much easier to read for those with normal vision. \citealt{rainbowcolor} suggest that color schemes which utilize the range of human color vision appropriately produce more aesthetically pleasing graphs and more accurately convey data in a form appropriate for the human perceptual system. 
 
 \subsubsection{Optical Illusions}
 The ``software" programs presented in section \ref{Software} are generally efficient at completing everyday tasks: navigating the environment, avoiding predators (lions or cars, as the case may be), and identifying situations and objects relevant to the task at hand. As with most heuristic-based algorithms, though, these approaches produce suboptimal results when applied to more artificial tasks, such as reading statistical graphics. As such, it is important to understand where conflicts between sensation and perception may occur, so that these conflicts can be dealt with or avoided entirely. In this section, we will discuss several optical illusions and explanations for their occurence based on the visual system.
@@ -311,7 +310,74 @@ The cafe wall illusion is in part due to the contrast between light and dark zon
 The psychology research in this domain is typically very low-level, concerned with the underlying mechanisms of effects within the brain. In statistics, the literature is somewhat more variable; \citet{cleveland:1985} produced the seminal paper on the subject, but outside of their work, there are relatively few papers that examine the accuracy of judgments made from graphs through user studies that mimic the way graphs are used in practice. We will begin with the lower-level graphical perception literature and conclude with studies that have more external validity and are applicable to statistical practice. 
 
 \section{Statistical Graphics}
-\subsection{Low-level perception of graphics}\label{LowLevelGraphics}
+\subsection{Low-level Perception of Statistical Graphics}\label{LowLevelGraphics}
+Much of the lower-level research within the statistical graphics and information visualization community has been performed by those within the psychological community that study human information processing. In particular, \citet{healey1999large, healey2012attention} have produced several papers studying the accuracy of conclusions viewers can make after less than 1/2 of a second of viewing an image. As discussed in section \ref{AttentionPerception} and demonstrated in figure \ref{fig:preattentive}, certain features do not require individual focus to process; these features are called \emph{preattentive} and can be detected on the first glance (typically within 250ms). Healey's work focuses on determining which features can be detected in a pre-attentive fashion, and whether a hierarchy of features exists when these features are combined. Healey suggests that for three-dimensional displays, the 3d layout is determined first, surface structure and volume are determined next, followed by object movement (if present), luminance gradients, and color; he suggests that if there are conflicts between these 5 levels, priority is given to an earlier process \citep{healey2012attention}. \citet{healey1999large} showed that if visualizations are carefully constructed to conform to the architecture of the human visual system (isoluminant colors, removing certain background patterns from textural arrays), visual estimation tasks can be performed preattentively. The experiment also revealed an interference effect between texture and color that corresponds to previously documented interference between preattentive features \citep{triesman1985preattentive}, as shown in figure \ref{fig:preattentiveinterference}.
+
+
+<<preattentive1,echo=FALSE,include=FALSE, fig.width=4, fig.height=4>>=
+set.seed(153253)
+data <- data.frame(expand.grid(x=1:6, y=1:6), color=sample(c(1,2), 36, replace=TRUE))
+data$x <- data$x+rnorm(36, 0, .25)
+data$y <- data$y+rnorm(36, 0, .25)
+suppressWarnings(library(ggplot2))
+new_theme_empty <- theme_bw()
+new_theme_empty$line <- element_blank()
+# new_theme_empty$rect <- element_blank()
+new_theme_empty$strip.text <- element_blank()
+new_theme_empty$axis.text <- element_blank()
+new_theme_empty$plot.title <- element_blank()
+new_theme_empty$axis.title <- element_blank()
+new_theme_empty$plot.margin <- structure(c(0, 0, -1, -1), unit = "lines", valid.unit = 3L, class = "unit")
+
+data$shape <- c(rep(2, 15), 1, rep(2,20))
+library(scales)
+qplot(data=data, x=x, y=y, color=factor(1, levels=c(1,2)), shape=factor(shape), size=I(5))+scale_shape_manual(guide="none", values=c(19, 15)) + scale_color_discrete(guide="none") + new_theme_empty
+
+data$shape <- c(rep(2, 25), 1, rep(2,10))
+qplot(data=data, x=x, y=y, color=factor(shape), shape=I(19), size=I(5))+scale_shape_manual(guide="none", values=c(19, 15)) + scale_color_discrete(guide="none") + new_theme_empty
+@
+
+<<preattentive2,echo=FALSE,include=FALSE, fig.width=4, fig.height=4>>=
+set.seed(1532534)
+data <- data.frame(expand.grid(x=1:6, y=1:6), color=sample(c(1,2), 36, replace=TRUE))
+data$x <- data$x+rnorm(36, 0, .25)
+data$y <- data$y+rnorm(36, 0, .25)
+suppressWarnings(library(ggplot2))
+new_theme_empty <- theme_bw()
+new_theme_empty$line <- element_blank()
+# new_theme_empty$rect <- element_blank()
+new_theme_empty$strip.text <- element_blank()
+new_theme_empty$axis.text <- element_blank()
+new_theme_empty$plot.title <- element_blank()
+new_theme_empty$axis.title <- element_blank()
+new_theme_empty$plot.margin <- structure(c(0, 0, -1, -1), unit = "lines", valid.unit = 3L, class = "unit")
+
+data$shape <- data$color
+qplot(data=data, x=x, y=y, color=factor(color), shape=factor(shape), size=I(5))+scale_shape_manual(guide="none", values=c(19, 15)) + scale_color_discrete(guide="none") + new_theme_empty
+
+
+data$shape[1] <- if(data$shape[1]==2) 1 else 2
+qplot(data=data, x=x, y=y, color=factor(color), shape=factor(shape), size=I(5))+scale_shape_manual(guide="none", values=c(19, 15)) + scale_color_discrete(guide="none") + new_theme_empty
+@
+
+\begin{figure}[htbp]\centering
+\begin{subfigure}[b]{.3\textwidth}\centering
+  \includegraphics[width=\textwidth]{fig-preattentive11}
+  \caption{Shape}\label{preattentiveshape}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{.3\textwidth}\centering
+  \includegraphics[width=\textwidth]{fig-preattentive12}
+  \caption{Color}\label{preattentivecolor}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{.3\textwidth}\centering
+  \includegraphics[width=\textwidth]{fig-preattentive22}
+  \caption{Interference}\label{preattentiveinterference}
+\end{subfigure}
+\caption{Shape and color are detected preattentively in figures (a) and (b), but interfere in figure (c) so that location of the target in (c) is no longer preattentive.}\label{preattentive}
+\end{figure}
+
+
+
 Healey's preattentive feature integration stuff
 \subsection{Higher-level graphical perception}\label{HighLevelGraphics}
 \begin{itemize}
