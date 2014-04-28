@@ -142,6 +142,9 @@ Another facet of visual memory that will be important to understanding perceptio
 \subsubsection{Cognitive Load} Short term memory and other considerations
 \todo[inline]{Add short term memory and importance of freeing up brain cells to make it easier to retain information from graphics}
 
+\citep{gattis1996mapping} ``Integrating information across dimensions normally imposes a heavy cognitive load, but graphs reduce this load by integrating values on dimensions by means of points or lines that simultaneously represent a value or a set of values on more than one dimension. Such visual integration, or ``chunking"... allows people to reason about relations between two or more sets of data on those two or more dimensions." 
+
+
 The ``software" of the visual system is of course more complex than the few programs listed here, but understanding attention, object perception concepts, and how images are stored for later retrieval in the brain will make designing statistical graphics for the visual system easier and will also help with evaluating graphics based on the capabilities of the human visual system. 
 
 
@@ -385,7 +388,7 @@ Healey's work on preattentive perception is interesting, and provides a reasonab
 \subsection{Higher-level graphical perception}\label{HighLevelGraphics}
 Graph perception from a statistician's point of view is more focused on the attentive stage of perception: When asked to answer a question using a graph, what parts of the graph are useful, and how does the information get transferred from the page to working memory in the brain? Several psychological models have been proposed to describe this process; of these, the set of ``task models" seem to be most consistent with empirical evidence. 
 
-These task-based models suggest that task-based graphical perception, e.g. using a graph to answer a specific question involves several stages of information processing \citep{gattis1996mapping}: 
+These task-based models suggest that task-based graphical perception, e.g. using a graph to answer a specific question involves several stages of information processing \citep{ratwani2008thinking}: 
 \begin{enumerate}
 \item Parts of the question are read several times
 \item The graph is searched for relevant information, with focus shifting from the graph axes to the main part of the graph and back again (pattern recognition)
