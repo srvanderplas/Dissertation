@@ -49,6 +49,29 @@
   number = {6}
 }
 
+@ARTICLE{carpenter1998model,
+  author = {Carpenter, Patricia A and Shah, Priti},
+  title = {A model of the perceptual and conceptual processes in graph comprehension.},
+  journal = {Journal of Experimental Psychology: Applied},
+  year = {1998},
+  volume = {4},
+  pages = {75},
+  number = {2},
+  publisher = {American Psychological Association}
+}
+
+@ARTICLE{carswell1992choosing,
+  author = {Carswell, C Melody},
+  title = {Choosing specifiers: An evaluation of the basic tasks model of graphical
+	perception},
+  journal = {Human Factors: The Journal of the Human Factors and Ergonomics Society},
+  year = {1992},
+  volume = {34},
+  pages = {535--554},
+  number = {5},
+  publisher = {Sage Publications}
+}
+
 @ARTICLE{cleveland:88,
   author = {Cleveland, William S. and McGill, Marilyn E. and McGill Robert},
   title = {{The Shape Parameter of a Two-Variable Graph}},
@@ -168,6 +191,17 @@
   pages = {631--652},
   number = {4},
   publisher = {Taylor \& Francis}
+}
+
+@ARTICLE{gattis1996mapping,
+  author = {Gattis, Merideth and Holyoak, Keith J},
+  title = {Mapping conceptual to spatial relations in visual reasoning.},
+  journal = {Journal of Experimental Psychology: Learning, Memory, and Cognition},
+  year = {1996},
+  volume = {22},
+  pages = {231},
+  number = {1},
+  publisher = {American Psychological Association}
 }
 
 @BOOK{goldstein,
@@ -373,6 +407,15 @@
   url = {http://dx.doi.org/10.1109/TVCG.2006.76}
 }
 
+@BOOK{kosslyn1994,
+  title = {Elements of Graph Design},
+  publisher = {W.H. Freeman and Company},
+  year = {1994},
+  author = {Kosslyn, S. M.},
+  owner = {susan},
+  timestamp = {2014.04.28}
+}
+
 @ARTICLE{kosslyn1978visual,
   author = {Kosslyn, Stephen M and Ball, Thomas M and Reiser, Brian J},
   title = {Visual images preserve metric spatial information: evidence from
@@ -528,6 +571,18 @@
   url = {http://www.R-project.org/}
 }
 
+@ARTICLE{ratwani2008thinking,
+  author = {Ratwani, Raj M and Trafton, J Gregory and Boehm-Davis, Deborah A},
+  title = {Thinking graphically: Connecting vision and cognition during graph
+	comprehension.},
+  journal = {Journal of Experimental Psychology: Applied},
+  year = {2008},
+  volume = {14},
+  pages = {36},
+  number = {1},
+  publisher = {American Psychological Association}
+}
+
 @BOOK{robbins:2005,
   title = {Creating More Effective Graphs},
   publisher = {Wiley},
@@ -562,6 +617,13 @@
   booktitle = {Proceedings of the Section on Statistical Graphics (JSM '03)},
   year = {2003},
   organization = {American Statistical Association}
+}
+
+@BOOK{shah2005cambridge,
+  title = {The Cambridge handbook of visuospatial thinking},
+  publisher = {Cambridge University Press},
+  year = {2005},
+  author = {Shah, Priti and Miyake, Akira}
 }
 
 @ARTICLE{shepard1988mental,
@@ -609,13 +671,17 @@
   publisher = {Elsevier}
 }
 
-@ARTICLE{rainbowcolor,
+@ELECTRONIC{rainbowcolor,
   author = {Treinish, Lloyd A and Rogowitz, Bernice E},
-  title = {Why Should Engineers and Scientists Be Worried About Color?},
-  journal = {IBM Thomas J. Watson Research Center, Yorktown Heights, NY},
   year = {2009},
-  publisher = {IBM},
-  url = {http://www.research.ibm.com/people/l/lloydt/color/color.HTM?utm_medium=App.net&utm_source=PourOver}
+  title = {Why Should Engineers and Scientists Be Worried About Color?},
+  organization = {IBM},
+  address = {Thomas J. Watson Research Center 
+	
+	Yorktown Heights, NY},
+  url = {http://www.research.ibm.com/people/l/lloydt/color/color.HTM?utm_medium=App.net&utm_source=PourOver},
+  journal = {IBM Thomas J. Watson Research Center, Yorktown Heights, NY},
+  publisher = {IBM}
 }
 
 @ARTICLE{triesman1985preattentive,
@@ -642,6 +708,16 @@
   pages = {97--136},
   number = {1},
   publisher = {Elsevier}
+}
+
+@INCOLLECTION{trickett2006toward,
+  author = {Trickett, Susan Bell and Trafton, J Gregory},
+  title = {Toward a comprehensive model of graph comprehension: Making the case
+	for spatial cognition},
+  booktitle = {Diagrammatic representation and inference},
+  publisher = {Springer},
+  year = {2006},
+  pages = {286--300}
 }
 
 @BOOK{tufte,
