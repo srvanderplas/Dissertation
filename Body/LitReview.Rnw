@@ -398,6 +398,32 @@ These task-based models suggest that task-based graphical perception, e.g. using
 
 Working within this task-oriented framework, researchers have explored the ``search" portion of the task-based model, the information integration portion of the model, and the types of graphs which facilitate both the ``search" and ``integration" portions of the task. As graph complexity increases, participants may cycle between stages (2) and (3) several times to fully integrate different portions of the graph. The time between these steps may also change, depending on how familiar the reader is with the task and graphic style; those who are more familiar with similar graphics may be able to encode information faster and in larger chunks and thus answer the question more quickly \citep{carpenter1998model}. 
 
+<<clustering, fig.width=4, fig.height=4, echo=F, include=F>>=
+N <- 40
+data <- data.frame(x=c(rnorm(N, 3.5, .3), rnorm(N, 4, .3), rnorm(N, 3, .3)), 
+                   y=c(rnorm(N, 3, .3), rnorm(N, 4, .3), rnorm(N, 4, .3)), 
+                   group=rep(c("A", "B", "C"), each=N))
+
+library(ggplot2)
+qplot(data=data, x=x, y=y) 
+qplot(data=data, x=x, y=y, color=group) + scale_color_brewer(palette="Set1", guide='none')
+@
+
+\begin{figure}[htbp]\centering
+\begin{subfigure}[b]{.45\textwidth}\centering
+  \includegraphics[width=\textwidth]{fig-clustering1}
+  \caption{Proximity-based grouping}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{.45\textwidth}\centering
+  \includegraphics[width=\textwidth]{fig-clustering2}
+  \caption{Proximity and Similarity-based grouping}
+\end{subfigure}\hfill
+\caption[Chunking in Graphs]{The utility of chunking in graph perception. Graph (a) could potentially be described as three distinct clusters of points rather than 120 individual points, but it is much easier to draw conclusions from graph (b), which has colored points that clearly show the grouping structure in the data. The second figure would more probably be encoded and described as three groups of 40 points, which serves as a form of mental data compression.}\label{fig:clustering}
+\end{figure}
+
+
+Analyzing graphs using task-based models emphasizes the importance of spatial relationships in graphs. The gestalt law of proximity and similarity dictates that items which are close together or physically similar (the same shape or color) are perceived as a group; this spatial perception creates ``chunks" of the graph which may be encoded as single objects and thus reduce the mental bandwidth necessary to process the image. Figure \ref{fig:clustering} shows the advantage of ``chunks" in graphs, as the second graph shown is much easier to describe and understand than the first graph, even without the contextual meanings of the variables. Of graphics that present information of similar complexity, graphics that require less effort to understand and search for relevant information are preferrable \citep{cleveland:1985}. More complex models of the graphical perception process suggest that data are integrated on a visual level and then further integrated on a cognitive level, to form successive clusters of information. Once these clusters are formed, further information can be integrated by comparing and contrasting different clusters to understand the higher-level meaning in the graph \citep{ratwani2008thinking}. Graph types which cater to this hierarchical clustering mechanism may be more easily understood by viewers than graphs that do not provide information in a manner easily assimilated by the human brain. 
+
 
 \begin{itemize}
 \item Cleveland \& McGill

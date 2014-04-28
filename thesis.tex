@@ -248,6 +248,9 @@ Another facet of visual memory that will be important to understanding perceptio
 \subsubsection{Cognitive Load} Short term memory and other considerations
 \todo[inline]{Add short term memory and importance of freeing up brain cells to make it easier to retain information from graphics}
 
+\citep{gattis1996mapping} ``Integrating information across dimensions normally imposes a heavy cognitive load, but graphs reduce this load by integrating values on dimensions by means of points or lines that simultaneously represent a value or a set of values on more than one dimension. Such visual integration, or ``chunking"... allows people to reason about relations between two or more sets of data on those two or more dimensions." 
+
+
 The ``software" of the visual system is of course more complex than the few programs listed here, but understanding attention, object perception concepts, and how images are stored for later retrieval in the brain will make designing statistical graphics for the visual system easier and will also help with evaluating graphics based on the capabilities of the human visual system. 
 
 
@@ -275,36 +278,38 @@ Another common ``bug" in the visual system are mutations that change (or remove 
 % 
 
 \begin{figure}[!htbp]\centering
-\begin{center}\begin{subfigure}[b]{.36\textwidth}\centering
+\begin{minipage}[c]{.24\textwidth}
   \includegraphics[width=\textwidth]{RainbowScaleOrig}
-  \caption{Original Figure}
-\end{subfigure}\end{center}
-\noindent\hfil\begin{subfigure}[b]{.27\textwidth}\centering
+\end{minipage}
+\begin{minipage}[c]{.75\textwidth}
+\hfil\begin{subfigure}[b]{.32\textwidth}\centering
   \includegraphics[width=\textwidth]{RainbowScaleOrig-protanopia}
   \caption{Protanopia}
-\end{subfigure}\hfil
-\begin{subfigure}[b]{.27\textwidth}\centering
+\end{subfigure}
+\hfil\begin{subfigure}[b]{.32\textwidth}\centering
   \includegraphics[width=\textwidth]{RainbowScaleOrig-deuteranopia}
   \caption{Deuteranopia}
 \end{subfigure}\hfil
-\begin{subfigure}[b]{.27\textwidth}\centering
+\begin{subfigure}[b]{.32\textwidth}\centering
   \includegraphics[width=\textwidth]{RainbowScaleOrig-tritanopia}
   \caption{Tritanopia}
-\end{subfigure}\hfil
+\end{subfigure}
 
-\noindent\hfil\begin{subfigure}[b]{.27\textwidth}\centering
-  \includegraphics[width=\textwidth]{RainbowScaleOrig-protanomaly}
-  \caption{Protanomaly}
-\end{subfigure}\hfil
-\begin{subfigure}[b]{.27\textwidth}\centering
+\hfil\begin{subfigure}[b]{.32\textwidth}\centering
   \includegraphics[width=\textwidth]{RainbowScaleOrig-deuteranomaly}
   \caption{Deuteranomaly}
 \end{subfigure}\hfil
-\begin{subfigure}[b]{.27\textwidth}\centering
+\begin{subfigure}[b]{.32\textwidth}\centering
+  \includegraphics[width=\textwidth]{RainbowScaleOrig-protanomaly}
+  \caption{Protanomaly}
+\end{subfigure}\hfil
+\begin{subfigure}[b]{.32\textwidth}\centering
   \includegraphics[width=\textwidth]{RainbowScaleOrig-tritanomaly}
   \caption{Tritanomaly}
 \end{subfigure}\hfil
-\caption[Colorblindness and Rainbow Color Schemes]{Rainbow color scheme with simulations of each of the three types of colorblindness in which a cone is entirely missing. The original image is from \protect\citet{light2004end}}\label{fig:colorblindrainbow}
+\end{minipage}
+
+\caption[Colorblindness and Rainbow Color Schemes]{Rainbow color scheme with simulations of each of the six common types of color deficiency. The original image, on the left, is from \protect\citet{light2004end}. The top row of pictures on the right show simulations of the map when cones are entirely missing. The bottom row of pictures show simulations of the map when each cone is altered due to genetic mutation. }\label{fig:colorblindrainbow}
 \end{figure}
 \comment{I can't tell a difference between the Protan* and Deuteran* pictures in Figure \ref{fig:colorblindrainbow} at all. Is that just me?}
 
@@ -434,6 +439,37 @@ Healey's work on preattentive perception is interesting, and provides a reasonab
 \todo[inline]{Add section examining psychological literature (Triesman) for lower-level measurement accuracy style studies?}
 
 \subsection{Higher-level graphical perception}\label{HighLevelGraphics}
+Graph perception from a statistician's point of view is more focused on the attentive stage of perception: When asked to answer a question using a graph, what parts of the graph are useful, and how does the information get transferred from the page to working memory in the brain? Several psychological models have been proposed to describe this process; of these, the set of ``task models" seem to be most consistent with empirical evidence. 
+
+These task-based models suggest that task-based graphical perception, e.g. using a graph to answer a specific question involves several stages of information processing \citep{ratwani2008thinking}: 
+\begin{enumerate}
+\item Parts of the question are read several times
+\item The graph is searched for relevant information, with focus shifting from the graph axes to the main part of the graph and back again (pattern recognition)
+\item Once information is found, the focus shifts between the important part of the graph and the legend several times in order to keep the relevant information in working memory (conceptual relations produce quantitative meaning from visual features)
+\item The question is answered and the participant moves on to another task (the question is related to the encoded quantitative features)
+\end{enumerate}
+
+Working within this task-oriented framework, researchers have explored the ``search" portion of the task-based model, the information integration portion of the model, and the types of graphs which facilitate both the ``search" and ``integration" portions of the task. As graph complexity increases, participants may cycle between stages (2) and (3) several times to fully integrate different portions of the graph. The time between these steps may also change, depending on how familiar the reader is with the task and graphic style; those who are more familiar with similar graphics may be able to encode information faster and in larger chunks and thus answer the question more quickly \citep{carpenter1998model}. 
+
+
+
+
+\begin{figure}[htbp]\centering
+\begin{subfigure}[b]{.45\textwidth}\centering
+  \includegraphics[width=\textwidth]{fig-clustering1}
+  \caption{Proximity-based grouping}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{.45\textwidth}\centering
+  \includegraphics[width=\textwidth]{fig-clustering2}
+  \caption{Proximity and Similarity-based grouping}
+\end{subfigure}\hfill
+\caption[Chunking in Graphs]{The utility of chunking in graph perception. Graph (a) could potentially be described as three distinct clusters of points rather than 120 individual points, but it is much easier to draw conclusions from graph (b), which has colored points that clearly show the grouping structure in the data. The second figure would more probably be encoded and described as three groups of 40 points, which serves as a form of mental data compression.}\label{fig:clustering}
+\end{figure}
+
+
+Analyzing graphs using task-based models emphasizes the importance of spatial relationships in graphs. The gestalt law of proximity and similarity dictates that items which are close together or physically similar (the same shape or color) are perceived as a group; this spatial perception creates ``chunks" of the graph which may be encoded as single objects and thus reduce the mental bandwidth necessary to process the image. Figure \ref{fig:clustering} shows the advantage of ``chunks" in graphs, as the second graph shown is much easier to describe and understand than the first graph, even without the contextual meanings of the variables. Of graphics that present information of similar complexity, graphics that require less effort to understand and search for relevant information are preferrable \citep{cleveland:1985}. More complex models of the graphical perception process suggest that data are integrated on a visual level and then further integrated on a cognitive level, to form successive clusters of information. Once these clusters are formed, further information can be integrated by comparing and contrasting different clusters to understand the higher-level meaning in the graph \citep{ratwani2008thinking}. Graph types which cater to this hierarchical clustering mechanism may be more easily understood by viewers than graphs that do not provide information in a manner easily assimilated by the human brain. 
+
+
 \begin{itemize}
 \item Cleveland \& McGill
 \item Heuristic guidelines i.e. Kosslyn and Tufte
