@@ -169,36 +169,38 @@ Another common ``bug" in the visual system are mutations that change (or remove 
 % 
 
 \begin{figure}[!htbp]\centering
-\begin{center}\begin{subfigure}[b]{.36\textwidth}\centering
+\begin{minipage}[c]{.24\textwidth}
   \includegraphics[width=\textwidth]{RainbowScaleOrig}
-  \caption{Original Figure}
-\end{subfigure}\end{center}
-\noindent\hfil\begin{subfigure}[b]{.27\textwidth}\centering
+\end{minipage}
+\begin{minipage}[c]{.75\textwidth}
+\hfil\begin{subfigure}[b]{.32\textwidth}\centering
   \includegraphics[width=\textwidth]{RainbowScaleOrig-protanopia}
   \caption{Protanopia}
-\end{subfigure}\hfil
-\begin{subfigure}[b]{.27\textwidth}\centering
+\end{subfigure}
+\hfil\begin{subfigure}[b]{.32\textwidth}\centering
   \includegraphics[width=\textwidth]{RainbowScaleOrig-deuteranopia}
   \caption{Deuteranopia}
 \end{subfigure}\hfil
-\begin{subfigure}[b]{.27\textwidth}\centering
+\begin{subfigure}[b]{.32\textwidth}\centering
   \includegraphics[width=\textwidth]{RainbowScaleOrig-tritanopia}
   \caption{Tritanopia}
-\end{subfigure}\hfil
+\end{subfigure}
 
-\noindent\hfil\begin{subfigure}[b]{.27\textwidth}\centering
-  \includegraphics[width=\textwidth]{RainbowScaleOrig-protanomaly}
-  \caption{Protanomaly}
-\end{subfigure}\hfil
-\begin{subfigure}[b]{.27\textwidth}\centering
+\hfil\begin{subfigure}[b]{.32\textwidth}\centering
   \includegraphics[width=\textwidth]{RainbowScaleOrig-deuteranomaly}
   \caption{Deuteranomaly}
 \end{subfigure}\hfil
-\begin{subfigure}[b]{.27\textwidth}\centering
+\begin{subfigure}[b]{.32\textwidth}\centering
+  \includegraphics[width=\textwidth]{RainbowScaleOrig-protanomaly}
+  \caption{Protanomaly}
+\end{subfigure}\hfil
+\begin{subfigure}[b]{.32\textwidth}\centering
   \includegraphics[width=\textwidth]{RainbowScaleOrig-tritanomaly}
   \caption{Tritanomaly}
 \end{subfigure}\hfil
-\caption[Colorblindness and Rainbow Color Schemes]{Rainbow color scheme with simulations of each of the three types of colorblindness in which a cone is entirely missing. The original image is from \protect\citet{light2004end}}\label{fig:colorblindrainbow}
+\end{minipage}
+
+\caption[Colorblindness and Rainbow Color Schemes]{Rainbow color scheme with simulations of each of the six common types of color deficiency. The original image, on the left, is from \protect\citet{light2004end}. The top row of pictures on the right show simulations of the map when cones are entirely missing. The bottom row of pictures show simulations of the map when each cone is altered due to genetic mutation. }\label{fig:colorblindrainbow}
 \end{figure}
 \comment{I can't tell a difference between the Protan* and Deuteran* pictures in Figure \ref{fig:colorblindrainbow} at all. Is that just me?}
 
@@ -381,6 +383,19 @@ Healey's work on preattentive perception is interesting, and provides a reasonab
 \todo[inline]{Add section examining psychological literature (Triesman) for lower-level measurement accuracy style studies?}
 
 \subsection{Higher-level graphical perception}\label{HighLevelGraphics}
+Graph perception from a statistician's point of view is more focused on the attentive stage of perception: When asked to answer a question using a graph, what parts of the graph are useful, and how does the information get transferred from the page to working memory in the brain? Several psychological models have been proposed to describe this process; of these, the set of ``task models" seem to be most consistent with empirical evidence. 
+
+These task-based models suggest that task-based graphical perception, e.g. using a graph to answer a specific question involves several stages of information processing \citep{gattis1996mapping}: 
+\begin{enumerate}
+\item Parts of the question are read several times
+\item The graph is searched for relevant information, with focus shifting from the graph axes to the main part of the graph and back again (pattern recognition)
+\item Once information is found, the focus shifts between the important part of the graph and the legend several times in order to keep the relevant information in working memory (conceptual relations produce quantitative meaning from visual features)
+\item The question is answered and the participant moves on to another task (the question is related to the encoded quantitative features)
+\end{enumerate}
+
+Working within this task-oriented framework, researchers have explored the ``search" portion of the task-based model, the information integration portion of the model, and the types of graphs which facilitate both the ``search" and ``integration" portions of the task. As graph complexity increases, participants may cycle between stages (2) and (3) several times to fully integrate different portions of the graph. The time between these steps may also change, depending on how familiar the reader is with the task and graphic style; those who are more familiar with similar graphics may be able to encode information faster and in larger chunks and thus answer the question more quickly \citep{carpenter1998model}. 
+
+
 \begin{itemize}
 \item Cleveland \& McGill
 \item Heuristic guidelines i.e. Kosslyn and Tufte
