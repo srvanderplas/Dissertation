@@ -455,19 +455,76 @@ These studies indicate that it is important to consider the cognitive processing
 
 Complicating the research into more complex graphs, there are many different types of complexity that can affect graphics. There may be differences in how processing occurs for large amounts of data, but it could also be that more complex x-y relationships could also require more mental effort. In addition, multiple relationships can be depicted simultaneously, either because of underlying groups in the data or because multiple related trends are depicted on the same graph (though this is widely acknowledged as bad practice in statistical graphics). Finally, the mental complexity of the task required of the graph viewer can also factor into the amount of time and effort required to complete a task using a graph. These different types of complexity interact with the graph format; for instance, line graphs are less effected by increasing complexity than bar graphs \citep{tan1994human}, and bar graphs are more affected by increasing complexity than pie charts for ratio judgments \citep{hollands1998judging}. 
 
-Finally, complex graphs often facilitate different types of participant tasks; rather than simple numerical judgments or information lookup, complex graphs may encourage (or require) viewers to use prior knowledge and interpretation skills. These additional complications make experimental study of complex or domain-specific graphs more difficult. Many of these problems (types of complexity, expanded tasks, prior knowledge) make further work in this area somewhat more difficult. One concept that facilitates such work in statistical graphics is the \emph{grammar of graphics}, which we discuss in the next section. 
-
-\subsubsection{The Grammar of Graphics and Testing Statistical Graphs}
-
+Finally, complex graphs often facilitate different types of participant tasks; rather than simple numerical judgments or information lookup, complex graphs may encourage (or require) viewers to use prior knowledge and interpretation skills. These additional complications make experimental study of complex or domain-specific graphs more difficult. Many of these problems (types of complexity, expanded tasks, prior knowledge) make further work in this area somewhat more difficult. One tool that facilitates such work in statistical graphics despite the complications described above is the \emph{grammar of graphics}, which we discuss in the next section, along with other experimental methodology useful for understanding how people perceive statistical graphics. 
 
 \subsection{Interactive graphics?} 
 Not sure if this should be a subsection, but graphics that respond to human interaction violate the two-dimensional graphic paradigm somewhat, which means there are a whole 'nother set of issues to consider... motion illusions, grouping, etc.
 
 \section{Testing Statistical Graphics}
-Methodology for testing graphical perception in humans. Talk about masking, the power of suggestion, habituation, etc. as well as paradigms - search and find, response time, numerical judgments, signal detection, eye tracking. 
-\begin{itemize}
-  \item Tukey
-  \item Cleveland \& McGill
-  \item Lineups
-\end{itemize}
+\subsection{Basic Psychophysics Methodology}
+Method of limits, method of adjustment
+
+\subsection{Testing Images using Psychological Paradigms}
+Habituation, masking, suggestion, priming, visual search, response time, eye tracking
+
+\subsection{Testing Statistical Graphics}
+Tukey, Cleveland \& McGill
+
+
+\subsubsection{The Grammar of Graphics}
+The grammar of graphics, detailed in \citet{wilkinson2006grammar}, is a framework for describing a graphic in terms of its basic component pieces. An implementation of the grammar of graphics for R, \texttt{ggplot2}\citep{ggplot2, wickham2010layered}, provides a useful tool for manipulating graphics to test in an experimental setting. Using the grammar of graphics, it is easy for experimenters to compare different types of charts using the same data, as the underlying structure of the graph remains the same. Figure \ref{fig:grammarplots} shows three plots created using the same data and different geometric objects. Comparing these graphics experimentally would be reasonably simple, and the grammar of graphics helps to control the extraneous variables introduced by utilizing different plot types. 
+
+<<irisdatagrammar, echo=FALSE, include=FALSE, fig.width=4, fig.height=4>>=
+library(ggplot2)
+
+# Density plot
+ggplot(data=iris, aes(x=Sepal.Width, group=Species, fill=Species)) + 
+  geom_density(position="stack") + theme(legend.position=c(.8, .8)) + xlab("Sepal Width")
+
+# Dotplot 
+ggplot(data=iris, aes(x=Sepal.Width, group=Species, fill=Species)) + 
+  geom_dotplot(method='histodot', stackgroups=TRUE) + theme(legend.position=c(.8, .8)) + theme(axis.text.y=element_blank()) + ylab("") + xlab("Sepal Width")
+
+
+# Histogram
+ggplot(data=iris, aes(x=Sepal.Width, group=Species, fill=Species)) + 
+  geom_histogram(position="stack") + theme(legend.position=c(.8, .8)) + xlab("Sepal Width")
+
+@
+
+\begin{figure}[htbp]\centering
+\begin{subfigure}[b]{.33\textwidth}\centering
+  \includegraphics[width=\textwidth]{fig-irisdatagrammar1}
+  \caption{Stacked Density Plot}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{.33\textwidth}\centering
+  \includegraphics[width=\textwidth]{fig-irisdatagrammar2}
+  \caption{Dotplot}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{.33\textwidth}\centering
+  \includegraphics[width=\textwidth]{fig-irisdatagrammar3}
+  \caption{Histogram}
+\end{subfigure}\hfill
+\caption{Three different plots of iris data, created using the grammar of graphics}\label{fig:grammarplots}
+\end{figure}
+
+<<iriscode, echo=TRUE, eval=FALSE, tidy=FALSE>>=
+# Stacked Density plot
+ggplot(data=iris, aes(x=Sepal.Width, fill=Species)) +  
+  geom_density(position="stack")
+
+# Dotplot 
+ggplot(data=iris, aes(x=Sepal.Width, fill=Species)) + 
+  geom_dotplot(method='histodot', stackgroups=TRUE) 
+
+# Histogram
+ggplot(data=iris, aes(x=Sepal.Width, fill=Species)) +  
+  geom_histogram(position="stack")
+
+@
+
+
+\subsubsection{Testing Statistical Graphics using Lineups}
+
+
 
