@@ -472,7 +472,7 @@ Tukey, Cleveland \& McGill
 
 
 \subsubsection{The Grammar of Graphics}
-The grammar of graphics, detailed in \citet{wilkinson2006grammar}, is a framework for describing a graphic in terms of its basic component pieces. An implementation of the grammar of graphics for R, \texttt{ggplot2}\citep{ggplot2, wickham2010layered}, provides a useful tool for manipulating graphics to test in an experimental setting. Using the grammar of graphics, it is easy for experimenters to compare different types of charts using the same data, as the underlying structure of the graph remains the same. Figure \ref{fig:grammarplots} shows three plots created using the same data and different geometric objects. Comparing these graphics experimentally would be reasonably simple, and the grammar of graphics helps to control the extraneous variables introduced by utilizing different plot types. 
+The grammar of graphics, detailed in \citet{wilkinson2006grammar}, is a framework for describing a graphic in terms of its basic component pieces. An implementation of the grammar of graphics for R, \texttt{ggplot2}\citep{ggplot2, wickham2010layered}, provides a useful tool for manipulating graphics to test in an experimental setting. Using the grammar of graphics, it is easy for experimenters to compare different types of charts using the same data, as the underlying structure of the graph remains the same. Figure \ref{fig:grammarplots} shows three plots created using the same data and different geometric objects, and Figure \ref{fig:grammarcode} provides the ggplot2 code to create the plots. Comparing these graphics experimentally would be reasonably simple, and the grammar of graphics helps to control the extraneous variables introduced by utilizing different plot types. 
 
 <<irisdatagrammar, echo=FALSE, include=FALSE, fig.width=4, fig.height=4>>=
 library(ggplot2)
@@ -508,6 +508,7 @@ ggplot(data=iris, aes(x=Sepal.Width, group=Species, fill=Species)) +
 \caption{Three different plots of iris data, created using the grammar of graphics}\label{fig:grammarplots}
 \end{figure}
 
+\begin{figure}[htbp]\centering
 <<iriscode, echo=TRUE, eval=FALSE, tidy=FALSE>>=
 # Stacked Density plot
 ggplot(data=iris, aes(x=Sepal.Width, fill=Species)) +  
@@ -522,7 +523,8 @@ ggplot(data=iris, aes(x=Sepal.Width, fill=Species)) +
   geom_histogram(position="stack")
 
 @
-
+\caption{ggplot2 code to produce Figure \protect\ref{fig:grammarplots}}\label{fig:grammarcode}
+\end{figure}
 
 \subsubsection{Testing Statistical Graphics using Lineups}
 
