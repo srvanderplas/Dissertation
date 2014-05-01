@@ -398,7 +398,34 @@ These task-based models suggest that task-based graphical perception, e.g. using
 \item Once information is found, the focus shifts between the important part of the graph and the legend several times in order to keep the relevant information in working memory (conceptual relations produce quantitative meaning from visual features)
 \item The question is answered and the participant moves on to another task (the question is related to the encoded quantitative features)
 \end{enumerate}
-\todo[inline]{Create a simple graph and illustrate the steps of graph comprehension as described in \protect\citet{shah2005cambridge} pg 430.}
+
+These steps are illustrated in figure \ref{fig:taskgraph}. 
+<<steps,echo=F,include=FALSE, fig.width=4, fig.height=4>>=
+library(datasets)
+library(ggplot2)
+data(faithful)
+qplot(waiting, eruptions, geom="point", data=faithful) + xlab("Time Between Eruptions (minutes)") + ylab("Eruption Time (minutes)") + ggtitle("Old Faithful Eruptions") + geom_smooth(method="lm")
+@
+
+\begin{figure}[htbp]\centering
+\textbf{Question:} What is the relationship between the length of the eruption and the time between eruptions for Old Faithful?
+\begin{minipage}[c]{.45\textwidth}
+\includegraphics[width=\linewidth]{fig-steps}
+\end{minipage}
+\begin{minipage}[c]{.54\textwidth}
+\textbf{Sample mental steps: }
+{\small
+\begin{enumerate}
+\item Understand the question, identify ``length of eruption" and ``time between eruptions" as things to search for in the graph.
+\item Look for ``length of eruption" on the axes, determine that the $y$ coordinate contains that information. Look for ``time between eruptions" on the axes and determine that the $x$ coordinate contains that information. Verify that these quantities are indeed what is being sought by re-reading the question. 
+\item Establish that as the time between eruptions increases, the length of the eruption increases. Note that there seems to be a bimodal distribution of points. 
+\item Answer the question: As the time between eruptions increases, the length of the eruption seems to increase.
+\end{enumerate}
+}
+\end{minipage}
+\caption[Task analysis of a simple graph]{Task analysis of a simple graph-based task. The graph shows the length of the eruption of Old Faithful as a function of the waiting time between eruptions, with a corresponding sample ``mental dialog" of the perceptual tasks involved in answering the question in response to the graph, according to \protect\citet{shah2005cambridge}. }\label{fig:taskgraph}
+\end{figure}
+
 Working within this task-oriented framework, researchers have explored the ``search" portion of the task-based model, the information integration portion of the model, and the types of graphs which facilitate both the ``search" and ``integration" portions of the task. Integration models modify this sequence to allow for more complex graphical relationships to be assimilated, generally as a participant cycles between stages (2) and (3) several times for different portions of the graph in order to understand relationships between different graphical elements. The time required for each of these steps may also change, depending on how familiar the reader is with the task and graphic style; those who are more familiar with similar graphics may be able to encode information faster and in larger chunks and thus answer the question more quickly \citep{carpenter1998model}. 
 
 <<clustering, fig.width=4, fig.height=4, echo=F, include=F>>=
