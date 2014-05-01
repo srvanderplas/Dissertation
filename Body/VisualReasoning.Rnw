@@ -1,3 +1,5 @@
 \chapter{VISUAL REASONING AND STATISTICAL GRAPHICS}
 
-Paper about lineup ability and army tests of visual reasoning
+Experiment setup: Participants will take three army tests designed to measure spatial ability (ability to rotate objects, ability to classify pictures, ability to perform spatial manipulations), a visual search test, and then complete three sections of 20 lineups (for a total of 60 lineups) that have been previously utilized in other experiments. We will compare participants' spatial ability, ability to accurately find a target in a field of distractors, and a self-report measure of their background (major, research training, completion of calculus) to examine whether spatial skills correlate with lineup performance. 
+
+Experiment progress: We have tested 18 students, and are considering increasing sample size once the summer semester begins. 
