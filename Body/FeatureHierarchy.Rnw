@@ -1,5 +1,5 @@
 \chapter{STATISTICAL GRAPHICS AND FEATURE HIERARCHY}
 
-Experiment: We will use Amazon Turk to gather data to construct a feature hierarchy for statistical graphics. For instance, do participants notice color before they notice the slope of a line? The experiment will use the lineup protocol with two test plots; one will have a signal associated with a certain feature (i.e. color) and the other will have a signal associated with the comparison feature (i.e. slope). We intend to examine color, slope, presence of outliers, nonlinear trend, and other traits in this experiment. 
+Experiment Setup: We will use Amazon Turk to gather data to construct a feature hierarchy for statistical graphics. For instance, do participants notice color before they notice the slope of a line? The experiment will use the lineup protocol with two test plots; one will have a signal associated with a certain feature (i.e. color) and the other will have a signal associated with the comparison feature (i.e. slope). We intend to examine color, slope, presence of outliers, nonlinear trend, and other traits in this experiment. 
 
-Progress: We are working on quantifying the strength of the signal in each plot, so that we can ensure that the features are of similar strength. 
+Experiment Progress: We are working on quantifying the strength of the signal in each plot, so that we can ensure that the features are of similar strength. 
