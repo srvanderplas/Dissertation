@@ -404,7 +404,7 @@ These steps are illustrated in figure \ref{fig:taskgraph}.
 library(datasets)
 library(ggplot2)
 data(faithful)
-qplot(waiting, eruptions, geom="point", data=faithful) + xlab("Time Between Eruptions (minutes)") + ylab("Eruption Time (minutes)") + ggtitle("Old Faithful Eruptions") + geom_smooth(method="lm")
+qplot(waiting, eruptions, geom="point", data=faithful) + xlab("Time Between Eruptions (minutes)") + ylab("Eruption Length (minutes)") + ggtitle("Old Faithful Eruptions") + geom_smooth(method="lm")
 @
 
 \begin{figure}[htbp]\centering
