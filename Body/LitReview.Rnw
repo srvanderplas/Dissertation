@@ -305,11 +305,18 @@ The cafe wall illusion is in part due to the contrast between light and dark zon
 The psychology research in this domain is typically very low-level, concerned with the underlying mechanisms of effects within the brain. In statistics, the literature is somewhat more variable; \citet{cleveland:1985} produced the seminal paper on the subject, but outside of their work, there are relatively few papers that examine the accuracy of judgments made from graphs through user studies that mimic the way graphs are used in practice. We will begin with the lower-level graphical perception literature and conclude with studies that have more external validity and are applicable to statistical practice. 
 
 
-\subsection{Cognitive Load}\label{cognitiveload} Short term memory and other considerations
-\todo[inline]{Add short term memory and importance of freeing up brain cells to make it easier to retain information from graphics}
+\subsection{Cognitive Load}\label{cognitiveload}
+It is fairly well established that statistical graphics are useful in part because they can replace long tables of data, summarizing information in a form that is much easier to understand and mentally maniuplate; as such, it would not be out of line to suggest that graphics require less cognitive load than tables of the same data. When we discuss cognitive load, we typically mean the limits in short-term memory, cognitive manipulation, attention, and mental bandwidth that bound our ability to take in new information and draw conclusions from that information. In this section, we will briefly discuss some of these considerations. 
 
-\citep{gattis1996mapping} ``Integrating information across dimensions normally imposes a heavy cognitive load, but graphs reduce this load by integrating values on dimensions by means of points or lines that simultaneously represent a value or a set of values on more than one dimension. Such visual integration, or ``chunking"... allows people to reason about relations between two or more sets of data on those two or more dimensions." 
+\paragraph{Short Term Memory} A famous paper in memory and cognition \citep{miller1956magical} suggests that active memory can contain only 7 (plus or minus two) chunks of information. A chunk of information could be a single letter or number, a meaningful collection of several letters or numbers (e.g. a word or an area code), or an association. This limitation is important in designing information for graphical consumption, because it implies that the number of categories in legends should be limited to 7, to allow a viewer to store the associations within the legend and then use that information to understand the graph. Abuse of this limitation is referred to as a ``color mapping attack" in \citet{conti2005attacking}, a paper detailing the various ways to ``attack" a human visualization system. 
 
+\paragraph{Information Integration}
+Integrating multiple dimensions of information (or mentally combining multiple graphics) is another area which can strain the ability of the brain to utilize information effectively. Well-constructed graphs can help the brain to integrate information by connecting points across dimensions (through the use of regression lines, clustering, etc.), which creates ``chunks" of information that can then be stored in memory in a more compressed format. These chunks are useful because they allow people to draw conclusions from multiple sets of data across multiple dimensions \citep{gattis1996mapping}. Poorly created graphics may make this task harder or even promote misleading chunks; for instance, data that is overplotted may obscure the important trend and may also produce chunks which lead to the wrong associations being stored in memory. 
+
+\paragraph{Attention}
+Human attention is limited; 
+
+The consequences of these limits are that there is a limited amount one can expect to portray graphically; thus graphics should be designed to most efficiently communicate information so that this cognitive overload does not occur. 
 
 \section{Statistical Graphics}
 \subsection{Low-level Perception of Statistical Graphics}\label{LowLevelGraphics}
