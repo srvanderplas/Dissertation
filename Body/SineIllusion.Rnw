@@ -1484,7 +1484,7 @@ X & Lower & $\alpha_X$ & 0.097 & (0.045, 0.150) \\
    & Upper& $\alpha_Y + \beta$  & 0.671 & (0.626, 0.718) \\ 
    \hline
 \end{tabular}
-\caption[Fixed Effects]{Fixed effect estimates of model~(\ref{model1}) for the boundaries for reasonable weights. In parentheses,  95\% parametric bootstrap confidence intervals are given based on model (\ref{model1}) ($N$=1000).}\label{fixedeffectsresults}
+\caption[Sine Illusion Model: Fixed Effects]{Fixed effect estimates of model~(\ref{model1}) for the boundaries for reasonable weights. In parentheses,  95\% parametric bootstrap confidence intervals are given based on model (\ref{model1}) ($N$=1000).}\label{fixedeffectsresults}
 \end{table}
 \begin{table}[hbtp]\centering
 \begin{tabular}{rcccc}
@@ -1496,7 +1496,7 @@ Groups & Correction & Parameter & Estimate & 95\% C.I. \\
   Residual &  &$\sigma$ &  0.304 & (0.290, 0.317) \\ 
    \hline
 \end{tabular}
-\caption[Random Effects]{Overview of random effects for model~(\ref{model1}), including 95\% confidence intervals based on parameteric boostrap results ($N$=1000).}\label{randomeffectsresults}
+\caption[Sine Illusion Model: Random Effects]{Overview of random effects for model~(\ref{model1}), including 95\% confidence intervals based on parameteric boostrap results ($N$=1000).}\label{randomeffectsresults}
 \end{table}
 
 Table \ref{randomeffectsresults} gives an overview of the variance estimates. 95\% confidence intervals are, based on 1000-fold paramteric bootstrap of model~\ref{model1}. All variance components are significant and relevant; variability within a single individual's trials is about half the size of variability across  participants. 
