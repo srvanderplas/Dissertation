@@ -65,7 +65,7 @@ Another important spot on the retina is the blindspot, the area where the optic 
 Figure \ref{fig:ColorRange} shows the responsiveness of rods and each of the three types of cones to wavelengths of light in the visual spectrum. This image suggests that we have relatively good visual discrimination of the yellow-green portion of the color spectrum, but relatively poor discrimination of colors in the red and blue portions of the color spectrum. 
 
 \begin{figure}[htbp]\centering
-\includegraphics[width=.8\textwidth, keepaspectratio=TRUE]{AbsorptionSpectra}
+\includegraphics[width=.6\textwidth, keepaspectratio=TRUE]{AbsorptionSpectra}
 \caption[Absorption spectra of retinal cells]{Absorption spectra of rods and short, medium, and long wave cones. (image from \protect\citealt{goldstein}, chap 3.3).} \label{fig:ColorRange}
 \end{figure}
 
