@@ -331,7 +331,7 @@ The consequence of the limits of human perception and processing capacity is tha
 \section{Statistical Graphics}
 The research studies performed by psychologists studying the perception of graphics is typically very low-level, concerned with the underlying mechanisms of effects within the brain. In statistics, the literature is somewhat more variable; \citet{cleveland:1985} produced the seminal paper on the subject, but outside of that work, there are relatively few papers that examine the accuracy of judgments made from graphs through user studies that mimic the way graphs are used in practice. There have been a few papers in other disciplines as well; business and communications researchers occasionally study graphs and charts as well. We will begin with the lower-level graphical perception literature and conclude with studies that have more external validity and are applicable to statistical practice. 
 
-\subsection{Low-level Perception of Statistical Graphics}\label{LowLevelGraphics}
+\subsection{Preattentive Perception of Statistical Graphics}\label{LowLevelGraphics}
 Much of the lower-level research within the statistical graphics and information visualization community has been performed by those within the psychological community that study human information processing. In particular, \citet{healey1999large, healey2012attention} have produced several papers studying the accuracy of conclusions viewers can make after less than 1/2 of a second of viewing an image. As discussed in section \ref{AttentionPerception} and demonstrated in figure \ref{fig:preattentive}, certain features do not require individual focus to process; these features are called \emph{preattentive} and can be detected on the first glance (typically within 250ms). Healey's work focuses on determining which features can be detected in a pre-attentive fashion, and whether a hierarchy of features exists when these features are combined. Healey suggests that for three-dimensional displays, the 3d layout is determined first, surface structure and volume are determined next, followed by object movement (if present), luminance gradients, and color; he suggests that if there are conflicts between these 5 levels, priority is given to an earlier process \citep{healey2012attention}. \citet{healey1999large} showed that if visualizations are carefully constructed to conform to the architecture of the human visual system (isoluminant colors, removing certain background patterns from textural arrays), visual estimation tasks can be performed preattentively. The experiment also revealed an interference effect between texture and color that corresponds to previously documented interference between preattentive features \citep{triesman1985preattentive}, as shown in figure \ref{fig:preattentiveinterference}.
 
 
@@ -401,11 +401,11 @@ Healey's work on preattentive perception is interesting, and provides a reasonab
 
 % \todo[inline]{Add section examining psychological literature (Triesman) for lower-level measurement accuracy style studies?}
 
-\subsection{Higher-level graphical perception}\label{HighLevelGraphics}
-Graph perception from a statistician's point of view is more focused on the attentive stage of perception: When asked to answer a question using a graph, what parts of the graph are useful, and how does the information get transferred from the page to working memory in the brain? Several psychological models have been proposed to describe this process; of these, the set of ``task models" and ``integration models" seem to be most consistent with empirical evidence. 
+\subsection{Conscious Perception of Statistical Graphics}\label{HighLevelGraphics}
+Graph perception from a statistician's point of view is more focused on the attentive stage of perception: When asked to answer a question using a graph, what parts of the graph are useful, and how is the information transferred from the image to working memory in the brain? Several models have been proposed to describe this process; of these, the set of ``task models" and ``integration models" seem to be most consistent with empirical evidence. 
 
 \subsubsection{Models of Graph Perception}
-These task-based models suggest that task-based graphical perception, e.g. using a graph to answer a specific question involves several stages of information processing \citep{ratwani2008thinking}: 
+These task-based models suggest that task-based graphical perception, e.g. using a graph to answer a specific question involves several stages of information processing \citep{ratwani2008thinking}. 
 \begin{enumerate}
 \item Parts of the question are read several times
 \item The graph is searched for relevant information, with focus shifting from the graph axes to the main part of the graph and back again (pattern recognition)
@@ -414,15 +414,16 @@ These task-based models suggest that task-based graphical perception, e.g. using
 \end{enumerate}
 
 These steps are illustrated in figure \ref{fig:taskgraph}. 
-<<steps,echo=F,include=FALSE, fig.width=4, fig.height=4>>=
+<<steps,echo=F,include=FALSE, fig.width=3.5, fig.height=3.5>>=
 library(datasets)
 library(ggplot2)
 data(faithful)
-qplot(waiting, eruptions, geom="point", data=faithful) + xlab("Time Between Eruptions (minutes)") + ylab("Eruption Length (minutes)") + ggtitle("Old Faithful Eruptions") + geom_smooth(method="lm")
+qplot(waiting, eruptions, geom="jitter", data=faithful) + xlab("Time Between Eruptions (minutes)") + ylab("Eruption Length (minutes)") + ggtitle("Old Faithful Eruptions") + geom_smooth(method="lm")
 @
 
-\begin{figure}[htbp]\centering
+\begin{figure}[htbp]
 \textbf{Question:} What is the relationship between the length of the eruption and the time between eruptions for Old Faithful?
+\begin{center}
 \begin{minipage}[c]{.45\textwidth}
 \includegraphics[width=\linewidth]{fig-steps}
 \end{minipage}
@@ -437,6 +438,7 @@ qplot(waiting, eruptions, geom="point", data=faithful) + xlab("Time Between Erup
 \end{enumerate}
 }
 \end{minipage}
+\end{center}
 \caption[Task analysis of a simple graph]{Task analysis of a simple graph-based task. The graph shows the length of the eruption of Old Faithful as a function of the waiting time between eruptions, with a corresponding sample ``mental dialog" of the perceptual tasks involved in answering the question in response to the graph, according to \protect\citet{shah2005cambridge}. }\label{fig:taskgraph}
 \end{figure}
 
