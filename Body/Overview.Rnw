@@ -1,0 +1,11 @@
+% Chapter 1 of the Thesis Template File
+\chapter{OVERVIEW}
+Explain main problem to solve, describe each chapter and hypothesis in detail. 
+
+\section{Assessment of Previous Work}
+
+\section{Sine Illusion}
+
+\section{Spatial Ability and Statistical Graphics}
+
+\section{Hierarchy of Graphical Elements}
