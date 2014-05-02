@@ -51,10 +51,14 @@ The eye is a complex apparatus, but for our purposes, the most important compone
 Another important spot on the retina is the blindspot, the area where the optic nerve exits the eye to connect the retina to the brain. There are no rods or cones in this region of the retina, and any vision in the region of space that maps onto this point is a result of two mechanisms: binocular vision (the other eye fills in the missing information) and your brain ``filling in" what it believes should be there.
 
 \begin{figure}[htbp]\centering
+\begin{minipage}[c]{\textwidth}
+\vspace{2cm}
 \begin{center}
 \Large
 \textbf{R}\hspace{4in}\textbf{L}
 \end{center}
+\vspace{2cm}
+\end{minipage}
 \caption[Blind Spot]{Illustration of the blind spot in the retina. Close one eye, and focus the other on the appropriate letter (R if the right eye is still open, L if the left eye is still open). Place the paper approximately 1 foot from your eye, and move the paper toward or away from your face until you notice the other letter disappear. Your brain ``fills in" the other letter with the background.}\label{fig:blindspot}
 \end{figure}
 
