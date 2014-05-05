@@ -31,6 +31,15 @@ source(paste(codedir, "functions.r", sep=""))
 
 \chapter{VISUAL REASONING AND STATISTICAL GRAPHICS}\label{visualreasoning}
 
-Experiment setup: Participants will take three army tests designed to measure spatial ability (ability to rotate objects, ability to classify pictures, ability to perform spatial manipulations), a visual search test, and then complete three sections of 20 lineups (for a total of 60 lineups) that have been previously utilized in other experiments. We will compare participants' spatial ability, ability to accurately find a target in a field of distractors, and a self-report measure of their background (major, research training, completion of calculus) to examine whether spatial skills correlate with lineup performance. 
+\section{Introduction}
+Relevant literature: 
+\begin{itemize}
+\item \citet{shah1995conceptual} showed that spatial ability was not correlated with accuracy on a simple two-dimensional line graph description task, but that mathematical ability was correlated with accuracy. 
+\item \citet{just1985cognitive} showed that high-spatial-ability viewers used different rotation strategies than low-spatial-ability viewers when asked to whether three-dimensional alphabet cubes were the same. 
+\item Lineups depend on the ability to search for a signal amid distractors (Visual Search Task) and the ability to infer patterns from stimuli (Pattern Recognition task). Some lineups (polar coords) also depend on the ability to mentally rotate stimuli (spatial rotation task) and mentally manipulate graphs (paper folding task). By breaking the lineup task down into component parts, we can correlate lineup performance with similar cognitive factor tests to determine where additional variation in skill level factors into performance differences. 
+\end{itemize}
+
+\section{Methods}
+Experiment setup: Participants will take three tests designed to measure spatial ability (ability to rotate objects, ability to classify pictures, ability to perform spatial manipulations), a visual search test, and then complete three sections of 20 lineups (for a total of 60 lineups) that have been previously utilized in other experiments. We will compare participants' spatial ability, ability to accurately find a target in a field of distractors, and a self-report measure of their background (major, research training, completion of calculus) to examine whether spatial skills correlate with lineup performance. 
 
 Experiment progress: We have tested 18 students, and are considering increasing sample size once the summer semester begins. 
