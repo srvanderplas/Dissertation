@@ -1,3 +1,34 @@
+\Sexpr{set_parent('../thesis.Rnw')}
+\graphicspath{{Figure/VisualReasoning/}{Images/VisualReasoning/}}
+\renewcommand{\floatpagefraction}{.99}
+
+
+<<visualreasoning-setup, fig.keep='all', cache=FALSE, echo=FALSE, eval=TRUE>>=
+rm(list=ls())
+wd <- getwd()
+if("Body" %in% list.files()){
+  opts_chunk$set(fig.path='Figure/VisualReasoning/fig-', cache.path='cache/', fig.align='center', fig.width=5, fig.height=5, fig.show='hold', par=TRUE, cache=TRUE, concordance=TRUE, autodep=TRUE)
+  datadir <- "Data/VisualReasoning/"
+  imgdir <- "Figure/VisualReasoning/"
+  codedir <- "Code/VisualReasoning/"
+} else {
+  opts_chunk$set(fig.path='../Figure/VisualReasoning/fig-', cache.path='cache/', fig.align='center', fig.width=5, fig.height=5, fig.show='hold', par=TRUE, cache=TRUE, concordance=TRUE, autodep=TRUE, root.dir="../")
+  datadir <- "../Data/VisualReasoning/"
+  imgdir <- "../Figure/VisualReasoning/"
+  codedir <- "../Code/VisualReasoning/"
+}
+options(replace.assign=TRUE,width=70,scipen=3)
+require(knitr)
+
+library(reshape2)
+suppressMessages(library(ggplot2))
+library(plyr)
+suppressMessages(library(gridExtra))
+
+source(paste(codedir, "functions.r", sep=""))
+@
+
+
 \chapter{VISUAL REASONING AND STATISTICAL GRAPHICS}\label{visualreasoning}
 
 Experiment setup: Participants will take three army tests designed to measure spatial ability (ability to rotate objects, ability to classify pictures, ability to perform spatial manipulations), a visual search test, and then complete three sections of 20 lineups (for a total of 60 lineups) that have been previously utilized in other experiments. We will compare participants' spatial ability, ability to accurately find a target in a field of distractors, and a self-report measure of their background (major, research training, completion of calculus) to examine whether spatial skills correlate with lineup performance. 
