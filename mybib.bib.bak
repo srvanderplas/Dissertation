@@ -22,34 +22,35 @@
   number = {1}
 }
 
-@article{anderson1983interactive,
-  title={The interactive effects of caffeine, impulsivity and task demands on a visual search task},
-  author={Anderson, Kristen Joan and Revelle, William},
-  journal={Personality and Individual Differences},
-  volume={4},
-  number={2},
-  pages={127--134},
-  year={1983},
-  publisher={Elsevier}
+@ARTICLE{anderson1983interactive,
+  author = {Anderson, Kristen Joan and Revelle, William},
+  title = {The interactive effects of caffeine, impulsivity and task demands
+	on a visual search task},
+  journal = {Personality and Individual Differences},
+  year = {1983},
+  volume = {4},
+  pages = {127--134},
+  number = {2},
+  publisher = {Elsevier}
 }
 
-@inproceedings{babcock2004building,
- author = {Babcock, Jason S. and Pelz, Jeff B.},
- title = {Building a Lightweight Eyetracking Headgear},
- booktitle = {Proceedings of the 2004 Symposium on Eye Tracking Research \& Applications},
- series = {ETRA '04},
- year = {2004},
- isbn = {1-58113-825-3},
- location = {San Antonio, Texas},
- pages = {109--114},
- numpages = {6},
- url = {http://doi.acm.org/10.1145/968363.968386},
- doi = {10.1145/968363.968386},
- acmid = {968386},
- publisher = {ACM},
- address = {New York, NY, USA},
- keywords = {eyetracking, headgear, lightweight, wearable},
-} 
+@INPROCEEDINGS{babcock2004building,
+  author = {Babcock, Jason S. and Pelz, Jeff B.},
+  title = {Building a Lightweight Eyetracking Headgear},
+  booktitle = {Proceedings of the 2004 Symposium on Eye Tracking Research \& Applications},
+  year = {2004},
+  series = {ETRA '04},
+  pages = {109--114},
+  address = {New York, NY, USA},
+  publisher = {ACM},
+  acmid = {968386},
+  doi = {10.1145/968363.968386},
+  isbn = {1-58113-825-3},
+  keywords = {eyetracking, headgear, lightweight, wearable},
+  location = {San Antonio, Texas},
+  numpages = {6},
+  url = {http://doi.acm.org/10.1145/968363.968386}
+}
 
 @MISC{bach,
   author = {Michael Bach},
@@ -68,15 +69,17 @@
   url = {http://news.bbc.co.uk/2/hi/uk{\_}news/magazine/7937382.stm}
 }
 
-@article{buja2009statistical,
-  title={Statistical inference for exploratory data analysis and model diagnostics},
-  author={Buja, Andreas and Cook, Dianne and Hofmann, Heike and Lawrence, Michael and Lee, Eun-Kyung and Swayne, Deborah F and Wickham, Hadley},
-  journal={Philosophical Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences},
-  volume={367},
-  number={1906},
-  pages={4361--4383},
-  year={2009},
-  publisher={The Royal Society}
+@ARTICLE{buja2009statistical,
+  author = {Buja, Andreas and Cook, Dianne and Hofmann, Heike and Lawrence, Michael
+	and Lee, Eun-Kyung and Swayne, Deborah F and Wickham, Hadley},
+  title = {Statistical inference for exploratory data analysis and model diagnostics},
+  journal = {Philosophical Transactions of the Royal Society A: Mathematical,
+	Physical and Engineering Sciences},
+  year = {2009},
+  volume = {367},
+  pages = {4361--4383},
+  number = {1906},
+  publisher = {The Royal Society}
 }
 
 @ARTICLE{stackedgraphs,
@@ -89,6 +92,18 @@
   number = {6}
 }
 
+@ARTICLE{carswell1987information,
+  author = {Carswell Melody C and Wickens, Christopher D},
+  title = {Information integration and the object display an interaction of
+	task demands and display superiority},
+  journal = {Ergonomics},
+  year = {1987},
+  volume = {30},
+  pages = {511--527},
+  number = {3},
+  publisher = {Taylor \& Francis}
+}
+
 @ARTICLE{carpenter1998model,
   author = {Carpenter, Patricia A and Shah, Priti},
   title = {A model of the perceptual and conceptual processes in graph comprehension.},
@@ -98,17 +113,6 @@
   pages = {75},
   number = {2},
   publisher = {American Psychological Association}
-}
-
-@article{carswell1987information,
-  title={Information integration and the object display an interaction of task demands and display superiority},
-  author={Carswell Melody C and Wickens, Christopher D},
-  journal={Ergonomics},
-  volume={30},
-  number={3},
-  pages={511--527},
-  year={1987},
-  publisher={Taylor \& Francis}
 }
 
 @ARTICLE{carswell1992choosing,
@@ -123,11 +127,12 @@
   publisher = {Sage Publications}
 }
 
-@techreport{chowdhury2012waldo,
-  title={Where’s Waldo: Looking closely at a lineup},
-  author={Chowdhury, N Roy and Cook, DIANNE and Hofmann, Heike and Majumder, Mahbubul and Zhao, Yifan},
-  year={2012},
-  institution={Technical Report 2, Iowa State University, Department of Statistics}
+@TECHREPORT{chowdhury2012waldo,
+  author = {Chowdhury, N Roy and Cook, DIANNE and Hofmann, Heike and Majumder,
+	Mahbubul and Zhao, Yifan},
+  title = {Where’s Waldo: Looking closely at a lineup},
+  institution = {Technical Report 2, Iowa State University, Department of Statistics},
+  year = {2012}
 }
 
 @ARTICLE{cleveland:88,
@@ -192,13 +197,14 @@
   url = {http://www.jstor.org/stable/2288400}
 }
 
-@inproceedings{conti2005attacking,
-  title={Attacking information visualization system usability overloading and deceiving the human},
-  author={Conti, Gregory and Ahamad, Mustaque and Stasko, John},
-  booktitle={Proceedings of the 2005 symposium on Usable privacy and security},
-  pages={89--100},
-  year={2005},
-  organization={ACM}
+@INPROCEEDINGS{conti2005attacking,
+  author = {Conti, Gregory and Ahamad, Mustaque and Stasko, John},
+  title = {Attacking information visualization system usability overloading
+	and deceiving the human},
+  booktitle = {Proceedings of the 2005 symposium on Usable privacy and security},
+  year = {2005},
+  pages = {89--100},
+  organization = {ACM}
 }
 
 @ARTICLE{coren1983subjective,
@@ -219,6 +225,13 @@
   year = {1991},
   volume = {20},
   pages = {49--55}
+}
+
+@article{ekstrom1976manual,
+  title={Manual for kit of factor-referenced cognitive tests},
+  author={Ekstrom, Ruth B and French, John W and Harman, Harry H and Dermen, Diran},
+  journal={Princeton, NJ: Educational Testing Service},
+  year={1976}
 }
 
 @MISC{EIA,
@@ -391,6 +404,18 @@
   address = {Leipzig}
 }
 
+@ARTICLE{hofmann2012graphical,
+  author = {Hofmann, Heike and Follett, Lendie and Majumder, Mahbubul and Cook,
+	Dianne},
+  title = {Graphical tests for power comparison of competing designs},
+  journal = {Visualization and Computer Graphics, IEEE Transactions on},
+  year = {2012},
+  volume = {18},
+  pages = {2441--2448},
+  number = {12},
+  publisher = {IEEE}
+}
+
 @ARTICLE{marie:2013,
   author = {Hofmann, Heike and Vendettuoli, Marie},
   title = {{Common Angle Plots} as perception-true visualizations of categorical
@@ -402,26 +427,15 @@
   number = {12}
 }
 
-@article{hofmann2012graphical,
-  title={Graphical tests for power comparison of competing designs},
-  author={Hofmann, Heike and Follett, Lendie and Majumder, Mahbubul and Cook, Dianne},
-  journal={Visualization and Computer Graphics, IEEE Transactions on},
-  volume={18},
-  number={12},
-  pages={2441--2448},
-  year={2012},
-  publisher={IEEE}
-}
-
-@article{hollands1998judging,
-  title={Judging proportion with graphs: The summation model},
-  author={Hollands, JG and Spence, Ian},
-  journal={Applied Cognitive Psychology},
-  volume={12},
-  number={2},
-  pages={173--190},
-  year={1998},
-  publisher={Chichester; New York: Wiley, c1987-}
+@ARTICLE{hollands1998judging,
+  author = {Hollands, JG and Spence, Ian},
+  title = {Judging proportion with graphs: The summation model},
+  journal = {Applied Cognitive Psychology},
+  year = {1998},
+  volume = {12},
+  pages = {173--190},
+  number = {2},
+  publisher = {Chichester; New York: Wiley, c1987-}
 }
 
 @ARTICLE{naturalscenes,
@@ -545,17 +559,6 @@
   edition = {4}
 }
 
-@article{miller1956magical,
-  title={The magical number seven, plus or minus two: some limits on our capacity for processing information.},
-  author={Miller, George A},
-  journal={Psychological review},
-  volume={63},
-  number={2},
-  pages={81},
-  year={1956},
-  publisher={American Psychological Association}
-}
-
 @TECHREPORT{ushcn2,
   author = {Menne, M.J. and Williams, C.N. and Vose, R.S. },
   title = {United States Historical Climatology Network Daily Temperature, Precipitation,
@@ -574,6 +577,18 @@
   volume = {Version 2.x},
   pages = {993--1007},
   number = {90}
+}
+
+@ARTICLE{miller1956magical,
+  author = {Miller, George A},
+  title = {The magical number seven, plus or minus two: some limits on our capacity
+	for processing information.},
+  journal = {Psychological review},
+  year = {1956},
+  volume = {63},
+  pages = {81},
+  number = {2},
+  publisher = {American Psychological Association}
 }
 
 @MISC{minard:1812,
@@ -749,15 +764,15 @@
   publisher = {Elsevier}
 }
 
-@article{simkin1987information,
-  title={An information-processing analysis of graph perception},
-  author={Simkin, David and Hastie, Reid},
-  journal={Journal of the American Statistical Association},
-  volume={82},
-  number={398},
-  pages={454--465},
-  year={1987},
-  publisher={Taylor \& Francis Group}
+@ARTICLE{simkin1987information,
+  author = {Simkin, David and Hastie, Reid},
+  title = {An information-processing analysis of graph perception},
+  journal = {Journal of the American Statistical Association},
+  year = {1987},
+  volume = {82},
+  pages = {454--465},
+  number = {398},
+  publisher = {Taylor \& Francis Group}
 }
 
 @ARTICLE{spence:1990,
@@ -782,15 +797,16 @@
   publisher = {Elsevier}
 }
 
-@article{tan1994human,
-  title={Human processing of two-dimensional graphics: Information-volume concepts and effects in graph-task fit anchoring frameworks},
-  author={Tan, Joseph K},
-  journal={International Journal of Human-Computer Interaction},
-  volume={6},
-  number={4},
-  pages={414--456},
-  year={1994},
-  publisher={Taylor \& Francis}
+@ARTICLE{tan1994human,
+  author = {Tan, Joseph K},
+  title = {Human processing of two-dimensional graphics: Information-volume
+	concepts and effects in graph-task fit anchoring frameworks},
+  journal = {International Journal of Human-Computer Interaction},
+  year = {1994},
+  volume = {6},
+  pages = {414--456},
+  number = {4},
+  publisher = {Taylor \& Francis}
 }
 
 @ELECTRONIC{rainbowcolor,
@@ -851,24 +867,25 @@
   edition = {2}
 }
 
-@book{eda, 
-  title={Exploratory Data Analysis},
-  publisher={Addison-Wesley},
+@BOOK{eda,
+  title = {Exploratory Data Analysis},
+  publisher = {Addison-Wesley},
   year = {1977},
   author = {John Tukey},
   address = {Reading, Massachusetts},
   isbn = {0201076160}
 }
 
-@article{tversky1989perceptual,
-  title={Perceptual and conceptual factors in distortions in memory for graphs and maps.},
-  author={Tversky, Barbara and Schiano, Diane J},
-  journal={Journal of Experimental Psychology: General},
-  volume={118},
-  number={4},
-  pages={387},
-  year={1989},
-  publisher={American Psychological Association}
+@ARTICLE{tversky1989perceptual,
+  author = {Tversky, Barbara and Schiano, Diane J},
+  title = {Perceptual and conceptual factors in distortions in memory for graphs
+	and maps.},
+  journal = {Journal of Experimental Psychology: General},
+  year = {1989},
+  volume = {118},
+  pages = {387},
+  number = {4},
+  publisher = {American Psychological Association}
 }
 
 @ARTICLE{varshney2013we,
@@ -962,26 +979,15 @@
   number = {4}
 }
 
-@article{wickham2010layered,
-  title={A layered grammar of graphics},
-  author={Wickham, Hadley},
-  journal={Journal of Computational and Graphical Statistics},
-  volume={19},
-  number={1},
-  pages={3--28},
-  year={2010},
-  publisher={Taylor \& Francis}
-}
-
-@article{wickham2010graphical,
-  title={Graphical inference for infovis},
-  author={Wickham, Hadley and Cook, Dianne and Hofmann, Heike and Buja, Andreas},
-  journal={Visualization and Computer Graphics, IEEE Transactions on},
-  volume={16},
-  number={6},
-  pages={973--979},
-  year={2010},
-  publisher={IEEE}
+@ARTICLE{wickham2010layered,
+  author = {Wickham, Hadley},
+  title = {A layered grammar of graphics},
+  journal = {Journal of Computational and Graphical Statistics},
+  year = {2010},
+  volume = {19},
+  pages = {3--28},
+  number = {1},
+  publisher = {Taylor \& Francis}
 }
 
 @BOOK{ggplot2,
@@ -994,11 +1000,23 @@
   url = {http://had.co.nz/ggplot2/book}
 }
 
-@book{wilkinson2006grammar,
-  title={The grammar of graphics},
-  author={Wilkinson, Leland and Wills, D and Rope, D and Norton, A and Dubbs, R},
-  year={2006},
-  publisher={Springer}
+@ARTICLE{wickham2010graphical,
+  author = {Wickham, Hadley and Cook, Dianne and Hofmann, Heike and Buja, Andreas},
+  title = {Graphical inference for infovis},
+  journal = {Visualization and Computer Graphics, IEEE Transactions on},
+  year = {2010},
+  volume = {16},
+  pages = {973--979},
+  number = {6},
+  publisher = {IEEE}
+}
+
+@BOOK{wilkinson2006grammar,
+  title = {The grammar of graphics},
+  publisher = {Springer},
+  year = {2006},
+  author = {Wilkinson, Leland and Wills, D and Rope, D and Norton, A and Dubbs,
+	R}
 }
 
 @BOOK{wolfe2012sensation,
@@ -1012,11 +1030,14 @@
   url = {http://books.google.com/books?id=sec4XwAACAAJ}
 }
 
-@article{zhao2013mind,
-  title={Mind Reading: Using an Eye-Tracker to See How People are Looking at Lineups.},
-  author={Zhao, Yifan and Cook, Dianne and Hofmann, Heike and Majumder, Mahbubul and Chowdhury, Niladri Roy},
-  journal={International Journal of Intelligent Technologies \& Applied Statistics},
-  volume={6},
-  number={4},
-  year={2013}
+@ARTICLE{zhao2013mind,
+  author = {Zhao, Yifan and Cook, Dianne and Hofmann, Heike and Majumder, Mahbubul
+	and Chowdhury, Niladri Roy},
+  title = {Mind Reading: Using an Eye-Tracker to See How People are Looking
+	at Lineups.},
+  journal = {International Journal of Intelligent Technologies \& Applied Statistics},
+  year = {2013},
+  volume = {6},
+  number = {4}
 }
+
