@@ -124,16 +124,75 @@
 \pagenumbering{arabic}
 %-------------------------------------------------------------------------------
 
-\chapter{OVERVIEW}
-Explain main problem to solve, describe each chapter and hypothesis in detail. 
+\setcounter{chapter}{-1}
+\chapter{PROPOSAL}
+There has been quite a bit of research on statistical graphics and visualization; much of it focused on new types of graphics, new software to create graphics, interactivity, usability studies, and the like. Our ability to interpret and use statistical graphics hinges on the interface between the graph itself and the brain that perceives and interprets it, and there is substantially less research on the interplay between graph, eye, brain, and mind than is sufficient to understand the nature of these relationships. 
 
-\section{Assessment of Previous Work}
+The goal of these studies is to further explore the interplay between a static graph, the translation of that graph from paper to mental representation (the journey from eye to brain), and the mental processes that operate on that graph once it is transferred into memory (mind). Understanding the perception of statistical graphics should allow researchers to create more effective graphs which produce fewer distortions and viewer errors while reducing the cognitive load necessary to understand the information presented in the graph. 
 
-\section{Sine Illusion}
+Chapter \ref{litreview} contains a review of past literature which is relevant to the encoding and memory of statistical graphics, encompassing studies from psychology, psychophysics, meterology, business, and statistics. Chapter \ref{sineillusion} disucsses an optical illusion which is frequently present in even simple statistical graphics, but is incredibly difficult to resolve without altering the graph itself. This illusion (and its relative obscurity in the literature on graph perception) serves as a reminder that our graphs are only useful if they are designed with the perceptual system in mind. Chapter \ref{visualreasoning} contains an outline of a study examining the relationship between spatial reasoning abilities and graph perception; this study is currently in progress and should provide useful information about the skills necessary to read statistical graphics. Finally, Chapter \ref{featurehierarchy} contains an outline of a study which seeks to create a hierarchy of salient features, to aid researchers in creating graphics which are constructed to efficiently convey information visually. A summary of these studies (as well as an approximate timeline) is provided in this section for convenience, and more details are provided in the individual chapters, which are formatted in the style of the actual dissertation for conveninence. 
 
-\section{Spatial Ability and Statistical Graphics}
+\section{Literature Review}
+The literature review encompasses many different areas of interdisciplinary research; to ensure that there is a reference for some of the more niche vocabulary in this dissertation, it begins with the physiology of the eye and includes a summary of some basic neuropsychology as well. From there, I discuss some of the psychology and psychophysics research that concerns visual perception, memory, and attention. This research roughly falls in the domain of `cognitive psychology', but includes studies from fields as diverse as meterology and business. After establishing the underlying mechanisms of perception, I then cover some of the research which focuses specifically on statistical graphics, and discuss some of the methodology used in these experiments. I expect that this section will continue to expand during the process of writing the other chapters of this dissertation; as the literature is fragmented across many different subject areas and spans 75 years, it is difficult to ensure that this is a comprehensive summary of the field as it stands today. 
 
-\section{Hierarchy of Graphical Elements}
+\section{The Sine Illusion}
+Chapter \ref{sineillusion} documents an illusion known as the `line-width illusion' or the `sine illusion' which occurs with some frequency in statistical graphics. It discusses the illusion, experimental evidence that the illusion exists even in simple graphics, and the implications of the illusion for statisticians. The presence of this illusion (and the solution for reducing the illusion's effects) serve as an introduction and case study for whether we can actually trust the things we see; the remainder of this dissertation aims to quantify variables which may affect how we answer the simple question ``What am I seeing?" in relation to statistical graphics. 
+
+\section{Visual Reasoning}
+The use of statistical graphics is encouraged because graphics summarize statistical models and results in a form that is easy for most people to understand. The lineup protocol provides a convenient way to compare different types of graphics which display the same data, but results from comparative studies\citep{hofmann2012graphical} have demonstrated that individuals are highly variable in their ability to identify the target plot in a lineup. This study aims to explore the association between spatial reasoning, pattern recognition, and the ability to identify a target plot in a lineup successfully. In order to assess spatial reasoning, several tests from the Factor-Referenced Cognitive Test battery \citep{ekstrom1976manual} which are associated with tasks similar to those utilized to identify a target plot in a lineup were assembled, along with lineups tested in \citep{hofmann2012graphical} and a visual search task similar to the lineup task. To date, 18 undergraduates have completed the battery of tests. 
+
+\section{Hierarchy of Graphical Features}
+\citet{cleveland:1984} created a hierarchy of graphical tasks which have informed graph design for the past 30 years, ranking numerical estimations of graphical features by accuracy. Similarly, \citet{healey1999large} found that there is a hierarchy to preattentive perception of graphical features, in that color and texture can interfere under certain circumstances. Preattentive perception is not particularly applicable to statistical graphics, as most viewers spend more than a second looking at the image, but it would be useful to understand what features in a graph will dominate a viewer's perception: if linear trend information contradicts coloring of points, which feature will a viewer take away from the image? This experiment will use the lineup protocol to examine the features which are most salient to viewers, using pairwise comparisons of shape, color, linear trend, and outliers. A pilot test of potential stimuli in February revealed the difficulty of matching the intensity of the effect for shape, color, and linear trend, so we are working on quantifying the strength of these effects in order to better control the stimuli.
+
+Taken together, these experiments should lay a foundation for exploring the perception of statistical graphics. There has been considerable research into the accuracy of numerical judgments viewers make from graphs, and these studies are useful, but it is more effective to understand how errors in these judgments occur so that the root cause of the error can be addressed directly. Understanding how visual reasoning relates to the ability to make judgments from graphs allows us to tailor graphics to particular target audiences. In addition, understanding the hierarchy of salient features in statistical graphics allows us to clearly communicate the important message from data or statistical models by constructing graphics which are designed specifically for the perceptual system. 
+
+\section{Additional Work} 
+In addition to the work proposed as part of the dissertation, there will be several ``side projects" that may be publishable. The sine illusion correction methods will be bundled into an R package to be published. In addition, I participated in Google Summer of Code 2013 and worked to improve the animint package for R, which converts ggplot2 graphics into interactive, animated d3 graphics for the web. A paper introducing animint was submitted to InfoVis in March 2014 and may be published as part of that conference. I also plan to create a Shiny application which can test lineups using SVG graphics, to make Amazon Turk studies using lineups easier to implement. If time allows, I may also explore the conventional wisdom that using log color scales allows viewers to better map graphical objects to numerical quantities. 
+
+\section{Timeline}
+\begin{table}[htbp]\centering
+\begin{tabular}{|c|c|c|}\hline
+ & Stage & Completion Date\\\hline
+\multirow{6}{*}{Sine Illusion} & Pilot Study & March 2013\\
+ & Data Collection & June 2013\\
+ & Paper Draft & September 2013\\
+ & Paper Submitted (JCGS) & October 2013\\
+ & Paper Revision & March 2013\\
+ & Paper Accepted & (??)\\\hline
+\multirow{5}{*}{Visual Reasoning} & Pilot Study & February 2014\\
+ & Data Collection & (July 2014)\\
+ & Paper Draft & (August 2014)\\
+ & Paper Submitted (??) & (September 2014)\\
+ & Paper Accepted & (??) \\\hline
+\multirow{5}{*}{Feature Hierarchy} & Pilot Study & February 2014\\
+ & Data Collection & (September 2014)\\
+ & Paper Draft & (October 2014)\\
+ & Paper Submitted (??) & (November 2014)\\
+ & Paper Accepted & (??) \\\hline
+Literature Review & Rough Draft & May 2014\\\hline
+\multirow{2}{*}{Exams} & Prelim Oral Exam & May 2014 \\
+ & Final Oral Exam & (January 2014)\\\hline
+\end{tabular}
+\caption{Planned timeline for completion of each portion of the dissertation.}
+\end{table}
+
+\begin{table}[htbp]\centering
+\begin{tabular}{|c|c|c|}\hline
+ & Stage & Completion Date\\\hline
+\multirow{3}{*}{Animint} & GSOC 2013 (coding) & May - July 2013\\
+ & Paper Submitted & March 2014\\
+ & GSOC 2014 (project mentor) & May - September 2014\\\hline
+\multirow{3}{*}{Sine Illusion R package} & Coding & Fall 2013\\
+ & Packaging Functions & (??)\\
+ & R Journal Paper Draft & (??)\\\hline
+\multirow{2}{*}{Lineup Turk Shiny App} & Coding & (June-July 2014)\\
+ & R Package Publication ? & (??)\\\hline
+\multirow{2}{*}{Log Color Scales study} & Data Collection & Fall 2014 (?) \\
+ & Paper Draft & (??)\\\hline
+\end{tabular}
+\caption{Planned timeline for completion of work outside of the dissertation.}
+\end{table}
+
 
 
 
@@ -143,7 +202,7 @@ Explain main problem to solve, describe each chapter and hypothesis in detail.
 
 
 
-\chapter{LITERATURE REVIEW}
+\chapter{LITERATURE REVIEW}\label{litreview}
 
 Statisticians produce graphics for a multitude of reasons: to understand the structure of raw data, to check model assumptions, to present model predictions in an informative fashion; all of these goals are facilitated by appropriate visualizations. Some of these goals are best served by quick-and-dirty representations of the data, while highly polished graphics may be more useful for other goals. Regardless, it is important to convey the data appropriately, which means we must understand how graphics are perceived on at least a basic level. Tukey focused on graphics as a tool for exploratory analysis, because pictures can often display the data in a more coherent fashion than a table or spreadsheet; his book, \citet{eda} details many different types of graphics and the appropriate situations to utilize them. This chapter focuses on the interaction between graphics and the human visual system, with the goal of understanding how  to most efficiently and effectively convey information using statistical graphics. We will first consider the physiology and psychology of the perceptual experience in general, and then address the issue of graph-specific perception. 
 
@@ -385,7 +444,7 @@ Figure \ref{fig:DepthIllusions} contains four of the more interesting optical il
 \caption[Muller Lyer Real World Context]{The Muller-Lyer illusion in a non-ambiguous three-dimensional context.}\label{fig:mullerlyerhouse}
 \end{figure}
 
-Depth illusions in particular result from a conflict between our experience with the three-dimensional world and the appearance of two-dimensional ambiguous stimuli. The Necker cube ``flips" because there are two physical objects that could produce the same retinal image, the Muller-Lyer illusion exists because our experience with the three-dimensional world is harnessed inappropriately for a two-dimensional figure, and the color-constancy illusion exists because our brains automatically correct a pseudo three-dimensional image to represent the reality of that image in the real world. These conflicts occur in statistical graphics as well; Chapter \ref{SineIllusionChapter} provides more information on a class of statistical graphics that trigger three-dimensional heuristics in the brain, producing misleading conclusions.
+Depth illusions in particular result from a conflict between our experience with the three-dimensional world and the appearance of two-dimensional ambiguous stimuli. The Necker cube ``flips" because there are two physical objects that could produce the same retinal image, the Muller-Lyer illusion exists because our experience with the three-dimensional world is harnessed inappropriately for a two-dimensional figure, and the color-constancy illusion exists because our brains automatically correct a pseudo three-dimensional image to represent the reality of that image in the real world. These conflicts occur in statistical graphics as well; Chapter \ref{sineillusion} provides more information on a class of statistical graphics that trigger three-dimensional heuristics in the brain, producing misleading conclusions.
 
 There are other optical illusions that have the potential to appear in statistical graphics but are not easily classified (or necessarily easily explained). Two of these illusions are considered below.
 \paragraph{Other Important Optical Illusions}
@@ -542,7 +601,7 @@ The particular task required of participants in experiments also has an effect; 
 
 The task requirements are mediated by the limits of human processing ability. Chernoff faces, once proposed for visualizing multidimensional data, are difficult to read because viewers are unable to store the legend and the image in working memory; comparisons must be made serially and with conscious attention \citep{shah2005cambridge}. Similarly, while color does not generally correspond to precise quantitative information, certain color schemes utilizing hue, saturation, and brightness together can provide an implicit numerical ordering that does not place exceptional demands on working memory \citep{shah2005cambridge}. Color schemes which correspond to everyday situations (e.g. using a blue to red scale for low to high temperatures) may also reduce the demand on working memory. While specific numerical judgments would still require selective attention, the ``gist" of a graph using such schemes may be understood fairly quickly. 
 
-Other graph features can also influence the inferences viewers make: multiple studies suggest that our mental schematic for a graph is most consistent with a $45^\circ$ trend line \citep{cleveland:88, tversky1989perceptual}. ``Banking to $45^\circ$" is a commonly-cited recommendation for optimal graphics, and does have some limited utility in reducing the strength of the line-width illusion (a more thorough discussion of this heuristic is provided in Chapter \ref{SineIllusionChapter}). Axis scale transformations can make it easier for viewers to spot outliers of data conforming to skewed distributions (though this does require some domain-specific knowledge of statistical distributions), and appropriately labeled graphs can reduce the working memory requirements by reducing the number of ``back-and-forth" comparisons required to pass information into working memory \citep{shah2005cambridge}. 
+Other graph features can also influence the inferences viewers make: multiple studies suggest that our mental schematic for a graph is most consistent with a $45^\circ$ trend line \citep{cleveland:88, tversky1989perceptual}. ``Banking to $45^\circ$" is a commonly-cited recommendation for optimal graphics, and does have some limited utility in reducing the strength of the line-width illusion (a more thorough discussion of this heuristic is provided in Chapter \ref{sineillusion}). Axis scale transformations can make it easier for viewers to spot outliers of data conforming to skewed distributions (though this does require some domain-specific knowledge of statistical distributions), and appropriately labeled graphs can reduce the working memory requirements by reducing the number of ``back-and-forth" comparisons required to pass information into working memory \citep{shah2005cambridge}. 
 
 These studies indicate that it is important to consider the cognitive processing of statistical graphics as well as the data used to generate these graphics: the type of graph, color scheme, annotations, aspect ratio, legends, and axis transformations can all influence the amount of mental processing required to draw conclusions from a graph, as well as the types of conclusions that graph viewers are likely to draw. Many of these features were studied in relative isolation, using simple graphs that may lack real-world context. More complex, domain specific graphs may require higher cognitive load and may promote recruitment of previously acquired knowledge; experiments using simple, bland graphics may not be applicable to more complex graphics meant for experts. What follows is a summary of the relatively sparse literature on these sorts of real-world graphics. 
 
@@ -558,7 +617,7 @@ Finally, complex graphs often facilitate different types of participant tasks; r
 
 \section{Testing Statistical Graphics}
 \subsection{Basic Psychophysics Methodology}
-Psychophysics studies are generally concerned with the ability to detect a stimulus (or a difference between two stimuli). Many classic psychophysical methods are still used in studies today (for an example, see Chapter \ref{SineIllusionChapter}). Several of these methods are mentioned here; for a more thorough review, see \citet{goldstein}. 
+Psychophysics studies are generally concerned with the ability to detect a stimulus (or a difference between two stimuli). Many classic psychophysical methods are still used in studies today (for an example, see Chapter \ref{sineillusion}). Several of these methods are mentioned here; for a more thorough review, see \citet{goldstein}. 
 \paragraph{Method of Limits} The method of limits seeks to determine the level of intensity at which a stimulus is just barely detectable. A series of trials are used, with each trial starting at either the lower or upper range of intensity and incrementally moving towards the opposite end of the range; the observer indicates the point at which they either begin to detect the stimulus or the point at which they can no longer detect the stimulus. At the end of several trials, the detection limits are averaged to produce a measured \emph{absolute threshold}. 
 
 \paragraph{Method of Adjustment} This method is similar to the method of limits, except that the stimulus intensity is adjusted by the observer (not the experimenter) in a continuous manner until the observer can just barely detect the stimulus. This procedure may be repeated several times, with trials averaged to produce a mean value for the absolute threshold. 
@@ -681,7 +740,7 @@ In addition to the visual inference protocols lineups were designed to fulfill \
 
 
 
-\chapter{SIGNS OF THE SINE ILLUSION -- WHY WE NEED TO CARE}\label{SineIllusionChapter}
+\chapter{SIGNS OF THE SINE ILLUSION -- WHY WE NEED TO CARE}\label{SineIllusionChapter}\label{sineillusion}
 %% Abstract
 % Graphical representations have to be true to the data they display. Computational tools ensure this on a technical level. But we also need to take `flaws' of the human perceptual system into account. The sine illusion provides an example where human perception leads to systematic bias in the assessment of the optical stimulus, with a particularly notable impact on perception of time-series data with a seasonal component. In this paper, we discuss the reasons for the illusion and various strategies  useful to break the illusion or reduce its strength. We demonstrate the presence of the illusion in real-world and theoretical situations. We also present data from a user study which demonstrate the dramatic effect the sine illusion can have on conclusions drawn from displayed data.
 
@@ -1477,14 +1536,14 @@ The data for this study was collected with approval from  IRB-ID 13-257.
 
 
 
-\chapter{VISUAL REASONING AND STATISTICAL GRAPHICS}
+\chapter{VISUAL REASONING AND STATISTICAL GRAPHICS}\label{visualreasoning}
 
 Experiment setup: Participants will take three army tests designed to measure spatial ability (ability to rotate objects, ability to classify pictures, ability to perform spatial manipulations), a visual search test, and then complete three sections of 20 lineups (for a total of 60 lineups) that have been previously utilized in other experiments. We will compare participants' spatial ability, ability to accurately find a target in a field of distractors, and a self-report measure of their background (major, research training, completion of calculus) to examine whether spatial skills correlate with lineup performance. 
 
 Experiment progress: We have tested 18 students, and are considering increasing sample size once the summer semester begins. 
 
 
-\chapter{STATISTICAL GRAPHICS AND FEATURE HIERARCHY}
+\chapter{STATISTICAL GRAPHICS AND FEATURE HIERARCHY}\label{featurehierarchy}
 
 Experiment Setup: We will use Amazon Turk to gather data to construct a feature hierarchy for statistical graphics. For instance, do participants notice color before they notice the slope of a line? The experiment will use the lineup protocol with two test plots; one will have a signal associated with a certain feature (i.e. color) and the other will have a signal associated with the comparison feature (i.e. slope). We intend to examine color, slope, presence of outliers, nonlinear trend, and other traits in this experiment. 
 
