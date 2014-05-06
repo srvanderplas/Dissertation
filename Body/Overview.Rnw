@@ -45,7 +45,7 @@ In addition to the work proposed as part of the dissertation, there will be seve
  & Paper Accepted & (??) \\\hline
 Literature Review & Rough Draft & May 2014\\\hline
 \multirow{2}{*}{Exams} & Prelim Oral Exam & May 2014 \\
- & Final Oral Exam & (January 2014)\\\hline
+ & Final Oral Exam & (January 2015)\\\hline
 \end{tabular}
 \caption{Planned timeline for completion of each portion of the dissertation.}
 \end{table}
