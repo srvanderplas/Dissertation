@@ -1,6 +1,6 @@
 # setwd("~/Dropbox/GraphicsGroup/TestingVisualAptitude/")
 
-ans <- read.csv("./Data/VisualAptitude/VisualGraphicsData.csv", stringsAsFactors=F)
+ans <- read.csv(paste(datadir, "VisualGraphicsData.csv", sep=""), stringsAsFactors=F)
 
 key <- ans[1,]
 key[,1:19] <- NA
