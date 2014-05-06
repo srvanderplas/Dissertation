@@ -1,6 +1,6 @@
-setwd("~/Dropbox/GraphicsGroup/TestingVisualAptitude/")
+# setwd("~/Dropbox/GraphicsGroup/TestingVisualAptitude/")
 
-ans <- read.csv("./Data/VisualGraphicsData.csv", stringsAsFactors=F)
+ans <- read.csv("./Data/VisualAptitude/VisualGraphicsData.csv", stringsAsFactors=F)
 
 key <- ans[1,]
 key[,1:19] <- NA
@@ -61,17 +61,17 @@ ans.summary2 <- dcast(longform.sum, id~testtype+testnum, value.var = "value")
 ans.summary2 <- merge(ans[,1:19], ans.summary2)
 pct.ans <- dcast(longform.sum, id~testtype+testnum, value.var="pct.answered")
 
-
-qplot(data=ans.summary, x=card_rot, y=lineup, geom="point")
-
-qplot(data=ans.summary, x=folding, y=lineup, geom="point") 
-
-qplot(data=ans.summary, x=fig_class, y=lineup, geom="point")
-
-qplot(data=ans.summary, x=vis_search, y=lineup, geom="point")
-
+# 
+# qplot(data=ans.summary, x=card_rot, y=lineup, geom="point")
+# 
+# qplot(data=ans.summary, x=folding, y=lineup, geom="point") 
+# 
+# qplot(data=ans.summary, x=fig_class, y=lineup, geom="point")
+# 
+# qplot(data=ans.summary, x=vis_search, y=lineup, geom="point")
+# 
 
 lineup.summary <- melt(ans.summary, id.vars=c(1:14, 19, 23))
-
-qplot(data=lineup.summary, x=value, y=lineup, geom="point") + facet_wrap(~variable, scales="free")
-qplot(data=subset(lineup.summary, variable=="vis_search"), x=value, y=lineup, geom="jitter") + facet_wrap(~variable, scales="free")
+# 
+# qplot(data=lineup.summary, x=value, y=lineup, geom="point") + facet_wrap(~variable, scales="free")
+# qplot(data=subset(lineup.summary, variable=="vis_search"), x=value, y=lineup, geom="jitter") + facet_wrap(~variable, scales="free")
