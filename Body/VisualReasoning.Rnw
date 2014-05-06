@@ -1,21 +1,21 @@
 \Sexpr{set_parent('../thesis.Rnw')}
-\graphicspath{{Figure/VisualReasoning/}{Images/VisualReasoning/}}
+\graphicspath{{Figure/VisualAptitude/}{Images/VisualAptitude/}}
 \renewcommand{\floatpagefraction}{.99}
 
 
-<<visualreasoning-setup, fig.keep='all', cache=FALSE, echo=FALSE, eval=TRUE>>=
+<<VisualAptitude-setup, fig.keep='all', cache=FALSE, echo=FALSE, eval=TRUE>>=
 rm(list=ls())
 wd <- getwd()
 if("Body" %in% list.files()){
-  opts_chunk$set(fig.path='Figure/VisualReasoning/fig-', cache.path='cache/', fig.align='center', fig.width=5, fig.height=5, fig.show='hold', par=TRUE, cache=TRUE, concordance=TRUE, autodep=TRUE)
-  datadir <- "Data/VisualReasoning/"
-  imgdir <- "Figure/VisualReasoning/"
-  codedir <- "Code/VisualReasoning/"
+  opts_chunk$set(fig.path='Figure/VisualAptitude/fig-', cache.path='cache/', fig.align='center', fig.width=5, fig.height=5, fig.show='hold', par=TRUE, cache=TRUE, concordance=TRUE, autodep=TRUE)
+  datadir <- "Data/VisualAptitude/"
+  imgdir <- "Figure/VisualAptitude/"
+  codedir <- "Code/VisualAptitude/"
 } else {
-  opts_chunk$set(fig.path='../Figure/VisualReasoning/fig-', cache.path='cache/', fig.align='center', fig.width=5, fig.height=5, fig.show='hold', par=TRUE, cache=TRUE, concordance=TRUE, autodep=TRUE, root.dir="../")
-  datadir <- "../Data/VisualReasoning/"
-  imgdir <- "../Figure/VisualReasoning/"
-  codedir <- "../Code/VisualReasoning/"
+  opts_chunk$set(fig.path='../Figure/VisualAptitude/fig-', cache.path='cache/', fig.align='center', fig.width=5, fig.height=5, fig.show='hold', par=TRUE, cache=TRUE, concordance=TRUE, autodep=TRUE, root.dir="../")
+  datadir <- "../Data/VisualAptitude/"
+  imgdir <- "../Figure/VisualAptitude/"
+  codedir <- "../Code/VisualAptitude/"
 }
 options(replace.assign=TRUE,width=70,scipen=3)
 require(knitr)
@@ -27,7 +27,7 @@ suppressMessages(library(gridExtra))
 @
 
 
-\chapter{VISUAL REASONING AND STATISTICAL GRAPHICS}\label{visualreasoning}
+\chapter{VISUAL REASONING AND STATISTICAL GRAPHICS}\label{VisualAptitude}
 
 \section{Introduction}
 Relevant literature: 
@@ -74,7 +74,17 @@ Between cognitive tasks, participants will also complete three blocks of 20 line
 In addition to these tests, participants will complete a questionnaire which includes questions about colorblindness, mathematical background, self-perceived verbal/mathematical/artistic skills, time spent playing video games, and undergraduate major. These questions are designed to assess different factors which may influence a participant's skill at reading graphs and performing spatial tasks. 
 
 \section{Results}
-We have tested 18 students, and are considering increasing sample size once the summer semester begins. 
+We have tested 18 students, and are considering increasing sample size once the summer semester begins. Preliminary results are presented graphically in Figure \ref{fig:visualaptitudedata}.
 
-\todo[inline]{Add graphs showing results of student testing to date.}
+<<VisReasoningAnalysis,echo=F,include=F,fig.width=8,fig.height=4>>=
+source(paste(codedir, "Analysis.R", sep=""))
+lineup.summary$variable <- factor(lineup.summary$variable, labels=c("Verbal Skills", "Math Skills", "Art Skills", "Video Game Hrs/Wk", "Card Rotation", "Figure Classification", "Paper Folding", "Visual Search"))
+qplot(data=lineup.summary, x=value, y=lineup, geom="point") + facet_wrap(~variable, scales="free", nrow=2, ncol=4) + xlab("Value") + ylab("Lineup Score (Proportion answered correctly)")
+@
+
+\begin{figure}[htbp]\centering
+\includegraphics[width=\textwidth]{fig-VisReasoningAnalysis}
+\caption[Visual Aptitude Study Results]{Preliminary results of numeric variables compared to lineup score.}\label{fig:visualaptitudedata}
+\end{figure}
+
 
