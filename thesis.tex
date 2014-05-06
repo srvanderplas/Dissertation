@@ -299,7 +299,7 @@ The most basic task of the visual system is to perceive objects in the world aro
 The most commonly cited set of heuristics for object perception (and the set most relevant to statistical graphics) are known as the \emph{Gestalt Laws of Perceptual Organization} (\citealt{goldstein}, Chapter 5.2). These laws are related to the idea ``the whole is greater than the sum of the parts'', that is, that the components of a visual stimulus, when combined, create something that is more meaningful than the separate components considered individually. The Gestalt laws are as follows \citep{goldstein}: 
 
 \begin{itemize}
-\item \textbf{Pragnanz - the law of good figure}. Every stimulus pattern is seen so that the resulting structure is as simple as possible. 
+\item \textbf{Pragnanz - the law of good figure}. (Also referred to as the law of closure) Every stimulus pattern is seen so that the resulting structure is as simple as possible. 
 \item \textbf{Proximity}. Things that are close in space appear to be grouped. 
 \item \textbf{Similarity}. Similar items appear to be grouped together. The law of similarity is usually subordinate to the law of proximity. 
 \item \textbf{Good Continuation}. Points that can be connected to form straight lines or smooth curves seem to belong together, and lines seem to follow the smoothest path. 
@@ -310,7 +310,12 @@ The most commonly cited set of heuristics for object perception (and the set mos
 \item \textbf{Synchrony}. Events occurring at the same time will be perceived as belonging together.
 \end{itemize}
 
-The combination of these laws contributes to our perceptual experience. We have discussed how we attend to visual stimuli and how they are recognized, but for the perceptual experience to be meaningful, previous experiences must be stored into memory in some coherent way. The next section discusses how visual scenes are stored into long-term memory. 
+\begin{figure}[htbp]\centering
+\includegraphics[width=.9\textwidth]{gestalt}
+\caption[The gestalt laws of perception]{The gestalt laws of perception \protect\footnotemark}\label{fig:gestaltlaws}
+\end{figure}
+\protect\footnotetext{From \url{http://yusylvia.files.wordpress.com/2010/03/gestalt_illustration-01.jpg}}
+Figure \ref{fig:gestaltlaws} shows examples of many of the gestalt laws, which when combined help to order our perceptual experience. We have discussed how we attend to visual stimuli and how they are recognized, but for the perceptual experience to be meaningful, previous experiences must be stored into memory in some coherent way. The next section discusses how visual scenes are stored into long-term memory. 
 
 \subsubsection{Visual Memory}
 We have discussed how visual stimuli are perceived and how objects are recognized; we now must examine how visual stimuli are encoded into memory. Most researchers believe that visual perceptions are encoded in an analog fashion, so that the memory of an image is closely related to the perception of that same image \citep{cognition}. Other theories suggest that visual perceptions are encoded semantically, that is, the description of a visual scene would be encoded, rather than a mental ``image" of that scene. Both theories are likely at least partially correct, but the analog encoding of visual images is more relevant to statistical graphics because the accuracy of the stored image has the potential to affect recall of the contents of that image (and thus what people remember about a particular graphic). Experimental evidence for analog encoding includes the mental rotation task, where participants must determine whether or not a figure is a rotation of a target figure, as shown in figure \ref{fig:mentalRotation}. \citet{shepard1988mental} showed that reaction time was proportional to the angle of rotation of the stimuli, which suggests that participants were mentally rotating the figure as they would rotate a three-dimensional figure in space. 
@@ -1536,11 +1541,66 @@ The data for this study was collected with approval from  IRB-ID 13-257.
 
 
 
+
+\graphicspath{{Figure/VisualReasoning/}{Images/VisualReasoning/}}
+\renewcommand{\floatpagefraction}{.99}
+
+
+
+
+
+
 \chapter{VISUAL REASONING AND STATISTICAL GRAPHICS}\label{visualreasoning}
 
-Experiment setup: Participants will take three army tests designed to measure spatial ability (ability to rotate objects, ability to classify pictures, ability to perform spatial manipulations), a visual search test, and then complete three sections of 20 lineups (for a total of 60 lineups) that have been previously utilized in other experiments. We will compare participants' spatial ability, ability to accurately find a target in a field of distractors, and a self-report measure of their background (major, research training, completion of calculus) to examine whether spatial skills correlate with lineup performance. 
+\section{Introduction}
+Relevant literature: 
+\begin{itemize}
+\item \citet{shah1995conceptual} showed that spatial ability was not correlated with accuracy on a simple two-dimensional line graph description task, but that mathematical ability was correlated with accuracy. 
+\item \citet{just1985cognitive} showed that high-spatial-ability viewers used different rotation strategies than low-spatial-ability viewers when asked to whether three-dimensional alphabet cubes were the same. 
+\item \citet{hofmann2012graphical} for lineup stimuli
+\end{itemize}
 
-Experiment progress: We have tested 18 students, and are considering increasing sample size once the summer semester begins. 
+Lineups depend on the ability to search for a signal amid distractors (Visual Search Task) and the ability to infer patterns from stimuli (Pattern Recognition task). Some lineups (polar coords) also depend on the ability to mentally rotate stimuli (spatial rotation task) and mentally manipulate graphs (paper folding task). By breaking the lineup task down into component parts, we can correlate lineup performance with similar cognitive factor tests to determine where additional variation in skill level factors into performance differences. 
+
+\section{Methods}
+Participants will complete the following tasks (sample pictures included, full stimuli set will be added to the appendix once testing is complete): 
+\begin{itemize}
+\item Visual Search Task: designed to test participants' ability to find a target stimulus in a field of distractors. An example is shown in figure \ref{fig:VST}. 
+\begin{figure}[htbp]\centering
+\includegraphics[width=.7\textwidth]{VisualSearch}
+\caption[Visual Search Task]{Visual Search Task. Participants are instructed to find the plot numbered 1-24 which matches the plot labeled "Target". Participants will complete up to 25 of these tasks in 5 minutes.}\label{fig:VST}
+\end{figure}
+\item Paper Folding Task: tests participants' ability to visualize and mentally manipulate figures in three dimensions. Associated with the ability to extrapolate symmetry and reflection over multiple steps. An example is shown in figure \ref{fig:paperfolding}.
+\begin{figure}[htbp]\centering
+\includegraphics[width=.9\textwidth]{paperfolding}
+\caption[Paper Folding Task]{Paper Folding Task. Participants are instructed to pick the figure matching the sequence of steps shown in the left-hand figure. Participants will complete up to 20 of these tasks in 6 minutes.}\label{fig:paperfolding}
+\end{figure}
+\item Card Rotation Task: tests participant's ability to rotate objects in two dimensions to distinguish between left-hand and right-hand versions of the same figure. Tests spatial reasoning ability and mental rotation skills. An example is shown in figure \ref{fig:cardrotation}.
+\begin{figure}[htbp]\centering
+\includegraphics[width=.9\textwidth]{cardrotation}
+\caption[Card Rotation Task]{Card Rotation Task. Participants mark each figure on the right hand side as either the same or different than the figure on the left hand side of the dividing line. Participants will complete up to 20 of these tasks (each consisting of 8 figures) in 6 minutes.}\label{fig:cardrotation}
+\end{figure}
+\item Figure Classification Task: tests participant's ability to extrapolate rules from provided figures. This task is associated with visual reasoning capabilities and we expect that it should correlate with the ability to pick out a signal plot from a lineup. An example is shown in figure \ref{fig:figureclassification}. 
+\begin{figure}[htbp]\centering
+\includegraphics[width=.9\textwidth]{figureclassification}
+\caption[Figure Classification Task]{Card Rotation Task. Participants classify each figure in the second row as belonging to group 1, 2, or 3 (if applicable). Participants will complete up to 14 of these tasks (each consisting of 8 figures to classify) in 8 minutes.}\label{fig:figureclassification}
+\end{figure}
+\end{itemize}
+
+Between cognitive tasks, participants will also complete three blocks of 20 lineups each. These lineups have been previously tested \citep{hofmann2012graphical} and include some null lineups (i.e. lineups without a target plot). Participants will have 5 minutes to complete each block of 20 lineups. Figure \ref{fig:lineup} shows a sample lineup of box plots. 
+
+\begin{figure}[htbp]\centering
+\includegraphics[width=.9\textwidth]{lineup}
+\caption[Sample Lineup]{A sample lineup. Participants are instructed to choose the plot which appears most different from the others. In this lineup, plot 13 is the target. }\label{fig:lineup}
+\end{figure}
+
+In addition to these tests, participants will complete a questionnaire which includes questions about colorblindness, mathematical background, self-perceived verbal/mathematical/artistic skills, time spent playing video games, and undergraduate major. These questions are designed to assess different factors which may influence a participant's skill at reading graphs and performing spatial tasks. 
+
+\section{Results}
+We have tested 18 students, and are considering increasing sample size once the summer semester begins. 
+
+\todo[inline]{Add graphs showing results of student testing to date.}
+
 
 
 \chapter{STATISTICAL GRAPHICS AND FEATURE HIERARCHY}\label{featurehierarchy}
