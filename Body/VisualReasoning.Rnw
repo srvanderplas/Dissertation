@@ -84,13 +84,14 @@ lineup.summary$variable <- factor(lineup.summary$variable, levels=c("Card Rotati
 qplot(data=lineup.summary, x=value, y=lineup, geom="point", shape=I(1), size=I(3)) + facet_wrap(~variable, scales="free_x", ncol=3) + xlab("Value") + ylab("Lineup Score (# Correct - 1/20 # Incorrect)") + geom_smooth(method="lm")
 ggsave(paste(imgdir, "fig-VisReasoningAnalysisCts.png", sep=""), width=6, height=4)
 
+lineup.summary.categorical <- rbind(lineup.summary.categorical, data.frame(id=1, lineup=NA, variable="verbal_skills", value=1))
+lineup.summary.categorical <- rbind(lineup.summary.categorical, data.frame(id=1, lineup=NA, variable="math_skills", value=1))
 lineup.summary.categorical$variable <- factor(lineup.summary.categorical$variable, labels=c("Age", "Sex", "Math/Science Research", "Statistics Class", "Calculus 1", "Verbal Skills", "Math Skills", "Art Skills", "AutoCAD Experience"))
 lineup.summary.categorical$value[lineup.summary.categorical$value=="f"] <- "Female"
 lineup.summary.categorical$value[lineup.summary.categorical$value=="m"] <- "Male"
 lineup.summary.categorical$value[lineup.summary.categorical$value=="y"] <- "TRUE"
 lineup.summary.categorical$value[lineup.summary.categorical$value=="n"] <- "FALSE"
-lineup.summary.categorical <- rbind(lineup.summary.categorical, data.frame(id=1, lineup=NA, variable="verbal_skills", value=1))
-lineup.summary.categorical <- rbind(lineup.summary.categorical, data.frame(id=1, lineup=NA, variable="math_skills", value=1))
+
 
 qplot(data=lineup.summary.categorical, x=value, y=lineup, geom="point", shape=I(1), size=I(3)) + facet_wrap(~variable, scales="free_x", ncol=3) + xlab("Value") + ylab("Lineup Score (# Correct - 1/20 # Incorrect)") 
 ggsave(paste(imgdir, "fig-VisReasoningAnalysisCat.png", sep=""), width=6, height=6)
