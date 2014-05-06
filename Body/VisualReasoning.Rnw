@@ -75,17 +75,27 @@ Between cognitive tasks, participants will also complete three blocks of 20 line
 In addition to these tests, participants will complete a questionnaire which includes questions about colorblindness, mathematical background, self-perceived verbal/mathematical/artistic skills, time spent playing video games, and undergraduate major. These questions are designed to assess different factors which may influence a participant's skill at reading graphs and performing spatial tasks. 
 
 \section{Results}
-We have tested 18 students, and are considering increasing sample size once the summer semester begins. Preliminary results are presented graphically in Figure \ref{fig:visualaptitudedata}.
+We have tested 18 students, and are considering increasing sample size once the summer semester begins. Preliminary results are presented graphically in figures \ref{fig:visualaptitudects} and \ref{fig:visualaptitudecat}.
 
-<<VisReasoningAnalysis,echo=F,include=F,eval=T,fig.width=8,fig.height=4>>=
-lineup.summary$variable <- factor(lineup.summary$variable, labels=c("Verbal Skills", "Math Skills", "Art Skills", "Video Game Hrs/Wk", "Card Rotation", "Figure Classification", "Paper Folding", "Visual Search"))
-qplot(data=lineup.summary, x=value, y=lineup, geom="point") + facet_wrap(~variable, scales="free", nrow=2, ncol=4) + xlab("Value") + ylab("Lineup Score (Proportion answered correctly)")
-ggsave(paste(imgdir, "fig-VisReasoningAnalysis.png", sep=""), width=8, height=4)
+<<VisReasoningAnalysis,fig.width=8,fig.height=4>>=
+lineup.summary$variable <- factor(lineup.summary$variable, labels=c("Video Game Hrs/Wk", "Card Rotation", "Figure Classification", "Paper Folding", "Visual Search"))
+lineup.summary$variable <- factor(lineup.summary$variable, levels=c("Card Rotation", "Figure Classification", "Paper Folding", "Visual Search", "Video Game Hrs/Wk"))
+
+qplot(data=lineup.summary, x=value, y=lineup, geom="point", shape=I(1), size=I(3)) + facet_wrap(~variable, scales="free", ncol=3) + xlab("Value") + ylab("Lineup Score (Proportion answered correctly)") + geom_smooth(method="lm")
+ggsave(paste(imgdir, "fig-VisReasoningAnalysisCts.png", sep=""), width=6, height=4)
+
+lineup.summary.categorical$variable <- factor(lineup.summary.categorical$variable, labels=c("Age", "Sex", "Math/Science Research", "Statistics Class", "Calculus 1", "Verbal Skills", "Math Skills", "Art Skills", "AutoCAD Experience"))
+qplot(data=lineup.summary.categorical, x=value, y=lineup, geom="point", shape=I(1), size=I(3)) + facet_wrap(~variable, scales="free", ncol=3) + xlab("Value") + ylab("Lineup Score (Proportion answered correctly)") 
+ggsave(paste(imgdir, "fig-VisReasoningAnalysisCat.png", sep=""), width=6, height=6)
 @
 
 \begin{figure}[htbp]\centering
-\includegraphics[width=\textwidth]{fig-VisReasoningAnalysis}
-\caption[Visual Aptitude Study Results]{Preliminary results of numeric variables compared to lineup score.}\label{fig:visualaptitudedata}
+\includegraphics[width=\textwidth]{fig-VisReasoningAnalysisCts}
+\caption[Visual Aptitude Study Results]{Preliminary results of continuous variables compared to lineup score.}\label{fig:visualaptitudects}
 \end{figure}
 
+\begin{figure}[htbp]\centering
+\includegraphics[width=\textwidth]{fig-VisReasoningAnalysisCat}
+\caption[Visual Aptitude Study Results]{Preliminary results of categorical variables compared to lineup score.}\label{fig:visualaptitudecat}
+\end{figure}
 
