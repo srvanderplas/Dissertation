@@ -8,9 +8,9 @@ rm(list=ls())
 wd <- getwd()
 if("Body" %in% list.files()){
   opts_chunk$set(fig.path='Figure/VisualAptitude/fig-', cache.path='cache/', fig.align='center', fig.width=5, fig.height=5, fig.show='hold', par=TRUE, cache=TRUE, concordance=TRUE, autodep=TRUE)
-  datadir <- "Data/VisualAptitude/"
-  imgdir <- "Figure/VisualAptitude/"
-  codedir <- "Code/VisualAptitude/"
+  datadir <- "./Data/VisualAptitude/"
+  imgdir <- "./Figure/VisualAptitude/"
+  codedir <- "./Code/VisualAptitude/"
 } else {
   opts_chunk$set(fig.path='../Figure/VisualAptitude/fig-', cache.path='cache/', fig.align='center', fig.width=5, fig.height=5, fig.show='hold', par=TRUE, cache=TRUE, concordance=TRUE, autodep=TRUE, root.dir="../")
   datadir <- "../Data/VisualAptitude/"
@@ -77,15 +77,22 @@ In addition to these tests, participants will complete a questionnaire which inc
 \section{Results}
 We have tested 18 students, and are considering increasing sample size once the summer semester begins. Preliminary results are presented graphically in figures \ref{fig:visualaptitudects} and \ref{fig:visualaptitudecat}.
 
-<<VisReasoningAnalysis,fig.width=8,fig.height=4>>=
+<<VisReasoningAnalysis,echo=FALSE, include=FALSE, fig.width=8,fig.height=4>>=
 lineup.summary$variable <- factor(lineup.summary$variable, labels=c("Video Game Hrs/Wk", "Card Rotation", "Figure Classification", "Paper Folding", "Visual Search"))
 lineup.summary$variable <- factor(lineup.summary$variable, levels=c("Card Rotation", "Figure Classification", "Paper Folding", "Visual Search", "Video Game Hrs/Wk"))
 
-qplot(data=lineup.summary, x=value, y=lineup, geom="point", shape=I(1), size=I(3)) + facet_wrap(~variable, scales="free", ncol=3) + xlab("Value") + ylab("Lineup Score (Proportion answered correctly)") + geom_smooth(method="lm")
+qplot(data=lineup.summary, x=value, y=lineup, geom="point", shape=I(1), size=I(3)) + facet_wrap(~variable, scales="free_x", ncol=3) + xlab("Value") + ylab("Lineup Score (Proportion answered correctly)") + geom_smooth(method="lm")
 ggsave(paste(imgdir, "fig-VisReasoningAnalysisCts.png", sep=""), width=6, height=4)
 
 lineup.summary.categorical$variable <- factor(lineup.summary.categorical$variable, labels=c("Age", "Sex", "Math/Science Research", "Statistics Class", "Calculus 1", "Verbal Skills", "Math Skills", "Art Skills", "AutoCAD Experience"))
-qplot(data=lineup.summary.categorical, x=value, y=lineup, geom="point", shape=I(1), size=I(3)) + facet_wrap(~variable, scales="free", ncol=3) + xlab("Value") + ylab("Lineup Score (Proportion answered correctly)") 
+lineup.summary.categorical$value[lineup.summary.categorical$value=="f"] <- "Female"
+lineup.summary.categorical$value[lineup.summary.categorical$value=="m"] <- "Male"
+lineup.summary.categorical$value[lineup.summary.categorical$value=="y"] <- "TRUE"
+lineup.summary.categorical$value[lineup.summary.categorical$value=="n"] <- "FALSE"
+lineup.summary.categorical <- rbind(lineup.summary.categorical, data.frame(id=1, lineup=NA, variable="verbal_skills", value=1))
+lineup.summary.categorical <- rbind(lineup.summary.categorical, data.frame(id=1, lineup=NA, variable="math_skills", value=1))
+
+qplot(data=lineup.summary.categorical, x=value, y=lineup, geom="point", shape=I(1), size=I(3)) + facet_wrap(~variable, scales="free_x", ncol=3) + xlab("Value") + ylab("Lineup Score (Proportion answered correctly)") 
 ggsave(paste(imgdir, "fig-VisReasoningAnalysisCat.png", sep=""), width=6, height=6)
 @
 

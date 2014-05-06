@@ -1599,29 +1599,7 @@ In addition to these tests, participants will complete a questionnaire which inc
 \section{Results}
 We have tested 18 students, and are considering increasing sample size once the summer semester begins. Preliminary results are presented graphically in figures \ref{fig:visualaptitudects} and \ref{fig:visualaptitudecat}.
 
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{lineup.summary}\hlopt{$}\hlstd{variable} \hlkwb{<-} \hlkwd{factor}\hlstd{(lineup.summary}\hlopt{$}\hlstd{variable,} \hlkwc{labels}\hlstd{=}\hlkwd{c}\hlstd{(}\hlstr{"Video Game Hrs/Wk"}\hlstd{,} \hlstr{"Card Rotation"}\hlstd{,} \hlstr{"Figure Classification"}\hlstd{,} \hlstr{"Paper Folding"}\hlstd{,} \hlstr{"Visual Search"}\hlstd{))}
-\hlstd{lineup.summary}\hlopt{$}\hlstd{variable} \hlkwb{<-} \hlkwd{factor}\hlstd{(lineup.summary}\hlopt{$}\hlstd{variable,} \hlkwc{levels}\hlstd{=}\hlkwd{c}\hlstd{(}\hlstr{"Card Rotation"}\hlstd{,} \hlstr{"Figure Classification"}\hlstd{,} \hlstr{"Paper Folding"}\hlstd{,} \hlstr{"Visual Search"}\hlstd{,} \hlstr{"Video Game Hrs/Wk"}\hlstd{))}
 
-\hlkwd{qplot}\hlstd{(}\hlkwc{data}\hlstd{=lineup.summary,} \hlkwc{x}\hlstd{=value,} \hlkwc{y}\hlstd{=lineup,} \hlkwc{geom}\hlstd{=}\hlstr{"point"}\hlstd{,} \hlkwc{shape}\hlstd{=}\hlkwd{I}\hlstd{(}\hlnum{1}\hlstd{),} \hlkwc{size}\hlstd{=}\hlkwd{I}\hlstd{(}\hlnum{3}\hlstd{))} \hlopt{+} \hlkwd{facet_wrap}\hlstd{(}\hlopt{~}\hlstd{variable,} \hlkwc{scales}\hlstd{=}\hlstr{"free"}\hlstd{,} \hlkwc{ncol}\hlstd{=}\hlnum{3}\hlstd{)} \hlopt{+} \hlkwd{xlab}\hlstd{(}\hlstr{"Value"}\hlstd{)} \hlopt{+} \hlkwd{ylab}\hlstd{(}\hlstr{"Lineup Score (Proportion answered correctly)"}\hlstd{)} \hlopt{+} \hlkwd{geom_smooth}\hlstd{(}\hlkwc{method}\hlstd{=}\hlstr{"lm"}\hlstd{)}
-\hlkwd{ggsave}\hlstd{(}\hlkwd{paste}\hlstd{(imgdir,} \hlstr{"fig-VisReasoningAnalysisCts.png"}\hlstd{,} \hlkwc{sep}\hlstd{=}\hlstr{""}\hlstd{),} \hlkwc{width}\hlstd{=}\hlnum{6}\hlstd{,} \hlkwc{height}\hlstd{=}\hlnum{4}\hlstd{)}
-
-\hlstd{lineup.summary.categorical}\hlopt{$}\hlstd{variable} \hlkwb{<-} \hlkwd{factor}\hlstd{(lineup.summary.categorical}\hlopt{$}\hlstd{variable,} \hlkwc{labels}\hlstd{=}\hlkwd{c}\hlstd{(}\hlstr{"Age"}\hlstd{,} \hlstr{"Sex"}\hlstd{,} \hlstr{"Math/Science Research"}\hlstd{,} \hlstr{"Statistics Class"}\hlstd{,} \hlstr{"Calculus 1"}\hlstd{,} \hlstr{"Verbal Skills"}\hlstd{,} \hlstr{"Math Skills"}\hlstd{,} \hlstr{"Art Skills"}\hlstd{,} \hlstr{"AutoCAD Experience"}\hlstd{))}
-\hlkwd{qplot}\hlstd{(}\hlkwc{data}\hlstd{=lineup.summary.categorical,} \hlkwc{x}\hlstd{=value,} \hlkwc{y}\hlstd{=lineup,} \hlkwc{geom}\hlstd{=}\hlstr{"point"}\hlstd{,} \hlkwc{shape}\hlstd{=}\hlkwd{I}\hlstd{(}\hlnum{1}\hlstd{),} \hlkwc{size}\hlstd{=}\hlkwd{I}\hlstd{(}\hlnum{3}\hlstd{))} \hlopt{+} \hlkwd{facet_wrap}\hlstd{(}\hlopt{~}\hlstd{variable,} \hlkwc{scales}\hlstd{=}\hlstr{"free"}\hlstd{,} \hlkwc{ncol}\hlstd{=}\hlnum{3}\hlstd{)} \hlopt{+} \hlkwd{xlab}\hlstd{(}\hlstr{"Value"}\hlstd{)} \hlopt{+} \hlkwd{ylab}\hlstd{(}\hlstr{"Lineup Score (Proportion answered correctly)"}\hlstd{)}
-\hlkwd{ggsave}\hlstd{(}\hlkwd{paste}\hlstd{(imgdir,} \hlstr{"fig-VisReasoningAnalysisCat.png"}\hlstd{,} \hlkwc{sep}\hlstd{=}\hlstr{""}\hlstd{),} \hlkwc{width}\hlstd{=}\hlnum{6}\hlstd{,} \hlkwc{height}\hlstd{=}\hlnum{6}\hlstd{)}
-\end{alltt}
-\end{kframe}
-
-{\centering \includegraphics[width=\maxwidth]{../Figure/VisualAptitude/fig-VisReasoningAnalysis1} 
-\includegraphics[width=\maxwidth]{../Figure/VisualAptitude/fig-VisReasoningAnalysis2} 
-
-}
-
-
-
-\end{knitrout}
 
 
 \begin{figure}[htbp]\centering
