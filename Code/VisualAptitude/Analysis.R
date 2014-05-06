@@ -51,8 +51,14 @@ longform <- melt(scored[,c(1, 20:396)], id.vars=1)
 longform$testtype <- gsub("_q[0123456789]+[abcdefgh]?$", "", longform$variable)
 longform$testnum <- as.numeric(gsub("[[:alpha:]_]+", "", longform$testtype))
 longform$testtype <- gsub("[[:digit:]]", "", longform$testtype)
+longform$penalty <- 0
+longform$penalty[longform$testtype=="vis_search"] <- 1/24
+longform$penalty[longform$testtype=="lineup"] <- 1/20
+longform$penalty[longform$testtype=="card_rot"] <- 1/2
+longform$penalty[longform$testtype=="folding"] <- 1/5
+
 longform.sum <- ddply(longform, .(id, testtype, testnum), summarize, 
-                      value=ifelse(is.numeric(value), sum(value, na.rm=T)-sum(!value,na.rm=T)/20, unique(value)), 
+                      value=ifelse(is.numeric(value), sum(value, na.rm=T)-sum(!value,na.rm=T)*penalty, unique(value)), 
                       pct.answered=sum(!is.na(value))/length(value))
 longform.sum$value[longform.sum$testtype=="lineup" & longform.sum$testnum==3] <- NA
 ans.summary <- dcast(longform.sum, id~testtype, value.var="value", fun.aggregate = mean, na.rm=TRUE)

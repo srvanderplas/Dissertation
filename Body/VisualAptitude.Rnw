@@ -41,7 +41,7 @@ Relevant literature:
 Lineups depend on the ability to search for a signal amid distractors (Visual Search Task) and the ability to infer patterns from stimuli (Pattern Recognition task). Some lineups (polar coords) also depend on the ability to mentally rotate stimuli (spatial rotation task) and mentally manipulate graphs (paper folding task). By breaking the lineup task down into component parts, we can correlate lineup performance with similar cognitive factor tests to determine where additional variation in skill level factors into performance differences. 
 
 \section{Methods}
-Participants will complete the following tasks (sample pictures included, full stimuli set will be added to the appendix once testing is complete): 
+Participants will complete the following tasks (sample pictures included, full stimuli set will be added to the appendix once testing is complete). Tasks are designed so that participants are under time pressure and are not expected to complete all of the problems in each section. This provides more discrimination between high scorers and prevents score compression at the top of the range.   
 \begin{itemize}
 \item Visual Search Task: designed to test participants' ability to find a target stimulus in a field of distractors. An example is shown in figure \ref{fig:VST}. 
 \begin{figure}[htbp]\centering
