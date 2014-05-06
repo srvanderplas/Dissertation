@@ -24,6 +24,7 @@ library(reshape2)
 suppressMessages(library(ggplot2))
 library(plyr)
 suppressMessages(library(gridExtra))
+source(paste(codedir, "Analysis.R", sep=""))
 @
 
 
@@ -76,10 +77,10 @@ In addition to these tests, participants will complete a questionnaire which inc
 \section{Results}
 We have tested 18 students, and are considering increasing sample size once the summer semester begins. Preliminary results are presented graphically in Figure \ref{fig:visualaptitudedata}.
 
-<<VisReasoningAnalysis,echo=F,include=F,fig.width=8,fig.height=4>>=
-source(paste(codedir, "Analysis.R", sep=""))
+<<VisReasoningAnalysis,echo=F,include=F,eval=T,fig.width=8,fig.height=4>>=
 lineup.summary$variable <- factor(lineup.summary$variable, labels=c("Verbal Skills", "Math Skills", "Art Skills", "Video Game Hrs/Wk", "Card Rotation", "Figure Classification", "Paper Folding", "Visual Search"))
 qplot(data=lineup.summary, x=value, y=lineup, geom="point") + facet_wrap(~variable, scales="free", nrow=2, ncol=4) + xlab("Value") + ylab("Lineup Score (Proportion answered correctly)")
+ggsave(paste(imgdir, "fig-VisReasoningAnalysis.png", sep=""), width=8, height=4)
 @
 
 \begin{figure}[htbp]\centering
