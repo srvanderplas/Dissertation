@@ -52,7 +52,7 @@ longform$testtype <- gsub("_q[0123456789]+[abcdefgh]?$", "", longform$variable)
 longform$testnum <- as.numeric(gsub("[[:alpha:]_]+", "", longform$testtype))
 longform$testtype <- gsub("[[:digit:]]", "", longform$testtype)
 longform.sum <- ddply(longform, .(id, testtype, testnum), summarize, 
-                      value=ifelse(is.numeric(value), mean(value, na.rm=T), unique(value)), 
+                      value=ifelse(is.numeric(value), sum(value, na.rm=T)-sum(!value,na.rm=T)/20, unique(value)), 
                       pct.answered=sum(!is.na(value))/length(value))
 longform.sum$value[longform.sum$testtype=="lineup" & longform.sum$testnum==3] <- NA
 ans.summary <- dcast(longform.sum, id~testtype, value.var="value", fun.aggregate = mean, na.rm=TRUE)
