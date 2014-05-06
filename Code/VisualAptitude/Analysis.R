@@ -52,10 +52,10 @@ longform$testtype <- gsub("_q[0123456789]+[abcdefgh]?$", "", longform$variable)
 longform$testnum <- as.numeric(gsub("[[:alpha:]_]+", "", longform$testtype))
 longform$testtype <- gsub("[[:digit:]]", "", longform$testtype)
 longform$penalty <- 0
-longform$penalty[longform$testtype=="vis_search"] <- 1/24
-longform$penalty[longform$testtype=="lineup"] <- 1/20
-longform$penalty[longform$testtype=="card_rot"] <- 1/2
-longform$penalty[longform$testtype=="folding"] <- 1/5
+longform$penalty[longform$testtype=="vis_search"] <- 1/23
+longform$penalty[longform$testtype=="lineup"] <- 1/19
+longform$penalty[longform$testtype=="card_rot"] <- 1
+longform$penalty[longform$testtype=="folding"] <- 1/4
 
 longform.sum <- ddply(longform, .(id, testtype, testnum), summarize, 
                       value=ifelse(is.numeric(value), sum(value, na.rm=T)-sum(!value,na.rm=T)*penalty, unique(value)), 

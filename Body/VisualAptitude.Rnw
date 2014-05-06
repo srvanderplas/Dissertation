@@ -80,7 +80,7 @@ We have tested 18 students, and are considering increasing sample size once the 
 <<VisReasoningAnalysis,echo=FALSE, include=FALSE, fig.width=8,fig.height=4>>=
 lineup.summary$variable <- factor(lineup.summary$variable, labels=c("Video Game Hrs/Wk", "Card Rotation", "Figure Classification", "Paper Folding", "Visual Search"))
 lineup.summary$variable <- factor(lineup.summary$variable, levels=c("Card Rotation", "Figure Classification", "Paper Folding", "Visual Search", "Video Game Hrs/Wk"))
-
+ 
 qplot(data=lineup.summary, x=value, y=lineup, geom="point", shape=I(1), size=I(3)) + facet_wrap(~variable, scales="free_x", ncol=3) + xlab("Value") + ylab("Lineup Score (# Correct - 1/20 # Incorrect)") + geom_smooth(method="lm")
 ggsave(paste(imgdir, "fig-VisReasoningAnalysisCts.png", sep=""), width=6, height=4)
 
