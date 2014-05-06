@@ -28,7 +28,7 @@ source(paste(codedir, "Analysis.R", sep=""))
 @
 
 
-\chapter{VISUAL REASONING AND STATISTICAL GRAPHICS}\label{VisualAptitude}
+\chapter{SPATIAL REASONING AND STATISTICAL GRAPHICS}\label{VisualAptitude}
 
 \section{Introduction}
 Relevant literature: 
