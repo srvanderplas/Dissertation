@@ -499,7 +499,7 @@ The consequence of the limits of human perception and processing capacity is tha
 The research studies performed by psychologists studying the perception of graphics is typically very low-level, concerned with the underlying mechanisms of effects within the brain. In statistics, the literature is somewhat more variable; \citet{cleveland:1985} produced the seminal paper on the subject, but outside of that work, there are relatively few papers that examine the accuracy of judgments made from graphs through user studies that mimic the way graphs are used in practice. There have been a few papers in other disciplines as well; business and communications researchers occasionally study graphs and charts as well. We will begin with the lower-level graphical perception literature and conclude with studies that have more external validity and are applicable to statistical practice. 
 
 \subsection{Preattentive Perception of Statistical Graphics}\label{LowLevelGraphics}
-Much of the lower-level research within the statistical graphics and information visualization community has been performed by those within the psychological community that study human information processing. In particular, \citet{healey1999large, healey2012attention} have produced several papers studying the accuracy of conclusions viewers can make after less than 1/2 of a second of viewing an image. As discussed in section \ref{AttentionPerception} and demonstrated in figure \ref{fig:preattentive}, certain features do not require individual focus to process; these features are called \emph{preattentive} and can be detected on the first glance (typically within 250ms). Healey's work focuses on determining which features can be detected in a pre-attentive fashion, and whether a hierarchy of features exists when these features are combined. Healey suggests that for three-dimensional displays, the 3d layout is determined first, surface structure and volume are determined next, followed by object movement (if present), luminance gradients, and color; he suggests that if there are conflicts between these 5 levels, priority is given to an earlier process \citep{healey2012attention}. \citet{healey1999large} showed that if visualizations are carefully constructed to conform to the architecture of the human visual system (isoluminant colors, removing certain background patterns from textural arrays), visual estimation tasks can be performed preattentively. The experiment also revealed an interference effect between texture and color that corresponds to previously documented interference between preattentive features \citep{triesman1985preattentive}, as shown in figure \ref{fig:preattentiveinterference}.
+Much of the lower-level research within the statistical graphics and information visualization community has been performed by those within the psychological community that study human information processing. In particular, \citet{healey1999large, healey2012attention} have produced several papers studying the accuracy of conclusions viewers can make after less than 1/2 of a second of viewing an image. As discussed in section \ref{AttentionPerception} and demonstrated in figure \ref{fig:preattentive}, certain features do not require individual focus to process; these features are called \emph{preattentive} and can be detected on the first glance (typically within 250ms). Healey's work focuses on determining which features can be detected in a pre-attentive fashion, and whether a hierarchy of features exists when these features are combined. Healey suggests that for three-dimensional displays, the 3d layout is determined first, surface structure and volume are determined next, followed by object movement (if present), luminance gradients, and color; he suggests that if there are conflicts between these 5 levels, priority is given to an earlier process \citep{healey2012attention}. \citet{healey1999large} showed that if visualizations are carefully constructed to conform to the architecture of the human visual system (isoluminant colors, removing certain background patterns from textural arrays), visual estimation tasks can be performed preattentively. The experiment also revealed an interference effect between texture and color that corresponds to previously documented interference between preattentive features \citep{treisman1985preattentive}, as shown in figure \ref{fig:preattentiveinterference}.
 
 
 
@@ -526,7 +526,7 @@ Much of the lower-level research within the statistical graphics and information
 
 Healey's work on preattentive perception is interesting, and provides a reasonable approach to creating graphics compatible with the human visual system, but his work is largely focused on multidimensional displays and his focus on preattentive processes limits the applicability of his work to statistical graphics. In particular, most graphics are created with the idea that a viewer will spend more than one second looking at the graph, so not all features need to be preattentive to be useful. In the next section, we will examine the literature concerning higher-level graphical perception, including perception at the attentive level and which types of graphs are more accurately perceived by viewers. 
 
-% \todo[inline]{Add section examining psychological literature (Triesman) for lower-level measurement accuracy style studies?}
+% \todo[inline]{Add section examining psychological literature (treisman) for lower-level measurement accuracy style studies?}
 
 \subsection{Conscious Perception of Statistical Graphics}\label{HighLevelGraphics}
 Graph perception from a statistician's point of view is more focused on the attentive stage of perception: When asked to answer a question using a graph, what parts of the graph are useful, and how is the information transferred from the image to working memory in the brain? Several models have been proposed to describe this process; of these, the set of ``task models" and ``integration models" seem to be most consistent with empirical evidence. 
@@ -1616,9 +1616,42 @@ We have tested 18 students, and are considering increasing sample size once the 
 
 \chapter{STATISTICAL GRAPHICS AND FEATURE HIERARCHY}\label{featurehierarchy}
 
-Experiment Setup: We will use Amazon Turk to gather data to construct a feature hierarchy for statistical graphics. For instance, do participants notice color before they notice the slope of a line? The experiment will use the lineup protocol with two test plots; one will have a signal associated with a certain feature (i.e. color) and the other will have a signal associated with the comparison feature (i.e. slope). We intend to examine color, slope, presence of outliers, nonlinear trend, and other traits in this experiment. 
 
-Experiment Progress: We are working on quantifying the strength of the signal in each plot, so that we can ensure that the features are of similar strength. 
+\graphicspath{{Figure/FeatureHierarchy/}{Images/FeatureHierarchy/}}
+\renewcommand{\floatpagefraction}{.99}
+
+
+
+
+\section{Introduction}
+Relevant literature:
+\begin{itemize}
+\item \citet{cleveland:1984,cleveland:1985} provide a hierarchy of accuracy for graphical features
+\item \citet{healey1996high} shows that there is a hierarchy of preattentive features
+\item \citet{treisman1985preattentive} for preattentive features and the hierarchy of feature processing
+\item Gestalt laws: which law dominates? Proximity? Similarity?
+\end{itemize}
+
+\citet{cleveland:1985} provide a hierarchy of accuracy, but this does not tell us which features of a graph viewers are more likely to notice or prefer. We do not always prefer the graphs which provide the most accurate transfer of information (i.e. people's preference for 3d graphics, pie charts, etc.), so it would be useful to understand what features of graphs people are most likely to notice. 
+
+\section{Methods}
+Using the lineup protocol, we can provide a plot which shows organization of one feature (color, shape, trend) and a plot which shows organization of a different feature, plus 18 distractor plots which are randomly generated combinations of both features. Sample plots are shown below in figures \ref{fig:hierarchylineup} and \ref{fig:hierarchylineup2}.
+
+\begin{figure}[htbp]\centering
+\includegraphics[width=.95\textwidth]{HierarchyLineup}
+\caption[Sample multi-target lineup]{Lineup which has multiple target plots. Plot 5 contains the target ``slope" plot, plot 10 contains the target ``color" plot.}\label{fig:hierarchylineup}
+\end{figure}
+
+\begin{figure}[htbp]\centering
+\includegraphics[width=.95\textwidth]{HierarchyLineup2}
+\caption[Another sample multi-target lineup]{Lineup which has multiple target plots. Plot 9 contains the target ``slope" plot, plot 8 contains the target ``color" plot.}\label{fig:hierarchylineup2}
+\end{figure}
+
+We will test these graphics by recruiting participants from Amazon Mechanical Turk. Participants will be asked to complete a few demographic questions (colorblindness, normal vision, etc.) and many different types of lineups, using the competing target plot scheme. It is possible that a parallel (much smaller) study could be completed using eye tracking to examine exactly what viewers are considering during the process of deciding which lineup to choose. 
+
+It should also be noted that the standard lineup analysis \citep{majumder2013validation} will not suffice here, as there are two competing target plots. This is not a particularly heinous obstacle, though, as we can simply fall back on the visual search task as a guide for analysis, and consider the proportion of viewers who select each target plot as a test of the strength of the signal. 
+
+Pilot tests on the graphics working group in February suggested that slope dominates color for most viewers, but this is likely to be a result of the strength of the slope signal relative to the color signal. Currently, we are trying to ensure that the signal strength for each competing target is similar; once this is resolved we can deploy the experiment to Amazon Turk and analyze the results. 
 
 %-------------------------------------------------------------------------------
 % \include{Appendix/appendix1}
