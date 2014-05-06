@@ -83,7 +83,7 @@ opts_chunk$set(fig.path='Figure', cache.path='cache/', fig.align='center', fig.w
 @
 <<sineIllusion, child='Body/SineIllusion.Rnw'>>=
 @
-<<visualaReasoning, child='Body/VisualReasoning.Rnw'>>=
+<<visualaReasoning, child='Body/VisualAptitude.Rnw'>>=
 @
 <<featureHierarchy, child='Body/FeatureHierarchy.Rnw'>>=
 @
