@@ -71,7 +71,10 @@ pct.ans <- dcast(longform.sum, id~testtype+testnum, value.var="pct.answered")
 # qplot(data=ans.summary, x=vis_search, y=lineup, geom="point")
 # 
 
-lineup.summary <- melt(ans.summary, id.vars=c(1:14, 19, 23))
-# 
+lineup.summary <- melt(ans.summary, id.vars=c(1:17, 19, 23))
+
+
 # qplot(data=lineup.summary, x=value, y=lineup, geom="point") + facet_wrap(~variable, scales="free")
-# qplot(data=subset(lineup.summary, variable=="vis_search"), x=value, y=lineup, geom="jitter") + facet_wrap(~variable, scales="free")
+
+lineup.summary.categorical <- melt(ans.summary[,c(1:3, 12:17, 19, 23)], id.vars=c("id", "lineup"))
+
