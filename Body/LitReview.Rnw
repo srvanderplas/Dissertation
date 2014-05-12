@@ -511,8 +511,45 @@ Finally, complex graphs often facilitate different types of participant tasks; r
 \section{Testing Statistical Graphics}
 \subsection{Basic Psychophysics Methodology}
 Psychophysics studies are generally concerned with the ability to detect a stimulus (or a difference between two stimuli). Many classic psychophysical methods are still used in studies today (for an example, see Chapter \ref{sineillusion}). Several of these methods are mentioned here; for a more thorough review, see \citet{goldstein}. 
-\paragraph{Method of Limits} The method of limits seeks to determine the level of intensity at which a stimulus is just barely detectable. A series of trials are used, with each trial starting at either the lower or upper range of intensity and incrementally moving towards the opposite end of the range; the observer indicates the point at which they either begin to detect the stimulus or the point at which they can no longer detect the stimulus. At the end of several trials, the detection limits are averaged to produce a measured \emph{absolute threshold}. 
+\paragraph{Method of Limits} The method of limits seeks to determine the level of intensity at which a stimulus is just barely detectable. A series of trials are used, with each trial starting at either the lower or upper range of intensity and incrementally moving towards the opposite end of the range; the observer indicates the point at which they either begin to detect the stimulus or the point at which they can no longer detect the stimulus. At the end of several trials, the detection limits are averaged to produce a measured \emph{absolute threshold}. Figure \ref{fig:methodoflimits} demonstrates this process. 
 
+<<methodoflimits, fig.width=7, fig.height=5, echo=FALSE, include=FALSE>>=
+library(ggplot2)
+
+logit <- function(x, c=0){
+  exp(x-c)/(1+exp(x-c))
+}
+
+
+x <- seq(0, 10, .01)
+y <- logit(x, c=5)
+
+observations <- c(11.3, seq(0, 10, .75))
+answers <- c("Increasing", "-", "-", "-", "-", "-", "-", "-", "-", "+", "+", "+", "+", "+", "+",
+             "Decreasing", "-", "-", "-", "-", "-", "-", "+", "+", "+", "+", "+", "+", "+", "+",
+             "Increasing", "-", "-", "-", "-", "-", "-", "-", "+", "+", "+", "+", "+", "+", "+")
+
+limits <- data.frame(x=c(x, rep(observations, times=3)), y=c(y, rep(c(-.25, -.35, -.45), each=length(observations))), type=c(rep("Detection Curve", length(x)), rep("Participant Observations", 3*length(observations))))
+limits$linetype <- factor(limits$type)
+
+qplot(x=x, y=y, geom="line", linetype='Detection Curve', color='Detection Curve') + 
+  geom_segment(aes(x=observations[-1], xend=observations[-1], y=0, yend=logit(observations[-1], c=5), linetype='Participant Observations', color='Participant Observations')) + theme_bw() + 
+  geom_segment(aes(x=0, xend=10, y=.5, yend=.5, linetype='Threshold (Empirical)', colour='Threshold (Empirical)')) + 
+  scale_linetype_manual("", values=c(1, 2, 1)) + 
+  scale_colour_manual("", values=c("black", "black", "red")) +
+#   geom_text(aes(x=2, y=.41, label="Threshold"), vjust=-.1, show_guide=F) + 
+  geom_text(aes(x=rep(observations, times=3), y=rep(c(-.1, -.2, -.3), each=length(observations)), label=answers), vjust=-.5, hjust=.5, show_guide=F, aes.inherit=F) +   
+  xlab("Stimulus Intensity") + 
+  ylab("Stimulus Detection") + 
+  ggtitle("Method of Limits") + 
+  theme(legend.position=c(.18, .83)) + 
+  scale_x_continuous(breaks=c(0, 2.5, 5, 7.5, 10), limits=c(0, 12))
+@
+
+\begin{figure}[htbp]\centering
+\includegraphics[width=.5\textwidth]{fig-methodoflimits}
+\caption[The Method of Limits]{Demonstration of the method of limits. In this experiment, three trials were performed, two trials starting from 0 and increasing, and one trial starting at 9.5 and decreasing. The empirical detection threshold is the threshold at which detection occurs 50\% of the time, and is shown in red. }\label{fig:methodoflimits}
+\end{figure}
 \paragraph{Method of Adjustment} This method is similar to the method of limits, except that the stimulus intensity is adjusted by the observer (not the experimenter) in a continuous manner until the observer can just barely detect the stimulus. This procedure may be repeated several times, with trials averaged to produce a mean value for the absolute threshold. 
 
 \paragraph{Measuring the Difference Threshold} The difference threshold, discussed in section \ref{logarithmicperception}, is the smallest detectable difference between two stimuli. This threshold can be measured using either the method of limits or the method of adjustment, but instead of increasing the absolute intensity of the stimulus, two stimuli are given, one with constant intensity and one whose intensity may vary either continuously or incrementally. The participant is instructed to identify the point at which the two stimuli are indistinguishable (if the varied stimulus is approaching the constant stimulus) or the point at which the two stimuli are distinguishable (if the varied stimulus is diverging from the constant stimulus). 
