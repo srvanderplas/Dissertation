@@ -550,7 +550,52 @@ qplot(x=x, y=y, geom="line", linetype='Detection Curve', color='Detection Curve'
 \includegraphics[width=.5\textwidth]{fig-methodoflimits}
 \caption[The Method of Limits]{Demonstration of the method of limits. In this experiment, three trials were performed, two trials starting from 0 and increasing, and one trial starting at 9.5 and decreasing. The empirical detection threshold is the threshold at which detection occurs 50\% of the time, and is shown in red. }\label{fig:methodoflimits}
 \end{figure}
-\paragraph{Method of Adjustment} This method is similar to the method of limits, except that the stimulus intensity is adjusted by the observer (not the experimenter) in a continuous manner until the observer can just barely detect the stimulus. This procedure may be repeated several times, with trials averaged to produce a mean value for the absolute threshold. 
+\paragraph{Method of Adjustment} This method is similar to the method of limits, except that the stimulus intensity is adjusted by the observer (not the experimenter) in a continuous manner until the observer can just barely detect the stimulus. This procedure may be repeated several times, with trials averaged to produce a mean value for the absolute threshold. Figure \ref{fig:methodofajudstment} demonstrates this procedure. 
+
+<<methodofadjustment, fig.width=7, fig.height=5, echo=FALSE, include=FALSE>>=
+library(ggplot2)
+library(grid)
+
+logit <- function(x, c=0){
+  exp(x-c)/(1+exp(x-c))
+}
+
+data <- data.frame(
+  start=c(0, 10, 0, 10),
+  end=c(5.2, 4.7, 5.3, 4.9), 
+  trial=seq(-.2, -.05, length=4)
+  )
+
+trial.labels <- data.frame(x=-2, y=data$trial, label=paste("Trial ", 1:4, sep=""))
+
+x <- seq(0, 10, .01)
+y <- logit(x, c=mean(data$end))
+curve <- data.frame(x=x, y=y)
+
+qplot(data=data, x=start, y=trial, xend=end, yend=trial, geom="segment") + 
+  geom_point(data=data, aes(x=end, y=trial, shape='Trial End'), size=3) + 
+  geom_point(data=data, aes(x=start, y=trial, shape='Trial Start'), size=3) + 
+  geom_text(data=trial.labels, aes(x=x, y=y, label=label), hjust=0, inherit.aes=F) + 
+  scale_shape_manual("", values=c("Trial Start"=1, "Trial End"=10)) + 
+  geom_line(data=curve, aes(x=x, y=y, linetype="Detection Probability", 
+                            color="Detection Probability"), inherit.aes=F) +
+  geom_segment(aes(x=0, xend=10, y=.5, yend=.5, linetype="Detection Threshold", 
+                   color="Detection Threshold")) + 
+  xlab("Stimulus Intensity") + 
+  ylab("Probability of Detection") + 
+  scale_color_manual("", values=c("Detection Probability"="black", "Detection Threshold"="red")) + 
+  scale_linetype_manual("", values=c("Detection Probability"=1, "Detection Threshold"=2)) + 
+  theme_bw() + 
+  scale_y_continuous(breaks=c(0, .25, .5, .75, 1), labels=c("0", "0.25", "0.5", "0.75", "1.0")) + 
+  scale_x_continuous(breaks=c(0, 2.5, 5, 7.5, 10)) + 
+  theme(legend.position=c(.2, .58), legend.title=element_blank()) + 
+  ggtitle("Method of Adjustment")
+  
+@
+\begin{figure}[htbp]\centering
+\includegraphics[width=.5\textwidth]{fig-methodofadjustment}
+\caption[The Method of Adjustment]{Demonstration of the method of adjustment. In this experiment, four trials were performed, two trials starting from 0 and increasing, and two trials starting at 10 and decreasing. The empirical detection threshold is the threshold at which detection occurs 50\% of the time, and is shown in red. }\label{fig:methodofadjustment}
+\end{figure}
 
 \paragraph{Measuring the Difference Threshold} The difference threshold, discussed in section \ref{logarithmicperception}, is the smallest detectable difference between two stimuli. This threshold can be measured using either the method of limits or the method of adjustment, but instead of increasing the absolute intensity of the stimulus, two stimuli are given, one with constant intensity and one whose intensity may vary either continuously or incrementally. The participant is instructed to identify the point at which the two stimuli are indistinguishable (if the varied stimulus is approaching the constant stimulus) or the point at which the two stimuli are distinguishable (if the varied stimulus is diverging from the constant stimulus). 
 
