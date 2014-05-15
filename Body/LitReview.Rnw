@@ -670,16 +670,16 @@ library(ggplot2)
 
 # Density plot
 ggplot(data=iris, aes(x=Sepal.Width, group=Species, fill=Species)) + 
-  geom_density(position="stack") + theme(legend.position=c(.8, .8)) + xlab("Sepal Width")
+  geom_density(position="stack") + theme(legend.position=c(.8, .8)) + xlab("Sepal Width") + theme_bw()
 
 # Dotplot 
 ggplot(data=iris, aes(x=Sepal.Width, group=Species, fill=Species)) + 
-  geom_dotplot(method='histodot', stackgroups=TRUE) + theme(legend.position=c(.8, .8)) + theme(axis.text.y=element_blank()) + ylab("") + xlab("Sepal Width")
+  geom_dotplot(method='histodot', stackgroups=TRUE) + theme(legend.position=c(.8, .8)) + theme(axis.text.y=element_blank()) + ylab("") + xlab("Sepal Width") + theme_bw()
 
 
 # Histogram
 ggplot(data=iris, aes(x=Sepal.Width, group=Species, fill=Species)) + 
-  geom_histogram(position="stack") + theme(legend.position=c(.8, .8)) + xlab("Sepal Width")
+  geom_histogram(position="stack") + theme(legend.position=c(.8, .8)) + xlab("Sepal Width") + theme_bw()
 
 @
 
@@ -726,7 +726,8 @@ library(nullabor)
 
 lineupdata <- lineup(null_permute("Petal.Width"), true=iris, pos=5)
 ggplot(data=lineupdata, aes(x=Sepal.Width, y=Petal.Width)) + 
-  geom_jitter() + facet_wrap(~.sample) + theme(axis.text=element_blank(), axis.title=element_blank())
+  geom_jitter() + facet_wrap(~.sample) + theme_bw() + 
+  theme(axis.text=element_blank(), axis.title=element_blank())
 @
 
 \begin{figure}[htbp]\centering
