@@ -421,7 +421,7 @@ These steps are illustrated in figure \ref{fig:taskgraph}.
 library(datasets)
 library(ggplot2)
 data(faithful)
-qplot(waiting, eruptions, geom="jitter", data=faithful) + xlab("Time Between Eruptions (minutes)") + ylab("Eruption Length (minutes)") + ggtitle("Old Faithful Eruptions") + geom_smooth(method="lm")
+qplot(waiting, eruptions, geom="jitter", data=faithful) + xlab("Time Between Eruptions (minutes)") + ylab("Eruption Length (minutes)") + ggtitle("Old Faithful Eruptions") + geom_smooth(method="lm") + theme_bw()
 @
 
 \begin{figure}[htbp]
@@ -454,8 +454,8 @@ data <- data.frame(x=c(rnorm(N, 3.5, .3), rnorm(N, 4, .3), rnorm(N, 3, .3)),
                    group=rep(c("A", "B", "C"), each=N))
 
 library(ggplot2)
-qplot(data=data, x=x, y=y) 
-qplot(data=data, x=x, y=y, color=group) + scale_color_brewer(palette="Set1", guide='none')
+qplot(data=data, x=x, y=y) + theme_bw()
+qplot(data=data, x=x, y=y, color=group) + scale_color_brewer(palette="Set1", guide='none') + theme_bw()
 @
 
 \begin{figure}[htbp]\centering
@@ -630,9 +630,30 @@ In psychological experiments, the obvious experimental approach can produce bias
 \subsubsection{Experimental Control Procedures}
 While not all of these procedures are appropriate for every experiment, they do demonstrate the degree of control many experiments require to measure small psychological effects. The variation in the human brain and in cognitive strategies (and the sample size constraints of testing in humans) requires a large degree of experimental control in order to minimize the effects of population variance. Some of the biases of the human brain as well as strategies to address these biases are described below.
 
-\paragraph{Habituation} The human visual system is attracted to novelty; odd, bizarre, or new sights attract more attention than ordinary, run of the mill scenes. Habituation describes the process of becoming less interested in a stimuli; as this occurs, the mind begins to enter ``auto-pilot" and attention to the task at hand becomes less focused. In infants, this habituation process is used to determine whether there is a perceived difference between two stimuli; in adults, this process is not typically as useful to the experimenter. As a result, to avoidi habituation, experiments should generally consist of somewhat varied tasks in order to maintain participant attention. 
+\paragraph{Habituation} The human visual system is attracted to novelty; odd, bizarre, or new sights attract more attention than ordinary, run of the mill scenes. Habituation describes the process of becoming less interested in a stimuli; as this occurs, the mind begins to enter ``auto-pilot" and attention to the task at hand becomes less focused. In infants, this habituation process is used to determine whether there is a perceived difference between two stimuli; in adults, this process is not typically as useful to the experimenter. To avoid habituation, experiments should generally consist of somewhat varied tasks in order to maintain participant attention. The psychophysics experiments described in figures \ref{fig:methodoflimits} and \ref{fig:methodofadjustment} can be vulnerable to this problem; to overcome habituation, trials often alternate in direction or start at random points along the intensity spectrum. 
 
-\paragraph{Masking} Images can persist on the retina for a period after the image is no longer available; this phenomenon is called \emph{persistence of vision}. In order to control the time in which the stimulus is visible, psychological experiments often will show a mask immediately after an image in order to ``erase" the retina. This degree of control is often useful in experiments which focus on the preattentive stage of perception, but persistence of vision is not likely to affect experiments which take place in the attentive stage of perception (i.e. images shown for more than .5 seconds).
+\paragraph{Masking} Images can persist on the retina for a period after the image is no longer available; this phenomenon is called \emph{persistence of vision}. In order to control the time in which the stimulus is visible, psychological experiments often will show a mask immediately after an image in order to ``erase" the retina. This degree of control is often useful in experiments which focus on the preattentive stage of perception, but persistence of vision is not likely to affect experiments which take place in the attentive stage of perception (i.e. images shown for more than .5 seconds). A sample mask is shown in figure \ref{fig:mask}. 
+
+<<mask, fig.width=5, fig.height=5, echo=FALSE, include=FALSE>>=
+library(ggplot2)
+
+slopes <- runif(200, -10, 10)
+intercepts <- runif(200, -15, 15)
+
+data <- data.frame(slope=slopes, intercept=intercepts, x=-50, y=-50)
+
+ggplot(data=data) + 
+  geom_point(aes(x=x, y=y)) + 
+  geom_abline(aes(slope=slope, intercept=intercept)) + 
+  xlim(c(-3, 3)) + ylim(c(-3, 3)) + 
+  theme_minimal() + 
+  theme(axis.text=element_blank(), axis.title=element_blank(), axis.ticks=element_blank())
+
+@
+\begin{figure}[htbp]\centering
+\includegraphics[width=.3\textwidth]{fig-mask}
+\caption[Sample Image Mask]{Sample mask used to ``erase'' the retina in some psychological experiments which test stimuli for short time periods ($<$1 s). The mask removes any afterimage the participant might have, ensuring that the stimuli is only available for the specified period. }\label{fig:mask}
+\end{figure}
 
 \paragraph{Priming} Broadly, priming is a technique that can be used to subconsciously bias a participant towards a certain conclusion. In cognitive psychology research, priming can be used to test word association (i.e. participants are quicker to identify an apple if they have just heard the word ``fruit" than if they heard the unrelated word ``pen"); in statistical graphics, priming effects are more likely to occur due to instructions or examples provided to participants at the start of a testing session. If an initial example contains notable outliers, participants are more likely to look for and recognize graphs with outliers than graphs with other notable features. Examples must be designed in such a way to avoid activating these priming affects as much as possible. 
 
