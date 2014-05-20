@@ -421,7 +421,7 @@ These steps are illustrated in figure \ref{fig:taskgraph}.
 library(datasets)
 library(ggplot2)
 data(faithful)
-qplot(waiting, eruptions, geom="jitter", data=faithful) + xlab("Time Between Eruptions (minutes)") + ylab("Eruption Length (minutes)") + ggtitle("Old Faithful Eruptions") + geom_smooth(method="lm")
+qplot(waiting, eruptions, geom="jitter", data=faithful) + xlab("Time Between Eruptions (minutes)") + ylab("Eruption Length (minutes)") + ggtitle("Old Faithful Eruptions") + geom_smooth(method="lm") + theme_bw()
 @
 
 \begin{figure}[htbp]
@@ -454,8 +454,8 @@ data <- data.frame(x=c(rnorm(N, 3.5, .3), rnorm(N, 4, .3), rnorm(N, 3, .3)),
                    group=rep(c("A", "B", "C"), each=N))
 
 library(ggplot2)
-qplot(data=data, x=x, y=y) 
-qplot(data=data, x=x, y=y, color=group) + scale_color_brewer(palette="Set1", guide='none')
+qplot(data=data, x=x, y=y) + theme_bw()
+qplot(data=data, x=x, y=y, color=group) + scale_color_brewer(palette="Set1", guide='none') + theme_bw()
 @
 
 \begin{figure}[htbp]\centering
@@ -511,7 +511,7 @@ Finally, complex graphs often facilitate different types of participant tasks; r
 \section{Testing Statistical Graphics}
 \subsection{Basic Psychophysics Methodology}
 Psychophysics studies are generally concerned with the ability to detect a stimulus (or a difference between two stimuli). Many classic psychophysical methods are still used in studies today (for an example, see Chapter \ref{sineillusion}). Several of these methods are mentioned here; for a more thorough review, see \citet{goldstein}. 
-\paragraph{Method of Limits} The method of limits seeks to determine the level of intensity at which a stimulus is just barely detectable. A series of trials are used, with each trial starting at either the lower or upper range of intensity and incrementally moving towards the opposite end of the range; the observer indicates the point at which they either begin to detect the stimulus or the point at which they can no longer detect the stimulus. At the end of several trials, the detection limits are averaged to produce a measured \emph{absolute threshold}. Figure \ref{fig:methodoflimits} demonstrates this process. 
+\paragraph{Method of Limits} The method of limits seeks to determine the level of intensity at which a stimulus is just barely detectable. A series of trials is used, with each trial starting at either the lower or upper range of intensity and incrementally moving towards the opposite end of the range; for each point, the observer indicates whether they can detect the stimulus. At the end of several trials, the detection limits are averaged to produce a measured \emph{absolute threshold}. Figure \ref{fig:methodoflimits} demonstrates this process. 
 
 <<methodoflimits, fig.width=7, fig.height=5, echo=FALSE, include=FALSE>>=
 library(ggplot2)
@@ -550,29 +550,75 @@ qplot(x=x, y=y, geom="line", linetype='Detection Curve', color='Detection Curve'
 \includegraphics[width=.5\textwidth]{fig-methodoflimits}
 \caption[The Method of Limits]{Demonstration of the method of limits. In this experiment, three trials were performed, two trials starting from 0 and increasing, and one trial starting at 9.5 and decreasing. The empirical detection threshold is the threshold at which detection occurs 50\% of the time, and is shown in red. }\label{fig:methodoflimits}
 \end{figure}
-\paragraph{Method of Adjustment} This method is similar to the method of limits, except that the stimulus intensity is adjusted by the observer (not the experimenter) in a continuous manner until the observer can just barely detect the stimulus. This procedure may be repeated several times, with trials averaged to produce a mean value for the absolute threshold. 
 
-\paragraph{Measuring the Difference Threshold} The difference threshold, discussed in section \ref{logarithmicperception}, is the smallest detectable difference between two stimuli. This threshold can be measured using either the method of limits or the method of adjustment, but instead of increasing the absolute intensity of the stimulus, two stimuli are given, one with constant intensity and one whose intensity may vary either continuously or incrementally. The participant is instructed to identify the point at which the two stimuli are indistinguishable (if the varied stimulus is approaching the constant stimulus) or the point at which the two stimuli are distinguishable (if the varied stimulus is diverging from the constant stimulus). 
+\paragraph{Method of Adjustment} This method is similar to the method of limits, except that the stimulus intensity is adjusted by the observer (not the experimenter) in a continuous manner until the observer can just barely detect the stimulus. This procedure may be repeated several times, with trials averaged to produce a mean value for the absolute threshold. Figure \ref{fig:methodofajudstment} demonstrates this procedure. 
+
+<<methodofadjustment, fig.width=7, fig.height=5, echo=FALSE, include=FALSE>>=
+library(ggplot2)
+library(grid)
+
+logit <- function(x, c=0){
+  exp(x-c)/(1+exp(x-c))
+}
+
+data <- data.frame(
+  start=c(0, 10, 0, 10),
+  end=c(5.2, 4.7, 5.3, 4.9), 
+  trial=seq(-.2, -.05, length=4)
+  )
+
+trial.labels <- data.frame(x=-2, y=data$trial, label=paste("Trial ", 1:4, sep=""))
+
+x <- seq(0, 10, .01)
+y <- logit(x, c=mean(data$end))
+curve <- data.frame(x=x, y=y)
+
+qplot(data=data, x=start, y=trial, xend=end, yend=trial, geom="segment") + 
+  geom_point(data=data, aes(x=end, y=trial, shape='Trial End'), size=3) + 
+  geom_point(data=data, aes(x=start, y=trial, shape='Trial Start'), size=3) + 
+  geom_text(data=trial.labels, aes(x=x, y=y, label=label), hjust=0, inherit.aes=F) + 
+  scale_shape_manual("", values=c("Trial Start"=1, "Trial End"=10)) + 
+  geom_line(data=curve, aes(x=x, y=y, linetype="Detection Probability", 
+                            color="Detection Probability"), inherit.aes=F) +
+  geom_segment(aes(x=0, xend=10, y=.5, yend=.5, linetype="Detection Threshold", 
+                   color="Detection Threshold")) + 
+  xlab("Stimulus Intensity") + 
+  ylab("Probability of Detection") + 
+  scale_color_manual("", values=c("Detection Probability"="black", "Detection Threshold"="red")) + 
+  scale_linetype_manual("", values=c("Detection Probability"=1, "Detection Threshold"=2)) + 
+  theme_bw() + 
+  scale_y_continuous(breaks=c(0, .25, .5, .75, 1), labels=c("0", "0.25", "0.5", "0.75", "1.0")) + 
+  scale_x_continuous(breaks=c(0, 2.5, 5, 7.5, 10)) + 
+  theme(legend.position=c(.2, .58), legend.title=element_blank()) + 
+  ggtitle("Method of Adjustment")
+  
+@
+\begin{figure}[htbp]\centering
+\includegraphics[width=.5\textwidth]{fig-methodofadjustment}
+\caption[The Method of Adjustment]{Demonstration of the method of adjustment. In this experiment, four trials were performed, two trials starting from 0 and increasing, and two trials starting at 10 and decreasing. The empirical detection threshold is the threshold at which detection occurs 50\% of the time, and is shown in red. }\label{fig:methodofadjustment}
+\end{figure}
+
+\paragraph{Measuring the Difference Threshold} The difference threshold, discussed in section \ref{logarithmicperception}, is the smallest detectable difference between two stimuli. This threshold can be measured using either the method of limits or the method of adjustment. Rather than increasing the absolute intensity of the stimulus as discussed above, two stimuli are given: one with constant intensity and one whose intensity may vary either continuously or incrementally (depending on the method utilized). The participant is instructed to identify the point at which the two stimuli are indistinguishable (if the varied stimulus is approaching the constant stimulus) or the point at which the two stimuli are distinguishable (if the varied stimulus is diverging from the constant stimulus). 
 
 \paragraph{Magnitude Estimation} Magnitude estimation studies are used to measure the perceptual intensity of two different stimuli. For example, a participant might be shown a series of two lights, and asked to assign a number to describe how bright each light is. These numerical values would then be compared to the actual light intensity (as measured by a digital sensor or by the input voltage) to determine how perceived brightness corresponds to actual intensity. Many stimuli measured this way produce power-law functions that exhibit response compression (doubling the actual intensity corresponds to a much smaller change in perceived brightness) or response expansion (doubling the actual intensity corresponds to a change in perceived intensity that is more than double the original intensity). 
 
 \subsection{Testing Images using Psychological Paradigms}
-In addition to the psychophysics methods outlined above, there are testing paradigms within psychology that are applicable to the study of statistical graphics. There are experimental methods such as visual search and eye tracking, but there are also experimental control procedures that may be important in graphics studies that are similar to cognitive psychology studies. We will first address the experimental methods, and then briefly discuss some common control procedures that may be applicable to the study of statistical graphics. 
+In addition to the psychophysics methods outlined above, there are testing paradigms within psychology that are applicable to the study of statistical graphics. These include experimental methods such as visual search and eye tracking, as well as experimental control procedures that may be important in graphics studies that are similar to cognitive psychology studies. We will first discuss the experimental methods, and then briefly discuss some common control procedures that may be applicable to the study of statistical graphics. 
 
 \subsubsection{Experimental Methods}\label{experimentalmethods}
-There are straightforward methods commonly used in psychological and statistical research; asking participants to make numerical judgments based on presented stimuli, for instance. These methods are quite useful, but not particularly difficult or domain-specific. In this section, we discuss two domain-specific methods for understanding perception of visual stimuli, visual search and eye tracking. 
+Many psychological experiments utilize straightforward methods to address hypotheses in perception, such as asking participants to make numerical judgments based on presented stimuli. These methods are quite useful, but not particularly difficult or domain-specific. In this section, we discuss two domain-specific methods for understanding perception of visual stimuli: visual search and eye tracking. 
 
-\paragraph{Visual Search} Simply put, visual search methods involve presenting a participant with many distractor stimuli and one or more target stimuli, and asking the participant to locate the target stimuli. Time is measured between the initial stimulus presentation and the participant's answer; participant accuracy is also considered in more complicated visual search settings. This procedure allows researchers to measure simple, preattentive stimuli (figure \ref{fig:preattentiveinterference}), but can also be utilized for more complicated tasks that require attention \citep{anderson1983interactive}. One example of a visual search task is shown in figure \ref{fig:visualsearch}. 
+\paragraph{Visual Search} Simply put, visual search methods involve presenting a participant with many distractor stimuli and one or more target stimuli, and asking the participant to locate the target stimuli. Time is measured between the initial stimulus presentation and the participant's answer; participant accuracy is also considered in more complicated visual search settings. This procedure allows researchers to measure simple preattentive stimuli and can also be utilized for more complicated tasks that require attention \citep{anderson1983interactive}. One example of a visual search task is shown in figure \ref{fig:visualsearch}; a common preattentive search task is shown in figure \ref{fig:preattentiveinterference}. 
 
 \begin{figure}[htbp]\centering
 \includegraphics[width=.7\textwidth]{VisualSearch}
 \caption[Visual Search Task]{Visual Search Task. Participants were asked to locate the figure (1-24) most similar to the central ``target" figure.}\label{fig:visualsearch}
 \end{figure}
 
-Visual search tasks can be used to measure the efficiency of a participant's visual search abilities (and focus on a task) to serve as a baseline for more complicated visual tasks. They can also be used to examine feature binding and common mistakes that may indicate relevant distractor stimuli. Even when reaction time is not directly measured, these tasks are typically given under time pressure, to establish a baseline performance that is well below 100\% performance on the task. 
+Visual search tasks can be used to measure the efficiency of a participant's visual search abilities (and focus on a task) to serve as a baseline for more complicated visual tasks. They can also be used to examine feature binding and common mistakes that may indicate relevant distractor stimuli. Even when reaction time is not directly measured, these tasks are typically given under time pressure, to establish a baseline performance that is below 100\% performance on the task. This time pressure allows experimenters to avoid response compression, so that the number of questions completed within the time limit provides an approximate measure of response time.
 
 \paragraph{Eye Tracking} \label{eyetracking}
-Eye tracking studies are often utilized in order to understand which parts of an image participants focus on, and in what order they examine the image. Eye tracking studies were heavily used in order to refine the task-based models of graphical perception; they allowed researchers to understand that participants had to iterate between different parts of the graph in order to assimilate all of the represented information into working memory. Figure \ref{fig:eyetracking} shows one lightweight eye-tracking assembly. The camera allows researchers to track the direction of the pupil and thus infer gaze. 
+Eye tracking studies are often utilized in order to understand which parts or features of an image participants focus on, and in what order they examine the image components. Eye tracking studies were heavily used in order to refine the task-based models of graphical perception; they allowed researchers to understand that participants had to iterate between the question and different parts of the graph in order to assimilate all of the represented information into working memory. Figure \ref{fig:eyetracking} shows one lightweight eye-tracking assembly. The camera allows researchers to track the direction of the pupil and thus infer gaze direction. 
 
 \begin{figure}[htbp]\centering
 \includegraphics[width=.4\textwidth]{EyeTrackingGear}
@@ -581,13 +627,34 @@ Eye tracking studies are often utilized in order to understand which parts of an
 
 Eye tracking studies have been performed on statistical graphics as well \citep{zhao2013mind}, utilizing a visual search task and examining which graphics participants compared to determine the target plot.
 
-In psychological experiments, the obvious experimental approach can produce biased responses from participants. Human perception is highly reliant on expectations and past experience, and as a result, experimenters must take care to reduce undesired biasing effects in order to appropriately control experiments. Some of these considerations are discussed in the next section. 
+In some psychological experiments, the straightforward approach to a task can produce biased responses from participants. Human perception is highly reliant on expectations and past experience, and as a result, experimenters must take care to reduce undesired biasing effects in order to appropriately control experiments. Some of these considerations are discussed in the next section. 
 \subsubsection{Experimental Control Procedures}
-While not all of these procedures are appropriate for every experiment, they do demonstrate the degree of control many experiments require to measure small psychological effects. The variation in the human brain and in cognitive strategies (and the sample size constraints of testing in humans) requires a large degree of experimental control in order to minimize the effects of population variance. Some of the biases of the human brain as well as strategies to address these biases are described below.
+While not all of the experimental control procedures discussed here are appropriate for every experiment, they do demonstrate the degree of control many experiments require to measure small psychological effects. The variation in the human brain and in cognitive strategies (and the sample size constraints of testing in humans) requires a large degree of experimental control in order to minimize the effects of population variance. Some of the biases of the human brain as well as strategies to address these biases are described below.
 
-\paragraph{Habituation} The human visual system is attracted to novelty; odd, bizarre, or new sights attract more attention than ordinary, run of the mill scenes. Habituation describes the process of becoming less interested in a stimuli; as this occurs, the mind begins to enter ``auto-pilot" and attention to the task at hand becomes less focused. In infants, this habituation process is used to determine whether there is a perceived difference between two stimuli; in adults, this process is not typically as useful to the experimenter. As a result, to avoidi habituation, experiments should generally consist of somewhat varied tasks in order to maintain participant attention. 
+\paragraph{Habituation} The human visual system is attracted to novelty; odd, bizarre, or new sights attract more attention than ordinary, run of the mill scenes. Habituation describes the process of becoming less interested in a stimuli; as this occurs, the mind begins to enter ``auto-pilot" and attention to the task at hand becomes less focused. In infants, this habituation process is used to determine whether there is a perceived difference between two stimuli; in adults, this process is not typically as useful to the experimenter. To avoid habituation, experiments should generally consist of somewhat varied tasks in order to maintain participant attention. The psychophysics experiments described in figures \ref{fig:methodoflimits} and \ref{fig:methodofadjustment} can be vulnerable to this problem; to overcome habituation, trials often alternate in direction or start at random points along the intensity spectrum. 
 
-\paragraph{Masking} Images can persist on the retina for a period after the image is no longer available; this phenomenon is called \emph{persistence of vision}. In order to control the time in which the stimulus is visible, psychological experiments often will show a mask immediately after an image in order to ``erase" the retina. This degree of control is often useful in experiments which focus on the preattentive stage of perception, but persistence of vision is not likely to affect experiments which take place in the attentive stage of perception (i.e. images shown for more than .5 seconds).
+\paragraph{Masking} Images can persist on the retina for a period after the image is no longer available; this phenomenon is called \emph{persistence of vision}. In order to control the time in which the stimulus is visible, psychological experiments often will show a mask immediately after an image in order to ``erase" the retina. This degree of control is often useful in experiments which focus on the preattentive stage of perception, but persistence of vision is not likely to affect experiments which take place in the attentive stage of perception (i.e. images shown for more than .5 seconds). A sample mask is shown in figure \ref{fig:mask}. 
+
+<<mask, fig.width=5, fig.height=5, echo=FALSE, include=FALSE>>=
+library(ggplot2)
+
+slopes <- runif(200, -10, 10)
+intercepts <- runif(200, -15, 15)
+
+data <- data.frame(slope=slopes, intercept=intercepts, x=-50, y=-50)
+
+ggplot(data=data) + 
+  geom_point(aes(x=x, y=y)) + 
+  geom_abline(aes(slope=slope, intercept=intercept)) + 
+  xlim(c(-3, 3)) + ylim(c(-3, 3)) + 
+  theme_minimal() + 
+  theme(axis.text=element_blank(), axis.title=element_blank(), axis.ticks=element_blank())
+
+@
+\begin{figure}[htbp]\centering
+\includegraphics[width=.3\textwidth]{fig-mask}
+\caption[Sample Image Mask]{Sample mask used to ``erase'' the retina in some psychological experiments which test stimuli for short time periods ($<$1 s). The mask removes any afterimage the participant might have, ensuring that the stimuli is only available for the specified period. }\label{fig:mask}
+\end{figure}
 
 \paragraph{Priming} Broadly, priming is a technique that can be used to subconsciously bias a participant towards a certain conclusion. In cognitive psychology research, priming can be used to test word association (i.e. participants are quicker to identify an apple if they have just heard the word ``fruit" than if they heard the unrelated word ``pen"); in statistical graphics, priming effects are more likely to occur due to instructions or examples provided to participants at the start of a testing session. If an initial example contains notable outliers, participants are more likely to look for and recognize graphs with outliers than graphs with other notable features. Examples must be designed in such a way to avoid activating these priming affects as much as possible. 
 
@@ -604,16 +671,16 @@ library(ggplot2)
 
 # Density plot
 ggplot(data=iris, aes(x=Sepal.Width, group=Species, fill=Species)) + 
-  geom_density(position="stack") + theme(legend.position=c(.8, .8)) + xlab("Sepal Width")
+  geom_density(position="stack") + theme(legend.position=c(.8, .8)) + xlab("Sepal Width") + theme_bw()
 
 # Dotplot 
 ggplot(data=iris, aes(x=Sepal.Width, group=Species, fill=Species)) + 
-  geom_dotplot(method='histodot', stackgroups=TRUE) + theme(legend.position=c(.8, .8)) + theme(axis.text.y=element_blank()) + ylab("") + xlab("Sepal Width")
+  geom_dotplot(method='histodot', stackgroups=TRUE) + theme(legend.position=c(.8, .8)) + theme(axis.text.y=element_blank()) + ylab("") + xlab("Sepal Width") + theme_bw()
 
 
 # Histogram
 ggplot(data=iris, aes(x=Sepal.Width, group=Species, fill=Species)) + 
-  geom_histogram(position="stack") + theme(legend.position=c(.8, .8)) + xlab("Sepal Width")
+  geom_histogram(position="stack") + theme(legend.position=c(.8, .8)) + xlab("Sepal Width") + theme_bw()
 
 @
 
@@ -660,7 +727,8 @@ library(nullabor)
 
 lineupdata <- lineup(null_permute("Petal.Width"), true=iris, pos=5)
 ggplot(data=lineupdata, aes(x=Sepal.Width, y=Petal.Width)) + 
-  geom_jitter() + facet_wrap(~.sample) + theme(axis.text=element_blank(), axis.title=element_blank())
+  geom_jitter() + facet_wrap(~.sample) + theme_bw() + 
+  theme(axis.text=element_blank(), axis.title=element_blank())
 @
 
 \begin{figure}[htbp]\centering

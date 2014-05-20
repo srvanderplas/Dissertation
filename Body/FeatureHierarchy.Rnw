@@ -37,7 +37,7 @@ Relevant literature:
 \item Gestalt laws: which law dominates? Proximity? Similarity?
 \end{itemize}
 
-\citet{cleveland:1985} provide a hierarchy of accuracy, but this does not tell us which features of a graph viewers are more likely to notice or prefer. We do not always prefer the graphs which provide the most accurate transfer of information (i.e. people's preference for 3d graphics, pie charts, etc.), so it would be useful to understand what features of graphs people are most likely to notice. 
+\citet{cleveland:1985} provide a hierarchy of accuracy, but this does not tell us which features of a graph viewers are more likely to notice or prefer. We do not always prefer the graphs which provide the most accurate transfer of information (i.e. people's preference for 3d graphics, pie charts, etc.), so it would be useful to understand what features of graphs people are most likely to notice as significant. 
 
 \section{Methods}
 Using the lineup protocol, we can provide a plot which shows organization of one feature (color, shape, trend) and a plot which shows organization of a different feature, plus 18 distractor plots which are randomly generated combinations of both features. Sample plots are shown below in figures \ref{fig:hierarchylineup} and \ref{fig:hierarchylineup2}.
@@ -52,7 +52,7 @@ Using the lineup protocol, we can provide a plot which shows organization of one
 \caption[Another sample multi-target lineup]{Lineup which has multiple target plots. Plot 9 contains the target ``slope" plot, plot 8 contains the target ``color" plot.}\label{fig:hierarchylineup2}
 \end{figure}
 
-We will test these graphics by recruiting participants from Amazon Mechanical Turk. Participants will be asked to complete a few demographic questions (colorblindness, normal vision, etc.) and many different types of lineups, using the competing target plot scheme. It is possible that a parallel (much smaller) study could be completed using eye tracking to examine exactly what viewers are considering during the process of deciding which lineup to choose. 
+We will test these graphics by recruiting participants from Amazon Mechanical Turk. Participants will be asked to complete a few demographic questions (colorblindness, normal vision, etc.) and many different types of lineups, using the competing target plot scheme described above. It is possible that a parallel (much smaller) study could be completed using eye tracking to examine exactly what viewers are considering during the process of deciding which lineup to choose. 
 
 It should also be noted that the standard lineup analysis \citep{majumder2013validation} will not suffice here, as there are two competing target plots. This is not a particularly heinous obstacle, though, as we can simply fall back on the visual search task as a guide for analysis, and consider the proportion of viewers who select each target plot as a test of the strength of the signal. 
 
