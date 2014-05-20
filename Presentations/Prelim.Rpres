@@ -1,0 +1,224 @@
+Perception of Statistical Graphics
+========================================================
+author: Susan VanderPlas
+date: May 27, 2014
+css: Prelim.css
+
+
+```{r sineillusion-setup, fig.keep='all', cache=FALSE, echo=FALSE, include=FALSE, eval=TRUE}
+rm(list=ls())
+wd <- getwd()
+opts_chunk$set(cache.path='cache/', fig.align='center', fig.width=6, fig.height=6, fig.show='hold', par=TRUE, cache=TRUE, concordance=TRUE, autodep=TRUE, root.dir="../")
+datadir <- "../Data/sineIllusion/"
+codedir <- "../Code/sineIllusion/"
+options(replace.assign=TRUE,width=70,scipen=3)
+require(knitr)
+library(reshape2)
+suppressMessages(library(ggplot2))
+library(plyr)
+suppressMessages(library(gridExtra))
+
+source(paste(codedir, "functions.r", sep=""))
+
+f <- function(x) 2*sin(x)
+fprime <- function(x) 2*cos(x)
+f2prime <- function(x) -2*sin(x)
+```
+
+
+Outline
+========================================================
+type:sub-section
+- Importance of understanding perception
+- Sine Illusion
+- Visual Aptitude and Graphical Inference
+- Salience of Graph Features
+
+Signs of the Sine Illusion
+========================================================
+type:sub-section
+## Why we need to care
+```{r original,echo=FALSE}
+qplot(x=x, xend=xend, y = ystart, yend=yend, geom="segment", data=createSine(40, 1, f=f, fprime=fprime, f2prime)) +
+  theme(panel.grid.major=element_blank(), panel.background = element_rect(fill = "white", 
+                colour = "black"), plot.margin = unit(c(0,0,-0.5,-0.5), "cm"), 
+       panel.grid.minor=element_blank(), panel.background=element_blank(),
+       axis.title = element_blank(), axis.ticks = element_blank(), 
+       axis.text = element_blank()) #+ coord_equal(ratio=1)
+```
+
+Example of the Sine Illusion
+========================================================
+8-hour Average Ozone Levels in Houston, TX by temperature at Hobby Airport
+
+```{r example-sineillusion, echo=FALSE, results='asis', fig.width=10, fig.height=4}
+datasub <- read.csv(paste(datadir, "Ozone-subset.csv", sep=""))
+nsite <- length(unique(datasub$SiteID))
+a <- qplot(data=datasub, x=jitter(Tmax), y=Ozone, geom="point", shape=I(1), colour=I("grey40"), alpha=I(.5), xlab="Temperature (F)", ylab="8-hour Average Ozone Concentration (ppm)") + geom_line(aes(x=Tmax, y=fit), size=1.25, colour="black") + theme_bw()
+b <- qplot(data=datasub, x=jitter(Tmax), y=resid, geom="point", shape=I(1), colour=I("grey40"), alpha=I(.5), xlab="Temperature (F)", ylab="Residual Ozone Concentration (ppm)") + geom_line(aes(x=Tmax, y=0*resid), size=1.25, colour="black") + theme_bw()
+
+grid.arrange(a, b, ncol=2)
+```
+
+Explaining the Illusion
+========================================================
+```{r ribbon-illusion, echo=F, fig.width=8, fig.height=6, fig.cap='Perspective plot similar to the sine illusion'}
+
+f <- function(x) 2*sin(x)
+fprime <- function(x) 2*cos(x)
+f2prime <- function(x) -2*sin(x)
+
+x <- seq(0, 2*pi, length=42)[2:41]
+data <- do.call("rbind", lapply(seq(-.5, .5, 1), function(i) data.frame(x=x, y=2*sin(x), z=i)))
+
+data.persp <- acast(data, x~z, value.var="y")
+x <- sort(unique(data$x))
+y <- sort(unique(data$y))
+z <- sort(unique(data$z))
+
+usr <- par("usr")
+par(mar=c(0, 0, 0, 0))
+persp(x, z, data.persp,  xlab="", ylab="", zlab="", theta=0, phi=45, border="black", shade=.35, col="white", xlim=c(-pi/12, 2*pi+pi/12), ylim=c(-1.75, 1.75), scale=FALSE, box=FALSE, expand=3/pi, d=3) # , ltheta=0, lphi=-15
+```
+Perspective plot of a three-dimensional image similar to the sine illusion
+
+
+Explaining the Illusion
+========================================================
+```{r ribbon-illusion2, echo=F, fig.width=8, fig.height=6}
+usr <- par("usr")
+par(mar=c(0, 0, 0, 0))
+persp(x, z, data.persp,  xlab="", ylab="", zlab="", theta=0, phi=45, border="black", shade=.35, col="white", xlim=c(-pi/12, 2*pi+pi/12), ylim=c(-1.75, 1.75), scale=FALSE, box=FALSE, expand=3/pi, d=50) # , ltheta=0, lphi=-15
+```
+Perspective plot of the same data, with a vanishing point closer to infinity
+
+Explaining the Illusion
+========================================================
+```{r originalgrid, echo=F, fig.width=7.5, fig.height=6}
+f <- function(x) 2*sin(x)
+fprime <- function(x) 2*cos(x)
+f2prime <- function(x) -2*sin(x)
+
+dframe <- createSine(n = 40, len = 1, f=f, fprime=fprime, f2prime)
+require(grid)
+qplot(x=x, xend=xend, y = ystart*ell, yend=yend*ell, geom="segment", data=dframe) +
+  theme(panel.grid.major.y=element_line(colour="grey75"), 
+        panel.grid.minor.y=element_line(colour="grey85"), 
+        panel.grid.major.x=element_blank(),
+        panel.background = element_rect(fill = "white", 
+                colour = "black"),
+       panel.grid.minor.x=element_blank(), panel.background=element_blank(),
+       axis.title = element_blank(), axis.ticks = element_blank(), 
+       axis.text = element_blank(), 
+        plot.margin = unit(c(0,-.5,-.5,-1), "cm")) + coord_equal(ratio=1) + 
+  geom_segment(size=2, data=dframe[c(31, 38),]) 
+```
+The illusion doesn't disappear with grid lines, but does disappear when the context is removed
+
+Geometry of the Sine Illusion
+========================================================
+```{r illusion-geometry, fig.width=7.2, fig.height=5.85, out.width='90%', out.height='auto', echo=F}
+f <- function(x) 2*sin(x)
+fprime <- function(x) 2*cos(x)
+f2prime <- function(x) -2*sin(x)
+library(plyr)
+dframe <- createSine(n = 150, len = 1, f=f, fprime=fprime, f2prime=f2prime)
+dframe$ystartcts <- dframe$ystart
+dframe$yendcts <- dframe$yend
+dframe[1:150,c(2, 3, 5, 6)] <- NA
+dframe[(1:15)*10-5, c(2, 3)] <- dframe[(1:15)*10-5, 1] 
+dframe[(1:15)*10-5, 5] <- dframe[(1:15)*10-5, 4] - .5
+dframe[(1:15)*10-5, 6] <- dframe[(1:15)*10-5, 4] + .5
+dframe$type <- "Vertical Width"
+
+idx <- which(!is.na(dframe$xstart))
+dframe$ell <- dframe$ell/2
+dframe.1 <- getSecantSegment(dframe$xstart[idx], dframe, f, fprime, f2prime)
+dframe.1$x <- dframe$x[idx]
+dframe.1$y <- dframe$y[idx]
+dframe.1$ystartcts <- dframe$ystartcts[idx]
+dframe.1$yendcts <- dframe$yendcts[idx]
+names(dframe.1) <- c("x", "y", "deriv", "xstart", "xend", "ystart", "yend", "ell", "ell.quad1", "ell.quad2", "type", "a", "ystartcts", "yendcts")
+dframe.1$vangle <- with(dframe.1, atan(deriv))
+dframe <- rbind.fill(dframe, dframe.1)
+dframe$type <- factor(dframe$type)
+
+p1 <- qplot(x=x, y=y, geom="line", data=dframe, colour=I("grey50")) + theme_bw() + 
+  geom_line(aes(y=ystartcts), colour="grey50", linetype=4) + 
+  geom_line(aes(y=yendcts), colour="grey50", linetype=4) +
+  geom_segment(data=subset(dframe, !is.na(type)), 
+               aes(x=xstart, xend = xend, y=ystart, yend=yend, colour=type, linetype=type), size=0.8)  + 
+  xlab("") + ylab("")  +
+  coord_equal(ratio=1) + scale_colour_manual("", values=c("blue", "grey30")) + 
+  geom_text(aes(label=paste("theta", "%~~%", round(abs(vangle)/pi*180), "^o", sep=""), 
+                x=pmax(xstart, xend)/2+x/2+.35 , y=y-sign(vangle)*.6+.02), colour="blue",
+            data=dframe.1, parse=TRUE, hjust=.9, vjust=.5, size=3) + 
+  scale_x_continuous(breaks=seq(0, 2*pi, by=pi/2), 
+                     labels=c("0", expression(paste(pi,"/2")), expression(pi), 
+                              expression(paste("3",pi, "/2")), expression(paste("2",pi)))) +
+  scale_linetype_manual("", values=c(1,2)) + 
+  theme(legend.key.width = unit(3, "line"), plot.margin = unit(c(0,0,0,0), "cm"), legend.position=c(.25, .2)) 
+
+f <- function(x) 2*sin(x)
+fprime <- function(x) 2*cos(x)
+f2prime <- function(x) -2*sin(x)
+library(plyr)
+dframe <- createSine(n = 150, len = 1, f=f, fprime=fprime, f2prime=f2prime)
+dframe$ystartcts <- dframe$ystart
+dframe$yendcts <- dframe$yend
+dframe[1:150,c(2, 3, 5, 6)] <- NA
+dframe[(1:15)*10-5, c(2, 3)] <- dframe[(1:15)*10-5, 1] 
+dframe[(1:15)*10-5, 5] <- dframe[(1:15)*10-5, 4] - .5
+dframe[(1:15)*10-5, 6] <- dframe[(1:15)*10-5, 4] + .5
+dframe$type <- "Vertical Width"
+
+asp <- 2
+idx <- which(!is.na(dframe$xstart))
+dframe$ell <- dframe$ell/2
+dframe.1 <- getSecantSegment(dframe$xstart[idx], dframe, f, fprime, f2prime)
+dframe.1$x <- dframe$x[idx]
+dframe.1$y <- dframe$y[idx]
+dframe.1$ystartcts <- dframe$ystartcts[idx]
+dframe.1$yendcts <- dframe$yendcts[idx]
+names(dframe.1) <- c("x", "y", "deriv", "xstart", "xend", "ystart", "yend", "ell", "ell.quad1", "ell.quad2", "type", "a", "ystartcts", "yendcts")
+dframe.1$vangle <- with(dframe.1, atan(deriv*1/asp))
+dframe <- rbind.fill(dframe, dframe.1)
+dframe$type <- factor(dframe$type)
+
+p2 <- qplot(x=x, y=y, geom="line", data=dframe, colour=I("grey50")) + theme_bw() + 
+  geom_line(aes(y=ystartcts), colour="grey50", linetype=4) + 
+  geom_line(aes(y=yendcts), colour="grey50", linetype=4) +
+  geom_segment(data=subset(dframe, !is.na(type)), 
+               aes(x=xstart, xend = xend, y=ystart, yend=yend, colour=type, linetype=type), size=0.8)  + 
+  xlab("") + ylab("")  +
+  coord_equal(ratio=2) + scale_colour_manual("",guide="none", values=c("blue", "grey30")) + 
+  geom_text(aes(label=paste("theta", "%~~%", round(abs(vangle)/pi*180), "^o", sep=""), 
+                x=pmax(xstart, xend)/2+x/2+.65 + 
+                  c(.35, .35, .15, -.15, .3, .3, .3, .3, .3, .3, 0, -.05, .35, .35, .35) , 
+                y=y-sign(vangle)*.35+.17 + 
+                  c(0, -.05, -.2, .8, -.05, -0.15, -.2, -.2, -.2, -.2, 0, -.4, -.05, -0.01, 0)), colour="blue",
+            data=dframe.1, parse=TRUE, hjust=.9, vjust=.5, size=3) + 
+  scale_x_continuous(breaks=seq(0, 2*pi, by=pi/2), 
+                     labels=c("0", expression(paste(pi,"/2")), expression(pi), 
+                              expression(paste("3",pi, "/2")), expression(paste("2",pi)))) +
+  scale_linetype_manual("", values=c(1,2), guide="none") + 
+  theme(legend.key.width = unit(3, "line"), plot.margin = unit(c(0,0,0,0), "cm"), axis.text.y=element_blank()) 
+
+p1
+```
+ 
+Geometry of the Sine Illusion
+========================================================
+- We perceive the orthogonal width of the implied surface
+- The orthogonal width is a function of the x and y range as well as the aspect ratio of the plot. 
+- The perceived orthogonal width is also a function of the slope of the line tangent to the underlying function curve. 
+
+Correcting the Illusion
+=======================================================
+- Remove the underlying function (plot the curve and the residuals separately)
+- Change the plotted line length (or spread) so that the **perceived** orthogonal width corresponds to the **original** (data) line length
+- Reparameterize the x-axis in terms of the slope, so that the absolute slope doesn't change
+
+Correcting the Illusion
+=======================================================
+
