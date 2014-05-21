@@ -60,6 +60,36 @@ Correcting the Illusion
 - Change the plotted line length (or spread) so that the **perceived** orthogonal width corresponds to the **original** (data) line length
 - Reparameterize the x-axis in terms of the slope, so that the absolute slope doesn't change
 
+Correcting the Illusion 
+=======================================================
+## Trend Removal
+<img src="Prelim-figure/cleveland.png" title="plot of chunk cleveland" alt="plot of chunk cleveland" style="display: block; margin: auto;" />
+
 Correcting the Illusion
 =======================================================
+## Trend Removal
+<img src="Prelim-figure/cleveland2.png" title="plot of chunk cleveland2" alt="plot of chunk cleveland2" style="display: block; margin: auto;" />
 
+Correcting the Illusion
+=======================================================
+## X-axis Transformation
+<img src="Prelim-figure/xaxisdemo.png" title="plot of chunk xaxisdemo" alt="plot of chunk xaxisdemo" style="display: block; margin: auto;" />
+
+Correcting the Illusion
+=======================================================
+## X-axis Transformation
+<img src="Prelim-figure/xaxisdemoweight.png" title="plot of chunk xaxisdemoweight" alt="plot of chunk xaxisdemoweight" style="display: block; margin: auto;" />
+
+Correcting the Illusion
+=======================================================
+## Y-axis Transformation
+<img src="Prelim-figure/y-generalcorrectioncartoon.png" title="plot of chunk y-generalcorrectioncartoon" alt="plot of chunk y-generalcorrectioncartoon" style="display: block; margin: auto;" />
+Correcting the Illusion
+=======================================================
+## Y-axis Transformation
+<img src="Prelim-figure/y-linearcorrectioncartoon.png" title="plot of chunk y-linearcorrectioncartoon" alt="plot of chunk y-linearcorrectioncartoon" style="display: block; margin: auto;" />
+
+Correcting the Illusion
+=======================================================
+## Y-axis Transformation
+<img src="Prelim-figure/ycorrection.png" title="plot of chunk ycorrection" alt="plot of chunk ycorrection" width="100%" style="display: block; margin: auto;" />

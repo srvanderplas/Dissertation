@@ -219,6 +219,307 @@ Correcting the Illusion
 - Change the plotted line length (or spread) so that the **perceived** orthogonal width corresponds to the **original** (data) line length
 - Reparameterize the x-axis in terms of the slope, so that the absolute slope doesn't change
 
+Correcting the Illusion 
+=======================================================
+## Trend Removal
+```{r cleveland,echo=F,fig.width=6, fig.height=6}
+f <- function(x) -x^2
+sdf <- function(x) (4-0.5*x)/5
+  
+x <- seq(-2,2.5, by=0.1)
+
+id <- 1:30
+dframe <- expand.grid(x=x, id=id)
+dframe$y <- with(dframe, rnorm(n=nrow(dframe), mean=f(x), sd=sdf(x)/2))
+qplot(x,y, data=dframe, geom="jitter") + theme_bw()
+```
+
 Correcting the Illusion
 =======================================================
+## Trend Removal
+```{r cleveland2,echo=F,fig.width=12, fig.height=6}
+dframe$Trend <- f(dframe$x)
+dframe$Residuals <- dframe$y - dframe$Trend
 
+x <- seq(-2,2.5, by=0.01)
+p1 <- qplot(x=x, y=f(x), ylab="Trend", geom="line") + theme_bw()
+p2 <- qplot(x=x, y=Residuals, data=dframe, geom="jitter") + theme_bw()
+p <- grid.arrange(p1, p2, nrow=1)
+# p
+```
+
+Correcting the Illusion
+=======================================================
+## X-axis Transformation
+```{r xaxisdemo,echo=F, fig.width=12, fig.height=4}
+correctx <- function(z, fprime, a=0, b=2*pi, w=1) {
+  # w = 1/(shrink+1)
+  const <- integrate(function(x) abs(fprime(x)), a, b)$value
+  trans <- sapply(z, function(i) integrate(function(x) abs(fprime(x)), a, i)$value*(b-a)/const + a)
+  # alternatively to the rowMeans, you could report back  
+  # trans*(1-w) + z*w
+  trans*w + z*(1-w)
+}
+f <- sin
+fprime <- cos
+f2prime <- function(x) -sin(x)
+dframe <- createSine(40 , len=1, f=f, fprime=fprime, f2prime=f2prime)
+minor.axis.correction <- correctx(seq(0, 2*pi, pi/8), fprime)
+
+dframe$xtrans <- correctx(dframe$x, fprime=fprime)
+
+dots.orig <- data.frame(x = rep(seq(0, 2*pi, pi/8), times=1), 
+                        y=rep(c(-2), each=length(seq(0, 2*pi, pi/8))))
+dots <- data.frame(x = rep(minor.axis.correction, times=1), y=rep(c(-2), each=length(minor.axis.correction)))
+
+none <- ggplot(aes(x=x, xend=x, y = ystart, yend=yend), data=dframe) +
+  geom_abline(aes(slope = 0, intercept=0), colour="grey70") +
+  geom_segment(colour="grey20") +
+  theme_bw() + coord_fixed(ratio=1) + xlab("x") + ylab("y")+ 
+  scale_x_continuous(breaks=seq(0, 2*pi, by=pi/2), minor_breaks=seq(0, 2*pi, pi/8),
+                     labels=c("0", expression(paste(pi,"/2")), expression(pi), expression(paste("3",pi, "/2")), expression(paste("2",pi)))) + 
+  geom_point(data=dots.orig, aes(x=x, y=y), inherit.aes=FALSE) + 
+  theme(plot.margin = unit(c(.1,.1,-.5,.1), "cm")) + ggtitle("No correction")
+
+
+
+full <- ggplot(aes(x=xtrans, xend=xtrans, y = ystart, yend=yend), data=dframe) +
+  geom_abline(aes(slope = 0, intercept=0), colour="grey70") +
+  geom_segment(colour="grey20") +
+  theme_bw() + coord_fixed(ratio=1) + xlab("x") + ylab("y")+ 
+  scale_x_continuous(breaks=seq(0, 2*pi, by=pi/2), minor_breaks=minor.axis.correction,
+                     labels=c("0", expression(paste(pi,"/2")), expression(pi), expression(paste("3",pi, "/2")), expression(paste("2",pi)))) + 
+  geom_point(data=dots, aes(x=x, y=y), inherit.aes=FALSE) + 
+  theme(plot.margin = unit(c(.1,.1,-.5,.1), "cm")) + ggtitle("Fully Corrected")
+grid.arrange(none, full, nrow=1)
+```
+
+Correcting the Illusion
+=======================================================
+## X-axis Transformation
+```{r xaxisdemoweight,echo=F,fig.width=12, fig.height=8}
+correctx <- function(z, fprime, a=0, b=2*pi, w=1) {
+  # w = 1/(shrink+1)
+  const <- integrate(function(x) abs(fprime(x)), a, b)$value
+  trans <- sapply(z, function(i) integrate(function(x) abs(fprime(x)), a, i)$value*(b-a)/const + a)
+  # alternatively to the rowMeans, you could report back  
+  # trans*(1-w) + z*w
+  trans*w + z*(1-w)
+}
+f <- sin
+fprime <- cos
+f2prime <- function(x) -sin(x)
+dframe <- createSine(40 , len=1, f=f, fprime=fprime, f2prime=f2prime)
+minor.axis.correction <- correctx(seq(0, 2*pi, pi/8), fprime)
+
+dframe$xtrans <- correctx(dframe$x, fprime=fprime)
+
+dots <- data.frame(x = rep(minor.axis.correction, times=1), y=rep(c(-2), each=length(minor.axis.correction)))
+
+p1 <- ggplot(aes(x=xtrans, xend=xtrans, y = ystart, yend=yend), data=dframe) +
+  geom_abline(aes(slope = 0, intercept=0), colour="grey70") +
+  geom_segment(colour="grey20") +
+  theme_bw() + coord_fixed(ratio=1) + xlab("x") + ylab("y")+ 
+  scale_x_continuous(breaks=seq(0, 2*pi, by=pi/2), minor_breaks=minor.axis.correction,
+                     labels=c("0", expression(paste(pi,"/2")), expression(pi), expression(paste("3",pi, "/2")), expression(paste("2",pi)))) + 
+  geom_point(data=dots, aes(x=x, y=y), inherit.aes=FALSE) + 
+  theme(plot.margin = unit(c(.1,.1,-.5,.1), "cm")) + 
+  ggtitle("100% Corrected")
+
+dots$x2 <- correctx(seq(0, 2*pi, pi/8), fprime, w=.5)
+
+dframe$xtrans2 <- correctx(dframe$x, fprime=fprime, w=.5)
+
+p2 <- ggplot(aes(x=xtrans2, xend=xtrans2, y = ystart, yend=yend), data=dframe) +
+  geom_abline(aes(slope = 0, intercept=0), colour="grey70") +
+  geom_segment(colour="grey20") +
+  theme_bw() + coord_fixed(ratio=1) + 
+  xlab("x") + ylab("y")+ 
+  scale_x_continuous(breaks=seq(0, 2*pi, by=pi/2), minor_breaks=minor.axis.correction,
+                     labels=c("0", expression(paste(pi,"/2")), expression(pi), expression(paste("3",pi, "/2")), expression(paste("2",pi)))) + 
+  geom_point(data=dots, aes(x=x2, y=y), inherit.aes=FALSE)  + 
+  theme(plot.margin = unit(c(.1,.1,-.5,.1), "cm")) + 
+  ggtitle("50% Corrected")
+
+dots$x3 <- correctx(seq(0, 2*pi, pi/8), fprime, w=1/3)
+
+dframe$xtrans3 <- correctx(dframe$x, fprime=fprime, w=1/3)
+
+p3 <- ggplot(aes(x=xtrans3, xend=xtrans3, y = ystart, yend=yend), data=dframe) +
+  geom_abline(aes(slope = 0, intercept=0), colour="grey70") +
+  geom_segment(colour="grey20") +
+  theme_bw() + coord_fixed(ratio=1) + 
+  xlab("x") + ylab("y")+  
+  scale_x_continuous(breaks=seq(0, 2*pi, by=pi/2), minor_breaks=minor.axis.correction,
+                     labels=c("0", expression(paste(pi,"/2")), expression(pi), expression(paste("3",pi, "/2")), expression(paste("2",pi))))+ 
+  geom_point(data=dots, aes(x=x3, y=y), inherit.aes=FALSE) + 
+  theme(plot.margin = unit(c(.1,.1,-.5,.1), "cm")) + 
+  ggtitle("33% Corrected")
+
+dots$x4 <- correctx(seq(0, 2*pi, pi/8), fprime, w=1/4)
+
+dframe$xtrans4 <- correctx(dframe$x, fprime=fprime, w=1/4)
+
+p4 <- ggplot(aes(x=xtrans4, xend=xtrans4, y = ystart, yend=yend), data=dframe) +
+  geom_abline(aes(slope = 0, intercept=0), colour="grey70") +
+  geom_segment(colour="grey20") +
+  theme_bw() + coord_fixed(ratio=1) + 
+  xlab("x") + ylab("y") +
+  scale_x_continuous(breaks=seq(0, 2*pi, by=pi/2), minor_breaks=minor.axis.correction,
+                     labels=c("0", expression(paste(pi,"/2")), expression(pi), expression(paste("3",pi, "/2")), expression(paste("2",pi))))+ 
+  geom_point(data=dots, aes(x=x4, y=y), inherit.aes=FALSE) + 
+  theme(plot.margin = unit(c(.1,.1,-.5,.1), "cm")) + 
+  ggtitle("25% Corrected")
+
+grid.arrange(p1, p2, p3, p4, nrow=2)
+```
+
+Correcting the Illusion
+=======================================================
+## Y-axis Transformation
+```{r y-generalcorrectioncartoon, echo=F, fig.width=7, fig.height=6}
+f <- function(x) 2*sin(x)
+fprime <- function(x) 2*cos(x)
+f2prime <- function(x) -2*sin(x)
+df <- createSine(40 , len=1, f=f, fprime=fprime, f2prime=f2prime)[5:16,]
+df2 <- createSine(40 , len=.5, f=f, fprime=fprime, f2prime=f2prime)[5:16,]
+
+a <- 9
+df.real <- data.frame(x=seq(df$x[1], df$x[12], by=.001))
+df.real$y <- f(df.real$x)
+df.real$yupper <- df.real$y+.5
+df.real$ylower <- df.real$y-.5
+dfsec <- getSecantSegment(df$x[a], df2, f, fprime, f2prime)
+dfslope <- data.frame(xstart=df$x[a]+.5, xend=df$x[a]-.9, ystart=fprime(df$x[a])*.5+df$y[a], yend=-.9*fprime(df$x[a])+df$y[a])
+dfslope2 <- data.frame(xstart=df$x[a]+.5, xend=df$x[a]-.3, ystart=fprime(df$x[a])*.5+df$y[a]+.5, yend=-.3*fprime(df$x[a])+df$y[a]+.5)
+qplot(data=df.real, x=x, y=y, geom="line") + 
+  theme(panel.grid.major=element_blank(), 
+        panel.grid.minor=element_blank(), panel.background=element_blank(),
+        axis.title = element_blank(), axis.ticks = element_blank(), 
+        axis.text = element_blank()) +  
+  geom_line(data=df.real,aes(y=yupper), linetype=3) + 
+  geom_line(data=df.real,aes(y=ylower), linetype=4) + 
+  geom_segment(data=df, aes(x=xstart, y=ystart, xend=xend, yend=yend), colour="grey50") + 
+  geom_segment(data=df[a,], aes(x=xstart, y=ystart, xend=xend, yend=yend), colour="black", size=1.5)+
+  geom_segment(data=dfsec, aes(x=sec.xstart, xend=sec.xend, y=sec.ystart, yend=sec.yend)) + 
+  geom_point(data=dfsec, aes(x=sec.xstart, y=sec.ystart)) + geom_point(data=dfsec, aes(x=sec.xend, y=sec.yend)) +
+  geom_segment(data=dfslope, aes(x=xstart, y=ystart, xend=xend, yend=yend), linetype=2) + 
+  geom_text(data=dfsec, aes(x=sec.xstart, y=sec.ystart+.05, label="paste(group('(',list(x[2],y[2]),')'))"), parse=TRUE, hjust=.25) + 
+  geom_text(data=dfsec, aes(x=sec.xend, y=sec.yend-.08, label="paste(group('(',list(x[1],y[1]),')'))"), parse=TRUE, hjust=.75) +   
+  geom_text(data=dfslope, aes(x=xend+.1, y=yend+.1, label="slope: paste(f, \"'\", (x))"), parse=TRUE, hjust=.75, vjust=1) +
+  coord_equal(ratio=1) + theme(axis.title=element_blank(), axis.text=element_blank(), axis.ticks=element_blank(), axis.line=element_blank(), panel.grid=element_blank(), plot.margin = unit(c(-1,-1,-2,-2), "lines")) 
+```
+Correcting the Illusion
+=======================================================
+## Y-axis Transformation
+```{r y-linearcorrectioncartoon,echo=F, fig.width=10, fig.height=4.5}
+df <- createSine(40 , len=1, f=f, fprime=fprime, f2prime=f2prime)[5:16,]
+
+a <- 9
+df.real <- data.frame(x=seq(df$x[1], df$x[12], by=.001))
+df.real$y <- f(df.real$x)
+df.real$yupper <- fprime(df$x[a])*(df.real$x-df$x[a])+f(df$x[a])+.5
+df.real$yupper[which(abs(df.real$x-2)>.5)] <- NA
+df.real$ylower <- fprime(df$x[a])*(df.real$x-df$x[a])+f(df$x[a])-.5
+df.real$ylower[which(abs(df.real$x-2)>.5)] <- NA
+df.real$sec <- -1/fprime(df$x[a])*(df.real$x-df$x[a])+f(df$x[a])
+df.real$sec[which(abs(df.real$x-2)>.5)] <- NA
+df.real$sec[which(df.real$sec>df.real$yupper | df.real$sec<df.real$ylower)] <- NA
+dfslope <- data.frame(xstart=df$x[a]+.5, xend=df$x[a]-.9, ystart=fprime(df$x[a])*.5+df$y[a], yend=-.9*fprime(df$x[a])+df$y[a])
+dfslope2 <- data.frame(xstart=df$x[a]+.5, xend=df$x[a]-.3, ystart=fprime(df$x[a])*.5+df$y[a]+.5, yend=-.3*fprime(df$x[a])+df$y[a]+.5)
+p1 <- qplot(data=df.real, x=x, y=y, geom="line")+
+  theme(panel.grid.major=element_blank(), 
+        panel.grid.minor=element_blank(), panel.background=element_blank(),
+        axis.title = element_blank(), axis.ticks = element_blank(), 
+        axis.text = element_blank(),
+        plot.margin = unit(rep(0,4), "lines")) +
+  coord_equal(ratio=1) +
+  geom_line(data=df.real,aes(y=yupper), linetype=3) + 
+  geom_line(data=df.real,aes(y=ylower), linetype=4) + 
+  geom_segment(data=df, aes(x=xstart, y=ystart, xend=xend, yend=yend), colour="grey50") + 
+  geom_segment(data=df[a,], aes(x=xstart, y=ystart, xend=xend, yend=yend), colour="black", size=1.5)+
+  geom_line(data=df.real, aes(y=sec)) + 
+  geom_point(data=df.real[which.min(df.real$sec),], aes(x=x, y=sec), size=2) + 
+  geom_point(data=df.real[which.max(df.real$sec),], aes(x=x, y=sec), size=2) +
+  geom_segment(data=dfslope, aes(x=xstart, y=ystart, xend=xend, yend=yend), linetype=2) + 
+  geom_text(data=df.real[which.min(df.real$sec),], aes(x=x, y=sec-0.08, label="paste(group('(',list(x[1],y[1]),')'))"), 
+            parse=TRUE, hjust=1, vjust=.25) + 
+  geom_text(data=df.real[which.max(df.real$sec),], aes(x=x-.05, y=sec+.05, label="paste(group('(',list(x[2],y[2]),')'))"), 
+            parse=TRUE, hjust=0, vjust=.25)  + 
+  theme(axis.title=element_blank(), axis.text=element_blank(), axis.ticks=element_blank(), axis.line=element_blank(), panel.grid=element_blank(), plot.margin=unit(c(0,0,-1,0), "cm")) + 
+  ggtitle("Linear Approximation")
+
+
+df <- createSine(40 , len=1, f=f, fprime=fprime, f2prime=f2prime)[5:16,]
+
+a <- 9
+df.real <- data.frame(x=seq(df$x[1], df$x[12], by=.001))
+df.real$y <- f(df.real$x)
+df.real$yupper <- .5*f2prime(df$x[a])*(df.real$x-df$x[a])^2 + fprime(df$x[a])*(df.real$x-df$x[a])+f(df$x[a])+.5
+df.real$yupper[which(abs(df.real$x-2)>.5)] <- NA
+df.real$ylower <- .5*f2prime(df$x[a])*(df.real$x-df$x[a])^2 + fprime(df$x[a])*(df.real$x-df$x[a])+f(df$x[a])-.5
+df.real$ylower[which(abs(df.real$x-2)>.5)] <- NA
+df.real$sec <- -1/fprime(df$x[a])*(df.real$x-df$x[a])+f(df$x[a])
+df.real$sec[which(abs(df.real$x-2)>.5)] <- NA
+df.real$sec[which(df.real$sec>df.real$yupper | df.real$sec<df.real$ylower)] <- NA
+dfslope <- data.frame(xstart=df$x[a]+.5, xend=df$x[a]-.9, ystart=fprime(df$x[a])*.5+df$y[a], yend=-.9*fprime(df$x[a])+df$y[a])
+dfslope2 <- data.frame(xstart=df$x[a]+.5, xend=df$x[a]-.3, ystart=fprime(df$x[a])*.5+df$y[a]+.5, yend=-.3*fprime(df$x[a])+df$y[a]+.5)
+p2 <- qplot(data=df.real, x=x, y=y, geom="line") + 
+  theme(panel.grid.major=element_blank(), 
+        panel.grid.minor=element_blank(), panel.background=element_blank(),
+        axis.title = element_blank(), axis.ticks = element_blank(), 
+        axis.text = element_blank(),
+        plot.margin = unit(rep(0,4), "lines")) +  
+  coord_equal(ratio=1) +
+  geom_line(data=df.real,aes(y=yupper), linetype=3) + 
+  geom_line(data=df.real,aes(y=ylower), linetype=4) + 
+  geom_segment(data=df, aes(x=xstart, y=ystart, xend=xend, yend=yend), colour="grey50") + 
+  geom_segment(data=df[a,], aes(x=xstart, y=ystart, xend=xend, yend=yend), colour="black", size=1.5)+
+  geom_line(data=df.real, aes(y=sec)) + 
+  geom_point(data=df.real[which.min(df.real$sec),], aes(x=x, y=sec), size=2) + 
+  geom_point(data=df.real[which.max(df.real$sec),], aes(x=x, y=sec), size=2) +
+  geom_segment(data=dfslope, aes(x=xstart, y=ystart, xend=xend, yend=yend), linetype=2) + 
+  geom_text(data=df.real[which.min(df.real$sec),], aes(x=x, y=sec-0.08, label="paste(group('(',list(x[1],y[1]),')'))"), 
+            parse=TRUE, hjust=1, vjust=.25) + 
+  geom_text(data=df.real[which.max(df.real$sec),], aes(x=x-.05, y=sec+.05, label="paste(group('(',list(x[2],y[2]),')'))"), 
+            parse=TRUE, hjust=0, vjust=.25)  + 
+  theme(axis.title=element_blank(), axis.text=element_blank(), axis.ticks=element_blank(), axis.line=element_blank(), panel.grid=element_blank(),
+        plot.margin=unit(c(0,0,-1,0), "cm"))+ 
+  ggtitle("Quadratic Approximation")
+
+grid.arrange(p1, p2, nrow=1)
+```
+
+Correcting the Illusion
+=======================================================
+## Y-axis Transformation
+```{r ycorrection,echo=FALSE,fig.width=10, fig.height=4, out.width='100%'}
+dframe <- createSine(40,1, f=f, fprime=fprime, f2prime=f2prime)
+p1 <- qplot(x=x, xend=xend, y = f(x) -ell/2, yend=f(x) +ell/2, geom="segment", data=dframe) +
+  theme_bw() + 
+   theme(axis.title = element_blank(), plot.margin=unit(rep(0,4), "lines")) + 
+   coord_equal(ratio=1)+ 
+   xlab("x") + ylab("y") +
+   scale_x_continuous(breaks=seq(0, 2*pi, by=pi/2), minor_breaks=seq(pi/4, 2*pi-pi/4, by=pi/2),
+                      labels=c("0", expression(paste(pi,"/2")), expression(pi), expression(paste("3",pi, "/2")), expression(paste("2",pi)))) + ggtitle("Uncorrected")
+
+dframe <- createSine(40,1, f=f, fprime=fprime, f2prime=f2prime)
+p2 <- qplot(x=x, xend=xend, y = f(x) -ellx/2, yend=f(x) +ellx/2, geom="segment", data=dframe) +
+     theme_bw() + 
+   theme(axis.title = element_blank(), plot.margin=unit(rep(0,4), "lines")) + 
+   coord_equal(ratio=1)+ 
+   xlab("x") + ylab("y") +
+   scale_x_continuous(breaks=seq(0, 2*pi, by=pi/2), minor_breaks=minor.axis.correction,
+                      labels=c("0", expression(paste(pi,"/2")), expression(pi), expression(paste("3",pi, "/2")), expression(paste("2",pi)))) + ggtitle("Linear Correction")
+
+dframe <- createSine(n = 40, len = 1, f=f, fprime=fprime, f2prime=f2prime) 
+p3 <- qplot(x=x, xend=x, y=y+ellx4.u, yend=y-ellx4.l, geom="segment", data=dframe, linetype=I(1)) +   
+     theme_bw() + 
+   theme(axis.title = element_blank(), plot.margin=unit(rep(0,4), "lines")) + 
+   coord_equal(ratio=1)+ 
+   xlab("x") + ylab("y") +
+   scale_x_continuous(breaks=seq(0, 2*pi, by=pi/2), minor_breaks=minor.axis.correction,
+                      labels=c("0", expression(paste(pi,"/2")), expression(pi), expression(paste("3",pi, "/2")), expression(paste("2",pi)))) + ggtitle("Quadratic Correction")
+
+grid.arrange(p1, p2, p3, nrow=1)
+```
