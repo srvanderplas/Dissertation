@@ -206,3 +206,8 @@ Random Effects Model
 
 Conclusions
 =======================================================
+- Either correction is preferrable to an uncorrected graph  
+
+- Corrections do not have to be fully applied to break the illusion's power  
+
+- The sine illusion is strong enough to make participants think that lines of unequal length are equal
