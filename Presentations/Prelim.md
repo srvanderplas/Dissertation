@@ -3,7 +3,8 @@ Perception of Statistical Graphics
 author: Susan VanderPlas
 date: May 27, 2014
 css: Prelim.css
-
+width: 1366
+height: 768
 
 
 
@@ -93,3 +94,115 @@ Correcting the Illusion
 =======================================================
 ## Y-axis Transformation
 <img src="Prelim-figure/ycorrection.png" title="plot of chunk ycorrection" alt="plot of chunk ycorrection" width="100%" style="display: block; margin: auto;" />
+
+Correcting the Illusion
+=======================================================
+The y-axis transformation can be weighted in the same manner as the x-axis transformation. 
+
+A [Shiny applet](https://srvanderplas.shinyapps.io/SineIllusionDemo) was created to explore the effect of weight on both x and y corrections. 
+
+User Testing
+=======================================================
+**Goal** \:  Determine the strength of the Sine Illusion by measuring how much correction is required for viewers to say that the lines are of equal length. 
+
+A different [Shiny applet](http://glimmer.rstudio.com/srvanderplas/SineIllusionShiny/) was created to allow users to manipulate the stimuli using fine-grained adjustments to the weight value. 
+
+
+User Testing
+=======================================================
+Participants were recruited using Amazon Mechanical Turk and [Reddit](http://reddit.com/r/samplesize). 
+
+Users could manipulate the weight value presented using -/+ buttons, until they were satisfied that the lines were of equal length. The trial was finished when they selected the 'submit' button. 
+
+User Testing
+=======================================================
+### Data Collection
+- User identification information: a 'fingerprint' consisting of hashed browser version, operating system, addons, screen resolution, and IP address was used to identify unique users
+- IP address localization (34.45.38.XX) provided location information
+- Every user interaction was recorded with a timestamp
+- Trial finished when user clicked either 'submit' or 'skip' to opt-out of the trial.
+
+User Testing
+=======================================================
+### Experiment Design
+- 12 (or more) trials, 6 of each correction type
+
+  - Each user completed trials starting at 0 and 1 for both correction types
+  - Additional trials were selected using starting weights between 0.25 and 0.75, with point density highest around 0.6
+  
+<img src="Prelim-figure/startingweights.png" title="plot of chunk startingweights" alt="plot of chunk startingweights" width="100%" style="display: block; margin: auto;" />
+
+Data Inclusion Criteria
+=======================================================
+- Trial recorded at least two user interactions:  <br>
+The user must adjust the weight value at least once and then click the submit button. 
+- User completed at least 4 trials
+- User selected a weight value that was not severely over-corrected or under corrected (i.e. weight value selected was plausible)
+
+Data Inclusion Criteria
+=======================================================
+<img src="Prelim-figure/datainclusioncriteria.png" title="plot of chunk datainclusioncriteria" alt="plot of chunk datainclusioncriteria" width="100%" style="display: block; margin: auto;" />
+
+
+Results
+=======================================================
+Once exclusion criteria were applied, our data consisted of 125 participants who completed 1210 valid trials. 
+
+
+Psychophysics Model
+=======================================================
+Let $\gamma_X$ represent the optimal weight value for the $X$-correction, and $\gamma_Y$ represent the optimal weight value for the $Y$ correction. 
+
+$\gamma_\ast = \frac{1}{2}(w_0 + w_1)$
+
+where $w_0$ is the preferred weight when starting at 0, and $w_1$ is the preferred weight when starting at 1. 
+
+Psychophysics Model
+=======================================================
+### Psychophysics Model
+<img src="Prelim-figure/psychophysics.png" title="plot of chunk psychophysics" alt="plot of chunk psychophysics" width="80%" style="display: block; margin: auto;" />
+
+
+Random Effects Model
+=======================================================
+<ul>
+<li>$W_{ij}$ the final adjustment to weight by participant $i$ on trial $j$</li> <br>$$1 \le i \le 125, 1 \le j \le n_i$$<br>
+<li>$T(i,j)$  the correction type, where $T(i,j) \in  \{X, Y\}$</li><br>
+<li>Starting weight $X_{ij}$</li><br></br>
+<li>$\alpha_\ast$, the lowest acceptable weight value for correction type $\ast$</li>
+<li>$\beta$, the width of the interval of acceptable weight values</li>
+<li>Participant-level random intercept $\gamma_{i, \ast}$</li>
+</ul>
+
+
+Random Effects Model
+=======================================================
+$$
+W_{ij} = \alpha_{T(i,j)} + \beta X_{ij} + \gamma_{i, T(i,j)} + \epsilon_{ij}$$
+
+$$\gamma_{iX} \stackrel{\text{ i.i.d.}}{\sim} N(0, \eta_X^2) \ \ \ \ \ \ \ \ \gamma_{iY} \stackrel{\text{ i.i.d.}}{\sim} N(0, \eta_Y^2) $$
+
+$$\epsilon_{ij} \stackrel{\text{ i.i.d.}}{\sim} N(0, \sigma^2)   \ \ \ \ \ \ \ \ \text{Cov}(\gamma, \epsilon) = 0$$
+
+The range of acceptable values is 
+
+$$(\alpha_\ast, \alpha_\ast + \beta)$$
+
+Random Effects Model
+=======================================================
+$$
+W_{ij} = \alpha_{T(i,j)} + \beta X_{ij} + \gamma_{i, T(i,j)} + \epsilon_{ij}$$
+
+$$\gamma_{iX} \stackrel{\text{ i.i.d.}}{\sim} N(0, \eta_X^2) \ \ \ \ \ \ \ \ \gamma_{iY} \stackrel{\text{ i.i.d.}}{\sim} N(0, \eta_Y^2) $$
+
+$$\epsilon_{ij} \stackrel{\text{ i.i.d.}}{\sim} N(0, \sigma^2)   \ \ \ \ \ \ \ \ \text{Cov}(\gamma, \epsilon) = 0$$
+
+
+We can compare this model to the psychophysics model using the midpoint of this interval,  $$\alpha+\beta/2$$
+
+Random Effects Model
+=======================================================
+<img src="Prelim-figure/ranef.png" title="plot of chunk ranef" alt="plot of chunk ranef" width="80%" style="display: block; margin: auto;" />
+
+Conclusions
+=======================================================

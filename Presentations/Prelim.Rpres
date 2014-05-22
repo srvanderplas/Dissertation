@@ -3,9 +3,11 @@ Perception of Statistical Graphics
 author: Susan VanderPlas
 date: May 27, 2014
 css: Prelim.css
-
+width: 1366
+height: 768
 
 ```{r sineillusion-setup, fig.keep='all', cache=FALSE, echo=FALSE, include=FALSE, eval=TRUE}
+require(knitr)
 rm(list=ls())
 wd <- getwd()
 opts_chunk$set(cache.path='cache/', fig.align='center', fig.width=6, fig.height=6, fig.show='hold', par=TRUE, cache=TRUE, concordance=TRUE, autodep=TRUE, root.dir="../")
@@ -23,6 +25,7 @@ source(paste(codedir, "functions.r", sep=""))
 f <- function(x) 2*sin(x)
 fprime <- function(x) 2*cos(x)
 f2prime <- function(x) -2*sin(x)
+
 ```
 
 
@@ -523,3 +526,395 @@ p3 <- qplot(x=x, xend=x, y=y+ellx4.u, yend=y-ellx4.l, geom="segment", data=dfram
 
 grid.arrange(p1, p2, p3, nrow=1)
 ```
+
+Correcting the Illusion
+=======================================================
+The y-axis transformation can be weighted in the same manner as the x-axis transformation. 
+
+A [Shiny applet](https://srvanderplas.shinyapps.io/SineIllusionDemo) was created to explore the effect of weight on both x and y corrections. 
+
+User Testing
+=======================================================
+**Goal** \:  Determine the strength of the Sine Illusion by measuring how much correction is required for viewers to say that the lines are of equal length. 
+
+A different [Shiny applet](http://glimmer.rstudio.com/srvanderplas/SineIllusionShiny/) was created to allow users to manipulate the stimuli using fine-grained adjustments to the weight value. 
+
+
+User Testing
+=======================================================
+Participants were recruited using Amazon Mechanical Turk and [Reddit](http://reddit.com/r/samplesize). 
+
+Users could manipulate the weight value presented using -/+ buttons, until they were satisfied that the lines were of equal length. The trial was finished when they selected the 'submit' button. 
+
+User Testing
+=======================================================
+### Data Collection
+- User identification information: a 'fingerprint' consisting of hashed browser version, operating system, addons, screen resolution, and IP address was used to identify unique users
+- IP address localization (34.45.38.XX) provided location information
+- Every user interaction was recorded with a timestamp
+- Trial finished when user clicked either 'submit' or 'skip' to opt-out of the trial.
+
+User Testing
+=======================================================
+### Experiment Design
+- 12 (or more) trials, 6 of each correction type
+
+  - Each user completed trials starting at 0 and 1 for both correction types
+  - Additional trials were selected using starting weights between 0.25 and 0.75, with point density highest around 0.6
+  
+```{r startingweights,echo=F,fig.width=8, fig.height=1.25, out.width='100%'}
+diffs <- c(0, .5, .5, .5, .5, .25, .25, .25, .25, .25, .25, .25, .25, .1, .1, .05, .05, .05, .05, .05, .05, .025, .025, .025, .025, .025, .025, .025, .025, .025, .025, .025, .025, .05, .05, .05, .05, .1, .1, .1, .1, .1, .25, .25, .25, .25, .25, .25, .5, .5, .5, .5)
+wopts <- -4 +cumsum(diffs)
+w01 <- wopts[(wopts <= 0.75) & (wopts >= 0.25)]
+ggplot() + geom_vline(xintercept =c(0,1), colour="grey80") + theme_bw() + ylab("") + ylim(c(0.8, 1.2)) + xlab("Starting weight") + geom_point(aes(x=w01, y=rep(1, length(w01))), size=3) + theme(axis.ticks.y=element_blank(), axis.text.y=element_blank())  + geom_point(aes(x=c(0, 1), y=rep(1, 2)),  size=5) + theme(axis.ticks.y=element_blank(), axis.text.y=element_blank(), plot.margin=unit(c(0,0,0,0), "cm")) + xlim(c(-0.25,1.21))
+```
+
+Data Inclusion Criteria
+=======================================================
+- Trial recorded at least two user interactions:  <br>
+The user must adjust the weight value at least once and then click the submit button. 
+- User completed at least 4 trials
+- User selected a weight value that was not severely over-corrected or under corrected (i.e. weight value selected was plausible)
+
+Data Inclusion Criteria
+=======================================================
+```{r datainclusioncriteria,echo=F,fig.width=8, fig.height=6, out.width='100%'}
+f <- sin
+fprime <- cos
+f2prime <- function(x) -sin(x)
+dframe <- createSine(40 , len=1, f=f, fprime=fprime, f2prime=f2prime)
+wlowy <- -2.5
+whighy <- 3.5
+wlowx <- -2
+whighx <- 2
+ycorrlow <- with(dframe, data.frame(x=x, xstart=xstart, xend=xend, 
+                                    y=y, ystart = y - ((1-wlowy)*ell/2 + (wlowy)*ellx4.l), 
+                                    yend = y + ((1-wlowy)*ell/2 + (wlowy)*ellx4.u),
+                                    corr = "Y", level = "low"))
+ycorrhigh <- with(dframe, data.frame(x=x, xstart=xstart, xend=xend, 
+                                     y=y, ystart = y - ((1-whighy)*ell/2+(whighy)*ellx4.l), 
+                                     yend = y + ((1-whighy)*ell/2 + (whighy)*ellx4.u),
+                                     corr = "Y", level = "high"))
+
+xcorrlow <- with(dframe, data.frame(x=correctx(x, fprime, w=wlowx), 
+                                    xstart=correctx(x, fprime, w=wlowx),
+                                    xend=correctx(x, fprime, w=wlowx), 
+                                    y=y, ystart=ystart, yend=yend,
+                                    corr = "X", level = "low"))
+xcorrhigh <- with(dframe, data.frame(x=correctx(x, fprime, w=whighx), 
+                                    xstart=correctx(x, fprime, w=whighx),
+                                    xend=correctx(x, fprime, w=whighx), 
+                                    y=y, ystart=ystart, yend=yend,
+                                    corr = "X", level = "high"))
+correction.extremes <- rbind(ycorrlow,ycorrhigh,xcorrlow,xcorrhigh)
+qplot(data=correction.extremes, geom="segment", x=xstart, xend=xend, y=ystart, yend=yend) +
+  facet_grid(corr~level) + ylab("") + xlab("")  +
+  theme(panel.grid.major=element_blank(), panel.background = element_rect(fill = "white", 
+                colour = "black"), plot.margin = unit(c(0,0,0,0), "cm"), 
+       panel.grid.minor=element_blank(), panel.background=element_blank(),
+       axis.title = element_blank(), axis.ticks = element_blank(), 
+       axis.text = element_blank()) + coord_equal(ratio=1)
+```
+
+```{r analysis, echo=F}
+trial.sum <- read.csv(paste(datadir, "SummaryTable.csv", sep=""), row.names=1, stringsAsFactors=FALSE)
+trial.sequence <- read.csv(paste(datadir, "IndivTrajectory.csv", sep=""), row.names=1, stringsAsFactors=FALSE)
+library(lubridate)
+trial.sequence$time2 <- ymd_hms(trial.sequence$time2)
+
+# ------ Data Cleaning ------#
+wlowy <- -2.5
+whighy <- 3.5
+wlowx <- -2
+whighx <- 2
+
+is.outlier <- function(z, type){
+#   qs <- as.numeric(quantile(x, c(.25, .75)))
+#   iqr <- diff(qs)
+#   lims <- qs + c(-1, 1)*1.5*iqr
+#   !(x>=lims[1] & x <= lims[2]) & !(x>=-1 & x<=2)
+  wlow <- c(wlowx, wlowy)
+  whigh <- c(whighx, whighy)
+  names(wlow) <- c("x", "y")
+  names(whigh) <- c("x", "y")
+#  browser()
+  !(z>=wlow[type] & z<=whigh[type])
+}
+
+trial.sum <- ddply(trial.sum, .(startweight), transform, 
+                      incl.startwt = startweight<=1 & startweight>=0,
+                      incl.trials = ntrials>3,
+                      endwt.outlier = is.outlier(endweight, as.character(type))) 
+# compute outliers for each possible start weight
+
+# #--- Plot to compare bivar. density before/after trimming
+# temp <- rbind.fill(cbind(trial.sum, dataset="full"), cbind(lm.data, dataset="trimmed"))
+# # not much has changed density wise...
+# ggplot(data=temp, aes(x=startweight, y=endweight)) + 
+#   geom_contour(aes(group=dataset, colour=dataset), stat="density2d") + 
+#   scale_colour_manual("Data", values=c("red", "blue"))+
+#   xlab("Starting Weight") + ylab("Submitted \"Correct\" Weight") + 
+#   facet_wrap(~type) + ggtitle("The Effect of Starting Weight on Submitted Weight")
+# rm("temp")
+
+# polygon contour plot of submitted vs starting weight for x and y
+# ggplot(data=lm.data, aes(x=startweight, y=endweight)) + geom_polygon(aes(fill=..level.., group=..piece..), stat="density2d", alpha=.5) + xlab("Starting Weight") + ylab("Submitted \"Correct\" Weight") + facet_wrap(~type) + ggtitle("The Effect of Starting Weight on Submitted Weight") + xlim(c(-.2, 1.15))
+
+sub0 <- subset(trial.sum, incl.startwt)
+
+# stats
+nparticipants <- length(unique(sub0$fingerprint))
+ntrials <- nrow(sub0)
+
+# remove participants who did not have at least 4 trials.
+sub1 <- subset(sub0, incl.trials)
+nparttrials <- length(unique(sub1$fingerprint))
+ntrials2 <- nrow(sub1)
+
+# remove trials which were outside of the bounds
+sub2 <- subset(sub1, !endwt.outlier)
+sub2.rem <- subset(sub1, endwt.outlier)
+noutliers <- nrow(sub2.rem)
+noutliers.x <- nrow(subset(sub2.rem, type=="x"))
+noutliers.y <- nrow(subset(sub2.rem, type=="y"))
+
+lm.data <- sub2
+nparticipant2 <- length(unique(lm.data$fingerprint))
+
+trials.per.participant <- mean(ddply(lm.data, .(fingerprint), summarise, ntrials=mean(ntrials))$ntrials)
+
+#--- Flat Averages ---#
+end.trials <- (lm.data$startweight == 0 | lm.data$startweight == 1)
+
+user.avg <- ddply(subset(lm.data, end.trials), # include trials starting at 0, 1
+                  .(fingerprint, type), function(df){
+                    avg.0 <- with(subset(df, startweight==0), mean(endweight, na.rm=TRUE))
+                    avg.1 <- with(subset(df, startweight==1), mean(endweight, na.rm=TRUE))
+                    return(data.frame(fingerprint=df$fingerprint[1], type=df$type[1], 
+                                      avg.0=avg.0, avg.1=avg.1, ntrials=df$ntrials[1], 
+                                      ntrials.sub = nrow(df)))
+                  })
+
+user.avg.all <- subset(user.avg, !is.nan(rowSums(user.avg[,3:4])))
+user.avg.all$avg <- rowMeans(user.avg.all[,3:4])
+user.avg.all <- ddply(user.avg.all, .(type), transform, overall.avg = mean(avg))
+user.avg.x <- unique(subset(user.avg.all, type=="x")$overall.avg)
+user.avg.y <- unique(subset(user.avg.all, type=="y")$overall.avg)
+
+
+#--- Mixed Model ---#
+set.seed(82187)
+library(lme4)
+library(multcomp)
+library(memisc) # latex output for lmer 
+library(xtable)
+library(stringr)
+# Much more complicated to examine...
+lm.data$type <- relevel(factor(lm.data$type), ref="y")
+
+modeltest <- lmer(endweight ~ type -1 + startweight + (type-1|fingerprint), data=lm.data)
+# summary(modeltest)
+# conclusion - within-user variance is reasonably similar for different trial types
+
+fixedmodel <- lm(endweight~(type-1) +startweight + training, data=lm.data)
+
+model <- lmer(data=lm.data, endweight~ (type-1) + startweight + (1|fingerprint))
+model2 <- lmer(data=lm.data, endweight~ (type-1) + startweight + (type|fingerprint))
+model3 <- lmer(data=lm.data, endweight~ (type-1) + type:startweight + (type|fingerprint))
+
+
+if (!file.exists(paste(datadir, "modelsim.RData", sep=""))) {
+  # summary(model)
+  N <- 1000
+  
+  model2.sim <- simulate(model2, nsim=N)
+  res <- llply(model2.sim, function(x) model2 <- lmer(data=lm.data, x~ (type-1) + 
+                                                        startweight+ (type-1|fingerprint)))
+  save(res, file=paste(datadir, "modelsim.RData", sep=""))
+} else {
+  load(paste(datadir, "modelsim.RData", sep=""))
+}
+
+# extract pieces for confidence intervals
+ranefs <- ldply(res, function(x) attr(VarCorr(x)$fingerprint, which="stddev"))
+ranefCIs <- ldply(ranefs[,-1], function(x) quantile(x, probs=c(0.025, 0.975)))
+
+dframe  <- ldply(res, function(x) {
+  out <- ranef(x)$fingerprint
+  out$fingerprint <- rownames(ranef(x)$fingerprint)
+  out$starty <-   out$typey + fixef(x)[1]
+  out$endy <-   out$typey + fixef(x)[1] + fixef(x)[3]
+  out$startx <-   out$typex + fixef(x)[2]
+  out$endx <-   out$typex + fixef(x)[2] + fixef(x)[3]
+  out
+})
+
+
+sigma2 <- ldply(res, function(x) sigma(x))
+sigmaCI <- quantile(sigma2[,2], probs=c(0.025, 0.975))
+
+fixefs <- ldply(res, fixef)
+fixefs$upperX <- with(fixefs, typex+startweight)
+fixefs$upperY <- with(fixefs, typey+startweight)
+fixefsCIs <- ldply(fixefs[,-c(1,4)], function(x) quantile(x, probs=c(0.025, 0.975)))
+
+# pieces for graph
+ints  <- fixefsCIs
+ints$x <- c(colMeans(fixefs[,2:3]), colMeans(fixefs[,5:6]))
+ints$type <- paste(toupper(str_sub(ints$'.id', -1, -1)), " Transformation", sep="")
+ints$limit <- str_sub(ints$'.id', 1, -2)
+ints$limit <- gsub("type", "From Below", gsub("upper", "From Above", ints$limit, fixed=TRUE), fixed=TRUE)
+ints <- ints[,-which(names(ints)==".id")]
+ints <- ints[,c(4, 5, 1, 3, 2)]
+names(ints) <- c("type", "limit", "xmin", "x", "xmax")
+ints$label <- c("alpha[y]", "alpha[x]", "alpha[x] + beta", "alpha[y] + beta")
+
+sim.fixed <- melt(fixefs, id.vars='.id', measure.vars=2:3)
+names(sim.fixed) <- c(".id", "type", "lower")
+sim.fixed$type <- toupper(gsub("type", "", sim.fixed$type, fixed=TRUE))
+temp <- melt(fixefs, id.vars='.id', measure.vars=5:6)
+names(temp) <- c(".id", "type", "upper")
+temp$type <- toupper(gsub("upper", "", temp$type, fixed=TRUE))
+sim.fixed <- merge(sim.fixed, temp)
+sim.fixed <- melt(sim.fixed, id.vars=1:2, measure.vars=3:4)
+names(sim.fixed)[3] <- "limit"
+sim.fixed$limit <- gsub("lower", "From Below", gsub("upper", "From Above", sim.fixed$limit))
+sim.fixed$type <- paste(sim.fixed$type, "Transformation")
+
+indiv.effects <- ldply(res, function(x){ 
+  a <- ranef(x)$fingerprint
+  a$fingerprint <- rownames(a)
+  as.data.frame(a)
+})
+names(indiv.effects) <- c(".id", "rdm.y", "rdm.x", "fingerprint")
+indiv.effects <- merge(indiv.effects, structure(fixefs[,1:4], names=c(".id", "fixed.y", "fixed.x", "startweight")))
+indiv.effects$lowery <- with(indiv.effects, rdm.y+fixed.y)
+indiv.effects$lowerx <- with(indiv.effects, rdm.x+fixed.x)
+indiv.effects$uppery <- with(indiv.effects, lowery+startweight)
+indiv.effects$upperx <- with(indiv.effects, lowerx+startweight)
+indiv.effects <- melt(indiv.effects, id.vars=c(1,4), measure.vars=8:11)
+indiv.effects$fingerprint <- as.numeric(factor(indiv.effects$fingerprint))
+indiv.effects$limit <- str_sub(indiv.effects$variable, 1, -2)
+indiv.effects$limit <- gsub("lower", "From Below", gsub("upper", "From Above", indiv.effects$limit))
+indiv.effects$type <- paste(toupper(str_sub(indiv.effects$variable, -1, -1)), "Transformation")
+indiv.effects$group <- as.numeric(with(indiv.effects, interaction(fingerprint, limit)))
+# indiv.effects <- indiv.effects[,-which(names(indiv.effects)%in%c(".id", "variable"))]
+
+ints.all <- ddply(ints, .(type), summarise, xmin = min(x), xmax=max(x), ymin=-Inf, ymax=Inf)
+ints.all$x <- rowMeans(ints.all[,2:3])
+
+ests <- data.frame(ests = c(fixef(model2)[1:2], fixef(model2)[1:2]+fixef(model2)[3]), type=rep(c("Y Transformation", "X Transformation"), 2))
+
+var2 <- as.numeric(c(attr(VarCorr(model2)$fingerprint, "stddev"), attr(VarCorr(model2), "sc")))
+
+anovaprob <- anova(model2, model3)$`Pr(>Chisq)`[2]
+```
+Results
+=======================================================
+Once exclusion criteria were applied, our data consisted of 125 participants who completed 1210 valid trials. 
+
+
+Psychophysics Model
+=======================================================
+Let $\gamma_X$ represent the optimal weight value for the $X$-correction, and $\gamma_Y$ represent the optimal weight value for the $Y$ correction. 
+
+$\gamma_\ast = \frac{1}{2}(w_0 + w_1)$
+
+where $w_0$ is the preferred weight when starting at 0, and $w_1$ is the preferred weight when starting at 1. 
+
+Psychophysics Model
+=======================================================
+### Psychophysics Model
+```{r psychophysics,echo=F,fig.width=8, fig.height=5, out.width='80%'}
+dt.int <- ddply(user.avg.all, .(type), summarize, overall.avg=unique(overall.avg), sd=sd(avg))
+model <- lm(avg~type-1, data=user.avg.all)
+temp <- as.data.frame(cbind(coef(model), confint(model)))
+temp$CI <- sprintf("(%.04f, %.04f)", temp[,2], temp[,3])
+rownames(temp) <- c("X", "Y")
+psycho.ints <- temp
+names(psycho.ints) <- c("Estimate", "Lower", "Upper", "CI")
+psycho.ints$Type <- rownames(psycho.ints)
+psycho.ints <- melt(psycho.ints[,-4], id.vars=c("Type"), value.name="x", variable.name="est.type")
+psycho.ints$est <- "95% CI"
+psycho.ints$est[which(psycho.ints$est.type=="Estimate")] <- "Mean"
+psycho.ints$est <- factor(psycho.ints$est, levels=c("Mean", "95% CI"))
+
+user.avg.all$Type <- toupper(user.avg.all$type)
+ggplot(data=user.avg.all) + 
+  geom_density(aes(x=avg, fill=type), alpha=0.8) + 
+  geom_segment(data=psycho.ints, aes(x=x, xend=x, y=Inf, yend=-Inf, linetype=est, group=est.type)) +
+  geom_rug(aes(x=avg, colour=type)) +
+  facet_grid(Type~.) +
+  scale_fill_manual("Transformation", values=c("#d6604d", "#4393c3"), guide="none") +
+  scale_colour_manual("Transformation", values=c("#d6604d", "#4393c3"), guide="none") +
+  scale_linetype_discrete("Model") +
+  theme_bw() + #theme(legend.position="bottom") +
+  xlim(c(-.2, 1.2)) + xlab("Optimal Weight") + ylab("Density") +
+  theme(legend.position=c(.9,.8))
+```
+
+
+Random Effects Model
+=======================================================
+<ul>
+<li>$W_{ij}$ the final adjustment to weight by participant $i$ on trial $j$</li> <br>$$1 \le i \le `r nparticipant2`, 1 \le j \le n_i$$<br>
+<li>$T(i,j)$  the correction type, where $T(i,j) \in  \{X, Y\}$</li><br>
+<li>Starting weight $X_{ij}$</li><br></br>
+<li>$\alpha_\ast$, the lowest acceptable weight value for correction type $\ast$</li>
+<li>$\beta$, the width of the interval of acceptable weight values</li>
+<li>Participant-level random intercept $\gamma_{i, \ast}$</li>
+</ul>
+
+
+Random Effects Model
+=======================================================
+$$
+W_{ij} = \alpha_{T(i,j)} + \beta X_{ij} + \gamma_{i, T(i,j)} + \epsilon_{ij}$$
+
+$$\gamma_{iX} \stackrel{\text{ i.i.d.}}{\sim} N(0, \eta_X^2) \ \ \ \ \ \ \ \ \gamma_{iY} \stackrel{\text{ i.i.d.}}{\sim} N(0, \eta_Y^2) $$
+
+$$\epsilon_{ij} \stackrel{\text{ i.i.d.}}{\sim} N(0, \sigma^2)   \ \ \ \ \ \ \ \ \text{Cov}(\gamma, \epsilon) = 0$$
+
+The range of acceptable values is 
+
+$$(\alpha_\ast, \alpha_\ast + \beta)$$
+
+Random Effects Model
+=======================================================
+$$
+W_{ij} = \alpha_{T(i,j)} + \beta X_{ij} + \gamma_{i, T(i,j)} + \epsilon_{ij}$$
+
+$$\gamma_{iX} \stackrel{\text{ i.i.d.}}{\sim} N(0, \eta_X^2) \ \ \ \ \ \ \ \ \gamma_{iY} \stackrel{\text{ i.i.d.}}{\sim} N(0, \eta_Y^2) $$
+
+$$\epsilon_{ij} \stackrel{\text{ i.i.d.}}{\sim} N(0, \sigma^2)   \ \ \ \ \ \ \ \ \text{Cov}(\gamma, \epsilon) = 0$$
+
+
+We can compare this model to the psychophysics model using the midpoint of this interval,  $$\alpha+\beta/2$$
+
+Random Effects Model
+=======================================================
+```{r ranef, echo=F, fig.width=8, fig.height=5, out.width='80%'}
+
+ggplot() + theme_bw() + facet_grid(type~., scales="free") + ylim(c(0, 27)) +
+  geom_rect(data=ints.all, aes(xmin=xmin, xmax=xmax, ymin=ymin, ymax=ymax), 
+            fill="grey75", alpha=.5) +
+  geom_histogram(data=sim.fixed, aes(x=value, y=..density.., group=limit, fill=limit), binwidth=.01, position="identity") + 
+  geom_histogram(data=sim.fixed, aes(x=value, y=..density.., group=limit, fill=limit, colour=limit), binwidth=.01, position="identity", show_guide=FALSE) + 
+  geom_vline(xintercept=c(0,1)) +
+  geom_line(data=indiv.effects, 
+            aes(x=value, y=..density.., group=factor(group), color = limit), 
+            alpha=.1, stat='density', trim=TRUE) + 
+  ylab("Density") + xlab("Weight w") + 
+  scale_colour_manual("Approach", values=c("#B2182B", "#2166AC"),
+                      breaks=c("From Below", "From Above"))  +
+  scale_fill_manual("Approach", values=c("#d6604d", "#4393c3"),
+                    breaks=c("From Below", "From Above")) + 
+  geom_errorbarh(aes(xmin=xmin, x=x, xmax=xmax, y=20, color=limit), data=ints) + 
+  geom_point(aes(x=ests, y=20), data=ests) +
+  xlim(c(-.2, 1.2)) +
+  geom_text(data=ints, aes(x=x, y=22.5, label=label), parse=TRUE) + 
+  geom_text(data=ints.all, colour="grey30", aes(x=x, y=15.5, label="Range of\nacceptable weights")) + theme(plot.margin=unit(c(0,0,0,0), unit="cm"), legend.position=c(.92, .85))
+```
+
+Conclusions
+=======================================================
