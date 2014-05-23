@@ -135,7 +135,7 @@ Cleveland and McGill (1984) demonstrated that we can compare the length of two l
 
 ## Geometry of the Sine Illusion
 
-```{r illusion-geometry, fig.width=7.2, fig.height=5.85, out.width='65%', out.height='auto', echo=F}
+```{r illusion-geometry, fig.width=7.2, fig.height=5.85, out.width='75%', out.height='auto', echo=F}
 f <- function(x) 2*sin(x)
 fprime <- function(x) 2*cos(x)
 f2prime <- function(x) -2*sin(x)
@@ -235,9 +235,9 @@ p1
 
 # Correcting the Illusion
 
-- Remove the underlying function (plot the curve and the residuals separately)
-- Change the plotted line length (or spread) so that the **perceived** orthogonal width corresponds to the **original** (data) line length
-- Reparameterize the x-axis in terms of the slope, so that the absolute slope doesn't change
+1. Remove the underlying function (plot the curve and the residuals separately)
+2. Change the plotted line length (or spread) so that the **perceived** orthogonal width corresponds to the **original** (data) line length
+3. Reparameterize the x-axis in terms of the slope, so that the absolute slope doesn't change
 
 ---
 
@@ -272,7 +272,9 @@ p <- grid.arrange(p1, p2, nrow=1)
 
 ## X-axis Transformation
 
-Let $a$ and $b$ be the minimum and maximum of the $x$-range under consideration. For any value $x \in (a,b)$ the following transformation results in a function with constant absolute slope:    
+Let $a$ and $b$ be the minimum and maximum of the $x$-range under consideration. 
+
+For any value $x \in (a,b)$ the following transformation results in a function with constant absolute slope:    
     
     
 <small>
@@ -284,7 +286,7 @@ $$
 ---
 
 ## X-axis Transformation
-```{r xaxisdemo,echo=F, fig.width=10, fig.height=3.5, out.width='100%'}
+```{r xaxisdemo,echo=F, fig.width=10, fig.height=3.75, out.width='100%'}
 correctx <- function(z, fprime, a=0, b=2*pi, w=1) {
   # w = 1/(shrink+1)
   const <- integrate(function(x) abs(fprime(x)), a, b)$value
@@ -334,6 +336,8 @@ Shrinkage factor $w \in (0,1)$: allows a less extreme approach to counteracting 
 
 $$(f \circ T_w)(x) = (1-w) \cdot x + w \cdot (f \circ T)(x)$$
 
+<br></br>
+
 - $w=1$ is a full transformation
 - smaller values of $w$ indicate a less severe adjustment against the sine illusion
 - Under  weaker transformations, the data more closely reflect the original function $f(x)$. 
@@ -341,7 +345,7 @@ $$(f \circ T_w)(x) = (1-w) \cdot x + w \cdot (f \circ T)(x)$$
 ---
 
 ## X-axis Transformation
-```{r xaxisdemoweight,echo=F,fig.width=12, fig.height=8}
+```{r xaxisdemoweight,echo=F,fig.width=12.5, fig.height=8.25, out.width='90%'}
 correctx <- function(z, fprime, a=0, b=2*pi, w=1) {
   # w = 1/(shrink+1)
   const <- integrate(function(x) abs(fprime(x)), a, b)$value
@@ -453,32 +457,50 @@ qplot(data=df.real, x=x, y=y, geom="line") +
   geom_text(data=dfslope, aes(x=xend+.1, y=yend+.1, label="slope: paste(f, \"'\", (x))"), parse=TRUE, hjust=.75, vjust=1) +
   coord_equal(ratio=1) + theme(axis.title=element_blank(), axis.text=element_blank(), axis.ticks=element_blank(), axis.line=element_blank(), panel.grid=element_blank(), plot.margin = unit(c(-1,-1,-2,-2), "lines")) 
 ```
+<small>If we extend the line length so that the extant width matches the original vertical length, our perceptions will match the original data. </small>
 
 ---
 
 ## Y-axis Transformation
 The function describing the orthogonal line through $(x_o, f(x_o))$ is given in point-vector form as 
+
+<br></br>
+
 $$
-{x_o \choose f(x_o)} + \lambda {f^\prime(x_o) \choose 1}, 
+{x_o \choose f(x_o)} + \lambda {f^\prime(x_o) \choose 1} 
 $$
+
+<br></br>
+
 for any real-valued $\lambda$.
 
 ---
 
 ## Y-axis Transformation
 The advantage of using point vector form is that it allows us to solve for parameter $\lambda$ easily, which gives us easy access to the extant (half) widths,  as: 
+
+<br></br>
+
 $$
-|\lambda| \sqrt{1 + f^\prime(x_o)^2}.
+|\lambda| \sqrt{1 + f^\prime(x_o)^2}
 $$
+
+<br></br>
+
 This equation describes the quantity that we perceive rather than the quantity that we want to display ($\ell/2$)
 
 ---
 
 ## Y-axis Transformation
 The general correction factor is thus
+
+<br></br>
+
 $$
- \ell/2 \cdot \left(|\lambda| \sqrt{1 + f^\prime(x_o)^2}\right)^{-1}.
+ \ell/2 \cdot \left(|\lambda| \sqrt{1 + f^\prime(x_o)^2}\right)^{-1}
 $$
+
+<br></br>
 
 This yields two solutions: one for positive, one for negative values of $\lambda$ corresponding to upper and lower (half) extant width.
 
@@ -487,19 +509,27 @@ This yields two solutions: one for positive, one for negative values of $\lambda
 ## Y-axis Transformation
 
 In order to get  actual numeric values for $\lambda$, we need to find end points $f_1$ and $f_2$. This system of equations provides solutions for those points: 
+
+<br></br>
+
 $$
  x - x_o = \lambda f^\prime(x_o)
 $$
+
+<br></br>
+
 $$
  f(x) - f(x_o) = -\lambda \pm \ell/2
 $$
+
+<br></br>
 
 Solving these equations requires numerical optimization; thus, we will use taylor series to simplify the optimization process. 
 
 ---
 
 ## Y-axis Transformation
-```{r y-linearcorrectioncartoon,echo=F, fig.width=10, fig.height=4.5}
+```{r y-linearcorrectioncartoon,echo=F, fig.width=10, fig.height=5}
 df <- createSine(40 , len=1, f=f, fprime=fprime, f2prime=f2prime)[5:16,]
 
 a <- 9
@@ -535,10 +565,7 @@ p1 <- qplot(data=df.real, x=x, y=y, geom="line")+
             parse=TRUE, hjust=0, vjust=.25)  + 
   theme(axis.title=element_blank(), axis.text=element_blank(), axis.ticks=element_blank(), axis.line=element_blank(), panel.grid=element_blank(), plot.margin=unit(c(0,0,-1,0), "cm")) + 
   ggtitle("Linear Approximation")
-p1
-```
 
-```{r y-quadcorrectioncartoon,echo=F, fig.width=10, fig.height=4.5}
 df <- createSine(40 , len=1, f=f, fprime=fprime, f2prime=f2prime)[5:16,]
 
 a <- 9
@@ -575,14 +602,14 @@ p2 <- qplot(data=df.real, x=x, y=y, geom="line") +
   theme(axis.title=element_blank(), axis.text=element_blank(), axis.ticks=element_blank(), axis.line=element_blank(), panel.grid=element_blank(),
         plot.margin=unit(c(0,0,-1,0), "cm"))+ 
   ggtitle("Quadratic Approximation")
-p2
-# grid.arrange(p1, p2, nrow=1)
+
+grid.arrange(p1, p2, nrow=1)
 ```
 
 ---
 
 ## Y-axis Transformation
-```{r ycorrection,echo=FALSE,fig.width=10, fig.height=4, out.width='100%'}
+```{r ycorrection,echo=FALSE,fig.width=12, fig.height=4, out.width='100%'}
 dframe <- createSine(40,1, f=f, fprime=fprime, f2prime=f2prime)
 p1 <- qplot(x=x, xend=xend, y = f(x) -ell/2, yend=f(x) +ell/2, geom="segment", data=dframe) +
   theme_bw() + 
@@ -610,13 +637,17 @@ p3 <- qplot(x=x, xend=x, y=y+ellx4.u, yend=y-ellx4.l, geom="segment", data=dfram
    scale_x_continuous(breaks=seq(0, 2*pi, by=pi/2), minor_breaks=minor.axis.correction,
                       labels=c("0", expression(paste(pi,"/2")), expression(pi), expression(paste("3",pi, "/2")), expression(paste("2",pi)))) + ggtitle("Quadratic Correction")
 
-grid.arrange(p1, p2, p3, nrow=1)
+p1
+grid.arrange(p2, p3, nrow=1)
+
 ```
 
 ---
 
 ## Y-axis Transformation
 The y-axis transformation can be weighted in the same manner as the x-axis transformation. 
+
+<br></br>
 
 A [Shiny applet](https://srvanderplas.shinyapps.io/SineIllusionDemo) was created to explore the effect of weight on both x and y corrections. 
 
@@ -626,32 +657,39 @@ A [Shiny applet](https://srvanderplas.shinyapps.io/SineIllusionDemo) was created
 
 **Goal** \:  Determine the strength of the Sine Illusion by measuring how much correction is required for viewers to say that the lines are of equal length. 
 
+<br></br>
+
 A different [Shiny applet](http://glimmer.rstudio.com/srvanderplas/SineIllusionShiny/) was created to allow users to manipulate the stimuli using fine-grained adjustments to the weight value. 
 
 ---
 
 ## Participants
 
-Participants were recruited using Amazon Mechanical Turk and [Reddit](http://reddit.com/r/samplesize). 
+- Participants were recruited using Amazon Mechanical Turk and [Reddit](http://reddit.com/r/samplesize). 
 
-Users could manipulate the weight value presented using -/+ buttons, until they were satisfied that the lines were of equal length. The trial was finished when they selected the 'submit' button. 
+- Using the shiny applet, users could manipulate the weight value presented using -/+ buttons until they were satisfied that the lines were of equal length. The trial was finished when users selected the 'submit' button. 
 
 ---
 
 ## Data Collection
 - User identification information: a 'fingerprint' consisting of hashed browser version, operating system, addons, screen resolution, and IP address was used to identify unique users
+
 - IP address localization (34.45.38.XX) provided location information
+
 - Every user interaction was recorded with a timestamp
+
 - Trial finished when user clicked either 'submit' or 'skip' to opt-out of the trial.
 
 ---
 
 ## Experiment Design
-- 12 (or more) trials, 6 of each correction type
+- 12 (or more) trials, 6 of each correction type  
 
-  - Each user completed trials starting at 0 and 1 for both correction types
-  - Additional trials were selected using starting weights between 0.25 and 0.75, with point density highest around 0.6 (fractional factorial design)
+  - Each user completed trials starting at 0 and 1 for both correction types  
   
+  - Additional trials were selected using starting weights between 0.25 and 0.75, with point density highest around 0.6 (fractional factorial design)
+
+<br></br>
 ```{r startingweights,echo=F,fig.width=8, fig.height=1.25, out.width='100%'}
 diffs <- c(0, .5, .5, .5, .5, .25, .25, .25, .25, .25, .25, .25, .25, .1, .1, .05, .05, .05, .05, .05, .05, .025, .025, .025, .025, .025, .025, .025, .025, .025, .025, .025, .025, .05, .05, .05, .05, .1, .1, .1, .1, .1, .25, .25, .25, .25, .25, .25, .5, .5, .5, .5)
 wopts <- -4 +cumsum(diffs)
@@ -664,14 +702,18 @@ ggplot() + geom_vline(xintercept =c(0,1), colour="grey80") + theme_bw() + ylab("
 ## Data Inclusion Criteria
 
 - Trial recorded at least two user interactions:  <br>
-The user must adjust the weight value at least once and then click the submit button. 
-- User completed at least 4 trials
-- User selected a weight value that was not severely over-corrected or under corrected (i.e. weight value selected was plausible)
+The user must adjust the weight value at least once and then click the submit button.   
+  <br>
+
+- User completed at least 4 trials  
+  <br>
+
+- User selected a weight value that was not severely over-corrected or under corrected (i.e. weight value selected was plausible)  
 
 ---
 
 ## Data Inclusion Criteria
-```{r datainclusioncriteria,echo=F,fig.width=8, fig.height=6, out.width='100%'}
+```{r datainclusioncriteria,echo=F,fig.width=8, fig.height=4, out.width='100%'}
 f <- sin
 fprime <- cos
 f2prime <- function(x) -sin(x)
@@ -905,7 +947,7 @@ anovaprob <- anova(model2, model3)$`Pr(>Chisq)`[2]
 
 
 # Results
-
+<br></br>
 
 ## Included Data
 Once exclusion criteria were applied, our data consisted of 125 participants who completed 1210 valid trials. 
@@ -916,7 +958,12 @@ Once exclusion criteria were applied, our data consisted of 125 participants who
 
 Let $\gamma_X$ represent the optimal weight value for the $X$-correction, and $\gamma_Y$ represent the optimal weight value for the $Y$ correction. 
 
+<br></br>
+
 $\gamma_\ast = \frac{1}{2}(w_0 + w_1)$
+
+<br></br>
+
 
 where $w_0$ is the preferred weight when starting at 0, and $w_1$ is the preferred weight when starting at 1. 
 
@@ -970,9 +1017,13 @@ ggplot(data=user.avg.all) +
 $$
 W_{ij} = \alpha_{T(i,j)} + \beta X_{ij} + \gamma_{i, T(i,j)} + \epsilon_{ij}$$
 
+<br></br>
+
 $$\gamma_{iX} \stackrel{\text{ i.i.d.}}{\sim} N(0, \eta_X^2) \ \ \ \ \ \ \ \ \gamma_{iY} \stackrel{\text{ i.i.d.}}{\sim} N(0, \eta_Y^2) $$
 
 $$\epsilon_{ij} \stackrel{\text{ i.i.d.}}{\sim} N(0, \sigma^2)   \ \ \ \ \ \ \ \ \text{Cov}(\gamma, \epsilon) = 0$$
+
+<br></br>
 
 The range of acceptable values is 
 
@@ -985,10 +1036,13 @@ $$(\alpha_\ast, \alpha_\ast + \beta)$$
 $$
 W_{ij} = \alpha_{T(i,j)} + \beta X_{ij} + \gamma_{i, T(i,j)} + \epsilon_{ij}$$
 
+<br></br>
+
 $$\gamma_{iX} \stackrel{\text{ i.i.d.}}{\sim} N(0, \eta_X^2) \ \ \ \ \ \ \ \ \gamma_{iY} \stackrel{\text{ i.i.d.}}{\sim} N(0, \eta_Y^2) $$
 
 $$\epsilon_{ij} \stackrel{\text{ i.i.d.}}{\sim} N(0, \sigma^2)   \ \ \ \ \ \ \ \ \text{Cov}(\gamma, \epsilon) = 0$$
 
+<br></br>
 
 We can compare this model to the psychophysics model using the midpoint of this interval,  $$\alpha+\beta/2$$
 
@@ -1056,14 +1110,18 @@ ggplot() + theme_bw() + facet_grid(type~., scales="free") + ylim(c(0, 27)) +
 
 - The sine illusion is strong enough to make participants think that lines of unequal length are equal
 
-**Importance to Statistical Graphics**    
+<br></br>
+
+### Importance to Statistical Graphics    
 We can't judge variability accurately when there is a nonlinear trend. Knowing is half the battle; having tools to screen for this effect could also be helpful. 
 
 ---
 
 ## Future Work
 
-- R package with functions to correct data
+- R package with functions to correct data    
+<br></br>
+
 - Shiny applet that allows users to upload data and then provides $x$ and $y$ corrections
 
 # Visual Aptitude and Graphical Inference
@@ -1071,8 +1129,17 @@ We can't judge variability accurately when there is a nonlinear trend. Knowing i
 ---
 
 ## Goals
+- Understand what visual skills are related to comprehension of graphics    
+<br></br>
 
-- 
+- Reduce variability in lineup performance    
+<br></br>
+
+- (Ideally) Link visual skills to specific types of graphics
+
+---
+
+
 
 # Salience of Graph Features
 
