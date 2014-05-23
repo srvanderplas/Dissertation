@@ -28,7 +28,7 @@ Signs of the Sine Illusion
 ========================================================
 type:sub-section
 ## Why we need to care
-<img src="Prelim-figure/original.png" title="plot of chunk original" alt="plot of chunk original" style="display: block; margin: auto;" />
+<img src="Prelim-figure/original.png" title="plot of chunk original" alt="plot of chunk original" width="45%" height="auto" style="display: block; margin: auto;" />
 
 Example of the Sine Illusion
 ========================================================
@@ -278,6 +278,20 @@ We can compare this model to the psychophysics model using the midpoint of this 
 
 Random Effects Model
 =======================================================
+## Results
+<div align='center'>
+<!-- html table generated in R 3.1.0 by xtable 1.7-3 package -->
+<!-- Fri May 23 10:46:16 2014 -->
+<TABLE border=1>
+<TR> <TH> Groups </TH> <TH> Correction </TH> <TH> Estimate </TH> <TH> 95% C.I. </TH>  </TR>
+  <TR> <TD align="right"> Participant </TD> <TD align="center"> Y </TD> <TD align="center"> 0.145 </TD> <TD align="center"> (0.105, 0.181) </TD> </TR>
+  <TR> <TD align="right"> Participant </TD> <TD align="center"> X </TD> <TD align="center"> 0.171 </TD> <TD align="center"> (0.168, 0.244) </TD> </TR>
+  <TR> <TD align="right"> Residual </TD> <TD align="center">  </TD> <TD align="center"> 0.304 </TD> <TD align="center"> (0.290, 0.317) </TD> </TR>
+   </TABLE>
+</div>
+
+Random Effects Model
+=======================================================
 <img src="Prelim-figure/ranef.png" title="plot of chunk ranef" alt="plot of chunk ranef" width="80%" style="display: block; margin: auto;" />
 
 Conclusions
@@ -287,6 +301,16 @@ Conclusions
 - Corrections do not have to be fully applied to break the illusion's power  
 
 - The sine illusion is strong enough to make participants think that lines of unequal length are equal
+
+**Importance to Statistical Graphics**    
+We can't judge variability accurately when there is a nonlinear trend. Knowing is half the battle; having tools to screen for this effect could also be helpful. 
+
+
+Future Work
+=======================================================
+- R package with functions to correct data
+- Shiny applet that allows users to upload data and then provides $x$ and $y$ corrections
+
 
 Visual Aptitude and Graphical Inference
 ========================================================
