@@ -48,13 +48,13 @@ Signs of the Sine Illusion
 ========================================================
 type:sub-section
 ## Why we need to care
-```{r original,echo=FALSE}
+```{r original,echo=FALSE, fig.width=6.125, fig.height=5, out.width='45%', out.height='auto'}
 qplot(x=x, xend=xend, y = ystart, yend=yend, geom="segment", data=createSine(40, 1, f=f, fprime=fprime, f2prime)) +
   theme(panel.grid.major=element_blank(), panel.background = element_rect(fill = "white", 
                 colour = "black"), plot.margin = unit(c(0,0,-0.5,-0.5), "cm"), 
        panel.grid.minor=element_blank(), panel.background=element_blank(),
        axis.title = element_blank(), axis.ticks = element_blank(), 
-       axis.text = element_blank()) #+ coord_equal(ratio=1)
+       axis.text = element_blank()) + coord_equal(ratio=1)
 ```
 
 Example of the Sine Illusion
@@ -969,6 +969,60 @@ We can compare this model to the psychophysics model using the midpoint of this 
 
 Random Effects Model
 =======================================================
+## Results
+<div align='center'>
+```{r raneftable,echo=F,results='asis'}
+require(xtable)
+
+###
+# fixed effects table
+fixefsCIs$Transformation <- NA
+fixefsCIs$Transformation[grep("[y|Y]$", fixefsCIs$.id)] <- "Y"
+fixefsCIs$Transformation[grep("[x|X]$", fixefsCIs$.id)] <- "X"
+
+fixefsCIs$Threshold <- "Lower"
+fixefsCIs$Threshold[grep("upper", fixefsCIs$.id)] <- "Upper"
+
+fixefsCIs$Estimate <- c(fixef(model2)[1:2], fixef(model2)[2:1]+fixef(model2)[3])
+
+fixefsCIs <- fixefsCIs[with(fixefsCIs,order(Transformation, Threshold)),]
+fixefsCIs$interval <- with(fixefsCIs, sprintf("(%.3f, %.3f)", `2.5%`, `97.5%`))
+fixefsCIs <- fixefsCIs[,c(4,5,6,7)]
+fixefsCIs$Transformation <- c("X", "", "Y", "")
+names(fixefsCIs)[4] <- "95% C.I."
+fixeftab <- xtable(fixefsCIs, align=c("c","c", "c", "c", "c"), digits=3)
+# print(fixeftab, include.rownames=FALSE, file=paste(imgdir, "fixef.txt", sep=""), floating=FALSE)
+
+
+#####################
+# random effects table
+
+ranefCIs <- ldply(ranefs[,-1], function(x) quantile(x, probs=c(0.025, 0.975)))
+
+
+ranefCIs$Groups <- "Participant"
+ranefCIs$Correction <- c("Y", "X")
+ranefCIs$Estimate <- attr(VarCorr(model2)$fingerprint, "stddev")
+ranefCIs <- data.frame(ranefCIs)
+
+sigmaCIs <- data.frame(t(quantile(sigma2[,2], probs=c(0.025, 0.975))))
+sigmaCIs$Groups <- "Residual"
+sigmaCIs$Correction <- NA
+sigmaCIs$Estimate <- sigma(model2)
+sigmaCIs$.id <- "Residual"
+
+ranefCIs <- rbind(ranefCIs, sigmaCIs)
+ranefCIs$interval <- with(ranefCIs, sprintf("(%.3f, %.3f)", X2.5., X97.5.))
+ranefCIs <- ranefCIs[,4:7]
+names(ranefCIs)[4] <- "95% C.I."
+
+ranefCIstab <- print(xtable(ranefCIs, align=c("r","r", "c", "c", "c"), digits=3), type="html", include.rownames=F)
+# print(ranefCIstab, include.rownames=FALSE, file=paste(imgdir, "ranef.txt", sep=""), floating=FALSE)
+```
+</div>
+
+Random Effects Model
+=======================================================
 ```{r ranef, echo=F, fig.width=8, fig.height=5, out.width='80%'}
 
 ggplot() + theme_bw() + facet_grid(type~., scales="free") + ylim(c(0, 27)) +
@@ -999,6 +1053,16 @@ Conclusions
 - Corrections do not have to be fully applied to break the illusion's power  
 
 - The sine illusion is strong enough to make participants think that lines of unequal length are equal
+
+**Importance to Statistical Graphics**    
+We can't judge variability accurately when there is a nonlinear trend. Knowing is half the battle; having tools to screen for this effect could also be helpful. 
+
+
+Future Work
+=======================================================
+- R package with functions to correct data
+- Shiny applet that allows users to upload data and then provides $x$ and $y$ corrections
+
 
 Visual Aptitude and Graphical Inference
 ========================================================
