@@ -8,6 +8,14 @@ height: 768
 
 
 
+Academic Background
+========================================================
+type:sub-section
+
+- Undergrad: Psychology & Applied Math at Texas A&M
+- Bioinformatics at Iowa State (started in 2009)
+- Transferred to Statistics in Fall 2010
+- Finished classes in Spring 2013
 
 Outline
 ========================================================
@@ -41,8 +49,11 @@ Perspective plot of the same data, with a vanishing point closer to infinity
 
 Explaining the Illusion
 ========================================================
-<img src="Prelim-figure/originalgrid.png" title="plot of chunk originalgrid" alt="plot of chunk originalgrid" style="display: block; margin: auto;" />
-The illusion doesn't disappear with grid lines, but does disappear when the context is removed
+<img src="Prelim-figure/originalgrid.png" title="plot of chunk originalgrid" alt="plot of chunk originalgrid" width="40%" style="display: block; margin: auto;" />
+The illusion doesn't disappear with grid lines, but does disappear when the context is removed. 
+
+Cleveland and McGill (1984) demonstrated that we can compare the length of two lines accurately; Day and Stecher (1991) showed that the illusion persists if there is curvature in the underlying function. 
+
 
 Geometry of the Sine Illusion
 ========================================================
@@ -285,3 +296,33 @@ type:sub-section
 Salience of Graph Features
 ========================================================
 type:sub-section
+
+Timeline
+========================================================
+type:sub-section
+**Sine Illusion:**
+  - Paper submitted to JCGS in Oct 2013, revision submitted in March 2014
+  - Second paper will likely be submitted to Chance
+    - Different user study, same basic conclusion
+  
+Timeline
+========================================================
+type:sub-section
+**Visual Aptitude:**
+  - Pilot study in Feb 2014
+  - Data collection started in April 2014
+  - Second round of data collection this summer
+  - Paper to be written by September 2014
+  
+Timeline
+========================================================
+type:sub-section
+**Graph Feature Hierarchy:**
+  - Pilot study in Feb 2014
+  - Data collection (Amazon Turk) in September 2014
+  - Paper written by November 2014
+
+Timeline
+========================================================
+type:sub-section
+Goal \: Defend in January or February 2015 

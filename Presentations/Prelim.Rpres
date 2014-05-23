@@ -28,6 +28,14 @@ f2prime <- function(x) -2*sin(x)
 
 ```
 
+Academic Background
+========================================================
+type:sub-section
+
+- Undergrad: Psychology & Applied Math at Texas A&M
+- Bioinformatics at Iowa State (started in 2009)
+- Transferred to Statistics in Fall 2010
+- Finished classes in Spring 2013
 
 Outline
 ========================================================
@@ -96,7 +104,7 @@ Perspective plot of the same data, with a vanishing point closer to infinity
 
 Explaining the Illusion
 ========================================================
-```{r originalgrid, echo=F, fig.width=7.5, fig.height=6}
+```{r originalgrid, echo=F, fig.width=7.5, fig.height=6, out.width='40%'}
 f <- function(x) 2*sin(x)
 fprime <- function(x) 2*cos(x)
 f2prime <- function(x) -2*sin(x)
@@ -115,7 +123,10 @@ qplot(x=x, xend=xend, y = ystart*ell, yend=yend*ell, geom="segment", data=dframe
         plot.margin = unit(c(0,-.5,-.5,-1), "cm")) + coord_equal(ratio=1) + 
   geom_segment(size=2, data=dframe[c(31, 38),]) 
 ```
-The illusion doesn't disappear with grid lines, but does disappear when the context is removed
+The illusion doesn't disappear with grid lines, but does disappear when the context is removed. 
+
+Cleveland and McGill (1984) demonstrated that we can compare the length of two lines accurately; Day and Stecher (1991) showed that the illusion persists if there is curvature in the underlying function. 
+
 
 Geometry of the Sine Illusion
 ========================================================
@@ -997,3 +1008,33 @@ type:sub-section
 Salience of Graph Features
 ========================================================
 type:sub-section
+
+Timeline
+========================================================
+type:sub-section
+**Sine Illusion:**
+  - Paper submitted to JCGS in Oct 2013, revision submitted in March 2014
+  - Second paper will likely be submitted to Chance
+    - Different user study, same basic conclusion
+  
+Timeline
+========================================================
+type:sub-section
+**Visual Aptitude:**
+  - Pilot study in Feb 2014
+  - Data collection started in April 2014
+  - Second round of data collection this summer
+  - Paper to be written by September 2014
+  
+Timeline
+========================================================
+type:sub-section
+**Graph Feature Hierarchy:**
+  - Pilot study in Feb 2014
+  - Data collection (Amazon Turk) in September 2014
+  - Paper written by November 2014
+
+Timeline
+========================================================
+type:sub-section
+Goal \: Defend in January or February 2015 
