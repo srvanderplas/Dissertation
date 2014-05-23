@@ -32,7 +32,6 @@ f2prime <- function(x) -2*sin(x)
 Outline
 ========================================================
 type:sub-section
-- Importance of understanding perception
 - Sine Illusion
 - Visual Aptitude and Graphical Inference
 - Salience of Graph Features
@@ -254,7 +253,17 @@ p <- grid.arrange(p1, p2, nrow=1)
 Correcting the Illusion
 =======================================================
 ## X-axis Transformation
-```{r xaxisdemo,echo=F, fig.width=12, fig.height=4}
+
+
+Let $a$ and $b$ be the minimum and maximum of the $x$-range under consideration. Then for any value $x \in (a,b)$ the following transformation results in a function with constant absolute slope:<br></br>
+$$
+(f \circ T)(x) = a + (b-a)\left(\int_{a}^x |f^\prime(z)| dz\right)\left/\left(\int_{a}^{b}|f^\prime(z)| dz\right)\right.
+$$
+
+Correcting the Illusion
+=======================================================
+## X-axis Transformation
+```{r xaxisdemo,echo=F, fig.width=10, fig.height=3.5, out.width='100%'}
 correctx <- function(z, fprime, a=0, b=2*pi, w=1) {
   # w = 1/(shrink+1)
   const <- integrate(function(x) abs(fprime(x)), a, b)$value
@@ -296,6 +305,16 @@ full <- ggplot(aes(x=xtrans, xend=xtrans, y = ystart, yend=yend), data=dframe) +
   theme(plot.margin = unit(c(.1,.1,-.5,.1), "cm")) + ggtitle("Fully Corrected")
 grid.arrange(none, full, nrow=1)
 ```
+
+
+Correcting the Illusion
+=======================================================
+## X-axis Transformation
+The transformation does not have to be fully weighted - we can introduce a shrinkage factor $w \in (0,1)$ that allows a less extreme approach to counteracting the illusion as: 
+
+$$(f \circ T_w)(x) = (1-w) \cdot x + w \cdot (f \circ T)(x)$$
+
+Note that for $w=1$ the $x$-transformation is complete, while smaller values of $w$ indicate a less severe adjustment against the sine illusion.  Under  weaker transformations, the data more closely reflect the original function $f(x)$. 
 
 Correcting the Illusion
 =======================================================
@@ -412,6 +431,50 @@ qplot(data=df.real, x=x, y=y, geom="line") +
   geom_text(data=dfslope, aes(x=xend+.1, y=yend+.1, label="slope: paste(f, \"'\", (x))"), parse=TRUE, hjust=.75, vjust=1) +
   coord_equal(ratio=1) + theme(axis.title=element_blank(), axis.text=element_blank(), axis.ticks=element_blank(), axis.line=element_blank(), panel.grid=element_blank(), plot.margin = unit(c(-1,-1,-2,-2), "lines")) 
 ```
+
+Correcting the Illusion
+=======================================================
+## Y-axis Transformation
+The function describing the orthogonal line through $(x_o, f(x_o))$ is given in point-vector form as 
+$$
+{x_o \choose f(x_o)} + \lambda {f^\prime(x_o) \choose 1}, 
+$$
+for any real-valued $\lambda$.
+
+Correcting the Illusion
+=======================================================
+## Y-axis Transformation
+The advantage of using point vector form is that it allows us to solve for parameter $\lambda$ easily, which gives us easy access to the extant (half) widths,  as: 
+$$
+|\lambda| \sqrt{1 + f^\prime(x_o)^2}.
+$$
+This equation describes the quantity that we perceive rather than the quantity that we want to display ($\ell/2$)
+
+Correcting the Illusion
+=======================================================
+## Y-axis Transformation
+The general correction factor is thus
+$$
+ \ell/2 \cdot \left(|\lambda| \sqrt{1 + f^\prime(x_o)^2}\right)^{-1}.
+$$
+
+This yields two solutions: one for positive, one for negative values of $\lambda$ corresponding to upper and lower (half) extant width.
+
+
+Correcting the Illusion
+=======================================================
+## Y-axis Transformation
+
+In order to get  actual numeric values for $\lambda$, we need to find end points $f_1$ and $f_2$. This system of equations provides solutions for those points: 
+$$
+ x - x_o = \lambda f^\prime(x_o)
+$$
+$$
+ f(x) - f(x_o) = -\lambda \pm \ell/2
+$$
+
+Solving these equations requires numerical optimization; thus, we will use taylor series to simplify the optimization process. 
+
 Correcting the Illusion
 =======================================================
 ## Y-axis Transformation
@@ -451,8 +514,10 @@ p1 <- qplot(data=df.real, x=x, y=y, geom="line")+
             parse=TRUE, hjust=0, vjust=.25)  + 
   theme(axis.title=element_blank(), axis.text=element_blank(), axis.ticks=element_blank(), axis.line=element_blank(), panel.grid=element_blank(), plot.margin=unit(c(0,0,-1,0), "cm")) + 
   ggtitle("Linear Approximation")
+p1
+```
 
-
+```{r y-quadcorrectioncartoon,echo=F, fig.width=10, fig.height=4.5}
 df <- createSine(40 , len=1, f=f, fprime=fprime, f2prime=f2prime)[5:16,]
 
 a <- 9
@@ -489,8 +554,8 @@ p2 <- qplot(data=df.real, x=x, y=y, geom="line") +
   theme(axis.title=element_blank(), axis.text=element_blank(), axis.ticks=element_blank(), axis.line=element_blank(), panel.grid=element_blank(),
         plot.margin=unit(c(0,0,-1,0), "cm"))+ 
   ggtitle("Quadratic Approximation")
-
-grid.arrange(p1, p2, nrow=1)
+p2
+# grid.arrange(p1, p2, nrow=1)
 ```
 
 Correcting the Illusion

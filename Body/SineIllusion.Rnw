@@ -654,7 +654,7 @@ For that we introduce a shrinkage factor $w \in (0,1)$ that allows a weighted ap
 (f \circ T_w)(x) = (1-w) \cdot x + w \cdot (f \circ T)(x)
 \end{equation}
 %
-Note that for $w=1$ the $x$-transformation is completely warped, while smaller values of $w$ indicate a less severe adjustment against the sine illusion.  Under  weaker transformation,s the data more closely reflect the original function $f(x)$. 
+Note that for $w=1$ the $x$-transformation is completely warped, while smaller values of $w$ indicate a less severe adjustment against the sine illusion.  Under  weaker transformations, the data more closely reflect the original function $f(x)$. 
 Figures \ref{fig:xtrans2} - \ref{fig:xtrans4} show the effect of different shrinkage coefficients $w$. As $w$ decreases, the lines become more evenly spaced and the illusion begins to return. 
 
 The extent  to which we can shrink the adjustment back to the original function  varies with the aspect ratio of the chart and the shape of the function. It might also be influenced by the audience's experience with the sine illusion, resulting in very subjective choices of an ``optimal weighting" for specific situations which minimizes distortion and maximizes the correspondence between inferences made from the data and inferences made using the visual display.

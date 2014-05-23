@@ -12,7 +12,6 @@ height: 768
 Outline
 ========================================================
 type:sub-section
-- Importance of understanding perception
 - Sine Illusion
 - Visual Aptitude and Graphical Inference
 - Salience of Graph Features
@@ -74,7 +73,27 @@ Correcting the Illusion
 Correcting the Illusion
 =======================================================
 ## X-axis Transformation
-<img src="Prelim-figure/xaxisdemo.png" title="plot of chunk xaxisdemo" alt="plot of chunk xaxisdemo" style="display: block; margin: auto;" />
+
+
+Let $a$ and $b$ be the minimum and maximum of the $x$-range under consideration. Then for any value $x \in (a,b)$ the following transformation results in a function with constant absolute slope:<br></br>
+$$
+(f \circ T)(x) = a + (b-a)\left(\int_{a}^x |f^\prime(z)| dz\right)\left/\left(\int_{a}^{b}|f^\prime(z)| dz\right)\right.
+$$
+
+Correcting the Illusion
+=======================================================
+## X-axis Transformation
+<img src="Prelim-figure/xaxisdemo.png" title="plot of chunk xaxisdemo" alt="plot of chunk xaxisdemo" width="100%" style="display: block; margin: auto;" />
+
+
+Correcting the Illusion
+=======================================================
+## X-axis Transformation
+The transformation does not have to be fully weighted - we can introduce a shrinkage factor $w \in (0,1)$ that allows a less extreme approach to counteracting the illusion as: 
+
+$$(f \circ T_w)(x) = (1-w) \cdot x + w \cdot (f \circ T)(x)$$
+
+Note that for $w=1$ the $x$-transformation is complete, while smaller values of $w$ indicate a less severe adjustment against the sine illusion.  Under  weaker transformations, the data more closely reflect the original function $f(x)$. 
 
 Correcting the Illusion
 =======================================================
@@ -85,10 +104,56 @@ Correcting the Illusion
 =======================================================
 ## Y-axis Transformation
 <img src="Prelim-figure/y-generalcorrectioncartoon.png" title="plot of chunk y-generalcorrectioncartoon" alt="plot of chunk y-generalcorrectioncartoon" style="display: block; margin: auto;" />
+
+Correcting the Illusion
+=======================================================
+## Y-axis Transformation
+The function describing the orthogonal line through $(x_o, f(x_o))$ is given in point-vector form as 
+$$
+{x_o \choose f(x_o)} + \lambda {f^\prime(x_o) \choose 1}, 
+$$
+for any real-valued $\lambda$.
+
+Correcting the Illusion
+=======================================================
+## Y-axis Transformation
+The advantage of using point vector form is that it allows us to solve for parameter $\lambda$ easily, which gives us easy access to the extant (half) widths,  as: 
+$$
+|\lambda| \sqrt{1 + f^\prime(x_o)^2}.
+$$
+This equation describes the quantity that we perceive rather than the quantity that we want to display ($\ell/2$)
+
+Correcting the Illusion
+=======================================================
+## Y-axis Transformation
+The general correction factor is thus
+$$
+ \ell/2 \cdot \left(|\lambda| \sqrt{1 + f^\prime(x_o)^2}\right)^{-1}.
+$$
+
+This yields two solutions: one for positive, one for negative values of $\lambda$ corresponding to upper and lower (half) extant width.
+
+
+Correcting the Illusion
+=======================================================
+## Y-axis Transformation
+
+In order to get  actual numeric values for $\lambda$, we need to find end points $f_1$ and $f_2$. This system of equations provides solutions for those points: 
+$$
+ x - x_o = \lambda f^\prime(x_o)
+$$
+$$
+ f(x) - f(x_o) = -\lambda \pm \ell/2
+$$
+
+Solving these equations requires numerical optimization; thus, we will use taylor series to simplify the optimization process. 
+
 Correcting the Illusion
 =======================================================
 ## Y-axis Transformation
 <img src="Prelim-figure/y-linearcorrectioncartoon.png" title="plot of chunk y-linearcorrectioncartoon" alt="plot of chunk y-linearcorrectioncartoon" style="display: block; margin: auto;" />
+
+<img src="Prelim-figure/y-quadcorrectioncartoon.png" title="plot of chunk y-quadcorrectioncartoon" alt="plot of chunk y-quadcorrectioncartoon" style="display: block; margin: auto;" />
 
 Correcting the Illusion
 =======================================================
