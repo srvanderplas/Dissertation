@@ -61,7 +61,7 @@ Participants will complete the following tasks (sample pictures included, full s
 \item Figure Classification Task: tests participant's ability to extrapolate rules from provided figures. This task is associated with visual reasoning capabilities and we expect that it should correlate with the ability to pick out a signal plot from a lineup. An example is shown in figure \ref{fig:figureclassification}. 
 \begin{figure}[htbp]\centering
 \includegraphics[width=.9\textwidth]{figureclassification}
-\caption[Figure Classification Task]{Card Rotation Task. Participants classify each figure in the second row as belonging to group 1, 2, or 3 (if applicable). Participants will complete up to 14 of these tasks (each consisting of 8 figures to classify) in 8 minutes.}\label{fig:figureclassification}
+\caption[Figure Classification Task]{Figure Classification Task. Participants classify each figure in the second row as belonging to group 1, 2, or 3 (if applicable). Participants will complete up to 14 of these tasks (each consisting of 8 figures to classify) in 8 minutes.}\label{fig:figureclassification}
 \end{figure}
 \end{itemize}
 
