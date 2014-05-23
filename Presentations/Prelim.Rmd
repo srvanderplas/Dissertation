@@ -1137,9 +1137,59 @@ We can't judge variability accurately when there is a nonlinear trend. Knowing i
 
 - (Ideally) Link visual skills to specific types of graphics
 
+
+# Visual Aptitude Tasks
+
+## Visual Search Task
+<small>
+Designed to test participants' ability to find a target stimulus in a field of distractors
+</small>
+
+<img src="../Figure/VisualAptitude/VisualSearch.png" width='40%' height='auto'>
+
+<small>
+Participants are instructed to find the plot numbered 1-24 which matches the plot labeled "Target". Participants will complete up to 25 of these tasks in 5 minutes
+</small>
+
 ---
 
+## Paper Folding
 
+Tests participants' ability to visualize and mentally manipulate figures in three dimensions. Associated with the ability to extrapolate symmetry and reflection over multiple steps.
+
+![](../Figure/VisualAptitude/paperfolding.png)
+
+
+Participants are instructed to pick the figure matching the sequence of steps shown in the left-hand figure. Participants will complete up to 20 of these tasks in 6 minutes.
+
+---
+
+## Card Rotation
+
+Tests participant's ability to rotate objects in two dimensions to distinguish between left-hand and right-hand versions of the same figure. Tests spatial reasoning ability and mental rotation skills. 
+
+
+![](../Figure/VisualAptitude/cardrotation.jpg)
+
+
+Participants mark each figure on the right hand side as either the same or different than the figure on the left hand side of the dividing line. Participants will complete up to 20 of these tasks (each consisting of 8 figures) in 6 minutes.
+
+
+---
+
+## Figure Classification
+
+<small>
+Tests participant's ability to extrapolate rules from provided figures. This task is associated with visual reasoning capabilities and we expect that it should correlate with the ability to pick out a signal plot from a lineup.
+</small>
+
+![](../Figure/VisualAptitude/figureclassification.jpg)
+
+<small>
+Participants classify each figure in the second row as belonging to group 1, 2, or 3 (if applicable). Participants will complete up to 14 of these tasks (each consisting of 8 figures to classify) in 8 minutes.
+</small>
+
+---
 
 # Salience of Graph Features
 
