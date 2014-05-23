@@ -1150,17 +1150,22 @@ We can't judge variability accurately when there is a nonlinear trend. Knowing i
   - Paper submitted to JCGS in Oct 2013, revision submitted in March 2014
   - Second paper will likely be submitted to Chance
     - Different user study, same basic conclusion
-  
+
+# Timeline
+
 ## Visual Aptitude
   - Pilot study in Feb 2014
   - Data collection started in April 2014
   - Second round of data collection this summer
   - Paper to be written by September 2014
 
+# Timeline
+
 ## Graph Feature Hierarchy
   - Pilot study in Feb 2014
   - Data collection (Amazon Turk) in September 2014
   - Paper written by November 2014
 
+# Timeline
 
 Goal \: Defend in January or February 2015 
