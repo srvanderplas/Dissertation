@@ -52,7 +52,7 @@ f2prime <- function(x) -2*sin(x)
 - Visual Aptitude and Graphical Inference    
 <br></br>    
 
-- Hierarchy of Graph Features
+- Salience of Graph Features
 
 # Signs of the Sine Illusion - Why we need to care
 ```{r original,echo=FALSE, fig.width=6.125, fig.height=5, out.width='45%', out.height='auto'}
@@ -1160,7 +1160,6 @@ We can't judge variability accurately when there is a nonlinear trend. Knowing i
 ---
 
 ## Future Work
-<br></br>
 
 - R package with functions to correct data    
 <br></br>
@@ -1230,56 +1229,7 @@ Participants classify each figure in the second row as belonging to group 1, 2, 
 
 ---
 
-## Lineups
-
-<img src="../Figure/VisualAptitude/lineup.png" width='65%' height='auto'>
-
----
-
-## Experiment Setup
-
-- Questionnaire:  
-<small>Demographic information, academic background, self-rating of verbal/math/artistic skills, video game usage, etc.</small>
-- Visual Search Task (25 questions)  
-  
-- Lineup Task 1:  
-<small>boxplots, density plots, dotplots, histograms</small>
-- Card Rotation Task (20 x 8 questions)  
-  
-- Lineup Task 2:  
-<small>boxplots, violin plots, scatterplot + boxplot overlays</small>
-- Figure Classification Task (14 x 8 questions)  
-  
-- Lineup Task 3:  
-<small>linear regression and normality assessment, outliers, and residual plots</small>
-- Paper Folding Task (20 questions)
-
----
-
-## Data Collection
-<br></br>  
-
-- Pilot study:  
-<small>Working group took the tests (with different lineups) in February  </small>  
-- Initial Data:  
-<small>20 students tested in April </small>  
-- More data collection to occur in June/July
-
----
-
-## Preliminary Results
-
-<img src="../Figure/VisualAptitude/fig-VisReasoningAnalysisCat.png" width='65%' height='auto'>
-
----
-
-## Preliminary Results
-
-<img src="../Figure/VisualAptitude/fig-VisReasoningAnalysisCts.png" width='75%' height='auto'>
-
----
-
-# Hierarchy of Graphical Features
+# Salience of Graph Features
 
 
 # Timeline
