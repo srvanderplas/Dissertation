@@ -52,9 +52,12 @@ f2prime <- function(x) -2*sin(x)
 - Visual Aptitude and Graphical Inference    
 <br></br>    
 
-- Salience of Graph Features
+- Hierarchy of Graph Features
 
-# Signs of the Sine Illusion - Why we need to care
+---
+
+<section>
+<h1>Signs of the Sine Illusion - Why we need to care</h1>
 ```{r original,echo=FALSE, fig.width=6.125, fig.height=5, out.width='45%', out.height='auto'}
 qplot(x=x, xend=xend, y = ystart, yend=yend, geom="segment", data=createSine(40, 1, f=f, fprime=fprime, f2prime)) +
   theme(panel.grid.major=element_blank(), panel.background = element_rect(fill = "white", 
@@ -78,11 +81,10 @@ b <- qplot(data=datasub, x=jitter(Tmax), y=resid, geom="point", shape=I(1), colo
 grid.arrange(a, b, ncol=2)
 ```
 
-# Explaining the Illusion
-
 ---
 
-The sine illusion results from misapplication of a three-dimensional visual heuristic to ambiguous two-dimensional images
+## Explaining the Illusion
+<small>The sine illusion results from misapplication of a three-dimensional visual heuristic to ambiguous two-dimensional images</small>
 ```{r ribbon-illusion, echo=F, fig.width=8, fig.height=6, out.width='60%', fig.cap='Perspective plot of a three-dimensional image similar to the sine illusion'}
 
 f <- function(x) 2*sin(x)
@@ -104,14 +106,14 @@ persp(x, z, data.persp,  xlab="", ylab="", zlab="", theta=0, phi=45, border="bla
 
 ---
 
-The sine illusion results from misapplication of a three-dimensional visual heuristic to ambiguous two-dimensional images
+## Explaining the Illusion
+<small>The sine illusion results from misapplication of a three-dimensional visual heuristic to ambiguous two-dimensional images</small>
 ```{r ribbon-illusion2, echo=F, fig.width=8, fig.height=6, out.width='60%', fig.cap='Perspective plot of the same data, with a vanishing point closer to infinity'}
 usr <- par("usr")
 par(mar=c(0, 0, 0, 0))
 persp(x, z, data.persp,  xlab="", ylab="", zlab="", theta=0, phi=45, border="black", shade=.35, col="white", xlim=c(-pi/12, 2*pi+pi/12), ylim=c(-1.75, 1.75), scale=FALSE, box=FALSE, expand=3/pi, d=50) # , ltheta=0, lphi=-15
 ```
-
-In this figure, the vanishing point has been moved towards infinity; the lines are straight and closer to the appearance of the sine illusion
+<small>In this figure, the vanishing point has been moved towards infinity; the lines are straight and closer to the appearance of the sine illusion</small>
 
 ---
 
@@ -253,11 +255,16 @@ p1
 
 # Correcting the Illusion
 
-1. Remove the underlying function (plot the curve and the residuals separately)    
+> 1. Trend Removal    
+Remove the underlying function, plotting the curve and the residuals separately       
+<br></br>
 
-2. Change the plotted line length (or spread) so that the **perceived** orthogonal width corresponds to the **original** (data) line length    
+> 2. X Axis Correction    
+Reparameterize the x-axis in terms of the slope, so that the absolute slope doesn't change     
+<br></br>
 
-3. Reparameterize the x-axis in terms of the slope, so that the absolute slope doesn't change
+> 3. Y Axis Correction    
+Change the plotted line length (or spread) so that the **perceived** orthogonal width corresponds to the **original** (data) line length           
 
 ---
 
@@ -360,7 +367,8 @@ grid.arrange(none, full, nrow=1)
 
 ---
 
-## Partial Transformations
+## X-Axis Transformation
+### Partial Transformations
 Shrinkage factor $w \in (0,1)$: allows a less extreme approach to counteracting the illusion    
     
 <br></br>
@@ -456,6 +464,8 @@ grid.arrange(p1, p2, p3, p4, nrow=2)
 ---
 
 ## Y-axis Transformation
+
+### General Correction
 ```{r y-generalcorrectioncartoon, echo=F, fig.width=7, fig.height=6, out.width='50%'}
 f <- function(x) 2*sin(x)
 fprime <- function(x) 2*cos(x)
@@ -493,6 +503,8 @@ qplot(data=df.real, x=x, y=y, geom="line") +
 ---
 
 ## Y-axis Transformation
+
+### General Correction
 The function describing the orthogonal line through $(x_o, f(x_o))$ is given in point-vector form as 
 
 <br></br>
@@ -508,6 +520,8 @@ for any real-valued $\lambda$.
 ---
 
 ## Y-axis Transformation
+
+### General Correction
 The advantage of using point vector form is that it allows us to solve for parameter $\lambda$ easily, which gives us easy access to the extant (half) widths,  as: 
 
 <br></br>
@@ -523,6 +537,8 @@ This equation describes the quantity that we perceive rather than the quantity t
 ---
 
 ## Y-axis Transformation
+
+### General Correction
 The general correction factor is thus
 
 <br></br>
@@ -538,6 +554,8 @@ This yields two solutions: one for positive, one for negative values of $\lambda
 ---
 
 ## Y-axis Transformation
+
+### General Correction
 
 In order to get  actual numeric values for $\lambda$, we need to find end points $f_1$ and $f_2$. This system of equations provides solutions for those points: 
 
@@ -560,6 +578,8 @@ Solving these equations requires numerical optimization; thus, we will use taylo
 ---
 
 ## Y-axis Transformation
+
+### Linear and Quadratic Approximations
 ```{r y-linearcorrectioncartoon,echo=F, fig.width=10, fig.height=5}
 df <- createSine(40 , len=1, f=f, fprime=fprime, f2prime=f2prime)[5:16,]
 
@@ -640,7 +660,10 @@ grid.arrange(p1, p2, nrow=1)
 ---
 
 ## Y-axis Transformation
-```{r ycorrection,echo=FALSE,fig.width=12, fig.height=4, out.width='100%'}
+
+### Linear Correction
+
+```{r ycorrection1,echo=FALSE,fig.width=9, fig.height=4, out.width='100%'}
 dframe <- createSine(40,1, f=f, fprime=fprime, f2prime=f2prime)
 p1 <- qplot(x=x, xend=xend, y = f(x) -ell/2, yend=f(x) +ell/2, geom="segment", data=dframe) +
   theme_bw() + 
@@ -668,25 +691,36 @@ p3 <- qplot(x=x, xend=x, y=y+ellx4.u, yend=y-ellx4.l, geom="segment", data=dfram
    scale_x_continuous(breaks=seq(0, 2*pi, by=pi/2), minor_breaks=minor.axis.correction,
                       labels=c("0", expression(paste(pi,"/2")), expression(pi), expression(paste("3",pi, "/2")), expression(paste("2",pi)))) + ggtitle("Quadratic Correction")
 
-p1
-grid.arrange(p2, p3, nrow=1)
+grid.arrange(p1, p2, nrow=1)
 
 ```
 
 ---
 
 ## Y-axis Transformation
-The y-axis transformation can be weighted in the same manner as the x-axis transformation. 
 
+### Quadratic Correction
+
+```{r ycorrection2,echo=FALSE,fig.width=9, fig.height=4, out.width='100%',dependson='ycorrection1'}
+grid.arrange(p1, p3, nrow=1)
+```
+
+---
+
+## Y-axis Transformation
+
+### Partial Transformations    
+
+The y-axis transformation can be weighted in the same manner as the x-axis transformation.    
 <br></br>
 
 A [Shiny applet](https://srvanderplas.shinyapps.io/SineIllusionDemo) was created to explore the effect of weight on both x and y corrections. 
 
 ---
 
-# User Testing
+# Testing the Corrections
 
-**Goal** \:  Determine the strength of the Sine Illusion by measuring how much correction is required for viewers to say that the lines are of equal length. 
+__Goal__ \:  Determine the strength of the Sine Illusion by measuring how much correction is required for viewers to say that the lines are of equal length. 
 
 <br></br>
 
@@ -1160,17 +1194,21 @@ We can't judge variability accurately when there is a nonlinear trend. Knowing i
 ---
 
 ## Future Work
+<br></br>
 
 - R package with functions to correct data    
 <br></br>
 
 - Shiny applet that allows users to upload data and then provides $x$ and $y$ corrections
 
-# Visual Aptitude and Graphical Inference
+</section>
 
 ---
 
-## Goals
+<section>
+<h1> Visual Aptitude and Graphical Inference</h1>
+
+# Goals
 - Understand what visual skills are related to comprehension of graphics    
 <br></br>
 
@@ -1179,9 +1217,7 @@ We can't judge variability accurately when there is a nonlinear trend. Knowing i
 
 - (Ideally) Link visual skills to specific types of graphics
 
----
-
-## Visual Search Task
+# Visual Search Task
 
 Designed to test participants' ability to find a target stimulus in a field of distractors
 
@@ -1191,9 +1227,7 @@ Designed to test participants' ability to find a target stimulus in a field of d
 Participants are instructed to find the plot numbered 1-24 which matches the plot labeled "Target". Participants will complete up to 25 of these tasks in 5 minutes
 </small>
 
----
-
-## Paper Folding
+# Paper Folding
 
 Tests participants' ability to visualize and mentally manipulate figures in three dimensions. Associated with the ability to extrapolate symmetry and reflection over multiple steps.
 
@@ -1203,9 +1237,7 @@ Tests participants' ability to visualize and mentally manipulate figures in thre
 Participants are instructed to pick the figure matching the sequence of steps shown in the left-hand figure. Participants will complete up to 20 of these tasks in 6 minutes.
 </small>
 
----
-
-## Card Rotation
+# Card Rotation
 
 Tests participant's ability to rotate objects in two dimensions to distinguish between left-hand and right-hand versions of the same figure. Tests spatial reasoning ability and mental rotation skills. 
 
@@ -1215,9 +1247,7 @@ Tests participant's ability to rotate objects in two dimensions to distinguish b
 Participants mark each figure on the right hand side as either the same or different than the figure on the left hand side of the dividing line. Participants will complete up to 20 of these tasks (each consisting of 8 figures) in 6 minutes.
 </small>
 
----
-
-## Figure Classification
+# Figure Classification
 
 This task is associated with visual reasoning capabilities and we expect that it should correlate with the ability to pick out a signal plot from a lineup.
 
@@ -1227,9 +1257,48 @@ This task is associated with visual reasoning capabilities and we expect that it
 Participants classify each figure in the second row as belonging to group 1, 2, or 3 (if applicable). Participants will complete up to 14 of these tasks (each consisting of 8 figures to classify) in 8 minutes.
 </small>
 
----
+# Lineups
 
-# Salience of Graph Features
+<img src="../Figure/VisualAptitude/lineup.png" width='65%' height='auto'>
+
+# Experiment Setup
+
+- Questionnaire:  
+<small>Demographic information, academic background, self-rating of verbal/math/artistic skills, video game usage, etc.</small>
+- Visual Search Task (25 questions)  
+  
+- Lineup Task 1:  
+<small>boxplots, density plots, dotplots, histograms</small>
+- Card Rotation Task (20 x 8 questions)  
+  
+- Lineup Task 2:  
+<small>boxplots, violin plots, scatterplot + boxplot overlays</small>
+- Figure Classification Task (14 x 8 questions)  
+  
+- Lineup Task 3:  
+<small>linear regression and normality assessment, outliers, and residual plots</small>
+- Paper Folding Task (20 questions)
+
+# Data Collection
+<br></br>  
+
+- Pilot study:  
+<small>Working group took the tests (with different lineups) in February  </small>  
+- Initial Data:  
+<small>20 students tested in April </small>  
+- More data collection to occur in June/July
+
+# Preliminary Results
+
+<img src="../Figure/VisualAptitude/fig-VisReasoningAnalysisCat.png" width='65%' height='auto'>
+
+# Preliminary Results
+
+<img src="../Figure/VisualAptitude/fig-VisReasoningAnalysisCts.png" width='75%' height='auto'>
+
+</section>
+
+# Hierarchy of Graphical Features
 
 
 # Timeline
