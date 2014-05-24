@@ -8,6 +8,8 @@ output:
     center: false
     transition: fade
     fig_caption: true
+    width: 1388
+    height: 768
 ---
 
 ```{r sineillusion-setup, fig.keep='all', cache=FALSE, echo=FALSE, include=FALSE, eval=TRUE}
@@ -1211,7 +1213,6 @@ We can't judge variability accurately when there is a nonlinear trend. Knowing i
 
 <img src="../Figure/VisualAptitude/combination_vision_test.png" width='40%' height='auto' title="If you see two numbers but they're both the same and you have to squint to read them, you have synesthesia, colorblindness, diplopia, and myopia.">
 
-
 # Goals
 - Understand what visual skills are related to comprehension of graphics    
 <br></br>
@@ -1314,31 +1315,73 @@ Participants classify each figure in the second row as belonging to group 1, 2, 
 
 </section>
 
-# Hierarchy of Graphical Features
+---
 
+<section><h1>Hierarchy of Graphical Features</h1>
 
-# Timeline
+<img src="../Figure/FeatureHierarchy/purity.png" width='75%' height='auto' title="On the other hand, physicists like to say physics is to math as sex is to masturbation">
+
+# Goal
+
+- Establish a hierarchy of graphical features that are most visually salient    
+<br></br>
+
+- Explore which graphs most efficiently present these features    
+
+# Example Stimuli
+
+<img src="../Figure/FeatureHierarchy/HierarchyLineup.png" width='65%' height='auto' title="Plot 5 contains the target slope plot, plot 10 contains the target color plot">
+
+# Example Stimuli
+
+<img src="../Figure/FeatureHierarchy/HierarchyLineup2.png" width='65%' height='auto' title="Plot 9 contains the target slope plot, plot 8 contains the target color plot">
+
+# Challenges
+
+- Control stimulus strength (i.e. $r^2$, group size, point density, etc.) to effectively compare color to correlation    
+<br></br>
+
+- Appropriate color schemes to maximize sensory distance (while allowing colorblind viewers to perceive the groups)    
+<br></br>
+
+</section>
+
+---
+
+<section>
+<h1>Timeline</h1>
 
 ## Sine Illusion
-  - Paper submitted to JCGS in Oct 2013, revision submitted in March 2014
-  - Second paper will likely be submitted to Chance
+<br></br>    
+
+  - Paper submitted to JCGS in Oct 2013, revision submitted in March 2014    
+  
+  - Second paper will likely be submitted to Chance    
     - Different user study, same basic conclusion
 
 # Timeline
 
 ## Visual Aptitude
-  - Pilot study in Feb 2014
-  - Data collection started in April 2014
-  - Second round of data collection this summer
-  - Paper to be written by September 2014
+<br></br>    
+
+  - Pilot study in Feb 2014    
+  - Data collection started in April 2014    
+  - Second round of data collection this summer    
+  - Paper to be written by September 2014    
 
 # Timeline
 
 ## Graph Feature Hierarchy
+<br></br>    
+
   - Pilot study in Feb 2014
   - Data collection (Amazon Turk) in September 2014
   - Paper written by November 2014
 
 # Timeline
+<br></br>    
+<br></br>    
 
 Goal \: Defend in January or February 2015 
+
+</section>
