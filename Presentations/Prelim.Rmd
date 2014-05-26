@@ -392,8 +392,8 @@ $$(f \circ T_w)(x) = (1-w) \cdot x + w \cdot (f \circ T)(x)$$
 <br></br>
 
 - $w=1$ is a full transformation
-- smaller values of $w$ indicate a less severe adjustment against the sine illusion
-- Under  weaker transformations, the data more closely reflect the original function $f(x)$. 
+- smaller values of $w$ indicate a less severe correction
+- Under weaker transformations the data more closely reflect the original function $f(x)$. 
 
 ---
 
@@ -536,7 +536,7 @@ for any real-valued $\lambda$.
 ## Y-axis Transformation
 
 ### General Correction
-The advantage of using point vector form is that it allows us to solve for parameter $\lambda$ easily, which gives us easy access to the extant (half) widths,  as: 
+Point vector form allows us to solve for $\lambda$ easily, giving the extant (half) widths as: 
 
 <br></br>
 
@@ -546,7 +546,7 @@ $$
 
 <br></br>
 
-This equation describes the quantity that we perceive rather than the quantity that we want to display ($\ell/2$)
+This equation describes the quantity that we **perceive** rather than the quantity that we want to display ($\ell/2$)
 
 ---
 
@@ -563,7 +563,7 @@ $$
 
 <br></br>
 
-This yields two solutions: one for positive, one for negative values of $\lambda$ corresponding to upper and lower (half) extant width.
+This yields two solutions; one for positive and one for negative values of $\lambda$ corresponding to upper and lower (half) extant width.
 
 ---
 
@@ -587,7 +587,7 @@ $$
 
 <br></br>
 
-Solving these equations requires numerical optimization; thus, we will use taylor series to simplify the optimization process. 
+Solving these equations requires numerical optimization; we will use linear and quadratic taylor series to simplify the optimization processs.
 
 ---
 
@@ -671,6 +671,24 @@ p2 <- qplot(data=df.real, x=x, y=y, geom="line") +
 grid.arrange(p1, p2, nrow=1)
 ```
 
+<small>Substituting the endpoints $(x_1, y_1)$ and $(x_2, y_2)$ into the general correction factor produces the linear and quadratic corrections to the sine illusion</small>
+
+---
+
+## Y-axis Transformation
+
+### Linear Correction    
+<br></br>
+$$f(x)\approx f(x_0) + (x-x_0) f^\prime(x_0)$$
+
+<br></br>    
+
+The correction factor is then     
+
+<br></br>    
+
+$$\ell_{new}(x_0) = \ell_{old}\sqrt{1+f^\prime(x_0)^2}$$
+
 ---
 
 ## Y-axis Transformation
@@ -708,6 +726,42 @@ p3 <- qplot(x=x, xend=x, y=y+ellx4.u, yend=y-ellx4.l, geom="segment", data=dfram
 grid.arrange(p1, p2, nrow=1)
 
 ```
+
+---
+
+## Y-axis Transformation
+
+### Quadratic Correction    
+<br></br>
+
+$$f(x) \approx f(x_0) + f^\prime(x_0)(x-x_0) + 1/2 f^{\prime\prime}(x_0)(x-x_0)^2$$
+<br></br>    
+
+The general correction system of equation simplifies to    
+
+<br></br>
+$$
+f^{\prime\prime}(x_0)  f^\prime(x_0)^2 \lambda^2  + 2(f^\prime(x_0)^2 + 1) \lambda  \pm \ell = 0,
+$$
+
+---
+
+## Y-axis Transformation
+
+### Quadratic Correction
+
+The corrections for the half lengths are then:    
+<br></br>
+<div style="font-size: 80%;">
+$$\begin{eqnarray}
+\ell_{\text{new}_1}(x_0) &=& 1 /2 \cdot  \left(v + \sqrt{ v^2 +  f^{\prime\prime}(x_0) f^\prime(x_0)^2\cdot  \ell_{\text{old}}}\right) \cdot v^{-1/2} \\
+\ell_{\text{new}_2}(x_0) &=& 1 /2 \cdot  \left(v + \sqrt{ v^2 -  f^{\prime\prime}(x_0) f^\prime(x_0)^2\cdot  \ell_{\text{old}}}\right) \cdot v^{-1/2} 
+\end{eqnarray}$$
+</div>
+<br></br>
+where $v = 1 + f^\prime(x_0)^2$    
+
+<small>In the quadratic correction, each half-length is corrected separately, producing a more robust correction</small>
 
 ---
 
