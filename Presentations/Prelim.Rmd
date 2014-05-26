@@ -828,18 +828,18 @@ A different <a href="http://glimmer.rstudio.com/srvanderplas/SineIllusionShiny/"
 ---
 
 ## Experiment Design
-- 12 (or more) trials, 6 of each correction type  
-
-  - Each user completed trials starting at 0 and 1 for both correction types  
-  
-  - Additional trials were selected using starting weights between 0.25 and 0.75, with point density highest around 0.6 (fractional factorial design)
+- 12 (or more) trials, 6 of each correction type    
+<small><br></br></small>
+    - Each user completed trials starting at 0 and 1 for both correction types    
+    - Additional trials were selected using starting weights between 0.25 and 0.75, with point density highest around 0.6     
+    - After 12 trials, weights were chosen from starting weights between 0 and 1
 
 <br></br>
-```{r startingweights,echo=F,fig.width=8, fig.height=1.25, out.width='100%'}
+```{r startingweights,echo=F,fig.width=8, fig.height=1.25, out.width='90%', out.height='auto'}
 diffs <- c(0, .5, .5, .5, .5, .25, .25, .25, .25, .25, .25, .25, .25, .1, .1, .05, .05, .05, .05, .05, .05, .025, .025, .025, .025, .025, .025, .025, .025, .025, .025, .025, .025, .05, .05, .05, .05, .1, .1, .1, .1, .1, .25, .25, .25, .25, .25, .25, .5, .5, .5, .5)
 wopts <- -4 +cumsum(diffs)
 w01 <- wopts[(wopts <= 0.75) & (wopts >= 0.25)]
-ggplot() + geom_vline(xintercept =c(0,1), colour="grey80") + theme_bw() + ylab("") + ylim(c(0.8, 1.2)) + xlab("Starting weight") + geom_point(aes(x=w01, y=rep(1, length(w01))), size=3) + theme(axis.ticks.y=element_blank(), axis.text.y=element_blank())  + geom_point(aes(x=c(0, 1), y=rep(1, 2)),  size=5) + theme(axis.ticks.y=element_blank(), axis.text.y=element_blank(), plot.margin=unit(c(0,0,0,0), "cm")) + xlim(c(-0.25,1.21))
+ggplot() + geom_vline(xintercept =c(0,1), colour="grey80") + theme_bw() + ylim(c(0.8, 1.2))+ geom_point(aes(x=wopts, y=rep(1, length(wopts))), size=1) + geom_point(aes(x=w01, y=rep(1, length(w01))), size=3) + theme(axis.ticks.y=element_blank(), axis.text.y=element_blank(), axis.title=element_blank())  + geom_point(aes(x=c(0, 1), y=rep(1, 2)),  size=5) + theme(axis.ticks.y=element_blank(), axis.text.y=element_blank(), plot.margin=unit(c(0,0,0,0), "cm")) + xlim(c(-0.05,1.05)) + ggtitle("Trial Starting Weights")
 ```
 
 ---
@@ -858,7 +858,8 @@ The user must adjust the weight value at least once and then click the submit bu
 ---
 
 ## Data Inclusion Criteria
-```{r datainclusioncriteria,echo=F,fig.width=8, fig.height=4, out.width='100%'}
+##### Implausibly Over-corrected and Under-corrected Answers
+```{r datainclusioncriteria,echo=F,fig.width=8, fig.height=4, out.width='100%',fig.cap="Answers more extreme than these were excluded from the analysis."}
 f <- sin
 fprime <- cos
 f2prime <- function(x) -sin(x)
@@ -1101,7 +1102,52 @@ Once exclusion criteria were applied, our data consisted of 125 participants who
 
 ## Psychophysics Model
 
-Let $\gamma_X$ represent the optimal weight value for the $X$-correction, and $\gamma_Y$ represent the optimal weight value for the $Y$ correction. 
+```{r methodofadjustment, fig.width=7, fig.height=5, echo=FALSE, out.width='70%', fig.cap="Analysis Idea for Method of Adjustment"}
+library(ggplot2)
+library(grid)
+
+logit <- function(x, c=0){
+  exp(x-c)/(1+exp(x-c))
+}
+
+data <- data.frame(
+  start=c(0, 10, 0, 10),
+  end=c(5.2, 4.7, 5.3, 4.9), 
+  trial=seq(-.2, -.05, length=4)
+  )
+
+trial.labels <- data.frame(x=-2, y=data$trial, label=paste("Trial ", 1:4, sep=""))
+
+x <- seq(0, 10, .01)
+y <- logit(x, c=mean(data$end))
+curve <- data.frame(x=x, y=y)
+
+qplot(data=data, x=start, y=trial, xend=end, yend=trial, geom="segment") + 
+  geom_point(data=data, aes(x=end, y=trial, shape='Trial End'), size=3) + 
+  geom_point(data=data, aes(x=start, y=trial, shape='Trial Start'), size=3) + 
+  geom_text(data=trial.labels, aes(x=x, y=y, label=label), hjust=0, inherit.aes=F) + 
+  scale_shape_manual("", values=c("Trial Start"=1, "Trial End"=10)) + 
+  geom_line(data=curve, aes(x=x, y=y, linetype="Detection Probability", 
+                            color="Detection Probability"), inherit.aes=F) +
+  geom_segment(aes(x=0, xend=10, y=.5, yend=.5, linetype="Detection Threshold", 
+                   color="Detection Threshold")) + 
+  xlab("Stimulus Intensity") + 
+  ylab("Probability of Detection") + 
+  scale_color_manual("", values=c("Detection Probability"="black", "Detection Threshold"="red")) + 
+  scale_linetype_manual("", values=c("Detection Probability"=1, "Detection Threshold"=2)) + 
+  theme_bw() + 
+  scale_y_continuous(breaks=c(0, .25, .5, .75, 1), labels=c("0", "0.25", "0.5", "0.75", "1.0")) + 
+  scale_x_continuous(breaks=c(0, 2.5, 5, 7.5, 10)) + 
+  theme(legend.position=c(.2, .58), legend.title=element_blank()) + 
+  ggtitle("Method of Adjustment")
+```
+
+---
+
+## Psychophysics Model
+
+<small>Let $\gamma_X$ represent the optimal weight value for the $X$-correction     
+and $\gamma_Y$ represent the optimal weight value for the $Y$ correction. </small>
 
 <br></br>
 
