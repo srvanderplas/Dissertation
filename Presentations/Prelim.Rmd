@@ -91,7 +91,7 @@ b
 
 ---
 
-## Explaining the Illusion
+# Explaining the Illusion
 <small>The sine illusion results from misapplication of a three-dimensional visual heuristic to ambiguous two-dimensional images</small>
 ```{r ribbon-illusion, echo=F, fig.width=8, fig.height=6, out.width='60%', fig.cap='Perspective plot of a three-dimensional image similar to the sine illusion'}
 
@@ -114,18 +114,18 @@ persp(x, z, data.persp,  xlab="", ylab="", zlab="", theta=0, phi=45, border="bla
 
 ---
 
-## Explaining the Illusion
+# Explaining the Illusion
 <small>The sine illusion results from misapplication of a three-dimensional visual heuristic to ambiguous two-dimensional images</small>
 ```{r ribbon-illusion2, echo=F, fig.width=8, fig.height=6, out.width='60%', fig.cap='Perspective plot of the same data, with a vanishing point closer to infinity'}
 usr <- par("usr")
 par(mar=c(0, 0, 0, 0))
 persp(x, z, data.persp,  xlab="", ylab="", zlab="", theta=0, phi=45, border="black", shade=.35, col="white", xlim=c(-pi/12, 2*pi+pi/12), ylim=c(-1.75, 1.75), scale=FALSE, box=FALSE, expand=3/pi, d=50) # , ltheta=0, lphi=-15
 ```
-<small>In this figure, the vanishing point has been moved towards infinity; the lines are straight and closer to the appearance of the sine illusion</small>
+<small>In this figure, the vanishing point has been moved towards infinity; the lines are straight and closer to the appearance of the sine illusion. The three-dimensional appearance is still intact.</small>
 
 ---
 
-## Explaining the Illusion
+# Explaining the Illusion
 <h3>Context Matters</h3>
 
 
@@ -321,12 +321,12 @@ For any value $x \in (a,b)$ the following transformation results in a function w
         
 <br></br>
 
-    
-<small>
+<div style="font-size: 80%;">
 $$
 (f \circ T)(x) = a + (b-a)\left(\int_{a}^x |f^\prime(z)| dz\right)\left/\left(\int_{a}^{b}|f^\prime(z)| dz\right)\right.
 $$
-</small>
+</div>
+
 
 ---
 
