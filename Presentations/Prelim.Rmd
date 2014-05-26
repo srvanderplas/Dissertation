@@ -1235,7 +1235,7 @@ $$\epsilon_{ij} \stackrel{\text{ i.i.d.}}{\sim} N(0, \sigma^2)   \ \ \ \ \ \ \ \
 
 <br></br>
 
-We can compare this model to the psychophysics model using the midpoint of this interval,  $$\alpha+\beta/2$$
+We can compare this model to the psychophysics model using the midpoint of this interval,  $$\alpha_\ast+\beta/2$$
 
 ---
 
