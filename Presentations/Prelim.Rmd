@@ -1330,6 +1330,7 @@ We can't judge variability accurately when there is a nonlinear trend. Knowing i
 <br></br>
 
 - Reduce variability in lineup performance    
+    - Lineups from Hofmann, Follett, Majumder, & Cook (2012)    
 <br></br>
 
 - (Ideally) Link visual skills to specific types of graphics
@@ -1340,7 +1341,7 @@ We can't judge variability accurately when there is a nonlinear trend. Knowing i
 
 Designed to test participants' ability to find a target stimulus in a field of distractors
 
-<img src="../Figure/VisualAptitude/VisualSearch.png" width='40%' height='auto'>
+<img src="../Figure/VisualAptitude/VisualSearch.png" width='40%' height='auto' title="Plot 23 matches the target plot">
 
 <small>
 Participants are instructed to find the plot numbered 1-24 which matches the plot labeled "Target". Participants will complete up to 25 of these tasks in 5 minutes
@@ -1386,7 +1387,7 @@ Participants classify each figure in the second row as belonging to group 1, 2, 
 
 ## Lineups
 
-<img src="../Figure/VisualAptitude/lineup.png" width='65%' height='auto'>
+<img src="../Figure/VisualAptitude/lineup.png" width='65%' height='auto' title="Plot 13 is the target plot">
 
 # Experiment Setup
 
@@ -1438,7 +1439,9 @@ Participants classify each figure in the second row as belonging to group 1, 2, 
 - Establish a hierarchy of graphical features that are most visually salient    
 <br></br>
 
-- Explore which graphs most efficiently present these features    
+<img src="../Figure/LitReview/gestalt.jpg" width='80%' height='auto' title='Hierarchy of Gestalt Features'>
+
+- Explore which graphs most efficiently present data with regard to salient features    
 
 # Example Stimuli
 
