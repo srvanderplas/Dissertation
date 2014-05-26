@@ -782,7 +782,7 @@ grid.arrange(p1, p3, nrow=1)
 The y-axis transformation can be weighted in the same manner as the x-axis transformation.    
 <br></br>
 
-A [Shiny applet](https://srvanderplas.shinyapps.io/SineIllusionDemo) was created to explore the effect of weight on both x and y corrections. 
+A <a href="https://srvanderplas.shinyapps.io/SineIllusionDemo" target="_blank">Shiny applet</a> was created to explore the x and y corrections. 
 
 ---
 
@@ -793,7 +793,7 @@ __Goal__ \:  Determine the strength of the Sine Illusion by measuring how much c
 
 <br></br>
 
-A different [Shiny applet](http://glimmer.rstudio.com/srvanderplas/SineIllusionShiny/) was created to allow users to manipulate the stimuli using fine-grained adjustments to the weight value. 
+A different <a href="http://glimmer.rstudio.com/srvanderplas/SineIllusionShiny/" target="_blank">Shiny applet</a> was created to allow users to manipulate the stimuli using fine-grained adjustments to the weight value. 
 
 ---
 
@@ -802,11 +802,11 @@ A different [Shiny applet](http://glimmer.rstudio.com/srvanderplas/SineIllusionS
     
 <br></br>
 
-- Participants were recruited using Amazon Mechanical Turk and [Reddit](http://reddit.com/r/samplesize).
+- Participants were recruited using <a href="https://aws.amazon.com/mturk/" target="_blank">Amazon Mechanical Turk</a> and <a href="http://reddit.com/r/samplesize" target="_blank">Reddit</a>.
 
 <br></br>
 
-- Using the shiny applet, users could manipulate the weight value presented using -/+ buttons until they were satisfied that the lines were of equal length. The trial was finished when users selected the 'submit' button. 
+- Using the <a href="http://glimmer.rstudio.com/srvanderplas/SineIllusionShiny/" target="_blank">shiny applet</a>, users could manipulate the weight value presented using -/+ buttons until they were satisfied that the lines were of equal length. The trial was finished when users selected the 'submit' button. 
 
 ---
 
@@ -814,7 +814,7 @@ A different [Shiny applet](http://glimmer.rstudio.com/srvanderplas/SineIllusionS
     
 <br></br>
 
-- User identification information: a 'fingerprint' consisting of hashed browser version, operating system, addons, screen resolution, and IP address was used to identify unique users        
+- User identification information: a 'fingerprint' consisting of hashed browser and computer characteristics was used to identify unique users        
 <br></br>
 
 - IP address localization (34.45.38.XX) provided location information        
