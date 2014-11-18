@@ -65,6 +65,9 @@
 \usepackage{multirow}
 \usepackage{bbm}
 \usepackage[colorinlistoftodos]{todonotes}
+\usepackage{rotating}
+\usepackage[referable]{threeparttablex}
+\usepackage{footnote} % table footnotes
 %---------------------------------------------------
 
 % Standard, old-style thesis
@@ -125,14 +128,12 @@
 %-------------------------------------------------------------------------------
 
 \setcounter{chapter}{-1}
-\chapter{PROPOSAL}
+\chapter{INTRODUCTION}
 There has been quite a bit of research on statistical graphics and visualization, generally focused on new types of graphics, new software to create graphics, interactivity, and usability studies. Our ability to interpret and use statistical graphics hinges on the interface between the graph itself and the brain that perceives and interprets it, and there is substantially less research on the interplay between graph, eye, brain, and mind than is sufficient to understand the nature of these relationships. 
 
 The goal of the work presented here is to further explore the interplay between a static graph, the translation of that graph from paper to mental representation (the journey from eye to brain), and the mental processes that operate on that graph once it is transferred into memory (mind). Understanding the perception of statistical graphics should allow researchers to create more effective graphs which produce fewer distortions and viewer errors while reducing the cognitive load necessary to understand the information presented in the graph. 
 
 Chapter \ref{litreview} contains a review of past literature which is relevant to the encoding and memory of statistical graphics, encompassing studies from psychology, psychophysics, meterology, business, and statistics. Chapter \ref{sineillusion} disucsses an optical illusion which is frequently present in even simple statistical graphics, but is incredibly difficult to resolve without altering the graph itself. This illusion (and its relative obscurity in the literature on graph perception) serves as a reminder that our graphs are only useful if they are designed with the perceptual system in mind. Chapter \ref{visualreasoning} contains an outline of a study examining the relationship between spatial reasoning abilities and graph perception; this study is currently in progress and should provide useful information about the skills necessary to read statistical graphics. Finally, Chapter \ref{featurehierarchy} contains an outline of a study which seeks to create a hierarchy of salient features, to aid researchers in creating graphics which are constructed to efficiently convey information visually. 
-
-A summary of this work (as well as an approximate timeline) is provided in this section for convenience, and more details are provided in the individual chapters, which are formatted in the style of the actual dissertation for conveninence. 
 
 \section{Literature Review}
 The literature review encompasses many different areas of interdisciplinary research; to ensure that there is a reference for some of the more niche vocabulary in this dissertation, it begins with the physiology of the eye and includes a summary of some basic neuropsychology as well. From there, I discuss some of the psychology and psychophysics research that concerns visual perception, memory, and attention. This research roughly falls in the domain of `cognitive psychology', but includes studies from fields as diverse as meterology and business. After establishing the underlying mechanisms of perception, I then cover some of the research which focuses specifically on statistical graphics, and discuss some of the methodology used in these experiments. I expect that this section will continue to expand during the process of writing the other chapters of this dissertation; as the literature is fragmented across many different subject areas and spans 75 years, it is difficult to ensure that this is a comprehensive summary of the field as it stands today. 
@@ -147,56 +148,56 @@ The use of statistical graphics is encouraged because graphics summarize statist
 \citet{cleveland:1984} created a hierarchy of graphical tasks which have informed graph design for the past 30 years, ranking numerical estimations of graphical features by accuracy. Similarly, \citet{healey1999large} found that there is a hierarchy to preattentive perception of graphical features, in that color and texture can interfere under certain circumstances. Preattentive perception is not particularly applicable to statistical graphics, as most viewers spend more than a second looking at the image, but it would be useful to understand what features in a graph will dominate a viewer's perception: if linear trend information contradicts coloring of points, which feature will a viewer take away from the image? This experiment will use the lineup protocol to examine the features which are most salient to viewers, using pairwise comparisons of shape, color, linear trend, and outliers. A pilot test of potential stimuli in February revealed the difficulty of matching the intensity of the effect for shape, color, and linear trend, so we are working on quantifying the strength of these effects in order to better control the stimuli.
 
 Taken together, these experiments should lay a foundation for exploring the perception of statistical graphics. There has been considerable research into the accuracy of numerical judgments viewers make from graphs, and these studies are useful, but it is more effective to understand how errors in these judgments occur so that the root cause of the error can be addressed directly. Understanding how visual reasoning relates to the ability to make judgments from graphs allows us to tailor graphics to particular target audiences. In addition, understanding the hierarchy of salient features in statistical graphics allows us to clearly communicate the important message from data or statistical models by constructing graphics which are designed specifically for the perceptual system. 
-
-\section{Additional Work} 
-In addition to the work proposed as part of the dissertation, there will be several ``side projects" that may be publishable. The sine illusion correction methods will be bundled into an R package to be published. In addition, I participated in Google Summer of Code 2013 and worked to improve the animint package for R, which converts ggplot2 graphics into interactive, animated d3 graphics for the web. A paper introducing animint was submitted to InfoVis in March 2014 and may be published as part of that conference. In addition, I have worked with Dr. Marasinghe modifying some applets originally created by Yihui Xie which should lead to a paper eventually. If time allows, I may also explore the conventional wisdom that using log color scales allows viewers to better map graphical objects to numerical quantities. I also expect that the RA with the USDA Soybean genomics project will eventually lead to one or more publications. 
-
-\section{Timeline}
-\begin{table}[htbp]\centering
-\begin{tabular}{|c|c|c|}\hline
- & Stage & Completion Date\\\hline
-\multirow{6}{*}{Sine Illusion} & Pilot Study & March 2013\\
- & Data Collection & June 2013\\
- & Paper Draft & September 2013\\
- & Paper Submitted (JCGS) & October 2013\\
- & Paper Revision & March 2013\\
- & Paper Accepted & (??)\\\hline
-\multirow{5}{*}{Visual Reasoning} & Pilot Study & February 2014\\
- & Data Collection & (started April 2014, finished by June 2014)\\
- & Paper Draft & (August 2014)\\
- & Paper Submitted (??) & (September 2014)\\
- & Paper Accepted & (??) \\\hline
-\multirow{5}{*}{Feature Hierarchy} & Pilot Study & February 2014\\
- & Data Collection & (September 2014)\\
- & Paper Draft & (October 2014)\\
- & Paper Submitted (??) & (November 2014)\\
- & Paper Accepted & (??) \\\hline
-Literature Review & Rough Draft & May 2014\\\hline
-\multirow{2}{*}{Exams} & Prelim Oral Exam & May 2014 \\
- & Final Oral Exam & (January 2015)\\\hline
-\end{tabular}
-\caption{Planned timeline for completion of each portion of the dissertation.}
-\end{table}
-
-\begin{table}[htbp]\centering
-\begin{tabular}{|c|c|c|}\hline
- & Stage & Completion Date\\\hline
-\multirow{3}{*}{Animint} & GSOC 2013 (coding) & May - July 2013\\
- & Paper Submitted (Infovis) & March 2014\\
- & GSOC 2014 (project mentor) & May - September 2014\\\hline
-\multirow{3}{*}{Sine Illusion R package} & Coding & Fall 2013\\
- & Packaging Functions & (??)\\
- & R Journal Paper Draft & (??)\\\hline
-Statistics Teaching Applets & Coding & (Fall 2013 - Spring 2014)\\
-(with Dr. Marasinghe \& Yihui Xie) & Paper Submitted (??) & (??)\\\hline
-\multirow{2}{*}{Log Color Scales study} & Data Collection & Fall 2014 (?) \\
- & Paper Draft & (??)\\\hline
-\multirow{2}{*}{Soybean Genomics Visualization} & CNV paper & (Summer 2014 ?) \\
- & SNP paper & (??)\\\hline
-\end{tabular}
-\caption{Planned timeline for completion of work outside of the dissertation.}
-\end{table}
-
+% 
+% \section{Additional Work} 
+% In addition to the work proposed as part of the dissertation, there will be several ``side projects" that may be publishable. The sine illusion correction methods will be bundled into an R package to be published. In addition, I participated in Google Summer of Code 2013 and worked to improve the animint package for R, which converts ggplot2 graphics into interactive, animated d3 graphics for the web. A paper introducing animint was submitted to InfoVis in March 2014 and may be published as part of that conference. In addition, I have worked with Dr. Marasinghe modifying some applets originally created by Yihui Xie which should lead to a paper eventually. If time allows, I may also explore the conventional wisdom that using log color scales allows viewers to better map graphical objects to numerical quantities. I also expect that the RA with the USDA Soybean genomics project will eventually lead to one or more publications. 
+% 
+% \section{Timeline}
+% \begin{table}[htbp]\centering
+% \begin{tabular}{|c|c|c|}\hline
+%  & Stage & Completion Date\\\hline
+% \multirow{6}{*}{Sine Illusion} & Pilot Study & March 2013\\
+%  & Data Collection & June 2013\\
+%  & Paper Draft & September 2013\\
+%  & Paper Submitted (JCGS) & October 2013\\
+%  & Paper Revision & March 2013\\
+%  & Paper Accepted & (??)\\\hline
+% \multirow{5}{*}{Visual Reasoning} & Pilot Study & February 2014\\
+%  & Data Collection & (started April 2014, finished by June 2014)\\
+%  & Paper Draft & (August 2014)\\
+%  & Paper Submitted (??) & (September 2014)\\
+%  & Paper Accepted & (??) \\\hline
+% \multirow{5}{*}{Feature Hierarchy} & Pilot Study & February 2014\\
+%  & Data Collection & (September 2014)\\
+%  & Paper Draft & (October 2014)\\
+%  & Paper Submitted (??) & (November 2014)\\
+%  & Paper Accepted & (??) \\\hline
+% Literature Review & Rough Draft & May 2014\\\hline
+% \multirow{2}{*}{Exams} & Prelim Oral Exam & May 2014 \\
+%  & Final Oral Exam & (January 2015)\\\hline
+% \end{tabular}
+% \caption{Planned timeline for completion of each portion of the dissertation.}
+% \end{table}
+% 
+% \begin{table}[htbp]\centering
+% \begin{tabular}{|c|c|c|}\hline
+%  & Stage & Completion Date\\\hline
+% \multirow{3}{*}{Animint} & GSOC 2013 (coding) & May - July 2013\\
+%  & Paper Submitted (Infovis) & March 2014\\
+%  & GSOC 2014 (project mentor) & May - September 2014\\\hline
+% \multirow{3}{*}{Sine Illusion R package} & Coding & Fall 2013\\
+%  & Packaging Functions & (??)\\
+%  & R Journal Paper Draft & (??)\\\hline
+% Statistics Teaching Applets & Coding & (Fall 2013 - Spring 2014)\\
+% (with Dr. Marasinghe \& Yihui Xie) & Paper Submitted (??) & (??)\\\hline
+% \multirow{2}{*}{Log Color Scales study} & Data Collection & Fall 2014 (?) \\
+%  & Paper Draft & (??)\\\hline
+% \multirow{2}{*}{Soybean Genomics Visualization} & CNV paper & (Summer 2014 ?) \\
+%  & SNP paper & (??)\\\hline
+% \end{tabular}
+% \caption{Planned timeline for completion of work outside of the dissertation.}
+% \end{table}
+% 
 
 
 \graphicspath{{Figure/LitReview/}{Images/LitReview/}}
@@ -629,12 +630,12 @@ Psychophysics studies are generally concerned with the ability to detect a stimu
 \caption[The Method of Limits]{Demonstration of the method of limits. In this experiment, three trials were performed, two trials starting from 0 and increasing, and one trial starting at 9.5 and decreasing. The empirical detection threshold is the threshold at which detection occurs 50\% of the time, and is shown in red. }\label{fig:methodoflimits}
 \end{figure}
 
-\paragraph{Method of Adjustment} This method is similar to the method of limits, except that the stimulus intensity is adjusted by the observer (not the experimenter) in a continuous manner until the observer can just barely detect the stimulus. This procedure may be repeated several times, with trials averaged to produce a mean value for the absolute threshold. Figure \ref{fig:methodofajudstment} demonstrates this procedure. 
+\paragraph{Method of Adjustment} This method is similar to the method of limits, except that the stimulus intensity is adjusted by the observer (not the experimenter) in a continuous manner until the observer can just barely detect the stimulus. This procedure may be repeated several times, with trials averaged to produce a mean value for the absolute threshold. Figure \ref{fig:methodofadjustment} demonstrates this procedure. 
 
 
 \begin{figure}[htbp]\centering
-\includegraphics[width=.5\textwidth]{fig-methodofadjustment}
-\caption[The Method of Adjustment]{Demonstration of the method of adjustment. In this experiment, four trials were performed, two trials starting from 0 and increasing, and two trials starting at 10 and decreasing. The empirical detection threshold is the threshold at which detection occurs 50\% of the time, and is shown in red. }\label{fig:methodofadjustment}
+\includegraphics[width=.5\textwidth]{fig-methodofadjustment.pdf}
+\caption[The Method of Adjustment]{Demonstration of the method of adjustment. In this experiment, four trials were performed, two trials starting from 0 and increasing, and two trials starting at 10 and decreasing. The empirical detection threshold is the threshold at which detection occurs 50\% of the time, and is shown in red. \label{fig:methodofadjustment}}
 \end{figure}
 
 \paragraph{Measuring the Difference Threshold} The difference threshold, discussed in section \ref{logarithmicperception}, is the smallest detectable difference between two stimuli. This threshold can be measured using either the method of limits or the method of adjustment. Rather than increasing the absolute intensity of the stimulus as discussed above, two stimuli are given: one with constant intensity and one whose intensity may vary either continuously or incrementally (depending on the method utilized). The participant is instructed to identify the point at which the two stimuli are indistinguishable (if the varied stimulus is approaching the constant stimulus) or the point at which the two stimuli are distinguishable (if the varied stimulus is diverging from the constant stimulus). 
@@ -805,7 +806,7 @@ In the cognitive literature, \citet{day:1991} first documented the illusion in t
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 
-{\centering \includegraphics[width=.4\textwidth]{../Figure/sineIllusion/fig-original} 
+{\centering \includegraphics[width=.4\textwidth]{../Figure/sineIllusion/fig-original-1} 
 
 }
 
@@ -815,7 +816,7 @@ In the cognitive literature, \citet{day:1991} first documented the illusion in t
 \caption[The original sine illusion]{The original sine illusion, demonstrated on evenly spaced vertical lines centered around a sinusoidal curve of $f(x) = \sin(x)$. The lines in the peak and trough of the curve appear to be longer than in the other regions.\label{fig:original}}
 \end{figure}
 
-More recently the illusion has been shown in non-sinusoidal curves \citep{cleveland:1984, schonlau:2003, robbins:2005, marie:2013}, but the underlying effect seems to be the same, in the sense that the illusion is not triggered by the periodic nature of the underlying trendline but only by  changes to its slope. Figure \ref{fig:twoillusions-simulation} shows three panels, which all exhibit the illusion. From left to right, the trend stems from (a) a periodic function, (b) a periodic component added to an exponential function, and (c) an exponential function on its own.
+More recently the illusion has been shown in non-sinusoidal curves \citep{cleveland:1984, schonlau:2003, robbins:2005, parallelsets}, but the underlying effect seems to be the same, in the sense that the illusion is not triggered by the periodic nature of the underlying trendline but only by  changes to its slope. Figure \ref{fig:twoillusions-simulation} shows three panels, which all exhibit the illusion. From left to right, the trend stems from (a) a periodic function, (b) a periodic component added to an exponential function, and (c) an exponential function on its own.
 While all three graphs seem to show nonconstant variance along the main trend; in reality, it is constant. Clearly, the illusion does not rely on the periodicity of the function for which it was named, but is a symptom of the change in curvature that comes with the periodicity.
 
 \begin{figure}[h!tbp]\centering
@@ -824,7 +825,7 @@ While all three graphs seem to show nonconstant variance along the main trend; i
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 
-{\centering \includegraphics[width=\textwidth]{../Figure/sineIllusion/fig-simulation1Sine} 
+{\centering \includegraphics[width=\textwidth]{../Figure/sineIllusion/fig-simulation1Sine-1} 
 
 }
 
@@ -838,7 +839,7 @@ While all three graphs seem to show nonconstant variance along the main trend; i
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 
-{\centering \includegraphics[width=\textwidth]{../Figure/sineIllusion/fig-simulation1Sine2} 
+{\centering \includegraphics[width=\textwidth]{../Figure/sineIllusion/fig-simulation1Sine2-1} 
 
 }
 
@@ -852,7 +853,7 @@ While all three graphs seem to show nonconstant variance along the main trend; i
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 
-{\centering \includegraphics[width=\textwidth]{../Figure/sineIllusion/fig-simulation1Sine3} 
+{\centering \includegraphics[width=\textwidth]{../Figure/sineIllusion/fig-simulation1Sine3-1} 
 
 }
 
@@ -1197,7 +1198,7 @@ For the linear approximation we make use of $f(x) \approx f(x_0) + (x - x_0) f^\
 \ell_{\text{new}}(x_0) = \ell_{\text{old}} \sqrt{1 +  f^\prime(x_0)^2}.
 \]
 
-Note that the linear method gives the same result as a varying slope extension from a trigonometric approach  suggested by \citet{schonlau:2003} and used in \citet{marie:2013}
+Note that the linear method gives the same result as a varying slope extension from a trigonometric approach  suggested by \citet{schonlau:2003} and used in \citet{parallelsets}.
 
 A second-order Taylor polynomial approximation to $f(x)$ additionally accounts for the asymmetry in the extant widths on either side of the center trendline.
 
@@ -1246,7 +1247,7 @@ This gives the results as shown in equations (\ref{eqn.q1}) and (\ref{eqn.q2})
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 
-{\centering \includegraphics[width=\textwidth]{../Figure/sineIllusion/fig-UncorRresults} 
+{\centering \includegraphics[width=\textwidth]{../Figure/sineIllusion/fig-UncorRresults-1} 
 
 }
 
@@ -1259,7 +1260,7 @@ This gives the results as shown in equations (\ref{eqn.q1}) and (\ref{eqn.q2})
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 
-{\centering \includegraphics[width=\textwidth]{../Figure/sineIllusion/fig-LinearResults} 
+{\centering \includegraphics[width=\textwidth]{../Figure/sineIllusion/fig-LinearResults-1} 
 
 }
 
@@ -1272,7 +1273,7 @@ This gives the results as shown in equations (\ref{eqn.q1}) and (\ref{eqn.q2})
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 
-{\centering \includegraphics[width=\textwidth]{../Figure/sineIllusion/fig-CtsAdjustedResults} 
+{\centering \includegraphics[width=\textwidth]{../Figure/sineIllusion/fig-CtsAdjustedResults-1} 
 
 }
 
@@ -1376,7 +1377,7 @@ The following analysis is based on the cleaned data, consisting of 125 participa
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 
-{\centering \includegraphics[width=.5\textwidth]{../Figure/sineIllusion/fig-meanDists} 
+{\centering \includegraphics[width=.5\textwidth]{../Figure/sineIllusion/fig-meanDists-1} 
 
 }
 
@@ -1440,7 +1441,7 @@ Table \ref{randomeffectsresults} gives an overview of the variance estimates. 95
 We use parametric bootstrap to generate responses for each correction type and each participant from the model, which we use to both  create user-level densities, population-level densities, and bootstrap intervals for model parameters. 
 
 
-The variability of the random effects for each trial type is similar; but the model benefits significantly from allowing separate random effects for individual's variability by correction type (0.1452 and 0.1705 for $Y$ and $X$ transformations, respectively, as opposed to 0.3044 for the overall variability). The interaction between starting weight and trial type was not significant, however, and was thus removed from the model ($p$-value = 0.901).
+The variability of the random effects for each trial type is similar; but the model benefits significantly from allowing separate random effects for individual's variability by correction type (0.1452402 and 0.1705484 for $Y$ and $X$ transformations, respectively, as opposed to 0.3044343 for the overall variability). The interaction between starting weight and trial type was not significant, however, and was thus removed from the model ($p$-value = 0.9009749).
 
 \begin{figure}[hbtp]
 \centering
@@ -1460,7 +1461,7 @@ Figure~\ref{fig:gasprices} shows daily gas prices for a time frame between 1995 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 
-{\centering \includegraphics[width=.98\textwidth]{../Figure/sineIllusion/fig-gasprices-pictures} 
+{\centering \includegraphics[width=.98\textwidth]{../Figure/sineIllusion/fig-gasprices-pictures-1} 
 
 }
 
@@ -1473,7 +1474,7 @@ Figure~\ref{fig:gasprices} shows daily gas prices for a time frame between 1995 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 
-{\centering \includegraphics[width=.7\textwidth]{../Figure/sineIllusion/fig-gaspricevariance} 
+{\centering \includegraphics[width=.7\textwidth]{../Figure/sineIllusion/fig-gaspricevariance-1} 
 
 }
 
@@ -1520,73 +1521,980 @@ The data for this study was collected with approval from  IRB-ID 13-257.
 
 
 
+\graphicspath{{Figure/lieFactorSine/}{Images/lieFactorSine/}}
+\renewcommand{\floatpagefraction}{.99}
+% 
+% \newcommand{\range}[1]{{\text{range}\left(#1\right)}}
+% \newcommand{\s}[2]{{_{#1}s^{ #2}}}
+% \newcommand{\atan}[1]{\text{atan}\left({#1}\right)}
+% \newcommand{\xR}{\mathbb{R}}
+% 
+
+
+
+
+
+\chapter{THE CURSE OF THREE DIMENSIONS: WHY YOUR BRAIN IS LYING TO YOU}\label{LieFactorChapter}\label{liefactor}
+%% Abstract
+% One of the basic principles of information graphics is that the data should be accurately reflected in the chart. Tufte's lie factor was created with the idea that graphs that do not represent the underlying data accurately should be avoided. In this paper, we examine a second level of graph distortion that occurs during the perceptual process. The human visual system is largely optimized for perception of three dimensions. Generally, the brain processes potential  ambiguities in the rendering as the most-common three-dimensional object. This can lead to visual distortions, such as occur with the Necker figure or in the M\"uller-Lyer illusion. We discuss the underlying psychological mechanisms for the distortions, examine the effect these distortions have on  judgments, and consider the implications for graph design. Using the sine illusion as a case study, we quantify the effects of the distortion that create a ``perceptual lie factor" for the sine illusion.
+
+
+\section{Introduction}
+Graphics are one of the most powerful tools researchers have to communicate results to wide audiences. They are easier to understand than tables or verbal descriptions\citep{larkin1987diagram}, easier to remember than words alone \citep{mayer1994whom}, and provide information that can be perceived and used with minimal additional cognitive load \citep{zhang1994representations}. Conveying numerical relationships using spatial information makes use of the brain's visual processing ability, freeing working memory to interpret and make connections between graphics and written interpretations. Informative graphics differ from visualizations, sketches, and diagrams in that they present visual summaries of data, using summary functions to map the data graphically, preserving the relationship between two variables using spatial information. That is, unlike visualizations, sketches, and diagrams, spatial relationships presented in information graphics are functions of the data, representing numerical quantities (within the limits of image resolution) accurately. 
+
+In fact, the primary principle of informative graphics is that a chart should accurately reflect the data \citep{tufte}. Tufte argues that some graphics (many of which might be better classified as visualizations) do not accurately reflect the data because they blend artistic rendering with numerical information, sacrificing numerical accuracy for visual appeal. In order to quantify the loss of numerical accuracy, Tufte created the lie factor, which compares the effect size shown in the image to the effect size shown in the data, so that a lie factor much greater than 1 indicates a picture that over-emphasizes an effect, and a lie factor much smaller than one indicates a picture which minimizes an effect (values between .95 and 1.05 are typically acceptable). While Tufte's lie factor is an effective measurement of the accuracy of the transition from data to graphics, it does not give us any insight about the transition between a chart and the brain, that is, whether the mental representation of the chart is accurate.
+
+Ideally, charts not only represent the data accurately, but  also allow readers to draw accurate conclusions. Generally, the human visual system is quite good at accurately interpreting charts \citep{cleveland:1984,kosara2010}, but we need to be aware of contextual misperceptions that lead us to the wrong conclusion. While there are relatively few examples of the effect of optical illusions and other misperceptions on information graphics, \citet{amer2005bias} and \citet{poulton1985geometric} have documented the effect of the Poggendorff illusion on line graphs in different contexts. In this paper, we examine a situation in which low-level human perceptual processes interfere with making accurate judgements from displays and suggest an experimental methodology for estimating the psychological ``lie factor" of a chart due to a specific conceptual misperception: the sine illusion. 
+
+\subsection{The Curse of Three Dimensions}
+The human visual system is largely optimized for perception of three dimensions. Biologically, binocular vision ensures that we have the necessary information to construct a functional mental representation of the three-dimensional world, but even in the absence of binocular information the brain uses numerous heuristics to parse otherwise ambiguous two-dimensional retinal images into meaningful three-dimensional information. Predictably, however, these heuristics are not without drawbacks; the same two-dimensional neural representation might correspond to multiple three-dimensional objects, as in the well-known Necker Cube (\citet{gregory1968perceptual}; shown in figure~\ref{fig:Necker}). Additionally, the same three-dimensional object often has infinitely many two-dimensional representations, for instance, when viewed from different angles. 
+Many optical illusions occur due to the transition from a two to three dimensions (or from three dimensions to two dimensions)\citep{gregory1968perceptual}. The necker cube has a single two-dimensional representation corresponding to two three-dimensional objects which are both equally salient. As a result, the brain does not prefer one interpretation over the other and instead continuously switches between interpretations.
+Impossible objects, such as the Penrose triangle \citep{penrose1958impossible}, are two-dimensional images of objects that appear to be impossible in three dimensions (sometimes, these objects can be represented in three dimensions, but only appear to be impossible from a certain angle). Impossible objects produce a conflict between the brain's three-dimensional representation of a two-dimensional figure and the brain's experience with the physical world. This conflict between the constraints of physical reality and a depicted image can be quite compelling and is an important component in the work of artists like M.C. Escher \citep{Escher}.
+
+\begin{figure}
+\includegraphics[keepaspectratio=TRUE,width=6in, trim=0in .25in 0in 0in]{fig-neckercube}
+\caption{The Necker Cube is a so-called ``ambiguous object" because two different transparent objects  produce the same retinal image (and thus the same perceptual experience). Commonly, the image seems to transition instantaneously from one possible mental representation to the other.}\label{fig:Necker} 
+\end{figure}
+
+In non-illusory contexts, experience with the real world informs the choice between multiple possibilities of rendering a three-dimensional object from the same two-dimensional representation. This indicates that processing occurs ``top down" in that our previous experience influences our current perceptions. Without this top-down influence, the brain would not be able to map a two-dimensional image back to a three-dimensional object. One of the most well studied examples of the influence of top-down processing is the M\"uller-Lyer illusion, shown in figure~\ref{fig:mullerlyer}.
+
+\begin{figure}\centering
+\includegraphics[keepaspectratio=TRUE, trim=0in .3in 0in .3in]{fig-mullerlyer}
+\caption{The M\"uller-Lyer illusion. The central segment of figure A is perceived as shorter than the central segment  of figure B, even though the two are actually the same length.}
+\label{fig:mullerlyer}
+\end{figure}
+
+In the M\"uller-Lyer illusion, two vertical line segments are shown with arrows extending from both ends; one segment forms an acute angle with the arrows, the other segment forms obtuse angles with the arrows. The line segment adorned with arrows that form an acute angle appears to be shorter than the linen segment which forms an obtuse angle with the arrow segments. 
+
+One explanation for the M\"uller-Lyer illusion \citep{gregory1968perceptual} is that the brain interprets the ambiguous lines as a common three-dimensional object common to everyday experience: corners of a room. Figure~\ref{fig:mullerlyer}A occurs when viewing the outside corner of a rectangular prism, figure~\ref{fig:mullerlyer}B occurs when viewing the prism from the inside.  In regions which do not commonly have rectangular buildings, the illusion is significantly less pervasive~\citep{mullerlyerafrica}. Figure~\ref{fig:mullerlyerreal} provides one possible context that would lead to the M\"uller-Lyer effect. This real-world experience carries with it an inferred perspective - when the arrows point inward, the object is typically closer than when the arrows point outward, which causes the brain to interpret the outward-pointing figure as larger when the retinal size of the two objects is identical. The perspective cues which contribute to the M\"uller-Lyer illusion allow for an accurate neural representation of the object in context; when misapplied to two-dimensional stimuli, these cues are responsible for the illusion's effect. This inferred ``depth cue"~\citep{gregory1968perceptual} is reasonably consistent across individuals, suggesting that the phenomenon has a neurological basis. 
+
+A similar effect can also be found in the Necker Cube - whichever face appears to be furthest away also seems larger, even though any two parallel faces are equally sized in the image. This approach has proved to be very advantageous for real world scenarios~\citep{gregory1968perceptual}, as pictures of real objects are seldom ambiguous. This strategy also allows for high performance with limited neural bandwidth.
+
+\begin{figure}\centering
+\includegraphics[width=5in,keepaspectratio=TRUE]{mullerlyerhouse1}
+\caption{Real-world context that gives rise to the M\"uller-Lyer illusion. The highlighted areas correspond to the parts of the Muller Lyer illusion, and while the two arrows are obviously the same size in the real world, the black arrow takes up much more visual space than the white arrow.}\label{fig:mullerlyerreal}
+\end{figure}
+
+\subsection{Three Dimensional Context of the Sine Illusion}
+While the classic M\"uller-Lyer illusion is seldom a factor in information charts, there are other illusions caused by the interpretation of a two-dimensional stimulus in the context of three-dimensional objects, leading to a distortion in the mental representation of the original stimulus. The sine illusion (also known as the line width illusion: \citet{sineillusionjcgs,day:1991}) is one example of this phenomenon which occurs frequently in information graphics. 
+
+%\comment{Give each of the two figures in the next sentence its own paragraph. First introduce the sine illusion. Then give an example outside the realm of vertical lines. Otherwise you're wasting good material.}
+
+Figure~\ref{fig:sineillusion} shows the sine illusion in its original form \citep{day:1991} as straight vertical lines of the same length with a sinusoidal mean function. In this illusion, the vertical lines in the center of the figure appear much shorter than the vertical lines at the peak and trough of the sine curve. The illusion still persists when the image is rotated by $90^{\circ}$. Even when viewers are aware of the illusion's presence, it is close to impossible to  overcome mentally. 
+
+
+\begin{figure}\centering
+\includegraphics[keepaspectratio=TRUE,trim=0in .5in 0in .5in]{fig-sinedemo}
+\caption{The classic sine illusion. Each vertical line has the same length, though the lines at the peak and trough of the curve appear longer.}\label{fig:sineillusion}
+\end{figure}
+
+
+The problem that the sine illusion presents in information graphics is well documented \citep{cleveland:1984, robbins:2005}. One such example is the ``Balance of Trade'' from Playfair's Statistical Atlas~\citep{playfair}, as shown in figure~\ref{fig:playfair}. The balance of trade in 1765 seems to be approximately the same as the balance of trade in the years immediately preceding that year; this is in fact extremely misleading (using a straightedge along the chart vertically will demonstrate the issue).% This problem has been well-documented . %, but it is difficult to produce a (single) similar chart which conveys all of the information presented in figure~\ref{fig:playfair}. 
+
+
+
+\begin{figure}[t]\centering
+\includegraphics[keepaspectratio=TRUE,width=5in]{PlayfairExportImports}
+\caption{Playfair's chart of trade between the East Indies and England, 1700-1780. The trade balance is influenced by the sine illusion: the difference between imports and exports in 1763 does not appear to be the same size as that in 1745, though the vertical distance is approximately the same.}\label{fig:playfair}
+\end{figure}
+
+In both figures, the illusion appears when the vertical length displayed in the chart does not match the perceived information. Like the M\"uller-Lyer illusion, the illusion is pervasive and very difficult to ``un-see" or mentally correct. The sine illusion, which is also known as the line-width illusion, has also been documented in parallel sets plots \citep{parallelsets} and occurs when there is a nonlinear function with a large change in absolute slope; this change in slope can mask or exaggerate changes in variance. The illusion is also affected by the aspect ratio of the image and the aspect ratio of the chart's coordinate system. An interactive demonstration of the illusion is available at \url{http://bit.ly/1ldgujL}; manipulating the length of the lines and the amplitude of the underlying sine function also changes the chart's aspect ratio and the perceived strength of the illusion. 
+
+
+\begin{figure} \hfill
+\begin{minipage}[b]{.45\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{fig-cleveland1}\\
+  (a) \small Data
+\end{minipage} \hfill\hfill
+\begin{minipage}[b]{.45\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{fig-cleveland2}\\
+  (b) \small Trend and Residuals
+\end{minipage} \hfill
+\caption{Describe the conditional variability of the points along the $x$ axis in (a). Is your description consistent with the residual plot in (b)?}
+\label{fig:cleveland-figure2}
+\end{figure}
+
+The illusion is not dependent on specifically identifying the vertical distance along a line. Figure \ref{fig:cleveland-figure2}(a) shows a scatterplot of data with a trend. A loess smooth is used to estimate the trendline. A visual assessment of variability along this trendline might result in a description such as `homogeneous variance or slightly increasing variance for  negative $x$, followed by a dramatic decrease in vertical variability for positive $x$'. Once the residuals are separated from the trendline as shown on the right hand side of the figure, it becomes apparent that this first assessment of conditional variability was not correct, and the steady decrease along the horizontal axis becomes visible.
+
+\citet{cleveland:1984} determined that comparison of the vertical distance between two curves is often inaccurate, as ``the brain wants to judge minimum distance between the curves in different regions, and not vertical distance". While they do not explain a reason for this tendency, introspection does support their explanation: we judge the distance between two curves based on the shortest distance between them, which geometrically is the distance along the line perpendicular to the tangent line of the curve. This comparison holds with scatterplots (such as figure \ref{fig:cleveland-figure2}) because when the points are dense, we examine variability by looking at the upper and lower contours of the data.
+
+\citet{day:1991} suggest that the sine illusion is similar in principle to the M\"uller-Lyer illusion, attributing it to the perceptual compromise between the vertical extent and the overall dimensions of the figure. The sine illusion is similar to the  M\"uller-Lyer illusion in another way, as well -- there are three-dimensional analogues of the two-dimensional image that may influence the perceptual context. One of these contexts is shown in figure~\ref{fig:sineillusion3d}, generated from the same function shown in the two-dimensional analogue, figure~\ref{fig:sineillusion}, but with the length projected onto a third dimension. While the images do not match exactly, the similarities are striking. Additionally, the tendency to judge vertical distance using the extant width noted in \citep{cleveland:1985} corresponds to the measurement of depth in the three-dimensional image. The main difference between the first three dimensional image shown in figure~\ref{fig:sineillusion3d} and the original image is that the lines connecting the top and bottom sections of the curve are slightly angled in the three-dimensional version; this is due to the perspective projection used to create the image and the corresponding angles of rotation chosen such that the entire surface is visible. 
+
+\begin{figure}\centering
+\includegraphics[keepaspectratio=TRUE,width=6in, trim=0in 1.25in 0in .5in]{fig-sinedemo2}
+\caption{Three dimensional context for the sine illusion. The second figure has a vanishing point closer to infinity, and very closely resembles the form of the classic sine illusion.}\label{fig:sineillusion3d}
+\end{figure}
+
+As the vanishing point moves further away from the viewer and the 3d projection decreases in strength, the three-dimensional reconstruction of the image converges to figure~\ref{fig:sineillusion}. The second image in figure~\ref{fig:sineillusion3d} shows a weaker 3-dimensional projection that is much closer to figure~\ref{fig:sineillusion}, however, the three-dimensional contextual information provided by the shading removes much of the illusion's distortions. This is similar to the M\"uller-Lyer illusion, as figure~\ref{fig:mullerlyerreal} is not at all ambiguous because the contextual depth information provided by the rest of the surface of the house is sufficient to remove the illusion that the closer corner is in fact larger due to the perspective.
+
+\subsection{Case Study: Three Dimensions and the Sine Illusion}
+Further evidence that places the sine illusion firmly into the area of a 3d contextual illusion is given by the non-response to the illusion by individuals with depth-deficient vision. While it is difficult to provide experimental evidence suggesting that the sine illusion is due to depth perception directly, it is possible to examine whether the illusion occurs in people who do not have binocular depth perception. Conditions such as amblyopia (lazy eye) and strabismus (crossed eyes), when not corrected within a critical period during development \citep{DepthCriticalPeriod}, can result in weakened or absent depth perception \citep{StrabismusDepthPerception, BinocularDepthPerception, BinocularAmblyopia}. In many cases, use of partial patching and early surgery can correct these problems before the critical period lapses, but before protocols were well established, this was not always completely successful. 
+
+We examined the effect of the sine illusion on DW, who has minimal depth perception due to strabismic amblyopia. DW was diagnosed as a young child, and prescribed complete patching to strengthen her intially non-dominant eye. As a result of the patching, DW developed near-independent control over both eyes (doctors now recommend partial patching as a result of this problem). She has 20/20 vision, and can wear glasses to correct the strabismus, but generally does not because they are not necessary for her to see well. DW is right-eye dominant in most contexts, but is left-eye dominant for driving, and can switch which eye is in focus at will. 
+
+We asked DW to view a subset of the sine illusion stimuli used in the experiment described in the next section, as well as the M\"uller-Lyer illusion, identifying the illusions as having lines that appeared the same length or different lengths (the stimuli are included in the appendix). DW identified both uncorrected sine illusion graphs as having lines of the same length, indicating that she did not appear susceptible to the sine illusion. In addition, DW identified the partially corrected images as having the same line length, indicating that the corrected image would produce similar conclusions as the uncorrected image (in this, she was not different from those with normal binocular vision). In fact, DW only identified the fully corrected $y=\exp(x)$ image as having lines of different length. 
+
+In addition to DW's resistance to the effects of the sine illusion, she also was not fooled by the M\"uller-Lyer illusion, instantaneously identifying the lines as the same length. This suggests that these two illusions are related to the presence of binocular depth perception, perhaps mitigated by experience. 
+
+
+One difference between the sine illusion and the M\"uller-Lyer illusion that may influence the tendency to see a three-dimensional ``ribbon" instead of the two-dimensional sine curve is that the vertical lines in the sine illusion are ambiguously oriented - there is an entire plane of possible three-dimensional reconstructions for each line, and each possible rotation leads to a line of different length. 
+It is this facet of the image that we believe partially contributes to the ambiguity of the image, though it is not a necessary feature for the illusion to persist, as the illusion also can be found in scatterplots and in ``ribbon plots" such as figure~\ref{fig:playfair}. 
+
+% 
+% \begin{figure}[t]\centering
+% \includegraphics[keepaspectratio=TRUE,width=.9\textwidth, trim=0in 1.5in 0in 1.5in]{fig-sinedemo3}
+% \caption{Three dimensional context for the sine illusion, with a weaker perspective transformation.}\label{fig:sineillusion3dmagic}
+% \end{figure}
+
+\section{Measuring the Psychological Lie Factor Experimentally}
+\subsection{The Psychological Lie Factor}
+
+The psychological mechanisms which force three-dimensional context onto two-dimensional stimuli are useful adaptations to a three-dimensional world~\citep{gregory1968perceptual}, but they do have disadvantages when applied to abstract two-dimensional stimuli, such as information charts. In order to assess the distortions due to the illusion, we need to quantify this distortion. For comparison, we will work from Tufte's lie factor \citep[pg 57]{tufte}, which compares the size of an effect in the data with the size shown in a graphic, and is defined in equation \ref{eqn:tufteliefactor}.
+
+\begin{equation}\label{eqn:tufteliefactor}
+\text{Lie Factor} = (\text{size of effect shown in chart})/(\text{size of effect shown in data})
+\end{equation}
+
+\noindent We will similarly define the psychological lie factor for this illusion as shown in equation \ref{eqn:psychliefactor}. 
+
+\begin{equation}\label{eqn:psychliefactor}
+\text{Psychological Lie Factor} = (\text{size of effect perceived})/(\text{size of the effect shown in the chart})
+\end{equation}
+
+A correction factor which focuses on correcting the psychological distortion caused by the sine illusion is detailed in \citet{sineillusionjcgs}. This correction factor (the $y$ correction in the aforementioned paper) is applied to the line segments and extends these segments vertically at location $x$ according to equation \eqref{eqn:correction}, where $w$ represents a weight factor to allow variation of the strength of the correction. 
+
+\begin{equation}\label{eqn:correction}
+(1-w) + w \cdot \left(1 / \cos\left(\tan^{-1}(|f^\prime(x)|)\right)\right)
+\end{equation}
+
+A value of $w=0$ indicates that there is no correction, and a value of $w=1$ indicates that the graph is fully corrected.
+\newtext{Extending this approach, we can over-correct or under-correct the graph, to test whether the geometric derivation of the correction is sufficient to remove the illusion. The lie factor can then be determined by varying $w$, so that the lie factor of the plot selected so that the lines appear to be ``even" indicates the level of psychological distortion (since lines which are in fact not even but appear to be even would indicate that some distortion occurred within the brain). An example of the correction's effect and various weight factors can be seen in figures~\ref{fig:sinestimuli} and \ref{fig:sinestimulinotrend}. }
+
+\comment{Might need to add a picture demonstrating the correction and original figure side-by-side...?}
+
+In order to estimate the psychological lie factor that occurs due to this illusion, we assessed the strength of the illusion experimentally. 
+
+\subsection{Study Design}
+\newtext{
+The study was designed as a factorial exploration of the factors that contribute to the psychological distortion. We varied the underlying mean function of the stimuli, as well as the strength of the correction described in equation \ref{eqn:correction}.}
+
+
+\begin{figure}
+\centering
+\includegraphics[width=6in]{fig-exampleUncorrected}
+\caption{Mean functions used during the experiment: $\sin(x)$, $\exp(x)$, and $1/x$. These functions are nonlinear, easily differentiable (for the correction factor), and are similar to trends commonly found in information graphics.\label{fig:uncorrectedExamples}}
+\end{figure}
+
+
+Three underlying mean functions were used: $y=2\sin(x)$, $y=\exp(x/2)$, and $y=5/(6x)$; varying these functions allowed us to consider whether the psychological lie factor was influenced by the underlying function. The mean functions, shown in figure \ref{fig:uncorrectedExamples}, were chosen from nonlinear functions that occur with relative frequency in statistics which are easily differentiable (due to the correction in equation \ref{eqn:correction}), and then refined so that the aspect ratio would be similar for each set of plots (between $0.75$ and $0.85$). As no x or y units were provided on the graph, these functional modifications served as experimental controls but did not change the information provided to the participants. 
+
+
+In addition to varying the underlying mean function, we also varied the strength of the correction factor (as described by the parameter $w$ in equation \ref{eqn:correction}). Experimental stimuli consisting of sets of 6 sub-plots were constructed such that each sub-plot was generated using a different $w$ value between 0 and 1.4. Two of the stimuli used in the experiment are shown in figures~\ref{fig:sinestimuli} and \ref{fig:invstimuli}. Figure~\ref{fig:sinestimulinotrend} shows the amount of line correction used in each of the sub-plots in figure~\ref{fig:sinestimuli}, and the (ordered) $w$ values and corresponding lie factors are shown in table \ref{tab:w} (row 4).
+
+For each of the stimuli, participants were asked to answer the question: ``In which graph is the size of the curve most consistent?". The phrasing `size of the curve' was chosen deliberately so as not to bias participants to explicitly measure line lengths. 
+
+\begin{figure}
+\centering
+\includegraphics[width=6in]{fig-stimulicorrectionsize1}
+\caption{One of the charts presented to participants through Amazon Mechanical Turk. Figure \ref{fig:sinestimulinotrend} shows the actual differences in line lengths. This chart corresponds to set \#4 in table~\ref{tab:w}. The plots are shown in random order, however; plot~\#1 corresponds to $w=0.9$, plot~\#2 to $w=0.7$, plot~\#3 to $w=0.3$, plot~\#4 to $w=0.1$, plot~\#5 to $w=0.5$, and plot~\#6 to $w=1.1$.}\label{fig:sinestimuli}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=6in, trim=.65in 0in .65in 0in]{fig-stimulicorrectionsize2}
+\caption{De-trended line lengths for figure~\ref{fig:sinestimuli}, demonstrating the distortion present due to the correction factor in each sub-plot. Comparing the distortion in the chosen sub-plot to the undistorted data produces an estimate of the psychological lie factor. }\label{fig:sinestimulinotrend}
+\end{figure}
+
+\begin{figure}[tb]
+\centering
+\includegraphics[width=6in]{fig-stimulicorrectionsize3}
+\caption{Another chart presented to participants through Amazon Mechanical Turk. This chart corresponds to set \#4 in table~\ref{tab:w3}. The plots are shown in random order, however; plot~\#1 corresponds to $w=0.9$, plot~\#2 to $w=0.7$, plot~\#3 to $w=0.3$, plot~\#4 to $w=0.1$, plot~\#5 to $w=0.5$, and plot~\#6 to $w=1.1$.}\label{fig:invstimuli}
+\end{figure}
+
+Figure~\ref{fig:invstimuli} shows another set of these stimuli using a different underlying mean function with the same underlying weight values. As the slope of the mean function has changed, the illusion does appear to be slightly less misleading. Table \ref{tab:w3} (plot 4) shows the weight values (ordered from least to greatest) and corresponding lie factors for this plot; they are lower than the lie factors corresponding to the sine illusion plots shown in figure~\ref{fig:sinestimuli} even though the weight values are the same. The illusion is still present even though the mean function has changed; our goal is to determine whether the psychological distortion is similar despite the difference in the underlying function.
+
+\subsection{Calculating the Psychological Lie Factor}
+In order to quantify the psychological lie factor $D$ for each sub plot $k=1, ..., 6$, we took the ratio of the maximum line length to the minimum line length shown in the plot. As participants were to choose the plot with lines that had the most even length, a large value of $D$ indicates significant distortion. 
+
+\begin{equation}\label{eqn:psychliefactorD}
+D_k = (\text{maximum line length in sub-plot } k)/(\text{minimum line length in sub-plot } k)
+\end{equation}
+
+The definition of $D$ in equation \ref{eqn:psychliefactorD} does deviate somewhat from our extension of Tufte's definition of the lie factor described in equation \ref{eqn:psychliefactor}, but this is by necessity, as an uncorrected plot would show a difference of 0, which would wreak havoc on any experimental measure of the lie factor, as that 0 would be in the denominator. Our modification preserves the interpretation of Tufte's lie factor, while adapting the computation for use in this experimental setting. 
+
+From an internal pilot study, we expected values around $w = 0.8$ to be sufficient to break the illusion, but did not know whether this would generalize to those outside of the information graphics community. In order to pinpoint the weight value necessary to correct the illusion more precisely, we chose twelve sets of 6 weight values each that were used to produce test plots similar to that shown in figure \ref{fig:sinestimuli}. These sets of weight values were chosen to allow greater precision estimates closer to $w=0.8$, while still covering the range of $w$ between 0 and 1.4. The sets of $w$ used are shown in table~\ref{tab:w}, along with corresponding lie factors $D_k$ for stimuli with underlying function $sin(x)$ (other functions used will have different $D_k$ due to the nature of the correction factor). Plots with weight values spread over the full range of $w$ tested were considered ``test" plots that could be used for verification purposes, while plots with weight values concentrated near $w=0.8$ were considered to have higher difficulty (because the sub-plots were very similar). This allowed us to estimate $w$, and thus $D$, with higher precision while still exploring the entire parameter space. 
+
+
+\begin{table}[ht]
+\centering
+\caption{\label{tab:w} Ordered weight factors and corresponding lie factors for the sine curve stimuli sets, as computed using equation \ref{eqn:psychliefactorD}.}
+\begin{tabular}{llrrrrrrlrrrrrr}
+  \hline
+%\cline{3-8} \cline{10-15}\\ [-1.75ex]
+set \vphantom{hp}& difficulty & \multicolumn{6}{c}{Weight ($w$)} & & \multicolumn{6}{c}{Lie Factor ($D$) for $\sin(x)$ plots}\\ 
+\hline
+& & \multicolumn{6}{c}{sub-plot} & & \multicolumn{6}{c}{sub-plot}\\ 
+    & & 1 & 2 & 3 & 4 & 5 & 6  & & 1 & 2 & 3 & 4 & 5 & 6  \\ 
+    \cline{3-8} \cline{10-15}\\ [-1.75ex]
+  1 & test & 0.00 & 0.20 & 0.40 & 0.80 & 1.25 & 1.40 &       & 1.00 & 1.18 & 1.35 & 1.71 & 2.11 & 2.24 \\ 
+  2 & test & 0.00 & 0.15 & 0.35 & 0.80 & 1.20 & 1.40 &       & 1.00 & 1.13 & 1.31 & 1.71 & 2.06 & 2.24 \\ 
+  3 & 1 & 0.00 & 0.20 & 0.40 & 0.60 & 0.80 & 1.00 &       & 1.00 & 1.18 & 1.35 & 1.53 & 1.71 & 1.88 \\ 
+  4 & 1 & 0.10 & 0.30 & 0.50 & 0.70 & 0.90 & 1.10 &       & 1.09 & 1.27 & 1.44 & 1.62 & 1.80 & 1.97 \\ 
+  5 & 2 & 0.05 & 0.30 & 0.50 & 0.65 & 0.80 & 1.00 &       & 1.04 & 1.27 & 1.44 & 1.57 & 1.71 & 1.88 \\ 
+  6 & 2 & 0.10 & 0.30 & 0.55 & 0.70 & 0.85 & 1.00 &       & 1.09 & 1.27 & 1.49 & 1.62 & 1.75 & 1.88 \\ 
+  7 & 3 & 0.40 & 0.60 & 0.70 & 0.80 & 0.90 & 1.05 &       & 1.35 & 1.53 & 1.62 & 1.71 & 1.80 & 1.93 \\ 
+  8 & 3 & 0.35 & 0.65 & 0.75 & 0.85 & 0.95 & 1.05 &       & 1.31 & 1.57 & 1.66 & 1.75 & 1.84 & 1.93 \\ 
+  9 & 4 & 0.35 & 0.50 & 0.60 & 0.70 & 0.80 & 0.95 &       & 1.31 & 1.44 & 1.53 & 1.62 & 1.71 & 1.84 \\ 
+  10 & 4 & 0.40 & 0.55 & 0.65 & 0.75 & 0.85 & 1.00 &       & 1.35 & 1.49 & 1.57 & 1.66 & 1.75 & 1.88 \\ 
+  11 & 5 & 0.50 & 0.65 & 0.75 & 0.80 & 0.90 & 1.00 &       & 1.44 & 1.57 & 1.66 & 1.71 & 1.80 & 1.88 \\ 
+  12 & 5 & 0.50 & 0.60 & 0.70 & 0.75 & 0.85 & 1.00 &       & 1.44 & 1.53 & 1.62 & 1.66 & 1.75 & 1.88 \\ 
+   \hline
+\end{tabular}
+\end{table}
+
+
+\begin{table}[ht]
+\centering
+\caption{\label{tab:w2} Ordered weight factors and corresponding lie factors for the exponential curve stimuli sets, as computed using equation \ref{eqn:psychliefactorD}.}
+     \begin{tabular}{llrrrrrrlrrrrrr}
+     \hline
+     %\cline{3-8} \cline{10-15}\\ [-1.75ex]
+     set \vphantom{hp}& difficulty & \multicolumn{6}{c}{Weight ($w$)} & & \multicolumn{6}{c}{Lie Factor ($D$) for $\exp(x)$ plots}\\ 
+     \hline
+     & & \multicolumn{6}{c}{sub-plot} & & \multicolumn{6}{c}{sub-plot}\\ 
+     & & 1 & 2 & 3 & 4 & 5 & 6  & & 1 & 2 & 3 & 4 & 5 & 6  \\ 
+     \cline{3-8} \cline{10-15}\\ [-1.75ex]
+     3 & 1 & 0.00 & 0.20 & 0.40 & 0.60 & 0.80 & 1.00 &  & 1.00 & 1.21 & 1.42 & 1.63 & 1.84 & 2.05 \\ 
+     4 & 1 & 0.10 & 0.30 & 0.50 & 0.70 & 0.90 & 1.10 &  & 1.11 & 1.32 & 1.53 & 1.74 & 1.95 & 2.16 \\ 
+     5 & 2 & 0.05 & 0.30 & 0.50 & 0.65 & 0.80 & 1.00 &  & 1.05 & 1.32 & 1.53 & 1.69 & 1.84 & 2.05 \\ 
+     6 & 2 & 0.10 & 0.30 & 0.55 & 0.70 & 0.85 & 1.00 &  & 1.11 & 1.32 & 1.58 & 1.74 & 1.90 & 2.05 \\ 
+     7 & 3 & 0.40 & 0.60 & 0.70 & 0.80 & 0.90 & 1.05 &  & 1.42 & 1.63 & 1.74 & 1.84 & 1.95 & 2.10 \\ 
+     8 & 3 & 0.35 & 0.65 & 0.75 & 0.85 & 0.95 & 1.05 &  & 1.37 & 1.69 & 1.79 & 1.90 & 2.00 & 2.10 \\ 
+     9 & 4 & 0.35 & 0.50 & 0.60 & 0.70 & 0.80 & 0.95 &  & 1.37 & 1.53 & 1.63 & 1.74 & 1.84 & 2.00 \\ 
+     10 & 4 & 0.40 & 0.55 & 0.65 & 0.75 & 0.85 & 1.00 &  & 1.42 & 1.58 & 1.69 & 1.79 & 1.90 & 2.05 \\ 
+     11 & 5 & 0.50 & 0.65 & 0.75 & 0.80 & 0.90 & 1.00 &  & 1.53 & 1.69 & 1.79 & 1.84 & 1.95 & 2.05 \\ 
+     12 & 5 & 0.50 & 0.60 & 0.70 & 0.75 & 0.85 & 1.00 &  & 1.53 & 1.63 & 1.74 & 1.79 & 1.90 & 2.05 \\ 
+     \hline
+  \end{tabular}
+\end{table}
+
+
+\begin{table}[ht]
+\centering
+\caption{\label{tab:w3} Ordered weight factors and corresponding lie factors for the inverse curve stimuli sets, as computed using equation \ref{eqn:psychliefactorD}. 
+}
+     \begin{tabular}{llrrrrrrlrrrrrr}
+     \hline
+     %\cline{3-8} \cline{10-15}\\ [-1.75ex]
+     set \vphantom{hp}& difficulty & \multicolumn{6}{c}{Weight ($w$)} & & \multicolumn{6}{c}{Lie Factor ($D$) for $1/x$ plots}\\ 
+     \hline
+     & & \multicolumn{6}{c}{sub-plot} & & \multicolumn{6}{c}{sub-plot}\\ 
+     & & 1 & 2 & 3 & 4 & 5 & 6  & & 1 & 2 & 3 & 4 & 5 & 6  \\ 
+     \cline{3-8} \cline{10-15}\\ [-1.75ex]
+     3 & 1 & 0.00 & 0.20 & 0.40 & 0.60 & 0.80 & 1.00 &  & 1.00 & 1.14 & 1.28 & 1.43 & 1.57 & 1.71 \\ 
+     4 & 1 & 0.10 & 0.30 & 0.50 & 0.70 & 0.90 & 1.10 &  & 1.07 & 1.21 & 1.36 & 1.50 & 1.64 & 1.78 \\ 
+     5 & 2 & 0.05 & 0.30 & 0.50 & 0.65 & 0.80 & 1.00 &  & 1.04 & 1.21 & 1.36 & 1.46 & 1.57 & 1.71 \\ 
+     6 & 2 & 0.10 & 0.30 & 0.55 & 0.70 & 0.85 & 1.00 &  & 1.07 & 1.21 & 1.39 & 1.50 & 1.60 & 1.71 \\ 
+     7 & 3 & 0.40 & 0.60 & 0.70 & 0.80 & 0.90 & 1.05 &  & 1.28 & 1.43 & 1.50 & 1.57 & 1.64 & 1.75 \\ 
+     8 & 3 & 0.35 & 0.65 & 0.75 & 0.85 & 0.95 & 1.05 &  & 1.25 & 1.46 & 1.53 & 1.60 & 1.67 & 1.75 \\ 
+     9 & 4 & 0.35 & 0.50 & 0.60 & 0.70 & 0.80 & 0.95 &  & 1.25 & 1.36 & 1.43 & 1.50 & 1.57 & 1.67 \\ 
+     10 & 4 & 0.40 & 0.55 & 0.65 & 0.75 & 0.85 & 1.00 &  & 1.28 & 1.39 & 1.46 & 1.53 & 1.60 & 1.71 \\ 
+     11 & 5 & 0.50 & 0.65 & 0.75 & 0.80 & 0.90 & 1.00 &  & 1.36 & 1.46 & 1.53 & 1.57 & 1.64 & 1.71 \\ 
+     12 & 5 & 0.50 & 0.60 & 0.70 & 0.75 & 0.85 & 1.00 &  & 1.36 & 1.43 & 1.50 & 1.53 & 1.60 & 1.71 \\ 
+     \hline
+     \end{tabular}
+\end{table}
+
+Each participant was presented with eleven sets of graphs (each ``set" consisting of 6 separate plots), consisting of one ``easy" test set, five stimuli sets of difficulty level 1 through 5 with the sine curve as the underlying function, and another five graph sets (also of difficulty levels 1 to 5) with either the exponential or the inverse curve as the underlying function. After the easy introductory chart, which was presented first, the order of the plots was randomized across difficulty level as well as function type. The test chart consisted of a set of six sine curves with a very low level difficulty level, and was used as an introduction to the testing procedure. Participants were asked to select a single plot out of the 6 plots presented as having lines which were the most ``even''. 
+
+\subsection{Data Collection}
+
+Participants for the study were recruited through the Amazon Mechanical Turk web service, which connects workers with tasks that are not easily automated for a small fee. In exchange for completing at least 11 trials, participants were paid \$1. Given the anonymity of web-based data collection, we informed participants that a unique IP address was required to participate in the experiment; responses from duplicate IP addresses with different Turk IDs were grouped and only the first response was paid. This procedure was used to lower the probability of a single user completing the task multiple times, in order to ensure that we could accurately estimate variation among individuals. 
+
+1598 responses from 115 users at 110 unique IP addresses were collected. We removed data from participants who did not complete at least 10 trials (allowing for one trial to be skipped or otherwise not completed), and of the collected responses, 30 trials from 4 participants were removed. 
+
+In addition to the requirement that participants complete at least 10 trials, the participant also was required to complete at least 4 trials of a specific underlying function for those trials to be included. This condition ensured that for any specific function, there were enough trials to estimate an initial effect; an additional 26 trials were excluded based on this condition. 
+
+There were 106 users who completed at least 10 trials each (providing enough data that we could accurately fit individual-level parameters), and those users completed 1542 trials which were used for this analysis. Though participants were asked to participate in 11 total trials, some participants continued to provide feedback beyond the eleven trials required to receive payment through Amazon. For any subsequent responses we randomly selected one of the 32 possible stimuli. This approach allowed us to collect some data in which a single participant provided responses to all three underlying functions. We did not exclude data based on user responses to avoid biasing our conclusions; the possibility of significant variability between individuals in the preference for a specific $w$ value was too large to filter out even those who chose plots corresponding to $w=1.4$. 
+
+
+Due to the experimental design, all participants completed trials with underlying function $y=\sin(x)$, for a total of 815 trials. As each participant who completed only the required 11 trials saw charts with either $y=1/x$ or $y=\exp(x)$ as the underlying function, each of these functions had fewer trials; 316 and 411, respectively. 
+
+
+\subsection{Analysis}
+\subsubsection*{Psychological ``Lie Factor"}
+As the strength of the correction varies across the horizontal range of the curve, we quantify the psychological distortion as the ratio of the maximum line length to the minimum line length for each sub-plot $k$: $D_k = l_\text{max}/l_\text{min}$. For a given set of 6 sub-plots, $j$, $D_{jk}$ would denote the sub-plot distortion factor. Let $D_{ijk}$ denote the distortion factor corresponding to participant $i$'s choice of sub-plot $k$ in stimulus set $j$ during a single trial. In this experiment, there are 32 stimuli sets (2 test sets + 10 sets for each of 3 underlying functions), so $1 \leq j \leq 32$. 
+
+The correction for the sine illusion by default extends the line segments, so that if the initial line segments were all of length 1, the correction will produce corresponding line segments of length greater than or equal to 1. In addition, due to the underlying functions we have chosen, the minimum line length (assuming a starting line length of 1) after correction is approximately 1; this allows us to simplify $D_k$ as $$D_k = \text{maximum line length in plot } k$$
+Without any correction for the sine illusion, this factor is, like  Tufte's lie-factor, equal to one. Values above one indicate that at least in some areas of the curve line segments are extended.
+
+
+
+We compute this quantity for each sub-plot in each stimulus presented to the participant. The participant's choice therefore provides us with an estimate of what value of $D$ constitutes the most consistent line length (out of the set shown). As each set of 6 plots is not guaranteed to contain a plot with $w=0$,  corresponding to constant length, choosing a plot with $D=1.4$ indicates more distortion if there is a sub-plot with $w=0$ ($D=1$) present than if least distorted sub-plot present has $w=0.4$ ($D=1.2$ for plots of $y=\sin(x)$). Correcting for this bias, the set of $\{D_{\cdot \cdot k}\}=\{D_{\cdot \cdot 1}, ..., D_{\cdot \cdot 6}\}$ that is available to choose from produces an estimate of the overall  psychological `lie factor' as 
+\begin{equation}\label{eqn:pconv}
+P_{ij}=D_{ijk}/\min_{1\leq k \leq 6} D_{ijk}
+\end{equation}
+for each plot and each participant. This normalization does conservatively bias the results, effectively shrinking the effect size we observe, but without the normalization we would be biased in favor of finding a significant result. Furthermore, while we could normalize relative to $\max_{1\leq k \leq 6}D_{ijk}$, most stimuli sets contain $D > 1.85$ (for $y=\sin(x)$), where more than half of the stimuli sets do not contain $D\approx 1$. This is due to the range of $w$ values chosen for the stimuli sets, as we had pilot data suggesting that $w=0.8$ was a commonly preferred weight value. 
+
+That is, $P$ is the ratio of the lie factor of the chosen plot to the smallest lie factor available in the set of available plots. When the set of available plots contains an uncorrected plot, $P = D$; when an uncorrected plot is not presented, $P < D$, since each $D_j >= 1$, $j=1, ..., 6$. This transformation is a conservative approach to estimating the lie factor, but allows us to show a variety of scaled transformations and estimate the effect with more granularity around $w=0.8$. 
+
+By considering each participant's answers for the plot with the most consistent line length, we can obtain an estimate of the psychological distortion from the sine illusion on an individual level. Estimating distortion factors for each participant facilitates comparison of these estimated values to determine whether the illusion is a product of an individual's perceptual experience or whether there is a possible underlying perceptual heuristic for the sine illusion common across the majority of participants. If the illusion is a learned misperception rather than an underlying perceptual ``bug'', we would expect there to be considerable variability in the estimated individual lie factor $P_i$  for each unique participant $i$, $1\leq i \leq 123$, as it is likely that personal experience varies more widely than perceptual heuristics and their underlying neural architecture. 
+
+Each set of $w$ values as defined in table~\ref{tab:w} corresponds  to a value of $P$ as defined in equation \ref{eqn:pconv}. 
+We test for only a set of discrete values of $w$, which is reflected directly in the number of different values of $P$ we can observe. This approach allows us to use a finite set of stimuli for testing, so that we can explicitly control the range of $w$ displayed in each set of plots. To mathematically model a continuous quantity (the real domain of possible $P$ values) using discrete data, we employ a Bayesian approach to model an overall psychological lie factor $\theta$ and individual participant lie factors $\theta_i$.
+
+Plots used in the experiment have factors $P$ ranging between 1 and 2.5,  so we can use a truncated normal data model for participant $i$ viewing plot $j$, with $P = p_{ij} \sim N(\theta_i, \sigma)$ and independent flat priors $\pi(\theta)= 0.4$ and $\pi(\sigma)=2.5$ for $\sigma\in[.1, .5]$. These prior distributions $\pi(.)$ represent our expectations of the values of $\theta$ and $\sigma$ before the experiment; assigning them constant values indicates that we had little useable knowledge about the joint or marginal distributions of $\theta$ and $\sigma$ before the experiment was conducted. Using Bayesian estimation, we can then obtain posterior distributions for $\theta_i$ and $\theta$, the individual and overall mean lie factors. We are not particularly interested in the actual values of $\sigma$, but the additional parameter is a useful tool to better estimate possible values for $\theta$. 
+
+\subsection{Results}
+The posterior density of $\theta$ for each function is shown in figure \ref{fig:overalldensity}, along with separate posterior densities for each individual $\theta_i$. $\theta$ is reasonably similar for all three functions, suggesting that while function type may moderate the size of the effect, the illusion occurs regardless of function type. Individual curves have different variability due to the number of trials completed, and are necessarily more spread out as there is less data with which to estimate the individual posterior distributions. 
+
+\begin{figure}\centering
+\includegraphics[width=6in, trim=0in .1in 0in .1in]{fig-spaghettiIndivDists}
+\caption{Estimated densities for $\theta_i$, shown in color, with the estimated overall density for $\theta$ shown in black. Individuals have extremely similar posterior distribution of $\theta_i$, and even different functions have similar $\hat\theta$, suggesting a common underlying mental distortion.}\label{fig:overalldensity}
+\end{figure}
+
+On an individual level, figure~\ref{fig:indivdensity} shows the posterior density for $\theta_i$ for four of the participants who completed at least 6 trials in each category. While in many cases, the most probable $\theta_i$ is similar across trials, individuals do seem to have been somewhat more affected by the illusion when the underlying function was sinusoidal, though this may reflect a discrepancy in the number of trials rather than a stronger illusion. Alternately, as the illusion depends on variable slope, it is possible that the monotonic exponential and inverse stimuli induced a weaker three-dimensional context. The posterior densities for these individuals appear extreme because they completed more trials (and thus estimates are much more precise); the individuals in question are not necessarily more prone to the illusion than other participants. 
+
+\begin{figure}\centering
+\includegraphics[width=6in, trim=0in .2in 0in .1in]{fig-IndivMeanAllFcns}
+\caption{Posterior distributions for $\theta_i$ for four of the participants who completed at least 6 trials of each of the three function types.}\label{fig:indivdensity}
+\end{figure}
+
+In order to appropriately compare intervals for each participant's $\theta_i$ (even though participants may have completed different numbers of trials), we simulated 11 new ``data points" from our model (thus enforcing a uniform 11 trials per participant for each function type) to get a single new estimate of $\hat\theta_i$. For each participant, we generated 1000 of these $\hat\theta_i$ and used these simulated values to calculate the 95\% credible intervals shown in figure \ref{fig:indivCIs}. These intervals will allow us to consider the variability in $\theta_i$ due to participant preference rather than the number of trials a participant completed during the study. Removing this additional variability provides us with the opportunity to consider whether the sine illusion stems from an individual's perceptual experiences or from a lower-level perceptual heuristic. 
+
+\begin{figure}\centering
+\includegraphics[width=6in, trim=0in .1in 0in .1in]{fig-CIindivMean}
+\caption{95\% posterior predictive intervals for $\theta_i$, calculated for each stimulus type. Vertical lines indicate the median estimate of the overall $\theta$ with a 95\% credible interval.}\label{fig:indivCIs}
+\end{figure}
+
+Posterior predictive intervals for $\theta_i$ as shown in figure~\ref{fig:indivCIs} suggest that overall, the $\theta_i$ are similar across individuals. Very few (5 each for $y=\sin(x)$ and $y=\exp(x)$, 16 for $y=1/x$) of the intervals overlap the region (1, 1.05), which corresponds to an ``acceptable" lie factor according to Tufte. This indicates significant distortion for most participants in our experiment, and the marked overlap of the intervals for each participant provides evidence consistent with a common magnitude of distortion. This suggests that there may be some common psychological strategy that is misapplied to the perception of these stimuli. 
+
+
+\subsubsection*{Comparison of the Preferred Stimuli}
+Estimates of $\hat\theta = E[\theta]$ for each function are 1.31, 1.29, and 1.14 respectively for exponential, inverse, and sine functions, suggesting a similar psychological distortion even for very different functions, though it seems as if the inverse function causes somewhat less distortion, possibly because the correction factor is not as proportionately large. Credible intervals can be found in Table \ref{tab:credibleintervalstable}. As all three of the credible intervals exclude 1.05, there is evidence that a psychological distortion is occurring; that is, there is evidence of a significant psychological lie factor. In addition, the method of adjusting the estimated lie factor we have used here is conservative; it is likely that because most stimuli contain a sub-plot with $w\geq 1$ our estimate of $\theta$ for the inverse function is low (as the lie factor for fully corrected inverse plots is greater than the corresponding lie factors for the other two functions used in this experiment). 
+
+\begin{table}[tp]\centering
+\caption{Credible intervals for the overall $\theta$ for exponential, inverse, and sine stimuli.\label{tab:credibleintervalstable}}\begin{tabular}{ccc}\hline
+Function & 95\% Credible Interval for $\theta$ & Median\\\hline
+Sin & (1.0623636, 1.2310909) & 1.1372727\\
+Exp & (1.1984091, 1.4643182) & 1.3004545\\
+Inv & (1.1735455, 1.3952273) & 1.2863636\\
+\hline
+\end{tabular}
+\end{table}
+
+The estimated weight values corresponding to these $\theta$ are shown in figure \ref{fig:allCorrectionOptimal}. In all three cases, the experimentally-corrected plots appear less distorted than the uncorrected plots. 
+
+\begin{figure}[tp]\centering
+\includegraphics[width=6in,trim=.25in 0in .25in 0in]{fig-allOptimalWeights} 
+\caption{Uncorrected, experimentally corrected (according to the median value of $\theta$), and fully corrected stimuli for all three underlying functions used in the experiment. The corrected value shown here is equivalent to the distortion factor $D$ defined as $D=\ell_{max}/\ell_{min}$.}\label{fig:allCorrectionOptimal}
+\end{figure}
+This experiment has demonstrated that the sine illusion results in mis-perception of graphically presented data. In particular, participants tend to see uneven line length when lines are even while missing uneven line length due to the illusion's effect. 
+
+\section{Conclusions}
+The sine illusion arises from misapplication of three-dimensional context to a two-dimensional stimulus which results in nearly unavoidable perceptual distortions. These distortions impact the inferences made from charts which are similar to three-dimensional figures, even when we are not consciously aware that this context exists; the only immunity to the illusion we have found is for those who have never developed binocular depth perception. We have estimated that the illuson produces a distortion of about 135\%. This distortion occurs entirely between the retinal image and the mental representation of the object; it is not due to the chart, rather, it is an artifact of our perceptual system. 
+
+As Tufte advocated for charts that showed the data without distortion, our goal is to raise awareness of perceptual distortions that occur within the brain itself due to misapplied heuristics. While applying corrections to the data to remove these distortions is somewhat radical, the persistence of the illusion despite awareness of its presence presents a challenge to those seeking to display data visually. In addition, many graph types can induce this illusion (scatterplots, ribbon plots, parallel sets plots), so avoiding a specific type of graph is not an effective solution. The best solution to this problem is to raise awareness: to demonstrate that optical illusions occur within information graphics, and to understand how these illusions arise.  
+
+
+
+
+
+
+
+
+
+
+
+
+
 \graphicspath{{Figure/VisualAptitude/}{Images/VisualAptitude/}}
 \renewcommand{\floatpagefraction}{.99}
 
-
+\makesavenoteenv{tabular}
 
 
 
 \chapter{SPATIAL REASONING AND STATISTICAL GRAPHICS}\label{VisualAptitude}\label{visualreasoning}
 
 \section{Introduction}
-Relevant literature: 
-\begin{itemize}
-\item \citet{shah1995conceptual} showed that spatial ability was not correlated with accuracy on a simple two-dimensional line graph description task, but that mathematical ability was correlated with accuracy. 
-\item \citet{just1985cognitive} showed that high-spatial-ability viewers used different rotation strategies than low-spatial-ability viewers when asked to whether three-dimensional alphabet cubes were the same. 
-\item \citet{hofmann2012graphical} for lineup stimuli and general lineup performance
-\end{itemize}
 
-Lineups depend on the ability to search for a signal amid distractors (Visual Search Task) and the ability to infer patterns from stimuli (Pattern Recognition task). Some lineups (polar coords) also depend on the ability to mentally rotate stimuli (spatial rotation task) and mentally manipulate graphs (paper folding task). By breaking the lineup task down into component parts, we can correlate lineup performance with similar cognitive factor tests to determine where additional variation in skill level factors into performance differences. In addition, we can correlate previous experiences (science-based major, research experience, Auto-CAD skills) with performance to explore the effect that participant experience has on lineup performance. 
+\comment{Next few steps for the analysis: \\
+(3) in terms of why we would use lineups in a test comparison ... lineups give us a way to say 'this is correct' which regular graphics don't. So we should put a spin sentence on at the intro and the back that we are suggesting to use lineups as a tool to not only evaluate individuals (which we can see is possible) but also as a tool to evaluate charts ... which we've done before ... and tie it into the regular testing literature ...\\
+\textbf{A few sentences added, still need to tie into the existing literature}\\
+(4) I'll take care of the intro to lineups}
+
+\todo[inline]{Intro about statistical graphics, lineups, ...}
+Statistical graphics provide quick summaries of data, models, and results, but these displays may not be equally useful to all viewers. Mathematical ability is important, even for the simplest graphs:  mathematical ability, not spatial ability, was shown~\citep{shah1995conceptual} to be associated with accuracy on a simple two-dimensional line graph. Spatial ability becomes more important, however, when more complicated graphical displays are used in comparison tasks: the lower performance of individuals with low spatial ability on tests utilizing diagrams and graphs is attributed ~\citep{mayer1994whom} to the fact that more cognitive resources are required to process the visual stimuli, which leaves fewer resources to make connections and draw conclusions from those stimuli. It is theorized that graphics are a form of ``external cognition"~\citep{scaife1996external} that guide, constrain, and facilitate cognitive behavior\citep{zhang1997nature}. 
+Graphics utilize higher-bandwidth visual pathways to encode information \citep{baddeley1974working}, allowing viewers to quickly and intuitively encode multiple dimensions of numerical relationships; however, this higher-bandwidth approach also depends on the viewer's visual and spatial reasoning ability. Well-designed graphics emphasize and present important features of the data while minimizing  features of lesser importance, guiding the viewer towards conclusions that are meaningful in context and supported by the data while maximizing the information encoded in working memory. Under this framework, well-designed graphics reduce memory load and make more cognitive resources available for other tasks (such as drawing conclusions from the data), at the cost of depending on certain visuospatial reasoning abilities. 
+
+Many theories of graphical learning center around the difference between visual and verbal processing: the dual-coding theory emphasizes the utility of complementary information in both domains, while the visual argument hypothesis emphasizes that graphics are more efficient tools for providing data with spatial, temporal, or other implicit ordering, because the spatial dimension can be represented graphically in a more natural manner~\citep{vekiri2002value}. Both of these theories suggest spatial ability would impact a viewer's use of graphics, because spatial ability either influences cognitive resource allocation or affects the processing of spatial relationships between graphical elements. In addition, previous investigations into graphical learning and spatial ability have found relationships between spatial ability and the ability to read information from graphs~\citep{lowrie2007solving}. 
+
+\subsection{The Lineup Protocol}
+\todo[inline]{Standard lineup protocol introduction here.} 
+
+Figure \ref{fig:lineup} shows a sample lineup of boxplots; participants would be expected to determine that sub-plot 4 is the most different because the two groups have notably different medians.
+
+Statistical lineups~\citep{hofmann2012graphical,wickham2010graphical,buja2009statistical} depend on the ability to search for a signal amid distractors (visual search) and the ability to infer patterns from stimuli (pattern recognition). Some lineups (polar coords) also depend on the ability to mentally rotate stimuli (spatial rotation) and mentally manipulate graphs (spatial rotation and manipulation). By breaking the lineup task down into component parts, we may be able to determine which visuospatial factors most strongly correlate with lineup performance, using carefully chosen cognitive tests to assess these aspects of visuospatial ability. Demographic factors are known to impact lineup performance: country, education, and age affected score on lineup tests, and all of those factors plus gender had an effect on the amount of time spent on lineups \citep{humanfactorslineups}. In addition, lineup performance can be partially explained using statistical distance metrics \citep{distancemetriclineups}, but these metrics do not completely succeed in predicting human performance, in part due to the difficulty of representing human visual ability algorithmically.
+
+\begin{figure}\centering
+\includegraphics[width=.5\textwidth]{lineup}
+\caption[Sample Lineup]{Sample lineup of boxplots. Participants are instructed to choose the plot which appears most different from the others. In this lineup, plot 4 is the target plot, because the two groups have a large difference in medians. }\label{fig:lineup}
+\end{figure}
+
+One of the most useful features of the lineup protocol is that it allows researchers to conclusively determine which graphics show certain features more conclusively (providing an experimental protocol for comparing graphics based on the accuracy of user conclusions). In addition, lineups provide researchers with a rigorous framework for determining whether a specific graph shows a real, statistically significant effect by comparing a target plot with plots formed using permutations of the same data, providing a randomization test protocol for graphics. As a result, lineups are a useful and innovative tool for evaluating charts; on an individual level, they can also be used to evaluate a specific participant's perceptual reasoning ability in the context of statistical graphics.
+
+In this paper, we examine some demographic characteristics as well as characteristics such as  spatial and pattern recognition ability with the goal of understanding the skills necessary for accurate lineup performance as well as underlying variation in lineup performance. 
 
 \section{Methods}
-Participants will complete the following tasks (sample pictures included, full stimuli set will be added to the appendix once testing is complete). Tasks are designed so that participants are under time pressure; they are not expected to complete all of the problems in each section. This provides more discrimination between high scorers and prevents score compression at the top of the range. 
-\begin{itemize}
-\item Visual Search Task: designed to test participants' ability to find a target stimulus in a field of distractors. An example is shown in figure \ref{fig:VST}. 
-\begin{figure}[htbp]\centering
-\includegraphics[width=.7\textwidth]{VisualSearch}
-\caption[Visual Search Task]{Visual Search Task. Participants are instructed to find the plot numbered 1-24 which matches the plot labeled "Target". Participants will complete up to 25 of these tasks in 5 minutes.}\label{fig:VST}
-\end{figure}
-\item Paper Folding Task: tests participants' ability to visualize and mentally manipulate figures in three dimensions. Associated with the ability to extrapolate symmetry and reflection over multiple steps. An example is shown in figure \ref{fig:paperfolding}.
-\begin{figure}[htbp]\centering
-\includegraphics[width=.9\textwidth]{paperfolding}
-\caption[Paper Folding Task]{Paper Folding Task. Participants are instructed to pick the figure matching the sequence of steps shown in the left-hand figure. Participants will complete up to 20 of these tasks in 6 minutes.}\label{fig:paperfolding}
-\end{figure}
-\item Card Rotation Task: tests participant's ability to rotate objects in two dimensions to distinguish between left-hand and right-hand versions of the same figure. Tests spatial reasoning ability and mental rotation skills. An example is shown in figure \ref{fig:cardrotation}.
-\begin{figure}[htbp]\centering
-\includegraphics[width=.9\textwidth]{cardrotation}
-\caption[Card Rotation Task]{Card Rotation Task. Participants mark each figure on the right hand side as either the same or different than the figure on the left hand side of the dividing line. Participants will complete up to 20 of these tasks (each consisting of 8 figures) in 6 minutes.}\label{fig:cardrotation}
-\end{figure}
-\item Figure Classification Task: tests participant's ability to extrapolate rules from provided figures. This task is associated with visual reasoning capabilities and we expect that it should correlate with the ability to pick out a signal plot from a lineup. An example is shown in figure \ref{fig:figureclassification}. 
-\begin{figure}[htbp]\centering
-\includegraphics[width=.9\textwidth]{figureclassification}
-\caption[Figure Classification Task]{Figure Classification Task. Participants classify each figure in the second row as belonging to group 1, 2, or 3 (if applicable). Participants will complete up to 14 of these tasks (each consisting of 8 figures to classify) in 8 minutes.}\label{fig:figureclassification}
-\end{figure}
-\end{itemize}
+\subsection{Measures of visuospatial ability}
 
-Between cognitive tasks, participants will also complete three blocks of 20 lineups each. These lineups have been previously tested \citep{hofmann2012graphical} and include some null lineups (i.e. lineups without a target plot). Participants will have 5 minutes to complete each block of 20 lineups. Figure \ref{fig:lineup} shows a sample lineup of box plots. 
+Participants are asked to complete several cognitive tests designed to measure spatial and reasoning ability. Tasks are times such  that participants are under  pressure to complete; participants are not expected to finish all of the problems in each section. This allows for a better discrimination between scores and prevents score compression at the top of the range. 
 
-\begin{figure}[htbp]\centering
-\includegraphics[width=.9\textwidth]{lineup}
-\caption[Sample Lineup]{A sample lineup. Participants are instructed to choose the plot which appears most different from the others. In this lineup, plot 13 is the target. }\label{fig:lineup}
+The \textbf{visual searching task} (VST), shown in figure~\ref{fig:VST}, is designed to test a participant's ability to find a target stimulus in a field of distractors, thus making the visual search task similar in concept to lineups. Historically, visual search has been used as a measure of brain damage \citep{goldstein1973validity,demita1981validity,moerland1986neuropsychological}; however, similar tasks have been used to measure cognitive performance in a variety of situations, for example under the influence of drugs in~\citep{anderson1983interactive}. The similarity to the lineup protocol as well as the simplicity of the test and its' lack of color justify the slight deviation from forms of visual search tasks typically used in normal populations. 
+\begin{figure}[htp]\centering
+\includegraphics[width=.5\textwidth]{VisualSearch}
+\caption[Visual Search Task]{Visual Search Task (VST). Participants are instructed to find the plot numbered 1-24 which matches the plot labeled ``Target". Participants will complete up to 25 of these tasks in 5 minutes.}\label{fig:VST}
 \end{figure}
 
-In addition to these tests, participants will complete a questionnaire which includes questions about colorblindness, mathematical background, self-perceived verbal/mathematical/artistic skills, time spent playing video games, and undergraduate major. These questions are designed to assess different factors which may influence a participant's skill at reading graphs and performing spatial tasks. 
+The \textbf{figure classification task} tests a participant's ability to extrapolate rules from provided figures. This task is associated with inductive reasoning ablities (factor I  in~\citep{ekstrom1976manual}). An example is shown in figure~\ref{fig:figureclassification}. 
+
+The figure classification test requires the same type of reasoning as the lineups: participants must determine the rules from the provided classes, and extrapolate from those rules to classify new figures. In lineups, participants must determine the rules based on the panels appearing in the lineup; they must then identify the plot which does not conform. As such, the figure classification test has content validity in relation to lineup performance: it is measuring similar underlying criteria. 
+
+\begin{figure}[ht]
+  \caption{Visuospatial tests}
+  \label{fig:tests}
+  \centering
+   \begin{subfigure}[b]{\textwidth}
+    \centering
+    \includegraphics[width=.75\textwidth]{figureclassification}
+    \caption[Figure Classification Task]{Figure Classification Task. Participants classify each figure in the second row as belonging to one of the groups above. Participants complete up to 14 of these tasks (each consisting of 8 figures to classify) in 8 minutes.\label{fig:figureclassification}}
+  \end{subfigure}
+  \begin{subfigure}[b]{\textwidth}
+    \centering
+    \includegraphics[width=.75\textwidth]{cardrotation}
+    \caption[Card Rotation Task]{Card Rotation Task. Participants mark each figure on the right hand side as either the same as or different than the figure on the left hand side of the dividing line. Participants complete up to 20 of these tasks (each consisting of 8 figures) in 6 minutes.\label{fig:cardrotation}}
+  \end{subfigure}
+  \begin{subfigure}[b]{\textwidth}
+    \centering
+    \includegraphics[width=.75\textwidth]{paperfolding}
+    \caption[Paper Folding Task]{Paper Folding Task. Participants are instructed to pick the figure matching the sequence of steps shown on the left-hand side. Participants  complete up to 20 of these tasks in 6 minutes.\label{fig:paperfolding}}
+  \end{subfigure}
+\end{figure}
+  
+The \textbf{card rotation test} measures a participant's ability to rotate objects in two dimensions in order to distinguish between left-hand and right-hand versions of the same figure. It tests mental rotation skills, and is classified as a test of spatial orientation in~\citep{ekstrom1976manual}, though it does require that participants have both mental rotation ability and short-term visual memory. An example is shown in figure~\ref{fig:cardrotation}. 
+The card rotation test is often used in studies investigating the effect of visual ability on the use of visual aids \citep{mayer1994whom} and statistical graphs \citep{lowrie2007solving} in education.
+
+ 
+
+% \begin{figure}[hbt]\centering
+% \includegraphics[width=.75\textwidth]{cardrotation}
+% \caption[Card Rotation Task]{Card Rotation Task. Participants mark each figure on the right hand side as either the same as or different than the figure on the left hand side of the dividing line. Participants will complete up to 20 of these tasks (each consisting of 8 figures) in 6 minutes.}\label{fig:cardrotation}
+% \end{figure}
+Two-dimensional comparisons are an important component of lineup performance. In some lineup situations, these comparisons sometimes involve translation, but in other lineups, rotation is required. Lineups also require visual short-term memory, so the additional factor measured implicitly by this test does not reduce its potential relevance to lineup performance.  
+
+The \textbf{paper folding test} measures participants' ability to visualize and mentally manipulate figures in three dimensions. A sample question from the test is shown in figure~\ref{fig:paperfolding}. It is classified as part of the visualization factor in~\citep{ekstrom1976manual}, which differs from the spatial orientation factor because it requires participants to visualize, manipulate, and transform the figure~mentally, which makes it a more complex and demanding task than simple rotation. The paper folding test is associated with the ability to extrapolate symmetry and reflection over multiple steps.
+% \begin{figure}[hbt]\centering
+% \includegraphics[width=.75\textwidth]{paperfolding}
+% \caption[Paper Folding Task]{Paper Folding Task. Participants are instructed to pick the figure~matching the sequence of steps shown in the left-hand figure. Participants will complete up to 20 of these tasks in 6 minutes.}\label{fig:paperfolding}
+% \end{figure}
+Lineups require similar manipulations in two-dimensional space, and also require the ability to perform complex spatial manipulations mentally; for instance, comparing the interquartile range of two boxplots as well as their relative alignment to a similar set of two boxplots in another panel.
+
+
+
+\subsection{Lineup Task Examples}\label{app:lineuptypes}
+
+Between cognitive tasks, participants will also complete three blocks of 20 lineups each, assembled from previous studies~\citep{hofmann2012graphical,majumder2013validation}. Participants have 5 minutes to complete each block of 20 lineups. Figure~\ref{fig:lineup} shows a sample lineup of box plots. 
+
+\subsubsection{Lineup Set 1}
+The experiment in the first lineup section examined the use of boxplots, density plots, histograms, and dotplots to compare two groups with different means and outliers. 
+\comment{Add note about experimental performance, general accuracy rate, etc.}
+\comment{Description of original purpose of the experiment}
+
+\begin{figure}[htbp]
+\begin{subfigure}[b]{.495\textwidth}
+  \includegraphics[keepaspectratio=T,width=.9\textwidth]{Lineups1/boxplot_1_15_5_4_13}
+  \caption[Boxplot]{Boxplot.}
+\end{subfigure}
+\begin{subfigure}[b]{.495\textwidth}
+  \includegraphics[keepaspectratio=T,width=.9\textwidth]{Lineups1/density_1_15_5_4_13}
+  \caption[Density plot]{Density plot.}
+\end{subfigure}
+\begin{subfigure}[b]{.495\textwidth}
+  \includegraphics[keepaspectratio=T,width=.9\textwidth]{Lineups1/dotplot_1_15_5_4_13}
+  \caption[Dotplot]{Dotplot.}
+\end{subfigure}
+\begin{subfigure}[b]{.495\textwidth}
+  \includegraphics[keepaspectratio=T,width=.9\textwidth]{Lineups1/histogram_1_15_5_4_13}
+  \caption[Histogram]{Histogram.}
+\end{subfigure}
+\caption{Sample plot types included in the first lineup task.}
+\end{figure}
+
+\subsubsection{Lineup Set 2}
+\comment{Description of original purpose of the experiment. Note that this experiment appears to have more outliers.}
+The second lineup section also explored two groups of data, this time comparing boxplots, bee swarm boxplots, boxplots with overlaid jittered data, and violin plots. Participants were much more accurate in this experiment
+\comment{Add note about experimental performance, general accuracy rate, etc.}
+
+\begin{figure}[htbp]
+\begin{subfigure}[b]{.495\textwidth}
+  \includegraphics[keepaspectratio=T,width=.9\textwidth]{Lineups2/file147f94f6965d7}
+  \caption[Boxplot]{Boxplot.}
+\end{subfigure}
+\begin{subfigure}[b]{.495\textwidth}
+  \includegraphics[keepaspectratio=T,width=.9\textwidth]{Lineups2/file147f9e65f0e4}
+  \caption[Boxplot with jittered points]{Boxplot with jittered points.}
+\end{subfigure}
+\begin{subfigure}[b]{.495\textwidth}
+  \includegraphics[keepaspectratio=T,width=.9\textwidth]{Lineups2/file147f9fc58d73}
+  \caption[Bee swarm boxplot]{Bee swarm boxplot.}
+\end{subfigure}
+\begin{subfigure}[b]{.495\textwidth}
+  \includegraphics[keepaspectratio=T,width=.9\textwidth]{Lineups2/file147f93acbb7e4}
+  \caption[Violin plot]{Violin plot.}
+\end{subfigure}
+\caption{Plots in the second lineup task.}
+\end{figure}
+
+\subsubsection{Lineup Set 3}
+\comment{Description of original purpose of the experiment.}
+\newtext{The final lineup section explored QQ-plots from various model simulations, using reference lines, acceptance bands, and rotation to determine which plots allowed participants to most effectively identify violations of normality. Rotated qq plots showed lower performance because participants could more accurately compare acceptance bands to residuals, and thus could identify that the reference bands were too liberal. As a result, performance was somewhat lower for rotated plots, even though participants could more accurately compare the residuals to the reference bands.}
+\comment{Add citations, more explanations, etc.}
+
+
+\begin{figure}[htbp]
+\begin{subfigure}[b]{.495\textwidth}
+  \includegraphics[keepaspectratio=T,width=.9\textwidth]{Lineups3/file13876a225d34-single}
+  \caption[QQ plot with guide line]{QQ Plot with guide line.}
+\end{subfigure}
+\begin{subfigure}[b]{.495\textwidth}
+  \includegraphics[keepaspectratio=T,width=.9\textwidth]{Lineups3/file13877c93dc78-single}
+  \caption[QQ plot with acceptance bands]{QQ Plot with acceptance bands.}
+\end{subfigure}
+\begin{subfigure}[b]{.495\textwidth}
+  \includegraphics[keepaspectratio=T,width=.9\textwidth]{Lineups3/file13878e5c92f-single}
+  \caption[Rotated QQ plot]{QQ Plot rotated 45 degrees.}
+\end{subfigure}
+\caption{Plots in the third lineup task.}
+\end{figure}
+
+
+In addition to these tests, participants were asked to complete a questionnaire which includes questions about colorblindness, mathematical background, self-perceived verbal/mathematical/artistic skills, time spent playing video games, and undergraduate major. 
+These questions are designed to assess different factors which may influence a participant's skill at reading graphs and performing spatial tasks. 
+\FloatBarrier
+\subsection{Test Scoring}\label{sec:scaling}
+
+All test results were scored so that random guessing produces an expected value of 0; therefore each question answered correctly contributes to the score by 1, while a wrong answer is scored by $-1/(k-1)$, where $k$ is the total number of possible answers to the question. Thus, for a test consisting of multiple choice questions with $k$ suggested answers with a single correct answer each, the score is calculated as
+\begin{eqnarray}\label{eq.scoring}
+\# \text{correct answers } - 1/(k-1) \cdot \# \text{wrong answers}.
+\end{eqnarray}
+This allows us to compare each participant's score in light of how many problems were attempted as well as the number of correct responses. Combining accuracy and speed into a single number does not only make a comparison of test scores easier,  this scoring mechanism is also used on many standardized tests, such as the SAT and the battery of psychological tests~\citep{diamond1973correction, ekstrom1976manual} from which parts of this test are drawn. The advantage of using tests from the Kit of Factor Referenced Cognitive tests~\citep{ekstrom1976manual} is that the tests are extremely well studied (including an extensive meta-analysis in~\citep{voyer1995magnitude} of the spatial tests we are using in this study) and comparison data are available from the validation of these factors~\citep{schaie1998longitudinal,hampson1990variations,mayer1994whom} and previous versions of the kit~\citep{educational1963kit}.
 
 \section{Results}
-We have tested 18 students, and plan to increase sample size once the summer semester begins. Preliminary results are presented graphically in figures \ref{fig:visualaptitudects} and \ref{fig:visualaptitudecat}. Scoring for all of the tests was calculated such that with random guessing, the expected score on a problem would be 0; thus, for a test with possible answers A, B, C, D, and E, the score would be calculated by subtracting $1/4*\text{\# wrong answers}$ from the total number of correct answers. This allows us to compare each participant's score in light of how many problems were attempted as well as the number of correct responses.  
+Results are based on an evaluation of 38 undergraduate students at Iowa State University. 61\% of the participants were in STEM fields, the others were distributed relatively evenly between agriculture, business, and the social sciences. Students were evenly distributed by gender, and were between 18 and 24 years of age with only one exception. This is reasonably representative\footnote{\url{http://www.ir.iastate.edu/PDFfiles/2012-2013\%20Student\%20Profile.pdf}} of the university as a whole; in the fall 2012 semester, 23\% of students were associated with the college of engineering, 23\% were associated with the college of liberal arts and sciences, 23\% were associated with the college of human sciences, 12\% with the business school, and 14\% with the school of agriculture.  
+
+\subsection{Comparison of Spatial Tests with Previously Validated Results}
+The card rotation, paper folding, and figure classification tests have been validated using different populations, many of which are demographically similar to Iowa State students (naval recruits, college students, late high-school students, and 9th grade students). We compare Iowa State students' unscaled scores in table~\ref{tab:scorecomparison}, adjusting data from other populations to account for subpopulation structure and test length. The Visual Search task~\citep{goldstein1973validity,demita1981validity,moerland1986neuropsychological} is not part of the Kit of Factor Referenced Cognitive Test data, and thus we do not have comparison data for the form used in this experiment. 
+
+\begin{savenotes}
+\begin{table}[htb]
+\centering
+% \begin{threeparttable}  
+\begin{tabular}{rlllc}\\\hline
+  & Card Rotation & Paper Folding & Figure Class. & Visual Search  \\\hline
+ISU Students & 83.4 (24.1) 
+             & 12.4 (3.7)
+             & 57.0 (23.8)\footnote{ISU students took only Part I due to time constraints.}
+             & 21.9 (2.3)\\
+Scaled Scores & 88.0 (34.8)
+              & 13.8 (4.5)
+              & 58.7 (14.4)\footnote{Averages calculated assuming 294 males and 323 females.}
+              & -- \\
+\multirow{2}{*}{Unscaled Scores} & \multirow{2}{*}{44.0 (24.6)\footnote{Data from Part I only.}}
+                & \multirow{2}{*}{13.8 (4.5)}
+                & M:~120.0~(30.0)
+                & \multirow{2}{*}{--}\\
+              &
+              &
+              & F:~114.9~(27.8)
+              &\\
+{\footnotesize Population}    
+              & \parbox[t]{.15\textwidth}{\footnotesize approx.\ 550 male\\ naval recruits} 
+              & \parbox[t]{.18\textwidth}{\footnotesize 46 college students\\(1963~version)}
+              & \parbox[t]{.2\textwidth}{\footnotesize suburban 11th \& \\12th grade students\\(288-300 males,\\317-329 females)}
+              & \\\hline
+\end{tabular}
+%         \begin{tablenotes}
+%             \item[2] ISU students took only Part I due to time constraints.
+%             \item[3] Averages calculated assuming 294 males and 323 females.
+%             \item[4] Data from Part I only.
+%         \end{tablenotes}      
+%     \end{threeparttable}
+\caption{Comparison of scores from Iowa State students and scores reported in~\protect\citet{ekstrom1976manual}. Scaled scores are calculated based on information reported in the manual, scaled to account for differences in the number of questions answered during this experiment. Data shown are from the population most similar to ISU students, out of the data available. The Visual Search task is not part of the Kit of Factor Referenced Cognitive Test data, and thus we do not have comparison data for the form used in this experiment. \label{tab:scorecomparison}}
+\end{table}
+\end{savenotes}
+
+Table~\ref{tab:scorecomparison} shows mean scores and standard deviation for ISU students and other populations. Values have been adjusted to accommodate for differences in test procedures and sub-population structure; for instance,  some data is reported for a single part of a two-part test, or results are reported for each gender separately. 
+
+To calculate ``scaled" comparison scores between tests which included different numbers of test sections (as shown in table~\ref{tab:scorecomparison}), we scaled the mean in direct proportion to the number of questions (thus, if there were two sections of equivalent size, and the reference score included only one of those sections, we multiplied the reported mean score by two). The variance calculation is a bit more complicated: In the case described in the main text, where the reference section contained half of the questions, the variance is multiplied by two, causing the standard deviation to be multiplied by approximately 1.41. 
+
+This scaling gets slightly more complicated for scores which have two sub-groups, as with the figure classification test, which separately sumarizes male and female participants' scores. 
+To get a single unified score with standard deviation, we completed the following calculations: 
+\begin{align}
+\mu_{\text{all}} &= (N_F\mu_{F} + N_M\mu_{M})/(N_F + N_M)\\
+\sigma_{\text{all}} &= \sqrt{\left(N_F\sigma_F^2 + N_M\sigma_M^2\right)/(N_F + N_M)},
+\end{align}
+\newtext{where $\mu_F$ and $\mu_M$ are the mean of female and male scores respectively, $N_F$ and $N_M$ are the number of participants in each group, and $\sigma_F^2$ and $\sigma_M^2$ are the variance of each group.
+Substituting in the provided numbers, we get}
+\begin{align*}
+\mu_{\text{all}} &= \left(323\!\cdot\!114.9\! +\! 294\!\cdot\!120.0\right)/(323\!+\!294) \\
+& = 58.7\\
+\sigma_{\text{all}} &= \sqrt{\left(323(27.8)^2 \!+\! 294(30)^2\right)/(323\!+\!294)} \\
+& = 14.4.
+\end{align*}
+
+Whenever participants in two studies were not exposed to the same number of questions, the resulting scores are not comparable: both overall scores and their standard deviations are different. We can achieve comparability by scaling the scores accordingly.
+For example, in order to account for the fact that ISU students took only part I of two parts to the figure classification test (and thus completed half of the questions), we adjust the transformation as follows:
+
+\begin{eqnarray*}
+\mu_{\text{part I}} &= 1/2 \cdot \mu_{\text{all}}\\
+\sigma_{\text{part I}} &= 1/\sqrt{2} \cdot \sigma_{\text{all}}
+\end{eqnarray*}
+
+Once these adjustments have been completed, it is evident that Iowa State undergraduates scored at about the same level as other similar demographics. In fact, both means and standard deviations of ISU students' scores are similar to the comparison groups, which were chosen from available demographic groups based on population similarity. 
+
+Comparison population data was chosen to most closely match ISU undergraduate population demographics. Thus, if comparison data was available for 9th and 12th grade students, scores of Iowa State students were compared to scores of 12th grade students, who are closer in age to college students. When data was available from college students and Army enlistees, comparisons of scores were based on other college students, as college students are more likely to have a similar gender distribution to ISU students.
+
+Applying the grading protocol discussed in section~\ref{sec:scaling}, we see that the ranges of lineup and visuospatial test scores do not include zero; this indicates that we do not see random guessing from participants in any task. Figure~\ref{fig:Scores} shows the range of possible scores and the observed score distribution. 
+Participants' scores on the VST indicate score compression; that is, both participants with medium and high visual search abilities scored at the extremely high end of the spectrum. 
+In future experiments, participants should be given less time (or more questions) to better differentiate participants with medium and high-ability.
+
+\begin{figure}[ht]
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+
+{\centering \includegraphics[width=.5\textwidth]{../Figure/VisualAptitude/fig-ResultsScaledScores-1} 
+
+}
 
 
 
-\begin{figure}[htbp]\centering
-\includegraphics[width=\textwidth]{fig-VisReasoningAnalysisCts}
-\caption[Visual Aptitude Study Results]{Preliminary results of continuous variables compared to lineup score.}\label{fig:visualaptitudects}
+\end{knitrout}
+\caption{Test scores for lineups and visuospatial tests. As none of the participants scored at or below zero, we can conclude that there is little evidence of random guessing. We also note the score compression that occurs on the Visual Search test; this indicates that most participants scored extremely high, and thus, participants' scores are not entirely representative of their ability. \label{fig:Scores}}
+\end{figure}
+% 
+
+% Applying the grading protocol discussed in section~\ref{sec:scaling}, we see that the ranges of lineup and visuospatial test scores do not include zero; this indicates that we do not see random guessing from participants in any task. Figure~\ref{fig:Scores} shows the range of possible scores and the observed score distribution. 
+
+
+\subsection{Lineup Performance and Demographic Characteristics}
+Table~\ref{tab:ttest-demographics} provides the results of a sequence of linear models fit to the lineup data. Each row in the table represents a single model, with one predictor variable (a factor with two or more levels). Due to sample size considerations, multiple testing corrections were not performed; in addition, the independent variables are correlated: in our sample, males are more likely to have completed Calculus 1, but are also more likely to spend time playing video games. As such, a model including two or more of the significant predictor variables shows all included variables to be nonsignificant. To better understand the effects of these variables, a much larger study would be required. 
+% latex table generated in R 3.1.2 by xtable 1.7-1 package
+% Mon Nov 17 16:23:46 2014
+\begin{table}[ht]
+\centering
+\caption{Results of lineup score modeled by single demographic variables. \label{tab:ttest-demographics}} 
+\begin{tabular}{lrrrr}
+  \hline
+Variable & DF & MeanSq & F & p.val \\ 
+  \hline
+STEM Major & 1 & 401.517 & 14.44 & 0.001 \\ 
+  Calculus 1 & 1 & 204.569 & 6.15 & 0.018 \\ 
+  Video Game hrs & 3 & 108.847 & 3.44 & 0.028 \\ 
+  Sex & 1 & 140.844 & 4.02 & 0.053 \\ 
+  Art Skills & 4 & 75.891 & 2.28 & 0.082 \\ 
+  Verbal Skills & 3 & 60.220 & 1.68 & 0.191 \\ 
+  STEM Research & 1 & 59.670 & 1.60 & 0.214 \\ 
+  AutoCAD & 1 & 50.893 & 1.36 & 0.252 \\ 
+  Age & 1 & 34.434 & 0.91 & 0.348 \\ 
+  Math Skills & 3 & 37.039 & 0.98 & 0.416 \\ 
+  Statistics Class & 1 & 9.062 & 0.23 & 0.631 \\ 
+   \hline
+\end{tabular}
+\end{table}
+
+
+
+%Next, we examine the effect of demographic factors on lineup performance. 
+Previous work found a relationship between lineup performance and demographic factors such as education level, country of origin, and age \citep{humanfactorslineups}; our participant population is very homogeneous, which allows us to explore factors such as educational background and skills on performance in lineup tests. 
+
+Figure~\ref{fig:visualaptitudecat} shows participants' lineup scores in relationship to their responses in the questionnaire given at the beginning of the study; this allows us to explore effects of demographic characteristics (major, research experience, etc.) on test performance. 
+
+Completion of Calculus I is associated with increased performance on lineups; this may be related to general math education level, or it may be that success in both lineups and calculus requires certain visual skills. This association is consistent with findings in~\citep{shah1995conceptual}, which associated  mathematical ability to performance on simple graph description tasks.  There is also a significant relationship between hours of video games played per week and score on lineups, however, this association is not monotonic and the groups do not have equal sample size, so the conclusion may be suspect. There is a (nearly) significant difference between male and female performance on lineups; this is not particularly surprising, as men perform better on many spatial tests~\citep{voyer1995magnitude} and performance on spatial tests is correlated with phase of the menstrual cycle in women~\citep{hausmann2000sex}. There is no significant difference in lineup performance for participants of different age, self-assessed skills in various domains, previous participation in math or science research, completion of a statistics class, or experience with AutoCAD. These demographic characteristics were chosen to account for life experience and personal skills which may have influenced the results. 
+
+\begin{figure}[h!tb]\centering
+\includegraphics[width=.9\textwidth]{fig-VisReasoningCategorical-1}
+\caption[Visual Aptitude Study Results]{Demographic characteristics of participants compared with lineup score. Categories are ordered by effect size; majoring in a STEM field, calculus completion, hours spent playing video games per week, and sex are all associated with a significant difference in lineup score. }\label{fig:visualaptitudecat}
 \end{figure}
 
-\begin{figure}[htbp]\centering
-\includegraphics[width=\textwidth]{fig-VisReasoningAnalysisCat}
-\caption[Visual Aptitude Study Results]{Preliminary results of categorical variables compared to lineup score.}\label{fig:visualaptitudecat}
+\subsection{Understanding Visual Abilities and Lineup Performance}
+
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{figure}[ht]
+
+{\centering \includegraphics[width=.6\textwidth]{../Figure/VisualAptitude/fig-VisReasoningSPM-1} 
+
+}
+
+\caption{Pairwise scatterplots of test scores. Lineup scores are most highly correlated with figure classification scores, and are also highly correlated with card rotation scores. Paper folding and card rotation scores are also highly correlated.\label{fig:scatterplotmatrix}\label{fig:VisReasoningSPM}}
 \end{figure}
+
+
+\end{knitrout}
+
+
+
+Results from the visuospatial tests used in this experiment are highly correlated, as shown in figure~\ref{fig:scatterplotmatrix}; this is to be expected given that all of these tests are in some way measuring individuals' visual ability. 
+What is of more interest to us is how other factors, such as e.g.~general intelligence, mental processing speed, cognitive resources, motivation, and attention affect performance. 
+In order to assess factors contributing to lineup performance, we first examine the separate dimensions measured by the battery of cognitive tests (other than lineups) using principal components analysis on the scaled test scores, then we examine all five tests using the same procedure. 
+
+
+\subsection{Aptitude Test Analysis}
+A principal component analysis (PCA) of the four established visuo-spatial tests reveals that they all share a very strong first component, which explains about 64\% of the total variability. 
+PC1 is essentially an average across all tests representing a general ``visual intelligence" factor. The other principal components span another two dimensions, while the last dimension is weak (at 6\%). 
+PC2 differentiates the figure classification test from the visual searching test, whereas PC3 differentiates these two tests from the paper folding test. 
+More detailed results from the 4-test analysis are provided below.
+% latex table generated in R 3.1.2 by xtable 1.7-1 package
+% Mon Nov 17 16:23:46 2014
+\begin{table}[htb]
+\centering
+\caption{Importance of principal components in an analysis of four tests of spatial ability: figure classification, paper folding, card rotation, and visual search.\label{tab:PCAvariance4}} 
+{\footnotesize
+\begin{tabular}{rrrrr}
+  \hline
+ & PC1 & PC2 & PC3 & PC4 \\ 
+  \hline
+Standard deviation & 1.61 & 0.81 & 0.73 & 0.49 \\ 
+  Proportion of Variance & 0.64 & 0.16 & 0.13 & 0.06 \\ 
+  Cumulative Proportion & 0.64 & 0.81 & 0.94 & 1.00 \\ 
+   \hline
+\end{tabular}
+}
+\end{table}
+
+Table~\ref{tab:PCAvariance4} contains the importance of each resultant PC and the proportion of the variance each PC represents. 
+
+\newtext{PC1 accounts for about 60\% of the variance; figure~\ref{fig:biplots4} and table~\ref{tab:PCArotation4} confirm that PC1 is a measure of the similarity between all 4 tests; that is, a participant's general (or visual) aptitude. PC2 differentiates the figure classification test from the visual searching test, while}
+
+% latex table generated in R 3.1.2 by xtable 1.7-1 package
+% Mon Nov 17 16:23:46 2014
+\begin{table}[htb]
+\centering
+\caption{PCA Rotation matrix for the four cognitive tests.\label{tab:PCArotation4}} 
+\begin{tabular}{rrrrr}
+  \hline
+ & PC1 & PC2 & PC3 & PC4 \\ 
+  \hline
+card.rot & 0.55 & -0.19 & -0.38 & 0.72 \\ 
+  fig.class & 0.46 & 0.58 & 0.66 & 0.14 \\ 
+  folding & 0.52 & 0.33 & -0.53 & -0.59 \\ 
+  vis.search & 0.46 & -0.72 & 0.38 & -0.34 \\ 
+   \hline
+\end{tabular}
+\end{table}
+
+
+PC3 differentiates these two from the paper folding test. PC4 is not particularly significant (it accounts for 5.9\% of the variance), but it differentiates the card rotation task from the paper folding task.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{figure}
+
+{\centering \includegraphics[width=.8\textwidth]{../Figure/VisualAptitude/fig-biplot-pca4-1} 
+
+}
+
+\caption{Plots of principal components 1-4 with observations. PCA was performed on the four cognitive tests used to understand the cognitive demands of the lineup protocol.  \label{fig:biplots4}\label{fig:biplot-pca4}}
+\end{figure}
+
+
+\end{knitrout}
+
+
+\subsection{Overall Lineup Performance and Aptitude Tests}
+Incorporating the lineup task into the principal component analysis, we find the principal components to be fairly similar to the four-component analysis. 
+Table~\ref{tab:PCAvariance5} shows the importance of each principal component. From the distribution of the variance components, we see that the lineup test  spans an additional dimension within the space of the four established tests. 
+% latex table generated in R 3.1.2 by xtable 1.7-1 package
+% Mon Nov 17 16:23:44 2014
+\begin{table}[ht]
+\centering
+\caption{Importance of principal components, analyzing all five tests.\label{tab:PCAvariance5}} 
+{\footnotesize
+\begin{tabular}{rrrrrr}
+  \hline
+ & PC1 & PC2 & PC3 & PC4 & PC5 \\ 
+  \hline
+Standard deviation & 1.73 & 0.84 & 0.75 & 0.70 & 0.48 \\ 
+  Proportion of Variance & 0.60 & 0.14 & 0.11 & 0.10 & 0.05 \\ 
+  Cumulative Proportion & 0.60 & 0.74 & 0.85 & 0.95 & 1.00 \\ 
+   \hline
+\end{tabular}
+}
+\end{table}
+
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{figure}
+
+{\centering \includegraphics[width=.8\textwidth]{../Figure/VisualAptitude/fig-biplots-pca5-1} 
+
+}
+
+\caption{Plots of principal components 2-5 with observations. \label{fig:biplots5}\label{fig:biplots-pca5}}
+\end{figure}
+
+
+\end{knitrout}
+
+
+% latex table generated in R 3.1.2 by xtable 1.7-1 package
+% Mon Nov 17 16:23:44 2014
+\begin{table}[htb]
+\centering
+\caption{PCA Rotation matrix for all five tests. The first principal component is essentially an average of all five tests. 
+             \label{tab:PCArotation5}} 
+\begin{tabular}{rrrrrr}
+  \hline
+ & PC1 & PC2 & PC3 & PC4 & PC5 \\ 
+  \hline
+lineup & 0.42 & 0.49 & -0.46 & 0.60 & -0.10 \\ 
+  card.rot & 0.50 & -0.30 & 0.28 & 0.23 & 0.73 \\ 
+  fig.class & 0.43 & 0.45 & -0.15 & -0.75 & 0.18 \\ 
+  folding & 0.47 & 0.07 & 0.68 & 0.04 & -0.56 \\ 
+  vis.search & 0.41 & -0.69 & -0.48 & -0.15 & -0.33 \\ 
+   \hline
+\end{tabular}
+\end{table}
+
+From the rotation matrix (see Table~\ref{tab:PCArotation5}) we see that  
+the first principal component, PC1, is again essentially an average across all tests and accounts for 60.1\% of the variance in the data. 
+Biplots of the remaining principal components are shown in figure~\ref{fig:biplots5}. 
+
+\paragraph{Five-component PCA interpretation}
+Figure classification is strongly related to lineups (PC2, PC3). Performance on the visual search task  is also related to lineup performance (PC3). These two components highlight the shared demands of the lineup task and the figure classification task: participants must establish categories from provided stimuli and then classify the stimuli accordingly. 
+
+The visual search task is also clearly important to lineup performance: PC3 captures the similarity between the visual search and lineup performance, and aspects of these tasks are negatively correlated with aspects of the paper folding and card rotation tasks within PC3. Paper folding does not seem to be strongly associated with lineup performance outside of the first principal component; card rotation is only positively associated with lineup performance in PC4.
+
+PC4 captures the similarity between lineups and the card rotation task and separates this similarity from the figure classification task; this similarity does not account for much extra variance (10\%), but it may be that only some lineups require spatial rotation skills. PC5 contains only 5\% of the remaining variance, and is thus not of much interest, however, it seems to capture the relationship between the card rotation task and the paper folding and visual search tasks.
+
+
+\paragraph{Comparison of four and five-component PCA}
+Figure classification is strongly related to lineups, and as in the four-component PCA, figure classification is strongly represented in the first two principal components. While lineups do span a separate dimension, the PCA suggests that they are most closely related to the figure classification task, and least related to the visual searching task.
+
+% 
+% The additional dimension, PC4 in the five-component PCA, separates lineups from the figure classification task and incorporates the relatively weak correlation between performance on the card rotation task and lineup performance; this dimension accounts for round(summary(pca)$importance[2,4]*100,1)\% of the variance. 
+% PC5 is almost identical to PC4 in the four-component PCA; as before, it does not account for a significant portion of the variance in the data.
+% 
+
+This emphasizes the underpinnings of lineups: the test utilizes a visual medium, but is ultimately are a classification task presented in a graphical manner. Using lineups as a proxy for statistical significance tests is similar to using a classifier on pictoral data: while the data is presented ``graphically", the participant is actually classifying the data based on underlying summary statistics.
+
+
+\subsection{Linear model of demographic factors}
+Note that all of the demographic variables in the survey are highy correlated, for example there is a high correlation between STEM majors and taking calculus. % -- only eight students are either not STEM, but have taken calculaus 1 or are STEM but have not taken the class. 
+Similarly, the correlation  between having taken a statistics class and having been involved in mathematics or statistics research is high. Only one student is doing research who has not taken a statistics course. 
+%\comment{The honors program puts freshman in research labs in their first year; Ryan worked in a corn biology lab as a physics/engineering major. If they are LBAR, they may still be placed in science labs, or they could be doing LBAR research - may not require stats.}
+
+A principal component of the five math/stats questions splits the variables into two main areas: the first principal component is an average of math skills, calculus 1 and STEM, while the second principal component is an average of having taken a statistics class and doing research. We therefore decided to use sums of these variables to come up with a separate math and a stats score. Note, that the correlation between the math and the stats score is almost zero. 
+
+We fit a linear model of lineup scores in the thus modified demographic variables and the test scores from the visuo-spatial tests, selecting the best model using AIC and stepwise backwards selection. The result is shown in table~\ref{tab:m1}. Only two covariates stay in the model: PC1 and MATH, reflecting two dimensions of what affects lineup scores. We can think of PC1 as a measure of innate visual or intellectual ability, while the MATH score is a matter of both ability and training. The remaining principal components were not sufficiently associated with lineup score to be included in the model.
+
+% latex table generated in R 3.1.2 by xtable 1.7-1 package
+% Mon Nov 17 16:23:45 2014
+\begin{table}[ht]
+\centering
+\caption{Estimates and significances of a linear model of lineup scores.} 
+\label{tab:m1}
+\begin{tabular}{rrrrr}
+  \hline
+ & Estimate & Std. Error & t value & Pr($>$$|$t$|$) \\ 
+  \hline
+(Intercept) & 14.1192 & 1.9149 & 7.37 & 0.0000 \\ 
+  PC1 & 1.7672 & 0.5230 & 3.38 & 0.0018 \\ 
+  MATH & 2.1246 & 0.8732 & 2.43 & 0.0202 \\ 
+   \hline
+\end{tabular}
+\end{table}
+
+\subsection{Lineup Types}
+Each of the three sets of 20 lineups was taken from previous experiments which tested different types of plots to determine which plot type most effectively conveyed important characteristics of the underlying data set. 
+Examples lineups for each experiment and more detailed explanations for each of these experiments are provided in Appendix \ref{app:lineuptypes}. 
+
+In order to examine which lineup tasks are most closely associated with visual abilities tested in the aptitude portions of an experiment, we employ principal component analysis on participant scores averaged across each block of lineups.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{figure}
+
+{\centering \includegraphics[width=.75\textwidth]{../Figure/VisualAptitude/fig-lineupblockpca-1} 
+
+}
+
+\caption[Lineup block PCA rotation matrix in graphical form]{Lineup block PCA rotation matrix in graphical form.\label{fig:lineupblockpca}}
+\end{figure}
+
+
+\end{knitrout}
+
+From figure~\ref{fig:lineupblockpca} we see that again, PC1 accounts for general visual aptitude. 
+% PC2 emphasizes the relationship between figure classification and lineup task 1 (and to a lesser extent, on lineup task 2). PC3 differentiates the lineup task 3 from the visual search task; other tasks do not impact PC3 to a meaningful degree. PC4 separates lineup test 2 from the paper folding and card rotation tests and emphasizes the overlap with the visual search test. PC5 separates lineup test 2 and the figure classification test from the overlap between the other lineup tests and the visual search test. PC6 and PC7 account for a joint total of less than 10\% of the overall variability, and do not display any distinct patterns in the loadings.
+\newtext{PC2 emphasizes the effect of performance on lineup test 1, which is associated with all of the measures of visual aptitude. PC3 emphasizes the association between performance on lineup test 3 and the visual search test, while PC4 emphasizes the association between performance on lineup test 2 and performance on the paper folding test. All three lineups, plus the figure classification, paper folding, and visual search tests contribute to PC5. PC6 and PC7 jointly account for less than 10\% of the variance in the data and do not display any distinct patterns in the loadings. }
+
+\comment{If PC6-7 aren't important, then we still only have 5 PCs, or one additional PC from the grouped analysis. }
+%as.numeric(round(100*importance[6], 1))\% and as.numeric(round(100*importance[7], 1))\% of the variance, respectively; PC6 seems to differentiate the first two lineup tasks from the overlap between the third lineup task and the figure classification task.
+
+% \comment{What is the overall conclusion?}
+\newtext{
+While lineups constitute a distinct principal component when aggregated into a single score, this PCA of the separate lineup types and the cognitive tests indicates that different lineup experiments exist in different principal component loadings. Overall, there is an additional principal component gained from separating the lineup blocks by experiment type. As lineup tasks 1 and 2 contained similar plot types, it is possible that those two tasks overlap in the component space while lineup task 3 is distinct. }
+
+\newtext{The relationship between participant performance on different types of lineups (and different types of plots) and performance on tests of spatial ability bears further investigation; this study suggests that there may be an effect, but there is simply not enough variation to make definitive conclusions about the relationship between different measures of visual aptitude and performance on specific lineup tasks. }
+
+\newtext{A larger study could not only address the question of which lineup tasks require certain visual skills, but could also address the use of different types of plots from a perceptual perspective. A preliminary analysis of performance on different types of plots is available in appendix \ref{app:plottypes}, but a larger study is needed for definitive results. The advantage of the lineup protocol is that it allows us to not only consider individual performance but also to compare aggregate performance on different types of plots. Integrating information about the visual skills required for each type of plot provides information about the underlying perceptual skills and experience required to read different types of plots.}
+
+
+
+\section{Lineup Plot Types} \label{app:plottypes}
+
+We can also compare participants' performance on specific types of lineup plots compared with their scores on the visual aptitude tests, for instance, accuracy on lineups which require mental rotation may be related to performance on the card rotation task. 
+
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{figure}
+
+{\centering \includegraphics[width=.5\textwidth]{../Figure/VisualAptitude/fig-lineup-types-1} 
+
+}
+
+\caption{Plot of scaled scores for different types of lineups\label{fig:plottypesdensity}\label{fig:lineup-types}}
+\end{figure}
+
+
+\end{knitrout}
+
+Figure \ref{fig:plottypesdensity} compares performance on each different type of plot. As two different lineup tasks utilized boxplots to test different qualities of the distribution of data (outliers vs. difference in medians), different tasks are shown as different colors, so that accuracy on tasks which are shown in blue can be compared to other blue density curves. 
+
+Figure \ref{fig:scatterplottypes} shows the association between scaled score on each type of lineup and score on the visual reasoning tests. Sample size for each plot type is fairly small - between 5 and 10 plots per individual, so there is low power for systematic inference, but we can establish that the card rotation task is much more significantly associated with the QQ plots tasks compared to the other tasks. In addition, rotated qq plots seem to be much more asssociated with the paper folding task scores than other qq plot tasks; this may be because they require more visual manipulation than other qq plots?
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{figure}
+
+{\centering \includegraphics[width=.6\textwidth]{../Figure/VisualAptitude/fig-lineup-types-scores-1} 
+
+}
+
+\caption{Plot of scaled lineup scores by aptitude test scores.\label{fig:scatterplottypes}\label{fig:lineup-types-scores}}
+\end{figure}
+
+
+\end{knitrout}
+
+For comparison, the correlation between general lineup score (non-subdivided) and the card rotation test score was 0.505, the correlation between general lineup score and the figure classification test was 0.512, and the correlation between lineup score and the paper folding test was 0.471.While we can compare the correlation strength between tasks, it is clear that the correlation between the score on any single lineup type and a particular visual aptitude score is lower than the overall relationship that we attribute to visual ability. Additional data is imperative to understand the reasoning required for specific types of plots - it is likely that the 5-10 trials per participant presented in each chart in figure \ref{fig:scatterplottypes} are simply not sufficient to uncover any specific relationship between reasoning ability and lineup task. 
+
+\section{Discussion and Conclusions}
+
+All results and data shown here were collected and analyzed in accordance with IRB \# 13-581.
+
+
 
 
 \chapter{STATISTICAL GRAPHICS AND FEATURE HIERARCHY}\label{featurehierarchy}

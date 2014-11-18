@@ -10,6 +10,9 @@
 
 
 <<sineillusion-setup, fig.keep='all', cache=FALSE, echo=FALSE, eval=TRUE>>=
+options(replace.assign=TRUE,width=70,scipen=3)
+require(knitr)
+
 rm(list=ls())
 wd <- getwd()
 if("Body" %in% list.files()){
@@ -23,8 +26,6 @@ if("Body" %in% list.files()){
   imgdir <- "../Figure/sineIllusion/"
   codedir <- "../Code/sineIllusion/"
 }
-options(replace.assign=TRUE,width=70,scipen=3)
-require(knitr)
 
 library(reshape2)
 suppressMessages(library(ggplot2))
@@ -128,7 +129,7 @@ qplot(x=x, xend=xend, y = ystart, yend=yend, geom="segment", data=createSine(40,
 \caption[The original sine illusion]{The original sine illusion, demonstrated on evenly spaced vertical lines centered around a sinusoidal curve of $f(x) = \sin(x)$. The lines in the peak and trough of the curve appear to be longer than in the other regions.\label{fig:original}}
 \end{figure}
 
-More recently the illusion has been shown in non-sinusoidal curves \citep{cleveland:1984, schonlau:2003, robbins:2005, marie:2013}, but the underlying effect seems to be the same, in the sense that the illusion is not triggered by the periodic nature of the underlying trendline but only by  changes to its slope. Figure \ref{fig:twoillusions-simulation} shows three panels, which all exhibit the illusion. From left to right, the trend stems from (a) a periodic function, (b) a periodic component added to an exponential function, and (c) an exponential function on its own.
+More recently the illusion has been shown in non-sinusoidal curves \citep{cleveland:1984, schonlau:2003, robbins:2005, parallelsets}, but the underlying effect seems to be the same, in the sense that the illusion is not triggered by the periodic nature of the underlying trendline but only by  changes to its slope. Figure \ref{fig:twoillusions-simulation} shows three panels, which all exhibit the illusion. From left to right, the trend stems from (a) a periodic function, (b) a periodic component added to an exponential function, and (c) an exponential function on its own.
 While all three graphs seem to show nonconstant variance along the main trend; in reality, it is constant. Clearly, the illusion does not rely on the periodicity of the function for which it was named, but is a symptom of the change in curvature that comes with the periodicity.
 
 \begin{figure}[h!tbp]\centering
@@ -910,7 +911,7 @@ For the linear approximation we make use of $f(x) \approx f(x_0) + (x - x_0) f^\
 \ell_{\text{new}}(x_0) = \ell_{\text{old}} \sqrt{1 +  f^\prime(x_0)^2}.
 \]
 
-Note that the linear method gives the same result as a varying slope extension from a trigonometric approach  suggested by \citet{schonlau:2003} and used in \citet{marie:2013}
+Note that the linear method gives the same result as a varying slope extension from a trigonometric approach  suggested by \citet{schonlau:2003} and used in \citet{parallelsets}.
 
 A second-order Taylor polynomial approximation to $f(x)$ additionally accounts for the asymmetry in the extant widths on either side of the center trendline.
 

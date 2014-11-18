@@ -16,6 +16,9 @@
 \usepackage{multirow}
 \usepackage{bbm}
 \usepackage[colorinlistoftodos]{todonotes}
+\usepackage{rotating}
+\usepackage[referable]{threeparttablex}
+\usepackage{footnote} % table footnotes
 %---------------------------------------------------
 
 % Standard, old-style thesis
@@ -82,6 +85,8 @@ opts_chunk$set(fig.path='Figure', cache.path='cache/', fig.align='center', fig.w
 <<litReview, child='Body/LitReview.Rnw'>>=
 @
 <<sineIllusion, child='Body/SineIllusion.Rnw'>>=
+@
+<<lieFactorSine, child='Body/LieFactorSine.Rnw'>>=
 @
 <<visualaReasoning, child='Body/VisualAptitude.Rnw'>>=
 @
