@@ -4,7 +4,7 @@ author: "Susan VanderPlas"
 date: "05/27/2014"
 output: 
   revealjs_presentation:
-    theme: sky
+    theme: simple
     center: false
     transition: fade
     fig_caption: true
