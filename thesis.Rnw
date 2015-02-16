@@ -19,6 +19,7 @@
 \usepackage{rotating}
 \usepackage[referable]{threeparttablex}
 \usepackage{footnote} % table footnotes
+\usepackage{multicol}
 %---------------------------------------------------
 
 % Standard, old-style thesis
