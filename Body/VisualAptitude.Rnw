@@ -126,15 +126,15 @@ The figure classification test requires the same type of reasoning as the lineup
   \centering
   \begin{subfigure}[b]{.75\linewidth}
   \includegraphics[width=\linewidth]{figureclassification}
-  \caption{Figure Classification Task. Participants classify each figure in the second row as belonging to one of the groups above. Participants complete up to 14 of these tasks (each consisting of 8 figures to classify) in 8 minutes.\label{fig:figureclassification}}
+  \caption[Figure Classification Task]{Figure Classification Task. Participants classify each figure in the second row as belonging to one of the groups above. Participants complete up to 14 of these tasks (each consisting of 8 figures to classify) in 8 minutes.\label{fig:figureclassification}}
   \end{subfigure}
   \begin{subfigure}[b]{.75\linewidth}
   \includegraphics[width=\linewidth]{cardrotation}
-  \caption{Card Rotation Task. Participants mark each figure on the right hand side as either the same as or different than the figure on the left hand side of the dividing line. Participants complete up to 20 of these tasks (each consisting of 8 figures) in 6 minutes.\label{fig:cardrotation}}
+  \caption[Card Rotation Task]{Card Rotation Task. Participants mark each figure on the right hand side as either the same as or different than the figure on the left hand side of the dividing line. Participants complete up to 20 of these tasks (each consisting of 8 figures) in 6 minutes.\label{fig:cardrotation}}
   \end{subfigure}
   \begin{subfigure}[b]{.75\linewidth}
   \includegraphics[width=\linewidth]{paperfolding}
-  \caption{Paper Folding Task. Participants are instructed to pick the figure matching the sequence of steps shown on the left-hand side. Participants  complete up to 20 of these tasks in 6 minutes.\label{fig:paperfolding}}
+  \caption[Paper Folding Task]{Paper Folding Task. Participants are instructed to pick the figure matching the sequence of steps shown on the left-hand side. Participants  complete up to 20 of these tasks in 6 minutes.\label{fig:paperfolding}}
   \end{subfigure}
   \caption[Tests of spatial ability]{Tests of spatial ability from \protect\citet{ekstrom1976manual}.}   \label{fig:tests}
 \end{figure}
@@ -277,7 +277,7 @@ embedFonts(paste0(imgdir, "fig-ResultsScaledScores-1.pdf"))
 
 \begin{figure}[ht]\centering
 \includegraphics[width=.6\linewidth]{fig-ResultsScaledScores-1}
-\caption{Test scores for lineups and visuospatial tests. As none of the participants scored at or below zero, we can conclude that there is little evidence of random guessing. We also note the score compression that occurs on the Visual Search test; this indicates that most participants scored extremely high, and thus, participants' scores are not entirely representative of their ability. \label{fig:Scores}}
+\caption[Test scores for lineups and visuospatial tests]{Test scores for lineups and visuospatial tests. As none of the participants scored at or below zero, we can conclude that there is little evidence of random guessing. We also note the score compression that occurs on the Visual Search test; this indicates that most participants scored extremely high, and thus, participants' scores are not entirely representative of their ability. \label{fig:Scores}}
 \end{figure}
 % 
 
@@ -348,7 +348,7 @@ tmp <- dlply(lineup.summary.categorical, .(variable), function(df){
 tmp <- rbind.fill(tmp)
 tmp2 <- tmp[order(tmp$p.val, decreasing=F),-3]
 tmp2$Variable <- gsub("Math/Science", "STEM", gsub(" Experience", "", gsub(" Hrs/Wk", " hrs", tmp2$Variable)), fixed=T)
-print(xtable(tmp2, digits=c(1, 1, 0, 3, 2, 3), caption="Participant demographics' impact on lineup score. The table below shows each single demographic variable's association with lineup score. STEM major, completion of Calculus I, time spent playing video games, and gender all show some association with score on statistical lineups. \\label{tab:ttest-demographics}"), include.rownames=F, floating.environment="table", caption.placement="top")
+print(xtable(tmp2, digits=c(1, 1, 0, 3, 2, 3), caption=c("Participant demographics' impact on lineup score. The table below shows each single demographic variable's association with lineup score. STEM major, completion of Calculus I, time spent playing video games, and gender all show some association with score on statistical lineups. \\label{tab:ttest-demographics}", "Participant demographics and lineup scores")), include.rownames=F, floating.environment="table", caption.placement="top")
 @
 
 
@@ -421,7 +421,7 @@ embedFonts(paste0(imgdir, "fig-VisReasoningSPM-1.pdf"))
 @
 \begin{figure}[ht]\centering
 \includegraphics[width=.5\linewidth]{fig-VisReasoningSPM-1}
-\caption{Pairwise scatterplots of test scores. Lineup scores are most highly correlated with figure classification scores, and are also highly correlated with card rotation scores. Paper folding and card rotation scores are also highly correlated.\label{fig:scatterplotmatrix}}
+\caption[Pairwise scatterplots of test scores]{Pairwise scatterplots of test scores. Lineup scores are most highly correlated with figure classification scores, and are also highly correlated with card rotation scores. Paper folding and card rotation scores are also highly correlated.\label{fig:scatterplotmatrix}}
 \end{figure}
 
 <<pca,echo=F, warning=F, message=F>>=
@@ -444,15 +444,15 @@ PC2 differentiates the figure classification test from the visual searching test
 
 <<pcasummary4,echo=F, results='asis'>>=
 pca2 <- prcomp(ans.summary[,c("card_rot", "fig_class", "folding", "vis_search")], scale=T, retx=T)
-print(xtable(summary(pca2), caption="Importance of principal components in an analysis of four tests of spatial ability: figure classification, paper folding, card rotation, and visual search.\\label{tab:PCAvariance4}",digits=2), sanitize.text.function=sanitize, sanitize.rownames.function=sanitize, sanitize.colnames.function=sanitize, size="footnotesize", table.placement="htb", caption.placement="top")
+print(xtable(summary(pca2), caption=c("Importance of principal components in an analysis of four tests of spatial ability: figure classification, paper folding, card rotation, and visual search.\\label{tab:PCAvariance4}", "Spatial ability test PC importance matrix"),digits=2), sanitize.text.function=sanitize, sanitize.rownames.function=sanitize, sanitize.colnames.function=sanitize, size="footnotesize", table.placement="htb", caption.placement="top")
 @
 Table~\ref{tab:PCAvariance4} contains the proportion of the variance in the four cognitive tasks represented by each principal component. PC1 accounts for about \Sexpr{round(summary(pca2)$importance[3,1],1)*100}\% of the variance; Figure~\ref{fig:biplots4} and Table~\ref{tab:PCArotation4} confirm that PC1 is a measure of the similarity between all 4 tests; that is, a participant's general (or visual) aptitude. PC2 differentiates the figure classification test from the visual searching test, while PC3 differentiates these two from the paper folding test. PC4 is not particularly significant (it accounts for \Sexpr{round(summary(pca2)$importance[2,4]*100,1)}\% of the variance), but it differentiates the card rotation task from the paper folding task.
 
 <<pcarotation4,echo=F, results='asis'>>=
-print(xtable(pca2$rotation, caption="Rotation matrix for principal component analysis of the four cognitive tests (visual search, paper folding, card rotation, figure classification).\\label{tab:PCArotation4}",digits=2), sanitize.text.function=sanitize, sanitize.rownames.function=sanitize, sanitize.colnames.function=sanitize, table.placement="htb", caption.placement="top")
+print(xtable(pca2$rotation, caption=c("Rotation matrix for principal component analysis of the four cognitive tests (visual search, paper folding, card rotation, figure classification).\\label{tab:PCArotation4}", "Spatial ability tests PC rotation matrix"),digits=2), sanitize.text.function=sanitize, sanitize.rownames.function=sanitize, sanitize.colnames.function=sanitize, table.placement="htb", caption.placement="top")
 @
 
-<<biplot-pca4, fig.cap="", fig.width=4.5, fig.height=4.5, warning=F, message=F, out.width='.45\\linewidth', comment="|", fig.cap="Biplots of principal components 1-4 with observations. Principal component analysis was performed on the four cognitive tests used to understand the association between the cognitive skills required for these tests and the skills required for the lineup protocol.  \\label{fig:biplots4}", echo=F, fig.env="figure">>=
+<<biplot-pca4, fig.cap="", fig.width=4.5, fig.height=4.5, warning=F, message=F, out.width='.45\\linewidth', comment="|", fig.scap="Biplots of principal components 1-4 with observations", fig.cap="Biplots of principal components 1-4 with observations. Principal component analysis was performed on the four cognitive tests used to understand the association between the cognitive skills required for these tests and the skills required for the lineup protocol.  \\label{fig:biplots4}", echo=F, fig.env="figure">>=
 par(mar=c(4,4,.1,.1),cex.lab=.95,cex.axis=.9,mgp=c(2,.7,0),tcl=-.3)
 biplot(pca2, choices=1:2, pc.biplot=T, cex=c(.5, 1), xlim=c(-2.5,2.5), ylim=c(-2.5,2.5))
 biplot(pca2, choices=3:4, pc.biplot=T, cex=c(.5, 1), xlim=c(-3,3), ylim=c(-2.5,2.5))
@@ -469,13 +469,13 @@ print(xtable(summary(pca), caption="Importance of principal components, analyzin
 @
 
 <<pcarotation5,echo=F, results='asis'>>=
-print(xtable(pca$rotation, caption="PCA Rotation matrix for all five tests. The first principal component is essentially an average of all five tests. 
+print(xtable(pca$rotation, caption="PCA Rotation matrix for all five tests. 
              \\label{tab:PCArotation5}",digits=2), sanitize.text.function=sanitize, sanitize.rownames.function=sanitize, sanitize.colnames.function=sanitize, table.placement="ht", caption.placement="top")
 @
 From the rotation matrix (see Table~\ref{tab:PCArotation5}) we see that  
 the first principal component, PC1, is again essentially an average across all tests and accounts for \Sexpr{round(summary(pca)$importance[3,1]*100,1)}\% of the variance in the data. 
 
-<<biplots-pca5, fig.cap="", fig.width=4.5, fig.height=4.5, warning=F, message=F, out.width='.45\\linewidth', comment="|", fig.cap="Biplots of principal components 2-5 with observations. The lineup task appears to be most similar to the figure classification task, based on the plot of PC2 vs. PC3.  \\label{fig:biplots5}", echo=F, fig.env="figure">>=
+<<biplots-pca5, fig.cap="", fig.width=4.5, fig.height=4.5, warning=F, message=F, out.width='.45\\linewidth', comment="|", fig.scap="Biplots of principal components 2-5 with observations.", fig.cap="Biplots of principal components 2-5 with observations. The lineup task appears to be most similar to the figure classification task, based on the plot of PC2 vs. PC3.  \\label{fig:biplots5}", echo=F, fig.env="figure">>=
 par(mar=c(4,4,.1,.1),cex.lab=.95,cex.axis=.9,mgp=c(2,.7,0),tcl=-.3)
 biplot(pca, choices=2:3, pc.biplot=T, cex=c(.5, 1), xlim=c(-2.5,2.5), ylim=c(-2.5,2.5))
 biplot(pca, choices=4:5, pc.biplot=T, cex=c(.5, 1), xlim=c(-2,2), ylim=c(-2,2))
@@ -549,7 +549,7 @@ We fit a linear model of lineup scores in the thus modified demographic variable
 
 <<modelresults, echo=FALSE, results='asis'>>=
 library(xtable)
-print(xtable(summary(m1), caption="Estimates and significances of a linear model of lineup scores.", label="tab:m1"), caption.placement="top")
+print(xtable(summary(m1), caption="Estimates for a linear model of lineup scores.", label="tab:m1"), caption.placement="top")
 @
 \subsection{Lineup Types}
 Each of the three sets of 20 lineups was taken from previous studies on different designs to investigate which plot type most effectively conveyed important characteristics of the underlying data set. 
@@ -574,7 +574,7 @@ The experiment in the first lineup section examined the use of boxplots, density
 \includegraphics[keepaspectratio=T,width=\linewidth]{Lineups1/histogram_1_15_5_4_13}
 \caption{Histogram}
 \end{subfigure}
-\caption{Types of plots in the first set of lineups. These plots are used to compare two distributions. }
+\caption[Lineup Set 1 Examples]{Types of plots in the first set of lineups. These plots are used to compare two distributions. }
 \end{figure}
 \subsection{Lineup Set 2}
 The second lineup section also explored two groups of data, this time comparing boxplots, bee swarm boxplots, boxplots with overlaid jittered data, and violin plots. Participants were much more accurate in this experiment than in the experiment described previously, because of the types of plots compared as well as the underlying data distributions. 
@@ -595,7 +595,7 @@ The second lineup section also explored two groups of data, this time comparing 
 \includegraphics[keepaspectratio=T,width=.45\linewidth]{Lineups2/file147f93acbb7e4}
 \caption{Violin plots.}
 \end{subfigure}
-\caption{Types of plots in the second set of lineups. These plots are used to compare two distributions. }
+\caption[Lineup Set 2 Examples]{Types of plots in the second set of lineups. These plots are used to compare two distributions. }
 \end{figure}
 \subsection{Lineup Set 3}
 The final lineup section explored QQ-plots from various model simulations, using reference lines, acceptance bands, and rotation to determine which plots allowed participants to most effectively identify violations of normality. Rotated QQ-plots showed lower performance because participants were able to more accurately compare acceptance bands to residuals, and thus could identify that the reference bands were too liberal. As a result, performance was somewhat lower for rotated plots, even though participants were more accurate when comparing the residuals to the reference bands.
@@ -612,7 +612,7 @@ The final lineup section explored QQ-plots from various model simulations, using
 \includegraphics[keepaspectratio=T,width=.45\linewidth]{Lineups3/file13878e5c92f-single}
 \caption{QQ-plot rotated 45 degrees.}
 \end{subfigure}
-\caption{Types of plots in the third set of lineups. These plots are used to assess residual normality. }
+\caption[Lineup Set 3 Examples]{Types of plots in the third set of lineups. These plots are used to assess residual normality. }
 \end{figure}
 
 \subsubsection{Cognitive Test Scores and Lineup Performance by Lineup Task}
@@ -694,7 +694,7 @@ embedFonts(paste0(imgdir, "fig-LineupTypeSPM-1.pdf"))
 
 \begin{figure}[ht]\centering
 \includegraphics[width=.5\linewidth]{fig-LineupTypeSPM-1}
-\caption{Pairwise scatterplots of test scores, with lineups separated into the three lineup tasks. All lineup tasks are moderately correlated with the figure classification task, and while tasks 1 and 2 are most strongly correlated with figure classification, lineup task 3 is most strongly correlated with the card rotation and paper folding tasks. \label{fig:lineuptaskmatrix}}
+\caption[Pairwise scatterplots of test scores and lineups separated by task]{Pairwise scatterplots of test scores, with lineups separated into the three lineup tasks. All lineup tasks are moderately correlated with the figure classification task, and while tasks 1 and 2 are most strongly correlated with figure classification, lineup task 3 is most strongly correlated with the card rotation and paper folding tasks. \label{fig:lineuptaskmatrix}}
 \end{figure}
 Figure~\ref{fig:lineuptaskmatrix} shows the correlations between the three lineup tasks and the figure classification, card rotation, and paper folding tasks. The visual search task is only slightly correlated with the three lineup tasks and is therefore omitted from this figure. Performance on lineup tasks 1 and 2, which dealt with the distributuion of two groups of numerical data, is most strongly correlated with the performance on the figure classification task, which measures general reasoning ability.
 Performance on lineup task 3, which investigated the potential to visually identify nonnormality in residual QQ-plots, is more associated with the card rotation and paper folding tests, which measure visuospatial ability. This suggests that certain lineup tasks may require more visual ability than others; in the case of the QQ-lineups a successful evaluation  needed  participants to mentally rotate plots to compare vertical distances, requiring more mental manipulation than the first two lineup tasks.
@@ -720,7 +720,7 @@ embedFonts(paste0(imgdir, "fig-lineupblockpca-1.pdf"))
 
 \begin{figure}[ht]\centering
 \includegraphics[width=.5\linewidth]{fig-lineupblockpca-1}
-\caption{Principal Component influence plot, showing each input variable's contribution to the principal component, scaled by the proportion of variability in the data contained in the principal component.\label{fig:influence}}
+\caption[Principal component influence]{Principal Component influence plot, showing each input variable's contribution to the principal component, scaled by the proportion of variability in the data contained in the principal component.\label{fig:influence}}
 \end{figure}
 
 For variables $X_i$, $i=1, ..., K$ a principal component analysis results in a set of $K$ principal  components $PC_j$, $j=1, ..., K$, given as the rows of the rotation matrix, $M$ (which has dimension $K\times K$, indexed by $i$ and $j$ respectively).
@@ -791,7 +791,7 @@ embedFonts(paste0(imgdir, "fig-lineup-types-1.pdf"))
 
 \begin{figure}[ht]\centering
 \includegraphics[width=.45\linewidth]{fig-lineup-types-1}
-\caption{Density plots of scaled scores for different types of lineups. For the same experiment (shown by line color), certain types of plots are more difficult to read and are associated with lower participant scores. \label{fig:plottypesdensity}}
+\caption[Density plots of scaled scores for different types of lineups]{Density plots of scaled scores for different types of lineups. For the same experiment (shown by line color), certain types of plots are more difficult to read and are associated with lower participant scores. \label{fig:plottypesdensity}}
 \end{figure}
 
 Figure~\ref{fig:plottypesdensity} compares performance on each different type of plot. The $x$ axis shows scaled score, the $y$ axis shows the density of participant scores. As two different lineup tasks utilized boxplots to test different qualities of the distribution of data (outliers vs. difference in medians), different tasks are shown as different colors, so that accuracy on tasks which are shown in blue can be compared to other blue density curves. 
@@ -834,7 +834,7 @@ embedFonts(paste0(imgdir, "fig-lineup-types-scores-1.pdf"))
 @
 \begin{figure}[ht]\centering
 \includegraphics[width=.5\linewidth]{fig-lineup-types-scores-1}
-\caption{Scatterplots of scaled lineup scores by aptitude test scores. There is some indication that different types of lineup tasks may utilize different visual skills; for instance, QQ-plots with confidence bands may require more skill at mental rotation than QQ-plots without the bands. \label{fig:scatterplottypes}}
+\caption[Scatterplots of scaled lineup scores by aptitude test scores]{Scatterplots of scaled lineup scores by aptitude test scores. There is some indication that different types of lineup tasks may utilize different visual skills; for instance, QQ-plots with confidence bands may require more skill at mental rotation than QQ-plots without the bands. \label{fig:scatterplottypes}}
 \end{figure}
 
 For comparison, the correlation between general lineup score (non-subdivided) and the card rotation test score was \Sexpr{sprintf("%.3f", cor(ans.summary$lineup, ans.summary$card_rot))}, the correlation between general lineup score and the figure classification test was \Sexpr{sprintf("%.3f", cor(ans.summary$lineup, ans.summary$fig_class))}, and the correlation between lineup score and the paper folding test was \Sexpr{sprintf("%.3f", cor(ans.summary$lineup, ans.summary$folding))}.While we can compare the correlation strength between tasks, it is clear that the correlation between the score on any single lineup type and a particular visual aptitude score is lower than the overall relationship that we attribute to visual ability. Additional data is imperative to understand the reasoning required for specific types of plots - it is likely that the 5-10 trials per participant presented in each chart in Figure~\ref{fig:scatterplottypes} are simply not sufficient to uncover any specific relationship between reasoning ability and lineup task. 
