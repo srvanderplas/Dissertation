@@ -10,16 +10,16 @@ options(replace.assign=TRUE,width=70,scipen=3)
 require(knitr)
 
 wd <- getwd()
-if("Body" %in% list.files()){
-  opts_chunk$set(fig.path='Figure/FeatureHierarchy/fig-', cache.path='cache/', fig.align='center', fig.width=5, fig.height=5, fig.show='hold', par=TRUE, cache=TRUE, concordance=TRUE, autodep=TRUE, message=F, warning=F, error=F)
-  datadir <- "./Data/FeatureHierarchy/"
-  imgdir <- "./Figure/FeatureHierarchy/"
-  codedir <- "./Code/FeatureHierarchy/"
-} else {
-  opts_chunk$set(fig.path='../Figure/FeatureHierarchy/fig-', cache.path='cache/', fig.align='center', fig.width=5, fig.height=5, fig.show='hold', par=TRUE, cache=TRUE, concordance=TRUE, autodep=TRUE, root.dir="../", message=F, warning=F, error=F)
+if(!"Body" %in% list.files()){
+  opts_chunk$set(fig.path='Figure/FeatureHierarchy/fig-', cache.path='cache/', fig.align='center', fig.width=5, fig.height=5, fig.show='hold', par=TRUE, cache=TRUE, concordance=TRUE, autodep=TRUE, root.dir="../", message=F, warning=F, error=F)
   datadir <- "../Data/FeatureHierarchy/"
   imgdir <- "../Figure/FeatureHierarchy/"
   codedir <- "../Code/FeatureHierarchy/"
+} else {
+  opts_chunk$set(fig.path='Figure/FeatureHierarchy/fig-', cache.path='cache/', fig.align='center', fig.width=5, fig.height=5, fig.show='hold', par=TRUE, cache=TRUE, concordance=TRUE, autodep=TRUE, message=F, warning=F, error=F)
+  datadir <- "Data/FeatureHierarchy/"
+  imgdir <- "Figure/FeatureHierarchy/"
+  codedir <- "Code/FeatureHierarchy/"
 }
 
 
