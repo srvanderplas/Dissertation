@@ -312,6 +312,8 @@ Null data in this experiment is generated using $\lambda = 0.5$, that is, each p
 
 \subsubsection{Parameters used in Data Generation}
 These models provide the foundation for this experiment; by manipulating cluster standard deviation $\sigma_C$ and regression standard deviation $\sigma_T$ (directly related to correlation strength) for varying numbers of clusters $K=3, 5$, we can systematically control the statistical signal present in the target plots and generate corresponding null plots that are mixtures of the two distributions. For each parameter set $\{K, N, \sigma_C, \sigma_T\}$, as described in table \ref{tab:parameters}, we  generate a lineup dataset consisting of one set drawn from $M_C$, one set drawn from $M_T$, and 18 sets drawn from $M_0$. 
+
+
 \begin{table}[h]
   \rowcolors{2}{gray!25}{white}
 \begin{center}
@@ -327,13 +329,13 @@ $\sigma_C$ & Scatter around cluster centers & \begin{tabular}{ll} .15, .20, .25 
 \caption{Parameter settings for generation of lineup datasets. \label{tab:parameters}}
 \end{table}
 
+
 The parameter values were chosen after examining the full parameter space through simulation of 1000 lineup datasets for each combination of $\sigma_T\in\{0.2, 0.25, ..., 0.5\}$, $\sigma_C\in\{0.1, 0.15, ..., 0.4\}$, and $K\in\{3,5\}$; 
-for each data set generated, the previously described statistics for  trend  and cluster strength were computed. We compared the statistics for the relevant target plot to the most extreme value for the 18 null plots. 
-These evaluations provide an estimate of the difficulty of identifying the target plot numerically; a target plot with $R^2=0.95$ would be very easy to identify when surrounded by null plots with $R^2=0.5$, while null plots with $R^2=0.9$ would make the target a lot more difficult. 
+for each data set generated, the previously described statistics for  trend  and cluster strength were computed. We compared the statistics for the relevant target plot to the most extreme value for the 18 null plots. The simulations themselves are described below; results are shown in figures \ref{fig:targetsignal}, \ref{fig:simulationLineIntervals} and \ref{fig:simulationClusterIntervals}. 
 
 \paragraph{Distribution of Test Statistics}
 
-Simulating lineup data sets, we can compare test statistics measuring trend strength, cluster strength, and cluster size inequality for the null plots and target plots. These distributions allow us to objectively assess the difficulty of detecting the target datasets computationally (without relying on human perception). This approach is similar to that taken in \citet{niladri:2014}.
+Simulating lineup data sets, we can compare test statistics measuring trend strength and cluster strength for null and target plots. These distributions allow us to objectively assess the difficulty of detecting the target datasets computationally (without relying on human perception). This approach is similar to that taken in \citet{niladri:2014}.
 
 The trend strength is assessed numerically using the coefficient of determination, $R^2$, which is calculated as in equation \ref{eq:linearMeasure}. 
 
