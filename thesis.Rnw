@@ -2,7 +2,7 @@
 \documentclass[11pt]{isuthesis}
 %---------------------------------------------------
 \usepackage{color}
-\usepackage[dvipsnames,svgnames]{xcolor}
+\usepackage[dvipsnames,svgnames,table]{xcolor}
 \usepackage{wrapfig,float}
 \usepackage{caption}
 \usepackage{subcaption}
@@ -43,6 +43,10 @@
 \newcommand{\newtext}[1]{\todo[inline, color=White]{ \color{OliveGreen}{#1}}} % new text - not necessarily something to be done
 
 \newcommand{\move}[1]{\todo[inline, color=Lime]{#1}} % new to do item
+
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{algorithm}[theorem]{Algorithm}
 
 %---------------------------------------------------
 <<root-setup, fig.keep='all', cache=FALSE, echo=FALSE, eval=TRUE>>=
