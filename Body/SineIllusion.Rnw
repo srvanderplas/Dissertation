@@ -12,19 +12,18 @@
 <<sineillusion-setup, fig.keep='all', cache=FALSE, echo=FALSE, eval=TRUE>>=
 options(replace.assign=TRUE,width=70,scipen=3)
 require(knitr)
-
 rm(list=ls())
 wd <- getwd()
-if("Body" %in% list.files()){
+if(!"Body" %in% list.files()){
+  opts_chunk$set(fig.path='Figure/sineIllusion/fig-', cache.path='cache/', fig.align='center', fig.width=5, fig.height=5, fig.show='hold', par=TRUE, cache=TRUE, concordance=TRUE, autodep=TRUE, root.dir="../")
+  datadir <- "../Data/sineIllusion/"
+  imgdir <- "../Figure/sineIllusion/"
+  codedir <- "../Code/sineIllusion/"
+} else {
   opts_chunk$set(fig.path='Figure/sineIllusion/fig-', cache.path='cache/', fig.align='center', fig.width=5, fig.height=5, fig.show='hold', par=TRUE, cache=TRUE, concordance=TRUE, autodep=TRUE)
   datadir <- "Data/sineIllusion/"
   imgdir <- "Figure/sineIllusion/"
   codedir <- "Code/sineIllusion/"
-} else {
-  opts_chunk$set(fig.path='../Figure/sineIllusion/fig-', cache.path='cache/', fig.align='center', fig.width=5, fig.height=5, fig.show='hold', par=TRUE, cache=TRUE, concordance=TRUE, autodep=TRUE, root.dir="../")
-  datadir <- "../Data/sineIllusion/"
-  imgdir <- "../Figure/sineIllusion/"
-  codedir <- "../Code/sineIllusion/"
 }
 
 library(reshape2)

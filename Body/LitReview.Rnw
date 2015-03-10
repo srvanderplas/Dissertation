@@ -5,13 +5,13 @@
 <<litreview-setup, fig.keep='all', cache=FALSE, echo=FALSE, eval=TRUE>>=
 rm(list=ls())
 wd <- getwd()
-if("Body" %in% list.files()){
-  opts_chunk$set(fig.path='Figure/LitReview/fig-', cache.path='cache/', fig.align='center', fig.width=5, fig.height=5, fig.show='hold', par=TRUE, cache=TRUE, concordance=TRUE, autodep=TRUE)
+if(!"Body" %in% list.files()){
+  opts_chunk$set(fig.path='Figure/LitReview/fig-', cache.path='cache/', fig.align='center', fig.width=5, fig.height=5, fig.show='hold', par=TRUE, cache=TRUE, concordance=TRUE, autodep=TRUE, root.dir="../")
   datadir <- "Data/LitReview/"
   imgdir <- "Figure/LitReview/"
   codedir <- "Code/LitReview/"
 } else {
-  opts_chunk$set(fig.path='Figure/LitReview/fig-', cache.path='cache/', fig.align='center', fig.width=5, fig.height=5, fig.show='hold', par=TRUE, cache=TRUE, concordance=TRUE, autodep=TRUE, root.dir="../")
+  opts_chunk$set(fig.path='Figure/LitReview/fig-', cache.path='cache/', fig.align='center', fig.width=5, fig.height=5, fig.show='hold', par=TRUE, cache=TRUE, concordance=TRUE, autodep=TRUE)
   datadir <- "Data/LitReview/"
   imgdir <- "Figure/LitReview/"
   codedir <- "Code/LitReview/"

@@ -18,16 +18,16 @@ library(magrittr)
 library(extrafont)
 library(knitr)
 
-if("Body" %in% list.files()){
-  opts_chunk$set(fig.path='Figure/VisualAptitude/fig-', cache.path='cache/', fig.align='center', fig.width=5, fig.height=5, fig.show='hold', par=TRUE, cache=TRUE, concordance=TRUE, autodep=TRUE, dev="CairoPDF")
-  datadir <- "./Data/VisualAptitude/"
-  imgdir <- "./Figure/VisualAptitude/"
-  codedir <- "./Code/VisualAptitude/"
-} else {
-  opts_chunk$set(fig.path='../Figure/VisualAptitude/fig-', cache.path='cache/', fig.align='center', fig.width=5, fig.height=5, fig.show='hold', par=TRUE, cache=TRUE, concordance=TRUE, autodep=TRUE, root.dir="../", dev="CairoPDF")
+if(!"Body" %in% list.files()){
+  opts_chunk$set(fig.path='Figure/VisualAptitude/fig-', cache.path='cache/', fig.align='center', fig.width=5, fig.height=5, fig.show='hold', par=TRUE, cache=TRUE, concordance=TRUE, autodep=TRUE, root.dir="../", dev="CairoPDF")
   datadir <- "../Data/VisualAptitude/"
   imgdir <- "../Figure/VisualAptitude/"
   codedir <- "../Code/VisualAptitude/"
+} else {
+  opts_chunk$set(fig.path='Figure/VisualAptitude/fig-', cache.path='cache/', fig.align='center', fig.width=5, fig.height=5, fig.show='hold', par=TRUE, cache=TRUE, concordance=TRUE, autodep=TRUE, dev="CairoPDF")
+  datadir <- "Data/VisualAptitude/"
+  imgdir <- "Figure/VisualAptitude/"
+  codedir <- "Code/VisualAptitude/"
 }
 options(replace.assign=TRUE,width=70,scipen=3)
 

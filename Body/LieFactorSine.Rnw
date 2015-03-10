@@ -15,16 +15,16 @@ require(knitr)
 
 rm(list=ls())
 wd <- getwd()
-if("Body" %in% list.files()){
+if(!"Body" %in% list.files()){
+  opts_chunk$set(fig.path='Figure/lieFactorSine/fig-', cache.path='cache/', fig.align='center', fig.width=5, fig.height=5, fig.show='hold', par=TRUE, cache=TRUE, concordance=TRUE, autodep=TRUE, root.dir="../")
+  datadir <- "../Data/lieFactorSine/"
+  imgdir <- "../Figure/lieFactorSine/"
+  codedir <- "../Code/lieFactorSine/"
+} else {
   opts_chunk$set(fig.path='Figure/lieFactorSine/fig-', cache.path='cache/', fig.align='center', fig.width=5, fig.height=5, fig.show='hold', par=TRUE, cache=TRUE, concordance=TRUE, autodep=TRUE)
   datadir <- "Data/lieFactorSine/"
   imgdir <- "Figure/lieFactorSine/"
   codedir <- "Code/lieFactorSine/"
-} else {
-  opts_chunk$set(fig.path='../Figure/lieFactorSine/fig-', cache.path='cache/', fig.align='center', fig.width=5, fig.height=5, fig.show='hold', par=TRUE, cache=TRUE, concordance=TRUE, autodep=TRUE, root.dir="../")
-  datadir <- "../Data/lieFactorSine/"
-  imgdir <- "../Figure/lieFactorSine/"
-  codedir <- "../Code/lieFactorSine/"
 }
 
 library(ggplot2)
