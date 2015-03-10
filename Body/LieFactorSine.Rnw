@@ -192,15 +192,14 @@ A correction factor which focuses on correcting the psychological distortion cau
 \end{equation}
 
 A value of $w=0$ indicates that there is no correction, and a value of $w=1$ indicates that the graph is fully corrected.
-\newtext{Extending this approach, we can over-correct or under-correct the graph, to test whether the geometric derivation of the correction is sufficient to remove the illusion. The lie factor can then be determined by varying $w$, so that the lie factor of the plot selected so that the lines appear to be ``even" indicates the level of psychological distortion (since lines which are in fact not even but appear to be even would indicate that some distortion occurred within the brain). An example of the correction's effect and various weight factors can be seen in figures~\ref{fig:sinestimuli} and \ref{fig:sinestimulinotrend}. }
+Extending this approach, we can over-correct or under-correct the graph, to test whether the geometric derivation of the correction is sufficient to remove the illusion. The lie factor can then be determined by varying $w$, so that the lie factor of the plot selected so that the lines appear to be ``even" indicates the level of psychological distortion (since lines which are in fact not even but appear to be even would indicate that some distortion occurred within the brain). An example of the correction's effect and various weight factors can be seen in figures~\ref{fig:sinestimuli} and \ref{fig:sinestimulinotrend}. 
 
-\comment{Might need to add a picture demonstrating the correction and original figure side-by-side...?}
+% \comment{Might need to add a picture demonstrating the correction and original figure side-by-side...?}
 
 In order to estimate the psychological lie factor that occurs due to this illusion, we assessed the strength of the illusion experimentally. 
 
 \subsection{Study Design}
-\newtext{
-The study was designed as a factorial exploration of the factors that contribute to the psychological distortion. We varied the underlying mean function of the stimuli, as well as the strength of the correction described in equation \ref{eqn:correction}.}
+The study was designed as a factorial exploration of the factors that contribute to the psychological distortion. We varied the underlying mean function of the stimuli, as well as the strength of the correction described in equation \ref{eqn:correction}.
 
 
 \begin{figure}
