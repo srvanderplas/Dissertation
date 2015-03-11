@@ -55,10 +55,9 @@
 \newcommand{\Sexpr}[1]{}       % will only be parsed by R
 
 
-\usepackage{graphicx}
 %---------------------------------------------------
 \usepackage{color}
-\usepackage[dvipsnames,svgnames]{xcolor}
+\usepackage[dvipsnames,svgnames,table]{xcolor}
 \usepackage{wrapfig,float}
 \usepackage{caption}
 \usepackage{subcaption}
@@ -72,6 +71,10 @@
 \usepackage{multirow}
 \usepackage{bbm}
 \usepackage[colorinlistoftodos]{todonotes}
+\usepackage{rotating}
+\usepackage[referable]{threeparttablex}
+\usepackage{footnote} % table footnotes
+\usepackage{multicol}
 %---------------------------------------------------
 
 % Standard, old-style thesis
@@ -87,13 +90,20 @@
 \usepackage[pdftex,hypertexnames=false,linktocpage=true]{hyperref}
 \hypersetup{colorlinks=true,linkcolor=blue,anchorcolor=blue,citecolor=blue,filecolor=blue,urlcolor=blue,bookmarksnumbered=true,pdfview=FitB}
 
+\newcommand{\done}[2][inline]{\todo[color=SpringGreen, #1]{#2}}  % for todos that have been seen and dealt with
+\newcommand{\meh}[2][inline]{\todo[color=White, #1]{#2}}   % for todos that may no longer be relevant 
+\newcommand{\comment}[2][inline]{\todo[color=SkyBlue, #1]{#2}} % for comments that may not be "to-do"s
+\newcommand{\mcomment}[1]{\todo[color=SkyBlue]{#1}} % for margin comments
+
+\newcommand{\newtext}[1]{\todo[inline, color=White]{ \color{OliveGreen}{#1}}} % new text - not necessarily something to be done
+
+\newcommand{\move}[1]{\todo[inline, color=Lime]{#1}} % new to do item
+
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{algorithm}[theorem]{Algorithm}
+
 %---------------------------------------------------
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning: /home/susan/Documents/R Projects/Dissertation/Body}}\end{kframe}
-\end{knitrout}
 
 
 
@@ -107,14 +117,6 @@
 \newcommand{\atan}[1]{\text{atan}\left({#1}\right)}
 \newcommand{\xR}{\mathbb{R}}
 
-\newcommand{\done}[2][inline]{\todo[color=SpringGreen, #1]{#2}}  % for todos that have been seen and dealt with
-\newcommand{\meh}[2][inline]{\todo[color=White, #1]{#2}}   % for todos that may no longer be relevant 
-\newcommand{\comment}[2][inline]{\todo[color=SkyBlue, #1]{#2}} % for comments that may not be "to-do"s
-\newcommand{\mcomment}[1]{\todo[color=SkyBlue]{#1}} % for margin comments
-
-\newcommand{\newtext}[1]{\todo[inline, color=White]{ \color{OliveGreen}{#1}}} % new text - not necessarily something to be done
-\newcommand{\newdo}[1]{\todo[inline, color=Plum]{#1}} % new to do item
-\newcommand{\move}[1]{\todo[inline, color=Lime]{#1}} % new to do item
 
 
 
@@ -122,15 +124,13 @@
 
 
 
-
-\chapter{Signs of the Sine Illusion -- why we need to care}
+\chapter{SIGNS OF THE SINE ILLUSION -- WHY WE NEED TO CARE}\label{SineIllusionChapter}\label{sineillusion}
 %% Abstract
 % Graphical representations have to be true to the data they display. Computational tools ensure this on a technical level. But we also need to take `flaws' of the human perceptual system into account. The sine illusion provides an example where human perception leads to systematic bias in the assessment of the optical stimulus, with a particularly notable impact on perception of time-series data with a seasonal component. In this paper, we discuss the reasons for the illusion and various strategies  useful to break the illusion or reduce its strength. We demonstrate the presence of the illusion in real-world and theoretical situations. We also present data from a user study which demonstrate the dramatic effect the sine illusion can have on conclusions drawn from displayed data.
-
+\noindent\hfil\textit{Accepted to the Journal of Computational and Graphical Statistics, July 2014}\hfil
 
 \section{Introduction}
 Graphics are powerful tools for summarizing large or complex data, but they rely on the main premise that any graphical representation of the data has to be ``true'' to the data (see e.g. \citet{tufte, wainer:2000, robbins:2005}). That is, a measurable quantity of a graphical element in the representation has to  directly reflect some aspect of the underlying data. Generally, we see a lot of discussion on keeping true to the data in the framework of (ab)using three dimensional effects in graphics. \cite{tufte} goes as far as defining a {\it lie-factor} of a chart as the ratio of the size of an effect in the data compared to the size of an effect shown, with the premise that any large deviations from one indicate a misuse of graphical techniques. Computational tools help us ensure technical trueness -- but this brings up the additional question of how we deal with situations that involve innate inability or trigger learned misperceptions in the audience. In this paper we want to raise awareness for one of these situations, show that it occurs frequently in our dealings with graphics and provide a set of strategies for solving or avoiding it.
-
 
 
 
@@ -153,8 +153,7 @@ As a first example let us consider the relationship between ozone concentration 
 
 Figure~\ref{fig:example1} shows daily measurements of 8-hour average ozone concentration and temperature at several sites in Houston, for days in 2011 with temperatures above $45^\circ$F  and dew points of less than $60^\circ$F. 
 A loess smooth line is added for reference. 
-These types of plots are often used to give an overview of the relationship between two variables. The trendline summarizes this relationship, while the points show raw measurement to allow an assessment of the overall size of the data, the amount of (marginal) variability presented, as well as the (conditional) variability along the trendline. It is the latter task that we cannot satisfactorily complete. While
-we might agree that there is an increase in variability of ozone concentrations for temperatures above $80^\circ$F, we will not doubt homogeneity  elsewhere based on figure~\ref{fig:example1}. 
+These types of plots are often used to give an overview of the relationship between two variables. The trendline summarizes this relationship, while the points show raw measurement to allow an assessment of the overall size of the data, the amount of (marginal) variability presented, as well as the (conditional) variability along the trendline. It is the latter task that we cannot satisfactorily complete. While we might agree that there is an increase in variability of ozone concentrations for temperatures above $80^\circ$F, we will not doubt homogeneity  elsewhere based on figure~\ref{fig:example1}. 
 
 
 This evaluation changes when considering figure~\ref{fig:example2}: the scatterplot shows a loess based de-trended residual of temperature. A previously almost invisible increase in variability of ozone measurements with increasing temperatures now becomes apparent.
@@ -168,25 +167,22 @@ In the cognitive literature, \citet{day:1991} first documented the illusion in t
 
 
 
-
-
 \begin{figure}[hbtp]
 \centering
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 
-{\centering \includegraphics[width=.4\textwidth]{../Figure/sineIllusion/fig-original} 
+{\centering \includegraphics[width=.4\textwidth]{Figure/sineIllusion/fig-original-1} 
 
 }
 
 
 
 \end{knitrout}
-
 \caption[The original sine illusion]{The original sine illusion, demonstrated on evenly spaced vertical lines centered around a sinusoidal curve of $f(x) = \sin(x)$. The lines in the peak and trough of the curve appear to be longer than in the other regions.\label{fig:original}}
 \end{figure}
 
-More recently the illusion has been shown in non-sinusoidal curves \citep{cleveland:1984, schonlau:2003, robbins:2005, marie:2013}, but the underlying effect seems to be the same, in the sense that the illusion is not triggered by the periodic nature of the underlying trendline but only by  changes to its slope. Figure \ref{fig:twoillusions-simulation} shows three panels, which all exhibit the illusion. From left to right, the trend stems from (a) a periodic function, (b) a periodic component added to an exponential function, and (c) an exponential function on its own.
+More recently the illusion has been shown in non-sinusoidal curves \citep{cleveland:1984, schonlau:2003, robbins:2005, parallelsets}, but the underlying effect seems to be the same, in the sense that the illusion is not triggered by the periodic nature of the underlying trendline but only by  changes to its slope. Figure \ref{fig:twoillusions-simulation} shows three panels, which all exhibit the illusion. From left to right, the trend stems from (a) a periodic function, (b) a periodic component added to an exponential function, and (c) an exponential function on its own.
 While all three graphs seem to show nonconstant variance along the main trend; in reality, it is constant. Clearly, the illusion does not rely on the periodicity of the function for which it was named, but is a symptom of the change in curvature that comes with the periodicity.
 
 \begin{figure}[h!tbp]\centering
@@ -195,14 +191,13 @@ While all three graphs seem to show nonconstant variance along the main trend; i
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 
-{\centering \includegraphics[width=\textwidth]{../Figure/sineIllusion/fig-simulation1Sine} 
+{\centering \includegraphics[width=\textwidth]{Figure/sineIllusion/fig-simulation1Sine-1} 
 
 }
 
 
 
 \end{knitrout}
-
   \caption{\small Seasonality, No Trend}
   \label{simulation1}
 \end{subfigure}
@@ -210,14 +205,13 @@ While all three graphs seem to show nonconstant variance along the main trend; i
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 
-{\centering \includegraphics[width=\textwidth]{../Figure/sineIllusion/fig-simulation1Sine2} 
+{\centering \includegraphics[width=\textwidth]{Figure/sineIllusion/fig-simulation1Sine2-1} 
 
 }
 
 
 
 \end{knitrout}
-
   \caption{\small Seasonality and Trend}
   \label{simulation2}
 \end{subfigure}
@@ -225,14 +219,13 @@ While all three graphs seem to show nonconstant variance along the main trend; i
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 
-{\centering \includegraphics[width=\textwidth]{../Figure/sineIllusion/fig-simulation1Sine3} 
+{\centering \includegraphics[width=\textwidth]{Figure/sineIllusion/fig-simulation1Sine3-1} 
 
 }
 
 
 
 \end{knitrout}
-
   \caption{\small Trend, No Seasonality}
   \label{simulation3}
 \end{subfigure}
@@ -267,7 +260,6 @@ Experience with real-world objects suggests that the stimulus of figure~\ref{fig
 
 \begin{figure}[h!tbp]\centering
 
-
 \begin{subfigure}[t]{.49\textwidth}\centering
 \includegraphics[width=\textwidth, keepaspectratio=TRUE, trim=0in 1.5in 0in 1.5in]{fig-ribbon-illusion1}
 \caption{Perspective plot of sine illusion\label{ribbon1}}
@@ -278,7 +270,6 @@ Experience with real-world objects suggests that the stimulus of figure~\ref{fig
 \end{subfigure}
 \caption[Three-dimensional origins of the sine illusion]{Two different perspective projections of the same data responsible for the sine illusion. The first projection angles the lines and appears more natural, but the second projection suggests that the lines do not need to be angled to create the same three-dimensional impression.\label{ribbon}}
 \end{figure}
-
 
 
 
@@ -308,7 +299,6 @@ Considering only two line segments at a time resolves the illusion. The bold lin
 In figure~\ref{fig:original} we have seen that the our preference in evaluating line width is to assess {\it orthogonal} width rather than the difference along the vertical axis. 
 Figure~\ref{fig:OrthogonalWidth} demonstrates the change in orthogonal width as the slope of the line tangent to the graph of $f$ changes; these changes correspond to our perception of apparent line length. 
 
-
 \begin{figure}[h!tbp]
 \includegraphics[width=.9\textwidth, keepaspectratio=TRUE]{fig-transform-illustration}
 \centering
@@ -318,7 +308,6 @@ Figure~\ref{fig:OrthogonalWidth} demonstrates the change in orthogonal width as 
 %Secants and vertical lines are both shown  in figure~\ref{fig:OrthogonalWidth}. 
 The illusion is most pronounced in regions where the angle between the orthogonal  and the vertical line is large. Changes to the aspect ratio therefore have a major impact on the strength of the sine illusion. Any change that alleviates the difference between perceived width and the perpendicular width, such as banking to 45$^\circ$ \citep{cleveland:88}, will alleviate the effect but not completely overcome it. 
 The perceived length of the vertical line changes with the angle of the line perpendicular to the slope of $\sin(x)$, suggesting that the sine illusion stems from a conflict between the visual system's perception of figure width and the mathematical judgement necessary to determine the length of the vertical lines. 
-
 
 
 
@@ -350,7 +339,6 @@ Once the residuals are separated from the trendline as shown on the right hand s
  
 While the illusion is not apparent when trend line and variability in the  residual structure are shown separately, the separation 
 makes it  more difficult to evaluate the overall  pattern in the data, as we  must base any judgment on two charts; either by combining information from two graphs or by mentally re-composing the original graph (at which point, the sine illusion becomes a factor). To minimize cognitive demands we ideally want to tell the whole story with a single graph, in particular because in many situations we may not be able to show multiple graphs. 
-
 
 
 \begin{figure} \hfill
@@ -452,7 +440,6 @@ Results from this transformation are demonstrated in Figure \ref{fig:xtrans1}.
  
 
 
-
 \begin{figure}[h!tbp]\centering
 \begin{subfigure}[b]{.45\textwidth}\centering 
 \includegraphics[keepaspectratio=TRUE,width=\textwidth]{fig-xtransform1}
@@ -485,7 +472,7 @@ For that we introduce a shrinkage factor $w \in (0,1)$ that allows a weighted ap
 (f \circ T_w)(x) = (1-w) \cdot x + w \cdot (f \circ T)(x)
 \end{equation}
 %
-Note that for $w=1$ the $x$-transformation is completely warped, while smaller values of $w$ indicate a less severe adjustment against the sine illusion.  Under  weaker transformation,s the data more closely reflect the original function $f(x)$. 
+Note that for $w=1$ the $x$-transformation is completely warped, while smaller values of $w$ indicate a less severe adjustment against the sine illusion.  Under  weaker transformations, the data more closely reflect the original function $f(x)$. 
 Figures \ref{fig:xtrans2} - \ref{fig:xtrans4} show the effect of different shrinkage coefficients $w$. As $w$ decreases, the lines become more evenly spaced and the illusion begins to return. 
 
 The extent  to which we can shrink the adjustment back to the original function  varies with the aspect ratio of the chart and the shape of the function. It might also be influenced by the audience's experience with the sine illusion, resulting in very subjective choices of an ``optimal weighting" for specific situations which minimizes distortion and maximizes the correspondence between inferences made from the data and inferences made using the visual display.
@@ -493,7 +480,6 @@ The extent  to which we can shrink the adjustment back to the original function 
 
 Note, that we only make use of the transformation $T$ in the form of $f \circ T$. This allows us to avoid an explicit calculation of the transformation $T$, which in particular  involves a computation of the inverse of $f$ leading to potentially computation-intense solutions. 
 \subsubsection{X Transformation Demonstration}
-
 
 
 In the example of the Ozone data shown in figure \ref{fig:exampleFull1}, we can base a transformation of the $x$-axis on a loess fit of ozone concentration in daily temperature. Loess is particularly convenient for this transformation, as it enforces continuity conditions including differentiability of the fitted function; software allows us to obtain fits of both the function values and their derivatives.
@@ -515,7 +501,6 @@ Figure \ref{fig:xtrans-example} shows the original data side-by-side with the tr
 
 \subsection{Transformation in $Y$}
 Understanding the geometry of the sine illusion leads to another approach to counteracting  the conflict between the orthogonal width and the vertical length of the segment. 
-
 
 
 Let again the function $f$ describe the general relationship between variables $X$ and $Y$. 
@@ -561,7 +546,6 @@ In the following two sections we make use of Taylor approximations of first and 
 
 
 
-
 \begin{figure}[h!]\centering
 \begin{subfigure}[t]{0.4\textwidth}\centering
 \includegraphics[keepaspectratio=TRUE,width=0.9\textwidth]{fig-generalcorrectioncartoon2}
@@ -580,7 +564,7 @@ For the linear approximation we make use of $f(x) \approx f(x_0) + (x - x_0) f^\
 \ell_{\text{new}}(x_0) = \ell_{\text{old}} \sqrt{1 +  f^\prime(x_0)^2}.
 \]
 
-Note that the linear method gives the same result as a varying slope extension from a trigonometric approach  suggested by \citet{schonlau:2003} and used in \citet{marie:2013}
+Note that the linear method gives the same result as a varying slope extension from a trigonometric approach  suggested by \citet{schonlau:2003} and used in \citet{parallelsets}.
 
 A second-order Taylor polynomial approximation to $f(x)$ additionally accounts for the asymmetry in the extant widths on either side of the center trendline.
 
@@ -629,42 +613,39 @@ This gives the results as shown in equations (\ref{eqn.q1}) and (\ref{eqn.q2})
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 
-{\centering \includegraphics[width=\textwidth]{../Figure/sineIllusion/fig-UncorRresults} 
+{\centering \includegraphics[width=\textwidth]{Figure/sineIllusion/fig-UncorRresults-1} 
 
 }
 
 
 
 \end{knitrout}
-
 \caption{Uncorrected}
 \end{subfigure}
 \begin{subfigure}[b]{.32\textwidth}\centering
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 
-{\centering \includegraphics[width=\textwidth]{../Figure/sineIllusion/fig-LinearResults} 
+{\centering \includegraphics[width=\textwidth]{Figure/sineIllusion/fig-LinearResults-1} 
 
 }
 
 
 
 \end{knitrout}
-
 \caption{Linear correction}
 \end{subfigure}
 \begin{subfigure}[b]{.32\textwidth}\centering
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 
-{\centering \includegraphics[width=\textwidth]{../Figure/sineIllusion/fig-CtsAdjustedResults} 
+{\centering \includegraphics[width=\textwidth]{Figure/sineIllusion/fig-CtsAdjustedResults-1} 
 
 }
 
 
 
 \end{knitrout}
-
 \caption{Quadratic correction}
 \end{subfigure}
 \caption[Quadratic Approximation]{
@@ -676,7 +657,6 @@ Adjusting the top and bottom segments of the vertical lines separately so that t
 
 Figure~\ref{fig:GeneralQuadraticCorrection} shows the correction factor based on a quadratic approximation compared to the untransformed data. 
 Unlike the linear solution, the half-segments here are not necessarily of the same length, and thus there are separate correction factors for each half-segment. 
-
 
 
 \subsubsection{Mathematical Properties of the Y Transformation}
@@ -716,7 +696,6 @@ We deployed the applet to participants recruited online, collecting their respon
 
 
 
-
 \subsection{Study Design}
 The study aims to determine the range of ``optimal'' transformation weights for each transformation type. Psychophysics methodology typically approaches threshold estimation by using the method of adjustment \citep{goldstein}, where  stimuli are provided showing states both above and below the hypothesized optimal value and  participants adjust the stimuli until the stated goal is met (in this case, until the lines appear to have equal length). It is expected that there will be a difference in user-reported values from below and from above, and these values are typically averaged to produce a single threshold value. Beyond averaging these values, we use a mixed model to compare user responses for different starting points in a more continuous fashion, incorporating some of the advantages of the method of constant stimuli to more robustly estimate the range of optimal transformation weights. For a review of general psychophysics methodology, the method of adjustment, and the method of constant stimuli, see \citet{goldstein}.
 
@@ -737,12 +716,9 @@ Each participant is provided with two initial ``training'' trials in which the  
 
 
 
-
-
-
 \begin{figure}\centering
 \includegraphics[keepaspectratio=TRUE,width=.8\textwidth]{fig-overcorrectlimits}
-\caption[ Overcorrected transformations excluded from the analysis]{Transformation weights outside of the intervals $[-2.5, 3.5]$ for $y$ and $[-2, 2]$ for $x$  produce figures which do not maintain the underlying function shape (in $x$) or which are composed of extremely uneven length lines (in $y$). Trials with final results that were more extreme than these examples were excluded from the analysis.}
+\caption[ Overcorrected transformations excluded from the analysis]{Transformation weights outside of the intervals $[\ensuremath{-2.5}, 3.5]$ for $y$ and $[\ensuremath{-2}, 2]$ for $x$  produce figures which do not maintain the underlying function shape (in $x$) or which are composed of extremely uneven length lines (in $y$). Trials with final results that were more extreme than these examples were excluded from the analysis.}
 \label{fig:overtransform}
 \end{figure}
 
@@ -755,7 +731,7 @@ As this study was conducted outside a laboratory setting, we can not gauge a par
 \item Participants did not interact with the applet: we required participants to use the adjustment at least once in order to include data for this trial (592 trials removed).
 \item Participants finished fewer than four trials: while participants were asked to complete twelve trials, some did not finish all of those. In order to stabilize predictions of random effects, participants' data were excluded if there were fewer than four trials (78 out of a total of 203 participants).
 \item Out-of-bounds results: weights leading to severely over- or undercorrected results were excluded from the analysis. 
-For trials to adjust $Y$-values, weights outside of [-2.5, 3.5]  show dramatically unequal line lengths; weights from $X$-transformations outside the range of [-2, 2] do not preserve the underlying function shape and concavity. 
+For trials to adjust $Y$-values, weights outside of [\ensuremath{-2.5}, 3.5]  show dramatically unequal line lengths; weights from $X$-transformations outside the range of [\ensuremath{-2}, 2] do not preserve the underlying function shape and concavity. 
 Figure~\ref{fig:overtransform} shows results at the threshold of acceptability. Only more severely distorted results were excluded from the analysis (12 of the $X$ and 5 of the $Y$ trials out of 1227 trials remaining after application of other criteria).
 \end{itemize}
 
@@ -767,17 +743,15 @@ The following analysis is based on the cleaned data, consisting of 125 participa
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 
-{\centering \includegraphics[width=.5\textwidth]{../Figure/sineIllusion/fig-meanDists} 
+{\centering \includegraphics[width=.5\textwidth]{Figure/sineIllusion/fig-meanDists-1} 
 
 }
 
 
 
 \end{knitrout}
-
 \caption[Results from psychophysics analysis]{Estimated density of participant-level means using the standard psychophysics method of limits analysis. The overall means are both near 0.4, however, there is quite a bit of user-level variability.\label{fig:psycho}}
 \end{figure}
-
 
 
 
@@ -802,7 +776,6 @@ We can therefore interpret $\beta$ as the length of the interval of plausible we
 The fitted model parameters are shown in tables \ref{fixedeffectsresults} and \ref{randomeffectsresults}. 
 
 
-
 \begin{table}[htbp]\centering
 \begin{tabular}{cclcc}
   \hline
@@ -814,7 +787,7 @@ X & Lower & $\alpha_X$ & 0.097 & (0.045, 0.150) \\
    & Upper& $\alpha_Y + \beta$  & 0.671 & (0.626, 0.718) \\ 
    \hline
 \end{tabular}
-\caption[Fixed Effects]{Fixed effect estimates of model~(\ref{model1}) for the boundaries for reasonable weights. In parentheses,  95\% parametric bootstrap confidence intervals are given based on model (\ref{model1}) ($N$=1000).}\label{fixedeffectsresults}
+\caption[Sine Illusion Model: Fixed Effects]{Fixed effect estimates of model~(\ref{model1}) for the boundaries for reasonable weights. In parentheses,  95\% parametric bootstrap confidence intervals are given based on model (\ref{model1}) ($N$=1000).}\label{fixedeffectsresults}
 \end{table}
 \begin{table}[hbtp]\centering
 \begin{tabular}{rcccc}
@@ -826,15 +799,15 @@ Groups & Correction & Parameter & Estimate & 95\% C.I. \\
   Residual &  &$\sigma$ &  0.304 & (0.290, 0.317) \\ 
    \hline
 \end{tabular}
-\caption[Random Effects]{Overview of random effects for model~(\ref{model1}), including 95\% confidence intervals based on parameteric boostrap results ($N$=1000).}\label{randomeffectsresults}
+\caption[Sine Illusion Model: Random Effects]{Overview of random effects for model~(\ref{model1}), including 95\% confidence intervals based on parameteric boostrap results ($N$=1000).}\label{randomeffectsresults}
 \end{table}
 
-Table \ref{randomeffectsresults} gives an overview of the variance estimates. 95\% confidence intervals are, based on 1000-fold paramteric bootstrap of model~\ref{model1}. All variance components are significant and relevant; variability within a single individual's trials is about half the size of variability across  participants. 
+Table \ref{randomeffectsresults} gives an overview of the variance estimates. 95\% confidence intervals are, based on 1000-fold parametric bootstrap of model~\ref{model1}. All variance components are significant and relevant; variability within a single individual's trials is about half the size of variability across  participants. 
 
 We use parametric bootstrap to generate responses for each correction type and each participant from the model, which we use to both  create user-level densities, population-level densities, and bootstrap intervals for model parameters. 
 
 
-The variability of the random effects for each trial type is similar; but the model benefits significantly from allowing separate random effects for individual's variability by correction type (0.1452 and 0.1705 for $Y$ and $X$ transformations, respectively, as opposed to 0.3044 for the overall variability). The interaction between starting weight and trial type was not significant, however, and was thus removed from the model ($p$-value = 0.901).
+The variability of the random effects for each trial type is similar; but the model benefits significantly from allowing separate random effects for individual's variability by correction type (0.1452394 and 0.1705474 for $Y$ and $X$ transformations, respectively, as opposed to 0.3044344 for the overall variability). The interaction between starting weight and trial type was not significant, however, and was thus removed from the model ($p$-value = 0.9009749).
 
 \begin{figure}[hbtp]
 \centering
@@ -850,40 +823,35 @@ Bootstrap simulations for each of the coefficients suggest that the range of opt
 \section{Application: US Gas Prices}
 Figure~\ref{fig:gasprices} shows daily gas prices for a time frame between 1995 to 2014 as published in the Energy Information Administration's historical database of gas prices \citep{EIA}. This data includes prices for all three grades of gasoline as well as two chemical formulations which are sold in different geographic areas across the United States (for more information, see \citep{EIA-reformulated}). 
 
-
 \begin{figure}[h!tbp]
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 
-{\centering \includegraphics[width=.98\textwidth]{../Figure/sineIllusion/fig-gasprices-pictures} 
+{\centering \includegraphics[width=.98\textwidth]{Figure/sineIllusion/fig-gasprices-pictures-1} 
 
 }
 
 
 
 \end{knitrout}
-
 \caption[US Gas prices from 1995 to 2014]{US Gas prices from 1995 to 2014. Gas prices steadily increase over the time frame, with some dramatic short-term developments. Peaks and troughs seem to exhibit more variability in daily prices than times of dramatic changes. This is an effect of the sine-illusion, which hides a fairly steady increase in variance in daily gas prices over time.}\label{fig:gasprices}
 \end{figure}
 \begin{figure}\centering
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 
-{\centering \includegraphics[width=.7\textwidth]{../Figure/sineIllusion/fig-gaspricevariance} 
+{\centering \includegraphics[width=.7\textwidth]{Figure/sineIllusion/fig-gaspricevariance-1} 
 
 }
 
 
 
 \end{knitrout}
-
 \caption[Standard deviation of daily gas prices between 1995 and 2014. ]{Standard deviation of daily gas prices between 1995 and 2014. The doubling of the standard deviation over the time frame is masked in figure \ref{fig:gasprices}.\label{fig:gasvariance}}
 \end{figure}
 There is a clear increase in daily gas prices over time as well as several dramatic price changes. These developments mask the steady increase in variance shown in figure~\ref{fig:gasvariance}. Instead, we perceive an increase in variability in the frequent ups and downs along the overall trend. In particular, the strong decrease in gas prices at the end of 2008 seems to be associated with a low variance. This is an effect of the sine illusion, and the actual variability in Oct 2008 is higher than previous months. In order to better judge variability along the trendline we applied the two different corrections to this data. 
 
 For either of the corrections we use a trendline fit based on smoothing splines, which provides the necessary first and second derivatives.
-
-
 
 
 
@@ -917,4 +885,5 @@ Our primary goal is to raise awareness of the illusion and its implications for 
 
 The data for this study was collected with approval from  IRB-ID 13-257.
 
+\bibliographystyle{apa}
 \end{document}

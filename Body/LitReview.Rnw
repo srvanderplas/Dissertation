@@ -42,7 +42,7 @@ The eye is a complex apparatus, but for our purposes, the most important compone
 
 \begin{figure}
 \centering
-\includegraphics[width=.8\textwidth, keepaspectratio=TRUE]{Retina}
+\includegraphics[width=.8\linewidth, keepaspectratio=TRUE]{Retina}
 \caption[The human eye, with closeup of receptor cells in the retina]{The human eye, with closeup of receptor cells in the retina (image from \protect\citealt{goldstein}, chap 3.1).} \label{fig:retina}
 \end{figure}
 
@@ -64,7 +64,7 @@ Another important region of the retina is the blindspot, the area where the opti
 Figure \ref{fig:ColorRange} shows the responsiveness of rods and each of the three types of cones to wavelengths of light in the visual spectrum. This image suggests that we have relatively good visual discrimination of the yellow-green portion of the color spectrum, but relatively poor discrimination of colors in the red and blue portions of the color spectrum. 
 
 \begin{figure}[htbp]\centering
-\includegraphics[width=.6\textwidth, keepaspectratio=TRUE]{AbsorptionSpectra}
+\includegraphics[width=.6\linewidth, keepaspectratio=TRUE]{AbsorptionSpectra}
 \caption[Absorption spectra of retinal cells]{Absorption spectra of rods and short, medium, and long wave cones. (image from \protect\citealt{goldstein}, chap 3.3).} \label{fig:ColorRange}
 \end{figure}
 
@@ -75,14 +75,14 @@ Once light hits the retina and causes a signal in the receptor cells, the inform
 
 \begin{figure}
 \centering
-\begin{subfigure}[b]{.45\textwidth}
+\begin{subfigure}[b]{.45\linewidth}
   \centering
-  \includegraphics[width=\textwidth]{HermannGrid}
+  \includegraphics[width=\linewidth]{HermannGrid}
   \caption{\small Hermann Grid Illusion \label{fig:hermanngrid}}
 \end{subfigure}\hfill
-\begin{subfigure}[b]{.45\textwidth}
+\begin{subfigure}[b]{.45\linewidth}
   \centering
-  \includegraphics[width=\textwidth]{MachBands}
+  \includegraphics[width=\linewidth]{MachBands}
   \caption{\small Mach Bands. 
   \label{fig:machbands}}
 \end{subfigure}
@@ -101,7 +101,7 @@ Selective attention is accomplished by focusing the fovea (the area with the hig
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=.5\textwidth]{SaccadesText}
+\includegraphics[width=.5\linewidth]{SaccadesText}
 \caption[Saccades and Pauses]{A plot of saccades made while reading text. Saccades, shown by the lines, indicate ``jumps", while pauses are shown by circles, with size proportional to the time spent focusing on that area.}\label{fig:saccadestext}
 \end{figure}
 
@@ -134,7 +134,7 @@ The most commonly cited set of heuristics for object perception (and the set mos
 \end{itemize}
 
 \begin{figure}[htbp]\centering
-\includegraphics[width=.9\textwidth]{gestalt}
+\includegraphics[width=.9\linewidth]{gestalt}
 \caption[The gestalt laws of perception]{The gestalt laws of perception \protect\footnotemark}\label{fig:gestaltlaws}
 \end{figure}
 \protect\footnotetext{From \url{http://yusylvia.files.wordpress.com/2010/03/gestalt_illustration-01.jpg}}
@@ -144,7 +144,7 @@ Figure \ref{fig:gestaltlaws} shows examples of many of the gestalt laws, which w
 We have discussed how visual stimuli are perceived and how objects are recognized; we now must examine how visual stimuli are encoded into memory. Most researchers believe that visual perceptions are encoded in an analog fashion, so that the memory of an image is closely related to the perception of that same image \citep{cognition}. Other theories suggest that visual perceptions are encoded semantically, that is, the description of a visual scene would be encoded, rather than a mental ``image" of that scene. Both theories are likely at least partially correct, but the analog encoding of visual images is more relevant to statistical graphics because the accuracy of the stored image has the potential to affect recall of the contents of that image (and thus what people remember about a particular graphic). Experimental evidence for analog encoding includes the mental rotation task, where participants must determine whether or not a figure is a rotation of a target figure, as shown in figure \ref{fig:mentalRotation}. \citet{shepard1988mental} showed that reaction time was proportional to the angle of rotation of the stimuli, which suggests that participants were mentally rotating the figure as they would rotate a three-dimensional figure in space. 
 
 \begin{figure}[htbp]\centering
-\includegraphics[width=.7\textwidth]{RotationTask}
+\includegraphics[width=.7\linewidth]{RotationTask}
 \caption[Rotation Task]{Rotation task \protect\citep{shepard1988mental}. Are the two images the same?}\label{fig:mentalRotation}
 \end{figure}
 
@@ -153,7 +153,7 @@ In addition, \citet{kosslyn1978visual} showed that mental representation of dist
 Another facet of visual memory that will be important to understanding perception and memory of statistical graphics is that the ``gist" of an image is stored along with the image. In these cases, recall ability is more consistent with the semantic encoding of images; that is, when shown an ambiguous figure and immediately asked for a description, participants could not give an alternate interpretation of the figure after the experiment was complete. In the case of  figure \ref{fig:ambiguousrabbit}, participants who initially said the figure was a duck did not report having viewed a picture of a rabbit after the experiment, even though the image is consistent with either interpretation. This suggests that in some cases, verbal encoding of a figure (i.e. describing it as a duck) disrupts the mental representation of the picture. This is common in other types of memories as well: when the gist of a passage is stored, the actual content of the passage is no longer accessible. In other words, we would expect that if someone had to interpret a graph, they would remember the interpretation much more strongly than the actual graph, even if that interpretation was incorrect or incomplete. 
 
 \begin{figure}[htbp]\centering
-\includegraphics[width=.4\textwidth]{DuckRabbitIllusion}
+\includegraphics[width=.4\linewidth]{DuckRabbitIllusion}
 \caption[Ambiguous Images]{An ambiguous image that could be either a rabbit or a duck. When participants were asked to identify the image initially, they could not provide an alternate interpretation of the figure later.}\label{fig:ambiguousrabbit}
 \end{figure}
 
@@ -173,39 +173,39 @@ Another common ``bug" in the visual system are mutations that change (or remove 
 % Figure \ref{fig:USflag} shows the United States flag as seen by those with different types of color-blindness; the red and blue hues look radically different to those with different mutations. 
 % 
 % \begin{figure}[htbp]\centering
-% \includegraphics[width=.3\textwidth]{USflagColorBlind}
+% \includegraphics[width=.3\linewidth]{USflagColorBlind}
 % \caption[Colorblindness and US Flags]{An 1895 illustration of the US flag as seen by those with different types of colorblindness.}\label{fig:USflag}
 % \end{figure}
 % 
 
 \begin{figure}[!htbp]\centering
-\begin{minipage}[c]{.24\textwidth}
-  \includegraphics[width=\textwidth]{RainbowScaleOrig}
+\begin{minipage}[c]{.24\linewidth}
+  \includegraphics[width=\linewidth]{RainbowScaleOrig}
 \end{minipage}
-\begin{minipage}[c]{.75\textwidth}
-\hfil\begin{subfigure}[b]{.32\textwidth}\centering
-  \includegraphics[width=\textwidth]{RainbowScaleOrig-protanopia}
+\begin{minipage}[c]{.75\linewidth}
+\hfil\begin{subfigure}[b]{.32\linewidth}\centering
+  \includegraphics[width=\linewidth]{RainbowScaleOrig-protanopia}
   \caption{Protanopia}
 \end{subfigure}
-\hfil\begin{subfigure}[b]{.32\textwidth}\centering
-  \includegraphics[width=\textwidth]{RainbowScaleOrig-deuteranopia}
+\hfil\begin{subfigure}[b]{.32\linewidth}\centering
+  \includegraphics[width=\linewidth]{RainbowScaleOrig-deuteranopia}
   \caption{Deuteranopia}
 \end{subfigure}\hfil
-\begin{subfigure}[b]{.32\textwidth}\centering
-  \includegraphics[width=\textwidth]{RainbowScaleOrig-tritanopia}
+\begin{subfigure}[b]{.32\linewidth}\centering
+  \includegraphics[width=\linewidth]{RainbowScaleOrig-tritanopia}
   \caption{Tritanopia}
 \end{subfigure}
 
-\hfil\begin{subfigure}[b]{.32\textwidth}\centering
-  \includegraphics[width=\textwidth]{RainbowScaleOrig-protanomaly}
+\hfil\begin{subfigure}[b]{.32\linewidth}\centering
+  \includegraphics[width=\linewidth]{RainbowScaleOrig-protanomaly}
   \caption{Protanomaly}
 \end{subfigure}\hfil
-\begin{subfigure}[b]{.32\textwidth}\centering
-  \includegraphics[width=\textwidth]{RainbowScaleOrig-deuteranomaly}
+\begin{subfigure}[b]{.32\linewidth}\centering
+  \includegraphics[width=\linewidth]{RainbowScaleOrig-deuteranomaly}
   \caption{Deuteranomaly}
 \end{subfigure}\hfil
-\begin{subfigure}[b]{.32\textwidth}\centering
-  \includegraphics[width=\textwidth]{RainbowScaleOrig-tritanomaly}
+\begin{subfigure}[b]{.32\linewidth}\centering
+  \includegraphics[width=\linewidth]{RainbowScaleOrig-tritanomaly}
   \caption{Tritanomaly}
 \end{subfigure}\hfil
 \end{minipage}
@@ -227,12 +227,12 @@ The ``software" programs presented in section \ref{Software} are generally effic
 
 \begin{figure}[htbp]\centering
 \hfil
-\begin{subfigure}[b]{.4\textwidth}\centering\vspace{.5cm}
-  \includegraphics[width=\textwidth]{FigureVase}\vspace{1cm}
+\begin{subfigure}[b]{.4\linewidth}\centering\vspace{.5cm}
+  \includegraphics[width=\linewidth]{FigureVase}\vspace{1cm}
   \caption{Figure-Ground Illusion}
 \end{subfigure}\hfill
-\begin{subfigure}[b]{.4\textwidth}\centering
-  \includegraphics[width=\textwidth]{IllusoryContour}
+\begin{subfigure}[b]{.4\linewidth}\centering
+  \includegraphics[width=\linewidth]{IllusoryContour}
   \caption{Kanizsa Triangle Illusion}
 \end{subfigure}\hfil
 \caption[Gestalt Illusions]{Illusions due to misapplied or ambiguous Gestalt rules.}\label{fig:GestaltIllusions}
@@ -244,22 +244,22 @@ The figure/ground illusion depends on the color of the top and bottom edges of t
 
 \begin{figure}[htbp]\centering
 \hfil
-\begin{subfigure}[b]{.4\textwidth}\centering
-  \includegraphics[width=\textwidth]{PonzoIllusion}
+\begin{subfigure}[b]{.35\linewidth}\centering
+  \includegraphics[width=\linewidth]{PonzoIllusion}
   \caption{Ponzo Illusion}\label{fig:Ponzo}
 \end{subfigure}\hfill
-\begin{subfigure}[b]{.4\textwidth}\centering
-  \includegraphics[width=\textwidth]{NeckerCube}
+\begin{subfigure}[b]{.35\linewidth}\centering
+  \includegraphics[width=\linewidth]{NeckerCube}
   \caption{Necker Cube}\label{fig:NeckerCube}
 \end{subfigure}\hfil
 
 \hfil
-\begin{subfigure}[b]{.4\textwidth}\centering
-  \includegraphics[width=\textwidth, angle=90]{MullerLyer}
+\begin{subfigure}[b]{.35\linewidth}\centering
+  \includegraphics[width=\linewidth, angle=90]{MullerLyer}
   \caption{Muller-Lyer Illusion}\label{fig:MullerLyer}
 \end{subfigure}\hfill
-\begin{subfigure}[b]{.4\textwidth}\centering
-  \includegraphics[width=\textwidth]{CheckerShadow}
+\begin{subfigure}[b]{.35\linewidth}\centering
+  \includegraphics[width=\linewidth]{CheckerShadow}
   \caption{Color Constancy Illusion}\label{fig:ColorConstancy}
 \end{subfigure}\hfil
 
@@ -268,7 +268,7 @@ The figure/ground illusion depends on the color of the top and bottom edges of t
 Figure \ref{fig:DepthIllusions} contains four of the more interesting optical illusions that result from ambiguous figures that trigger depth cues. The Ponzo illusion (figure \ref{fig:Ponzo}) suggests that the top line is longer than the bottom line, because of the implied convergence of the two vertical lines (to understand the natural scene that produces this illusion, consider railroad tracks converging at the horizon). The Necker Cube, shown in figure \ref{fig:NeckerCube}, can be seen such that the top-right face is closest to the viewer or alternately such that the bottom-left face is closest to the viewer. Due to the ambiguity in the image, it will often seem to "flip" when the viewer temporarily loses focus on the image \citep{gregory1997knowledge}. The Muller-Lyer illusion (figure \ref{fig:MullerLyer}) is generally believed to result from misapplied depth cues as well - the left-most image would occur in nature as the exterior corner of a building, the middle image would occur when viewing an interior corner of the same building, further away from the viewer \citep{ward1977case, gregory1968perceptual, fisher1970experimental}. As a result of the illusion, the middle line appears to be longer than the first or third lines. Figure \ref{fig:mullerlyerhouse} shows the first two parts of the illusion in a context which removes the ambiguity through additional depth cues. The additional cues result in the resolution of the illusion. Finally, the color constancy illusion shown in figure \ref{fig:ColorConstancy} suggests that the square marked A is much darker than the square marked B, even though the two squares are the same color. This illusion results from our experiences with depth and shadows: square B is perceived to be the same color as the lighter-colored squares outside the shadow, while square A is perceived to be the same color as the other dark squares in the tile pattern, regardless of the actual color due to the shadow. 
 
 \begin{figure}[htbp]\centering
-\includegraphics[width=.5\textwidth]{mullerlyerhouse}
+\includegraphics[width=.5\linewidth]{mullerlyerhouse}
 \caption[Muller Lyer Real World Context]{The Muller-Lyer illusion in a non-ambiguous three-dimensional context.}\label{fig:mullerlyerhouse}
 \end{figure}
 
@@ -305,12 +305,12 @@ qplot(data=df, xmin=x, xmax=xend, ymin=y, ymax=y+1, fill=color, geom="rect") +
 
 \begin{figure}[htbp]\centering
 \hfil
-\begin{subfigure}[b]{.4\textwidth}\centering
-  \includegraphics[width=\textwidth]{CafeWall}
+\begin{subfigure}[b]{.4\linewidth}\centering
+  \includegraphics[width=\linewidth]{CafeWall}
   \caption{Original Cafe Wall Illusion}\label{fig:CafeWallOrig}
 \end{subfigure}\hfil
-\begin{subfigure}[b]{.4\textwidth}\centering
-  \includegraphics[width=\textwidth]{fig-cafewall}
+\begin{subfigure}[b]{.4\linewidth}\centering
+  \includegraphics[width=\linewidth]{fig-cafewall}
   \caption{Isoluminant Cafe Wall Illusion}\label{fig:CafeWallIso}
 \end{subfigure}\hfil
 \caption[Cafe Wall Illusion]{The Cafe Wall illusion. The lines between rows of black and white tiles are parallel but appear to be tilted. The second image shows the isoluminant version, which mitigates some of the illusion but does not entirely eliminate the effect.}\label{fig:cafewall}
@@ -385,16 +385,16 @@ qplot(data=data, x=x, y=y, color=factor(color), shape=factor(shape), size=I(5))+
 @
 
 \begin{figure}[htbp]\centering
-\begin{subfigure}[b]{.3\textwidth}\centering
-  \includegraphics[width=\textwidth]{fig-preattentive11}
+\begin{subfigure}[b]{.3\linewidth}\centering
+  \includegraphics[width=\linewidth]{fig-preattentive11}
   \caption{Shape}\label{fig:preattentiveshape}
 \end{subfigure}\hfill
-\begin{subfigure}[b]{.3\textwidth}\centering
-  \includegraphics[width=\textwidth]{fig-preattentive12}
+\begin{subfigure}[b]{.3\linewidth}\centering
+  \includegraphics[width=\linewidth]{fig-preattentive12}
   \caption{Color}\label{fig:preattentivecolor}
 \end{subfigure}\hfill
-\begin{subfigure}[b]{.3\textwidth}\centering
-  \includegraphics[width=\textwidth]{fig-preattentive22}
+\begin{subfigure}[b]{.3\linewidth}\centering
+  \includegraphics[width=\linewidth]{fig-preattentive22}
   \caption{Interference}\label{fig:preattentiveinterference}
 \end{subfigure}
 \caption[Preattentive Features and Interference]{Shape and color are detected preattentively in figures (a) and (b), but interfere in figure (c) so that location of the target in (c) is no longer preattentive.}\label{fig:preattentive}
@@ -427,10 +427,10 @@ qplot(waiting, eruptions, geom="jitter", data=faithful) + xlab("Time Between Eru
 \begin{figure}[htbp]
 \textbf{Question:} What is the relationship between the length of the eruption and the time between eruptions for Old Faithful?
 \begin{center}
-\begin{minipage}[c]{.45\textwidth}
+\begin{minipage}[c]{.45\linewidth}
 \includegraphics[width=\linewidth]{fig-steps}
 \end{minipage}
-\begin{minipage}[c]{.54\textwidth}
+\begin{minipage}[c]{.54\linewidth}
 \textbf{Sample mental steps: }
 {\small
 \begin{enumerate}
@@ -459,12 +459,12 @@ qplot(data=data, x=x, y=y, color=group) + scale_color_brewer(palette="Set1", gui
 @
 
 \begin{figure}[htbp]\centering
-\begin{subfigure}[b]{.45\textwidth}\centering
-  \includegraphics[width=\textwidth]{fig-clustering1}
+\begin{subfigure}[b]{.45\linewidth}\centering
+  \includegraphics[width=\linewidth]{fig-clustering1}
   \caption{Proximity-based grouping}
 \end{subfigure}\hfill
-\begin{subfigure}[b]{.45\textwidth}\centering
-  \includegraphics[width=\textwidth]{fig-clustering2}
+\begin{subfigure}[b]{.45\linewidth}\centering
+  \includegraphics[width=\linewidth]{fig-clustering2}
   \caption{Proximity and Similarity-based grouping}
 \end{subfigure}\hfill
 \caption[Chunking in Graphs]{The utility of chunking in graph perception. Graph (a) could potentially be described as three distinct clusters of points rather than 120 individual points, but it is much easier to draw conclusions from graph (b), which has colored points that clearly show the grouping structure in the data. The second figure would more probably be encoded and described as three groups of 40 points, which serves as a form of mental data compression.}\label{fig:clustering}
@@ -547,7 +547,7 @@ qplot(x=x, y=y, geom="line", linetype='Detection Curve', color='Detection Curve'
 @
 
 \begin{figure}[htbp]\centering
-\includegraphics[width=.5\textwidth]{fig-methodoflimits}
+\includegraphics[width=.5\linewidth]{fig-methodoflimits}
 \caption[The Method of Limits]{Demonstration of the method of limits. In this experiment, three trials were performed, two trials starting from 0 and increasing, and one trial starting at 9.5 and decreasing. The empirical detection threshold is the threshold at which detection occurs 50\% of the time, and is shown in red. }\label{fig:methodoflimits}
 \end{figure}
 
@@ -594,7 +594,7 @@ qplot(data=data, x=start, y=trial, xend=end, yend=trial, geom="segment") +
   
 @
 \begin{figure}[htbp]\centering
-\includegraphics[width=.5\textwidth]{fig-methodofadjustment.pdf}
+\includegraphics[width=.5\linewidth]{fig-methodofadjustment.pdf}
 \caption[The Method of Adjustment]{Demonstration of the method of adjustment. In this experiment, four trials were performed, two trials starting from 0 and increasing, and two trials starting at 10 and decreasing. The empirical detection threshold is the threshold at which detection occurs 50\% of the time, and is shown in red. \label{fig:methodofadjustment}}
 \end{figure}
 
@@ -611,7 +611,7 @@ Many psychological experiments utilize straightforward methods to address hypoth
 \paragraph{Visual Search} Simply put, visual search methods involve presenting a participant with many distractor stimuli and one or more target stimuli, and asking the participant to locate the target stimuli. Time is measured between the initial stimulus presentation and the participant's answer; participant accuracy is also considered in more complicated visual search settings. This procedure allows researchers to measure simple preattentive stimuli and can also be utilized for more complicated tasks that require attention \citep{anderson1983interactive}. One example of a visual search task is shown in figure \ref{fig:visualsearch}; a common preattentive search task is shown in figure \ref{fig:preattentiveinterference}. 
 
 \begin{figure}[htbp]\centering
-\includegraphics[width=.7\textwidth]{VisualSearch}
+\includegraphics[width=.7\linewidth]{VisualSearch}
 \caption[Visual Search Task]{Visual Search Task. Participants were asked to locate the figure (1-24) most similar to the central ``target" figure.}\label{fig:visualsearch}
 \end{figure}
 
@@ -621,7 +621,7 @@ Visual search tasks can be used to measure the efficiency of a participant's vis
 Eye tracking studies are often utilized in order to understand which parts or features of an image participants focus on, and in what order they examine the image components. Eye tracking studies were heavily used in order to refine the task-based models of graphical perception; they allowed researchers to understand that participants had to iterate between the question and different parts of the graph in order to assimilate all of the represented information into working memory. Figure \ref{fig:eyetracking} shows one lightweight eye-tracking assembly. The camera allows researchers to track the direction of the pupil and thus infer gaze direction. 
 
 \begin{figure}[htbp]\centering
-\includegraphics[width=.4\textwidth]{EyeTrackingGear}
+\includegraphics[width=.4\linewidth]{EyeTrackingGear}
 \caption[Eye Tracking Equipment]{Eye tracking equipment \protect\citep{babcock2004building}. The cameras allow researchers to determine what part of a scene the wearer is viewing.}\label{fig:eyetracking}
 \end{figure}
 
@@ -652,7 +652,7 @@ ggplot(data=data) +
 
 @
 \begin{figure}[htbp]\centering
-\includegraphics[width=.3\textwidth]{fig-mask}
+\includegraphics[width=.3\linewidth]{fig-mask}
 \caption[Sample Image Mask]{Sample mask used to ``erase'' the retina in some psychological experiments which test stimuli for short time periods ($<$1 s). The mask removes any afterimage the participant might have, ensuring that the stimuli is only available for the specified period. }\label{fig:mask}
 \end{figure}
 
@@ -685,16 +685,16 @@ ggplot(data=iris, aes(x=Sepal.Width, group=Species, fill=Species)) +
 @
 
 \begin{figure}[htbp]\centering
-\begin{subfigure}[b]{.33\textwidth}\centering
-  \includegraphics[width=\textwidth]{fig-irisdatagrammar1}
+\begin{subfigure}[b]{.33\linewidth}\centering
+  \includegraphics[width=\linewidth]{fig-irisdatagrammar1}
   \caption{Stacked Density Plot}
 \end{subfigure}\hfill
-\begin{subfigure}[b]{.33\textwidth}\centering
-  \includegraphics[width=\textwidth]{fig-irisdatagrammar2}
+\begin{subfigure}[b]{.33\linewidth}\centering
+  \includegraphics[width=\linewidth]{fig-irisdatagrammar2}
   \caption{Dotplot}
 \end{subfigure}\hfill
-\begin{subfigure}[b]{.33\textwidth}\centering
-  \includegraphics[width=\textwidth]{fig-irisdatagrammar3}
+\begin{subfigure}[b]{.33\linewidth}\centering
+  \includegraphics[width=\linewidth]{fig-irisdatagrammar3}
   \caption{Histogram}
 \end{subfigure}\hfill
 \caption{Three different plots of iris data, created using the grammar of graphics}\label{fig:grammarplots}
@@ -732,7 +732,7 @@ ggplot(data=lineupdata, aes(x=Sepal.Width, y=Petal.Width)) +
 @
 
 \begin{figure}[htbp]\centering
-\includegraphics[width=.75\textwidth]{fig-irislineup}
+\includegraphics[width=.75\linewidth]{fig-irislineup}
 \caption[Lineup for testing statistical graphics]{Lineup of the iris data, comparing sepal width to petal width. The target data is in plot 5, other plots generated by permuting petal width.}\label{fig:lineupexample}
 \end{figure}
 In addition to the visual inference protocols lineups were designed to fulfill \citep{buja2009statistical}, they also provide a method to easily quantify (on a statistical level) the ``power" of a plot; if two lineups are generated from the same data, but one allows participants to more frequently detect the target plot, then that lineup provides more perceptual power. The lineup protocol provides a useful tool for examining some of the issues discussed for complex, domain specific graphs. When combined with the grammar of graphics approach \citep{wickham2010graphical}, lineups have the potential to be extremely useful for studying the perception of graphs which present the same data in different forms.

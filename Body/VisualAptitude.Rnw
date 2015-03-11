@@ -40,6 +40,7 @@ sanitize <- function(x){
 
 
 \chapter{SPATIAL REASONING AND DATA DISPLAYS}\label{VisualAptitude}\label{visualreasoning}
+\noindent\hfil\textit{Submitted to IEEE Transactions on Visualization and Computer Graphics, January 2015}\hfil
 
 \section{Introduction}
 Data displays provide quick summaries of data, models, and results, but not all displays are equally good, nor is any data display equally useful to all viewers. 
@@ -159,7 +160,7 @@ Lineups require similar manipulations in two-dimensional space, and also require
 
 Between cognitive tasks, participants were also asked to complete three blocks of 20 lineups each, assembled from previous studies~\citep{hofmann2012graphical,majumder2013validation}. Participants have 5 minutes to complete each block of 20 lineups. Figure~\ref{fig:lineup} shows a sample lineup of box plots. 
 
-In addition to these tests, participants were asked to complete a questionnaire which includes questions about colorblindness, mathematical background, self-perceived verbal/mathematical/artistic skills, time spent playing video games, and undergraduate major. 
+In addition to these tests, participants were asked to complete a questionnaire which includes questions about colorblindness, mathematical background, self-perceived verbal, mathematical, and artistic skills, time spent playing video games, and undergraduate major. 
 These questions are designed to assess different factors which may influence a participant's skill at reading graphs and performing spatial tasks. 
 
 \subsection{Test Scoring}\label{sec:scaling}

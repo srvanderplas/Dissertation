@@ -24,6 +24,18 @@
   Timestamp                = {2014.11.17}
 }
 
+@Misc{amazon,
+  Title                    = {Mechanical {T}urk},
+
+  Author                   = {Amazon},
+  HowPublished             = {\url{https://www.mturk.com/mturk/welcome}},
+  Year                     = {2010},
+
+  __markedentry            = {[susan:]},
+  Owner                    = {susan},
+  Timestamp                = {2015.03.10}
+}
+
 @Article{amer2005bias,
   Title                    = {Bias due to visual illusion in the graphical presentation of accounting information},
   Author                   = {Amer, TS},
@@ -84,7 +96,6 @@
   Pages                    = {47--89},
   Volume                   = {8},
 
-  __markedentry            = {[susan:]},
   Owner                    = {susan},
   Publisher                = {Elsevier},
   Timestamp                = {2014.11.17}
@@ -99,6 +110,21 @@
   Bdsk-url-1               = {http://news.bbc.co.uk/2/hi/uk%7B%5C_%7Dnews/magazine/7937382.stm},
   Journal                  = {BBC Magazine},
   Url                      = {http://news.bbc.co.uk/2/hi/uk{\_}news/magazine/7937382.stm}
+}
+
+@Article{bobko1979perception,
+  Title                    = {The perception of Pearson product moment correlations from bivariate scatterplots},
+  Author                   = {Bobko, Philip and Karren, Ronald},
+  Journal                  = {Personnel Psychology},
+  Year                     = {1979},
+  Number                   = {2},
+  Pages                    = {313--325},
+  Volume                   = {32},
+
+  __markedentry            = {[susan:]},
+  Owner                    = {susan},
+  Publisher                = {Wiley Online Library},
+  Timestamp                = {2015.03.10}
 }
 
 @Article{buja2009statistical,
@@ -165,13 +191,12 @@
   Author                   = {Niladri Roy Chowdhury and Dianne Cook and Heike Hofmann and Mahbubul Majumder and Yifan Zhao},
   Year                     = {2014},
 
-  __markedentry            = {[susan:]},
   Eprint                   = {arXiv:1408.1889},
   Owner                    = {susan},
   Timestamp                = {2014.11.17}
 }
 
-@TechReport{chowdhury2012waldo,
+@TechReport{Chowdhury2012,
   Title                    = {Where’s Waldo: Looking closely at a lineup},
   Author                   = {Chowdhury, N Roy and Cook, DIANNE and Hofmann, Heike and Majumder, Mahbubul and Zhao, Yifan},
   Institution              = {Technical Report 2, Iowa State University, Department of Statistics},
@@ -181,11 +206,16 @@
   Timestamp                = {2014.11.17}
 }
 
-@TechReport{chowdhury2012waldo,
-  Title                    = {Where’s Waldo: Looking closely at a lineup},
-  Author                   = {Chowdhury, N Roy and Cook, DIANNE and Hofmann, Heike and Majumder, Mahbubul and Zhao, Yifan},
-  Institution              = {Technical Report 2, Iowa State University, Department of Statistics},
-  Year                     = {2012}
+@Book{cleveland:85,
+  Title                    = {The Elements of Graphing Data},
+  Author                   = {William S. Cleveland},
+  Publisher                = {Hobart Press},
+  Year                     = {1994},
+  Edition                  = {1},
+
+  __markedentry            = {[susan:]},
+  Owner                    = {susan},
+  Timestamp                = {2015.03.10}
 }
 
 @Article{cleveland:88,
@@ -260,6 +290,18 @@
   Volume                   = {20}
 }
 
+@Article{heer:2014,
+  Title                    = {Learning Perceptual Kernels for Visualization Design},
+  Author                   = {\c{C}a\u{g}atay Demiralp AND Michael Bernstein AND Jeffrey Heer},
+  Journal                  = {IEEE Trans. Visualization \& Comp. Graphics (Proc. InfoVis)},
+  Year                     = {2014},
+
+  __markedentry            = {[susan:]},
+  Owner                    = {susan},
+  Timestamp                = {2015.03.10},
+  Url                      = {http://idl.cs.washington.edu/papers/perceptual-kernels}
+}
+
 @Article{demita1981validity,
   Title                    = {The validity of a computerized visual searching task as an indicator of brain damage},
   Author                   = {DeMita, Michael A and Johnson, James H and Hansen, Ken E},
@@ -269,7 +311,6 @@
   Pages                    = {592--594},
   Volume                   = {13},
 
-  __markedentry            = {[susan:]},
   Owner                    = {susan},
   Publisher                = {Springer},
   Timestamp                = {2014.11.17}
@@ -282,7 +323,6 @@
   Year                     = {1973},
   Pages                    = {181--191},
 
-  __markedentry            = {[susan:]},
   Owner                    = {susan},
   Publisher                = {JSTOR},
   Timestamp                = {2014.11.17}
@@ -328,6 +368,20 @@
   Bdsk-url-1               = {http://www.epa.gov/airdata/ad_data_daily.html}
 }
 
+@Book{few,
+  Title                    = {Now You See It: Simple Visualization Techniques for Quantitative Analysis},
+  Author                   = {Stephen Few},
+  Publisher                = {Analytics Press},
+  Year                     = {2009},
+
+  Address                  = {Burlingame, CA},
+  Edition                  = {1},
+
+  __markedentry            = {[susan:]},
+  Owner                    = {susan},
+  Timestamp                = {2015.03.10}
+}
+
 @Article{fisher1970experimental,
   Title                    = {An experimental and theoretical appraisal of the perspective and size-constancy theories of illusions},
   Author                   = {Fisher, Gerald H},
@@ -348,9 +402,22 @@
   Organization             = {Educational Testing Service},
   Year                     = {1963},
 
-  __markedentry            = {[susan:]},
   Owner                    = {susan},
   Timestamp                = {2014.11.17}
+}
+
+@Article{biplots:gabriel,
+  Title                    = {The biplot graphic display of matrices with application to principal component analysis},
+  Author                   = {Gabriel, K.R.},
+  Journal                  = {Biometrika},
+  Year                     = {1971},
+  Number                   = {3},
+  Pages                    = {453--467},
+  Volume                   = {58},
+
+  Doi                      = {10.1093/biomet/58.3.453},
+  Owner                    = {susan},
+  Timestamp                = {2015.02.16}
 }
 
 @Article{gattis1996mapping,
@@ -365,6 +432,17 @@
   Publisher                = {American Psychological Association}
 }
 
+@Book{colorvision,
+  Title                    = {Color vision: From genes to perception},
+  Author                   = {Gegenfurtner, Karl R and Sharpe, Lindsay T},
+  Publisher                = {Cambridge University Press},
+  Year                     = {2001},
+
+  __markedentry            = {[susan:]},
+  Owner                    = {susan},
+  Timestamp                = {2015.03.10}
+}
+
 @Book{Goldstein2010,
   Title                    = {Sensation \& Perception},
   Author                   = {E. B. Goldstein},
@@ -372,6 +450,7 @@
   Year                     = {2010},
 
   Address                  = {Belmont, CA},
+
   ISBN                     = {0495601497},
   Owner                    = {susan},
   Timestamp                = {2014.11.17}
@@ -389,6 +468,17 @@
   ISBN                     = {0495601497}
 }
 
+@Book{goldstein2009encyclopedia,
+  Title                    = {Encyclopedia of perception},
+  Author                   = {Goldstein, E Bruce},
+  Publisher                = {Sage Publications},
+  Year                     = {2009},
+
+  __markedentry            = {[susan:]},
+  Owner                    = {susan},
+  Timestamp                = {2015.03.10}
+}
+
 @Article{goldstein1973validity,
   Title                    = {The validity of a visual searching task as an indicator of brain damage.},
   Author                   = {Goldstein, Gerald and Welch, Robert B and Rennick, Phillip M and Shelly, Carolyn H},
@@ -398,7 +488,6 @@
   Pages                    = {434},
   Volume                   = {41},
 
-  __markedentry            = {[susan:]},
   Owner                    = {susan},
   Publisher                = {American Psychological Association},
   Timestamp                = {2014.11.17}
@@ -420,6 +509,7 @@
   Year                     = {1968},
   Pages                    = {279-296},
   Volume                   = {171},
+
   Owner                    = {susan},
   Timestamp                = {2014.11.17}
 }
@@ -460,6 +550,13 @@
   Timestamp                = {2014.11.17}
 }
 
+@Article{hanrahan2003tableau,
+  Title                    = {Tableau software white paper - visual thinking for business intelligence},
+  Author                   = {Hanrahan, Pat},
+  Journal                  = {Tableau Software, Seattle, WA},
+  Year                     = {2003}
+}
+
 @Article{colorbrewer,
   Title                    = {{ColorBrewer.org: An Online Tool for Selecting Color Schemes for Maps}},
   Author                   = {Mark A. Harrower and Cynthia A. Brewer},
@@ -479,7 +576,6 @@
   Pages                    = {1245},
   Volume                   = {114},
 
-  __markedentry            = {[susan:]},
   Owner                    = {susan},
   Publisher                = {American Psychological Association},
   Timestamp                = {2014.11.17}
@@ -701,6 +797,7 @@
   Year                     = {2010},
   Pages                    = {373--382},
   Publisher                = {ACM Press},
+
   Owner                    = {susan},
   Timestamp                = {2014.11.17}
 }
@@ -741,6 +838,36 @@
   Timestamp                = {2014.11.17}
 }
 
+@Article{lewandowsky1989discriminating,
+  Title                    = {Discriminating strata in scatterplots},
+  Author                   = {Lewandowsky, Stephan and Spence, Ian},
+  Journal                  = {Journal of the American Statistical Association},
+  Year                     = {1989},
+  Number                   = {407},
+  Pages                    = {682--688},
+  Volume                   = {84},
+
+  __markedentry            = {[susan:]},
+  Owner                    = {susan},
+  Publisher                = {Taylor \& Francis},
+  Timestamp                = {2015.03.10}
+}
+
+@Article{lewandowsky1989perception,
+  Title                    = {The perception of statistical graphs},
+  Author                   = {Lewandowsky, Stephan and Spence, Ian},
+  Journal                  = {Sociological Methods \& Research},
+  Year                     = {1989},
+  Number                   = {2-3},
+  Pages                    = {200--242},
+  Volume                   = {18},
+
+  __markedentry            = {[susan:]},
+  Owner                    = {susan},
+  Publisher                = {Sage Publications},
+  Timestamp                = {2015.03.10}
+}
+
 @Article{light2004end,
   Title                    = {The end of the rainbow? Color schemes for improved data graphics},
   Author                   = {Light, Adam and Bartlein, Patrick J},
@@ -762,11 +889,23 @@
   Pages                    = {369--378},
   Volume                   = {100},
 
-  __markedentry            = {[susan:]},
   Keywords                 = {Spatial Reasoning, Visual Aptitude},
   Owner                    = {susan},
   Publisher                = {Taylor \& Francis},
   Timestamp                = {2014.11.17}
+}
+
+@Article{loy:2015,
+  Title                    = {Variations of Q-Q Plots -- the Power of our Eyes!},
+  Author                   = {Loy, Adam and Follett, Lendie and Hofmann, Heike},
+  Journal                  = {The American Statistician},
+  Year                     = {2015},
+  Number                   = TBD,
+  Pages                    = {???--???},
+  Volume                   = {tentatively accepted},
+
+  Owner                    = {susan},
+  Timestamp                = {2015.02.16}
 }
 
 @Misc{humanfactorslineups,
@@ -775,10 +914,25 @@
   Author                   = {Mahbubul Majumder and Heike Hofmann and Dianne Cook},
   Year                     = {2014},
 
-  __markedentry            = {[susan:]},
   Eprint                   = {arXiv:1408.1974},
   Owner                    = {susan},
   Timestamp                = {2014.11.17}
+}
+
+@Article{Majumder:2014up,
+  Title                    = {Human Factors Influencing Visual Statistical Inference},
+  Author                   = {Majumder, Mahbubul and Hofmann, Heike and Cook, Dianne},
+  Journal                  = {arXiv.org},
+  Year                     = {2014},
+
+  Month                    = aug,
+
+  __markedentry            = {[susan:]},
+  Eprint                   = {1408.1974v1},
+  Eprintclass              = {stat.AP},
+  Eprinttype               = {arxiv},
+  Owner                    = {susan},
+  Timestamp                = {2015.03.10}
 }
 
 @Article{majumder2013validation,
@@ -794,18 +948,6 @@
   Owner                    = {susan},
   Publisher                = {Taylor \& Francis},
   Timestamp                = {2014.11.17}
-}
-
-@Article{majumder2013validation,
-  Title                    = {Validation of visual statistical inference, applied to linear models},
-  Author                   = {Majumder, Mahbubul and Hofmann, Heike and Cook, Dianne},
-  Journal                  = {Journal of the American Statistical Association},
-  Year                     = {2013},
-  Number                   = {503},
-  Pages                    = {942--956},
-  Volume                   = {108},
-
-  Publisher                = {Taylor \& Francis}
 }
 
 @Book{cognition,
@@ -826,6 +968,7 @@
   Number                   = {3},
   Pages                    = {389},
   Volume                   = {86},
+
   Keywords                 = {Visual Aptitude, Spatial Reasoning, Dual Coding Theory},
   Owner                    = {susan},
   Publisher                = {American Psychological Association},
@@ -892,7 +1035,6 @@
   Pages                    = {453--467},
   Volume                   = {25},
 
-  __markedentry            = {[susan:]},
   Owner                    = {susan},
   Publisher                = {Elsevier},
   Timestamp                = {2014.11.17}
@@ -923,6 +1065,21 @@
   Volume                   = {248},
 
   Publisher                = {The Royal Society}
+}
+
+@Article{mosteller1981eye,
+  Title                    = {Eye fitting straight lines},
+  Author                   = {Mosteller, Frederick and Siegel, Andrew F and Trapido, Edward and Youtz, Cleo},
+  Journal                  = {The American Statistician},
+  Year                     = {1981},
+  Number                   = {3},
+  Pages                    = {150--152},
+  Volume                   = {35},
+
+  __markedentry            = {[susan:]},
+  Owner                    = {susan},
+  Publisher                = {Taylor \& Francis Group},
+  Timestamp                = {2015.03.10}
 }
 
 @Misc{noaa,
@@ -972,6 +1129,21 @@
   Owner                    = {susan},
   Publisher                = {Wiley Online Library},
   Timestamp                = {2014.11.17}
+}
+
+@Article{piepho:04,
+  Title                    = {An algorithm for a letter-based representation of all-pairwise comparisons},
+  Author                   = {Piepho, Hans-Peter},
+  Journal                  = {Journal of Computational and Graphical Statistics},
+  Year                     = {2004},
+  Number                   = {2},
+  Pages                    = {456--466},
+  Volume                   = {13},
+
+  __markedentry            = {[susan:]},
+  Owner                    = {susan},
+  Publisher                = {Taylor \& Francis},
+  Timestamp                = {2015.03.10}
 }
 
 @Book{playfair,
@@ -1035,6 +1207,63 @@
   Year                     = {2005}
 }
 
+@Article{robinson:03,
+  Title                    = {Usability of Scatter Plot Symbols},
+  Author                   = {Heman Robinson},
+  Journal                  = {ASA Statistical Computing \& Graphics Newsletter},
+  Year                     = {2003},
+  Number                   = {1},
+  Pages                    = {9--14},
+  Volume                   = {14},
+
+  __markedentry            = {[susan:]},
+  Owner                    = {susan},
+  Timestamp                = {2015.03.10}
+}
+
+@Article{chowdhury:2014,
+  Title                    = {Using visual statistical inference to better understand random class separations in high dimension, low sample size data},
+  Author                   = {{Roy Chowdhury}, Niladri and Cook, Dianne and Hofmann, Heike and Majumder, Mahbubul and Lee, Eun-Kyung and Toth, Amy L.},
+  Journal                  = {Computational Statistics},
+  Year                     = {2014},
+  Pages                    = {1-24},
+
+  Doi                      = {10.1007/s00180-014-0534-x},
+  ISSN                     = {0943-4062},
+  Keywords                 = {Statistical graphics; Lineup; Visualization; Projection pursuit; Data mining},
+  Language                 = {English},
+  Owner                    = {susan},
+  Publisher                = {Springer Berlin Heidelberg},
+  Timestamp                = {2015.02.16},
+  Url                      = {http://dx.doi.org/10.1007/s00180-014-0534-x}
+}
+
+@Article{niladri:2014,
+  Title                    = {Utilizing Distance Metrics on Lineups to Examine What People Read From Data Plots},
+  Author                   = {Niladri {Roy Chowdhury} and Dianne Cook and Heike Hofmann and Mahbubul Majumder and Yifan Zhao},
+  Journal                  = {arXiv.org},
+  Year                     = {2014},
+
+  Month                    = aug,
+
+  __markedentry            = {[susan:]},
+  Eprint                   = {arXiv:1408.1889},
+  Eprintclass              = {stat.AP},
+  Eprinttype               = {arxiv},
+  Owner                    = {susan},
+  Timestamp                = {2015.03.10}
+}
+
+@TechReport{chowdhury2012waldo,
+  Title                    = {Where’s Waldo: Looking closely at a lineup},
+  Author                   = {{Roy Chowdhury}, Niladri and Cook, Dianne and Hofmann, Heike and Majumder, Mahbubul and Zhao, Yifan},
+  Institution              = {Technical Report 2, Iowa State University, Department of Statistics},
+  Year                     = {2012},
+
+  Owner                    = {susan},
+  Timestamp                = {2015.03.04}
+}
+
 @Manual{shiny,
   Title                    = {shiny: Web Application Framework for {R}},
   Author                   = {{RStudio Inc.}},
@@ -1053,7 +1282,6 @@
   Pages                    = {185--213},
   Volume                   = {45},
 
-  __markedentry            = {[susan:]},
   Owner                    = {susan},
   Publisher                = {Elsevier},
   Timestamp                = {2014.11.17}
@@ -1068,7 +1296,6 @@
   Pages                    = {8},
   Volume                   = {13},
 
-  __markedentry            = {[susan:]},
   Owner                    = {susan},
   Publisher                = {American Psychological Association},
   Timestamp                = {2014.11.17}
@@ -1128,7 +1355,6 @@
   Pages                    = {690},
   Volume                   = {91},
 
-  __markedentry            = {[susan:]},
   Owner                    = {susan},
   Publisher                = {American Psychological Association},
   Timestamp                = {2014.11.17}
@@ -1187,6 +1413,21 @@
   Volume                   = {16}
 }
 
+@Article{spence1993remarkable,
+  Title                    = {A remarkable scatterplot},
+  Author                   = {Spence, Ian and Garrison, Robert F},
+  Journal                  = {The American Statistician},
+  Year                     = {1993},
+  Number                   = {1},
+  Pages                    = {12--19},
+  Volume                   = {47},
+
+  __markedentry            = {[susan:]},
+  Owner                    = {susan},
+  Publisher                = {Taylor \& Francis Group},
+  Timestamp                = {2015.03.10}
+}
+
 @Article{sun2012framework,
   Title                    = {A framework for Bayesian optimality of psychophysical laws},
   Author                   = {Sun, John Z and Wang, Grace I and Goyal, Vivek K and Varshney, Lav R},
@@ -1214,8 +1455,7 @@
 @Electronic{rainbowcolor,
   Title                    = {Why Should Engineers and Scientists Be Worried About Color?},
 
-  Address                  = {Thomas J. Watson Research Center 
-Yorktown Heights, NY},
+  Address                  = {Thomas J. Watson Research Center Yorktown Heights, NY},
   Author                   = {Treinish, Lloyd A and Rogowitz, Bernice E},
   Organization             = {IBM},
   Url                      = {http://www.research.ibm.com/people/l/lloydt/color/color.HTM?utm_medium=App.net&utm_source=PourOver},
@@ -1295,11 +1535,22 @@ Yorktown Heights, NY},
   Publisher                = {American Psychological Association}
 }
 
+@Article{visualreasoning,
+  Title                    = {Spatial Reasoning and Data Displays},
+  Author                   = {Vanderplas, S. and Hofmann, H.},
+  Journal                  = {IEEE Transactions on Visualization and Computer Graphics},
+  Year                     = {in press},
+
+  Owner                    = {susan},
+  Timestamp                = {2015.03.11}
+}
+
 @Article{sineillusionjcgs,
   Title                    = {Signs of the Sine Illusion - why we need to care},
   Author                   = {VanderPlas,Susan and Hofmann,Heike},
   Journal                  = {Journal of Computational and Graphical Statistics},
   Year                     = {2014},
+
   Doi                      = {10.1080/10618600.2014.951547},
   Owner                    = {susan},
   Timestamp                = {2014.11.17}
@@ -1326,7 +1577,6 @@ Yorktown Heights, NY},
   Pages                    = {261--312},
   Volume                   = {14},
 
-  __markedentry            = {[susan:]},
   Keywords                 = {Graphs, Education},
   Owner                    = {susan},
   Publisher                = {Springer},
@@ -1342,7 +1592,6 @@ Yorktown Heights, NY},
   Pages                    = {250},
   Volume                   = {117},
 
-  __markedentry            = {[susan:]},
   Keywords                 = {Spatial Reasoning, Visual Aptitude, Gender},
   Owner                    = {susan},
   Publisher                = {American Psychological Association},
@@ -1483,7 +1732,6 @@ Yorktown Heights, NY},
   Pages                    = {179--217},
   Volume                   = {21},
 
-  __markedentry            = {[susan:]},
   Owner                    = {susan},
   Publisher                = {Elsevier},
   Timestamp                = {2014.10.20}
