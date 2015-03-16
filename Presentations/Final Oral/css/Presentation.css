@@ -17,4 +17,10 @@
   }
 
 body {
-  background: #add9e4;}
+  background: #add9e4;
+}
+
+.reveal section img,
+.rimage {
+   border: 0px;
+}
