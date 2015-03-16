@@ -1,0 +1,26 @@
+
+/*********************************************
+ * HIDDEN BULLETS
+ *********************************************/
+.hide { list-style-type: none; }
+
+/*********************************************
+ * FONTS
+ *********************************************/
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+  font-family: "Open Sans", sans-serif;
+  }
+
+body {
+  background: #add9e4;
+}
+
+.reveal section img,
+.rimage {
+   border: 0px;
+}
