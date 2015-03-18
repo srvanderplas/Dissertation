@@ -2,14 +2,27 @@
 <html lang="en">
 <!-- begin.rcode head, echo=FALSE, include=FALSE
 library(knitr)
-library(ggplot2)
-library(dplyr)
-library(grid)
 library(stringr)
+library(lubridate)
+
 library(reshape2)
+library(plyr)
+library(dplyr)
+library(magrittr)
+
+library(ggplot2)
+library(grid)
+suppressMessages(library(gridExtra))
+library(RColorBrewer)
+
+library(nullabor)
+library(digest)
+library(Cairo)
+
+library(lme4)
+library(xtable)
 
 c0 <- knitr::knit_hooks$get('chunk')
-p0 <- knitr::knit_hooks$get('plot')
 
 knitr::knit_hooks$set(
   list(
@@ -56,6 +69,12 @@ knitr::knit_hooks$set(
     }
   )
 )
+
+opts_chunk$set(cache.path='cache/', fig.width=5, fig.height=5, fig.show='hold', cache=TRUE, autodep=TRUE, message=F, warning=F, error=F)
+datadir <- "../../Data/FeatureHierarchy/"
+imgdir <- "../../Figure/FeatureHierarchy/"
+codedir <- "../../Code/FeatureHierarchy/"
+
 end.rcode-->
 
 <head>
@@ -268,6 +287,36 @@ end.rcode-->
   </section>
   
   <section>
+    <h2 style="text-align: left"> Gestalt Laws - <span style="font-size:70%;vertical-align:middle;"> "Good Gestalt" </span> </h2>
+<!--begin.rcode goodgestalt-fig, dev.args = list(bg = 'transparent'), class="fragment", fragIndex=2, echo=F, include=T, fig.width=8, fig.height=8, out.width='40%', out.height='auto'
+  segment.df <- data.frame(
+    x =    c(1, 1  , 1, 2,   2  , 1.4, 1.4, 2.4,   1  , 1, 1.4, 2  ),
+    xend = c(2, 1.4, 1, 2,   2.4, 1.4, 2.4, 2.4,   1.4, 2, 2.4, 2.4),
+    y =    c(1, 1  , 1, 1,   1  , 1.5, 1.5, 1.5,   2  , 2, 2.5, 2  ),
+    yend = c(1, 1.5, 2, 2,   1.5, 2.5, 1.5, 2.5,   2.5, 2, 2.5, 2.5)
+  )
+  ggplot() + 
+    geom_point(aes(x=c(1, 2, 1.4, 2.4, 1, 2, 1.4, 2.4), 
+                   y=c(1, 1, 1.5, 1.5, 2, 2, 2.5, 2.5)), 
+               shape=16, size=50, color="#4F91AD") + 
+    geom_point(aes(x=c(1, 2, 1.4, 2.4, 1, 2, 1.4, 2.4), 
+                   y=c(1, 1, 1.5, 1.5, 2, 2, 2.5, 2.5)), 
+               shape=16, size=5, color="#add9e4") + 
+    geom_segment(aes(x=x, xend=xend, y=y, yend=yend), data=segment.df, color="#add9e4", size=5) + 
+    xlim(c(0.5, 3)) + 
+    ylim(c(0.5, 3)) + 
+    xlab(NULL) + ylab(NULL) + 
+    theme_minimal() + 
+    theme(axis.text=element_blank(), axis.ticks=element_blank(), axis.title=element_blank(),
+          line=element_blank(), rect=element_blank(), text=element_blank(), title=element_blank(),
+          panel.background = element_rect(fill = "transparent", colour = NA),
+          plot.background = element_rect(fill = "transparent", colour = NA),
+          plot.margin=unit(c(0,0,0,0), "cm"))
+end.rcode-->
+  <p class="fragment" data-fragment-index=3> Every pattern is seen so that the resulting structure is as simple as possible </p>
+  </section>
+  
+  <section>
     <h2 style="text-align: left"> Gestalt Laws - Closure </h2>
 <!--begin.rcode closure-fig, dev.args = list(bg = 'transparent'), class="fragment", fragIndex=2, echo=F, include=T, fig.width=3, fig.height=3, out.width='40%', out.height='auto'
   data <- data.frame(z=seq(0, 2*pi, length.out=400))
@@ -286,7 +335,7 @@ end.rcode-->
           plot.background = element_rect(fill = "transparent", colour = NA),
           plot.margin=unit(c(0,0,0,0), "cm"))
 end.rcode-->
-  <p class="fragment" data-fragment-index=3> Every pattern is seen so that the resulting structure is as simple as possible </p>
+  <p class="fragment" data-fragment-index=3> Shapes are perceived as whole even if they are not complete. </p>
   </section>
   
   <section>
@@ -454,6 +503,25 @@ end.rcode-->
       </ul>
   </section>
 </section>
+
+<!--begin.rcode experiment-setup, echo=FALSE, include=FALSE
+  
+
+
+source(paste0(codedir, "MixtureLineups.R"))
+source(paste0(codedir, "theme_lineup.R"))
+end.rcode-->
+
+<section>
+  <section class="center">
+    <h2> Experiment: What is the hierarchy of gestalt features in statistical plots? </h2>
+  </section>
+  
+  <section>
+    <h2> Gestalt features </h2>
+<!--begin.rcode gestaltplots, dev.args = list(bg = 'transparent'), class="fragment", fragIndex=2, echo=F, include=T, fig.width=3, fig.height=3, out.width='40%', out.height='auto'
+  
+end.rcode-->
 
 
 </div> <!-- slides -->
