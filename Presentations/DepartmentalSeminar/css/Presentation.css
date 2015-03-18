@@ -24,3 +24,14 @@ body {
 .rimage {
    border: 0px;
 }
+
+.reveal table {
+  width: 100%;
+  border: 0px;
+}
+
+.reveal table th td {
+  text-align: left;
+  vertical-align: middle;
+}
+
