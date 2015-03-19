@@ -526,6 +526,134 @@ end.rcode-->
       </tr>
     </table>
   </section>
+
+  <section>
+    <h2> Manipulated Variables </h2>
+    <h4> Model Parameters </h4>
+    <div style="align:center;">
+    <ul>
+      <li> Trend Strength $\sigma_T$ (easy, medium, hard)
+      <li> Cluster Strength $\sigma_C$ (easy, medium, hard)
+      <li> Number of Clusters $K$ (3, 5)
+    <ul>
+    </div>
+    <br>
+    <h4 style="text-align:center"> Plot Aesthetics </h4>
+    <div style="width:60%;display:inline-block;">
+    <ul>
+      <li> Plain </li>
+      <li> Trend </li>
+      <li> Trend + Error </li>
+      <li> Color + Trend </li>
+      <li> Color + Ellipse +<br> Trend + Error </li>
+    </ul>
+    </div><div style="width:40%;display:inline-block;">
+    <ul>
+      <li> Color </li>
+      <li> Shape </li>
+      <li> Color + Shape </li>
+      <li> Color + Ellipse </li>
+      <li> Color + Shape +<br> Ellipse </li>
+    </ul>
+    </div>
+  </section>
+  
+  <section>
+    <h2>Data Collection</h2>
+      <ul>
+        <li> Participants recruited through Amazon Mechanical Turk to complete 10 plot evaluations </li>
+        <li> Experiment ran for <!--rinline round(as.numeric(difftime(max(modeldata$end_time), min(modeldata$start_time), units="hours")), 2) --> hours </li>
+        <li> <!--rinline length(unique(userdata$nick_name))-->  individuals completed <!--rinline nrow(userdata)--> evaluations </li> 
+        <li> Remove data from participants who did not complete 10 trials (<!--rinline length(incomplete.participants)--> participants, <!--rinline incomplete.participant.data--> trials) and any trials in excess of 10 (<!--rinline extra.participant.data--> trials) </li>
+      </ul>
+      <p> Final data: <!--rinline nrow(modeldata)--> trials completed by <!--rinline length(unique(modeldata$individualID))--> participants. </p>
+  </section>
+  
+  <section>
+    <h2>Data Collection</h2>
+      <h3> Participants provided: </h3>
+      <ul style="margin:.2em">
+        <li> Demographic information: age range, gender, education level </li>
+        <li> 10 plot evaluations
+        <ul>
+          <li> Target plot identification (one or more plots) </li>
+          <li> Confidence level (1 = least, 5=most)  </li> 
+          <li> Reasoning <br> (i.e. "Strongest linear relationship" or "Clustered points") </li>
+        </ul>
+      </ul>
+      <p> Final data: <!--rinline nrow(modeldata)--> trials completed by <!--rinline length(unique(modeldata$individualID))--> participants. </p>
+  </section>
+        
+  <section>
+    <h2> Target Identification </h2>
+<!--begin.rcode target-aggregate, echo=F, include=T, fig.width=8, fig.height=6, out.width='60%', out.height='auto'
+user.data <- modeldata %>% group_by(individualID) %>% 
+summarize(answers=length(individualID),
+          cluster=sum(cluster.correct),
+          trend=sum(trend.correct))
+clusters <- as.data.frame(table(user.data$cluster))
+trends <- as.data.frame(table(user.data$trend))
+names(clusters) <- c("x", "Cluster")
+clusters$Trend <- trends$Freq 
+clm <- melt(clusters, measure.var=2:3)
+
+ggplot() + geom_point(aes(x, value, colour=variable, shape=variable), size=3, data=clm) + theme_bw() + scale_colour_brewer("Target", palette="Set1") + scale_shape_discrete("Target") + theme(legend.position="bottom") + ylab("Number of participants") + xlab("Number of target identifications (out of ten)") + geom_line(aes(x, value, colour=variable, group=variable), data=clm) + ggtitle("Target Identification by Participants")
+end.rcode-->
+  </section>
+  
+  <section>
+    <h2> Modeling Target Plot Selection </h2>
+    <br></br>
+    $$
+    \begin{align}
+    \text{logit }P(\text{success}) & =  \textbf{X}\beta + \textbf{J}\gamma + \textbf{K}\eta + \epsilon, \\
+    \text{where } \beta_i & \hphantom{\sim} \text{describe the effect of specific plot aesthetics}\\
+    \hphantom{where } \gamma_j & \overset{iid}{\sim} N\left(0, \sigma^2_{\text{dataset}}\right)\\
+    \hphantom{where } \eta_k & \overset{iid}{\sim} N\left(0, \sigma^2_{\text{participant}}\right)\\
+    \text{and } \epsilon_{ijk} & \overset{iid}{\sim}  N\left(0, \sigma^2_e\right)
+    \end{align}
+    $$
+  </section>
+  
+  <section>
+    <h2> Line Target Identification </h2>
+<!--begin.rcode line-target, echo=F, include=T, fig.width=6, fig.height=3, out.width='70%', out.height='auto'
+line.model <- glmer(trend.correct ~ plottype + (1|individualID) + (1|dataset), 
+                    data = modeldata, 
+                    family = binomial(link="logit"), 
+                    control=glmerControl(optimizer="bobyqa"))
+line.fixef <- data.frame(summary(line.model)$coefficients, confint(line.model, method="Wald"))
+names(line.fixef) <- c("Estimate", "StdError", "Z", "p value", "LB", "UB")
+line.fixef$OR <- exp(line.fixef[,1])
+line.fixef$label <- gsub("(Intercept)", "", gsub("plottype", "", rownames(line.fixef)), fixed=T)
+
+type_compare <- glht(line.model, mcp(plottype="Tukey"))
+line.fixef$letters <- cld(type_compare)$mcletters$Letters
+
+line.fixef.aes <- line.fixef[grepl("(color)|([Ss]hape)|([Tt]rend)|(Ellipse)|(Error)", rownames(line.fixef)),]
+line.fixef.aes <- line.fixef.aes[order(line.fixef.aes$OR, decreasing = T),]
+line.fixef.aes$label <- 
+  line.fixef.aes$label %>% 
+  str_replace("color", "Color + ") %>% 
+  str_replace("[sS]hape", "Shape + ") %>%
+  str_replace("[tT]rend", "Trend + ") %>%
+  str_replace("Ellipse", "Ellipse + ") %>%
+  str_replace("Error", "Error + ") %>%
+  str_replace("( \\+ )$", "")
+line.fixef.aes$label <- factor(line.fixef.aes$label, levels=line.fixef.aes$label[order(line.fixef.aes$OR, decreasing = T)], ordered=T)
+line.fixef.aes$LB <- exp(line.fixef.aes$LB)
+line.fixef.aes$UB <- exp(line.fixef.aes$UB)
+
+qplot(data=line.fixef.aes, x=label, y=OR, ymin=LB, ymax=UB, geom="pointrange") + 
+  geom_text(aes(x=label, y=0, label=letters)) + 
+  coord_flip() + 
+  ylab("Odds + 95% Wald Interval") + 
+  xlab("Plot Type") + 
+  geom_hline(yintercept=1, colour="gray70") +
+  ggtitle("Odds of Selecting Line Target Plot") + 
+  theme_bw()
+end.rcode-->
+  </section>
   
   <section>
     <h2> Gestalt Heuristics and Aesthetics </h2>
@@ -606,6 +734,46 @@ end.rcode-->
         </td>
       </tr>
     </table>
+  </section>
+  
+  <section>
+    <h2> Cluster Target Identification </h2>
+<!--begin.rcode cluster-target, echo=F, include=T, fig.width=6, fig.height=3, out.width='70%', out.height='auto'
+group.model <- glmer(cluster.correct~ plottype + (1|individualID) + (1|dataset), 
+                     data = modeldata, 
+                     family = binomial(link="logit"), 
+                     control=glmerControl(optimizer="bobyqa"))
+group.fixef <- data.frame(summary(group.model)$coefficients, confint(group.model, method="Wald"))
+names(group.fixef) <- c("Estimate", "StdError", "Z", "p value", "LB", "UB")
+group.fixef$OR <- exp(group.fixef[,1])
+group.fixef$label <- gsub("(Intercept)", "", gsub("plottype", "", rownames(group.fixef)), fixed=T)
+
+type_compare <- glht(group.model, mcp(plottype="Tukey"))
+group.fixef$letters <- cld(type_compare)$mcletters$Letters
+
+group.fixef2 <- group.fixef[2:10,]
+group.fixef2 <- group.fixef2[order(group.fixef2$OR, decreasing = T),]
+group.fixef2$label <- 
+  group.fixef2$label %>% 
+  str_replace("color", "Color + ") %>% 
+  str_replace("[sS]hape", "Shape + ") %>%
+  str_replace("[tT]rend", "Trend + ") %>%
+  str_replace("Ellipse", "Ellipse + ") %>%
+  str_replace("Error", "Error + ") %>%
+  str_replace("( \\+ )$", "")
+group.fixef2$label <- factor(group.fixef2$label, levels=group.fixef2$label[order(group.fixef2$OR, decreasing = T)], ordered=T)
+group.fixef2$LB <- exp(group.fixef2$LB)
+group.fixef2$UB <- exp(group.fixef2$UB)
+
+qplot(data=group.fixef2, x=label, y=OR, ymin=LB, ymax=UB, geom="pointrange") + 
+  geom_text(aes(x=label, y=0.3, label=letters)) + 
+  coord_flip() + 
+  scale_y_continuous("Odds + 95% Wald Interval", breaks=c(.5, .75, 1, 1.25)) + 
+  xlab("Plot Type") + 
+  geom_hline(yintercept=1, colour="gray70") +
+  ggtitle("Odds of Selecting Cluster Target Plot") + 
+  theme_bw()
+end.rcode-->
   </section>
   
   <section>
@@ -739,6 +907,62 @@ end.rcode-->
     </table>
   </section>
   
+  <section>
+    <h2> Cluster Target Identification </h2>
+    <img src="image/lineup-ellipse-issue.png", width='50%', height='auto'/>
+  </section>
+  
+  <section>
+    <h2> Cluster vs. Trend </h2>
+<!--begin.rcode cluster-vs-line, echo=F, include=T, fig.width=7, fig.height=4, out.width='70%', out.height='auto'
+designs <- ddply(modeldata, .(dataset, plottype), summarise, evals=length(data_name), group=sum(cluster.correct), line=sum(trend.correct))
+designs$perc <- with(designs, group/(group+line))
+#qplot(plottype, perc, data=designs, geom="boxplot")
+gvl.model <- glmer(cbind(group, line)~plottype+(1|dataset), data=designs, family=binomial())
+gvl.fixef <- data.frame(confint(gvl.model, method="Wald"))
+names(gvl.fixef) <- c("LB", "UB")
+gvl.fixef$OR <- fixef(gvl.model)
+
+suppressMessages(require(multcomp))
+type_compare <- glht(gvl.model, mcp(plottype="Tukey"))
+gvl.fixef$letters <- cld(type_compare)$mcletters$Letters
+
+gvl.fixef$label <- gsub("plottype", "", names(fixef(gvl.model)))
+gvl.fixef$label <- gvl.fixef$label %>% 
+  str_replace("color", "Color + ") %>% 
+  str_replace("[sS]hape", "Shape + ") %>%
+  str_replace("[tT]rend", "Trend + ") %>%
+  str_replace("Ellipse", "Ellipse + ") %>%
+  str_replace("Error", "Error + ") %>%
+  str_replace("( \\+ )$", "") %>% 
+  reorder(gvl.fixef$OR)
+
+ggplot(data=gvl.fixef[-1,]) + 
+  geom_pointrange(aes(x=label, y=exp(OR), ymin=exp(LB), ymax=exp(UB))) + 
+  coord_flip() + 
+  theme_bw() + 
+  geom_hline(yintercept=1, colour="gray70") + 
+  ggtitle("Odds of Selecting Group vs Line Target \n (given one target was identified)") + 
+  ylab("Odds (Group vs Line) and 95% Wald Intervals") + 
+  xlab("Plot Type") + 
+  geom_text(aes(y=0.4, x=label, label=letters))
+end.rcode-->
+  </section>
+  
+  <section>
+    <h2> Response Time </h2>
+    <br></br>
+    $$
+    \begin{align}
+    \log(\text{Trial Time}) &\sim& \textbf{X}\beta + \textbf{J}\gamma + \textbf{K}\eta + \epsilon\\
+    \text{where} \beta_i & \text{describe outcome and aesthetic combinations, plus an initial trial effect}\\
+    \hphantom{where } \gamma_j & \overset{iid}{\sim} N\left(0, \sigma^2_{\text{dataset}}\right)\\
+    \hphantom{where } \eta_k & \overset{iid}{\sim} N\left(0, \sigma^2_{\text{participant}}\right)\\
+    \text{and } \epsilon_{ijk} & \overset{iid}{\sim}  N\left(0, \sigma^2_e\right)
+    \end{align}
+    $$
+  </section>
+    
   <section>
     <h2> Gestalt Heuristics and Aesthetics </h2>
     <h3> Mixed Signals </h3>
@@ -924,211 +1148,99 @@ end.rcode-->
   </section>
   
   <section>
-    <h2> Manipulated Variables </h2>
-    <h4> Model Parameters </h4>
-    <div style="align:center;">
-    <ul>
-      <li> Trend Strength $\sigma_T$ (easy, medium, hard)
-      <li> Cluster Strength $\sigma_C$ (easy, medium, hard)
-      <li> Number of Clusters $K$ (3, 5)
-    <ul>
-    </div>
-    <br>
-    <h4 style="text-align:center"> Plot Aesthetics </h4>
-    <div style="width:60%;display:inline-block;">
-    <ul>
-      <li> Plain </li>
-      <li> Trend </li>
-      <li> Trend + Error </li>
-      <li> Color + Trend </li>
-      <li> Color + Ellipse +<br> Trend + Error </li>
-    </ul>
-    </div><div style="width:40%;display:inline-block;">
-    <ul>
-      <li> Color </li>
-      <li> Shape </li>
-      <li> Color + Shape </li>
-      <li> Color + Ellipse </li>
-      <li> Color + Shape +<br> Ellipse </li>
-    </ul>
-    </div>
-  </section>
-  
-  <section>
-    <h2>Data Collection</h2>
-      <ul>
-        <li> Participants recruited through Amazon Mechanical Turk to complete 10 plot evaluations </li>
-        <li> Experiment ran for <!--rinline round(as.numeric(difftime(max(modeldata$end_time), min(modeldata$start_time), units="hours")), 2) --> hours </li>
-        <li> <!--rinline length(unique(userdata$nick_name))-->  individuals completed <!--rinline nrow(userdata)--> evaluations </li> 
-        <li> Remove data from participants who did not complete 10 trials (<!--rinline length(incomplete.participants)--> participants, <!--rinline incomplete.participant.data--> trials) and any trials in excess of 10 (<!--rinline extra.participant.data--> trials) </li>
-      </ul>
-      <p> Final data: <!--rinline nrow(modeldata)--> trials completed by <!--rinline length(unique(modeldata$individualID))--> participants. </p>
-  </section>
-  
-  <section>
-    <h2>Data Collection</h2>
-      <h3> Participants provided: </h3>
-      <ul style="margin:.2em">
-        <li> Demographic information: age range, gender, education level </li>
-        <li> 10 plot evaluations
-        <ul>
-          <li> Target plot identification (one or more plots) </li>
-          <li> Confidence level (1 = least, 5=most)  </li> 
-          <li> Reasoning <br> (i.e. "Strongest linear relationship" or "Clustered points") </li>
-        </ul>
-      </ul>
-      <p> Final data: <!--rinline nrow(modeldata)--> trials completed by <!--rinline length(unique(modeldata$individualID))--> participants. </p>
-  </section>
-        
-  <section>
-    <h2> Target Identification </h2>
-<!--begin.rcode target-aggregate, echo=F, include=T, fig.width=8, fig.height=6, out.width='60%', out.height='auto'
-user.data <- modeldata %>% group_by(individualID) %>% 
-summarize(answers=length(individualID),
-          cluster=sum(cluster.correct),
-          trend=sum(trend.correct))
-clusters <- as.data.frame(table(user.data$cluster))
-trends <- as.data.frame(table(user.data$trend))
-names(clusters) <- c("x", "Cluster")
-clusters$Trend <- trends$Freq 
-clm <- melt(clusters, measure.var=2:3)
+    <h2> Response Time </h2>
+<!--begin.rcode response-time-aes, echo=F, include=T, fig.width=9, fig.height=4, out.width='90%', out.height='auto'
+library(lubridate)
 
-ggplot() + geom_point(aes(x, value, colour=variable, shape=variable), size=3, data=clm) + theme_bw() + scale_colour_brewer("Target", palette="Set1") + scale_shape_discrete("Target") + theme(legend.position="bottom") + ylab("Number of participants") + xlab("Number of target identifications (out of ten)") + geom_line(aes(x, value, colour=variable, group=variable), data=clm) + ggtitle("Target Identification by Participants")
+# modeldata$time_taken <- as.numeric(ymd_hms(modeldata$end_time) - ymd_hms(modeldata$start_time))
+time.model <- lmer(log(as.numeric(trial.time))~ simpleoutcome:plottype + first.trial  + (1|individualID) + (1|dataset), data=modeldata)
+
+coefs <- data.frame(exp(confint(time.model, method="Wald")))[-c(1:2),]
+names(coefs) <- c("low", "high")
+coefs$estimate <- exp(fixef(time.model)[-c(1:2)])
+coefs$name <- names(fixef(time.model))[-c(1:2)]
+ll <- ldply(strsplit(coefs$name, split=":"), function(x) x)
+coefs$outcome <- gsub("simpleoutcome", "", ll$V1)
+coefs$plottype <- gsub("plottype", "", ll$V2)
+coefs$simple <- coefs$outcome %in% c("both") - coefs$outcome%in%c("neither")
+coefs$simple <- factor(coefs$simple)
+levels(coefs$simple) <- c("Neither", "Cluster, Trend", "Both")
+coefs$outcome <- factor(coefs$outcome, levels=c("neither", "cluster", "trend", "both"))
+
+coefs$plottype <- coefs$plottype %>% 
+  str_replace("color", "Color + ") %>% 
+  str_replace("[sS]hape", "Shape + ") %>%
+  str_replace("[tT]rend", "Trend + ") %>%
+  str_replace("Ellipse", "Ellipse + ") %>%
+  str_replace("Error", "Error + ") %>%
+  str_replace("plain", "Plain") %>%
+  str_replace("( \\+ )$", "")
+coefs$plottype <- factor(coefs$plottype)
+
+coefs <- ddply(coefs, .(plottype), transform, avg.est=mean(estimate))
+coefs$plottype <- with(coefs, reorder(plottype, avg.est))
+
+coefs$outcome <- factor(coefs$outcome, levels=c("neither", "trend", "cluster", "both"), labels=c("Neither", "Trend", "Cluster", "Both"))
+coefs$out.factor <- factor(str_replace(as.character(coefs$outcome), "Trend|Cluster", "Single"), levels=c("Neither", "Single", "Both"), labels=c("Neither Target", "Single Target", "Both Targets"))
+coefs$pos <- as.numeric(factor(coefs$plottype)) + as.numeric(coefs$out.factor=="Single Target")*(as.numeric(coefs$outcome)-2.5)*1/3
+
+qplot(x=estimate, y=pos, data=coefs, colour=outcome, shape=outcome, size=I(3)) + theme_bw() + 
+  scale_colour_brewer("Target Identified", palette="Set1") +
+  scale_shape_manual("Target Identified", values=c(4, 1, 2, 8)) +
+  geom_segment(aes(x=low, xend=high, y=pos, yend=pos),guide="none") + 
+  scale_y_continuous(breaks=1:10, labels=levels(coefs$plottype)) + 
+  xlab("Additional time to evaluate plot (in seconds) given outcome") + ylab("") + 
+  theme(legend.position="bottom") + 
+  ggtitle("Evaluation Time by Aesthetics and Outcome") + 
+  facet_grid(.~out.factor, scales="free_x")
 end.rcode-->
   </section>
   
   <section>
-    <h2> Modeling Target Plot Selection </h2>
+    <h2> Response Time </h2>
+    <br></br>
     $$
     \begin{align}
-    \text{logit }P(\text{success}) & =  \textbf{X}\beta + \textbf{J}\gamma + \textbf{K}\eta + \epsilon, \label{eqn:linearModel}\\
-    \text{where } \beta_i & \hphantom{\sim} \text{describe the effect of specific plot aesthetics}\\
-    \hphantom{where } \gamma_j & \overset{iid}{\sim} N\left(0, \sigma^2_{\text{dataset}}\right)\\
-    \hphantom{where } \eta_k & \overset{iid}{\sim} N\left(0, \sigma^2_{\text{participant}}\right)\\
-    \text{and } \epsilon_{ijk} & \overset{iid}{\sim}  N\left(0, \sigma^2_e\right)
+    \log(\text{Trial Time}) \sim& \textbf{X}\beta + \textbf{J}\eta + \epsilon\\
+    \text{where } \beta_i & \text{ describe outcome and model parameter interactions, }\\
+    &\text{ plus initial trial and aesthetic effects}\\
+    \hphantom{where } \eta_j & \overset{iid}{\sim} N\left(0, \sigma^2_{\text{participant}}\right)\\
+    \text{and } \epsilon_{ij} & \overset{iid}{\sim}  N\left(0, \sigma^2_e\right)
     \end{align}
     $$
   </section>
-  
+
   <section>
-    <h2> Line Target Identification </h2>
-<!--begin.rcode line-target, echo=F, include=T, fig.width=6, fig.height=3, out.width='70%', out.height='auto'
-line.model <- glmer(trend.correct ~ plottype + (1|individualID) + (1|dataset), 
-                    data = modeldata, 
-                    family = binomial(link="logit"), 
-                    control=glmerControl(optimizer="bobyqa"))
-line.fixef <- data.frame(summary(line.model)$coefficients, confint(line.model, method="Wald"))
-names(line.fixef) <- c("Estimate", "StdError", "Z", "p value", "LB", "UB")
-line.fixef$OR <- exp(line.fixef[,1])
-line.fixef$label <- gsub("(Intercept)", "", gsub("plottype", "", rownames(line.fixef)), fixed=T)
+    <h2> Response Time </h2>
+<!--begin.rcode response-time-parms, echo=F, include=T, fig.width=9, fig.height=8, out.width='50%', out.height='auto', warning=FALSE, message=FALSE
+time.model2 <- lmer(log(as.numeric(trial.time))~ first.trial + plottype + simpleoutcome:trend.diff:cluster.diff:k  + (1|individualID) , data=modeldata)
 
-type_compare <- glht(line.model, mcp(plottype="Tukey"))
-line.fixef$letters <- cld(type_compare)$mcletters$Letters
+coefs <- data.frame(exp(confint(time.model2, method="Wald")))[-(1:11),]
+names(coefs) <- c("low", "high")
+coefs$estimate <- exp(fixef(time.model2)[-(1:11)])
+coefs$name <- names(fixef(time.model2))[-(1:11)]
+ll <- ldply(strsplit(coefs$name, split=":"), function(x) x)
+coefs$outcome <- gsub("simpleoutcome", "", ll$V1)
+coefs$trend.diff <- gsub("trend\\.diff", "", ll$V2)
+coefs$trend.diff <- factor(coefs$trend.diff, levels=c("easy", "medium", "hard"), labels=paste0("Trend:", c("Easy", "Medium", "Hard")))
+coefs$cluster.diff <- gsub("cluster\\.diff", "", ll$V3)
+coefs$cluster.diff <- factor(coefs$cluster.diff, levels=c("easy", "medium", "hard"), labels=paste0("Cluster:", c("Easy", "Medium", "Hard")))
+coefs$k <- gsub("k", "", ll$V4)
+coefs$simple <- coefs$outcome %in% c("both") - coefs$outcome%in%c("neither")
+coefs$simple <- factor(coefs$simple)
+levels(coefs$simple) <- c("Neither", "Cluster, Trend", "Both")
 
-line.fixef.aes <- line.fixef[grepl("(color)|([Ss]hape)|([Tt]rend)|(Ellipse)|(Error)", rownames(line.fixef)),]
-line.fixef.aes <- line.fixef.aes[order(line.fixef.aes$OR, decreasing = T),]
-line.fixef.aes$label <- 
-  line.fixef.aes$label %>% 
-  str_replace("color", "Color + ") %>% 
-  str_replace("[sS]hape", "Shape + ") %>%
-  str_replace("[tT]rend", "Trend + ") %>%
-  str_replace("Ellipse", "Ellipse + ") %>%
-  str_replace("Error", "Error + ") %>%
-  str_replace("( \\+ )$", "")
-line.fixef.aes$label <- factor(line.fixef.aes$label, levels=line.fixef.aes$label[order(line.fixef.aes$OR, decreasing = T)], ordered=T)
-line.fixef.aes$LB <- exp(line.fixef.aes$LB)
-line.fixef.aes$UB <- exp(line.fixef.aes$UB)
+coefs$outcome <- factor(coefs$outcome, levels=c("neither", "cluster", "trend", "both"), labels=c("Neither Identified", "Cluster Identified", "Trend Identified", "Both Identified"))
+coefs$pos <- as.numeric(factor(coefs$k)) + (as.numeric(factor(coefs$trend.diff))-2)/4
 
-qplot(data=line.fixef.aes, x=label, y=OR, ymin=LB, ymax=UB, geom="pointrange") + 
-  geom_text(aes(x=label, y=0, label=letters)) + 
-  coord_flip() + 
-  ylab("Odds + 95% Wald Interval") + 
-  xlab("Plot Type") + 
-  geom_hline(yintercept=1, colour="gray70") +
-  ggtitle("Odds of Selecting Line Target Plot") + 
-  theme_bw()
-end.rcode-->
-  </section>
-  
-  <section>
-    <h2> Cluster Target Identification </h2>
-<!--begin.rcode cluster-target, echo=F, include=T, fig.width=6, fig.height=3, out.width='70%', out.height='auto'
-group.model <- glmer(cluster.correct~ plottype + (1|individualID) + (1|dataset), 
-                     data = modeldata, 
-                     family = binomial(link="logit"), 
-                     control=glmerControl(optimizer="bobyqa"))
-group.fixef <- data.frame(summary(group.model)$coefficients, confint(group.model, method="Wald"))
-names(group.fixef) <- c("Estimate", "StdError", "Z", "p value", "LB", "UB")
-group.fixef$OR <- exp(group.fixef[,1])
-group.fixef$label <- gsub("(Intercept)", "", gsub("plottype", "", rownames(group.fixef)), fixed=T)
-
-type_compare <- glht(group.model, mcp(plottype="Tukey"))
-group.fixef$letters <- cld(type_compare)$mcletters$Letters
-
-group.fixef2 <- group.fixef[2:10,]
-group.fixef2 <- group.fixef2[order(group.fixef2$OR, decreasing = T),]
-group.fixef2$label <- 
-  group.fixef2$label %>% 
-  str_replace("color", "Color + ") %>% 
-  str_replace("[sS]hape", "Shape + ") %>%
-  str_replace("[tT]rend", "Trend + ") %>%
-  str_replace("Ellipse", "Ellipse + ") %>%
-  str_replace("Error", "Error + ") %>%
-  str_replace("( \\+ )$", "")
-group.fixef2$label <- factor(group.fixef2$label, levels=group.fixef2$label[order(group.fixef2$OR, decreasing = T)], ordered=T)
-group.fixef2$LB <- exp(group.fixef2$LB)
-group.fixef2$UB <- exp(group.fixef2$UB)
-
-qplot(data=group.fixef2, x=label, y=OR, ymin=LB, ymax=UB, geom="pointrange") + 
-  geom_text(aes(x=label, y=0.3, label=letters)) + 
-  coord_flip() + 
-  scale_y_continuous("Odds + 95% Wald Interval", breaks=c(.5, .75, 1, 1.25)) + 
-  xlab("Plot Type") + 
-  geom_hline(yintercept=1, colour="gray70") +
-  ggtitle("Odds of Selecting Cluster Target Plot") + 
-  theme_bw()
-end.rcode-->
-  </section>
-  
-  <section>
-    <h2> Cluster Target Identification </h2>
-    <img src="image/lineup-ellipse-issue.png", width='50%', height='auto'/>
-  </section>
-  
-  <section>
-    <h2> Cluster vs. Trend </h2>
-<!--begin.rcode cluster-vs-line, echo=F, include=T, fig.width=7, fig.height=4, out.width='70%', out.height='auto'
-designs <- ddply(modeldata, .(dataset, plottype), summarise, evals=length(data_name), group=sum(cluster.correct), line=sum(trend.correct))
-designs$perc <- with(designs, group/(group+line))
-#qplot(plottype, perc, data=designs, geom="boxplot")
-gvl.model <- glmer(cbind(group, line)~plottype+(1|dataset), data=designs, family=binomial())
-gvl.fixef <- data.frame(confint(gvl.model, method="Wald"))
-names(gvl.fixef) <- c("LB", "UB")
-gvl.fixef$OR <- fixef(gvl.model)
-
-suppressMessages(require(multcomp))
-type_compare <- glht(gvl.model, mcp(plottype="Tukey"))
-gvl.fixef$letters <- cld(type_compare)$mcletters$Letters
-
-gvl.fixef$label <- gsub("plottype", "", names(fixef(gvl.model)))
-gvl.fixef$label <- gvl.fixef$label %>% 
-  str_replace("color", "Color + ") %>% 
-  str_replace("[sS]hape", "Shape + ") %>%
-  str_replace("[tT]rend", "Trend + ") %>%
-  str_replace("Ellipse", "Ellipse + ") %>%
-  str_replace("Error", "Error + ") %>%
-  str_replace("( \\+ )$", "") %>% 
-  reorder(gvl.fixef$OR)
-
-ggplot(data=gvl.fixef[-1,]) + 
-  geom_pointrange(aes(x=label, y=exp(OR), ymin=exp(LB), ymax=exp(UB))) + 
-  coord_flip() + 
-  theme_bw() + 
-  geom_hline(yintercept=1, colour="gray70") + 
-  ggtitle("Odds of Selecting Group vs Line Target \n (given one target was identified)") + 
-  ylab("Odds (Group vs Line) and 95% Wald Intervals") + 
-  xlab("Plot Type") + 
-  geom_text(aes(y=0.4, x=label, label=letters))
+qplot(estimate, pos, data=subset(coefs, outcome!="Both Identified"), colour=trend.diff, size=I(4), shape=trend.diff) + theme_bw() + 
+  scale_colour_manual("Trend", values=c("#7bccc4", "#2b8cbe", "#084081")) +
+  scale_shape_discrete("Trend") + 
+  geom_segment(aes(x=low, xend=high, y=pos, yend=pos)) + 
+  facet_grid(cluster.diff~outcome) + 
+  scale_y_continuous(breaks=1:2, labels=unique(coefs$k), limits=c(0.5,2.5)) + 
+  xlab("Additional time to evaluate each plot type (in seconds) given outcome") + ylab("K") + 
+  ggtitle("Evaluation Time by Model Parameters and Outcome")
 end.rcode-->
   </section>
   
