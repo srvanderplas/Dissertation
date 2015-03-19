@@ -1218,6 +1218,19 @@ end.rcode-->
   </section>
   
   <section>
+    <h2> Modeling Target Plot Selection </h2>
+    $$
+    \begin{align}
+    \text{logit }P(\text{success}) & =  \textbf{X}\beta + \textbf{J}\gamma + \textbf{K}\eta + \epsilon, \label{eqn:linearModel}\\
+    \text{where } \beta_i & \hphantom{\sim} \text{describe the effect of specific plot aesthetics}\\
+    \hphantom{where } \gamma_j & \overset{iid}{\sim} N\left(0, \sigma^2_{\text{dataset}}\right)\\
+    \hphantom{where } \eta_k & \overset{iid}{\sim} N\left(0, \sigma^2_{\text{participant}}\right)\\
+    \text{and } \epsilon_{ijk} & \overset{iid}{\sim}  N\left(0, \sigma^2_e\right)
+    \end{align}
+    $$
+  </section>
+  
+  <section>
     <h2> Line Target Identification </h2>
 <!--begin.rcode line-target, echo=F, include=T, fig.width=6, fig.height=3, out.width='70%', out.height='auto'
 line.model <- glmer(trend.correct ~ plottype + (1|individualID) + (1|dataset), 
@@ -1298,6 +1311,11 @@ end.rcode-->
   </section>
   
   <section>
+    <h2> Cluster Target Identification </h2>
+    <img src="image/lineup-ellipse-issue.png", width='50%', height='auto'/>
+  </section>
+  
+  <section>
     <h2> Cluster vs. Trend </h2>
 <!--begin.rcode cluster-vs-line, echo=F, include=T, fig.width=7, fig.height=4, out.width='70%', out.height='auto'
 designs <- ddply(modeldata, .(dataset, plottype), summarise, evals=length(data_name), group=sum(cluster.correct), line=sum(trend.correct))
@@ -1334,6 +1352,123 @@ ggplot(data=gvl.fixef[-1,]) +
 end.rcode-->
   </section>
   
+  <section>
+    <h2> Participant Reasoning </h2>
+      <h3> Plain Plots </h3>
+<!--begin.rcode wordles-plain, echo=F, include=T, fig.width=4, fig.height=4, out.width='350px', out.height='350px'
+lexicaldata <- modeldata
+lexicaldata$choice_reason <- tolower(lexicaldata$choice_reason)
+lexicaldata$choice_reason <- gsub("^_", "", lexicaldata$choice_reason)
+
+words <- lexicaldata %>% group_by(plottype, simpleoutcome) %>% 
+  summarize(list = paste(choice_reason, collapse=" ")) %>% filter(simpleoutcome != "both", plottype %in% c("plain", "color", "trend", "colorEllipse"))
+
+library(wordcloud)
+library(tm)
+for (i in 1:3) {
+words.corpus <- Corpus(DataframeSource(data.frame(words$list[i])))
+words.corpus <- tm_map(words.corpus, removePunctuation)
+
+tdm <- TermDocumentMatrix(words.corpus)
+m <- as.matrix(tdm)
+v <- sort(rowSums(m),decreasing=TRUE)
+d <- data.frame(word = names(v),freq=v)
+pal <- brewer.pal(9, "BuGn")
+pal <- pal[-(1:2)]
+# png(sprintf("wordcloud/wordcloud-%s-%s.png",words$plottype[i], words$simpleoutcome[i]), width=960,height=600)
+wordcloud(d$word,d$freq, scale=c(8,.3),min.freq=2,max.words=100, random.order=T, rot.per=.15, colors="black", vfont=c("sans serif","plain"))
+# dev.off()
+}
+end.rcode-->
+    <div align="center">
+    <table class="noborder nowidth nopadding">
+      <tr>
+        <td width='350px' style="text-align:center;"> Neither Target </td><td width='350px' style="text-align:center;"> Cluster Target </td> <td width='350px' style="text-align:center;"> Trend Target </td>
+      </tr>
+    </table>
+    </div>
+  </section>
+  <section>
+    <h2> Participant Reasoning </h2>
+      <h3> Trend Line Plots </h3>
+<!--begin.rcode wordles-line, dependson='wordles', echo=F, include=T, fig.width=4, fig.height=4, out.width='350px', out.height='350px'
+for (i in 4:6) {
+words.corpus <- Corpus(DataframeSource(data.frame(words$list[i])))
+words.corpus <- tm_map(words.corpus, removePunctuation)
+
+tdm <- TermDocumentMatrix(words.corpus)
+m <- as.matrix(tdm)
+v <- sort(rowSums(m),decreasing=TRUE)
+d <- data.frame(word = names(v),freq=v)
+pal <- brewer.pal(9, "BuGn")
+pal <- pal[-(1:2)]
+# png(sprintf("wordcloud/wordcloud-%s-%s.png",words$plottype[i], words$simpleoutcome[i]), width=960,height=600)
+wordcloud(d$word,d$freq, scale=c(8,.3),min.freq=2,max.words=100, random.order=T, rot.per=.15, colors="black", vfont=c("sans serif","plain"))
+# dev.off()
+}
+end.rcode-->
+    <div align="center">
+    <table class="noborder nowidth nopadding">
+      <tr>
+        <td width='350px' style="text-align:center;"> Neither Target </td><td width='350px' style="text-align:center;"> Cluster Target </td> <td width='350px' style="text-align:center;"> Trend Target </td>
+      </tr>
+    </table>
+    </div>
+  </section>
+  <section>
+    <h2> Participant Reasoning </h2>
+      <h3> Color Plots </h3>
+<!--begin.rcode wordles-color, dependson='wordles', echo=F, include=T, fig.width=4, fig.height=4, out.width='350px', out.height='350px'
+for (i in 7:9) {
+words.corpus <- Corpus(DataframeSource(data.frame(words$list[i])))
+words.corpus <- tm_map(words.corpus, removePunctuation)
+
+tdm <- TermDocumentMatrix(words.corpus)
+m <- as.matrix(tdm)
+v <- sort(rowSums(m),decreasing=TRUE)
+d <- data.frame(word = names(v),freq=v)
+pal <- brewer.pal(9, "BuGn")
+pal <- pal[-(1:2)]
+# png(sprintf("wordcloud/wordcloud-%s-%s.png",words$plottype[i], words$simpleoutcome[i]), width=960,height=600)
+wordcloud(d$word,d$freq, scale=c(8,.3),min.freq=2,max.words=100, random.order=T, rot.per=.15, colors="black", vfont=c("sans serif","plain"))
+# dev.off()
+}
+end.rcode-->
+    <div align="center">
+    <table class="noborder nowidth nopadding">
+      <tr>
+        <td width='350px' style="text-align:center;"> Neither Target </td><td width='350px' style="text-align:center;"> Cluster Target </td> <td width='350px' style="text-align:center;"> Trend Target </td>
+      </tr>
+    </table>
+    </div>
+  </section>
+  <section>
+    <h2> Participant Reasoning </h2>
+      <h3> Color + Ellipse Plots </h3>
+<!--begin.rcode wordles-colorEllipse, dependson='wordles', echo=F, include=T, fig.width=4, fig.height=4, out.width='350px', out.height='350px'
+for (i in 10:12) {
+words.corpus <- Corpus(DataframeSource(data.frame(words$list[i])))
+words.corpus <- tm_map(words.corpus, removePunctuation)
+
+tdm <- TermDocumentMatrix(words.corpus)
+m <- as.matrix(tdm)
+v <- sort(rowSums(m),decreasing=TRUE)
+d <- data.frame(word = names(v),freq=v)
+pal <- brewer.pal(9, "BuGn")
+pal <- pal[-(1:2)]
+# png(sprintf("wordcloud/wordcloud-%s-%s.png",words$plottype[i], words$simpleoutcome[i]), width=960,height=600)
+wordcloud(d$word,d$freq, scale=c(8,.3),min.freq=2,max.words=100, random.order=T, rot.per=.15, colors="black", vfont=c("sans serif","plain"))
+# dev.off()
+}
+end.rcode-->
+    <div align="center">
+    <table class="noborder nowidth nopadding">
+      <tr>
+        <td width='350px' style="text-align:center;"> Neither Target </td><td width='350px' style="text-align:center;"> Cluster Target </td> <td width='350px' style="text-align:center;"> Trend Target </td>
+      </tr>
+    </table>
+    </div>
+  </section>
 </section>
 
 </div> <!-- slides -->

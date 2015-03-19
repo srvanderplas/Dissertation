@@ -37,6 +37,17 @@ body {
 .reveal table.nowidth:required {
 }
 
+.reveal .noborder {
+  text-align: left;
+  vertical-align: middle;
+  border: none;
+}
+
+.reveal .nopadding, .reveal .nopadding td , .reveal .nopadding img{
+  padding:0em;
+  margin:0em;
+}
+
 .reveal .br {
   border-right:1px solid;
   border-right-width:1px;
@@ -64,15 +75,4 @@ body {
   padding:.1em;
   padding-top:.15em;
   padding-bottom:.15em;
-}
-
-.reveal .noborder {
-  text-align: left;
-  vertical-align: middle;
-  border: none;
-}
-
-.reveal .nopadding, .reveal .nopadding td , .reveal .nopadding img{
-  padding:0em;
-  margin:0em;
 }

@@ -468,6 +468,19 @@
   </section>
   
   <section>
+    <h2> Modeling Target Plot Selection </h2>
+    $$
+    \begin{align}
+    \text{logit }P(\text{success}) & =  \textbf{X}\beta + \textbf{J}\gamma + \textbf{K}\eta + \epsilon, \label{eqn:linearModel}\\
+    \text{where } \beta_i & \hphantom{\sim} \text{describe the effect of specific plot aesthetics}\\
+    \hphantom{where } \gamma_j & \overset{iid}{\sim} N\left(0, \sigma^2_{\text{dataset}}\right)\\
+    \hphantom{where } \eta_k & \overset{iid}{\sim} N\left(0, \sigma^2_{\text{participant}}\right)\\
+    \text{and } \epsilon_{ijk} & \overset{iid}{\sim}  N\left(0, \sigma^2_e\right)
+    \end{align}
+    $$
+  </section>
+  
+  <section>
     <h2> Line Target Identification </h2>
 <div class="chunk" id="line-target"><div class="rimage default"><img src="figure/line-target-1.png" title="plot of chunk line-target" alt="plot of chunk line-target" width="70%" height="auto" class="plot" /></div></div>
   </section>
@@ -478,10 +491,71 @@
   </section>
   
   <section>
+    <h2> Cluster Target Identification </h2>
+    <img src="image/lineup-ellipse-issue.png", width='50%', height='auto'/>
+  </section>
+  
+  <section>
     <h2> Cluster vs. Trend </h2>
 <div class="chunk" id="cluster-vs-line"><div class="rimage default"><img src="figure/cluster-vs-line-1.png" title="plot of chunk cluster-vs-line" alt="plot of chunk cluster-vs-line" width="70%" height="auto" class="plot" /></div></div>
   </section>
   
+  <section>
+    <h2> Participant Reasoning </h2>
+      <h3> Plain Plots </h3>
+<div class="chunk" id="wordles-plain"><div class="rimage default"><img src="figure/wordles-plain-1.png" title="plot of chunk wordles-plain" alt="plot of chunk wordles-plain" width="350px" height="350px" class="plot" />
+<img src="figure/wordles-plain-2.png" title="plot of chunk wordles-plain" alt="plot of chunk wordles-plain" width="350px" height="350px" class="plot" />
+<img src="figure/wordles-plain-3.png" title="plot of chunk wordles-plain" alt="plot of chunk wordles-plain" width="350px" height="350px" class="plot" /></div></div>
+    <div align="center">
+    <table class="noborder nowidth nopadding">
+      <tr>
+        <td width='350px' style="text-align:center;"> Neither Target </td><td width='350px' style="text-align:center;"> Cluster Target </td> <td width='350px' style="text-align:center;"> Trend Target </td>
+      </tr>
+    </table>
+    </div>
+  </section>
+  <section>
+    <h2> Participant Reasoning </h2>
+      <h3> Trend Line Plots </h3>
+<div class="chunk" id="wordles-line"><div class="rimage default"><img src="figure/wordles-line-1.png" title="plot of chunk wordles-line" alt="plot of chunk wordles-line" width="350px" height="350px" class="plot" />
+<img src="figure/wordles-line-2.png" title="plot of chunk wordles-line" alt="plot of chunk wordles-line" width="350px" height="350px" class="plot" />
+<img src="figure/wordles-line-3.png" title="plot of chunk wordles-line" alt="plot of chunk wordles-line" width="350px" height="350px" class="plot" /></div></div>
+    <div align="center">
+    <table class="noborder nowidth nopadding">
+      <tr>
+        <td width='350px' style="text-align:center;"> Neither Target </td><td width='350px' style="text-align:center;"> Cluster Target </td> <td width='350px' style="text-align:center;"> Trend Target </td>
+      </tr>
+    </table>
+    </div>
+  </section>
+  <section>
+    <h2> Participant Reasoning </h2>
+      <h3> Color Plots </h3>
+<div class="chunk" id="wordles-color"><div class="rimage default"><img src="figure/wordles-color-1.png" title="plot of chunk wordles-color" alt="plot of chunk wordles-color" width="350px" height="350px" class="plot" />
+<img src="figure/wordles-color-2.png" title="plot of chunk wordles-color" alt="plot of chunk wordles-color" width="350px" height="350px" class="plot" />
+<img src="figure/wordles-color-3.png" title="plot of chunk wordles-color" alt="plot of chunk wordles-color" width="350px" height="350px" class="plot" /></div></div>
+    <div align="center">
+    <table class="noborder nowidth nopadding">
+      <tr>
+        <td width='350px' style="text-align:center;"> Neither Target </td><td width='350px' style="text-align:center;"> Cluster Target </td> <td width='350px' style="text-align:center;"> Trend Target </td>
+      </tr>
+    </table>
+    </div>
+  </section>
+  <section>
+    <h2> Participant Reasoning </h2>
+      <h3> Color + Ellipse Plots </h3>
+<div class="chunk" id="wordles-colorEllipse"><div class="rimage default"><img src="figure/wordles-colorEllipse-1.png" title="plot of chunk wordles-colorEllipse" alt="plot of chunk wordles-colorEllipse" width="350px" height="350px" class="plot" />
+<img src="figure/wordles-colorEllipse-2.png" title="plot of chunk wordles-colorEllipse" alt="plot of chunk wordles-colorEllipse" width="350px" height="350px" class="plot" />
+<img src="figure/wordles-colorEllipse-3.png" title="plot of chunk wordles-colorEllipse" alt="plot of chunk wordles-colorEllipse" width="350px" height="350px" class="plot" /></div></div>
+    <div align="center">
+    <table class="noborder nowidth nopadding">
+      <tr>
+        <td width='350px' style="text-align:center;"> Neither Target </td><td width='350px' style="text-align:center;"> Cluster Target </td> <td width='350px' style="text-align:center;"> Trend Target </td>
+      </tr>
+    </table>
+    </div>
+  </section>
 </section>
 
 </div> <!-- slides -->
