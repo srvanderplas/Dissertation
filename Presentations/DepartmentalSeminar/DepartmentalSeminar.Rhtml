@@ -1219,7 +1219,7 @@ end.rcode-->
   
   <section>
     <h2> Line Target Identification </h2>
-<!--begin.rcode line-target, echo=F, include=T, fig.width=8, fig.height=4, out.width='70%', out.height='auto'
+<!--begin.rcode line-target, echo=F, include=T, fig.width=6, fig.height=3, out.width='70%', out.height='auto'
 line.model <- glmer(trend.correct ~ plottype + (1|individualID) + (1|dataset), 
                     data = modeldata, 
                     family = binomial(link="logit"), 
@@ -1259,7 +1259,7 @@ end.rcode-->
   
   <section>
     <h2> Cluster Target Identification </h2>
-<!--begin.rcode cluster-target, echo=F, include=T, fig.width=8, fig.height=4, out.width='70%', out.height='auto'
+<!--begin.rcode cluster-target, echo=F, include=T, fig.width=6, fig.height=3, out.width='70%', out.height='auto'
 group.model <- glmer(cluster.correct~ plottype + (1|individualID) + (1|dataset), 
                      data = modeldata, 
                      family = binomial(link="logit"), 
@@ -1297,6 +1297,42 @@ qplot(data=group.fixef2, x=label, y=OR, ymin=LB, ymax=UB, geom="pointrange") +
 end.rcode-->
   </section>
   
+  <section>
+    <h2> Cluster vs. Trend </h2>
+<!--begin.rcode cluster-vs-line, echo=F, include=T, fig.width=7, fig.height=4, out.width='70%', out.height='auto'
+designs <- ddply(modeldata, .(dataset, plottype), summarise, evals=length(data_name), group=sum(cluster.correct), line=sum(trend.correct))
+designs$perc <- with(designs, group/(group+line))
+#qplot(plottype, perc, data=designs, geom="boxplot")
+gvl.model <- glmer(cbind(group, line)~plottype+(1|dataset), data=designs, family=binomial())
+gvl.fixef <- data.frame(confint(gvl.model, method="Wald"))
+names(gvl.fixef) <- c("LB", "UB")
+gvl.fixef$OR <- fixef(gvl.model)
+
+suppressMessages(require(multcomp))
+type_compare <- glht(gvl.model, mcp(plottype="Tukey"))
+gvl.fixef$letters <- cld(type_compare)$mcletters$Letters
+
+gvl.fixef$label <- gsub("plottype", "", names(fixef(gvl.model)))
+gvl.fixef$label <- gvl.fixef$label %>% 
+  str_replace("color", "Color + ") %>% 
+  str_replace("[sS]hape", "Shape + ") %>%
+  str_replace("[tT]rend", "Trend + ") %>%
+  str_replace("Ellipse", "Ellipse + ") %>%
+  str_replace("Error", "Error + ") %>%
+  str_replace("( \\+ )$", "") %>% 
+  reorder(gvl.fixef$OR)
+
+ggplot(data=gvl.fixef[-1,]) + 
+  geom_pointrange(aes(x=label, y=exp(OR), ymin=exp(LB), ymax=exp(UB))) + 
+  coord_flip() + 
+  theme_bw() + 
+  geom_hline(yintercept=1, colour="gray70") + 
+  ggtitle("Odds of Selecting Group vs Line Target \n (given one target was identified)") + 
+  ylab("Odds (Group vs Line) and 95% Wald Intervals") + 
+  xlab("Plot Type") + 
+  geom_text(aes(y=0.4, x=label, label=letters))
+end.rcode-->
+  </section>
   
 </section>
 
