@@ -149,7 +149,7 @@
   <section>
     <h2><span style="font-size:80%;vertical-align:middle;"> Preattentive Feature Detection </span></h3>
       <p> Features with large distances in perceptual space are distinguished and perceived more quickly and easily. </p>
-      <a href="http://idl.cs.washington.edu/papers/perceptual-kernels/" target="_blank"><img src="image/shape-kernel.png" width="80%" height="auto" style="text-align:center;"></a>
+      <a href="http://idl.cs.washington.edu/papers/perceptual-kernels/" target="_blank"><img src="image/shape-kernel.png" width="80%" height="auto" style="text-align:center;"/></a>
   </section>
   
   <section>
@@ -159,11 +159,31 @@
 <img src="figure/preattentive-interference-3.png" title="plot of chunk preattentive-interference" alt="plot of chunk preattentive-interference" width="30%" height="auto" class="plot" /></div></div>
     <p> Combinations of preattentive features interfere with each other and are not preattentive.  </p>
   </section>
+  
+  <section>
+    <h2> Perception of Statistical Plots </h2>
+      <ul>
+        <li style="margin-top:20px;margin-bottom:20px"> We don't perceive plots preattentively, but some research has studied preattentive plot perception (Healy & Enns, 1999, 2012)
+        </li>
+          
+        <li style="margin-top:20px;margin-bottom:20px"> Rough hierarchy of graphical features (accuracy): </li>
+        <table>
+          <tr>
+            <td style="vertical-align:middle;text-align:center;">color **</td>
+            <td style="vertical-align:middle;text-align:center;">$$>$$</td>
+            <td style="vertical-align:middle;text-align:center;">shape<br>intensity<br>letters (HQX)</td>
+            <td style="vertical-align:middle;text-align:center;">$$>$$</td>
+            <td style="vertical-align:middle;text-align:center;">letters (HEF)</td>
+          </tr>
+        </table>
+        <p  style="font-size:75%;"> Cleveland & McGill (1985), Lewandowsky & Spence (1989)
+      </ul>
+  </section>
 
   <section>
     <h2> Gestalt Psychology </h2>
     <a href="https://en.wikipedia.org/wiki/Illusory_contours" target="_blank">
-      <img src="image/missingTriangle.svg" width='40%' height='auto' align='center'>
+      <img src="image/missingTriangle.svg" width='30%' height='auto' align='center'/>
     </a>
     <h3> "The whole is other than the sum of the parts" </h3>
   </section>
@@ -229,52 +249,83 @@
 
   <p class="fragment" data-fragment-index=3> Objects in a common region seem to belong together. </p>
   </section>
-  
-  <section>
-    <h2> Perception of Statistical Plots </h2>
-      <ul>
-        <li style="margin-top:20px;margin-bottom:20px"> We don't perceive plots preattentively, but some research has studied preattentive plot perception (Healy & Enns, 1999, 2012)
-        </li>
-          
-        <li style="margin-top:20px;margin-bottom:20px"> Rough hierarchy of graphical features (accuracy): </li>
-        <table>
-          <tr>
-            <td style="vertical-align:middle;text-align:center;">color **</td>
-            <td style="vertical-align:middle;text-align:center;">$$>$$</td>
-            <td style="vertical-align:middle;text-align:center;">shape<br>intensity<br>letters (HQX)</td>
-            <td style="vertical-align:middle;text-align:center;">$$>$$</td>
-            <td style="vertical-align:middle;text-align:center;">letters (HEF)</td>
-          </tr>
-        </table>
-        <p  style="font-size:75%;"> Cleveland & McGill (1985), Lewandowsky & Spence (1989)
-      </ul>
-  </section>
 </section>
 
 
 
 <section>
   <section class="center">
-    <div> <h2>Experiment:</h2> <h3>What is the hierarchy of gestalt features in statistical plots? </h3></div>
+    <div> <h2>Experiment:</h2> <h3> How do plot aesthetics affect perception of statistical plots with competing signals? </h3></div>
   </section>
-  
+    
   <section>
     <h2> Lineups </h2>
+<div class="chunk" id="testlineup"><div class="rimage default"><img src="figure/testlineup-1.png" title="plot of chunk testlineup" alt="plot of chunk testlineup" width="50%" height="auto" class="plot" /></div></div>
   </section>
   
   <section>
-    <h2> Gestalt features </h2>
-    <table>
+    <h2> Data-Generating Models </h2>
+<div class="chunk" id="datamodels"><div class="rimage default"><img src="figure/datamodels-1.png" title="plot of chunk datamodels" alt="plot of chunk datamodels" width="300px" height="300px" class="plot" />
+<img src="figure/datamodels-2.png" title="plot of chunk datamodels" alt="plot of chunk datamodels" width="300px" height="300px" class="plot" />
+<img src="figure/datamodels-3.png" title="plot of chunk datamodels" alt="plot of chunk datamodels" width="300px" height="300px" class="plot" /></div></div>
+    <p> Provides participants with ambiguous distractor plots generated from a mixture of the two target models </p>
+  </section>
+    
+  <section>
+    <h2> Lineups </h2>
+    <img src="image/0636bb5b6e605eba0b61211186e18aac.png" width='50%' height='auto'/>
+  </section>
+  
+  <section>
+    <h2> Plot Aesthetic Combinations </h2>
+    <table style="border-collapse: collapse;">
       <tr>
-        <td width='33%' style="vertical-align:middle;text-align:center;">
+        <td colspan=2></td><td class="bb" colspan=3 style="text-align:center;">Line Emphasis</td>
+      </tr><tr style="text-align:center;">
+        <td></td>
+        <td class="bb br">Strength</td>
+        <td class="bb" style="text-align:center;background-color:#d3ebf1;">0</td>
+        <td class="bb" style="text-align:center;background-color:#9ad0de;">1</td>
+        <td class="bb br" style="text-align:center;background-color:#87c7d7;">2</td>
+      </tr><tr>
+        <td rowspan=4 style="vertical-align:middle;">Cluster<br>Emphasis</td>
+        <td class="br bl" style="text-align:center;background-color:#d3ebf1;">0</td>
+        <td style="text-align:center;background-color:#d3ebf1;">Plain</td>
+        <td style="text-align:center;background-color:#9ad0de;">Line</td>
+        <td class="br" style="text-align:center;background-color:#87c7d7;">Line + Pred. Interval</td>
+      </tr><tr>
+        <td class="br bl" style="text-align:center;background-color:#9ad0de;">1</td>
+        <td style="text-align:center;background-color:#9ad0de;">Color<br>Shape</td>
+        <td style="text-align:center;background-color:#d3ebf1">Color + Line</td>
+        <td class="br"></td>
+      </tr><tr>
+        <td class="br bl" style="text-align:center;background-color:#87c7d7;">2</td>
+        <td style="text-align:center;background-color:#87c7d7;">Color + Shape<br>Color + Ellipse</td>
+        <td></td>
+        <td class="br" style="text-align:center;background-color:#d3ebf1;">Color + Ellipse + <br>Line + Pred. Interval</td>
+      </tr><tr>
+        <td class="br bb bl" style="text-align:center;background-color:#73bed1;">3</td>
+        <td class="bb" style="text-align:center;background-color:#73bed1;">Color + Shape + Ellipse</td>
+        <td class="bb"></td>
+        <td class="bb br"></td>
+      </tr>
+    </table>
+  </section>
+  
+  <section>
+    <h2> Gestalt Heuristics and Aesthetics </h2>
+    <h3> Line Target Plots </h3>
+    <table class="noborder">
+      <tr>
+        <td width='30%' style="vertical-align:middle;text-align:center;">
 <span class='fragment' data-fragment-index=2><img src="figure/gestaltplots1-1.png" title="plot of chunk gestaltplots1" alt="plot of chunk gestaltplots1" width="275px" height="275px" class="plot" /></span>
 
         </td>
-        <td width='33%' style="vertical-align:middle;text-align:center;">
+        <td width='30%' style="vertical-align:middle;text-align:center;">
 <span class='fragment' data-fragment-index=3><img src="figure/gestaltplots2-1.png" title="plot of chunk gestaltplots2" alt="plot of chunk gestaltplots2" width="275px" height="275px" class="plot" /></span>
 
         </td>
-        <td width='33%' style="vertical-align:middle;text-align:center;">
+        <td width='30%' style="vertical-align:middle;text-align:center;">
 <span class='fragment' data-fragment-index=4><img src="figure/gestaltplots3-1.png" title="plot of chunk gestaltplots3" alt="plot of chunk gestaltplots3" width="275px" height="275px" class="plot" /></span>
 
         </td>
@@ -283,25 +334,34 @@
   </section>
   
   <section>
-    <h2> Gestalt features </h2>
-    <table>
+    <h2> Gestalt Heuristics and Aesthetics </h2>
+    <h3 class="nopadding"> Cluster Target Plots </h3>
+    <table class="nopadding noborder nowidth">
       <tr>
-        <td width='25%' style="vertical-align:middle;text-align:center;">
+        <td style="vertical-align:middle;text-align:center;" rowspan=2>
 <span class='fragment' data-fragment-index=2><img src="figure/gestaltplots4-1.png" title="plot of chunk gestaltplots4" alt="plot of chunk gestaltplots4" width="275px" height="275px" class="plot" /></span>
 
         </td>
-        <td width='25%' style="vertical-align:middle;text-align:center;">
-<span class='fragment' data-fragment-index=3><img src="figure/gestaltplots5-1.png" title="plot of chunk gestaltplots5" alt="plot of chunk gestaltplots5" width="275px" height="275px" class="plot" />
-<img src="figure/gestaltplots5-2.png" title="plot of chunk gestaltplots5" alt="plot of chunk gestaltplots5" width="275px" height="275px" class="plot" /></span>
+        <td style="vertical-align:middle;text-align:center;">
+<span class='fragment' data-fragment-index=3><img src="figure/gestaltplots5-1.png" title="plot of chunk gestaltplots5" alt="plot of chunk gestaltplots5" width="275px" height="275px" class="plot" /></span>
 
         </td>
-        <td width='25%' style="vertical-align:middle;text-align:center;">
-<span class='fragment' data-fragment-index=4><img src="figure/gestaltplots6-1.png" title="plot of chunk gestaltplots6" alt="plot of chunk gestaltplots6" width="275px" height="275px" class="plot" />
-<img src="figure/gestaltplots6-2.png" title="plot of chunk gestaltplots6" alt="plot of chunk gestaltplots6" width="275px" height="275px" class="plot" /></span>
+        <td style="vertical-align:middle;text-align:center;">
+<span class='fragment' data-fragment-index=4><img src="figure/gestaltplots6-1.png" title="plot of chunk gestaltplots6" alt="plot of chunk gestaltplots6" width="275px" height="275px" class="plot" /></span>
 
         </td>
-        <td width='25%' style="vertical-align:middle;text-align:center;">
+        <td style="vertical-align:middle;text-align:center;" rowspan=2>
 <span class='fragment' data-fragment-index=5><img src="figure/gestaltplots7-1.png" title="plot of chunk gestaltplots7" alt="plot of chunk gestaltplots7" width="275px" height="275px" class="plot" /></span>
+
+        </td>
+      </tr>
+      <tr>
+        <td style="vertical-align:middle;text-align:center;">
+<span class='fragment' data-fragment-index=3><img src="figure/gestaltplots5-1-1.png" title="plot of chunk gestaltplots5-1" alt="plot of chunk gestaltplots5-1" width="275px" height="275px" class="plot" /></span>
+
+        </td>
+        <td style="vertical-align:middle;text-align:center;">
+<span class='fragment' data-fragment-index=4><img src="figure/gestaltplots6-1-1.png" title="plot of chunk gestaltplots6-1" alt="plot of chunk gestaltplots6-1" width="275px" height="275px" class="plot" /></span>
 
         </td>
       </tr>
@@ -309,37 +369,40 @@
   </section>
   
   <section>
-    <h2> Gestalt features </h2>
-    <table>
+    <h2> Gestalt Heuristics and Aesthetics </h2>
+    <h3> Mixed Signals </h3>
+    <div align="center">
+    <table class="nopadding noborder nowidth">
       <tr>
-        <td width='33%' style="vertical-align:middle;text-align:center;">
+        <td style="vertical-align:middle;text-align:center;">
 <span class='fragment' data-fragment-index=2><img src="figure/gestaltplots8-1.png" title="plot of chunk gestaltplots8" alt="plot of chunk gestaltplots8" width="275px" height="275px" class="plot" /></span>
 
         </td>
-        <td width='33%' style="vertical-align:middle;text-align:center;">
-<span class='fragment' data-fragment-index=2><img src="figure/gestaltplots9-1.png" title="plot of chunk gestaltplots9" alt="plot of chunk gestaltplots9" width="275px" height="275px" class="plot" /></span>
+        <td style="vertical-align:middle;text-align:center;">
+<span class='fragment' data-fragment-index=3><img src="figure/gestaltplots9-1.png" title="plot of chunk gestaltplots9" alt="plot of chunk gestaltplots9" width="275px" height="275px" class="plot" /></span>
 
         </td>
-        <td width='33%' style="vertical-align:middle;text-align:center;">
-<span class='fragment' data-fragment-index=2><img src="figure/gestaltplots10-1.png" title="plot of chunk gestaltplots10" alt="plot of chunk gestaltplots10" width="275px" height="275px" class="plot" /></span>
+        <td style="vertical-align:middle;text-align:center;">
+<span class='fragment' data-fragment-index=4><img src="figure/gestaltplots10-1.png" title="plot of chunk gestaltplots10" alt="plot of chunk gestaltplots10" width="275px" height="275px" class="plot" /></span>
 
         </td>
       </tr>
-      <tr style="border:0px">
-        <td width='33%' style="vertical-align:middle;text-align:center;">
-<span class='fragment' data-fragment-index=3><img src="figure/gestaltplots11-1.png" title="plot of chunk gestaltplots11" alt="plot of chunk gestaltplots11" width="275px" height="275px" class="plot" /></span>
+      <tr>
+        <td style="vertical-align:middle;text-align:center;">
+<span class='fragment' data-fragment-index=2><img src="figure/gestaltplots11-1.png" title="plot of chunk gestaltplots11" alt="plot of chunk gestaltplots11" width="275px" height="275px" class="plot" /></span>
 
         </td>
-        <td width='33%' style="vertical-align:middle;text-align:center;">
+        <td style="vertical-align:middle;text-align:center;">
 <span class='fragment' data-fragment-index=3><img src="figure/gestaltplots12-1.png" title="plot of chunk gestaltplots12" alt="plot of chunk gestaltplots12" width="275px" height="275px" class="plot" /></span>
 
         </td>
-        <td width='33%' style="vertical-align:middle;text-align:center;">
-<span class='fragment' data-fragment-index=3><img src="figure/gestaltplots13-1.png" title="plot of chunk gestaltplots13" alt="plot of chunk gestaltplots13" width="275px" height="275px" class="plot" /></span>
+        <td style="vertical-align:middle;text-align:center;">
+<span class='fragment' data-fragment-index=4><img src="figure/gestaltplots13-1.png" title="plot of chunk gestaltplots13" alt="plot of chunk gestaltplots13" width="275px" height="275px" class="plot" /></span>
 
         </td>
       </tr>
     </table>
+    </div>
   </section>
   
   <section>
@@ -372,6 +435,50 @@
     </ul>
     </div>
   </section>
+  
+  <section>
+    <h2>Data Collection</h2>
+      <ul>
+        <li> Participants recruited through Amazon Mechanical Turk to complete 10 plot evaluations </li>
+        <li> Experiment ran for <code class="knitr inline">23.8</code> hours </li>
+        <li> <code class="knitr inline">1356</code>  individuals completed <code class="knitr inline">13519</code> evaluations </li> 
+        <li> Remove data from participants who did not complete 10 trials (<code class="knitr inline">159</code> participants, <code class="knitr inline">1060</code> trials) and any trials in excess of 10 (<code class="knitr inline">421</code> trials) </li>
+      </ul>
+      <p> Final data: <code class="knitr inline">12010</code> trials completed by <code class="knitr inline">1201</code> participants. </p>
+  </section>
+  
+  <section>
+    <h2>Data Collection</h2>
+      <h3> Participants provided: </h3>
+      <ul style="margin:.2em">
+        <li> Demographic information: age range, gender, education level </li>
+        <li> 10 plot evaluations
+        <ul>
+          <li> Target plot identification (one or more plots) </li>
+          <li> Confidence level (1 = least, 5=most)  </li> 
+          <li> Reasoning <br> (i.e. "Strongest linear relationship" or "Clustered points") </li>
+        </ul>
+      </ul>
+      <p> Final data: <code class="knitr inline">12010</code> trials completed by <code class="knitr inline">1201</code> participants. </p>
+  </section>
+        
+  <section>
+    <h2> Target Identification </h2>
+<div class="chunk" id="target-aggregate"><div class="rimage default"><img src="figure/target-aggregate-1.png" title="plot of chunk target-aggregate" alt="plot of chunk target-aggregate" width="60%" height="auto" class="plot" /></div></div>
+  </section>
+  
+  <section>
+    <h2> Line Target Identification </h2>
+<div class="chunk" id="line-target"><div class="rimage default"><img src="figure/line-target-1.png" title="plot of chunk line-target" alt="plot of chunk line-target" width="70%" height="auto" class="plot" /></div></div>
+  </section>
+  
+  <section>
+    <h2> Cluster Target Identification </h2>
+<div class="chunk" id="cluster-target"><div class="rimage default"><img src="figure/cluster-target-1.png" title="plot of chunk cluster-target" alt="plot of chunk cluster-target" width="70%" height="auto" class="plot" /></div></div>
+  </section>
+  
+  
+</section>
 
 </div> <!-- slides -->
 </div> <!-- reveal -->
