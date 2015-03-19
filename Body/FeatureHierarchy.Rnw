@@ -867,14 +867,14 @@ qplot(data=group.fixef2, x=label, y=OR, ymin=LB, ymax=UB, geom="pointrange") +
   scale_y_continuous("Odds + 95% Wald Interval", breaks=c(.5, .75, 1, 1.25)) + 
   xlab("Plot Type") + 
   geom_hline(yintercept=1, colour="gray70") +
-  ggtitle("Odds of Selecting Group Target Plot") + 
+  ggtitle("Odds of Selecting Cluster Target Plot") + 
   theme_bw()
 
 names(group.fixef2)[1:4] <- c("Log Odds", "Std. Error", "Z", "P value")
 names(group.fixef2)[8] <- "Plot Aesthetic"
 names(group.fixef2)[9] <- "Tukey Post Hoc Differences"
-#print(xtable(group.fixef2[,c(8, 1:4, 9)], caption=c("Fitted values of fixed effects for the model described in section~\ref{sec:groupModel}.", "Fixed effects for group target logistic model"), label="tab:group.fixef", align=c('r', 'r', 'r', 'r', 'r', 'r', 'r'), digits=c(0, 0, 4, 4, 2, 4, 0)), include.rownames=F, file="figure/group-fixef-table")
-print(xtable(group.fixef2[,c(8, 1:4)], caption=c("Fitted values of fixed effects for the model described in section~\ref{sec:groupModel}.", "Fixed effects for group target logistic model"), label="tab:group.fixef", align=c('r', 'r', 'r', 'r', 'r', 'r'), digits=c(0, 0, 4, 4, 2, 4)), include.rownames=F, file=paste0(imgdir, "group-fixef-table.tex"))
+#print(xtable(group.fixef2[,c(8, 1:4, 9)], caption=c("Fitted values of fixed effects for the model described in section~\ref{sec:groupModel}.", "Fixed effects for cluster target logistic model"), label="tab:group.fixef", align=c('r', 'r', 'r', 'r', 'r', 'r', 'r'), digits=c(0, 0, 4, 4, 2, 4, 0)), include.rownames=F, file="figure/group-fixef-table")
+print(xtable(group.fixef2[,c(8, 1:4)], caption=c("Fitted values of fixed effects for the model described in section~\ref{sec:groupModel}.", "Fixed effects for cluster target logistic model"), label="tab:group.fixef", align=c('r', 'r', 'r', 'r', 'r', 'r'), digits=c(0, 0, 4, 4, 2, 4)), include.rownames=F, file=paste0(imgdir, "group-fixef-table.tex"))
 
 @
 \caption[Odds of detecting the cluster target plot for each aesthetic]{Odds of detecting the cluster target plot for each aesthetic, relative to a plain scatterplot. The presence of error lines or bounding ellipses significantly decreases the probability of correct target detection, and no aesthetic successfully increases the probability of correct target detection. This may be due to differences in group size for null plots, with data generated under $M_0$ compared with the group target plot displaying data generated under $M_C$. \label{fig:group.fixef}}
