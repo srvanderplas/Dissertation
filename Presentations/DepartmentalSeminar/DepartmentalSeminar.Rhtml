@@ -667,6 +667,7 @@ end.rcode-->
     \text{and } \epsilon_{ijk} & \overset{iid}{\sim}  N\left(0, \sigma^2_e\right)
     \end{align}
     $$
+    <p> Variability due to model parameters is contained within the random effects for dataset </p>
   </section>
   
   <section>
@@ -702,11 +703,12 @@ qplot(data=line.fixef.aes, x=label, y=OR, ymin=LB, ymax=UB, geom="pointrange") +
   geom_text(aes(x=label, y=0, label=letters)) + 
   coord_flip() + 
   ylab("Odds + 95% Wald Interval") + 
-  xlab("Plot Type") + 
+  xlab("") + 
   geom_hline(yintercept=1, colour="gray70") +
   ggtitle("Odds of Selecting Line Target Plot") + 
   theme_bw()
 end.rcode-->
+    <p> Trend + Error plots increase the odds of line target selection; <br>Color + Shape + Ellipse aesthetics decrease the odds of line target selection. </p> 
   </section>
   
   <section>
@@ -823,11 +825,12 @@ qplot(data=group.fixef2, x=label, y=OR, ymin=LB, ymax=UB, geom="pointrange") +
   geom_text(aes(x=label, y=0.3, label=letters)) + 
   coord_flip() + 
   scale_y_continuous("Odds + 95% Wald Interval", breaks=c(.5, .75, 1, 1.25)) + 
-  xlab("Plot Type") + 
+  xlab("") + 
   geom_hline(yintercept=1, colour="gray70") +
   ggtitle("Odds of Selecting Cluster Target Plot") + 
   theme_bw()
 end.rcode-->
+  <p> Trend + Error aesthetics decrease the odds of selecting the cluster target <br> Ellipse aesthetic combinations also <i>decrease</i> the odds of selecting the cluster target. 
   </section>
   
   <section>
