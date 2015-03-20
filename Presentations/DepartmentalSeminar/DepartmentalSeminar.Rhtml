@@ -733,8 +733,8 @@ end.rcode-->
         <td width='30%' style="vertical-align:middle;text-align:center;">
 <!--begin.rcode gestaltplots1, dev.args = list(bg = 'transparent'), class="fragment", fragIndex=2, echo=F, fig.width=4, fig.height=4, out.width='275px', out.height='275px'
 
-  set.seed(50980)
-  data <- mixture.sim(lambda=0, K=3, N=45, sd.trend=.25, sd.cluster=.20)
+  set.seed(51980)
+  data <- mixture.sim(lambda=0, K=5, N=75, sd.trend=.25, sd.cluster=.20)
   qplot(data=data, x=x, y=y, geom="point", size=I(3), shape=I(1)) + 
     xlim(c(-2, 2)) + ylim(c(-2, 2)) + 
     xlab(NULL) + ylab(NULL) + 
@@ -752,8 +752,8 @@ end.rcode-->
         <td width='30%' style="vertical-align:middle;text-align:center;">
 <!--begin.rcode gestaltplots2, dev.args = list(bg = 'transparent'), class="fragment", fragIndex=3, echo=F, include=T, fig.width=4, fig.height=4, out.width='275px', out.height='275px'
 
-  set.seed(50980)
-  data <- mixture.sim(lambda=0, K=3, N=45, sd.trend=.25, sd.cluster=.20)
+  set.seed(51980)
+  data <- mixture.sim(lambda=0, K=5, N=75, sd.trend=.25, sd.cluster=.20)
   model <- lm(y~x, data=data)
   range <- diff(range(data$x))
   newdata <- data.frame(x=seq(min(data$x)-.1*range, max(data$x)+.1*range, length.out=400))
@@ -777,8 +777,8 @@ end.rcode-->
         <td width='30%' style="vertical-align:middle;text-align:center;">
 <!--begin.rcode gestaltplots3, dev.args = list(bg = 'transparent'), class="fragment", fragIndex=4, echo=F, include=T, fig.width=4, fig.height=4, out.width='275px', out.height='275px'
 
-  set.seed(50980)
-  data <- mixture.sim(lambda=0, K=3, N=45, sd.trend=.25, sd.cluster=.20)
+  set.seed(51980)
+  data <- mixture.sim(lambda=0, K=5, N=75, sd.trend=.25, sd.cluster=.20)
   model <- lm(y~x, data=data)
   range <- diff(range(data$x))
   newdata <- data.frame(x=seq(min(data$x)-.1*range, max(data$x)+.1*range, length.out=400))
@@ -844,7 +844,8 @@ qplot(data=group.fixef2, x=label, y=OR, ymin=LB, ymax=UB, geom="pointrange") +
   ggtitle("Odds of Selecting Cluster Target Plot") + 
   theme_bw()
 end.rcode-->
-  <p> Trend + Error aesthetics decrease the odds of selecting the cluster target <br> Ellipses also <i>decrease</i> the odds of selecting the cluster target. </p>
+  <p> Trend + Error aesthetics decrease the odds of selecting the cluster target. <br> 
+  Ellipses also <i>decrease</i> the odds of selecting the cluster target? </p>
   </section>
   
   <section>
@@ -855,8 +856,8 @@ end.rcode-->
         <td style="vertical-align:middle;text-align:center;" rowspan=2>
 <!--begin.rcode gestaltplots4, dev.args = list(bg = 'transparent'), class="fragment", fragIndex=2, echo=F, fig.width=4, fig.height=4, out.width='275px', out.height='275px', fig.show='hold'
 
-  set.seed(50980)
-  data <- mixture.sim(lambda=1, K=3, N=45, sd.trend=.25, sd.cluster=.20)
+  set.seed(51980)
+  data <- mixture.sim(lambda=1, K=5, N=75, sd.trend=.25, sd.cluster=.20)
   qplot(data=data, x=x, y=y, geom="point", size=I(3), shape=I(1)) + 
     xlim(c(-2, 2)) + ylim(c(-2, 2)) + 
     xlab(NULL) + ylab(NULL) + 
@@ -874,10 +875,10 @@ end.rcode-->
         </td>
         <td style="vertical-align:middle;text-align:center;">
 <!--begin.rcode gestaltplots5, dev.args = list(bg = 'transparent'), class="fragment", fragIndex=3, echo=F, include=T, fig.width=4, fig.height=4, out.width='275px', out.height='275px', fig.show='hold'
-  set.seed(50980)
-  data <- mixture.sim(lambda=1, K=3, N=45, sd.trend=.25, sd.cluster=.20)
+  set.seed(51980)
+  data <- mixture.sim(lambda=1, K=5, N=75, sd.trend=.25, sd.cluster=.20)
   qplot(data=data, x=x, y=y, geom="point", size=I(3), shape=factor(group)) + 
-    scale_shape_manual(guide="none", values=shape3pal) + 
+    scale_shape_manual(guide="none", values=shape5pal) + 
     xlim(c(-2, 2)) + ylim(c(-2, 2)) + 
     xlab(NULL) + ylab(NULL) + 
     geom_text(aes(x=-1.9, y=1.9, label="Proximity (points) + \nSimilarity (shape)"), hjust=0, vjust=1, size=5) +
@@ -893,11 +894,11 @@ end.rcode-->
         <td style="vertical-align:middle;text-align:center;">
 <!--begin.rcode gestaltplots6, dev.args = list(bg = 'transparent'), class="fragment", fragIndex=4, echo=F, include=T, fig.width=4, fig.height=4, out.width='275px', out.height='275px'
 
-  set.seed(50980)
-  data <- mixture.sim(lambda=1, K=3, N=45, sd.trend=.25, sd.cluster=.20)
+  set.seed(51980)
+  data <- mixture.sim(lambda=1, K=5, N=75, sd.trend=.25, sd.cluster=.20)
   qplot(data=data, x=x, y=y, geom="point", size=I(3), shape=factor(group), color=factor(group)) +
-    scale_color_manual(guide="none", values=color3pal) +
-    scale_shape_manual(guide="none", values=shape3pal) + 
+    scale_color_manual(guide="none", values=color5pal) +
+    scale_shape_manual(guide="none", values=shape5pal) + 
     xlim(c(-2, 2)) + ylim(c(-2, 2)) + 
     xlab(NULL) + ylab(NULL) + 
     geom_text(aes(x=-1.9, y=1.9, label="Proximity (points) + \nSimilarity (shape) + \nSimilarity (color)"), hjust=0, vjust=1, size=5, inherit.aes=FALSE) +
@@ -913,12 +914,12 @@ end.rcode-->
         <td style="vertical-align:middle;text-align:center;" rowspan=2>
 <!--begin.rcode gestaltplots7, dev.args = list(bg = 'transparent'), class="fragment", fragIndex=5, echo=F, include=T, fig.width=4, fig.height=4, out.width='275px', out.height='275px', fig.show='hold'
 
-  set.seed(50980)
-  data <- mixture.sim(lambda=1, K=3, N=45, sd.trend=.25, sd.cluster=.20)
+  set.seed(51980)
+  data <- mixture.sim(lambda=1, K=5, N=75, sd.trend=.25, sd.cluster=.20)
   qplot(data=data, x=x, y=y, geom="point", size=I(3), shape=factor(group), color=factor(group)) +
     stat_ellipse(geom="polygon", level=.9, aes(colour=factor(group)), alpha=0.2, fill=NA) + 
-    scale_color_manual(guide="none", values=color3pal) +
-    scale_shape_manual(guide="none", values=shape3pal) + 
+    scale_color_manual(guide="none", values=color5pal) +
+    scale_shape_manual(guide="none", values=shape5pal) + 
     xlim(c(-2, 2)) + ylim(c(-2, 2)) + 
     xlab(NULL) + ylab(NULL) + 
     geom_text(aes(x=-1.9, y=1.9, label="Proximity (points) + \nSimilarity (shape) + \nSimilarity (color) + \nCommon Region (ellipse)"), hjust=0, vjust=1, size=5, inherit.aes=FALSE) +
@@ -936,10 +937,10 @@ end.rcode-->
         <td style="vertical-align:middle;text-align:center;">
 <!--begin.rcode gestaltplots5-1, dev.args = list(bg = 'transparent'), class="fragment", fragIndex=3, echo=F, include=T, fig.width=4, fig.height=4, out.width='275px', out.height='275px', fig.show='hold'
 
-  set.seed(50980)
-  data <- mixture.sim(lambda=1, K=3, N=45, sd.trend=.25, sd.cluster=.20)
+  set.seed(51980)
+  data <- mixture.sim(lambda=1, K=5, N=75, sd.trend=.25, sd.cluster=.20)
   qplot(data=data, x=x, y=y, geom="point", size=I(3), color=factor(group), shape=I(1)) + 
-    scale_color_manual(guide="none", values=color3pal) + 
+    scale_color_manual(guide="none", values=color5pal) + 
     xlim(c(-2, 2)) + ylim(c(-2, 2)) + 
     xlab(NULL) + ylab(NULL) + 
     geom_text(aes(x=-1.9, y=1.9, label="Proximity (points) + \nSimilarity (color)"), hjust=0, vjust=1, size=5, inherit.aes=FALSE) +
@@ -956,11 +957,11 @@ end.rcode-->
         <td style="vertical-align:middle;text-align:center;">
 <!--begin.rcode gestaltplots6-1, dev.args = list(bg = 'transparent'), class="fragment", fragIndex=4, echo=F, include=T, fig.width=4, fig.height=4, out.width='275px', out.height='275px'
 
-  set.seed(50980)
-  data <- mixture.sim(lambda=1, K=3, N=45, sd.trend=.25, sd.cluster=.20)
+  set.seed(51980)
+  data <- mixture.sim(lambda=1, K=5, N=75, sd.trend=.25, sd.cluster=.20)
   qplot(data=data, x=x, y=y, geom="point", size=I(3), color=factor(group), shape=I(1)) + 
     stat_ellipse(geom="polygon", level=.9, aes(colour=factor(group)), alpha=0.2, fill=NA) + 
-    scale_color_manual(guide="none", values=color3pal) + 
+    scale_color_manual(guide="none", values=color5pal) + 
     xlim(c(-2, 2)) + ylim(c(-2, 2)) + 
     xlab(NULL) + ylab(NULL) + 
     geom_text(aes(x=-1.9, y=1.9, label="Proximity (points) + \nSimilarity (color) + \nCommon Region (ellipse)"), hjust=0, vjust=1, size=5, inherit.aes=FALSE) +
@@ -1029,8 +1030,8 @@ end.rcode-->
         <td style="vertical-align:middle;text-align:center;">
 <!--begin.rcode gestaltplots8, dev.args = list(bg = 'transparent'), class="fragment", fragIndex=2, echo=F, fig.width=4, fig.height=4, out.width='275px', out.height='275px'
 
-  set.seed(50980)
-  data <- mixture.sim(lambda=0, K=3, N=45, sd.trend=.25, sd.cluster=.20)
+  set.seed(51980)
+  data <- mixture.sim(lambda=0, K=5, N=75, sd.trend=.25, sd.cluster=.20)
   model <- lm(y~x, data=data)
   range <- diff(range(data$x))
   newdata <- data.frame(x=seq(min(data$x)-.1*range, max(data$x)+.1*range, length.out=400))
@@ -1038,7 +1039,7 @@ end.rcode-->
                    predict.lm(model, newdata=newdata, interval="prediction", level=0.9))
   qplot(data=data, x=x, y=y, geom="point", size=I(3), shape=I(1), color=factor(group)) + 
     geom_line(aes(x=x, y=fit), color="black", data=ci) + 
-    scale_color_manual(guide="none", values=color3pal) + 
+    scale_color_manual(guide="none", values=color5pal) + 
     xlim(c(-2.4, 2.4)) + ylim(c(-2.4, 2.4)) + 
     xlab(NULL) + ylab(NULL) + 
     geom_text(aes(x=-2.3, y=2.3, label="Continuity (points) + \nContinuity (line)"), hjust=0, vjust=1, size=5, inherit.aes=FALSE) +
@@ -1056,8 +1057,8 @@ end.rcode-->
         <td style="vertical-align:middle;text-align:center;">
 <!--begin.rcode gestaltplots9, dev.args = list(bg = 'transparent'), class="fragment", fragIndex=3, echo=F, fig.width=4, fig.height=4, out.width='275px', out.height='275px'
 
-  set.seed(50980)
-  data <- mixture.sim(lambda=.5, K=3, N=45, sd.trend=.25, sd.cluster=.20)
+  set.seed(51980)
+  data <- mixture.sim(lambda=.5, K=5, N=75, sd.trend=.25, sd.cluster=.20)
   model <- lm(y~x, data=data)
   range <- diff(range(data$x))
   newdata <- data.frame(x=seq(min(data$x)-.1*range, max(data$x)+.1*range, length.out=400))
@@ -1065,7 +1066,7 @@ end.rcode-->
                    predict.lm(model, newdata=newdata, interval="prediction", level=0.9))
   qplot(data=data, x=x, y=y, geom="point", size=I(3), shape=I(1), color=factor(group)) + 
     geom_line(aes(x=x, y=fit), color="black", data=ci) + 
-    scale_color_manual(guide="none", values=color3pal) + 
+    scale_color_manual(guide="none", values=color5pal) + 
     xlim(c(-2.4, 2.4)) + ylim(c(-2.4, 2.4)) + 
     xlab(NULL) + ylab(NULL) + 
     geom_text(aes(x=-2.3, y=2.3, label="Continuity (line)"), hjust=0, vjust=1, size=5, inherit.aes=FALSE) +
@@ -1083,8 +1084,8 @@ end.rcode-->
         <td style="vertical-align:middle;text-align:center;">
 <!--begin.rcode gestaltplots10, dev.args = list(bg = 'transparent'), class="fragment", fragIndex=4, echo=F, fig.width=4, fig.height=4, out.width='275px', out.height='275px'
 
-  set.seed(50980)
-  data <- mixture.sim(lambda=1, K=3, N=45, sd.trend=.25, sd.cluster=.20)
+  set.seed(51980)
+  data <- mixture.sim(lambda=1, K=5, N=75, sd.trend=.25, sd.cluster=.20)
   model <- lm(y~x, data=data)
   range <- diff(range(data$x))
   newdata <- data.frame(x=seq(min(data$x)-.1*range, max(data$x)+.1*range, length.out=400))
@@ -1092,7 +1093,7 @@ end.rcode-->
                    predict.lm(model, newdata=newdata, interval="prediction", level=0.9))
   qplot(data=data, x=x, y=y, geom="point", size=I(3), shape=I(1), color=factor(group)) + 
     geom_line(aes(x=x, y=fit), color="black", data=ci) + 
-    scale_color_manual(guide="none", values=color3pal) + 
+    scale_color_manual(guide="none", values=color5pal) + 
     xlim(c(-2.4, 2.4)) + ylim(c(-2.4, 2.4)) + 
     xlab(NULL) + ylab(NULL) + 
     geom_text(aes(x=-2.3, y=2.3, label="Continuity (line)"), hjust=0, vjust=1, size=5, inherit.aes=FALSE) +
@@ -1112,8 +1113,8 @@ end.rcode-->
         <td style="vertical-align:middle;text-align:center;">
 <!--begin.rcode gestaltplots11, dev.args = list(bg = 'transparent'), class="fragment", fragIndex=2, echo=F, include=T, fig.width=4, fig.height=4, out.width='275px', out.height='275px'
 
-  set.seed(50980)
-  data <- mixture.sim(lambda=0, K=3, N=45, sd.trend=.25, sd.cluster=.20)
+  set.seed(51980)
+  data <- mixture.sim(lambda=0, K=5, N=75, sd.trend=.25, sd.cluster=.20)
   model <- lm(y~x, data=data)
   range <- diff(range(data$x))
   newdata <- data.frame(x=seq(min(data$x)-.1*range, max(data$x)+.1*range, length.out=400))
@@ -1124,7 +1125,7 @@ end.rcode-->
     stat_ellipse(geom="polygon", level=.9, aes(colour=factor(group)), alpha=0.2, fill=NA) + 
     geom_line(aes(x=x, y=lwr), lty=2, color="black", data=ci) + 
     geom_line(aes(x=x, y=upr), lty=2, color="black", data=ci) + 
-    scale_color_manual(guide="none", values=color3pal) + 
+    scale_color_manual(guide="none", values=color5pal) + 
     xlim(c(-2.4, 2.4)) + ylim(c(-2.4, 2.4)) + 
     xlab(NULL) + ylab(NULL) + 
     geom_text(aes(x=-2.3, y=2.3, label="Continuity (points) + \nContinuity (line) + \nCommon Region\n(error bands)"), hjust=0, vjust=1, size=5, inherit.aes=FALSE) + 
@@ -1142,8 +1143,8 @@ end.rcode-->
         <td style="vertical-align:middle;text-align:center;">
 <!--begin.rcode gestaltplots12, dev.args = list(bg = 'transparent'), class="fragment", fragIndex=3, echo=F, include=T, fig.width=4, fig.height=4, out.width='275px', out.height='275px'
 
-  set.seed(50980)
-  data <- mixture.sim(lambda=.5, K=3, N=45, sd.trend=.25, sd.cluster=.20)
+  set.seed(51980)
+  data <- mixture.sim(lambda=.5, K=5, N=75, sd.trend=.25, sd.cluster=.20)
   model <- lm(y~x, data=data)
   range <- diff(range(data$x))
   newdata <- data.frame(x=seq(min(data$x)-.1*range, max(data$x)+.1*range, length.out=400))
@@ -1154,7 +1155,7 @@ end.rcode-->
     stat_ellipse(geom="polygon", level=.9, aes(colour=factor(group)), alpha=0.2, fill=NA) + 
     geom_line(aes(x=x, y=lwr), lty=2, color="black", data=ci) + 
     geom_line(aes(x=x, y=upr), lty=2, color="black", data=ci) + 
-    scale_color_manual(guide="none", values=color3pal) + 
+    scale_color_manual(guide="none", values=color5pal) + 
     xlim(c(-2.4, 2.4)) + ylim(c(-2.4, 2.4)) + 
     xlab(NULL) + ylab(NULL) + 
     geom_text(aes(x=-2.3, y=2.3, label="Continuity (line) + \nCommon Region\n(error bands)"), hjust=0, vjust=1, size=5, inherit.aes=FALSE) + 
@@ -1172,8 +1173,8 @@ end.rcode-->
         <td style="vertical-align:middle;text-align:center;">
 <!--begin.rcode gestaltplots13, dev.args = list(bg = 'transparent'), class="fragment", fragIndex=4, echo=F, include=T, fig.width=4, fig.height=4, out.width='275px', out.height='275px'
 
-  set.seed(50980)
-  data <- mixture.sim(lambda=1, K=3, N=45, sd.trend=.25, sd.cluster=.20)
+  set.seed(51980)
+  data <- mixture.sim(lambda=1, K=5, N=75, sd.trend=.25, sd.cluster=.20)
   model <- lm(y~x, data=data)
   range <- diff(range(data$x))
   newdata <- data.frame(x=seq(min(data$x)-.1*range, max(data$x)+.1*range, length.out=400))
@@ -1184,7 +1185,7 @@ end.rcode-->
     stat_ellipse(geom="polygon", level=.9, aes(colour=factor(group)), alpha=0.2, fill=NA) + 
     geom_line(aes(x=x, y=lwr), lty=2, color="black", data=ci) + 
     geom_line(aes(x=x, y=upr), lty=2, color="black", data=ci) + 
-    scale_color_manual(guide="none", values=color3pal) + 
+    scale_color_manual(guide="none", values=color5pal) + 
     xlim(c(-2.4, 2.4)) + ylim(c(-2.4, 2.4)) + 
     xlab(NULL) + ylab(NULL) + 
     geom_text(aes(x=-2.3, y=2.3, label="Continuity (line) + \nCommon Region\n(error bands)"), hjust=0, vjust=1, size=5, inherit.aes=FALSE) + 
