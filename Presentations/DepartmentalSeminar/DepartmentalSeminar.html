@@ -115,8 +115,13 @@
   <section>
   	<h2> Outline </h2>
   	<ul>
-  	  <li style="margin:20px"> Psychology of Perception </li>
+  	  <li style="margin:20px"> Human Perception </li>
       <li style="margin:20px"> Experiment Structure </li> 
+        <ul style="font-size:80%">
+          <li> Model </li>
+          <li> Parameter Structure </li>
+          <li> Plot Aesthetics </li>
+        </ul>
       <li style="margin:20px"> Results </li>
         <ul style="font-size:80%">
           <li> Accuracy </li>
@@ -130,46 +135,86 @@
 
 <section>
   <section class="center">
-    <h2 class="title"> The Psychology of Graph Perception </h2>
+    <h2 class="title"> Human Perception and Statistical Graphics </h2>
   </section>
 
 
 
   <section>
     <h2><span style="font-size:80%;vertical-align:middle;"> Preattentive Feature Detection </span></h3>
-<div class="chunk" id="preattentive-interference"><div class="rimage default"><img src="figure/preattentive-interference-1.png" title="plot of chunk preattentive-interference" alt="plot of chunk preattentive-interference" width="30%" height="auto" class="plot" />
-<img src="figure/preattentive-interference-2.png" title="plot of chunk preattentive-interference" alt="plot of chunk preattentive-interference" width="30%" height="auto" class="plot" />
-<img src="figure/preattentive-interference-3.png" title="plot of chunk preattentive-interference" alt="plot of chunk preattentive-interference" width="30%" height="auto" class="plot" /></div></div>
-    <p> Combinations of preattentive features are not preattentive.  </p>
+    <table class="noborder nopadding">
+    <tr>
+    <td width='25%'>
+<div class="chunk" id="preattentive-interference"><div class="rimage default"><img src="figure/preattentive-interference-1.png" title="plot of chunk preattentive-interference" alt="plot of chunk preattentive-interference" width="90%" height="auto" class="plot" />
+<img src="figure/preattentive-interference-2.png" title="plot of chunk preattentive-interference" alt="plot of chunk preattentive-interference" width="90%" height="auto" class="plot" /></div></div>
+    </td><td width='auto'>
+      <ul>
+        <li> Perception which occurs before conscious attention is focused on the stimulus </li>
+        <li> Occurs within 200 ms </li>
+      </ul>
+    </td>
+    </tr>
+    </table>
   </section>
 
 
   <section>
     <h2> Perception of Statistical Plots </h2>
+    <table>
+    <tr>
+    <td width='50%'>
       <ul style="margin-bottom:30px">
-        <li style="margin-top:20px;margin-bottom:20px"> We don't perceive plots preattentively, but some research has studied preattentive plot perception (Healy & Enns, 1999, 2012)
+        <li style="margin-top:20px;margin-bottom:20px"> We don't perceive plots preattentively, but some research has studied preattentive plot perception <p style="font-size:75%">(Healy & Enns, 1999, 2012)</p>
         </li>
+        
+        <li style="margin-top:20px;margin-bottom:20px"> Preattentive feature detection impacts statistical plots </li> 
           
-        <li style="margin-top:20px;margin-bottom:20px"> Rough hierarchy of graphical features (accuracy): </li>
-        <table>
+      </ul>
+      
+    </td>
+    <td>
+      <p>Hierarchy of features (accuracy): </p>
+      <table width='60%'>
           <tr>
-            <td style="vertical-align:middle;text-align:center;">color **</td>
-            <td style="vertical-align:middle;text-align:center;">$$>$$</td>
-            <td style="vertical-align:middle;text-align:center;">shape<br>intensity<br>letters (HQX)</td>
-            <td style="vertical-align:middle;text-align:center;">$$>$$</td>
-            <td style="vertical-align:middle;text-align:center;">letters (HEF)</td>
+            <td style="vertical-align:middle;text-align:center;border:1px solid;" width=25%>1</td>
+            <td style="vertical-align:middle;text-align:center;border:1px solid;">color*</td>
+          </tr><tr>
+            <td style="vertical-align:middle;text-align:center;border:1px solid;">2</td>
+            <td style="vertical-align:middle;text-align:center;border:1px solid;">shape<br>intensity<br> letters (HQX)</td>
+          </tr><tr>
+            <td style="vertical-align:middle;text-align:center;border:1px solid;">3</td>
+            <td style="vertical-align:middle;text-align:center;border:1px solid;"> letters (HEF)</td>
           </tr>
         </table>
-        <p  style="font-size:75%;"> Cleveland & McGill (1985), Lewandowsky & Spence (1989) </p>
-      </ul>
-      <p style="text-align:left">** For the 95% of the population with normal color vision </p>
+      <p style="text-align:left;font-size:75%">* For the 95% with normal color vision </p>
+      <p  style="font-size:75%;"> Cleveland & McGill (1985)<br> Lewandowsky & Spence (1989) </p>
+    </td>
+    </table>
   </section>
-  
+
+  <section>
+    <h2> Gestalt Laws of Perception </h2>
+    <table>
+      <tr>
+        <td style="vertical-align:top;">
+          <ul style="margin-bottom:20px;margin-top:20px;width:95%;">
+            <li style="margin-bottom:20px"> Rules that make sense of complex visual information through experience </li>
+            <li style="margin-top:20px;margin-bottom:20px"> "Top-down" rules organize information hierarchically </li>
+            <li style="margin-top:20px;margin-bottom:20px"> Subconsciously order and group visual input </li>
+          </ul>
+        </td>
+        <td style="vertical-align:top;text-align:center;" width="40%">
+          <a href="https://en.wikipedia.org/wiki/Illusory_contours" target="_blank">
+            <img src="image/missingTriangle.svg" width='75%' height='auto'/>
+          </a>
+        </td>
+      </tr>
+    </table>
+    <p style="margin-top:50px"> "The whole is different from the sum of the parts" </p>
+  </section>
   <section>
     <h2> Gestalt Laws </h2>
-    <p> Subconsciously order and group visual input </p>
 <div class="chunk" id="gestalt"><div class="rimage default"><img src="figure/gestalt-1.png" title="plot of chunk gestalt" alt="plot of chunk gestalt" width="55%" class="plot" /></div></div>
-
   </section>
 </section>
 
@@ -177,8 +222,10 @@
 
 
 <section>
-  <section class="center">
+  <section>
     <div> <h2>Experiment:</h2> <h3> How do plot aesthetics affect perception of statistical plots with competing signals? </h3></div>
+<div class="chunk" id="motivation"><div class="rimage default"><img src="figure/motivation-1.png" title="plot of chunk motivation" alt="plot of chunk motivation" width="300px" height="300px" class="plot" />
+<img src="figure/motivation-2.png" title="plot of chunk motivation" alt="plot of chunk motivation" width="300px" height="300px" class="plot" /></div></div>
   </section>
     
   <section>

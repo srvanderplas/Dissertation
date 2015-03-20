@@ -21,7 +21,7 @@ body {
 }
 
 .knitr.inline {
-  border: 1px solid;
+  border: none;
   background-color: #add9e4;
 }
 
