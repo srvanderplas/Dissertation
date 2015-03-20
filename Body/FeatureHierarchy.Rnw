@@ -813,19 +813,19 @@ qplot(data=line.fixef.aes, x=label, y=OR, ymin=LB, ymax=UB, geom="pointrange") +
   ylab("Odds + 95% Wald Interval") + 
   xlab("Plot Type") + 
   geom_hline(yintercept=1, colour="gray70") +
-  ggtitle("Odds of Selecting Line Target Plot") + 
+  ggtitle("Odds of Selecting Trend Target Plot") + 
   theme_bw()
 
 names(line.fixef.aes)[1:4] <- c("Log Odds", "Std. Error", "Z", "P value")
 names(line.fixef.aes)[8] <- "Plot Aesthetic"
 names(line.fixef.aes)[9] <- "Tukey Post Hoc Differences"
-#print(xtable(line.fixef.aes[,c(8, 1:4, 9)], caption=c("Fitted values of fixed effects for the model described in \\eqref{eqn:linearModel}. Only Trend+Error plots significantly increase the probability of detecting the linear target plot (with data generated from $M_T$), while most other aesthetic combinations decrease the probability of detecting the linear target plot.", "Fixed effects for linear target logistic model"), label="tab:line.fixef", align=c('r', 'r', 'r', 'r', 'r', 'r', 'r'), digits=c(0, 0, 4, 4, 2, 4, 0)), include.rownames=F, file="figure/linear-fixef-table")
-print(xtable(line.fixef.aes[,c(8, 1:4)], caption=c("Fitted values of fixed effects for the model described in \\eqref{eqn:linearModel}. Only Trend+Error plots significantly increase the probability of detecting the linear target plot (with data generated from $M_T$), while most other aesthetic combinations decrease the probability of detecting the linear target plot.", "Fixed effects for linear target logistic model"), label="tab:line.fixef", align=c('r', 'r', 'r', 'r', 'r', 'r'), digits=c(0, 0, 4, 4, 2, 4)), include.rownames=F, file=paste0(imgdir, "linear-fixef-table.tex"))
+#print(xtable(line.fixef.aes[,c(8, 1:4, 9)], caption=c("Fitted values of fixed effects for the model described in \\eqref{eqn:linearModel}. Only Trend+Error plots significantly increase the probability of detecting the trend target plot (with data generated from $M_T$), while most other aesthetic combinations decrease the probability of detecting the trend target plot.", "Fixed effects for trend target logistic model"), label="tab:line.fixef", align=c('r', 'r', 'r', 'r', 'r', 'r', 'r'), digits=c(0, 0, 4, 4, 2, 4, 0)), include.rownames=F, file="figure/linear-fixef-table")
+print(xtable(line.fixef.aes[,c(8, 1:4)], caption=c("Fitted values of fixed effects for the model described in \\eqref{eqn:linearModel}. Only Trend+Error plots significantly increase the probability of detecting the trend target plot (with data generated from $M_T$), while most other aesthetic combinations decrease the probability of detecting the trend target plot.", "Fixed effects for trend target logistic model"), label="tab:line.fixef", align=c('r', 'r', 'r', 'r', 'r', 'r'), digits=c(0, 0, 4, 4, 2, 4)), include.rownames=F, file=paste0(imgdir, "linear-fixef-table.tex"))
 @
-\caption[Odds of detecting the linear target plot for each aesthetic]{Odds of detecting the linear target plot for each aesthetic. Only the combination of Trend + Error significantly increases the odds of linear target plot detection relative to the control plot (plain scatterplot). \label{fig:linear.fixef}}
+\caption[Odds of detecting the trend target plot for each aesthetic]{Odds of detecting the trend target plot for each aesthetic. Only the combination of Trend + Error significantly increases the odds of trend target plot detection relative to the control plot (plain scatterplot). \label{fig:linear.fixef}}
 \end{figure}
 
-Once error bands are added to the plot, many other heuristics may be applied: closure, common region, and connectedness (depending on the style of the error bands). For the 95\% intervals in the stimuli plots, closure and common region are the most likely heuristics recruited with the addition of error bands. The results are consistent with this idea: only the dual continuity emphasis of trend + error bands significantly increases the probability that participants will identify the target plot generated under $M_T$. 
+Once error bands are added to the plot, many other heuristics may be applied: closure (perception of a closed object even if it is incomplete), common region, and connectedness (depending on the style of the error bands). For the 95\% intervals in the stimuli plots, closure and common region are the most likely heuristics recruited with the addition of error bands (a ribbon-style interval would recruit connectedness as well). The results are consistent with this idea: only the dual continuity emphasis of trend + error bands significantly increases the probability that participants will identify the target plot generated under $M_T$. 
 
 \subsubsection{Group Target Selection}\label{sec:groupModel}
 <<group-model, echo=FALSE, include=FALSE, dependson='results-setup'>>=
