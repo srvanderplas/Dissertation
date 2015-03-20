@@ -640,7 +640,7 @@ end.rcode-->
         
   <section>
     <h2> Target Identification </h2>
-<!--begin.rcode target-aggregate, echo=F, include=T, fig.width=8, fig.height=6, out.width='60%', out.height='auto'
+<!--begin.rcode target-aggregate, echo=F, include=T, fig.width=8, fig.height=4, out.width='80%', out.height='auto'
 user.data <- modeldata %>% group_by(individualID) %>% 
 summarize(answers=length(individualID),
           cluster=sum(cluster.correct),
@@ -651,7 +651,7 @@ names(clusters) <- c("x", "Cluster")
 clusters$Trend <- trends$Freq 
 clm <- melt(clusters, measure.var=2:3)
 
-ggplot() + geom_point(aes(x, value, colour=variable, shape=variable), size=3, data=clm) + theme_bw() + scale_colour_brewer("Target", palette="Set1") + scale_shape_discrete("Target") + theme(legend.position="bottom") + ylab("Number of participants") + xlab("Number of target identifications (out of ten)") + geom_line(aes(x, value, colour=variable, group=variable), data=clm) + ggtitle("Target Identification by Participants")
+ggplot() + geom_point(aes(x, value, colour=variable, shape=variable), size=3, data=clm) + theme_bw() + scale_colour_brewer("Target", palette="Set1") + scale_shape_discrete("Target") + theme(legend.position=c(.85, .9), legend.direction="horizontal") + ylab("Number of participants") + xlab("Number of target identifications (out of ten)") + geom_line(aes(x, value, colour=variable, group=variable), data=clm) + ggtitle("Target Identification by Participants")
 end.rcode-->
   </section>
   
