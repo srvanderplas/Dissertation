@@ -487,7 +487,7 @@
     \begin{align}
     \log(\text{Trial Time}) &\sim \textbf{X}\beta + \textbf{J}\gamma + \textbf{K}\eta + \epsilon\\
     \text{where } \beta_i & \text{ describe outcome and aesthetic combinations,}\\
-    & \text{plus an initial trial effect}\\
+    & \text{ plus an initial trial effect}\\
     \hphantom{where } \gamma_j & \overset{iid}{\sim} N\left(0, \sigma^2_{\text{dataset}}\right)\\
     \hphantom{where } \eta_k & \overset{iid}{\sim} N\left(0, \sigma^2_{\text{participant}}\right)\\
     \text{and } \epsilon_{ijk} & \overset{iid}{\sim}  N\left(0, \sigma^2_e\right)
@@ -535,7 +535,7 @@
   </section>
   <section>
     <h2> Participant Reasoning </h2>
-      <h3> Trend Line Plots </h3>
+      <h3> Trend line Aesthetic Plots </h3>
 <div class="chunk" id="wordles-line"><div class="rimage default"><img src="figure/wordles-line-1.png" title="plot of chunk wordles-line" alt="plot of chunk wordles-line" width="350px" height="350px" class="plot" />
 <img src="figure/wordles-line-2.png" title="plot of chunk wordles-line" alt="plot of chunk wordles-line" width="350px" height="350px" class="plot" />
 <img src="figure/wordles-line-3.png" title="plot of chunk wordles-line" alt="plot of chunk wordles-line" width="350px" height="350px" class="plot" /></div></div>
@@ -549,7 +549,7 @@
   </section>
   <section>
     <h2> Participant Reasoning </h2>
-      <h3> Color Plots </h3>
+      <h3> Color Aesthetic Plots </h3>
 <div class="chunk" id="wordles-color"><div class="rimage default"><img src="figure/wordles-color-1.png" title="plot of chunk wordles-color" alt="plot of chunk wordles-color" width="350px" height="350px" class="plot" />
 <img src="figure/wordles-color-2.png" title="plot of chunk wordles-color" alt="plot of chunk wordles-color" width="350px" height="350px" class="plot" />
 <img src="figure/wordles-color-3.png" title="plot of chunk wordles-color" alt="plot of chunk wordles-color" width="350px" height="350px" class="plot" /></div></div>
@@ -563,7 +563,7 @@
   </section>
   <section>
     <h2> Participant Reasoning </h2>
-      <h3> Color + Ellipse Plots </h3>
+      <h3> Color + Ellipse Aesthetic Plots </h3>
 <div class="chunk" id="wordles-colorEllipse"><div class="rimage default"><img src="figure/wordles-colorEllipse-1.png" title="plot of chunk wordles-colorEllipse" alt="plot of chunk wordles-colorEllipse" width="350px" height="350px" class="plot" />
 <img src="figure/wordles-colorEllipse-2.png" title="plot of chunk wordles-colorEllipse" alt="plot of chunk wordles-colorEllipse" width="350px" height="350px" class="plot" />
 <img src="figure/wordles-colorEllipse-3.png" title="plot of chunk wordles-colorEllipse" alt="plot of chunk wordles-colorEllipse" width="350px" height="350px" class="plot" /></div></div>
@@ -590,7 +590,22 @@
   <section>
     <h2> Conclusions </h2>
     <ul>
-      <li>
+      <li> Plot aesthetics influence the perception of the dominant effect in data displays </li>
+      <li> The effect is not additive (the two conflict conditions don't show similar/neutral results) </li>
+      <li> Aesthetics which recruit additional gestalt heuristics have a larger influence </li>
+      <li> Uneven groups in null plots emphasize different feature sets </li>
+    </ul>
+  </section>
+  
+  <section>
+    <h2> Future Work </h2>
+    <ul> 
+      <li> Restrict group sizes to ensure null plots have the same gestalt heuristics as target plots </li>
+      <li> Explore the effect of different types of common region - shading, bounding boxes, etc. </li>
+      <li> Test ellipse and error band aesthetics alone to examine synergistic effects </li> 
+    </ul>
+  </section>
+</section>
 
 </div> <!-- slides -->
 </div> <!-- reveal -->

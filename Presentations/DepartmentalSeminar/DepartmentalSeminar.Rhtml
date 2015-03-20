@@ -1340,7 +1340,7 @@ end.rcode-->
   </section>
   <section>
     <h2> Participant Reasoning </h2>
-      <h3> Trend Line Plots </h3>
+      <h3> Trend line Aesthetic Plots </h3>
 <!--begin.rcode wordles-line, dependson='wordles', echo=F, include=T, fig.width=4, fig.height=4, out.width='350px', out.height='350px'
 for (i in 4:6) {
 words.corpus <- Corpus(DataframeSource(data.frame(words$list[i])))
@@ -1367,7 +1367,7 @@ end.rcode-->
   </section>
   <section>
     <h2> Participant Reasoning </h2>
-      <h3> Color Plots </h3>
+      <h3> Color Aesthetic Plots </h3>
 <!--begin.rcode wordles-color, dependson='wordles', echo=F, include=T, fig.width=4, fig.height=4, out.width='350px', out.height='350px'
 for (i in 7:9) {
 words.corpus <- Corpus(DataframeSource(data.frame(words$list[i])))
@@ -1394,7 +1394,7 @@ end.rcode-->
   </section>
   <section>
     <h2> Participant Reasoning </h2>
-      <h3> Color + Ellipse Plots </h3>
+      <h3> Color + Ellipse Aesthetic Plots </h3>
 <!--begin.rcode wordles-colorEllipse, dependson='wordles', echo=F, include=T, fig.width=4, fig.height=4, out.width='350px', out.height='350px'
 for (i in 10:12) {
 words.corpus <- Corpus(DataframeSource(data.frame(words$list[i])))
@@ -1484,7 +1484,22 @@ end.rcode-->
   <section>
     <h2> Conclusions </h2>
     <ul>
-      <li>
+      <li> Plot aesthetics influence the perception of the dominant effect in data displays </li>
+      <li> The effect is not additive (the two conflict conditions don't show similar/neutral results) </li>
+      <li> Aesthetics which recruit additional gestalt heuristics have a larger influence </li>
+      <li> Uneven groups in null plots emphasize different feature sets </li>
+    </ul>
+  </section>
+  
+  <section>
+    <h2> Future Work </h2>
+    <ul> 
+      <li> Restrict group sizes to ensure null plots have the same gestalt heuristics as target plots </li>
+      <li> Explore the effect of different types of common region - shading, bounding boxes, etc. </li>
+      <li> Test ellipse and error band aesthetics alone to examine synergistic effects </li> 
+    </ul>
+  </section>
+</section>
 
 </div> <!-- slides -->
 </div> <!-- reveal -->
