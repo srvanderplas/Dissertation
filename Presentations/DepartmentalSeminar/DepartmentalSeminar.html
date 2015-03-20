@@ -444,22 +444,8 @@
   </section>
   
   <section>
-    <h2> Response Time </h2>
-    <br></br>
-    $$
-    \begin{align}
-    \log(\text{Trial Time}) &\sim& \textbf{X}\beta + \textbf{J}\gamma + \textbf{K}\eta + \epsilon\\
-    \text{where} \beta_i & \text{describe outcome and aesthetic combinations, plus an initial trial effect}\\
-    \hphantom{where } \gamma_j & \overset{iid}{\sim} N\left(0, \sigma^2_{\text{dataset}}\right)\\
-    \hphantom{where } \eta_k & \overset{iid}{\sim} N\left(0, \sigma^2_{\text{participant}}\right)\\
-    \text{and } \epsilon_{ijk} & \overset{iid}{\sim}  N\left(0, \sigma^2_e\right)
-    \end{align}
-    $$
-  </section>
-    
-  <section>
     <h2> Gestalt Heuristics and Aesthetics </h2>
-    <h3> Mixed Signals </h3>
+    <h4> Mixed Signals? </h4>
     <div align="center">
     <table class="nopadding noborder nowidth">
       <tr>
@@ -494,6 +480,21 @@
     </div>
   </section>
   
+  <section>
+    <h2> Response Time </h2>
+    <br></br>
+    $$
+    \begin{align}
+    \log(\text{Trial Time}) &\sim \textbf{X}\beta + \textbf{J}\gamma + \textbf{K}\eta + \epsilon\\
+    \text{where } \beta_i & \text{ describe outcome and aesthetic combinations,}\\
+    & \text{plus an initial trial effect}\\
+    \hphantom{where } \gamma_j & \overset{iid}{\sim} N\left(0, \sigma^2_{\text{dataset}}\right)\\
+    \hphantom{where } \eta_k & \overset{iid}{\sim} N\left(0, \sigma^2_{\text{participant}}\right)\\
+    \text{and } \epsilon_{ijk} & \overset{iid}{\sim}  N\left(0, \sigma^2_e\right)
+    \end{align}
+    $$
+  </section>
+    
   <section>
     <h2> Response Time </h2>
 <div class="chunk" id="response-time-aes"><div class="rimage default"><img src="figure/response-time-aes-1.png" title="plot of chunk response-time-aes" alt="plot of chunk response-time-aes" width="90%" height="auto" class="plot" /></div></div>
