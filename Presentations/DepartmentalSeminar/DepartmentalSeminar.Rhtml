@@ -609,13 +609,19 @@ end.rcode-->
   
   <section>
     <h2>Data Collection</h2>
-      <ul>
-        <li> Participants recruited through Amazon Mechanical Turk to complete 10 plot evaluations </li>
+      <ul style="margin-bottom:30px">
+        <li> Participants recruited through Amazon Mechanical Turk </li>
         <li> Experiment ran for <!--rinline round(as.numeric(difftime(max(modeldata$end_time), min(modeldata$start_time), units="hours")), 2) --> hours </li>
-        <li> <!--rinline length(unique(userdata$nick_name))-->  individuals completed <!--rinline nrow(userdata)--> evaluations </li> 
-        <li> Remove data from participants who did not complete 10 trials (<!--rinline length(incomplete.participants)--> participants, <!--rinline incomplete.participant.data--> trials) and any trials in excess of 10 (<!--rinline extra.participant.data--> trials) </li>
+        <li> <!--rinline length(unique(userdata$nick_name))-->  individuals completed <!--rinline nrow(userdata)--> evaluations </li> <br>
+        <li> Data removed: </li>
+        <ul>
+          <li> Participants who did not complete 10 trials: <br>
+               <!--rinline length(incomplete.participants)--> participants, 
+               <!--rinline incomplete.participant.data--> trials </li>
+          <li> Any trials in excess of 10 for each participant (<!--rinline extra.participant.data--> trials)</li>
+        </ul>
       </ul>
-      <p> Final data: <!--rinline nrow(modeldata)--> trials completed by <!--rinline length(unique(modeldata$individualID))--> participants. </p>
+      <p> Final dataset: <!--rinline nrow(modeldata)--> trials completed by <!--rinline length(unique(modeldata$individualID))--> participants. </p>
   </section>
   
   <section>
@@ -625,12 +631,11 @@ end.rcode-->
         <li> Demographic information: age range, gender, education level </li>
         <li> 10 plot evaluations
         <ul>
-          <li> Target plot identification (one or more plots) </li>
-          <li> Confidence level (1 = least, 5=most)  </li> 
-          <li> Reasoning <br> (i.e. "Strongest linear relationship" or "Clustered points") </li>
+          <li> Target plot identification (one or more sub-plots) </li>
+          <li> Level of confidence in their answer (1 = least, 5=most)  </li> 
+          <li> Reasoning <br> (i.e. "Strongest linear relationship", "Clustered points", "Odd shape") </li>
         </ul>
       </ul>
-      <p> Final data: <!--rinline nrow(modeldata)--> trials completed by <!--rinline length(unique(modeldata$individualID))--> participants. </p>
   </section>
         
   <section>
