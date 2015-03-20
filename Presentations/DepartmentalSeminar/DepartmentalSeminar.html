@@ -106,7 +106,6 @@
 			
 <section> <!-- Introduction -->
   <h1 style='font-size:2.5em;'> Hierarchy of Visual Features </h1>
-  <h2 style='font-size:2em;'> Why groups beats trends, but error bands beat groups </h2>
   <br></br>
   <h3>Susan VanderPlas</h3>
   <h4>March 30, 2015</h4>
@@ -134,31 +133,7 @@
     <h2 class="title"> The Psychology of Perception </h2>
   </section>
 
-<!---
-  <section>
-    <h2><span style="font-size:80%;vertical-align:middle;"> Preattentive Feature Detection </span></h3>
---->
 
-<!---
-  </section>
---->
-
-<!---
-  <section>
-    <h2><span style="font-size:80%;vertical-align:middle;"> Preattentive Feature Detection </span></h3>
-      <p> &#199;. Demiralp, et al. (2014) experimentally established perceptual kernels indicating feature similarity for shape and color palettes: </p>
---->
-
-<!---
-  </section>
---->  
-<!---
-  <section>
-    <h2><span style="font-size:80%;vertical-align:middle;"> Preattentive Feature Detection </span></h3>
-      <p> Features with large distances in perceptual space are distinguished and perceived more quickly and easily. </p>
-      <a href="http://idl.cs.washington.edu/papers/perceptual-kernels/" target="_blank"><img src="image/shape-kernel.png" width="80%" height="auto" style="text-align:center;"/></a>
-  </section>
---->
 
   <section>
     <h2><span style="font-size:80%;vertical-align:middle;"> Preattentive Feature Detection </span></h3>
@@ -211,10 +186,25 @@
   
   <section>
     <h2> Data-Generating Models </h2>
+    <p> Provides participants with ambiguous distractor plots generated from a mixture of the two target models </p>
 <div class="chunk" id="datamodels"><div class="rimage default"><img src="figure/datamodels-1.png" title="plot of chunk datamodels" alt="plot of chunk datamodels" width="300px" height="300px" class="plot" />
 <img src="figure/datamodels-2.png" title="plot of chunk datamodels" alt="plot of chunk datamodels" width="300px" height="300px" class="plot" />
 <img src="figure/datamodels-3.png" title="plot of chunk datamodels" alt="plot of chunk datamodels" width="300px" height="300px" class="plot" /></div></div>
-    <p> Provides participants with ambiguous distractor plots generated from a mixture of the two target models </p>
+    <div style="font-size:75%;">
+    <table class="noborder nowidth">
+      <tr>
+        <td colspan=3 style="text-align:center;border-bottom: 1px solid;"> Parameters </td>
+      </tr><tr>
+        <td width="300px" style="text-align:center;vertical-align:middle;" rowspan=2> $\sigma_T$: Variability in $y$</td>
+        <td width="300px" style="text-align:center;vertical-align:middle;" rowspan=2> $\lambda$: Mixing parameter </td>
+        <td width="300px" style="text-align:center;vertical-align:middle;"> $K$: # clusters </td>
+      </tr><tr>
+        <td width="300px" style="text-align:center;vertical-align:middle;">$\sigma_C$: Variability around cluster centers</td>
+      </tr><tr>
+        <td colspan=3 style="text-align:center;border-top: 1px solid;">
+    </table>
+    </div>
+    
   </section>
     
   <section>
@@ -259,45 +249,86 @@
   </section>
 
   <section>
-    <h2> Manipulated Variables </h2>
-    <h4> Model Parameters </h4>
-    <div style="align:center;">
-    <ul>
-      <li> Trend Strength $\sigma_T$ (easy, medium, hard)
-      <li> Cluster Strength $\sigma_C$ (easy, medium, hard)
-      <li> Number of Clusters $K$ (3, 5)
-    <ul>
-    </div>
-    <br>
-    <h4 style="text-align:center"> Plot Aesthetics </h4>
-    <div style="width:60%;display:inline-block;">
-    <ul>
-      <li> Plain </li>
-      <li> Trend </li>
-      <li> Trend + Error </li>
-      <li> Color + Trend </li>
-      <li> Color + Ellipse +<br> Trend + Error </li>
-    </ul>
-    </div><div style="width:40%;display:inline-block;">
-    <ul>
-      <li> Color </li>
-      <li> Shape </li>
-      <li> Color + Shape </li>
-      <li> Color + Ellipse </li>
-      <li> Color + Shape +<br> Ellipse </li>
-    </ul>
-    </div>
+    <h2> Experiment Structure </h2>
+    <table class="noborder">
+      <tr>
+        <td style="padding-right:50px;vertical-align:top;">
+          <div style="vertical-align:top;display:inline-block;">
+            <h5> <b>Model Parameters</b> </h5>
+            <div style="font-size:70%;">
+              <ul>
+                <li> Trend Strength <span style="text-align:right">$\sigma_T =$ easy, med., hard </span></li>
+                <li> Cluster Strength <span style="text-align:right">$\sigma_C =$ easy, med., hard </span></li>
+                <li> Number of Clusters <span style="text-align:right">$K =$ 3, 5 </span></li>
+              <ul>
+            </div>
+          </div>
+        </td>
+        <td style="padding-left:50px;vertical-align:top;">
+          <h5> <b>Plot Level</b> </h5>
+          <div style="font-size:75%;">
+            <ul>
+              <li> 18 parameter combinations </li>
+              <li> 3 datasets/parameter combination </li>
+              <li> 10 plot types for each dataset <br>
+                   = 540 total plots </li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td style="padding-right:50px;vertical-align:top;">
+          <h4 style="text-align:center"> <b>Plot Aesthetics</b> </h4>
+          <div style="font-size:70%;display:inline-block;">
+            <ul>
+              <li> Plain </li>
+              <li> Trend </li>
+              <li> Trend + Error </li>
+              <li> Color + Trend </li>
+              <li> Color + Ellipse<br>+ Trend + Error </li>
+            </ul>
+          </div>
+          <div style="font-size:70%;display:inline-block;">
+            <ul>
+              <li> Color </li>
+              <li> Shape </li>
+              <li> Color + Shape </li>
+              <li> Color + Ellipse </li>
+              <li> Color + Shape<br>+ Ellipse </li>
+            </ul>
+          </div>
+        </td>
+        <td style="padding-left:50px;vertical-align:bottom;">
+          <h5> <b> Evaluation Level </b> </h5>
+          <div style="font-size:75%;">
+            <ul>
+              <li> Participants evaluate 10 plots: </li>
+              <ul>
+                <li> 1 of each aesthetic </li>
+                <li> 1 of each combination of $\sigma_T$ and $\sigma_C$<br>randomized over $K$ </li>
+              </ul>
+            </ul>
+          </div>
+        </td>
+      </tr>
+    </table>
   </section>
   
   <section>
     <h2>Data Collection</h2>
-      <ul>
-        <li> Participants recruited through Amazon Mechanical Turk to complete 10 plot evaluations </li>
+      <ul style="margin-bottom:30px">
+        <li> Participants recruited through Amazon Mechanical Turk </li>
         <li> Experiment ran for <code class="knitr inline">23.8</code> hours </li>
-        <li> <code class="knitr inline">1356</code>  individuals completed <code class="knitr inline">13519</code> evaluations </li> 
-        <li> Remove data from participants who did not complete 10 trials (<code class="knitr inline">159</code> participants, <code class="knitr inline">1060</code> trials) and any trials in excess of 10 (<code class="knitr inline">421</code> trials) </li>
+        <li> <code class="knitr inline">1356</code>  individuals completed <code class="knitr inline">13519</code> evaluations </li> <br>
+        <li> Data removed: </li>
+        <ul>
+          <li> Participants who did not complete 10 trials: <br>
+               <code class="knitr inline">159</code> participants, 
+               <code class="knitr inline">1060</code> trials </li>
+          <li> Any trials in excess of 10 for each participant (<code class="knitr inline">421</code> trials)</li>
+        </ul>
       </ul>
-      <p> Final data: <code class="knitr inline">12010</code> trials completed by <code class="knitr inline">1201</code> participants. </p>
+      <p> Final dataset: <code class="knitr inline">12010</code> trials completed by <code class="knitr inline">1201</code> participants. </p>
   </section>
   
   <section>
@@ -307,17 +338,16 @@
         <li> Demographic information: age range, gender, education level </li>
         <li> 10 plot evaluations
         <ul>
-          <li> Target plot identification (one or more plots) </li>
-          <li> Confidence level (1 = least, 5=most)  </li> 
-          <li> Reasoning <br> (i.e. "Strongest linear relationship" or "Clustered points") </li>
+          <li> Target plot identification (one or more sub-plots) </li>
+          <li> Level of confidence in their answer (1 = least, 5=most)  </li> 
+          <li> Reasoning <br> (i.e. "Strongest linear relationship", "Clustered points", "Odd shape") </li>
         </ul>
       </ul>
-      <p> Final data: <code class="knitr inline">12010</code> trials completed by <code class="knitr inline">1201</code> participants. </p>
   </section>
         
   <section>
     <h2> Target Identification </h2>
-<div class="chunk" id="target-aggregate"><div class="rimage default"><img src="figure/target-aggregate-1.png" title="plot of chunk target-aggregate" alt="plot of chunk target-aggregate" width="60%" height="auto" class="plot" /></div></div>
+<div class="chunk" id="target-aggregate"><div class="rimage default"><img src="figure/target-aggregate-1.png" title="plot of chunk target-aggregate" alt="plot of chunk target-aggregate" width="80%" height="auto" class="plot" /></div></div>
   </section>
   
   <section>
@@ -332,11 +362,13 @@
     \text{and } \epsilon_{ijk} & \overset{iid}{\sim}  N\left(0, \sigma^2_e\right)
     \end{align}
     $$
+    <p> Variability due to model parameters is contained within the random effects for dataset </p>
   </section>
   
   <section>
     <h2> Line Target Identification </h2>
 <div class="chunk" id="line-target"><div class="rimage default"><img src="figure/line-target-1.png" title="plot of chunk line-target" alt="plot of chunk line-target" width="70%" height="auto" class="plot" /></div></div>
+    <p> Trend + Error plots increase the odds of line target selection; <br>Color + Shape + Ellipse aesthetics decrease the odds of line target selection. </p> 
   </section>
   
   <section>
@@ -363,6 +395,7 @@
   <section>
     <h2> Cluster Target Identification </h2>
 <div class="chunk" id="cluster-target"><div class="rimage default"><img src="figure/cluster-target-1.png" title="plot of chunk cluster-target" alt="plot of chunk cluster-target" width="70%" height="auto" class="plot" /></div></div>
+  <p> Trend + Error aesthetics decrease the odds of selecting the cluster target <br> Ellipses also <i>decrease</i> the odds of selecting the cluster target. </p>
   </section>
   
   <section>
