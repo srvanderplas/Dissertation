@@ -447,7 +447,7 @@ end.rcode-->
   qplot(data=data, x=x, y=y, geom="point", size=I(3), shape=I(1)) + 
     xlim(c(-2, 2)) + ylim(c(-2, 2)) + 
     xlab(NULL) + ylab(NULL) + 
-    annotate(geom="text", x=-1.9, y=1.9, label="Trend Model", hjust=0, vjust=1) +
+    geom_text(aes(x=-1.9, y=1.9, label="Trend Model"), hjust=0, vjust=1, size=6) +
     theme_minimal()  + 
     theme(axis.text=element_blank(), axis.title=element_blank(),
           text=element_blank(), title=element_blank(),
@@ -460,7 +460,7 @@ end.rcode-->
   qplot(data=data, x=x, y=y, geom="point", size=I(3), shape=I(1)) + 
     xlim(c(-2, 2)) + ylim(c(-2, 2)) + 
     xlab(NULL) + ylab(NULL) + 
-    annotate(geom="text", x=-1.9, y=1.9, label="50% Mixture", hjust=0, vjust=1) +
+    geom_text(aes(x=-1.9, y=1.9, label="50% Mixture"), hjust=0, vjust=1, size=6) +
     theme_minimal()  + 
     theme(axis.text=element_blank(), axis.title=element_blank(),
           text=element_blank(), title=element_blank(),
@@ -473,7 +473,7 @@ end.rcode-->
   qplot(data=data, x=x, y=y, geom="point", size=I(3), shape=I(1)) + 
     xlim(c(-2, 2)) + ylim(c(-2, 2)) + 
     xlab(NULL) + ylab(NULL) + 
-    annotate(geom="text", x=-1.9, y=1.9, label="Cluster Model", hjust=0, vjust=1) +
+    geom_text(aes(x=-1.9, y=1.9, label="Cluster Model"), hjust=0, vjust=1, size=6) +
     theme_minimal()  + 
     theme(axis.text=element_blank(), axis.title=element_blank(),
           text=element_blank(), title=element_blank(),
@@ -483,7 +483,21 @@ end.rcode-->
           plot.margin=unit(c(0,0,0,0), "cm"))
   
 end.rcode-->
-    <p> Provides participants with ambiguous distractor plots generated from a mixture of the two target models </p>
+    <div style="font-size:75%;">
+    <table class="noborder nowidth">
+      <tr>
+        <td colspan=3 style="text-align:center;border-bottom: 1px solid;"> Parameters </td>
+      </tr><tr>
+        <td width="300px" style="text-align:center;vertical-align:middle;" rowspan=2> $\sigma_T$: Variability in $y$</td>
+        <td width="300px" style="text-align:center;vertical-align:middle;" rowspan=2> $\lambda$: Mixing parameter </td>
+        <td width="300px" style="text-align:center;vertical-align:middle;"> $K$: # clusters </td>
+      </tr><tr>
+        <td width="300px" style="text-align:center;vertical-align:middle;">$\sigma_C$: Variability around cluster centers</td>
+      </tr><tr>
+        <td colspan=3 style="text-align:center;border-top: 1px solid;">
+    </table>
+    </div>
+    
   </section>
     
   <section>
@@ -668,7 +682,7 @@ end.rcode-->
   qplot(data=data, x=x, y=y, geom="point", size=I(3), shape=I(1)) + 
     xlim(c(-2, 2)) + ylim(c(-2, 2)) + 
     xlab(NULL) + ylab(NULL) + 
-    annotate(geom="text", x=-1.9, y=1.9, label="Continuity", hjust=0, vjust=1) +
+    geom_text(aes(x=-1.9, y=1.9, label="Continuity"), hjust=0, vjust=1, size=6, inherit.aes=F) +
     theme_minimal()  + 
     theme(axis.text=element_blank(), axis.title=element_blank(),
           text=element_blank(), title=element_blank(),
@@ -693,7 +707,7 @@ end.rcode-->
     geom_line(aes(x=x, y=fit), color="black", data=ci) + 
     xlim(c(-2, 2)) + ylim(c(-2, 2)) + 
     xlab(NULL) + ylab(NULL) + 
-    annotate(geom="text", x=-1.9, y=1.9, label="Continuity (points) + \nContinuity (line)", hjust=0, vjust=1) +
+    geom_text(aes(x=-1.9, y=1.9, label="Continuity (points) + \nContinuity (line)"), hjust=0, vjust=1, size=6) +
     theme_minimal()  + 
     theme(axis.text=element_blank(), axis.title=element_blank(),
           text=element_blank(), title=element_blank(),
@@ -720,8 +734,8 @@ end.rcode-->
     geom_line(aes(x=x, y=upr), lty=2, color="black", data=ci) + 
     xlim(c(-2, 2)) + ylim(c(-2, 2)) + 
     xlab(NULL) + ylab(NULL) + 
-    annotate(geom="text", x=-1.9, y=1.9, 
-             label="Continuity (points) + \nContinuity (line) +\nCommon Region \n(error bands)", hjust=0, vjust=1) +
+    geom_text(aes(x=-1.9, y=1.9, 
+             label="Continuity (points) + \nContinuity (line) +\nCommon Region \n(error bands)"), hjust=0, vjust=1, size=6) +
     theme_minimal()  + 
     theme(axis.text=element_blank(), axis.title=element_blank(),
           text=element_blank(), title=element_blank(),
@@ -789,8 +803,8 @@ end.rcode-->
   qplot(data=data, x=x, y=y, geom="point", size=I(3), shape=I(1)) + 
     xlim(c(-2, 2)) + ylim(c(-2, 2)) + 
     xlab(NULL) + ylab(NULL) + 
-    annotate(geom="text", x=-1.9, y=1.9, 
-             label="Proximity", hjust=0, vjust=1) +
+    geom_text(aes(x=-1.9, y=1.9, 
+             label="Proximity"), hjust=0, vjust=1, size=6) +
     theme_minimal()  + 
     theme(axis.text=element_blank(), axis.title=element_blank(),
           text=element_blank(), title=element_blank(),
@@ -809,7 +823,7 @@ end.rcode-->
     scale_shape_manual(guide="none", values=shape3pal) + 
     xlim(c(-2, 2)) + ylim(c(-2, 2)) + 
     xlab(NULL) + ylab(NULL) + 
-    annotate(geom="text", x=-1.9, y=1.9, label="Proximity (points) + \nSimilarity (shape)", hjust=0, vjust=1) +
+    geom_text(aes(x=-1.9, y=1.9, label="Proximity (points) + \nSimilarity (shape)"), hjust=0, vjust=1, size=6) +
     theme_minimal()  + 
     theme(axis.text=element_blank(), axis.title=element_blank(),
           text=element_blank(), title=element_blank(),
@@ -829,7 +843,7 @@ end.rcode-->
     scale_shape_manual(guide="none", values=shape3pal) + 
     xlim(c(-2, 2)) + ylim(c(-2, 2)) + 
     xlab(NULL) + ylab(NULL) + 
-    annotate(geom="text", x=-1.9, y=1.9, label="Proximity (points) + \nSimilarity (shape) + \nSimilarity (color)", hjust=0, vjust=1) +
+    geom_text(aes(x=-1.9, y=1.9, label="Proximity (points) + \nSimilarity (shape) + \nSimilarity (color)"), hjust=0, vjust=1, size=6) +
     theme_minimal()  + 
     theme(axis.text=element_blank(), axis.title=element_blank(),
           text=element_blank(), title=element_blank(),
@@ -850,7 +864,7 @@ end.rcode-->
     scale_shape_manual(guide="none", values=shape3pal) + 
     xlim(c(-2, 2)) + ylim(c(-2, 2)) + 
     xlab(NULL) + ylab(NULL) + 
-    annotate(geom="text", x=-1.9, y=1.9, label="Proximity (points) + \nSimilarity (shape) + \nSimilarity (color) + \nCommon Region (ellipse)", hjust=0, vjust=1) +
+    geom_text(aes(x=-1.9, y=1.9, label="Proximity (points) + \nSimilarity (shape) + \nSimilarity (color) + \nCommon Region (ellipse)"), hjust=0, vjust=1, size=6) +
     theme_minimal()  + 
     theme(axis.text=element_blank(), axis.title=element_blank(),
           text=element_blank(), title=element_blank(),
@@ -871,7 +885,7 @@ end.rcode-->
     scale_color_manual(guide="none", values=color3pal) + 
     xlim(c(-2, 2)) + ylim(c(-2, 2)) + 
     xlab(NULL) + ylab(NULL) + 
-    annotate(geom="text", x=-1.9, y=1.9, label="Proximity (points) + \nSimilarity (color)", hjust=0, vjust=1) +
+    geom_text(aes(x=-1.9, y=1.9, label="Proximity (points) + \nSimilarity (color)"), hjust=0, vjust=1, size=6) +
     theme_minimal()  + 
     theme(axis.text=element_blank(), axis.title=element_blank(),
           text=element_blank(), title=element_blank(),
@@ -892,7 +906,7 @@ end.rcode-->
     scale_color_manual(guide="none", values=color3pal) + 
     xlim(c(-2, 2)) + ylim(c(-2, 2)) + 
     xlab(NULL) + ylab(NULL) + 
-    annotate(geom="text", x=-1.9, y=1.9, label="Proximity (points) + \nSimilarity (color) + \nCommon Region (ellipse)", hjust=0, vjust=1) +
+    geom_text(aes(x=-1.9, y=1.9, label="Proximity (points) + \nSimilarity (color) + \nCommon Region (ellipse)"), hjust=0, vjust=1, size=6) +
     theme_minimal()  + 
     theme(axis.text=element_blank(), axis.title=element_blank(),
           text=element_blank(), title=element_blank(),
@@ -984,8 +998,8 @@ end.rcode-->
     scale_color_manual(guide="none", values=color3pal) + 
     xlim(c(-2.4, 2.4)) + ylim(c(-2.4, 2.4)) + 
     xlab(NULL) + ylab(NULL) + 
-    annotate(geom="text", x=-2.3, y=2.3, label="Continuity (points) + \nContinuity (line)", hjust=0, vjust=1) +
-    annotate(geom="text", x=2.3, y=-2.3, label="Similarity (color)", hjust=1, vjust=0) +
+    geom_text(aes(x=-2.3, y=2.3, label="Continuity (points) + \nContinuity (line)"), hjust=0, vjust=1, size=6) +
+    geom_text(aes(x=2.3, y=-2.3, label="Similarity (color)"), hjust=1, vjust=0, size=6) +
     theme_minimal()  + 
     theme(axis.text=element_blank(), axis.title=element_blank(),
           text=element_blank(), title=element_blank(),
@@ -1011,8 +1025,8 @@ end.rcode-->
     scale_color_manual(guide="none", values=color3pal) + 
     xlim(c(-2.4, 2.4)) + ylim(c(-2.4, 2.4)) + 
     xlab(NULL) + ylab(NULL) + 
-    annotate(geom="text", x=-2.3, y=2.3, label="Continuity (line)", hjust=0, vjust=1) +
-    annotate(geom="text", x=2.3, y=-2.3, label="Similarity (color)", hjust=1, vjust=0) +
+    geom_text(aes(x=-2.3, y=2.3, label="Continuity (line)"), hjust=0, vjust=1, size=6) +
+    geom_text(aes(x=2.3, y=-2.3, label="Similarity (color)"), hjust=1, vjust=0, size=6) +
     theme_minimal()  + 
     theme(axis.text=element_blank(), axis.title=element_blank(),
           text=element_blank(), title=element_blank(),
@@ -1038,8 +1052,8 @@ end.rcode-->
     scale_color_manual(guide="none", values=color3pal) + 
     xlim(c(-2.4, 2.4)) + ylim(c(-2.4, 2.4)) + 
     xlab(NULL) + ylab(NULL) + 
-    annotate(geom="text", x=-2.3, y=2.3, label="Continuity (line)", hjust=0, vjust=1) +
-    annotate(geom="text", x=2.3, y=-2.3, label="Proximity (points)\n + Similarity (color)", hjust=1, vjust=0) +
+    geom_text(aes(x=-2.3, y=2.3, label="Continuity (line)"), hjust=0, vjust=1, size=6) +
+    geom_text(aes(x=2.3, y=-2.3, label="Proximity (points)\n + Similarity (color)"), hjust=1, vjust=0, size=6) +
     theme_minimal()  + 
     theme(axis.text=element_blank(), axis.title=element_blank(),
           text=element_blank(), title=element_blank(),
@@ -1070,8 +1084,8 @@ end.rcode-->
     scale_color_manual(guide="none", values=color3pal) + 
     xlim(c(-2.4, 2.4)) + ylim(c(-2.4, 2.4)) + 
     xlab(NULL) + ylab(NULL) + 
-    annotate(geom="text", x=-2.3, y=2.3, label="Continuity (points) + \nContinuity (line) + \nCommon Region\n(error bands)", hjust=0, vjust=1) + 
-    annotate(geom="text", x=2.3, y=-2.3, label="Similarity (color)\n + Common Region (ellipse)", hjust=1, vjust=0) +
+    geom_text(aes(x=-2.3, y=2.3, label="Continuity (points) + \nContinuity (line) + \nCommon Region\n(error bands)"), hjust=0, vjust=1, size=6) + 
+    geom_text(aes(x=2.3, y=-2.3, label="Similarity (color)\n + Common Region (ellipse)"), hjust=1, vjust=0, size=6) +
     theme_minimal()  + 
     theme(axis.text=element_blank(), axis.title=element_blank(),
           text=element_blank(), title=element_blank(),
@@ -1100,8 +1114,8 @@ end.rcode-->
     scale_color_manual(guide="none", values=color3pal) + 
     xlim(c(-2.4, 2.4)) + ylim(c(-2.4, 2.4)) + 
     xlab(NULL) + ylab(NULL) + 
-    annotate(geom="text", x=-2.3, y=2.3, label="Continuity (line) + \nCommon Region\n(error bands)", hjust=0, vjust=1) + 
-    annotate(geom="text", x=2.3, y=-2.3, label="Similarity (color)\n + Common Region (ellipse)", hjust=1, vjust=0) +
+    geom_text(aes(x=-2.3, y=2.3, label="Continuity (line) + \nCommon Region\n(error bands)"), hjust=0, vjust=1, size=6) + 
+    geom_text(aes(x=2.3, y=-2.3, label="Similarity (color)\n + Common Region (ellipse)"), hjust=1, vjust=0, size=6) +
     theme_minimal()  + 
     theme(axis.text=element_blank(), axis.title=element_blank(),
           text=element_blank(), title=element_blank(),
@@ -1130,8 +1144,8 @@ end.rcode-->
     scale_color_manual(guide="none", values=color3pal) + 
     xlim(c(-2.4, 2.4)) + ylim(c(-2.4, 2.4)) + 
     xlab(NULL) + ylab(NULL) + 
-    annotate(geom="text", x=-2.3, y=2.3, label="Continuity (line) + \nCommon Region\n(error bands)", hjust=0, vjust=1) + 
-    annotate(geom="text", x=2.3, y=-2.3, label="Proximity (points)\n + Similarity (color)\n + Common Region (ellipse)", hjust=1, vjust=0) +
+    geom_text(aes(x=-2.3, y=2.3, label="Continuity (line) + \nCommon Region\n(error bands)"), hjust=0, vjust=1, size=6) + 
+    geom_text(aes(x=2.3, y=-2.3, label="Proximity (points)\n + Similarity (color)\n + Common Region (ellipse)"), hjust=1, vjust=0, size=6) +
     theme_minimal()  + 
     theme(axis.text=element_blank(), axis.title=element_blank(),
           text=element_blank(), title=element_blank(),
