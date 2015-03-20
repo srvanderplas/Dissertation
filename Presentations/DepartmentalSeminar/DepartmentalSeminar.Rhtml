@@ -153,7 +153,7 @@ end.rcode-->
 
   <section>
     <h2><span style="font-size:80%;vertical-align:middle;"> Preattentive Feature Detection </span></h3>
-<!--begin.rcode preattentive-interference, echo=F, dev.args = list(bg = 'transparent'), fig.width=4, fig.height=4, out.width='30%', out.height='auto', fig.show='hold'
+<!--begin.rcode preattentive-interference, echo=F, fig.width=4, fig.height=4, out.width='30%', out.height='auto', fig.show='hold'
 set.seed(51581139)
 
 data <- data.frame(x=runif(30, 0, 1), y=runif(30, 0, 1), shape1=1)
@@ -174,7 +174,7 @@ data <- data.frame(x=runif(30, 0, 1), y=runif(30, 0, 1), shape1=1)
 data$shape1[24] <- 2
 ggplot() +
   geom_point(data=data, aes(x=x, y=y, color=factor(shape1)), shape=16, size=5) + 
-  scale_color_manual(guide="none", values=c("#FFA89D", "#FFE19D")) + 
+  scale_color_manual(guide="none", values=c("#5E70AF", "#FFBC79")) + 
   geom_point(data=data, aes(x=x, y=y), shape=1, size=5, color="black") + 
   xlab(NULL) + ylab(NULL) + 
   theme_minimal() + 
@@ -191,7 +191,7 @@ data[8, c("shape1", "color1")] <- c(1,2)
 ggplot() +
   geom_point(data=data, aes(x=x, y=y, shape=c(16, 15)[shape1], color=factor(color1)), size=5) + 
   geom_point(data=data, aes(x=x, y=y, shape=c(1, 0)[shape1]), size=5, color="black") + 
-  scale_color_manual(guide="none", values=c("#FFA89D", "#FFE19D")) + 
+  scale_color_manual(guide="none", values=c("#5E70AF", "#FFBC79")) + 
   scale_shape_identity()+
   xlab(NULL) + ylab(NULL) + 
   theme_minimal() + 
@@ -201,13 +201,13 @@ ggplot() +
         plot.background = element_rect(fill = "transparent", colour = NA),
         plot.margin=unit(c(0,0,0,0), "cm"))
 end.rcode-->
-    <p> Combinations of preattentive features interfere with each other and are not preattentive.  </p>
+    <p> Combinations of preattentive features are not preattentive.  </p>
   </section>
 
 
   <section>
     <h2> Perception of Statistical Plots </h2>
-      <ul>
+      <ul style="margin-bottom:30px">
         <li style="margin-top:20px;margin-bottom:20px"> We don't perceive plots preattentively, but some research has studied preattentive plot perception (Healy & Enns, 1999, 2012)
         </li>
           
@@ -228,7 +228,7 @@ end.rcode-->
   <section>
     <h2> Gestalt Laws </h2>
     <p> Subconsciously order and group visual input </p>
-<!--begin.rcode gestalt, dev.args = list(bg = 'transparent'), echo=FALSE, fig.width=6, fig.height=4, out.width='60%'
+<!--begin.rcode gestalt, dev.args = list(bg = 'transparent'), echo=FALSE, fig.width=6, fig.height=4, out.width='55%'
 logit <- function(x, a, b){
   exp((x-a)/b)/(1+exp((x-a)/b))
 }
@@ -280,6 +280,7 @@ logit <- function(x, a, b){
     plot.background = element_rect(fill = "transparent", colour = NA),
     plot.margin=unit(c(0,0,0,0), "cm"))
 end.rcode-->
+
   </section>
 </section>
 
@@ -447,7 +448,7 @@ end.rcode-->
   qplot(data=data, x=x, y=y, geom="point", size=I(3), shape=I(1)) + 
     xlim(c(-2, 2)) + ylim(c(-2, 2)) + 
     xlab(NULL) + ylab(NULL) + 
-    geom_text(aes(x=-1.9, y=1.9, label="Trend Model"), hjust=0, vjust=1, size=5) +
+    geom_text(aes(x=-1.9, y=1.9, label="Trend Model"), hjust=0, vjust=1, size=6) +
     theme_minimal()  + 
     theme(axis.text=element_blank(), axis.title=element_blank(),
           text=element_blank(), title=element_blank(),
@@ -460,7 +461,7 @@ end.rcode-->
   qplot(data=data, x=x, y=y, geom="point", size=I(3), shape=I(1)) + 
     xlim(c(-2, 2)) + ylim(c(-2, 2)) + 
     xlab(NULL) + ylab(NULL) + 
-    geom_text(aes(x=-1.9, y=1.9, label="50% Mixture"), hjust=0, vjust=1, size=5) +
+    geom_text(aes(x=-1.9, y=1.9, label="50% Mixture"), hjust=0, vjust=1, size=6) +
     theme_minimal()  + 
     theme(axis.text=element_blank(), axis.title=element_blank(),
           text=element_blank(), title=element_blank(),
@@ -473,7 +474,7 @@ end.rcode-->
   qplot(data=data, x=x, y=y, geom="point", size=I(3), shape=I(1)) + 
     xlim(c(-2, 2)) + ylim(c(-2, 2)) + 
     xlab(NULL) + ylab(NULL) + 
-    geom_text(aes(x=-1.9, y=1.9, label="Cluster Model"), hjust=0, vjust=1, size=5) +
+    geom_text(aes(x=-1.9, y=1.9, label="Cluster Model"), hjust=0, vjust=1, size=6) +
     theme_minimal()  + 
     theme(axis.text=element_blank(), axis.title=element_blank(),
           text=element_blank(), title=element_blank(),
@@ -483,7 +484,7 @@ end.rcode-->
           plot.margin=unit(c(0,0,0,0), "cm"))
   
 end.rcode-->
-    <div style="font-size:75%;">
+    <div style="font-size:75%;margin-top:30px;">
     <table class="noborder nowidth">
       <tr>
         <td colspan=3 style="text-align:center;border-bottom: 1px solid;"> Parameters </td>
