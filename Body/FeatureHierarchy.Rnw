@@ -824,7 +824,7 @@ print(xtable(line.fixef.aes[,c(8, 1:4)], caption=c("Fitted values of fixed effec
 \caption[Odds of detecting the trend target plot for each aesthetic]{Odds of detecting the trend target plot for each aesthetic. Only the combination of Trend + Error significantly increases the odds of trend target plot detection relative to the control plot (plain scatterplot). \label{fig:linear.fixef}}
 \end{figure}
 
-Once error bands are added to the plot, many other heuristics may be applied: closure (perception of a closed object even if it is incomplete), common region, and connectedness (depending on the style of the error bands). For the 95\% intervals in the stimuli plots, closure and common region are the most likely heuristics recruited with the addition of error bands (a ribbon-style interval would recruit connectedness as well). The results are consistent with this idea: only the dual continuity emphasis of trend + error bands significantly increases the probability that participants will identify the target plot generated under $M_T$. 
+Once error bands are added to the plot, many other heuristics may be applied: closure (perception of a closed object even if it is incomplete), common region, and connectedness (depending on the style of the error bands). For the 95\% intervals in the stimuli plots, closure and common region are the most likely heuristics recruited with the addition of error bands (a ribbon-style interval would recruit connectedness as well). The results are consistent with this idea: only the combined closure and continuity emphasis of trend + error bands significantly increases the probability that participants will identify the target plot generated under $M_T$. 
 
 \subsubsection{Cluster Target Selection}\label{sec:groupModel}
 <<group-model, echo=FALSE, include=FALSE, dependson='results-setup'>>=
@@ -880,8 +880,7 @@ print(xtable(group.fixef2[,c(8, 1:4)], caption=c("Fitted values of fixed effects
 \end{figure}
 
 Figure \ref{fig:group.fixef} contains odds and 95\% Wald intervals of the estimated fixed effects obtained by fitting equation \ref{eqn:linearModel} to a binary indicator of successful cluster target identification. 
-According to the model results, no plot aesthetics significantly increase the likelihood of selecting the cluster target plot; however, several aesthetic combinations decrease this likelihood. Consistent with our hypothesis,  Color + Ellipse + Trend + Error and Trend + Error plot aesthetic combinations significantly decrease the detection of the cluster target plot. 
-
+According to the model results, no plot aesthetics significantly increase the likelihood of selecting the cluster target plot; however, several aesthetic combinations decrease this likelihood. Consistent with our hypothesis,  Color + Ellipse + Trend + Error and Trend + Error plot aesthetic combinations significantly decrease the detection of the cluster target plot. S
 However, the implication that Color + Ellipse and Color + Shape + Ellipse also decrease cluster target detection is not consistent with our hypotheses. Examination of participants' reasons for selecting specific target plots provides at least some explanation; participants cited reasons such as 
 ``There is no circle highlighting the yellow symbols in this plot" %line 13515 
 and 
@@ -901,17 +900,17 @@ qplot(data=tmp, x=LB, xend=UB, y=sd.trend, yend=sd.trend, color=dist, geom="segm
   facet_grid(lsc~lK, scales="free", labeller="label_parsed")  + theme_bw() + 
   scale_color_brewer("Distribution", palette="Set1") + theme(legend.position="bottom") + xlab("Interquartile intervals of Min (18) null distribution (blue) \nand target distribution (red) of Gini Impurity.") + ylab(expression( "Variability along the trend":sigma[T]))
 @
-\caption[Simulated IQR of gini inequality for cluster and null distributions]{Simulated interquartile range of group size inequality statistic values for cluster and null data distributions. \label{fig:simulationGiniIntervals}}
+\caption[Simulated IQR of Gini impurity for cluster and null distributions]{Simulated interquartile range of group size inequality statistic values for cluster and null data distributions. \label{fig:simulationGiniIntervals}}
 \end{figure}
 
-Numerically, these null data sets had uneven group allocation; bounding ellipse estimation failed for groups with fewer than 3 points and in these cases, ellipses were not drawn. Visually, the conspicuous absence of an ellipse will lead participants to select null plots with that feature (see section~\ref{sec:sentiment} for a more detailed look at participants' responses).
+Numerically, these null data sets did have uneven group allocation; bounding ellipse estimation failed for groups with fewer than 3 points and in these cases, ellipses were not drawn. Visually, the conspicuous absence of an ellipse will lead participants to select null plots with that feature (see section~\ref{sec:sentiment} for a more detailed look at participants' responses).
 
 This effect actually provides some additional information as to the hierarchy of gestalt features: for plots displaying the same data (including at least one plot with group size $<3$), participants were more likely to identify the cluster target plot under the Color and Shape aesthetics than under Color + Ellipse or Color + Shape + Ellipse conditions. 
 The presence of the ellipse (and the gestalt common region heuristic) dominated the effect of point similarity (albeit not in the way the authors originally intended). 
 In future experiments, it will be advantageous to control the variability in group size in order to remove the conflicting visual influence of gestalt common region heuristics with the greater similarity and proximity present in the target plot. 
 
 \subsection{Face-Off: Trend versus Cluster}
-Next, we consider only the subset of trials in which participants identified one of the two target plots (\Sexpr{sum(1-modeldata$neither)} trials). For these trials, we compare the probability of selecting the cluster target generated by $M_C$ compared with the probability of selecting the trend target generated by $M_T$. Overall, participants favored clusters to trends at a ratio of about 2:1. We remove this effect using an intercept, and model cluster vs. trend decisions using a logistic regression with a random effect for each dataset to account for different difficulty levels in the generated data. The estimated odds of a decision in favor of cluster over trend target are shown in figure~\ref{fig:faceoff}. From left to right the odds of selecting the cluster target  over the line trend increase. As hypothesized, the strongest signal for identifying groups, is color + shape + ellipse, while trend + error results in the strongest signal in favor of trends. Most of the effects are not significantly different (see the letter values \cite{piepho:04} based on Tukey's Post Hoc difference tests on the left hand side of the figure, representing pairwise comparisons of all of the designs, adjusted for multiple comparison). Trend + error plots and color + ellipse + trend + error plots are significantly different from all of the other designs. 
+Next, we consider only the subset of trials in which participants identified one of the two target plots (\Sexpr{sum(1-modeldata$neither)} trials). For these trials, we compare the probability of selecting the cluster target generated by $M_C$ compared with the probability of selecting the trend target generated by $M_T$. Overall, participants favored clusters to trends at a ratio of about 2:1. We remove this effect using an intercept, and model cluster vs. trend decisions using a logistic regression with a random effect for each dataset to account for different difficulty levels in the generated data. The estimated odds of a decision in favor of cluster over trend target are shown in figure~\ref{fig:faceoff}. From left to right the odds of selecting the cluster target over the trend target increase. As hypothesized, the strongest signal for identifying groups, is color + shape + ellipse, while trend + error results in the strongest signal in favor of trends. Most of the effects are not significantly different (see the letter values \cite{piepho:04} based on Tukey's Post Hoc difference tests on the left hand side of the figure, representing pairwise comparisons of all of the designs, adjusted for multiple comparison). Trend + error plots and color + ellipse + trend + error plots are significantly different from all of the other designs. 
 
 \begin{figure}[ht]\centering
 <<group-vs-line, echo=FALSE, fig.width=8, fig.height=4, out.width='.85\\linewidth'>>=
@@ -1059,7 +1058,7 @@ coefs2$name <- coefs2$name %>%
 coefs2$Interval <- sprintf("(%.2f, %.2f)", coefs2$low, coefs2$high)
 names(coefs2)[3:5] <- c("Estimate", "Effect", "95% Confidence Interval")
 
-print(xtable(coefs2[,c(4, 3, 5)], caption=c("Fitted values of plot type and first trial effects for a model describing log evaluation time as a function of plot type, first trial, and data generation parameters, with a random effect for participant. Additional parameters and intervals are shown in figure \\ref{fig:timemodel-pars}.", "Fixed effects for trial time model including data parameters."), label="tab:timemodel-pars", align=c('r', 'r', 'r', 'r'), digits=c(0, 0, 3, 0)), include.rownames=F, file=paste0(imgdir, "timemodel-pars-fixef-table.tex"))
+print(xtable(coefs2[,c(4, 3, 5)], caption=c("Exponentiated estimates for parameters describing plot type and first trial effects. We model log evaluation time as a function of plot type, first trial, and data generation parameters, with a random effect for participant. Additional parameters and intervals are shown in figure \\ref{fig:timemodel-pars}.", "Fixed effects for trial time model including data parameters."), label="tab:timemodel-pars", align=c('r', 'r', 'r', 'r'), digits=c(0, 0, 3, 0)), include.rownames=F, file=paste0(imgdir, "timemodel-pars-fixef-table.tex"))
 @
 \caption[Log evaluation time by outcome and plot parameters]{\label{fig:timemodel-pars} Results of a model describing log evaluation time by evaluation outcome and plot type.}
 \end{figure}
@@ -1101,7 +1100,7 @@ ggplot(data=conf.acc, aes(x=conf_level, y=pct.accuracy, group=outcome, color=out
 
 
 \subsection{Participant Reasoning}\label{sec:sentiment}
-As part of each trial, participants were asked to provide a short justification of their plot choice. Figure~\ref{fig:wordles} gives an overview of summaries of participants' reasoning in form of word clouds. What can be seen is a strong focus in terms of the reasoning depending on the outcome. If the participant chose one of the targets, the reasoning reflects this choice. When neither of the targets is chosen, there is less focus in the response. The word clouds look surprisingly similar independently of plot type - with the exception of the Ellipse + Color plot: here, the mentioning of specific colors is indicative of participants' distraction from the intended target towards an imbalance of the color/group distribution. 
+As part of each trial, participants were asked to provide a short justification of their plot choice. Figure~\ref{fig:wordles} gives an overview of summaries of participants' reasoning in form of word clouds. What can be seen is a strong focus in terms of the reasoning depending on the outcome. If the participant chose one of the targets, the reasoning reflects this choice. When neither of the targets is chosen, there is less focus in the response. The word clouds look surprisingly similar independently of plot type - with the exception of the Ellipse + Color plots: here, the mentioning of specific colors is indicative of participants' distraction from the intended target towards an imbalance of the color/group distribution. 
 
 \begin{figure}[ht]\centering
 <<sentiment, eval=TRUE, echo=FALSE, fig.width=7, fig.height=7, out.width='.3\\linewidth', include=FALSE>>=
@@ -1131,56 +1130,56 @@ wordcloud(d$word,d$freq, scale=c(8,.3),min.freq=2,max.words=100, random.order=T,
 @
 
 \centering
-\begin{subfigure}[t]{0.25\linewidth}
+\begin{subfigure}[t]{0.32\linewidth}\centering
   \caption{Plain, neither target}
-  \includegraphics[width=\linewidth]{fig-sentiment-1}
+  \includegraphics[width=.83\linewidth]{fig-sentiment-1}
 \end{subfigure}
-\begin{subfigure}[t]{0.25\linewidth}
+\begin{subfigure}[t]{0.32\linewidth}\centering
   \caption{Plain, cluster target}
-  \includegraphics[width=\linewidth]{fig-sentiment-2}
+  \includegraphics[width=.83\linewidth]{fig-sentiment-2}
 \end{subfigure}
-\begin{subfigure}[t]{0.25\linewidth}
+\begin{subfigure}[t]{0.32\linewidth}\centering
   \caption{Plain, trend target}
-  \includegraphics[width=\linewidth]{fig-sentiment-3}
+  \includegraphics[width=.83\linewidth]{fig-sentiment-3}
 \end{subfigure}
 
-\begin{subfigure}[t]{0.25\linewidth}
+\begin{subfigure}[t]{0.32\linewidth}\centering
   \caption{Trend, neither target}
-  \includegraphics[width=\linewidth]{fig-sentiment-4}
+  \includegraphics[width=.75\linewidth]{fig-sentiment-4}
 \end{subfigure}
-\begin{subfigure}[t]{0.25\linewidth}
+\begin{subfigure}[t]{0.32\linewidth}\centering
   \caption{Trend, cluster target}
-  \includegraphics[width=\linewidth]{fig-sentiment-5}
+  \includegraphics[width=.75\linewidth]{fig-sentiment-5}
 \end{subfigure}
-\begin{subfigure}[t]{0.25\linewidth}
+\begin{subfigure}[t]{0.32\linewidth}\centering
   \caption{Trend, trend target}
-  \includegraphics[width=\linewidth]{fig-sentiment-6}
+  \includegraphics[width=.75\linewidth]{fig-sentiment-6}
 \end{subfigure}
 
-\begin{subfigure}[t]{0.25\linewidth}
+\begin{subfigure}[t]{0.32\linewidth}\centering
   \caption{Color, neither target}
-  \includegraphics[width=\linewidth]{fig-sentiment-7}
+  \includegraphics[width=.75\linewidth]{fig-sentiment-7}
 \end{subfigure}
-\begin{subfigure}[t]{0.25\linewidth}
+\begin{subfigure}[t]{0.32\linewidth}\centering
   \caption{Color, cluster target}
-  \includegraphics[width=\linewidth]{fig-sentiment-8}
+  \includegraphics[width=.75\linewidth]{fig-sentiment-8}
 \end{subfigure}
-\begin{subfigure}[t]{0.25\linewidth}
+\begin{subfigure}[t]{0.32\linewidth}\centering
   \caption{Color, trend target}
-  \includegraphics[width=\linewidth]{fig-sentiment-9}
+  \includegraphics[width=.75\linewidth]{fig-sentiment-9}
 \end{subfigure}
 
-\begin{subfigure}[t]{0.25\linewidth}
+\begin{subfigure}[t]{0.32\linewidth}\centering
   \caption{Color + Ellipse, neither target}
-  \includegraphics[width=\linewidth]{fig-sentiment-10}
+  \includegraphics[width=.75\linewidth]{fig-sentiment-10}
 \end{subfigure}
-\begin{subfigure}[t]{0.25\linewidth}
+\begin{subfigure}[t]{0.32\linewidth}\centering
   \caption{Color + Ellipse, cluster target}
-  \includegraphics[width=\linewidth]{fig-sentiment-11}
+  \includegraphics[width=.75\linewidth]{fig-sentiment-11}
 \end{subfigure}
-\begin{subfigure}[t]{0.25\linewidth}
+\begin{subfigure}[t]{0.32\linewidth}\centering
   \caption{Color + Ellipse, trend target}
-  \includegraphics[width=\linewidth]{fig-sentiment-12}
+  \includegraphics[width=.75\linewidth]{fig-sentiment-12}
 \end{subfigure}
 \caption[Wordclouds of participant responses for selected plot types]{\label{fig:wordles}Wordclouds of participants' reasoning by outcome for a selected number of plot types. Mostly, the reasoning and the choice of the target are highly associated. For the Color + Ellipse plot, participants were distracted from either target by an imbalance in the group/color distribution, as can be seen from the reasoning in the bottom left wordcloud.}
 \end{figure}
@@ -1244,8 +1243,10 @@ The results of this analysis, shown in figure \ref{fig:lexicalanalysis} and supp
 
 \section{Discussion and Conclusions}\label{sec:Conclusion}
 
-Taken together, the results presented suggest that plot aesthetics influence the perception of the dominant effect in the displayed data. This effect is not simply additive (otherwise, the two conflicting aesthetic conditions would result in similarly neutral effects); rather, the effect is consistent with layering of gestalt perceptual heuristics. Plot layers which add additional heuristics show larger effects than plot layers which duplicate heuristics which are already in play. For example, adding ellipses to a plot which has color aesthetics increases group recognition by recruiting the closure heuristic in addition to the point similarity heuristic recruited by color; adding shape to a plot which has color aesthetics may increases group recognition slightly, but does not add additional gestalt heuristics (though point similarity is emphasized through two different mechanisms). 
+Taken together, the results presented suggest that plot aesthetics influence the perception of the dominant effect in ambiguous data displays. This effect is not simply additive (otherwise, the two conflicting aesthetic conditions would result in similarly neutral effects); rather, the effect is consistent with layering of gestalt perceptual heuristics. Plot layers which add additional heuristics show larger effects than plot layers which duplicate heuristics which are already in play. For example, adding ellipses to a plot which has color aesthetics increases group recognition by recruiting the closure heuristic in addition to the point similarity heuristic recruited by color; adding shape to a plot which has color aesthetics may increases group recognition slightly, but does not add additional gestalt heuristics (though point similarity is emphasized through two different mechanisms). 
 
 In order to explicitly rank aesthetics given this nonadditive mechanism, it would be necessary to test ellipse and error band aesthetics alone; in this study, we have only examined those aesthetics in combination with color and regression line plot layers, as the bounding aesthetics are seldom seen alone. 
 
-While further exploration of these effects is necessary to control for the effects of group size as well as to explore the gestalt heuristics applicable to other types of plots, these results demonstrate the importance of carefully constructing graphs in order to consistently convey the most important aspects of the displayed data. 
+The results of this study also demonstrate the strength of the lineup protocol as a tool for evaluating data displays. The combination of empirical results and participants' written responses allows researchers to examine the manipulated variablesas well as any alternative hypotheses participants may have utilized, such as group size inequality instead of cluster cohesion. 
+
+While further studies are necessary to control for the effects of group size as well as to explore the gestalt heuristics applicable to other types of plots, these results demonstrate the importance of carefully constructing graphs in order to consistently convey the most important aspects of the displayed data. 
