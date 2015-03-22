@@ -57,7 +57,7 @@ The human visual system is largely optimized for perception of three dimensions.
 Many optical illusions occur due to the transition from a two to three dimensions (or from three dimensions to two dimensions)\citep{gregory1968perceptual}. The necker cube has a single two-dimensional representation corresponding to two three-dimensional objects which are both equally salient. As a result, the brain does not prefer one interpretation over the other and instead continuously switches between interpretations.
 Impossible objects, such as the Penrose triangle \citep{penrose1958impossible}, are two-dimensional images of objects that appear to be impossible in three dimensions (sometimes, these objects can be represented in three dimensions, but only appear to be impossible from a certain angle). Impossible objects produce a conflict between the brain's three-dimensional representation of a two-dimensional figure and the brain's experience with the physical world. This conflict between the constraints of physical reality and a depicted image can be quite compelling and is an important component in the work of artists like M.C. Escher \citep{Escher}.
 
-\begin{figure}
+\begin{figure}[htbp]\centering
 \includegraphics[keepaspectratio=TRUE,width=.8\linewidth, trim=0in .25in 0in 0in]{fig-neckercube}
 \caption[Necker Cube]{The Necker Cube is a so-called ``ambiguous object" because two different transparent objects  produce the same retinal image (and thus the same perceptual experience). Commonly, the image seems to transition instantaneously from one possible mental representation to the other.}\label{fig:Necker} 
 \end{figure}
