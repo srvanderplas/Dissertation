@@ -919,7 +919,7 @@ qplot(data=subset(dataset.criteria, type=="cluster"), x=LB, xend=UB, y=sd.trend,
   facet_grid(lsc~lK, scales="free", labeller="label_parsed")  + theme_bw() + 
   scale_color_brewer("Distribution", palette="Set1") + theme(legend.position="bottom") + xlab("Interquartile intervals of Max (18) null distribution (blue) \nand target distribution (red) of amount of clustering.") + ylab(expression( "Variability along the trend":sigma[T]))
 end.rcode-->
-    <p> Values of <span style="display:inline-block;vertical-align:middle;"> $K=3: \sigma_C = \{.2, .25, .3\}$<br> $K=5: \sigma_C= \{.15, .2, .25\}$</span> will provide easy, medium, and hard difficulty levels for cluster target identification. </p>
+    <p> Values of <span style="display:inline-block;vertical-align:middle;"> $K=3: \sigma_C = \{.25, .3, .35\}$<br> $K=5: \sigma_C= \{.2, .25, .3\}$</span> will provide easy, medium, and hard difficulty levels for cluster target identification. </p>
   </section>
   
   <section id="plot-aesthetics">
