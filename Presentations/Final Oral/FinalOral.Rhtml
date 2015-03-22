@@ -56,21 +56,22 @@ end.rcode-->
 <section>
   <section>
   	<h2> Outline </h2>
-    <ul style="margin-bottom:20px;margin-top:10px;width:95%;">
-      <li>
+    <ul style="width:95%;">
+      <li style="margin-bottom:20px;margin-top:10px;">
         <b>Signs of the Sine Illusion:</b> Why We Need to Care
         <ul style="font-size:70%;text-align:left;">
+          <li> Describes the illusion with real-world context </li>
           <li> Proposes geometry-based transformations </li>
-          <li> Presents data from a user study </li>
+          <li> Presents data from a user study examining the utility of the transformations </li>
           <li> Accepted to JCGS, July 2014 </li>
         </ul>
       </li>
-      <li>
-        <b>The Curse of Three Dimensions:</b> Why Your Brain is Lying to You
+      <li style="margin-bottom:20px;margin-top:10px;">
+        <b>The Curse of Three Dimensions:</b> <br>Why Your Brain is Lying to You
         <ul style="font-size:70%;text-align:left;">
-          <li> Examines cause of the illusion (depth perception) </li>
+          <li> Examines cause of the sine illusion (depth perception) </li>
           <li> Presents a case study of an individual without depth perception </li>
-          <li> Presents data from another user study </li>
+          <li> Presents data from another user study showing the strength of the illusion</li>
           <li> Intended for submission to IEEE Transactions on Applied Perception </li>
         </ul>
       </li>
@@ -79,7 +80,7 @@ end.rcode-->
   <section>
   	<h2> Outline </h2>
     <ul style="margin-bottom:20px;margin-top:10px;width:95%;">
-      <li>
+      <li style="margin-bottom:20px;margin-top:10px;">
         <b>Spatial Reasoning and Data Displays</b>
         <ul style="font-size:70%;text-align:left;">
           <li> Examines visual skills necessary for lineup evaluation </li>
@@ -87,11 +88,13 @@ end.rcode-->
           <li> Submitted to InfoVis 2015 </li>
         </ul>
       </li>
-      <li>
+      <li style="margin-bottom:20px;margin-top:10px;">
         <b>Statistical Graphics and the Hierarchy of Visual Features</b>
         <ul style="font-size:70%;text-align:left;">
-          <li> Examines the effect of visual features of statistical plots on perception of displayed data </li>
-          <li> Intended for submission to the Journal of Computational and Graphical Statistics </li>
+          <li> Modifies the lineup protocol to test two competing hypotheses </li>
+          <li> Demonstrates the effect of graphical features of statistical plots (color, trend lines) on perception of displayed data </li>
+          <li> Connects gestalt perceptual rules to chart design </li>
+          <li> Intended for submission to JCGS or JASA </li>
         </ul>
       </li>
     </ul>
@@ -122,18 +125,253 @@ f2prime <- function(x) -2*sin(x)
 end.rcode-->
 
 <section>
-  <h2> Sine Illusion Overview </h2>
-  
-<!--begin.rcode sineillusion-original,echo=FALSE, fig.width=6.125, fig.height=5, out.width='45%'
+  <section class="center">
+    <h2> Sine Illusion</h2>
+<!--begin.rcode sineillusion-original, dev.args = list(bg = 'transparent'),echo=FALSE, fig.width=6.125, fig.height=5, out.width='45%'
 qplot(x=x, xend=xend, y = ystart, yend=yend, geom="segment", data=createSine(40, 1, f=f, fprime=fprime, f2prime)) +
-  theme(panel.grid.major=element_blank(), panel.background = element_rect(fill = "white", 
-                colour = "black"), plot.margin = unit(c(0,0,-0.5,-0.5), "cm"), 
-       panel.grid.minor=element_blank(), panel.background=element_blank(),
+  theme(panel.grid.major=element_blank(), panel.background = element_rect(fill = "transparent", 
+                colour = NA), plot.margin = unit(c(0,0,-0.5,-0.5), "cm"), 
+       panel.grid.minor=element_blank(), plot.background=element_rect(fill = "transparent", color=NA),
        axis.title = element_blank(), axis.ticks = element_blank(), 
        axis.text = element_blank()) + coord_equal(ratio=1)
 end.rcode-->
+  </section>
+
+  <section class="center">
+    <h2> The Curse of Three Dimensions </h2>
+    <h3> Why Your Brain is Lying to You </h3>
+  </section>
+  
+  <section>
+    <h3> Three-Dimensional Context </h3>
+<!--begin.rcode sinedemo2, echo=FALSE, fig.width=8, fig.height=4, dev.args = list(bg = 'transparent'), out.width='80%', out.height='auto', warning=FALSE, message=FALSE
+x <- seq(0, 2*pi, length=42)[2:41]
+data <- do.call("rbind", lapply(seq(-.5, .5, 1), function(i) data.frame(x=x, y=2*sin(x), z=i)))
+
+data.persp <- acast(data, x~z, value.var="y")
+x <- sort(unique(data$x))
+y <- sort(unique(data$y))
+z <- sort(unique(data$z))
+
+
+linedata <- data.frame(x=c(0, 0, 2*pi, 2*pi), y=c(5, 0, 5, 0), z=seq(-.5, .5, 1))
+xline <- linedata$x
+yline <- linedata$y
+zline <- linedata$z
+
+par.settings <- par()
+par(mfrow=c(1, 2), mar=c(0, 0, 0, 0))
+
+p1 <- persp(x, z, data.persp,  xlab="", ylab="", zlab="", theta=0, phi=45, border="black", shade=.35, col="white", xlim=c(-pi/12, 2*pi+pi/12), ylim=c(-1.75, 1.75), scale=FALSE, box=FALSE, expand=3/pi, d=2) # , ltheta=0, lphi=-15
+lines(trans3d(x=xline[1:2], y=yline[1:2], z=zline[1:2], p1), lty=2)
+lines(trans3d(x=xline[3:4], y=yline[3:4], z=zline[3:4], p1), lty=2)
+points(trans3d(x=xline[c(1,3)], y=yline[c(1,3)], z=zline[c(1,3)], p1), pch=2, cex=.75)
+text(trans3d(x=pi, y=max(yline), z=0, p1), label="Finite Vanishing Point")
+
+
+linedata <- data.frame(x=c(0, 0, 2*pi, 2*pi), y=c(4, 0, 4, 0), z=seq(-.5, .5, 1))
+xline <- linedata$x
+yline <- linedata$y
+zline <- linedata$z
+
+p2 <- persp(x, z, data.persp, xlab="", ylab="", zlab="", theta=0, phi=45, border="black", shade=.35, col="white", xlim=c(-pi/12, 2*pi+pi/12), ylim=c(-1.75, 1.75), scale=FALSE, box=FALSE, d=20, expand=3/(pi)) # , ltheta=0, lphi=-15
+lines(trans3d(x=xline[1:2], y=yline[1:2], z=zline[1:2], p2), lty=2)
+lines(trans3d(x=xline[3:4], y=yline[3:4], z=zline[3:4], p2), lty=2)
+points(trans3d(x=xline[c(1,3)], y=yline[c(1,3)], z=zline[c(1,3)], p2), pch=2, cex=.75)
+text(trans3d(x=pi, y=max(yline)-.25, z=0, p2), label="Near-infinite Vanishing Point")
+end.rcode-->
+  </section>
+  
+  <section>
+    <h2> The Psychological Lie Factor </h2>
+    <br></br>
+    $$\text{Lie Factor} = \frac{\text{size of effect shown in the chart}}{\text{size of effect in the data}}$$
+    <br></br>
+    $$\text{Psych. Lie Factor} = \frac{\text{size of effect perceived}}{\text{size of effect shown in the chart}}$$
+  </section>
+  
+  <section>
+    <h2> The Psychological Lie Factor </h2>
+<!--begin.rcode sine-stimulicorrectionsize, echo=FALSE, fig.width=6, fig.height=4.15, dev.args = list(bg = 'transparent'), out.width='80%', out.height='auto', warning=FALSE, message=FALSE
+source("../../Code/lieFactorSine/themeStimuli.R")
+weightYTrans <- function(df, w){
+  df$elltrans <- w*df$ellx2/2 + (1-w)*df$ell/2
+  df$ystart <- df$y - df$elltrans
+  df$yend <- df$y + df$elltrans
+  df$w <- w
+  df
+}
+
+getYlim <- function(w, orig, f, fprime, f2prime){
+  temp <- melt(ldply(c(0, 1.4), function(i) weightYTrans(orig, i)[,c(1,5, 6)]), id.vars="x", value.name="y", variable.name="var")
+  dy <- diff(apply(temp[,c(1,3)], 2, function(k) diff(range(k))))
+  dx <- 0
+  if(dy>0) {
+    dx <- dy
+    dy <- 0
+  }
+  return(list(dx=range(temp$x)+c(-1, 1)*dx/2, dy=range(temp$y)+c(-1, 1)*-dy/2))
+}
+
+f <- function(x) 2*sin(x)
+fprime <- function(x) 2*cos(x)
+f2prime <- function(x) -2*sin(x)
+orig <- createSine(50, 1, f, fprime, f2prime, 0, 2*pi)
+lims <- getYlim(c(0, 1.4), orig, f, fprime, f2prime)
+w <-  c(.1,  .3,  .5,  .7,  .9,  1.1)
+
+set.seed(52034)
+frameorder <- sample(w, 6)
+  
+data <- rbind.fill(ldply(w, function(i) weightYTrans(orig, i)))
+data$set <- sapply(data$w, function(i) which(w %in% i))
+data$display <- sapply(data$w, function(i) which(frameorder %in% i))
+ans <- which.min(abs(frameorder-.99))
+qplot(data=data, x=xstart, y=ystart, xend=xend, yend=yend, geom="segment") + facet_wrap(~display) + coord_equal(ratio=1) + theme_stimuli() + xlim(lims$dx) + ylim(lims$dy) + theme(plot.margin=unit(c(.0125, .0125, .0125, .0125), "cm"))
+end.rcode-->
+    <p> In which graph is the size of the curve most consistent? </p> 
+  </section>
+  
+  <section>
+    <h2> The Psychological Lie Factor </h2>
+    <br></br>
+<!--begin.rcode sine-stimulicorrectionsize-diff, echo=FALSE, fig.width=6, fig.height=2, dev.args = list(bg = 'transparent'), out.width='80%', out.height='auto', warning=FALSE, message=FALSE
+qplot(data=data, x=xstart, y=ystart-y, xend=xend, yend=yend-y, geom="segment") + facet_wrap(~display) + coord_equal(ratio=1) + theme_stimuli() + xlim(lims$dx) + theme(plot.margin=unit(c(.0125, .0125, .0125, .0125), "cm"))
+end.rcode-->
+  </section>
+    
+  <section>
+    <h2> The Psychological Lie Factor </h2>
+<!--begin.rcode inv-stimulicorrectionsize, echo=FALSE, fig.width=6, fig.height=4.15, dev.args = list(bg = 'transparent'), out.width='80%', out.height='auto', warning=FALSE, message=FALSE
+f <- function(x) 5/6*1/x
+fprime <- function(x) -5/6*x^(-2)
+f2prime <- function(x) 2*5/6*x^(-3)
+orig <- createSine(50, 1, f, fprime, f2prime, 1/2, 3.5)
+lims <- getYlim(c(0, 1.4), orig, f, fprime, f2prime)
+w <-  c(.1,  .3,  .5,  .7,  .9,  1.1)
+
+set.seed(52034)
+frameorder <- sample(w, 6)
+  
+data <- rbind.fill(ldply(w, function(i) weightYTrans(orig, i)))
+data$set <- sapply(data$w, function(i) which(w %in% i))
+data$display <- sapply(data$w, function(i) which(frameorder %in% i))
+ans <- which.min(abs(frameorder-.99))
+qplot(data=data, x=xstart, y=ystart, xend=xend, yend=yend, geom="segment") + facet_wrap(~display) + coord_equal(ratio=1) + theme_stimuli() + xlim(lims$dx) + ylim(lims$dy) + theme(plot.margin=unit(c(.0125, .0125, .0125, .0125), "cm"))
+end.rcode-->
+  </section>
+  
+    <section>
+    <h2> The Psychological Lie Factor </h2>
+<!--begin.rcode exp-stimulicorrectionsize, echo=FALSE, fig.width=6, fig.height=4.15, dev.args = list(bg = 'transparent'), out.width='80%', out.height='auto', warning=FALSE, message=FALSE
+f <- function(x) exp(x/2)
+fprime <- function(x) 1/2*exp(x/2)
+f2prime <- function(x) 1/4*exp(x/2)
+orig <- createSine(50, 1, f, fprime, f2prime, -pi, pi)
+lims <- getYlim(c(0, 1.4), orig, f, fprime, f2prime)
+w <-  c(.1,  .3,  .5,  .7,  .9,  1.1)
+
+set.seed(52034)
+frameorder <- sample(w, 6)
+  
+data <- rbind.fill(ldply(w, function(i) weightYTrans(orig, i)))
+data$set <- sapply(data$w, function(i) which(w %in% i))
+data$display <- sapply(data$w, function(i) which(frameorder %in% i))
+ans <- which.min(abs(frameorder-.99))
+qplot(data=data, x=xstart, y=ystart, xend=xend, yend=yend, geom="segment") + facet_wrap(~display) + coord_equal(ratio=1) + theme_stimuli() + xlim(lims$dx) + ylim(lims$dy) + theme(plot.margin=unit(c(.0125, .0125, .0125, .0125), "cm"))
+end.rcode-->
+  </section>
+  
+  <section>
+    <h2> The Psychological Lie Factor </h2>
+    <br>
+    <h3> Lie Factor $D_k$ </h3>
+      $$\begin{align}D_k &= \frac{\text{max line length in sub-plot } k}{\text{min line length in sub-plot } k} \\&= \text{max line length in sub-plot } k\end{align}$$
+    <p style="text-align:center;margin:40px;"> As not all stimuli contain uncorrected plots... </p>
+    <h3> Psychological Lie Factor </h3>
+    For participant $i$, plot $j$, 
+      $$P_{ij}=D_{ijk}/\min_{1\leq k \leq 6} D_{ijk}$$
+  </section>
+  
+  <section>
+    <h2> Results </h2>
+<!--begin.rcode spaghetti, echo=FALSE, fig.width=8, fig.height=3, dev.args = list(bg = 'transparent'), out.width='70%', out.height='auto', warning=FALSE, message=FALSE
+load("../../Code/lieFactorSine/BayesAnalysis.Rdata")
+ggplot() + 
+  geom_line(data=test.mean.marginal, aes(x=mean, y=f, group=ip.id, colour=functions), alpha=I(.175)) + 
+  geom_line(data=overall.mean, aes(x=mean, y=f, group=functions), colour="black") + 
+  facet_wrap(~functions, scales="free") + ylab("Density") + xlab("Lie Factor") + theme_bw() + scale_colour_discrete("Function Type") + xlim(c(1, 2)) + 
+  guides(colour = guide_legend(override.aes = list(alpha = 1))) +
+  theme(legend.position="none", 
+        plot.background=element_rect(fill = "transparent", color=NA))
+end.rcode-->
+    <p> Estimated posterior densities for participant-specific $\theta_i$ (in color) and overall density for $\theta$ shown in black. </p>
+  </section>
+  
+  <section>
+    <h2> Results </h2>
+<!--begin.rcode individualCI, echo=FALSE, fig.width=8, fig.height=4, dev.args = list(bg = 'transparent'), out.width='70%', out.height='auto', warning=FALSE, message=FALSE
+qplot(data=test.post.indiv,  x=lb, xend=ub, y=ip.id, yend=ip.id, geom="segment", colour=functions) + 
+  facet_wrap(~functions) + geom_point(aes(x=median), colour="black") + 
+  geom_vline(data=overall.mean.bounds, aes(xintercept=lb), linetype=3) + 
+  geom_vline(data=overall.mean.bounds, aes(xintercept=median)) + 
+  geom_vline(data=overall.mean.bounds, aes(xintercept=ub), linetype=3) + 
+  ylab("Participant ID") + xlab("Mean Lie Factor") + theme_bw() + 
+  theme(legend.position="none", 
+        plot.background=element_rect(fill = "transparent", color=NA)) + 
+  scale_colour_discrete("Function Type")
+end.rcode-->
+  <p> 95% posterior predictive intervals for $\theta_i$, for each function type. Vertical lines indicate the median estimate of overall $\theta$ with a 95% credible interval. </p>
+  </section>
 
   <section>
+    <h2> Case Study </h2>
+    <table style="width:100%">
+    <tr><td width="75%" style="vertical-align:middle;">
+    <p style="text-align:left;">D.W., a woman with strabismic amblyopia (lazy eye) 
+    <ul style="margin:20px;font-size:80%;">
+      <li style="margin:10px"> Developed independent muscle control over each eye as a result of treatment (complete patching) to strengthen her non-dominant eye </li> 
+      <li style="margin:10px"> Disrupted development of binocular depth perception </li> 
+    </ul>
+    
+    </td><td style="vertical-align:middle;width:25%;">
+<!--begin.rcode mullerlyer, echo=FALSE, fig.width=1.5, fig.height=3, dev.args = list(bg = 'transparent'), out.width='50%', out.height='auto', warning=FALSE, message=FALSE
+y.a <- .15
+x.a <- .15
+
+data <- rbind(
+        data.frame(x=c(.5, .5, .5-x.a, .5, .5+x.a, .5-x.a, .5, .5+x.a), 
+                   y=c(0, 1, y.a, 0, y.a, 1-y.a, 1, 1-y.a), 
+                   group=c(1, 1, 2, 2, 2, 3, 3, 3), label="A"),
+        data.frame(x=c(.5, .5, .5-x.a, .5, .5+x.a, .5-x.a, .5, .5+x.a), 
+                   y=c(0, 1, -y.a, 0, -y.a, 1+y.a, 1, 1+y.a), 
+                   group=c(4, 4, 5, 5, 5, 6, 6, 6), label="B"))
+qplot(data=data, x=x, y=y, group=group, geom="path") + facet_grid(.~label) + 
+  theme(panel.grid.major=element_blank(),  
+        panel.grid.minor=element_blank(), 
+        panel.background = element_rect(fill = "transparent", colour = "black"), 
+        strip.background = element_rect(fill = "transparent", colour = "black"),
+        plot.margin = unit(c(0,0,-0.5,-0.5), "cm"),
+        plot.background=element_rect(fill = "transparent", color=NA),
+        axis.title = element_blank(), axis.ticks = element_blank(), 
+        axis.text = element_blank()) + 
+  xlim(c(.5-2*x.a,.5+2*x.a))
+
+end.rcode-->
+    </td>
+    </tr>
+    </table>
+    <p style="text-align:center"> We asked DW to evaluate several plots of the sine illusion at various correction levels, as well as other depth illusions </p>
+  </section>
+  
+  <section>
+    <h2> Case Study </h2>
+    <h3> Results </h3>
+    <ul style="margin:20px;font-size:80%;">
+      <li style="margin:10px"> D.W. was not susceptible to the sine illusion or the Muller-Lyer illusion </li>
+      <li style="margin:10px"> D.W. identified the partially corrected images as having the same line length as well </li>
+      <li style="margin:10px"> Only the fully corrected plot of $y=\exp(x)$ seemed to have lines of different length </li>
+    <ul>
   </section>
 </section>
 
@@ -164,6 +402,9 @@ end.rcode-->
 		history: true,
 		center: false,
 		slideNumber: true,
+		width: 1200,
+		height: 800,
+		margin: 0.05,
 		transition: 'fade', // none/fade/slide/convex/concave/zoom
 		// Optional reveal.js plugins
 		dependencies: [
@@ -172,7 +413,8 @@ end.rcode-->
 			{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
 			{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
 			{ src: 'plugin/zoom-js/zoom.js', async: true },
-			{ src: 'plugin/notes/notes.js', async: true }
+			{ src: 'plugin/notes/notes.js', async: true },
+			{ src: 'plugin/math/math.js', async: true }
 		]
 	});
 </script>
