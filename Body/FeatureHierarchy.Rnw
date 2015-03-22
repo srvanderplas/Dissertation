@@ -315,7 +315,7 @@ Models $M_C$, $M_T$, and $M_0$ provide the foundation for this experiment; by ma
 $K$ & \# Clusters &  \begin{tabular}{l}3, 5 \end{tabular} \\
 $N$ & \# Points &  \begin{tabular}{l}$15\cdot K$\end{tabular} \\
 $\sigma_T$ & Scatter around trend line &   \begin{tabular}{l}.25, .35, .45  \end{tabular}\\
-$\sigma_C$ & Scatter around cluster centers & \begin{tabular}{ll} .15, .20, .25 ($K=3$)\\ .20, .25, .30 ($K=5$) \end{tabular}
+$\sigma_C$ & Scatter around cluster centers & \begin{tabular}{ll} .20, .25, .30 ($K=3$)\\ .15, .20, .25 ($K=5$) \end{tabular}
 \\\hline
 \end{tabular}
 \end{center}
