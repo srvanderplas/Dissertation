@@ -76,3 +76,19 @@ body {
   padding-top:.15em;
   padding-bottom:.15em;
 }
+
+li.smalleqns span.MathJax{
+  font-size:75%;
+}
+
+.reveal ol li ol {
+  list-style-type: lower-alpha;
+}
+
+.reveal a:hover {
+  color:#023B48;
+}
+
+.reveal a {
+  color:#000000;
+}
