@@ -729,7 +729,7 @@ qplot(education, data=users) + theme_bw() + xlab("(self-reported) Highest level 
 \end{figure}
 
 
-From figure~\ref{fig:targets} we see that users identified more cluster targets than trend targets, but users also do not primarily identify one target type over another target type, but generally pick both types over the course of ten lineups.
+From figure~\ref{fig:targets} we see that users identified more cluster targets than trend targets; this may be a result of the number of plot types which emphasize clusters over trend: 5 plot types emphasize clustering (according to our hypothesis) and only two emphasize linear trends. Individuals also do not primarily identify one target type over another target type, but generally pick both types over the course of ten lineups. 
 
 \begin{figure}[ht]
 \centering
