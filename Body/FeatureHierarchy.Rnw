@@ -767,7 +767,7 @@ For plot type $i$, displaying dataset $j=1, ..., 54$ and participant $k=1, ..., 
 
 Random effects for dataset and participant are assumed to be orthogonal to one another, as participants only see an individual dataset one time. We note that any variance due to parameters $K$, $\sigma_T$, and $\sigma_C$ is contained within $\sigma^2_{\text{data}}$ and can be examined using a subsequent model. 
 
-\subsubsection{Linear Target Model}
+\subsubsection{Trend Target Model}
 
 <<line-model, echo=FALSE, include=FALSE, dependson='results-setup'>>=
 line.model <- glmer(trend.correct ~ plottype + (1|individualID) + (1|dataset), 
@@ -826,7 +826,7 @@ print(xtable(line.fixef.aes[,c(8, 1:4)], caption=c("Fitted values of fixed effec
 
 Once error bands are added to the plot, many other heuristics may be applied: closure (perception of a closed object even if it is incomplete), common region, and connectedness (depending on the style of the error bands). For the 95\% intervals in the stimuli plots, closure and common region are the most likely heuristics recruited with the addition of error bands (a ribbon-style interval would recruit connectedness as well). The results are consistent with this idea: only the dual continuity emphasis of trend + error bands significantly increases the probability that participants will identify the target plot generated under $M_T$. 
 
-\subsubsection{Group Target Selection}\label{sec:groupModel}
+\subsubsection{Cluster Target Selection}\label{sec:groupModel}
 <<group-model, echo=FALSE, include=FALSE, dependson='results-setup'>>=
 group.model <- glmer(cluster.correct~ plottype + (1|individualID) + (1|dataset), 
                      data = modeldata, 
@@ -842,7 +842,7 @@ type_compare <- glht(group.model, mcp(plottype="Tukey"))
 group.fixef$letters <- cld(type_compare)$mcletters$Letters
 @
 
-We now examine the probability of selecting the group target plot as a function of plot type, with random effects for dataset (which encompasses parameter effects) and participant (accounting for variation in individual skill level). The model fit here is the same as that shown in equation \eqref{eqn:linearModel}, except that success in this model is defined as identification of the cluster target plot. 
+We now examine the probability of selecting the cluster target plot as a function of plot type, with random effects for dataset (which encompasses parameter effects) and participant (accounting for variation in individual skill level). The model fit here is the same as that shown in equation \eqref{eqn:linearModel}, except that success in this model is defined as identification of the cluster target plot. 
 
 \begin{figure}[ht]\centering
 <<group-fixef, echo=FALSE, dependson='group-model', fig.width=8, fig.height=4, out.width='.75\\linewidth'>>=
@@ -876,13 +876,13 @@ names(group.fixef2)[9] <- "Tukey Post Hoc Differences"
 print(xtable(group.fixef2[,c(8, 1:4)], caption=c("Fitted values of fixed effects for the model described in section~\ref{sec:groupModel}.", "Fixed effects for cluster target logistic model"), label="tab:group.fixef", align=c('r', 'r', 'r', 'r', 'r', 'r'), digits=c(0, 0, 4, 4, 2, 4)), include.rownames=F, file=paste0(imgdir, "group-fixef-table.tex"))
 
 @
-\caption[Odds of detecting the cluster target plot for each aesthetic]{Odds of detecting the cluster target plot for each aesthetic, relative to a plain scatterplot. The presence of error lines or bounding ellipses significantly decreases the probability of correct target detection, and no aesthetic successfully increases the probability of correct target detection. This may be due to differences in group size for null plots, with data generated under $M_0$ compared with the group target plot displaying data generated under $M_C$. \label{fig:group.fixef}}
+\caption[Odds of detecting the cluster target plot for each aesthetic]{Odds of detecting the cluster target plot for each aesthetic, relative to a plain scatterplot. The presence of error lines or bounding ellipses significantly decreases the probability of correct target detection, and no aesthetic successfully increases the probability of correct target detection. This may be due to differences in group size for null plots, with data generated under $M_0$ compared with the cluster target plot displaying data generated under $M_C$. \label{fig:group.fixef}}
 \end{figure}
 
 Figure \ref{fig:group.fixef} contains odds and 95\% Wald intervals of the estimated fixed effects obtained by fitting equation \ref{eqn:linearModel} to a binary indicator of successful cluster target identification. 
-According to the model results, no plot aesthetics significantly increase the likelihood of selecting the group target plot; however, several aesthetic combinations decrease this likelihood. Consistent with our hypothesis,  Color + Ellipse + Trend + Error and Trend + Error plot aesthetic combinations significantly decrease the detection of the group target plot. 
+According to the model results, no plot aesthetics significantly increase the likelihood of selecting the cluster target plot; however, several aesthetic combinations decrease this likelihood. Consistent with our hypothesis,  Color + Ellipse + Trend + Error and Trend + Error plot aesthetic combinations significantly decrease the detection of the cluster target plot. 
 
-However, the implication that Color + Ellipse and Color + Shape + Ellipse also decrease group target detection is not consistent with our hypotheses. Examination of participants' reasons for selecting specific target plots provides at least some explanation; participants cited reasons such as 
+However, the implication that Color + Ellipse and Color + Shape + Ellipse also decrease cluster target detection is not consistent with our hypotheses. Examination of participants' reasons for selecting specific target plots provides at least some explanation; participants cited reasons such as 
 ``There is no circle highlighting the yellow symbols in this plot" %line 13515 
 and 
 ``Lack of a circle around the red symbols".  %line 13516
@@ -906,7 +906,7 @@ qplot(data=tmp, x=LB, xend=UB, y=sd.trend, yend=sd.trend, color=dist, geom="segm
 
 Numerically, these null data sets had uneven group allocation; bounding ellipse estimation failed for groups with fewer than 3 points and in these cases, ellipses were not drawn. Visually, the conspicuous absence of an ellipse will lead participants to select null plots with that feature (see section~\ref{sec:sentiment} for a more detailed look at participants' responses).
 
-This effect actually provides some additional information as to the hierarchy of gestalt features: for plots displaying the same data (including at least one plot with group size $<3$), participants were more likely to identify the group target plot under the Color and Shape aesthetics than under Color + Ellipse or Color + Shape + Ellipse conditions. 
+This effect actually provides some additional information as to the hierarchy of gestalt features: for plots displaying the same data (including at least one plot with group size $<3$), participants were more likely to identify the cluster target plot under the Color and Shape aesthetics than under Color + Ellipse or Color + Shape + Ellipse conditions. 
 The presence of the ellipse (and the gestalt common region heuristic) dominated the effect of point similarity (albeit not in the way the authors originally intended). 
 In future experiments, it will be advantageous to control the variability in group size in order to remove the conflicting visual influence of gestalt common region heuristics with the greater similarity and proximity present in the target plot. 
 
@@ -942,8 +942,8 @@ ggplot(data=gvl.fixef[-1,]) +
   coord_flip() + 
   theme_bw() + 
   geom_hline(yintercept=1, colour="gray70") + 
-  ggtitle("Odds of Selecting Group vs Line Target \n (given one target was identified)") + 
-  ylab("Odds (Group vs Line) and 95% Wald Intervals") + 
+  ggtitle("Odds of Selecting Cluster vs Trend Target \n (given one target was identified)") + 
+  ylab("Odds (Cluster vs Trend) and 95% Wald Intervals") + 
   xlab("Plot Type") + 
   geom_text(aes(y=0.4, x=label, label=letters))
 @
