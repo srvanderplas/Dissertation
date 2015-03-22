@@ -758,14 +758,14 @@ We  model the probability of selecting the target plot using a logistic regressi
 For plot type $i$, displaying dataset $j=1, ..., 54$ and participant $k=1, ..., P$, we model
 
 \begin{align}
-\text{logit }P(\text{success}) & =  \textbf{X}\beta + \textbf{J}\gamma + \textbf{K}\eta + \epsilon, \label{eqn:linearModel}\\
-\text{where } \beta_i & \hphantom{\sim} \text{describe the effect of specific plot aesthetics}\nonumber\\
+\text{logit }P(\text{target identification}) & =  \textbf{X}\beta + \textbf{J}\gamma + \textbf{K}\eta + \epsilon, \label{eqn:linearModel}\\
+\text{where } \beta_i & \hphantom{\sim} \text{describe the effect of specific plot types}\nonumber\\
 \hphantom{where } \gamma_j & \overset{iid}{\sim} N\left(0, \sigma^2_{\text{data}}\right)\text{, the random effect for dataset specific characteristics}\nonumber\\
 \hphantom{where } \eta_k & \overset{iid}{\sim} N\left(0, \sigma^2_{\text{participant}}\right)\text{, the random effect for participant characteristics}\nonumber\\
 \text{and } \epsilon_{ijk} & \overset{iid}{\sim}  N\left(0, \sigma^2_e\right)\text{, the error associated with a single trial evaluation} \nonumber
 \end{align}
 
-We note that any variance due to parameters $K$, $\sigma_T$, and $\sigma_C$ is contained within $\sigma^2_{\text{data}}$ and can be examined using a subsequent model. 
+Random effects for dataset and participant are assumed to be orthogonal to one another, as participants only see an individual dataset one time. We note that any variance due to parameters $K$, $\sigma_T$, and $\sigma_C$ is contained within $\sigma^2_{\text{data}}$ and can be examined using a subsequent model. 
 
 \subsubsection{Linear Target Model}
 
