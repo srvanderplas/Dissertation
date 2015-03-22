@@ -186,7 +186,8 @@ qplot(x,y, data=res, pch=I(1)) + facet_grid(facets=.~label, labeller="label_pars
 \end{figure}
 
 \subsubsection{Cluster Model $M_C$} 
-We begin by generating $K$ cluster centers on a $K \times K$ grid, then we generate points around selected cluster centers. 
+We begin by generating $K$ cluster centers on a $K \times K$ grid, then we generate points around selected cluster centers. Parameters $K$ and $\sigma_C$ describe the number of clusters and the variability around cluster centers, respectively. 
+
 \begin{algorithm}\hfill\newline
   Input Parameters:  $N$ points, $K$ clusters, $\sigma_C$ cluster standard deviation \\
   Output: $N$ points, in form of vectors $x$ and $y$. 
