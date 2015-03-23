@@ -248,7 +248,7 @@
 
 <section id="experiment">
   <section>
-    <div> <h2>Experiment:</h2> <h3> How do plot aesthetics affect perception of statistical plots with competing signals? </h3></div>
+    <div> <h2>Experiment:</h2> <h3> How do plot aesthetics affect <br>perception of statistical plots? </h3></div>
 <div class="chunk" id="motivation"><div class="rimage default"><img src="figure/motivation-1.png" title="plot of chunk motivation" alt="plot of chunk motivation" width="300px" height="300px" class="plot" />
 <img src="figure/motivation-2.png" title="plot of chunk motivation" alt="plot of chunk motivation" width="300px" height="300px" class="plot" /></div></div>
   </section>
@@ -264,14 +264,14 @@
         <td style="vertical-align:top;">
         <h4> <b> Standard design: </b> </h4>
           <ul style="font-size:85%">
-            <li> One "target" plot (real data or generated from $H_A$) </li>
+            <li> One "target" plot <br>(real data or generated from $H_A$) </li>
             <li> 19 null plots generated from $H_0$ </li>
-            <li> $P(\text{select target}) = 0.05$ </li>
-            <li> Visual analogue of hypothesis tests </li>
+            <li> $P(\text{select target}) = 0.05$ under $H_0$ </li>
+            <li> Allows quantification of significance for graphical findings</li>
           </ul>
-          <p style="font-size:50%"> Buja, A., Cook, D., Hofmann, H., Lawrence, M., Lee, E. K., Swayne, D. F., and Wickham, H. (2009). Statistical inference for exploratory data analysis and model diagnostics. </p>
-          <p style="font-size:50%"> Majumder, M., Hofmann, H., and Cook, D. (2013). Validation of visual statistical inference, applied to linear models.</p>
-          <p style="font-size:50%"> Wickham, H., Cook, D., Hofmann, H., and Buja, A. (2010). Graphical inference for infovis.</p>
+          <p style="font-size:50%"> Buja, A., Cook, D., Hofmann, H., Lawrence, M., Lee, E. K., Swayne, D. F., and Wickham, H. (2009). Statistical inference for exploratory data analysis and model diagnostics, <i>Phil. Transac.</i> </p>
+          <p style="font-size:50%"> Majumder, M., Hofmann, H., and Cook, D. (2013). Validation of visual statistical inference, applied to linear models, <i>JASA</i></p>
+          <p style="font-size:50%"> Wickham, H., Cook, D., Hofmann, H., and Buja, A. (2010). Graphical inference for infovis, <i>TVCG</i></p>
         </td>
       </tr>
     </table>
@@ -308,6 +308,7 @@
                 <td style="text-align:right;padding-left:20px;padding-top:20px;padding-right:20px;"> Other: </td> <td style="text-align:right;padding-top:20px;"> <code class="knitr inline">31.7</code>% </td>
               </tr>
             </table>
+            Sample size: 22
           </div>
         </td>
       </tr>
@@ -346,6 +347,7 @@
                 <td style="text-align:right;padding-left:20px;padding-top:20px;padding-right:20px;"> Other: </td> <td style="text-align:right;padding-top:20px;"> <code class="knitr inline">29.1</code>% </td>
               </tr>
             </table>
+            Sample size: 31
           </div>
         </td>
       </tr>
@@ -379,8 +381,7 @@
     <p style="text-align:left;"><b>Output: </b> vectors $x$ and $y$ with $N$ observations </p>
     <ol>
       <li class="fragment"> Generate $\tilde{x}_i$, $i=1, ..., N$, as a seq. of evenly spaced points from $[-1, 1]$. </li>
-      <li class="fragment"> Jitter $\tilde{x}_i$ by adding small perturbations: 
-        <p style="font-size:75%">$x_i = \tilde{x}_i + \eta_i$, where $\eta_i \sim \text{Unif}(-z, z)$, $z = \frac{2}{5(N-1)}$</p></li>
+      <li class="fragment"> Jitter $\tilde{x}_i$ by adding small perturbations</li>
       <li class="fragment"> Generate $y_i$ as a linear function of $x_i$: $y_i = x_i + e_i$, $e_i \sim N(0, \sigma^2_T)$.</li>
       <li class="fragment"> Center and scale $x_i$, $y_i$.</li>
     </ol>
@@ -393,25 +394,12 @@
 
   <section>
     <h2> Cluster Model $M_C$ </h2>
-    <p style="text-align:left;"><b>Input: </b>$N$ points, $K$ clusters, $\sigma_C$ cluster standard deviation </p>
+    <p style="text-align:left;"><b>Input: </b>sample size $N$, number of clusters $K$, cluster std. dev. $\sigma_C$ </p>
     <p style="text-align:left;"><b>Output: </b> vectors $\mathbf{x}$ and $\mathbf{y}$ with $N$ observations </p>
     <ol>
-      <li style="margin-bottom:20px" class="fragment smalleqns"> Generate $K$ cluster centers $(c^x_{i}, c^y_{i})$, $i=1, ..., K$: </li>
-        <ol type="A" style="font-size:75%">
-          <li class="fragment"> Permute $\{1, ..., K\}$ to form two vectors $c^{x}$ and $c^y$, such that $\text{cor}(c^{x}, c^{y})\in[.25, .75]$
-          <li class="fragment"> Center and scale: $\tilde{c}^x = \frac{c^x - \bar{c}}{s_c} $ and $\tilde{c}^y = \frac{c^y - \bar{c}}{s_c}$ where $\overline{c} = \frac{K+1}{2}$ and $s_c^2 = \frac{K(K+1)}{12}$.</li>
-        </ol>
-
-      <li style="margin-bottom:20px" class="fragment smalleqns"> Sample group sizes $g = (g_1, ..., g_K)$ with $N = \sum_{i=1}^K g_i$ 
-    <div style="font-size:80%">$ g \sim \text{Multinomial }(K, p) \text{ where } p = \tilde{p}/\sum_{i=1}^K \tilde{p}_i, \text{ for } \tilde{p} \sim N \left(\frac{1}{K}, \frac{1}{2 K^2} \right)$ </div> </li>
-      <li style="margin-bottom:20px" class="fragment">Generate points around cluster centers:
-      <span style="text-align:right;display:inline-block;font-size:80%;">
-      $$
-      \begin{align}
-        \mathbf{x} &= \tilde{c}^x_{g_i} + \mathbf{e^x}, \mathbf{e^x} \sim N(\mathbf{0}, \sigma^2_C),\\
-        \mathbf{y} &= \tilde{c}^y_{g_i} + \mathbf{e^y}, \mathbf{e^y} \sim N(\mathbf{0}, \sigma^2_C).
-      \end{align}
-      $$</span></li>
+      <li style="margin-bottom:20px" class="fragment smalleqns"> Generate $K$ cluster centers (c^x, c^y)$ on a $K\timesK$ grid; center and scale </li>
+      <li style="margin-bottom:20px" class="fragment smalleqns"> Sample group sizes $g = (g_1, ..., g_K)$ with $N = \sum_{i=1}^K g_i$ </li>
+      <li style="margin-bottom:20px" class="fragment">Generate points $(\mathbf{x},\mathbf{y})$ with perturbations $ N(\mathbf{0}, \sigma^2_C)$ </li>
       <li style="margin-bottom:20px" class="fragment">Center and scale $x_i$, $y_i$.</li>
     </ol>
   </section>
@@ -552,7 +540,7 @@
   </section>
   
   <section>
-    <h2> Experiment Structure </h2>
+    <h2> Experimental Structure </h2>
     <table class="noborder">
       <tr>
         <td style="padding-right:50px;vertical-align:top;">
@@ -768,13 +756,14 @@
     <br>
     $$
     \begin{align}
-    \text{logit }P(C_{ijk} | C_{ijk}\cup T_{ijk}) & =  \textbf{X}\beta + \textbf{J}\gamma + \epsilon, \\
+    \text{logit }P(C_{ijk} | C_{ijk}\cup T_{ijk}) & =  \textbf{X}\beta + \textbf{J}\gamma + \textbf{K}\eta + \epsilon, \\
     \text{where } \beta_i & \hphantom{\sim} \text{describe plot types}\\
     \hphantom{where } \gamma_j & \overset{iid}{\sim} N\left(0, \sigma^2_{\text{dataset}}\right)\\
+    \hphantom{where } \eta_k & \overset{iid}{\sim} N\left(0, \sigma^2_{\text{participant}}\right)\\
     \text{and } \epsilon_{ijk} & \overset{iid}{\sim}  N\left(0, \sigma^2_e\right)
     \end{align}
     $$
-    <p style="text-align:left;"> Participant effects have been removed due to conditioning on successful identification of either target. </p>
+
   </section>
   
   <section>
@@ -785,8 +774,8 @@
 <div class="chunk" id="cluster-vs-line"><div class="rimage default"><img src="figure/cluster-vs-line-1.png" title="plot of chunk cluster-vs-line" alt="plot of chunk cluster-vs-line" width="100%" height="auto" class="plot" /></div></div>
     <p style="font-size:50%;text-align:center;">Plot types are significantly different if they do not share a letter</p>
       </td><td style="font-size:80%;vertical-align:middle;">
-        <p style="margin-bottom:10px"> Participants are <code class="knitr inline">1.59</code> times as likely to select cluster targets when plots have color, shape, and ellipse aesthetics. </p>
-        <p> Participants are <code class="knitr inline">0.60</code> times as likely to select cluster targets when plots have trend line and prediction interval aesthetics. </p>
+        <p style="margin-bottom:10px"> Participants are <code class="knitr inline">1.78</code> times as likely to select cluster targets when plots have color, shape, and ellipse aesthetics. </p>
+        <p> Participants are <code class="knitr inline">0.53</code> times as likely to select cluster targets when plots have trend line and prediction interval aesthetics. </p>
       </td>
     </tr>
   </table>
@@ -811,7 +800,7 @@
 
         </td>
         <td width="15%"  class="fragment" data-fragment-index=5 style="vertical-align:middle;text-align:left;font-size:50%;">
-        Participants are <code class="knitr inline">1.42</code> times as likely to select the cluster target with color + trend line, relative to the plain plot.
+        Participants are <code class="knitr inline">1.58</code> times as likely to select the cluster target with color + trend line, relative to the plain plot.
         </td>
       </tr>
       <tr>
@@ -828,7 +817,7 @@
 
         </td>
         <td width="15%" class="fragment" data-fragment-index=5 style="vertical-align:middle;text-align:left;font-size:50%;">
-        Participants are <code class="knitr inline">0.64</code> times as likely to select the cluster target with color + ellipse + trend line + error, relative to the plain plot.
+        Participants are <code class="knitr inline">0.59</code> times as likely to select the cluster target with color + ellipse + trend line + error, relative to the plain plot.
         </td>
       </tr>
     </table>
