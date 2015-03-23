@@ -280,9 +280,9 @@ end.rcode-->
   </section>
   <section>
     <h2> Gestalt Laws </h2>
-    <table>
+    <table width="100%">
       <tr>
-        <td style="vertical-align:top;font-size:75%;" width="55%" rowspan=4>
+        <td style="vertical-align:top;" width="60%">
 <!--begin.rcode gestalt, dev.args = list(bg = 'transparent'), echo=FALSE, fig.width=6, fig.height=4, out.width='100%'
 logit <- function(x, a, b){
   exp((x-a)/b)/(1+exp((x-a)/b))
@@ -336,24 +336,20 @@ logit <- function(x, a, b){
     plot.margin=unit(c(0,0,0,0), "cm"))
 end.rcode-->
         </td>
-        <td class="fragment" data-fragment-index=2 width="44%">
-          3 groups of two white dots
-        </td>
-      </tr>
-      <tr>
-        <td class="fragment" data-fragment-index=3 width="44%">
-          4 groups of two white dots or two blue dots
-        </td>
-      </tr>
-      <tr>
-        <td class="fragment" data-fragment-index=4 width="44%">
-          2 continuous s-shape curves<br>
-          2 v-shaped curves
-        </td>
-      </tr>
-      <tr>
-        <td class="fragment" data-fragment-index=5 width="44%">
-          3 groups of one white and one blue dot
+        <td style="vertical-align:middle;font-size:60%;" width="40%">
+          <ul>
+          <li class="fragment" data-fragment-index=2 style="margin-top:20px;margin-bottom:60px;">
+          3 groups of 2 white dots
+          </li>
+          <li class="fragment" data-fragment-index=3 style="margin-top:60px;margin-bottom:60px;">
+          4 groups of 2 white or blue dots
+          </li>
+          <li class="fragment" data-fragment-index=4 style="margin-top:60px;margin-bottom:100px;">
+          2 continuous s-shape curves, 2 v-shaped curves
+          </li>
+          <li class="fragment" data-fragment-index=5 style="margin-top:60px;margin-bottom:60px;">
+          3 groups of 1 white and 1 blue dot
+          </li>
         </td>
       </tr>
     </table>
