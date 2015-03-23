@@ -1809,33 +1809,13 @@ end.rcode-->
   </section>
   
   <section>
-    <h2> Response Time </h2>
-    <ul>
+    <h2> Summary: Response Time </h2>
+    <ul style="font-size:75%">
       <li> First trials take more time than subsequent trials </li>
       <li> Participants take more time to evaluate plots with more aesthetics </li>
       <li> Participants who identify a single target are faster than those who did not successfully identify a target; Identifying both targets takes the most time </li>
     </ul>
-  </section>
-
-  
-  <section>
-    <h2> Response Time </h2>
-    <br></br>
-    $$
-    \begin{align}
-    \log(\text{Trial Time}) &\sim \textbf{X}\beta + \textbf{J}\gamma + \textbf{K}\eta + \epsilon\\
-    \text{where } \beta_i & \text{ describe outcome and aesthetic combinations,}\\
-    & \text{ plus an initial trial effect}\\
-    \hphantom{where } \gamma_j & \overset{iid}{\sim} N\left(0, \sigma^2_{\text{dataset}}\right)\\
-    \hphantom{where } \eta_k & \overset{iid}{\sim} N\left(0, \sigma^2_{\text{participant}}\right)\\
-    \text{and } \epsilon_{ijk} & \overset{iid}{\sim}  N\left(0, \sigma^2_e\right)
-    \end{align}
-    $$
-  </section>
-    
-  <section>
-    <h2> Response Time </h2>
-<!--begin.rcode response-time-aes, echo=F, include=T, fig.width=9, fig.height=4, out.width='90%', out.height='auto'
+<!--begin.rcode response-time-aes-small, echo=F, include=T, fig.width=9, fig.height=4, out.width='60%', out.height='auto'
 library(lubridate)
 
 # modeldata$time_taken <- as.numeric(ymd_hms(modeldata$end_time) - ymd_hms(modeldata$start_time))
@@ -1870,6 +1850,38 @@ coefs$outcome <- factor(coefs$outcome, levels=c("neither", "trend", "cluster", "
 coefs$out.factor <- factor(str_replace(as.character(coefs$outcome), "Trend|Cluster", "Single"), levels=c("Neither", "Single", "Both"), labels=c("Neither Target", "Single Target", "Both Targets"))
 coefs$pos <- as.numeric(factor(coefs$plottype)) + as.numeric(coefs$out.factor=="Single Target")*(as.numeric(coefs$outcome)-2.5)*1/3
 
+qplot(x=estimate, y=pos, data=coefs, colour=outcome, shape=outcome, size=I(3)) + theme_bw() + 
+  scale_colour_brewer("Target Identified", palette="Set1") +
+  scale_shape_manual("Target Identified", values=c(4, 1, 2, 8)) +
+  geom_segment(aes(x=low, xend=high, y=pos, yend=pos),guide="none") + 
+  scale_y_continuous(breaks=1:10, labels=levels(coefs$plottype)) + 
+  xlab("Additional time to evaluate plot (in seconds) given outcome") + ylab("") + 
+  theme(legend.position="bottom") + 
+  ggtitle("Evaluation Time by Aesthetics and Outcome") + 
+  facet_grid(.~out.factor, scales="free_x")
+end.rcode-->
+
+  </section>
+
+  
+  <section>
+    <h2> Response Time </h2>
+    <br></br>
+    $$
+    \begin{align}
+    \log(\text{Trial Time}) &\sim \textbf{X}\beta + \textbf{J}\gamma + \textbf{K}\eta + \epsilon\\
+    \text{where } \beta_i & \text{ describe outcome and aesthetic combinations,}\\
+    & \text{ plus an initial trial effect}\\
+    \hphantom{where } \gamma_j & \overset{iid}{\sim} N\left(0, \sigma^2_{\text{dataset}}\right)\\
+    \hphantom{where } \eta_k & \overset{iid}{\sim} N\left(0, \sigma^2_{\text{participant}}\right)\\
+    \text{and } \epsilon_{ijk} & \overset{iid}{\sim}  N\left(0, \sigma^2_e\right)
+    \end{align}
+    $$
+  </section>
+    
+  <section>
+    <h2> Response Time </h2>
+<!--begin.rcode response-time-aes, echo=F, include=T, fig.width=9, fig.height=4, out.width='90%', out.height='auto'
 qplot(x=estimate, y=pos, data=coefs, colour=outcome, shape=outcome, size=I(3)) + theme_bw() + 
   scale_colour_brewer("Target Identified", palette="Set1") +
   scale_shape_manual("Target Identified", values=c(4, 1, 2, 8)) +
