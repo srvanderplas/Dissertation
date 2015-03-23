@@ -742,9 +742,12 @@ end.rcode-->
     df
   })
   res$label <- paste("sigma[T] :",res$sd.trend)
-  qplot(x,y, data=res, pch=I(1)) + facet_grid(facets=.~label, labeller="label_parsed") + 
+  xlim <- c(min(c(-2, res$x)), max(c(2, res$x)))+c(-0.1, 0.1)
+  ylim <- c(min(c(-2, res$y)), max(c(2, res$y)))+c(-0.1, 0.1)
+  
+  qplot(x,y, data=res, pch=I(1), ylab=NULL, xlab=NULL) + facet_grid(facets=.~label, labeller="label_parsed") + 
     theme(aspect.ratio=1, plot.margin=unit(c(0,0,0,0), "cm")) + theme_bw() +
-    xlab(NULL) + ylab(NULL)
+    scale_x_continuous(breaks=c(-2, -1, 0, 1, 2), limits=xlim) + scale_y_continuous(breaks=c(-2, -1, 0, 1, 2), limits=ylim) 
 end.rcode-->
   </section>
 
