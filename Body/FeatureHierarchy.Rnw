@@ -938,10 +938,11 @@ ggplot(data=gvl.fixef[-1,]) +
   coord_flip() + 
   theme_bw() + 
   geom_hline(yintercept=1, colour="gray70") + 
-  ggtitle("Odds of Selecting Cluster vs Trend Target \n (given one target was identified)") + 
-  ylab("Odds (Cluster vs Trend) and 95% Wald Intervals") + 
+  ggtitle("Odds of Selecting Group vs Line Target \n (given one target was identified)") + 
   xlab("Plot Type") + 
-  geom_text(aes(y=0.4, x=label, label=letters))
+  geom_text(aes(y=0.25, x=label, label=letters)) + 
+  scale_y_continuous("Odds (Group vs Line) and 95% Wald Intervals\n(Reference level: Plain plot)", 
+                     breaks=c(0.2, 0.5, 1.0, 1.5, 2.0, 2.4), labels=c("<--Trend\n  Target", "0.5", "1.0", "1.5", "2.0", "Cluster-->\nTarget  "), limits=c(0.2, 2.4))
 @
 \caption[Estimated odds of decision for cluster versus trend target]{\label{fig:faceoff} Estimated odds of decision for cluster versus trend target based on evaluations that resulted in the identification of one of these targets. Plot types are significantly different if they do not share a letter as given on the left hand side of the plot.}
 \end{figure}
