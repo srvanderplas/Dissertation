@@ -1322,7 +1322,7 @@ qplot(data=line.fixef.aes, x=label, y=OR, ymin=LB, ymax=UB, geom="pointrange") +
 end.rcode-->
       <p style="font-size:50%;text-align:center;">Plot types are significantly different if they do not share a letter</p>
       </td><td style="font-size:80%;vertical-align:middle;">
-        <p style="margin-bottom:10px"> Participants are <!--rinline sprintf("%.2f", line.fixef$OR[line.fixef$label=="trendError"])--> times as likely to select trend targets when plots have trend lines and prediction intervals. </p>
+        <p style="margin-bottom:30px"> Participants are <!--rinline sprintf("%.2f", line.fixef$OR[line.fixef$label=="trendError"])--> times as likely to select trend targets when plots have trend lines and prediction intervals. </p>
         <p> Participants are <!--rinline sprintf("%.2f", line.fixef$OR[line.fixef$label=="colorShapeEllipse"])--> times as likely to select trend targets when plots have color, shape, and ellipse aesthetics. </p>
       </td>
     </tr>
@@ -1409,8 +1409,8 @@ end.rcode-->
       </tr>
       <tr>
         <td></td>
-        <td class="fragment" data-fragment-index="3"> <!--rinline sprintf("%.2f", line.fixef$OR[line.fixef$label=="trend"])--> times as likely to select the trend target </td>
-        <td class="fragment" data-fragment-index="4"> <!--rinline sprintf("%.2f", line.fixef$OR[line.fixef$label=="trendError"])--> times as likely to select the trend target </td>
+        <td class="fragment" data-fragment-index="3" style="text-align:center;"> <!--rinline sprintf("(%.2f, %.2f)", exp(line.fixef$LB[line.fixef$label=="trend"]), exp(line.fixef$UB[line.fixef$label=="trend"]))--> times as likely to select the trend target </td>
+        <td class="fragment" data-fragment-index="4" style="text-align:center;"> <!--rinline sprintf("(%.2f, %.2f)", exp(line.fixef$LB[line.fixef$label=="trendError"]), exp(line.fixef$UB[line.fixef$label=="trendError"]))--> times as likely to select the trend target </td>
       </tr>
     </table>
   </section>
@@ -1463,6 +1463,59 @@ end.rcode-->
       </td>
     </tr>
   </table>
+  </section>
+  
+  <!--begin.rcode giniExampleStats, echo=F, include=F, cache=T
+
+plot1ans <- subset(modeldata, dataset==1 & plottype=="colorShapeEllipse")
+plot1ans <- ddply(plot1ans, .(response.id), function(df){
+  response <- unlist(str_split(df$response_no, ","))
+  df2 <- data.frame()
+  for(i in response){
+    df2 <- rbind(df2, data.frame(df[,c(1:8)], response_no=i, df[,10:41]))
+  }
+  df2
+})
+
+
+plot1ans.pcts <- sapply(1:20, function(i) sprintf("%.1f", sum(plot1ans$response_no==i)/length(plot1ans$response_no)*100))
+end.rcode-->
+  <section>
+    <h2> Cluster Target Identification </h2>
+    <table width="100%">
+      <tr>
+        <td width="50%" style="text-align:center;vertical-align:top;"> 
+          <img src="image/lineup-ellipse-issue.png", width='100%', height='auto'/>
+          <p style="color: #add9e4;"> Trend target: 20, Cluster target: 11 </p>
+        </td>
+        <td width="54%" style="margin-left:30px;text-align:left;vertical-align:top;">
+          <div class="fragment" style="text-align:center;display:inline-block;">
+            <h4> <b> Participant Responses </b> </h4>
+            <table>
+              <tr>
+                <td style="text-align:right;padding-left:20px;padding-top:20px;padding-right:20px;"> Plot 20: </td> 
+                <td style="text-align:right;padding-top:20px;"> <!--rinline plot1ans.pcts[20]-->% </td>
+                <td style="text-align:right;padding-left:20px;padding-top:20px;">(Trend target)</td>
+              </tr>
+              <tr>
+                <td style="text-align:right;padding-left:20px;padding-top:20px;padding-right:20px;"> Plot 11: </td> 
+                <td style="text-align:right;padding-top:20px;"> <!--rinline plot1ans.pcts[11]-->% </td>
+                <td style="text-align:right;padding-left:20px;padding-top:20px;">(Cluster target)</td>
+              </tr>
+              <tr>
+                <td style="text-align:right;padding-left:20px;padding-top:20px;padding-right:20px;"> Plot 16: </td> <td style="text-align:right;padding-top:20px;"> <!--rinline plot1ans.pcts[16]-->% </td>
+              </tr>
+              <tr>
+                <td style="text-align:right;padding-left:20px;padding-top:20px;padding-right:20px;"> Plot 12: </td> <td style="text-align:right;padding-top:20px;"> <!--rinline plot1ans.pcts[12]-->% </td>
+              </tr>
+              <tr>
+                <td style="text-align:right;padding-left:20px;padding-top:20px;padding-right:20px;"> Plot 13: </td> <td style="text-align:right;padding-top:20px;"> <!--rinline plot1ans.pcts[13]-->% </td>
+              </tr>
+            </table>
+          </div>
+        </td>
+      </tr>
+    </table>
   </section>
   
   <section>
@@ -1590,58 +1643,6 @@ end.rcode-->
           plot.margin=unit(c(0,0,0,0), "cm"))
   
 end.rcode-->
-        </td>
-      </tr>
-    </table>
-  </section>
-<!--begin.rcode giniExampleStats, echo=F, include=F, cache=T
-
-plot1ans <- subset(modeldata, dataset==1 & plottype=="colorShapeEllipse")
-plot1ans <- ddply(plot1ans, .(response.id), function(df){
-  response <- unlist(str_split(df$response_no, ","))
-  df2 <- data.frame()
-  for(i in response){
-    df2 <- rbind(df2, data.frame(df[,c(1:8)], response_no=i, df[,10:41]))
-  }
-  df2
-})
-
-
-plot1ans.pcts <- sapply(1:20, function(i) sprintf("%.1f", sum(plot1ans$response_no==i)/length(plot1ans$response_no)*100))
-end.rcode-->
-  <section>
-    <h2> Cluster Target Identification </h2>
-    <table width="100%">
-      <tr>
-        <td width="50%" style="text-align:center;vertical-align:top;"> 
-          <img src="image/lineup-ellipse-issue.png", width='100%', height='auto'/>
-          <p style="color: #add9e4;"> Trend target: 20, Cluster target: 11 </p>
-        </td>
-        <td width="54%" style="margin-left:30px;text-align:left;vertical-align:top;">
-          <div class="fragment" style="text-align:center;display:inline-block;">
-            <h4> <b> Participant Responses </b> </h4>
-            <table>
-              <tr>
-                <td style="text-align:right;padding-left:20px;padding-top:20px;padding-right:20px;"> Plot 20: </td> 
-                <td style="text-align:right;padding-top:20px;"> <!--rinline plot1ans.pcts[20]-->% </td>
-                <td style="text-align:right;padding-left:20px;padding-top:20px;">(Trend target)</td>
-              </tr>
-              <tr>
-                <td style="text-align:right;padding-left:20px;padding-top:20px;padding-right:20px;"> Plot 11: </td> 
-                <td style="text-align:right;padding-top:20px;"> <!--rinline plot1ans.pcts[11]-->% </td>
-                <td style="text-align:right;padding-left:20px;padding-top:20px;">(Cluster target)</td>
-              </tr>
-              <tr>
-                <td style="text-align:right;padding-left:20px;padding-top:20px;padding-right:20px;"> Plot 16: </td> <td style="text-align:right;padding-top:20px;"> <!--rinline plot1ans.pcts[16]-->% </td>
-              </tr>
-              <tr>
-                <td style="text-align:right;padding-left:20px;padding-top:20px;padding-right:20px;"> Plot 12: </td> <td style="text-align:right;padding-top:20px;"> <!--rinline plot1ans.pcts[12]-->% </td>
-              </tr>
-              <tr>
-                <td style="text-align:right;padding-left:20px;padding-top:20px;padding-right:20px;"> Plot 13: </td> <td style="text-align:right;padding-top:20px;"> <!--rinline plot1ans.pcts[13]-->% </td>
-              </tr>
-            </table>
-          </div>
         </td>
       </tr>
     </table>
