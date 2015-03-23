@@ -149,29 +149,31 @@
         <li> Preattentive perception occurs before conscious attention is focused on the stimulus </li>
         <li> Occurs within 200 ms </li>
       </ul>
-      
-<div class="chunk" id="preattentive-interference"><div class="rimage default"><img src="figure/preattentive-interference-1.png" title="plot of chunk preattentive-interference" alt="plot of chunk preattentive-interference" width="40%" height="auto" class="plot" />
-<img src="figure/preattentive-interference-2.png" title="plot of chunk preattentive-interference" alt="plot of chunk preattentive-interference" width="40%" height="auto" class="plot" /></div></div>
+<span class='fragment' data-fragment-index=2><img src="figure/preattentive-interference-1.png" title="plot of chunk preattentive-interference" alt="plot of chunk preattentive-interference" width="40%" height="auto" class="plot" />
+<img src="figure/preattentive-interference-2.png" title="plot of chunk preattentive-interference" alt="plot of chunk preattentive-interference" width="40%" height="auto" class="plot" /></span>
 
     </td><td width='auto'>
-      <p>Hierarchy of features (accuracy): </p>
-      <table width='60%'>
-          <tr>
-            <td style="vertical-align:middle;text-align:center;border:1px solid;" width=25%>1</td>
-            <td style="vertical-align:middle;text-align:center;border:1px solid;">color*</td>
-          </tr><tr>
-            <td style="vertical-align:middle;text-align:center;border:1px solid;">2</td>
-            <td style="vertical-align:middle;text-align:center;border:1px solid;">shape<br>intensity<br> letters (HQX)</td>
-          </tr><tr>
-            <td style="vertical-align:middle;text-align:center;border:1px solid;">3</td>
-            <td style="vertical-align:middle;text-align:center;border:1px solid;"> letters (HEF)</td>
-          </tr>
-        </table>
-      <p style="text-align:left;font-size:75%">* For the 95% with normal color vision </p>
-      <p  style="font-size:75%;"> Cleveland & McGill (1985)<br> Lewandowsky & Spence (1989) </p>
+      <div class="fragment" data-fragment-index=3>
+        <p>Hierarchy of features (accuracy): </p>
+        <table width='60%'>
+            <tr>
+              <td style="vertical-align:middle;text-align:center;border:1px solid;" width=25%>1</td>
+              <td style="vertical-align:middle;text-align:center;border:1px solid;">color*</td>
+            </tr><tr>
+              <td style="vertical-align:middle;text-align:center;border:1px solid;">2</td>
+              <td style="vertical-align:middle;text-align:center;border:1px solid;">shape<br>intensity<br> letters (HQX)</td>
+            </tr><tr>
+              <td style="vertical-align:middle;text-align:center;border:1px solid;">3</td>
+              <td style="vertical-align:middle;text-align:center;border:1px solid;"> letters (HEF)</td>
+            </tr>
+          </table>
+        <p style="text-align:left;font-size:75%">* For the 95% with normal color vision </p>
+        <p  style="font-size:75%;"> Cleveland & McGill (1985)<br> Lewandowsky & Spence (1989) </p>
+      </div>
     </td>
     </tr>
     </table>
+
   </section>
 
 
@@ -262,16 +264,18 @@
           <p style="color: #add9e4;text-align:center;"> Answer: 9 </p>
         </td>
         <td style="vertical-align:top;">
-        <h4> <b> Standard design: </b> </h4>
-          <ul style="font-size:85%">
-            <li> One "target" plot <br>(real data or generated from $H_A$) </li>
-            <li> 19 null plots generated from $H_0$ </li>
-            <li> $P(\text{select target}) = 0.05$ under $H_0$ </li>
-            <li> Allows quantification of significance for graphical findings</li>
-          </ul>
-          <p style="font-size:50%"> Buja, A., Cook, D., Hofmann, H., Lawrence, M., Lee, E. K., Swayne, D. F., and Wickham, H. (2009). Statistical inference for exploratory data analysis and model diagnostics, <i>Phil. Transac.</i> </p>
-          <p style="font-size:50%"> Majumder, M., Hofmann, H., and Cook, D. (2013). Validation of visual statistical inference, applied to linear models, <i>JASA</i></p>
-          <p style="font-size:50%"> Wickham, H., Cook, D., Hofmann, H., and Buja, A. (2010). Graphical inference for infovis, <i>TVCG</i></p>
+        <div class="fragment" data-fragment-index=2>
+          <h4> <b> Standard design: </b> </h4>
+            <ul style="font-size:85%">
+              <li class=fragment data-fragment-index=2> One "target" plot <br>(real data or generated from $H_A$) </li>
+              <li class=fragment data-fragment-index=3> 19 null plots generated from $H_0$ </li>
+              <li class=fragment data-fragment-index=4> $P(\text{select target}) = 0.05$ under $H_0$ </li>
+              <li class=fragment data-fragment-index=5> Allows quantification of significance for graphical findings</li>
+            </ul>
+            <p style="font-size:50%"> Buja, A., Cook, D., Hofmann, H., Lawrence, M., Lee, E. K., Swayne, D. F., and Wickham, H. (2009). Statistical inference for exploratory data analysis and model diagnostics, <i>Phil. Transac.</i> </p>
+            <p style="font-size:50%"> Majumder, M., Hofmann, H., and Cook, D. (2013). Validation of visual statistical inference, applied to linear models, <i>JASA</i></p>
+            <p style="font-size:50%"> Wickham, H., Cook, D., Hofmann, H., and Buja, A. (2010). Graphical inference for infovis, <i>TVCG</i></p>
+          </div>
         </td>
       </tr>
     </table>
@@ -383,7 +387,7 @@
       <li class="fragment"> Generate $\tilde{x}_i$, $i=1, ..., N$, as a seq. of evenly spaced points from $[-1, 1]$. </li>
       <li class="fragment"> Jitter $\tilde{x}_i$ by adding small perturbations</li>
       <li class="fragment"> Generate $y_i$ as a linear function of $x_i$: $y_i = x_i + e_i$, $e_i \sim N(0, \sigma^2_T)$.</li>
-      <li class="fragment"> Center and scale $x_i$, $y_i$.</li>
+      <li class="fragment"> Center and scale $x_i$, $y_i$</li>
     </ol>
   </section>
   
@@ -397,10 +401,10 @@
     <p style="text-align:left;"><b>Input: </b>sample size $N$, number of clusters $K$, cluster std. dev. $\sigma_C$ </p>
     <p style="text-align:left;"><b>Output: </b> vectors $\mathbf{x}$ and $\mathbf{y}$ with $N$ observations </p>
     <ol>
-      <li style="margin-bottom:20px" class="fragment smalleqns"> Generate $K$ cluster centers (c^x, c^y)$ on a $K\timesK$ grid; center and scale </li>
+      <li style="margin-bottom:20px" class="fragment smalleqns"> Generate $K$ cluster centers $(c^x, c^y)$ on a $K\times K$ grid; center and scale </li>
       <li style="margin-bottom:20px" class="fragment smalleqns"> Sample group sizes $g = (g_1, ..., g_K)$ with $N = \sum_{i=1}^K g_i$ </li>
       <li style="margin-bottom:20px" class="fragment">Generate points $(\mathbf{x},\mathbf{y})$ with perturbations $ N(\mathbf{0}, \sigma^2_C)$ </li>
-      <li style="margin-bottom:20px" class="fragment">Center and scale $x_i$, $y_i$.</li>
+      <li style="margin-bottom:20px" class="fragment">Center and scale $x_i$, $y_i$</li>
     </ol>
   </section>
   
@@ -739,6 +743,9 @@
               <tr>
                 <td style="text-align:right;padding-left:20px;padding-top:20px;padding-right:20px;"> Plot 13: </td> <td style="text-align:right;padding-top:20px;"> <code class="knitr inline">4.8</code>% </td>
               </tr>
+              <tr>
+                <td colspan=2> Sample size: <code class="knitr inline">21</code> </td>
+              </tr>
             </table>
           </div>
         </td>
@@ -891,6 +898,16 @@
   
   <section>
     <h2> Response Time </h2>
+    <ul>
+      <li> First trials take more time than subsequent trials </li>
+      <li> Participants take more time to evaluate plots with more aesthetics </li>
+      <li> Participants who identify a single target are faster than those who did not successfully identify a target; Identifying both targets takes the most time </li>
+    </ul>
+  </section>
+
+  
+  <section>
+    <h2> Response Time </h2>
     <br></br>
     $$
     \begin{align}
@@ -932,7 +949,7 @@
       <li style="margin:20px"> Uneven groups in null plots emphasize different features <br>(but still show the importance of aesthetic/heuristic interactions) </li>
       <ul style="font-size:75%">
       <li style="margin:20px"> The lineup method allows us to examine <u>why</u> participants switched hypotheses from "Linear relationship" or "Clusters of points" to "Uneven groups" <br>
-      <p>Type III error: the error of giving the right answer to the wrong problem (A.W. Kimball)</p></li></ul>
+      <p> Similar to a Type III error: the error of giving the right answer to the wrong problem (A.W. Kimball) </p></li></ul>
     </ul>
   </section>
   
