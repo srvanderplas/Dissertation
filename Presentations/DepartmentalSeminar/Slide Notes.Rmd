@@ -1,0 +1,232 @@
+---
+title: "Notes - Departmental Seminar"
+author: "Susan VanderPlas"
+date: "March 29, 2015"
+output: html_document
+---
+
+# Introduction
+
+# Outline
+
+- I will begin with an introduction to perceptual principles which impact statistical graphics
+- I will then describe an experiment we conducted to explore the effect of plot features on the perception of statistical graphics. We will discuss the experiment's design and structure first, then discuss the results and implications.
+
+# Perception
+
+- I am going to begin by assuming the visual system works and information is being conveyed from the retina to the brain; after that stage, the brain has to make sense out of that information. 
+
+## Preattentive Feature Detection
+
+- In the first 200 milliseconds after you see an image, your brain identifies and separates the visual scene: angles, colors, shapes, patterns. This information will help you figure out what to focus on: what is interesting or different. Features like color and shape are recognized at this point: it's easy to pick out the square in the left picture, and the yellow circle in the right. These features are recognized preattentively - they do not require you to search through all objects in the image to determine which one is different.
+
+- Our accuracy at separating features in plots mirrors preattentive perceptual speed - color first (if you aren't colorblind), then shape, intensity, and distinguishable letters; confusable letters are substantially slower because the features of each shape are very similar. 
+
+## Perception of Statistical Plots
+
+- We hope that our graphs are perceived attentively - that is, that people take more than one second to look at them. Some research has studied what we can see preattentively in graphs: coarse patterns in color, shape, and/or texture.
+- Even with focused attention, preattentive features impact our perception of statistical plots:
+    - We can see shapes like those in this picture preattentively, but other mental processes are necessary to organize jumbled stimuli
+    - These processes transform scrambled information into coherent, meaningful groups of objects
+
+## Gestalt Laws of Perception 
+
+- Gestalt laws are a set of rules or heuristics which take complex sets of components and impose meaning and order based on previous experiences. They are subconscious, so this process is automatic.
+
+- On the right, most people see a solid triangle which is obscuring the outline of another triangle and three circles in a triangular shape. That solid triangle doesn't actually exist, but by adding it, the stimuli are easily grouped into a set of things that make sense. The whole object is not described by its components; because a triangle (or a bike) appears when those components are arranged in a specific way. 
+
+## Gestalt Laws
+
+- The laws most relevant to this experiment are shown here as examples. 
+    - Proximity: objects which are close in space are more likely to belong together. Here, we see three groups of two dots, rather than 6 dots.
+    - Similarity: things that look alike are more likely to belong together. Here, we see four groups of two white or blue dots
+    - Continuity: things that are connected smoothly belong together. We see two intersecting s-curves on the left, but if we separate them even a little bit, they become angles instead. 
+    - Common region - things in the same container belong together. We see 3 boxes of 2 dots, not 3 boxes and 6 dots. 
+
+- Our goal is to examine how these laws impact our perception of statistical graphics. 
+
+# Experiment: How do plot aesthetics affect perception of statistical plots?
+Trend lines might reinforce the continuity between points; colors can be used to highlight clustering. 
+
+## Lineups (1)
+
+- This is a traditional lineup. Which plot do you think is the most different? Plot 9 is generated using a different model than the other 19 plots. 
+- Lineups consist of one target plot (with real data, or generated from $H_A$) and 19 null plots generated from $H_0$ (or randomized data). The probability of selecting the target at random is 0.05 under the null hypothesis. This process allows quantification of significance in a graphical context. 
+## Lineups (2)
+
+- Which one of these plots is the most different? -- Plot 12, Plot 5
+- In this experiment, we modify the lineup protocol so that there are two target plots, one from each of two competing models. The null plots in this scenario are generated using a mixture of the two models. 
+- In our experiment, 59% of the participants identified plot 12 as the target plot. 
+
+## Lineups (3)
+
+- One more time! -- Plot 12, Plot 5
+- In this plot, 9.7% of participants identified plot 12 as the most different, even though the data presented here are the same as the data in the last lineup. 
+- By using two targets, and null plots that are a mixture between two competing models, we can examine how plot aesthetics such as shape, color, and bounding regions influence participants' perception of graphical significance. 
+
+## Data Generating Models
+
+- We created two models: one for trend, one for clustering. 
+- Each model has parameters which can be manipulated to adjust the difficulty of identifying the target plot in a group of null plots. 
+
+### Trend model $M_T$
+
+- This model generates data along the line $y=x$; we begin with a sequence of $N$ points evenly spaced between -1 and 1, and jitter them slightly so that the regularity is less noticable. 
+- We generate $y_i$ as a function of $x_i$ with perturbations that are normally distributed with a standard deviation of $\sigma_T$. 
+- Finally, we center and scale $x$ and $y$ to ensure all data generated from this model have similar range. 
+
+### Trend Model $M_T$
+
+- This plot shows four datasets drawn from $M_T$ with different levels of $\sigma_T$. 
+
+### Cluster Model $M_C$
+
+- This model generates $N$ observations in $K$ clusters. We begin by generating $K$ cluster centers on a $K\times K$ grid; we then center and scale the cluster centers so they are in the same range as observations from $M_T$. 
+- Next, we determine group sizes so that there are $N$ observations but clusters do not necessarily have the exact same number of points.
+- We add noise ($N(0, \sigma_C)$) around the cluster centers in both $x$ and $y$
+- The resulting data are centered and scaled to ensure that all data generated from this model have similar range. 
+
+### Cluster Model $M_C$
+
+- This plot shows draws from $M_C$ with $K=3$ and $K=5$, for different values of $\sigma_C$. As $\sigma_C$ increases, it becomes more difficult to perceive distinct clusters. 
+
+### Null Model $M_0$
+
+- The null model mixes data drawn from $M_C$ and $M_T$. For each of the $N$ points, we conduct a bernoulli trial with success probability $\lambda$ to determine whether that point is from $M_C$ or $M_T$. Once $N$ points are selected, we center and scale the points in $x$ and $y$, and then assign groups using hierarchical clustering. 
+
+### Null Model $M_0$
+
+- This picture shows data generated (using the same seed) for different values of $\lambda$ at $K=3$ and $K=5$. Our experiment uses $\lambda=0.5$ to generate null plots. 
+
+### Measuring Signal Strength
+
+- We measure the numerical signal present in the generated data to determine the difficulty of distinguishing the target data from the null data via trend strength or clusters. While perception does not entirely match these numerical measures, we need to quantify the difficulty of evaluating a particular lineup. We use $R^2$ to measure the strength of the linear signal, and we define $C^2$ as a two-dimensional measure of cluster cohesion representing the proportion of variability in $x$ and $y$ which is contained in the cluster centers. 
+
+## Parameter Values: Simulation
+
+- We then conducted a simulation study to examine the parameter space and determine which values for $\sigma_T$ and $\sigma_C$ were reasonable. 
+- We generated 1000 simulations of lineup datasets; each draw contained a target drawn from each model and 18 null draws. 
+- We calculated the statistics for each target, and the maximum statistic over all 18 null plots, and used those results to inform our choices for parameter settings. 
+
+## Simulation: One Parameter Set
+
+- This plot shows densities for 1000 simulations at one set of parameter values. 
+- It is more difficult to distinguish the linear target from the null plots using $R^2$ than to distinguish the cluster target from the null plots using $C^2$, but both target densities are fairly well separated from the density of the maximum statistic for 18 null plots. 
+
+## Simulation: Parameter Space
+
+- This plot shows the interquartile range of $R^2$ for all parameter value combinations, with the null plot statistics shown in red and the target statistic shown in blue; plots for each level of $\sigma^2_T$ are shown vertically, with $K=3$ on the left and $K=5$ on the right. Levels of $\sigma^2_C$ are on the $y$-axis. 
+- We used this plot as a reference when choosing easy, medium, and hard $\sigma_T$ values: easy values were to be clearly separated, medium values were chosen so that there would be separation between the two interquartile ranges, but not much, and hard values were chosen so that the interquartile ranges overlapped. 
+
+## Simulation: Parameter Space
+
+- Similarly, here, we have the interquartile range of $C^2$ for each set of parameter values. Levels of $\sigma_T$ are shown on the $y$ axis, and levels of $\sigma_C$ are shown as facets stacked vertically. There is a clear interaction with $K$, so we chose different values for $K=3$ than $K=5$ to maintain the approximate level of difficulty. 
+
+
+With these parameter settings, we generate data sets which are plotted with and without extra aesthetics. 
+
+## Plot Aesthetic Combinations
+
+- We chose 10 aesthetic combinations which we expect to influence visual signal strength. Aesthetics such as color, shape, and ellipses should make participants more likely to identify cluster target plots, while lines and prediction intervals should increase the probability of identifying a trend plot. 
+- We also included conflicting information conditions, which will be used to determine the strength of the aesthetic's effects. 
+
+- We used palettes for color and shape which have been shown to maximize perceptual discrimination ability. 
+
+## Plot Aesthetic Combinations
+
+- This slide shows the 10 plot types used in the experiment. The control plot, with no additional aesthetics, is shown first, followed by the aesthetics we expect to emphasize clustering. The final four plots show the two aesthetics we expect to emphasize linear relationships, and the last two plots show the conflicting information conditions. 
+
+## Model Structure
+
+- I've described the model parameters; $\sigma_T$, $\sigma_C$, and $K$
+- as well as the plot aesthetics
+- Overall, we have 18 parameter combinations. In order to account for data-specific effects, we will use 3 replicates at each parameter combination. Each of the datasets will be plotted with each of the aesthetic combinations, producing 540 different plots. 
+- Participants will be asked to evaluate 10 plots: 1 of each aesthetic combination, with parameter values such that each participant evaluates a plot with each combination of $\sigma_C$ and $\sigma_T$, randomized over $K$. The remaining plot will serve as a partial replicate of one $\sigma_C \times \sigma_T$ level. 
+- With 1200 participants, we expect that each plot should be evaluated around 20 times. 
+
+## Data Collection 
+- We recruited participants through Amazon Mechanical Turk. In just under 1 day, we had over 1300 individuals complete over 13000 plot evaluations. Only participants who completed 10 trials were included in the analysis, and if a participant completed more than 10 trials, only the first 10 were included. After cleaning, we had about 12000 trials. 
+
+## Data Collection
+- Participants provided demographic information and plot evaluations.
+- A plot evaluation consists of a target identification, a confidence level, and a short explanation of participant reasoning. 
+
+# Results 
+
+## Outline
+- We'll begin with models describing the probability of identifying a single target plot, then we'll consider a model which conditions on one of the two target plots being identified. 
+- Next, we'll examine participants' verbal responses, 
+- and if there's time we will consider data on participant response time.
+
+## Target identification
+- We examined the number of participants identifying each target type, and found that participants identified more cluster targets than trend targets. This is not surprising as more plot types were expected to emphasize clusters over trends. 
+
+## Modeling Single Target Selection
+
+### Modeling Single Target Selection
+- We model the probability of target selection as a function of plot type, with orthogonal random effects for dataset and participant. Variability due to model parameters ($\sigma_T$, etc) is contained within the dataset random effect. 
+
+### Trend Target Identification
+- Applying the model to trend target identification, we see that aesthetics such as color and shape are associated with a decreased probability of linear target selection. 
+- Participants are 1.77 times as likely to select the line target if trend and error aesthetics are present, compared to a plot with no additional aesthetics, but they are 0.37 times as likely to select trend  targets when plots have color, shape, and ellipse aesthetics. 
+
+### Cluster Target Identification
+- Using the same model format, we fit the model with cluster target selection as the response. 
+- Shape aesthetics increase the likelihood of cluster target identification, but many other aesthetics we expected would increase cluster target identification did not. 
+- Trend and error lines decreased cluster target selection, but so does the combination of color, shape, and ellipse aesthetics. What happened?
+
+### Cluster Target Identification
+- Which plot looks the most different?
+- Participants selected the cluster target only 19% of the time, but selected plots 12 or 16 as frequently as the trend plot. 
+- It is likely that the uneven number of points in the third group (and corresponding lack of an ellipse) was a strong (but inadvertent) signal for participants to orient based on group size (or number of groups). 
+- Future studies should more carefully control this variable, however, the gestalt aesthetics underlying this result do not contradict our hypotheses. 
+
+## Faceoff: Cluster vs. Trend
+- If we condition on successful identification of one of the tewo target plots, we can model the probability of cluster selection vs. trend selection directly. 
+
+### Cluster vs. Trend (Model)
+- This approach will provide more concise results, as we only need interpret parameters from a single model
+- It has the additional advantage of excluding responses in which participants oriented to an irrelevant null plot. 
+(side note... I think this model is probably something like a set of  Bayes Factors....)
+
+### Cluster vs. Trend (Results)
+- Plots with Trend + Error aesthetics, including the dual-conflict condition, reduce the probability of cluster target selection, while plots with group aesthetics increase the probability of cluster target selection. 
+- The color + trend line condition is associated with increased probability of cluster plot selection, unlike the other conflict plot. 
+
+### Mixed Signals
+- Examining conflict conditions, we see that the color aesthetic "wins" over the trend line, perhaps because two different gestalt heuristics are recruited in favor of the cluster target, while at most a single heuristic is recruited twice in favor of the trend target. 
+- When ellipses and error bands are included, the equation flips somewhat: in addition to the addition of common region emphasis on both sides of the equation, the ellipse "common region" nests inside the prediction interval (or is very close) - this "nests" the grouping effect within the error bands and reinforces the dominance of the trend target. The conflicting common region heuristics of the cluster target are no match. 
+
+## Participant Reasoning
+
+### Plain Plots
+We also examined participants' verbal resonses for information. Conditioning on outcome, here are wordclouds of their responses for plain (no extra aesthetic) plots. Participants who correctly identified a target plot generally have reasoning to match the relevant target (though there are many ways to describe clusters, relative to "linear trend"). Participants who did not identify a target plot have much more variability in their reasoning. 
+
+### Trend Plots
+Reasoning for plots with trend lines was similar; those identifying the trend target focused on the linear relationship, while those identifying the cluster target focused on the separation between groups (often, the separation relative to the line). Participants who identified neither target plot focused on outliers and variability among other features. 
+
+### Color Plots
+Reasoning for plots with colored points emphasizes the strength of the cluster signal; those who identified the linear plot were fixated on the strong linear trend rather than color anomalies. We begin to see that participants who did not identify a target plot focused on color, as well as words like "least" and "even", suggesting that they may have fixated on uneven group size. 
+
+### Color + Ellipse Plots
+Here, the reasoning that participants who identified neither target plot used clearly shows their alternate hypothesis: Groups are of uneven size and ellipses are missing, therefore this plot is different. Those identifying the cluster target focused on whether the ellipses were distinct or touching, oval or round. 
+
+## Response Time (Summary)
+- First trials take more time than later trials (practice effects)
+- Participants take more time to evaluate plots with more aesthetics
+- Participants who identify a single target are faster than those who do not identify a single target
+- Identifying both targets takes considerably more time than identifying a single target. 
+
+# Discussion 
+
+## Conclusion
+- We can conclude from these results that aesthetics do influence the perception of data displays; 
+- These effects are nonadditive, and may be weighted according to perceptual heuristics
+- Uneven group size emphasizes different features, but still demonstrates the importance of the aesthetic mapping, as it is not nearly as noticeable when shapes are used as when colors or ellipses are provided.
+- The lineup protocol is powerful because it allows us to quantitatively evaluate our original hypothesis, while providing insight on other alternative hypotheses participants may have used. 
+
+## Future Work
+- Restrict group size variability so that null plots have similar group size distribution to target plots
+- Explore the effect of different types of "common region" heuristics for error bands and ellipses - shading, bounding boxes, etc. 
+- Test ellipse and error band aesthetics alone as well as with trend lines (examine interaction effects)
+- Test plotted statistics with and without data points to examine interactions between data heuristics and heuristics from summary statistics. 
