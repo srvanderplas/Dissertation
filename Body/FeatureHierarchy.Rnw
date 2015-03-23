@@ -746,7 +746,7 @@ clm <- melt(clusters, measure.var=2:3)
 
 ggplot() + geom_point(aes(x, value, colour=variable, shape=variable), size=3, data=clm) + theme_bw() + scale_colour_brewer("Target", palette="Set1") + scale_shape_discrete("Target") + theme(legend.position="bottom") + ylab("Number of participants") + xlab("Number of target identifications (out of ten)") + geom_line(aes(x, value, colour=variable, group=variable), data=clm) + ggtitle("Target Identification by Participants")
 @
-\caption[Target identifications by users]{\label{fig:targets}Target identifications by users. Users are not generally primed for one target over the other target.}
+\caption[Target identifications by users]{\label{fig:targets}Target identifications by users. Users are not generally primed for one target over the other target. Most users identify more cluster targets than line targets; this is to be expected given that there are more aesthetics which emphasize clusters than aesthetics which emphasize trends.}
 \end{figure}
 
 We  first consider the effect of plot aesthetics on target selection for each target type (separately), and then compare the probability of selecting the cluster target compared with the trend target as a function of plot aesthetics. Finally, we will consider data on response times for each type of plot.
