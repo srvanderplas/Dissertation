@@ -914,10 +914,7 @@ Next, we consider only the subset of trials in which participants identified one
 
 \begin{figure}[ht]\centering
 <<group-vs-line, echo=FALSE, fig.width=8, fig.height=4, out.width='.85\\linewidth'>>=
-designs <- ddply(modeldata, .(dataset, plottype), summarise, evals=length(data_name), group=sum(cluster.correct), line=sum(trend.correct))
-designs$perc <- with(designs, group/(group+line))
-#qplot(plottype, perc, data=designs, geom="boxplot")
-gvl.model <- glmer(cbind(group, line)~plottype+(1|dataset), data=designs, family=binomial())
+gvl.model <-  glmer(cluster.correct~plottype + (1|data_name) + (1|individualID), data=subset(modeldata, trend.correct | cluster.correct), family=binomial(), control=glmerControl(optimizer="bobyqa"))
 gvl.fixef <- data.frame(confint(gvl.model, method="Wald"))
 names(gvl.fixef) <- c("LB", "UB")
 gvl.fixef$OR <- fixef(gvl.model)
