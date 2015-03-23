@@ -872,7 +872,7 @@ end.rcode-->
   </section>
   
   <section>
-    <h2> Parameter Values: Simulation </h2> 
+    <h2> Simulation: One Parameter Set </h2> 
 <!--begin.rcode simulation1,echo=F, fig.width=6, fig.height=3, out.width="70%", out.height="auto"
 sT = 0.25
 sC = 0.20
@@ -905,7 +905,7 @@ end.rcode-->
   </section>
   
   <section>
-    <h2> Parameter Values: Simulation </h2> 
+    <h2> Simulation: Parameter Space </h2> 
 <!--begin.rcode simulation2,echo=F, fig.width=10, fig.height=6, out.width="60%", out.height="auto"
 load("../../Data/FeatureHierarchy/SimulationDatasetCriteriaTurk16.Rdata")
 
@@ -928,7 +928,7 @@ end.rcode-->
   </section>
   
   <section>
-    <h2> Parameter Values: Simulation </h2> 
+    <h2> Simulation: Parameter Space </h2> 
 <!--begin.rcode simulation3,echo=F, fig.width=10, fig.height=6, out.width="60%", out.height="auto"
 qplot(data=subset(dataset.criteria, type=="cluster"), x=LB, xend=UB, y=sd.trend, yend=sd.trend, color=dist, geom="segment") +
   geom_point(aes(x=LB, y=sd.trend, color=dist))  + 
