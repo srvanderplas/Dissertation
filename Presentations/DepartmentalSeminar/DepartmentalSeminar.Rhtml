@@ -1530,7 +1530,7 @@ end.rcode-->
 end.rcode-->
         </td>
         <td style="vertical-align:middle;text-align:center;">
-<!--begin.rcode gestaltplots9, dev.args = list(bg = 'transparent'), class="fragment", fragIndex=3, echo=F, fig.width=4, fig.height=4, out.width='275px', out.height='275px'
+<!--begin.rcode gestaltplots9, dev.args = list(bg = 'transparent'), class="fragment", fragIndex=2, echo=F, fig.width=4, fig.height=4, out.width='275px', out.height='275px'
 
   set.seed(51980)
   data <- mixture.sim(lambda=.5, K=5, N=75, sd.trend=.25, sd.cluster=.20)
@@ -1557,7 +1557,7 @@ end.rcode-->
 end.rcode-->
         </td>
         <td style="vertical-align:middle;text-align:center;">
-<!--begin.rcode gestaltplots10, dev.args = list(bg = 'transparent'), class="fragment", fragIndex=4, echo=F, fig.width=4, fig.height=4, out.width='275px', out.height='275px'
+<!--begin.rcode gestaltplots10, dev.args = list(bg = 'transparent'), class="fragment", fragIndex=2, echo=F, fig.width=4, fig.height=4, out.width='275px', out.height='275px'
 
   set.seed(51980)
   data <- mixture.sim(lambda=1, K=5, N=75, sd.trend=.25, sd.cluster=.20)
@@ -1583,13 +1583,13 @@ end.rcode-->
   
 end.rcode-->
         </td>
-        <td width="15%"  class="fragment" data-fragment-index=5 style="vertical-align:middle;text-align:left;font-size:50%;">
+        <td width="15%"  class="fragment" data-fragment-index=2 style="vertical-align:middle;text-align:left;font-size:50%;">
         Participants are <!--rinline sprintf("%.2f", exp(gvl.fixef.old$OR[gvl.fixef.old$label=="colorTrend"]))--> times as likely to select the cluster target with color + trend line, relative to the plain plot.
         </td>
       </tr>
       <tr>
         <td style="vertical-align:middle;text-align:center;">
-<!--begin.rcode gestaltplots11, dev.args = list(bg = 'transparent'), class="fragment", fragIndex=2, echo=F, include=T, fig.width=4, fig.height=4, out.width='275px', out.height='275px'
+<!--begin.rcode gestaltplots11, dev.args = list(bg = 'transparent'), class="fragment", fragIndex=3, echo=F, include=T, fig.width=4, fig.height=4, out.width='275px', out.height='275px'
 
   set.seed(51980)
   data <- mixture.sim(lambda=0, K=5, N=75, sd.trend=.25, sd.cluster=.20)
@@ -1649,7 +1649,7 @@ end.rcode-->
 end.rcode-->
         </td>
         <td style="vertical-align:middle;text-align:center;">
-<!--begin.rcode gestaltplots13, dev.args = list(bg = 'transparent'), class="fragment", fragIndex=4, echo=F, include=T, fig.width=4, fig.height=4, out.width='275px', out.height='275px'
+<!--begin.rcode gestaltplots13, dev.args = list(bg = 'transparent'), class="fragment", fragIndex=3, echo=F, include=T, fig.width=4, fig.height=4, out.width='275px', out.height='275px'
 
   set.seed(51980)
   data <- mixture.sim(lambda=1, K=5, N=75, sd.trend=.25, sd.cluster=.20)
@@ -1678,7 +1678,7 @@ end.rcode-->
   
 end.rcode-->
         </td>
-        <td width="15%" class="fragment" data-fragment-index=5 style="vertical-align:middle;text-align:left;font-size:50%;">
+        <td width="15%" class="fragment" data-fragment-index=3 style="vertical-align:middle;text-align:left;font-size:50%;">
         Participants are <!--rinline sprintf("%.2f", exp(gvl.fixef.old$OR[gvl.fixef.old$label=="colorEllipseTrendError"]))--> times as likely to select the cluster target with color + ellipse + trend line + error, relative to the plain plot.
         </td>
       </tr>
@@ -1721,7 +1721,7 @@ end.rcode-->
     <div align="center">
     <table class="noborder nowidth nopadding">
       <tr>
-        <td width='350px' style="text-align:center;"> Neither Target </td><td width='350px' style="text-align:center;"> Cluster Target </td> <td width='350px' style="text-align:center;"> Trend Target </td>
+        <td width='350px' style="text-align:center;"> Neither Target<br>(N=127) </td><td width='350px' style="text-align:center;"> Cluster Target<br>(N=712) </td> <td width='350px' style="text-align:center;"> Trend Target<br>(N=355) </td>
       </tr>
     </table>
     </div>
@@ -1748,7 +1748,7 @@ end.rcode-->
     <div align="center">
     <table class="noborder nowidth nopadding">
       <tr>
-        <td width='350px' style="text-align:center;"> Neither Target </td><td width='350px' style="text-align:center;"> Cluster Target </td> <td width='350px' style="text-align:center;"> Trend Target </td>
+        <td width='350px' style="text-align:center;"> Neither Target<br>(N=159) </td><td width='350px' style="text-align:center;"> Cluster Target<br>(N=694) </td> <td width='350px' style="text-align:center;"> Trend Target<br>(N=333) </td>
       </tr>
     </table>
     </div>
@@ -1775,7 +1775,7 @@ end.rcode-->
     <div align="center">
     <table class="noborder nowidth nopadding">
       <tr>
-        <td width='350px' style="text-align:center;"> Neither Target </td><td width='350px' style="text-align:center;"> Cluster Target </td> <td width='350px' style="text-align:center;"> Trend Target </td>
+        <td width='350px' style="text-align:center;"> Neither Target<br>(N=188)</td><td width='350px' style="text-align:center;"> Cluster Target<br>(N=715) </td> <td width='350px' style="text-align:center;"> Trend Target<br>(N=292) </td>
       </tr>
     </table>
     </div>
@@ -1802,7 +1802,7 @@ end.rcode-->
     <div align="center">
     <table class="noborder nowidth nopadding">
       <tr>
-        <td width='350px' style="text-align:center;"> Neither Target </td><td width='350px' style="text-align:center;"> Cluster Target </td> <td width='350px' style="text-align:center;"> Trend Target </td>
+        <td width='350px' style="text-align:center;"> Neither Target<br>(N=347) </td><td width='350px' style="text-align:center;"> Cluster Target<br>(N=621) </td> <td width='350px' style="text-align:center;"> Trend Target<br>(N=222) </td>
       </tr>
     </table>
     </div>
