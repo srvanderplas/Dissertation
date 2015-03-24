@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Susan VanderPlas" />
+  <meta name="dcterms.date" content="2014-05-27" />
+  <title>Perception of Statistical Graphics</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="Prelim_files/revealjs_presentation/css/reveal.min.css"/>
+
+  <!-- some tweaks to reveal css -->
+  <style type="text/css">
+    .reveal h1 { font-size: 2.0em; }
+    .reveal h2 { font-size: 1.5em;  }
+    .reveal h3 { font-size: 1.25em;	}
+    .reveal h4 { font-size: 1em;	}
+
+    .reveal .slides>section,
+    .reveal .slides>section>section {
+      padding: 0px 0px;
+    }
+
+     .reveal .title {
+        margin-top: 125px;
+        margin-bottom: 50px;
+     }
+
+    .reveal table {
+      border-width: 1px;
+      border-spacing: 2px;
+      border-style: dotted;
+      border-color: gray;
+      border-collapse: collapse;
+      font-size: 0.7em;
+    }
+
+    .reveal table th {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      font-weight: bold;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal table td {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+  </style>
+
+    <style type="text/css">code{white-space: pre;}</style>
+
+
+
+<link rel="stylesheet" href="Prelim_files/revealjs_presentation/css/theme/simple.css" id="theme">
+
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+    <!--[if lt IE 9]>
+    <script src="Prelim_files/revealjs_presentation/lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+    <h1 class="title">Perception of Statistical Graphics</h1>
+    <h2 class="author">Susan VanderPlas</h2>
+    <h3 class="date">05/27/2014</h3>
+</section>
+
+<section id="academic-background" class="slide level1">
+<h1>Academic Background</h1>
+<ul>
+<li><p>Undergrad: Psychology &amp; Applied Math at Texas A&amp;M<br /><br></br></p></li>
+<li><p>Bioinformatics at Iowa State (started in 2009)<br /><br></br></p></li>
+<li><p>Transferred to Statistics in Fall 2010<br /><br></br></p></li>
+<li><p>Finished classes in Spring 2013</p></li>
+</ul>
+</section>
+<section id="outline" class="slide level1">
+<h1>Outline</h1>
+<ul>
+<li><p>Sine Illusion<br /><br></br></p></li>
+<li><p>Visual Aptitude and Graphical Inference<br /><br></br></p></li>
+<li><p>Hierarchy of Graph Features</p></li>
+</ul>
+</section>
+<section class="slide level1">
+
+<section>
+<h1>
+Signs of the Sine Illusion
+</h1>
+<h2>
+Why We Need to Care
+</h2>
+<p><img src="Prelim-figure/original-1.png" title="" alt="" width="45%" height="auto" style="display: block; margin: auto;" /></p>
+</section>
+<section id="example" class="slide level1">
+<h1>Example</h1>
+<p>8-hour Average Ozone Levels in Houston, TX by temperature at Hobby Airport</p>
+<p><img src="Prelim-figure/example-sineillusion-1.png" title="" alt="" style="display: block; margin: auto;" /></p>
+</section>
+<section id="example-1" class="slide level1">
+<h1>Example</h1>
+<p>Residual Ozone Levels in Houston, TX by temperature at Hobby Airport</p>
+<p><img src="Prelim-figure/example-sineillusion2-1.png" title="" alt="" style="display: block; margin: auto;" /></p>
+</section>
+<section id="explaining-the-illusion" class="slide level1">
+<h1>Explaining the Illusion</h1>
+<p><small>The sine illusion results from misapplication of a three-dimensional visual heuristic to ambiguous two-dimensional images</small> <img src="Prelim-figure/ribbon-illusion-1.png" title="Perspective plot of a three-dimensional image similar to the sine illusion" alt="Perspective plot of a three-dimensional image similar to the sine illusion" width="60%" style="display: block; margin: auto;" /></p>
+</section>
+<section id="explaining-the-illusion-1" class="slide level1">
+<h1>Explaining the Illusion</h1>
+<p><small>The sine illusion results from misapplication of a three-dimensional visual heuristic to ambiguous two-dimensional images</small> <img src="Prelim-figure/ribbon-illusion2-1.png" title="Perspective plot of the same data, with a vanishing point closer to infinity" alt="Perspective plot of the same data, with a vanishing point closer to infinity" width="60%" style="display: block; margin: auto;" /> <small>In this figure, the vanishing point has been moved towards infinity; the lines are straight and closer to the appearance of the sine illusion. The three-dimensional appearance is still intact.</small></p>
+</section>
+<section id="explaining-the-illusion-2" class="slide level1">
+<h1>Explaining the Illusion</h1>
+<h3>
+Context Matters
+</h3>
+<p><img src="Prelim-figure/originalgrid-1.png" title="" alt="" width="40%" style="display: block; margin: auto;" /></p>
+<ul>
+<li><small> Cleveland and McGill (1984) demonstrated that we can compare the length of two lines accurately </small></li>
+<li><small>Day and Stecher (1991) showed that the illusion persists if there is curvature in the underlying function</small></li>
+</ul>
+</section>
+<section class="slide level1">
+
+<h2 id="geometry-of-the-sine-illusion">Geometry of the Sine Illusion</h2>
+<p><img src="Prelim-figure/illusion-geometry-1.png" title="" alt="" width="60%" height="auto" style="display: block; margin: auto;" /></p>
+</section>
+<section class="slide level1">
+
+<h2 id="geometry-of-the-sine-illusion-1">Geometry of the Sine Illusion</h2>
+<p><br></br></p>
+<ul>
+<li><p>We perceive the orthogonal width of the implied surface</p></li>
+<li><p>The orthogonal width is a function of the x and y range as well as the aspect ratio of the plot.</p></li>
+<li><p>The perceived orthogonal width is also a function of the slope of the line tangent to the underlying function curve.</p></li>
+</ul>
+</section>
+<section id="correcting-the-illusion" class="slide level1">
+<h1>Correcting the Illusion</h1>
+<ol type="1">
+<li class="fragment">Trend Removal<br />Remove the underlying function, plotting the curve and the residuals separately<br /><br></br></li>
+</ol>
+<ol start="2" type="1">
+<li class="fragment">X Axis Correction<br />Reparameterize the x-axis in terms of the slope, so that the absolute slope doesn’t change<br /><br></br></li>
+</ol>
+<ol start="3" type="1">
+<li class="fragment">Y Axis Correction<br />Change the plotted line length (or spread) so that the <strong>perceived</strong> orthogonal width corresponds to the <strong>original</strong> (data) line length</li>
+</ol>
+</section>
+<section class="slide level1">
+
+<h2 id="trend-removal">Trend Removal</h2>
+<p><img src="Prelim-figure/cleveland-1.png" title="" alt="" width="45%" style="display: block; margin: auto;" /></p>
+</section>
+<section class="slide level1">
+
+<h2 id="trend-removal-1">Trend Removal</h2>
+<p><img src="Prelim-figure/cleveland2-1.png" title="" alt="" width="100%" style="display: block; margin: auto;" /></p>
+</section>
+<section class="slide level1">
+
+<h2 id="trend-removal-2">Trend Removal</h2>
+<p><img src="../../Images/sineIllusion/PlayfairExportImports.png" width='80%' height='auto' title="Some graphics cannot be easily separated into trend and variability."></p>
+<p><small>It is hard to re-create this graphic with separate curves that still provide all of the information</small></p>
+</section>
+<section class="slide level1">
+
+<h2 id="x-axis-transformation">X-axis Transformation</h2>
+<p>Let <span class="math">\(a\)</span> and <span class="math">\(b\)</span> be the minimum and maximum of the <span class="math">\(x\)</span>-range under consideration.</p>
+<p><br></br></p>
+<p>For any value <span class="math">\(x \in (a,b)\)</span> the following transformation results in a function with constant absolute slope:</p>
+<p><br></br></p>
+<div style="font-size: 80%;">
+<span class="math">\[
+(f \circ T)(x) = a + (b-a)\left(\int_{a}^x |f^\prime(z)| dz\right)\left/\left(\int_{a}^{b}|f^\prime(z)| dz\right)\right.
+\]</span>
+</div>
+</section>
+<section class="slide level1">
+
+<h2 id="x-axis-transformation-1">X-axis Transformation</h2>
+<p><br></br></p>
+<p><img src="Prelim-figure/xaxisdemo-1.png" title="" alt="" width="100%" style="display: block; margin: auto;" /></p>
+</section>
+<section class="slide level1">
+
+<h2 id="x-axis-transformation-2">X-Axis Transformation</h2>
+<h3 id="partial-transformations">Partial Transformations</h3>
+<p>Shrinkage factor <span class="math">\(w \in (0,1)\)</span>: allows a less extreme approach to counteracting the illusion</p>
+<p><br></br></p>
+<p><span class="math">\[(f \circ T_w)(x) = (1-w) \cdot x + w \cdot (f \circ T)(x)\]</span></p>
+<p><br></br></p>
+<ul>
+<li><span class="math">\(w=1\)</span> is a full transformation</li>
+<li>smaller values of <span class="math">\(w\)</span> indicate a less severe correction</li>
+<li>Under weaker transformations the data more closely reflect the original function <span class="math">\(f(x)\)</span>.</li>
+</ul>
+</section>
+<section class="slide level1">
+
+<h2 id="x-axis-transformation-3">X-axis Transformation</h2>
+<p><img src="Prelim-figure/xaxisdemoweight-1.png" title="" alt="" width="90%" style="display: block; margin: auto;" /></p>
+</section>
+<section class="slide level1">
+
+<h2 id="y-axis-transformation">Y-axis Transformation</h2>
+<h3 id="general-correction">General Correction</h3>
+<p><img src="Prelim-figure/y-generalcorrectioncartoon-1.png" title="" alt="" width="50%" style="display: block; margin: auto;" /> <small>If we extend the line length so that the extant width matches the original vertical length, our perceptions will match the original data. </small></p>
+</section>
+<section class="slide level1">
+
+<h2 id="y-axis-transformation-1">Y-axis Transformation</h2>
+<h3 id="general-correction-1">General Correction</h3>
+<p>The function describing the orthogonal line through <span class="math">\((x_o, f(x_o))\)</span> is given in point-vector form as</p>
+<p><br></br></p>
+<p><span class="math">\[
+{x_o \choose f(x_o)} + \lambda {f^\prime(x_o) \choose 1} 
+\]</span></p>
+<p><br></br></p>
+<p>for any real-valued <span class="math">\(\lambda\)</span>.</p>
+</section>
+<section class="slide level1">
+
+<h2 id="y-axis-transformation-2">Y-axis Transformation</h2>
+<h3 id="general-correction-2">General Correction</h3>
+<p>Point vector form allows us to solve for <span class="math">\(\lambda\)</span> easily, giving the extant (half) widths as:</p>
+<p><br></br></p>
+<p><span class="math">\[
+|\lambda| \sqrt{1 + f^\prime(x_o)^2}
+\]</span></p>
+<p><br></br></p>
+<p>This equation describes the quantity that we <strong>perceive</strong> rather than the quantity that we want to display (<span class="math">\(\ell/2\)</span>)</p>
+</section>
+<section class="slide level1">
+
+<h2 id="y-axis-transformation-3">Y-axis Transformation</h2>
+<h3 id="general-correction-3">General Correction</h3>
+<p>The general correction factor is thus</p>
+<p><br></br></p>
+<p><span class="math">\[
+ \ell/2 \cdot \left(|\lambda| \sqrt{1 + f^\prime(x_o)^2}\right)^{-1}
+\]</span></p>
+<p><br></br></p>
+<p>This yields two solutions; one for positive and one for negative values of <span class="math">\(\lambda\)</span> corresponding to upper and lower (half) extant width.</p>
+</section>
+<section class="slide level1">
+
+<h2 id="y-axis-transformation-4">Y-axis Transformation</h2>
+<h3 id="general-correction-4">General Correction</h3>
+<p>In order to get actual numeric values for <span class="math">\(\lambda\)</span>, we need to find end points <span class="math">\(f_1\)</span> and <span class="math">\(f_2\)</span>. This system of equations provides solutions for those points:</p>
+<p><br></br></p>
+<p><span class="math">\[
+ x - x_o = \lambda f^\prime(x_o)
+\]</span></p>
+<p><br></br></p>
+<p><span class="math">\[
+ f(x) - f(x_o) = -\lambda \pm \ell/2
+\]</span></p>
+<p><br></br></p>
+<p>Solving these equations requires numerical optimization; we will use linear and quadratic taylor series to simplify the optimization processs.</p>
+</section>
+<section class="slide level1">
+
+<h2 id="y-axis-transformation-5">Y-axis Transformation</h2>
+<h3 id="linear-and-quadratic-approximations">Linear and Quadratic Approximations</h3>
+<p><img src="Prelim-figure/y-linearcorrectioncartoon-1.png" title="" alt="" style="display: block; margin: auto;" /></p>
+<p><small>Substituting the endpoints <span class="math">\((x_1, y_1)\)</span> and <span class="math">\((x_2, y_2)\)</span> into the general correction factor produces the linear and quadratic corrections to the sine illusion</small></p>
+</section>
+<section class="slide level1">
+
+<h2 id="y-axis-transformation-6">Y-axis Transformation</h2>
+<h3 id="linear-correction">Linear Correction</h3>
+<p><br></br> <span class="math">\[f(x)\approx f(x_0) + (x-x_0) f^\prime(x_0)\]</span></p>
+<p><br></br></p>
+<p>The correction factor is then</p>
+<p><br></br></p>
+<p><span class="math">\[\ell_{new}(x_0) = \ell_{old}\sqrt{1+f^\prime(x_0)^2}\]</span></p>
+</section>
+<section class="slide level1">
+
+<h2 id="y-axis-transformation-7">Y-axis Transformation</h2>
+<h3 id="linear-correction-1">Linear Correction</h3>
+<p><img src="Prelim-figure/ycorrection1-1.png" title="" alt="" width="100%" style="display: block; margin: auto;" /></p>
+</section>
+<section class="slide level1">
+
+<h2 id="y-axis-transformation-8">Y-axis Transformation</h2>
+<h3 id="quadratic-correction">Quadratic Correction</h3>
+<p><br></br></p>
+<p><span class="math">\[f(x) \approx f(x_0) + f^\prime(x_0)(x-x_0) + 1/2 f^{\prime\prime}(x_0)(x-x_0)^2\]</span> <br></br></p>
+<p>The general correction system of equation simplifies to</p>
+<p><br></br> <span class="math">\[
+f^{\prime\prime}(x_0)  f^\prime(x_0)^2 \lambda^2  + 2(f^\prime(x_0)^2 + 1) \lambda  \pm \ell = 0,
+\]</span></p>
+</section>
+<section class="slide level1">
+
+<h2 id="y-axis-transformation-9">Y-axis Transformation</h2>
+<h3 id="quadratic-correction-1">Quadratic Correction</h3>
+The corrections for the half lengths are then:<br /><br></br>
+<div style="font-size: 80%;">
+<span class="math">\[\begin{eqnarray}
+\ell_{\text{new}_1}(x_0) &amp;=&amp; 1 /2 \cdot  \left(v + \sqrt{ v^2 +  f^{\prime\prime}(x_0) f^\prime(x_0)^2\cdot  \ell_{\text{old}}}\right) \cdot v^{-1/2} \\
+\ell_{\text{new}_2}(x_0) &amp;=&amp; 1 /2 \cdot  \left(v + \sqrt{ v^2 -  f^{\prime\prime}(x_0) f^\prime(x_0)^2\cdot  \ell_{\text{old}}}\right) \cdot v^{-1/2} 
+\end{eqnarray}\]</span>
+</div>
+<p><br></br> where <span class="math">\(v = 1 + f^\prime(x_0)^2\)</span></p>
+<p><small>In the quadratic correction, each half-length is corrected separately, producing a more robust correction</small></p>
+</section>
+<section class="slide level1">
+
+<h2 id="y-axis-transformation-10">Y-axis Transformation</h2>
+<h3 id="quadratic-correction-2">Quadratic Correction</h3>
+<p><img src="Prelim-figure/ycorrection2-1.png" title="" alt="" width="100%" style="display: block; margin: auto;" /></p>
+</section>
+<section class="slide level1">
+
+<h2 id="y-axis-transformation-11">Y-axis Transformation</h2>
+<h3 id="partial-transformations-1">Partial Transformations</h3>
+<p>The y-axis transformation can be weighted in the same manner as the x-axis transformation.<br /><br></br></p>
+<p>A <a href="https://srvanderplas.shinyapps.io/SineIllusionDemo" target="_blank">Shiny applet</a> was created to explore the x and y corrections.</p>
+</section>
+<section id="testing-the-corrections" class="slide level1">
+<h1>Testing the Corrections</h1>
+<p><br></br></p>
+<p><strong>Goal</strong> : Determine the strength of the Sine Illusion by measuring how much correction is required for viewers to say that the lines are of equal length.</p>
+<p><br></br></p>
+<p>A different <a href="http://glimmer.rstudio.com/srvanderplas/SineIllusionShiny/" target="_blank">Shiny applet</a> was created to allow users to manipulate the stimuli using fine-grained adjustments to the weight value.</p>
+</section>
+<section class="slide level1">
+
+<h2 id="participants">Participants</h2>
+<p><br></br></p>
+<ul>
+<li>Participants were recruited using <a href="https://aws.amazon.com/mturk/" target="_blank">Amazon Mechanical Turk</a> and <a href="http://reddit.com/r/samplesize" target="_blank">Reddit</a>.</li>
+</ul>
+<p><br></br></p>
+<ul>
+<li>Using the <a href="http://glimmer.rstudio.com/srvanderplas/SineIllusionShiny/" target="_blank">shiny applet</a>, users could manipulate the weight value presented using -/+ buttons until they were satisfied that the lines were of equal length. The trial was finished when users selected the ‘submit’ button.</li>
+</ul>
+</section>
+<section class="slide level1">
+
+<h2 id="data-collection">Data Collection</h2>
+<p><br></br></p>
+<ul>
+<li><p>User identification information: a ‘fingerprint’ consisting of hashed browser and computer characteristics was used to identify unique users<br /><br></br></p></li>
+<li><p>IP address localization (34.45.38.XX) provided location information<br /><br></br></p></li>
+<li><p>Every user interaction was recorded with a timestamp<br /><br></br></p></li>
+<li><p>Trial finished when user clicked either ‘submit’ or ‘skip’ to opt-out of the trial.</p></li>
+</ul>
+</section>
+<section class="slide level1">
+
+<h2 id="experiment-design">Experiment Design</h2>
+<ul>
+<li>12 (or more) trials, 6 of each correction type<br /><small><br></br></small>
+<ul>
+<li>Each user completed trials starting at 0 and 1 for both correction types<br /></li>
+<li>Additional trials were selected using starting weights between 0.25 and 0.75, with point density highest around 0.6<br /></li>
+<li>After 12 trials, weights were chosen from starting weights between 0 and 1</li>
+</ul></li>
+</ul>
+<p><br></br> <img src="Prelim-figure/startingweights-1.png" title="" alt="" width="90%" height="auto" style="display: block; margin: auto;" /></p>
+</section>
+<section class="slide level1">
+
+<h2 id="data-inclusion-criteria">Data Inclusion Criteria</h2>
+<ul>
+<li><p>Trial recorded at least two user interactions: <br> The user must adjust the weight value at least once and then click the submit button.<br /> <br></p></li>
+<li><p>User completed at least 4 trials<br /> <br></p></li>
+<li><p>User selected a weight value that was not severely over-corrected or under corrected (i.e. weight value selected was plausible)</p></li>
+</ul>
+</section>
+<section class="slide level1">
+
+<h2 id="data-inclusion-criteria-1">Data Inclusion Criteria</h2>
+<h5 id="implausibly-over-corrected-and-under-corrected-answers">Implausibly Over-corrected and Under-corrected Answers</h5>
+<p><img src="Prelim-figure/datainclusioncriteria-1.png" title="Answers more extreme than these were excluded from the analysis." alt="Answers more extreme than these were excluded from the analysis." width="100%" style="display: block; margin: auto;" /></p>
+</section>
+<section id="results" class="slide level1">
+<h1>Results</h1>
+<p><br></br></p>
+<h2 id="included-data">Included Data</h2>
+<p>Once exclusion criteria were applied, our data consisted of 125 participants who completed 1210 valid trials.</p>
+</section>
+<section class="slide level1">
+
+<h2 id="psychophysics-model">Psychophysics Model</h2>
+<p><img src="Prelim-figure/methodofadjustment-1.png" title="Analysis Idea for Method of Adjustment" alt="Analysis Idea for Method of Adjustment" width="70%" style="display: block; margin: auto;" /></p>
+</section>
+<section class="slide level1">
+
+<h2 id="psychophysics-model-1">Psychophysics Model</h2>
+<p><small>Let <span class="math">\(\gamma_X\)</span> represent the optimal weight value for the <span class="math">\(X\)</span>-correction<br />and <span class="math">\(\gamma_Y\)</span> represent the optimal weight value for the <span class="math">\(Y\)</span> correction. </small></p>
+<p><br></br></p>
+<p><span class="math">\(\gamma_\ast = \frac{1}{2}(w_0 + w_1)\)</span></p>
+<p><br></br></p>
+<p>where <span class="math">\(w_0\)</span> is the preferred weight when starting at 0, and <span class="math">\(w_1\)</span> is the preferred weight when starting at 1.</p>
+</section>
+<section class="slide level1">
+
+<h2 id="psychophysics-model-2">Psychophysics Model</h2>
+<p><img src="Prelim-figure/psychophysics-1.png" title="" alt="" width="80%" style="display: block; margin: auto;" /></p>
+</section>
+<section class="slide level1">
+
+<h2 id="random-effects-model">Random Effects Model</h2>
+<ul>
+<li>
+<span class="math">\(W_{ij}\)</span> the weight chosen by participant <span class="math">\(i\)</span> on trial <span class="math">\(j\)</span>
+</li>
+<br><span class="math">\[1 \le i \le 125, 1 \le j \le n_i\]</span><br>
+<li>
+<span class="math">\(T(i,j)\)</span> the correction type, where <span class="math">\(T(i,j) \in \{X, Y\}\)</span>
+</li>
+<br>
+<li>
+Starting weight <span class="math">\(X_{ij}\)</span>
+</li>
+<br></br>
+<li>
+<span class="math">\(\alpha_\ast\)</span>, the lowest acceptable weight for correction type <span class="math">\(\ast\)</span>
+</li>
+<li>
+<span class="math">\(\beta\)</span>, the acceptable weight value interval width
+</li>
+<li>
+Participant-level random intercept <span class="math">\(\gamma_{i, \ast}\)</span>
+</li>
+</ul>
+</section>
+<section class="slide level1">
+
+<h2 id="random-effects-model-1">Random Effects Model</h2>
+<p><br></br> <span class="math">\[
+W_{ij} = \alpha_{T(i,j)} + \beta X_{ij} + \gamma_{i, T(i,j)} + \epsilon_{ij}\]</span></p>
+<p><br></br></p>
+<p><span class="math">\[\gamma_{iX} \stackrel{\text{ i.i.d.}}{\sim} N(0, \eta_X^2) \ \ \ \ \ \ \ \ \gamma_{iY} \stackrel{\text{ i.i.d.}}{\sim} N(0, \eta_Y^2) \]</span></p>
+<p><span class="math">\[\epsilon_{ij} \stackrel{\text{ i.i.d.}}{\sim} N(0, \sigma^2)   \ \ \ \ \ \ \ \ \text{Cov}(\gamma, \epsilon) = 0\]</span></p>
+<p><br></br></p>
+<p>The range of acceptable values is</p>
+<p><span class="math">\[(\alpha_\ast, \alpha_\ast + \beta)\]</span></p>
+</section>
+<section class="slide level1">
+
+<h2 id="random-effects-model-2">Random Effects Model</h2>
+<p><br></br> <span class="math">\[
+W_{ij} = \alpha_{T(i,j)} + \beta X_{ij} + \gamma_{i, T(i,j)} + \epsilon_{ij}\]</span></p>
+<p><br></br></p>
+<p><span class="math">\[\gamma_{iX} \stackrel{\text{ i.i.d.}}{\sim} N(0, \eta_X^2) \ \ \ \ \ \ \ \ \gamma_{iY} \stackrel{\text{ i.i.d.}}{\sim} N(0, \eta_Y^2) \]</span></p>
+<p><span class="math">\[\epsilon_{ij} \stackrel{\text{ i.i.d.}}{\sim} N(0, \sigma^2)   \ \ \ \ \ \ \ \ \text{Cov}(\gamma, \epsilon) = 0\]</span></p>
+<p><br></br></p>
+<p>We can compare this model to the psychophysics model using the midpoint of this interval, <span class="math">\[\alpha_\ast+\beta/2\]</span></p>
+</section>
+<section class="slide level1">
+
+<h2 id="random-effects-model-3">Random Effects Model</h2>
+<strong>Results</strong>
+<div align="center">
+<!-- html table generated in R 3.1.3 by xtable 1.7-1 package -->
+<!-- Tue Mar 24 10:27:09 2015 -->
+<TABLE border="1">
+<TR>
+<TH>
+Transformation
+</TH>
+<TH>
+Threshold
+</TH>
+<TH>
+Estimate
+</TH>
+<TH>
+95% C.I.
+</TH>
+</TR>
+<TR>
+<TD align="center">
+X
+</TD>
+<TD align="center">
+Lower
+</TD>
+<TD align="center">
+0.097
+</TD>
+<TD align="center">
+(0.048, 0.149)
+</TD>
+</TR>
+<TR>
+<TD align="center">
+</TD>
+<TD align="center">
+Upper
+</TD>
+<TD align="center">
+0.625
+</TD>
+<TD align="center">
+(0.570, 0.684)
+</TD>
+</TR>
+<TR>
+<TD align="center">
+Y
+</TD>
+<TD align="center">
+Lower
+</TD>
+<TD align="center">
+0.143
+</TD>
+<TD align="center">
+(0.094, 0.187)
+</TD>
+</TR>
+<TR>
+<TD align="center">
+</TD>
+<TD align="center">
+Upper
+</TD>
+<TD align="center">
+0.671
+</TD>
+<TD align="center">
+(0.622, 0.717)
+</TD>
+</TR>
+</TABLE>
+</div>
+</section>
+<section class="slide level1">
+
+<h2 id="random-effects-model-4">Random Effects Model</h2>
+<p><img src="Prelim-figure/ranef-1.png" title="" alt="" width="80%" style="display: block; margin: auto;" /></p>
+</section>
+<section id="conclusions" class="slide level1">
+<h1>Conclusions</h1>
+<ul>
+<li><p>Either correction is preferrable to an uncorrected graph</p></li>
+<li><p>Corrections do not have to be fully applied to break the illusion’s power</p></li>
+<li><p>The sine illusion is strong enough to make participants think that lines of unequal length are equal</p></li>
+</ul>
+<p><br></br></p>
+<h3 id="importance-to-statistical-graphics">Importance to Statistical Graphics</h3>
+<p>We can’t judge variability accurately when there is a nonlinear trend. Knowing is half the battle; having tools to screen for this effect could also be helpful.</p>
+</section>
+<section class="slide level1">
+
+<h2 id="future-work">Future Work</h2>
+<p><br></br></p>
+<ul>
+<li><p>R package with functions to correct data<br /><br></br></p></li>
+<li><p>Shiny applet that allows users to upload data and then provides <span class="math">\(x\)</span> and <span class="math">\(y\)</span> corrections</p></li>
+</ul>
+</section>
+</section>
+<section class="slide level1">
+
+<section>
+<h1>
+Visual Aptitude and Graphical Inference
+</h1>
+</section>
+<section id="goals" class="slide level1">
+<h1>Goals</h1>
+<ul>
+<li><p>Understand what visual skills are related to comprehension of graphics<br /><br></br></p></li>
+<li>Reduce variability in lineup performance
+<ul>
+<li>Lineups from Hofmann, Follett, Majumder, &amp; Cook (2012)<br /><br></br></li>
+</ul></li>
+<li><p>(Ideally) Link visual skills to specific types of graphics</p></li>
+</ul>
+</section>
+<section class="slide level1">
+
+<h2 id="visual-search-task">Visual Search Task</h2>
+<p>Designed to test participants’ ability to find a target stimulus in a field of distractors</p>
+<p><img src="../../Images/VisualAptitude/VisualSearch.png" width='40%' height='auto' title="Plot 23 matches the target plot"></p>
+<p><small> Participants are instructed to find the plot numbered 1-24 which matches the plot labeled “Target”. Participants will complete up to 25 of these tasks in 5 minutes </small></p>
+</section>
+<section class="slide level1">
+
+<h2 id="paper-folding">Paper Folding</h2>
+<p>Tests participants’ ability to visualize and mentally manipulate figures in three dimensions. Associated with the ability to extrapolate symmetry and reflection over multiple steps.</p>
+<p><img src="../../Images/VisualAptitude/paperfolding.png" width='100%' height='auto'></p>
+<p><small> Participants are instructed to pick the figure matching the sequence of steps shown in the left-hand figure. Participants will complete up to 20 of these tasks in 6 minutes. </small></p>
+</section>
+<section class="slide level1">
+
+<h2 id="card-rotation">Card Rotation</h2>
+<p>Tests participant’s ability to rotate objects in two dimensions to distinguish between left-hand and right-hand versions of the same figure. Tests spatial reasoning ability and mental rotation skills.</p>
+<p><img src="../../Images/VisualAptitude/cardrotation.jpg" width='100%' height='auto'></p>
+<p><small> Participants mark each figure on the right hand side as either the same or different than the figure on the left hand side of the dividing line. Participants will complete up to 20 of these tasks (each consisting of 8 figures) in 6 minutes. </small></p>
+</section>
+<section class="slide level1">
+
+<h2 id="figure-classification">Figure Classification</h2>
+<p>This task is associated with visual reasoning capabilities and we expect that it should correlate with the ability to pick out a signal plot from a lineup.</p>
+<p><img src="../../Images/VisualAptitude/figureclassification.jpg" width='100%' height='auto'></p>
+<p><small> Participants classify each figure in the second row as belonging to group 1, 2, or 3 (if applicable). Participants will complete up to 14 of these tasks (each consisting of 8 figures to classify) in 8 minutes. </small></p>
+</section>
+<section class="slide level1">
+
+<h2 id="lineups">Lineups</h2>
+<p><img src="../../Images/VisualAptitude/lineup.png" width='65%' height='auto' title="Plot 13 is the target plot"></p>
+</section>
+<section id="experiment-setup" class="slide level1">
+<h1>Experiment Setup</h1>
+<ul>
+<li>Questionnaire:<br /><small>Demographic information, academic background, self-rating of verbal/math/artistic skills, video game usage, etc.</small></li>
+<li><p>Visual Search Task (25 questions)</p></li>
+<li>Lineup Task 1:<br /><small>boxplots, density plots, dotplots, histograms</small></li>
+<li><p>Card Rotation Task (20 x 8 questions)</p></li>
+<li>Lineup Task 2:<br /><small>boxplots, violin plots, scatterplot + boxplot overlays</small></li>
+<li><p>Figure Classification Task (14 x 8 questions)</p></li>
+<li>Lineup Task 3:<br /><small>linear regression and normality assessment, outliers, and residual plots</small></li>
+<li><p>Paper Folding Task (20 questions)</p></li>
+</ul>
+</section>
+<section class="slide level1">
+
+<h2 id="data-collection-1">Data Collection</h2>
+<p><br></br></p>
+<ul>
+<li>Pilot study:<br /><small>Working group took the tests (with different lineups) in February </small><br /></li>
+<li>Initial Data:<br /><small>20 students tested in April </small><br /></li>
+<li>More data collection to occur in June/July</li>
+</ul>
+</section>
+<section id="preliminary-results" class="slide level1">
+<h1>Preliminary Results</h1>
+<p><img src="../../Figure/VisualAptitude/fig-VisReasoningCategorical-1.png" width='60%' height='auto'></p>
+</section>
+<section id="preliminary-results-1" class="slide level1">
+<h1>Preliminary Results</h1>
+<p><img src="../../Figure/VisualAptitude/fig-VisReasoningCts-1.png" width='75%' height='auto'></p>
+</section>
+</section>
+<section class="slide level1">
+
+<section>
+<h1>
+Hierarchy of Graphical Features
+</h1>
+</section>
+<section id="goal" class="slide level1">
+<h1>Goal</h1>
+<ul>
+<li>Establish a hierarchy of graphical features that are most visually salient<br /><br></br></li>
+</ul>
+<p><img src="../../Figure/LitReview/gestalt.jpg" width='80%' height='auto' title='Hierarchy of Gestalt Features'></p>
+<ul>
+<li>Explore which graphs most efficiently present data with regard to salient features</li>
+</ul>
+</section>
+<section id="example-stimuli" class="slide level1">
+<h1>Example Stimuli</h1>
+<p><img src="../../Figure/FeatureHierarchy/fig-samplepics-5.png" width='65%' height='auto' title="Plot 17 contains the target trend plot, plot 10 contains the target cluster plot"></p>
+</section>
+<section id="example-stimuli-1" class="slide level1">
+<h1>Example Stimuli</h1>
+<p><img src="../../Figure/FeatureHierarchy/fig-samplepics-7.png" width='65%' height='auto' title="Plot 17 contains the target trend plot, plot 10 contains the target cluster plot"></p>
+</section>
+<section id="challenges" class="slide level1">
+<h1>Challenges</h1>
+<ul>
+<li><p>Control stimulus strength (i.e. <span class="math">\(r^2\)</span>, group size, point density, etc.) to effectively compare color to correlation<br /><br></br></p></li>
+<li><p>Appropriate color schemes to maximize sensory distance (while allowing colorblind viewers to perceive the groups)<br /><br></br></p></li>
+</ul>
+</section>
+</section>
+<section class="slide level1">
+
+<section>
+<h1>
+Timeline
+</h1>
+<h2 id="sine-illusion">Sine Illusion</h2>
+<p><br></br></p>
+<ul>
+<li><p>Paper submitted to JCGS in Oct 2013, revision submitted in March 2014</p></li>
+<li>Second paper will likely be submitted to Chance
+<ul>
+<li>Different user study, same basic conclusion</li>
+</ul></li>
+</ul>
+</section>
+<section id="timeline" class="slide level1">
+<h1>Timeline</h1>
+<h2 id="visual-aptitude">Visual Aptitude</h2>
+<p><br></br></p>
+<ul>
+<li>Pilot study in Feb 2014<br /></li>
+<li>Data collection started in April 2014<br /></li>
+<li>Second round of data collection this summer<br /></li>
+<li>Paper to be written by September 2014</li>
+</ul>
+</section>
+<section id="timeline-1" class="slide level1">
+<h1>Timeline</h1>
+<h2 id="graph-feature-hierarchy">Graph Feature Hierarchy</h2>
+<p><br></br></p>
+<ul>
+<li>Pilot study in Feb 2014</li>
+<li>Data collection (Amazon Turk) in September 2014</li>
+<li>Paper written by November 2014</li>
+</ul>
+</section>
+<section id="timeline-2" class="slide level1">
+<h1>Timeline</h1>
+<p><br></br><br /><br></br></p>
+<p>Goal : Defend in January or February 2015</p>
+</section>
+</section>
+    </div>
+  </div>
+
+  <script src="Prelim_files/revealjs_presentation/lib/js/head.min.js"></script>
+  <script src="Prelim_files/revealjs_presentation/js/reveal.min.js"></script>
+
+  <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        slideNumber: true,
+        history: true,
+        center: false,
+        transition: 'fade',
+        backgroundTransition: 'default',
+        
+        // Optional libraries used to extend on reveal.js
+        dependencies: []});
+    </script>
+
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+
+  </body>
+</html>
