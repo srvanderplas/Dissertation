@@ -1,8 +1,6 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
-
-<head>
+	<head>
 <style type="text/css">
 .knitr.inline {
   background-color: #f7f7f7;
@@ -65,93 +63,111 @@
   font-weight: bold;
 }
 </style>
-	<meta charset="utf-8">
+		<meta charset="utf-8">
+		<title>
+			Perception of Statistical Graphics
+		</title>
+		<meta content="Final Oral Exam Presentation Slides" name="description">
+		<meta content="Susan VanderPlas" name="author">
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="black-translucent" name="apple-mobile-web-app-status-bar-style">
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, minimal-ui" name="viewport">
+		<link href="css/reveal.css" rel="stylesheet">
+		<link href="css/theme/simple.css" id="theme" rel="stylesheet">
+		<link href="css/Presentation.css" rel="stylesheet"><!-- Code syntax highlighting -->
+		<link href="lib/css/zenburn.css" rel="stylesheet"><!-- Printing and PDF exports -->
 
-	<title>Perception of Statistical Graphics</title>
-
-	<meta name="description" content="Final Oral Exam Presentation Slides">
-	<meta name="author" content="Susan VanderPlas">
-
-	<meta name="apple-mobile-web-app-capable" content="yes" />
-	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, minimal-ui">
-
-	<link rel="stylesheet" href="css/reveal.css">
-	<link rel="stylesheet" href="css/theme/simple.css" id="theme">
-	<link rel="stylesheet" href="css/Presentation.css">
-
-	<!-- Code syntax highlighting -->
-	<link rel="stylesheet" href="lib/css/zenburn.css">
-
-	<!-- Printing and PDF exports -->
-	<script>
-		var link = document.createElement( 'link' );
-		link.rel = 'stylesheet';
-		link.type = 'text/css';
-		link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-		document.getElementsByTagName( 'head' )[0].appendChild( link );
-	</script>
-
-	<!--[if lt IE 9]>
-	<script src="lib/js/html5shiv.js"></script>
-	<![endif]-->
-</head>
-
-
-<body>
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+		<!--[if lt IE 9]>
+			<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+	<body>
 <div class="reveal">
-	<!-- Any section element inside of this container is displayed as a slide -->
-	<div class="slides">
-			
-<section> <!-- Introduction -->
-  <h1 style='font-size:3em;'>Perception of Statistical Graphics</h1>
+  <!-- Any section element inside of this container is displayed as a slide -->
+<div class="slides">
+
+<section>
+  <!-- Introduction -->
+
+  <h1>Perception of Statistical Graphics</h1>
+
   <h3>Susan VanderPlas</h3>
+
   <h4>April 1, 2015</h4>
 </section>
 
+
+
 <section>
   <section>
-  	<h2> Outline </h2>
+    <h2>Outline</h2>
+
     <ul style="width:95%;">
       <li style="margin-bottom:20px;margin-top:10px;">
         <b>Signs of the Sine Illusion:</b> Why We Need to Care
+
         <ul style="font-size:70%;text-align:left;">
-          <li> Describes the illusion with real-world context </li>
-          <li> Proposes geometry-based transformations </li>
-          <li> Presents data from a user study examining the utility of the transformations </li>
-          <li> Accepted to JCGS, July 2014 </li>
+          <li>Describes the illusion with real-world context</li>
+
+          <li>Proposes geometry-based transformations</li>
+
+          <li>Presents data from a user study examining the utility of the transformations</li>
+
+          <li>Accepted to JCGS, July 2014</li>
         </ul>
       </li>
+
       <li style="margin-bottom:20px;margin-top:10px;">
-        <b>The Curse of Three Dimensions:</b> <br>Why Your Brain is Lying to You
+        <b>The Curse of Three Dimensions:</b><br>
+        Why Your Brain is Lying to You
+
         <ul style="font-size:70%;text-align:left;">
-          <li> Examines cause of the sine illusion (depth perception) </li>
-          <li> Presents a case study of an individual without depth perception </li>
-          <li> Presents data from another user study showing the strength of the illusion</li>
-          <li> Intended for submission to IEEE Transactions on Applied Perception </li>
+          <li>Examines cause of the sine illusion (depth perception)</li>
+
+          <li>Presents a case study of an individual without depth perception</li>
+
+          <li>Presents data from another user study showing the strength of the illusion</li>
+
+          <li>Intended for submission to IEEE Transactions on Applied Perception</li>
         </ul>
       </li>
     </ul>
   </section>
+
   <section>
-  	<h2> Outline </h2>
+    <h2>Outline</h2>
+
     <ul style="margin-bottom:20px;margin-top:10px;width:95%;">
-      <li style="margin-bottom:20px;margin-top:10px;">
-        <b>Spatial Reasoning and Data Displays</b>
+      <li style="margin-bottom:20px;margin-top:10px;"><b>Spatial Reasoning and Data Displays</b></li>
+
+      <li style="list-style: none; display: inline">
         <ul style="font-size:70%;text-align:left;">
-          <li> Examines visual skills necessary for lineup evaluation </li>
-          <li> Compares participant performance on lineups to performance on validated tests of visual reasoning ability </li>
-          <li> Submitted to InfoVis 2015 </li>
+          <li>Examines visual skills necessary for lineup evaluation</li>
+
+          <li>Compares performance on lineups to performance on validated tests of visual reasoning ability</li>
+
+          <li>Submitted to InfoVis 2015</li>
         </ul>
       </li>
-      <li style="margin-bottom:20px;margin-top:10px;">
-        <b>Statistical Graphics and the Hierarchy of Visual Features</b>
+
+      <li style="margin-bottom:20px;margin-top:10px;"><b>Statistical Graphics and the Hierarchy of Visual Features</b></li>
+
+      <li style="list-style: none; display: inline">
         <ul style="font-size:70%;text-align:left;">
-          <li> Modifies the lineup protocol to test two competing hypotheses </li>
-          <li> Demonstrates the effect of graphical features of statistical plots (color, trend lines) on perception of displayed data </li>
-          <li> Connects gestalt perceptual rules to chart design </li>
-          <li> Intended for submission to JCGS or JASA </li>
+          <li>Modifies the lineup protocol to test two competing hypotheses</li>
+
+          <li>Demonstrates the effect of graphical features of statistical plots (color, trend lines) on perception of displayed data</li>
+
+          <li>Connects gestalt perceptual rules to chart design</li>
+
+          <li>Intended for submission to JCGS or JASA</li>
         </ul>
       </li>
     </ul>
@@ -160,147 +176,927 @@
 
 
 
-
 <section>
-  <section class="center">
-    <h2> Sine Illusion</h2>
+  <section class="sineillusion" class="center">
+    <h2>Signs of the Sine Illusion</h2>
+    <h3>Why We Need to Care</h3>
+
 <div class="chunk" id="sineillusion-original"><div class="rimage center"><img src="figure/sineillusion-original-1.png" title="plot of chunk sineillusion-original" alt="plot of chunk sineillusion-original" width="45%" class="plot" /></div></div>
   </section>
 
-  <section class="center">
-    <h2> The Curse of Three Dimensions </h2>
-    <h3> Why Your Brain is Lying to You </h3>
-  </section>
-  
-  <section>
-    <h3> Three-Dimensional Context </h3>
-<div class="chunk" id="sinedemo2"><div class="rimage center"><img src="figure/sinedemo2-1.png" title="plot of chunk sinedemo2" alt="plot of chunk sinedemo2" width="80%" height="auto" class="plot" /></div></div>
-  </section>
-  
-  <section>
-    <h2> The Psychological Lie Factor </h2>
-    <br></br>
-    $$\text{Lie Factor} = \frac{\text{size of effect shown in the chart}}{\text{size of effect in the data}}$$
-    <br></br>
-    $$\text{Psych. Lie Factor} = \frac{\text{size of effect perceived}}{\text{size of effect shown in the chart}}$$
-  </section>
-  
-  <section>
-    <h2> The Psychological Lie Factor </h2>
-<div class="chunk" id="sine-stimulicorrectionsize"><div class="rimage center"><img src="figure/sine-stimulicorrectionsize-1.png" title="plot of chunk sine-stimulicorrectionsize" alt="plot of chunk sine-stimulicorrectionsize" width="80%" height="auto" class="plot" /></div></div>
-    <p> In which graph is the size of the curve most consistent? </p> 
-  </section>
-  
-  <section>
-    <h2> The Psychological Lie Factor </h2>
-    <br></br>
-<div class="chunk" id="sine-stimulicorrectionsize-diff"><div class="rimage center"><img src="figure/sine-stimulicorrectionsize-diff-1.png" title="plot of chunk sine-stimulicorrectionsize-diff" alt="plot of chunk sine-stimulicorrectionsize-diff" width="80%" height="auto" class="plot" /></div></div>
-  </section>
-    
-  <section>
-    <h2> The Psychological Lie Factor </h2>
-<div class="chunk" id="inv-stimulicorrectionsize"><div class="rimage center"><img src="figure/inv-stimulicorrectionsize-1.png" title="plot of chunk inv-stimulicorrectionsize" alt="plot of chunk inv-stimulicorrectionsize" width="80%" height="auto" class="plot" /></div></div>
-  </section>
-  
-    <section>
-    <h2> The Psychological Lie Factor </h2>
-<div class="chunk" id="exp-stimulicorrectionsize"><div class="rimage center"><img src="figure/exp-stimulicorrectionsize-1.png" title="plot of chunk exp-stimulicorrectionsize" alt="plot of chunk exp-stimulicorrectionsize" width="80%" height="auto" class="plot" /></div></div>
-  </section>
-  
-  <section>
-    <h2> The Psychological Lie Factor </h2>
-    <br>
-    <h3> Lie Factor $D_k$ </h3>
-      $$\begin{align}D_k &= \frac{\text{max line length in sub-plot } k}{\text{min line length in sub-plot } k} \\&= \text{max line length in sub-plot } k\end{align}$$
-    <p style="text-align:center;margin:40px;"> As not all stimuli contain uncorrected plots... </p>
-    <h3> Psychological Lie Factor </h3>
-    For participant $i$, plot $j$, 
-      $$P_{ij}=D_{ijk}/\min_{1\leq k \leq 6} D_{ijk}$$
-  </section>
-  
-  <section>
-    <h2> Results </h2>
-<div class="chunk" id="spaghetti"><div class="rimage center"><img src="figure/spaghetti-1.png" title="plot of chunk spaghetti" alt="plot of chunk spaghetti" width="70%" height="auto" class="plot" /></div></div>
-    <p> Estimated posterior densities for participant-specific $\theta_i$ (in color) and overall density for $\theta$ shown in black. </p>
-  </section>
-  
-  <section>
-    <h2> Results </h2>
-<div class="chunk" id="individualCI"><div class="rimage center"><img src="figure/individualCI-1.png" title="plot of chunk individualCI" alt="plot of chunk individualCI" width="70%" height="auto" class="plot" /></div></div>
-  <p> 95% posterior predictive intervals for $\theta_i$, for each function type. Vertical lines indicate the median estimate of overall $\theta$ with a 95% credible interval. </p>
+  <section class="sineillusion">
+    <h2>Example</h2>
+    <p>8-hour Average Ozone Levels in Houston, TX by temperature at Hobby Airport</p>
+<div class="chunk" id="example-sineillusion"><div class="rimage center"><img src="figure/example-sineillusion-1.png" title="plot of chunk example-sineillusion" alt="plot of chunk example-sineillusion" width="50%" height="auto" class="plot" /></div></div>
   </section>
 
-  <section>
-    <h2> Case Study </h2>
-    <table style="width:100%">
-    <tr><td width="75%" style="vertical-align:middle;">
-    <p style="text-align:left;">D.W., a woman with strabismic amblyopia (lazy eye) 
-    <ul style="margin:20px;font-size:80%;">
-      <li style="margin:10px"> Developed independent muscle control over each eye as a result of treatment (complete patching) to strengthen her non-dominant eye </li> 
-      <li style="margin:10px"> Disrupted development of binocular depth perception </li> 
-    </ul>
-    
-    </td><td style="vertical-align:middle;width:25%;">
-<div class="chunk" id="mullerlyer"><div class="rimage center"><img src="figure/mullerlyer-1.png" title="plot of chunk mullerlyer" alt="plot of chunk mullerlyer" width="50%" height="auto" class="plot" /></div></div>
-    </td>
-    </tr>
-    </table>
-    <p style="text-align:center"> We asked DW to evaluate several plots of the sine illusion at various correction levels, as well as other depth illusions </p>
+  <section class="sineillusion">
+    <h2>Example</h2>
+    <p>Residual Ozone Levels in Houston, TX by temperature at Hobby Airport</p>
+
+<div class="chunk" id="example-sineillusion2"><div class="rimage center"><img src="figure/example-sineillusion2-1.png" title="plot of chunk example-sineillusion2" alt="plot of chunk example-sineillusion2" width="50%" height="auto" class="plot" /></div></div>
   </section>
   
-  <section>
-    <h2> Case Study </h2>
-    <h3> Results </h3>
-    <ul style="margin:20px;font-size:80%;">
-      <li style="margin:10px"> D.W. was not susceptible to the sine illusion or the Muller-Lyer illusion </li>
-      <li style="margin:10px"> D.W. identified the partially corrected images as having the same line length as well </li>
-      <li style="margin:10px"> Only the fully corrected plot of $y=\exp(x)$ seemed to have lines of different length </li>
+  <section class="sineillusion">
+    <h2>Explaining the Illusion</h2>
+    <small>The sine illusion results from misapplication of a three-dimensional 
+    visual heuristic to ambiguous two-dimensional images</small> 
+
+<div class="chunk" id="ribbon-illusion"><div class="rimage center"><img src="figure/ribbon-illusion-1.png" title="Perspective plot of a three-dimensional image similar to the sine illusion" alt="Perspective plot of a three-dimensional image similar to the sine illusion" width="60%" class="plot" /></div></div>
+  </section>
+
+  <section class="sineillusion">
+    <h2>Explaining the Illusion</h2><small>The sine illusion results from misapplication of a three-dimensional visual heuristic to ambiguous
+    two-dimensional images</small> 
+
+<div class="chunk" id="ribbon-illusion2"><div class="rimage center"><img src="figure/ribbon-illusion2-1.png" title="Perspective plot of the same data, with a vanishing point closer to infinity" alt="Perspective plot of the same data, with a vanishing point closer to infinity" width="60%" class="plot" /></div></div>
+     <small>In this figure, the vanishing point has been moved towards infinity; the lines are straight and closer to the appearance of the sine illusion.
+    The three-dimensional appearance is still intact.</small>
+  </section>
+  
+  <section class="sineillusion">
+    <h2>Explaining the Illusion</h2>
+
+    <h3>Context Matters</h3>
+    
+<div class="chunk" id="originalgrid"><div class="rimage center"><img src="figure/originalgrid-1.png" title="plot of chunk originalgrid" alt="plot of chunk originalgrid" width="40%" class="plot" /></div></div>
+
     <ul>
+      <li style="font-size:75%">
+      		Cleveland and McGill (1984) demonstrated that we can compare the length of two lines accurately
+      </li>
+
+      <li style="font-size:75%">Day and Stecher (1991) showed that the illusion persists if there is curvature in the underlying function</li>
+    </ul>
   </section>
+
+  <section class="sineillusion">
+    <h2 id="geometry-of-the-sine-illusion">Geometry of the Sine Illusion</h2>
+
+<div class="chunk" id="illusion-geometry"><div class="rimage center"><img src="figure/illusion-geometry-1.png" title="plot of chunk illusion-geometry" alt="plot of chunk illusion-geometry" width="60%" height="auto" class="plot" /></div></div>
+  </section>
+
+  <section class="sineillusion">
+    <h2 id="geometry-of-the-sine-illusion-1">Geometry of the Sine Illusion</h2>
+    <ul style="margin-top:40px">
+      <li>
+      	We perceive the orthogonal width of the implied surface
+      </li>
+
+      <li>
+	      The orthogonal width is a function of the x and y range 
+	      as well as the aspect ratio of the plot.
+      </li>
+
+      <li>
+	      The perceived orthogonal width is also a function of the slope 
+	      of the line tangent to the underlying function curve.
+      </li>
+    </ul>
+  </section>
+
+  <section class="sineillusion">
+    <h2>Correcting the Illusion</h2>
+
+    <ol type="1">
+      <li class="fragment">Trend Removal<br>
+	      Remove the underlying function, 
+	      plotting the curve and the residuals separately
+      </li>
+    </ol>
+    <ol start="2" type="1">
+      <li class="fragment">
+	      X Axis Correction<br>
+	      Reparameterize the x-axis in terms of the slope, 
+	      so that the absolute slope doesn’t change
+      </li>
+    </ol>
+    <ol start="3" type="1">
+      <li class="fragment">
+	      Y Axis Correction<br>
+	      Change the plotted line length (or spread) 
+	      so that the <strong>perceived</strong> orthogonal 
+	      width corresponds to the <strong>original</strong>
+	      (data) line length
+      </li>
+    </ol>
+  </section>
+  
+  <section class="sineillusion">
+    <h2 id="trend-removal">Trend Removal</h2>
+<div class="chunk" id="cleveland"><div class="rimage center"><img src="figure/cleveland-1.png" title="plot of chunk cleveland" alt="plot of chunk cleveland" width="45%" class="plot" /></div></div>
+  </section>
+
+  <section class="sineillusion">
+    <h2 id="trend-removal-1">Trend Removal</h2>
+<div class="chunk" id="cleveland2"><div class="rimage center"><img src="figure/cleveland2-1.png" title="plot of chunk cleveland2" alt="plot of chunk cleveland2" width="100%" class="plot" /></div></div>
+  </section>
+  
+  <section class="sineillusion">
+    <h2>Trend Removal</h2>
+    <img height='auto' src="../../Images/sineIllusion/PlayfairExportImports.png" title=
+    "Some graphics cannot be easily separated into trend and variability." width='80%'>
+
+    <p style="font-size:75%">
+    	It is hard to re-create this graphic with separate curves 
+    	that still provide all of the information
+    </p>
+  </section>
+
+  <section class="sineillusion">
+    <h2>X-axis Transformation</h2>
+
+    <p style="margin-bottom:2em;">
+    	Let $a$ and $b$ be the minimum and maximum of the $x$-range under consideration.
+    </p>
+
+    <p style="margin-bottom:2em;">
+    	For any value $x \in (a,b)$ the following transformation results in a function with constant absolute slope:
+    </p>
+
+    <div style="font-size: 80%;">
+      $$ (f \circ T)(x) = a + (b-a)\left(\int_{a}^x |f^\prime(z)| dz\right)
+      	 \left/\left(\int_{a}^{b}|f^\prime(z)| dz\right)\right. $$
+    </div>
+  </section>
+
+  <section class="sineillusion">
+    <h2  style="margin-bottom:2em;">X-axis Transformation</h2>
+
+<div class="chunk" id="xaxisdemo"><div class="rimage center"><img src="figure/xaxisdemo-1.png" title="plot of chunk xaxisdemo" alt="plot of chunk xaxisdemo" width="100%" class="plot" /></div></div>
+  </section>
+
+  <section class="sineillusion">
+    <h2>X-Axis Transformation</h2>
+    <h3>Partial Transformations</h3>
+
+    <p style="margin-bottom:2em">
+    	Shrinkage factor $w \in (0,1)$: allows a less extreme approach to 
+    	counteracting the illusion
+    </p>
+    $$(f \circ T_w)(x) = (1-w) \cdot x + w \cdot (f \circ T)(x)$$
+
+    <ul>
+      <li> $w=1$ is a full transformation </li> 
+      <li> smaller values of $w$ indicate a less severe correction </li> 
+      <li> 
+	      Under weaker transformations the data more closely 
+	      reflect the original function $f(x)$ 
+      </li> 
+    </ul>
+  </section>
+
+  <section class="sineillusion">
+    <h2>X-axis Transformation</h2>
+<div class="chunk" id="xaxisdemoweight"><div class="rimage center"><img src="figure/xaxisdemoweight-1.png" title="plot of chunk xaxisdemoweight" alt="plot of chunk xaxisdemoweight" width="90%" class="plot" /></div></div>
+  </section>
+
+  <section class="sineillusion">
+    <h2>Y-axis Transformation</h2>
+    <h3>General Correction</h3>
+<div class="chunk" id="y-generalcorrectioncartoon"><div class="rimage center"><img src="figure/y-generalcorrectioncartoon-1.png" title="plot of chunk y-generalcorrectioncartoon" alt="plot of chunk y-generalcorrectioncartoon" width="50%" class="plot" /></div></div>
+    <p style="font-size:75%;">If we extend the line length so that the extant width matches the original vertical length, our perceptions will match the original
+    data.</p>
+  </section>
+
+  <section class="sineillusion">
+    <h2>Y-axis Transformation</h2>
+    <h3>General Correction</h3>
+    <p>
+    The function describing the orthogonal line through $(x_o, f(x_o))$ 
+    is given in point-vector form as </p>
+    $$ {x_o \choose f(x_o)} + \lambda{f^\prime(x_o) \choose 1} $$
+
+    <p>for any real-valued $\lambda$</p>
+  </section>
+
+  <section class="sineillusion">
+    <h2>Y-axis Transformation</h2>
+    <h3>General Correction</h3>
+
+    <p>
+	    Point vector form allows us to solve for $\lambda$ easily, 
+	    giving the extant (half) widths as: 
+    </p>
+    
+	  $$ |\lambda| \sqrt{1 + f^\prime(x_o)^2} $$
+
+    <p>
+	    This equation describes the quantity that we **perceive** rather than the 
+	    quantity that we want to display ($\ell/2$)
+    </p>
+  </section>
+
+  <section class="sineillusion">
+    <h2>Y-axis Transformation</h2>
+    <h3>General Correction</h3>
+
+    <p>The general correction factor is thus </p>
+    $$ \ell/2 \cdot \left(|\lambda| \sqrt{1 + f^\prime(x_o)^2}\right)^{-1} $$
+
+    <p>
+	    This yields two solutions; one for positive and one for negative values 
+	    of $\lambda$ corresponding to upper and lower (half) extant width.
+    </p>
+  </section>
+
+  <section class="sineillusion">
+    <h2>Y-axis Transformation</h2>
+    <h3>General Correction</h3>
+
+    <p>
+	    In order to get actual numeric values for $\lambda$, we need to find 
+	    end points $f_1$ and $f_2$. This system of equations provides solutions for
+	    those points:
+    </p>
+    
+    $$ 
+    \begin{align} 
+    	x - x_o &= \lambda f^\prime(x_o) f(x) - f(x_o) \\
+    					&= -\lambda \pm \ell/2 
+    \end{align} 
+    $$
+
+    <p>
+	    Solving these equations requires numerical optimization; 
+	    we will use linear and quadratic taylor series to simplify the 
+	    optimization processs.
+    </p>
+  </section>
+
+  <section class="sineillusion">
+    <h2>Y-axis Transformation</h2>
+    <h3>Linear and Quadratic Approximations</h3>
+    
+<div class="chunk" id="y-linearcorrectioncartoon"><div class="rimage center"><img src="figure/y-linearcorrectioncartoon-1.png" title="plot of chunk y-linearcorrectioncartoon" alt="plot of chunk y-linearcorrectioncartoon" class="plot" /></div></div>
+    <p style="font-size:75%">
+    	Substituting the endpoints $(x_1, y_1)$ and $(x_2, y_2)$ 
+    	into the general correction factor produces the linear and 
+    	quadratic corrections to the sine illusion
+    </p>
+  </section>
+
+  <section class="sineillusion">
+    <h2>Y-axis Transformation</h2>
+    <h3 style="margin-bottom:2em;">Linear Correction</h3>
+    
+    $$f(x)\approx f(x_0) + (x-x_0) f^\prime(x_0)$$
+    
+    <p style="margin-top:2em; margin-bottom:2em;"> 
+    	The correction factor is then 
+    </p>
+    
+    $$\ell_{new}(x_0) = \ell_{old}\sqrt{1+f^\prime(x_0)^2}$$
+    
+  </section>
+
+  <section class="sineillusion">
+    <h2>Y-axis Transformation</h2>
+    <h3>Linear Correction</h3>
+    
+<div class="chunk" id="ycorrection1"><div class="rimage center"><img src="figure/ycorrection1-1.png" title="plot of chunk ycorrection1" alt="plot of chunk ycorrection1" width="100%" class="plot" /></div></div>
+
+  </section>
+
+  <section class="sineillusion">
+    <h2>Y-axis Transformation</h2>
+    <h3 style="margin-bottom:2em;">Quadratic Correction</h3>
+    
+    $$f(x) \approx f(x_0) + f^\prime(x_0)(x-x_0) + 1/2 f^{\prime\prime}(x_0)(x-x_0)^2$$
+
+    <p style="margin-bottom:2em;margin-top:2em;">
+    	The general correction system of equation simplifies to
+    </p>
+    
+    $$ f^{\prime\prime}(x_0) f^\prime(x_0)^2 \lambda^2 + 
+    		2(f^\prime(x_0)^2 + 1) \lambda \pm \ell = 0, $$
+    
+  </section>
+
+  <section class="sineillusion">
+    <h2>Y-axis Transformation</h2>
+
+    <h3 style="margin-bottom:2em;">Quadratic Correction</h3>
+    <p style="margin-bottom:2em;">The corrections for the half lengths are then:</p>
+
+    <div style="font-size: 80%;margin-bottom:2em;">
+      $$
+      \begin{eqnarray} 
+      	\ell_{\text{new}_1}(x_0) &=& 1 /2 \cdot 
+      		\left(v + \sqrt{ v^2 + f^{\prime\prime}(x_0) f^\prime(x_0)^2\cdot
+      		\ell_{\text{old}}}\right) \cdot v^{-1/2} \\ 
+      \ell_{\text{new}_2}(x_0) &=& 1 /2 \cdot 
+      		\left(v + \sqrt{ v^2 - f^{\prime\prime}(x_0) f^\prime(x_0)^2\cdot
+      		\ell_{\text{old}}}\right) \cdot v^{-1/2} 
+      \end{eqnarray}
+      $$
+    </div> 
+    <p>where $v = 1 + f^\prime(x_0)^2$</p>
+
+    <p style="font-size:75%">In the quadratic correction, each half-length is corrected separately, producing a more robust correction</p>
+  </section>
+
+  <section class="sineillusion">
+    <h2>Y-axis Transformation</h2>
+    <h3>Quadratic Correction</h3>
+
+<div class="chunk" id="ycorrection2"><div class="rimage center"><img src="figure/ycorrection2-1.png" title="plot of chunk ycorrection2" alt="plot of chunk ycorrection2" width="100%" class="plot" /></div></div>
+  </section>
+
+  <section class="sineillusion">
+    <h2>Y-axis Transformation</h2>
+    <h3>Partial Transformations</h3>
+
+    <p style="margin-bottom:2em;">
+    	The y-axis transformation can be weighted in the 
+    	same manner as the x-axis transformation.
+    </p>
+
+    <p>
+    	A 
+    	<a href="https://srvanderplas.shinyapps.io/SineIllusionDemo" 
+    	target="_blank">Shiny applet</a> 
+    	was created to explore the x and y corrections.
+    </p>
+  </section>
+
+  <section class="sineillusion">
+    <h2>Testing the Corrections</h2><br>
+    <br>
+
+    <p style="margin-bottom:2em;">
+    	<strong>Goal</strong> : 
+    	Determine the strength of the Sine Illusion by measuring 
+    	how much correction is required for viewers to 
+    	say that the lines are of equal length.
+    </p>
+
+    <p>
+    	A different 
+    	<a href="http://glimmer.rstudio.com/srvanderplas/SineIllusionShiny/" 
+    	target="_blank">Shiny applet</a> 
+    	was created to allow users to manipulate the stimuli using 
+    	fine-grained adjustments to the weight value.
+    </p>
+  </section>
+
+  <section class="sineillusion">
+    <h2 style="margin-bottom:2em;">Participants</h2>
+
+    <ul style="margin-bottom:2em;">
+      <li> Participants were recruited using <a href="https://aws.amazon.com/mturk/" target="_blank">Amazon Mechanical Turk</a> and <a href=
+      "http://reddit.com/r/samplesize" target="_blank">Reddit</a>.
+       </li> 
+    </ul>
+
+    <ul>
+      <li> Using the <a href="http://glimmer.rstudio.com/srvanderplas/SineIllusionShiny/" target="_blank">shiny applet</a>, users could manipulate the
+      weight value presented using -/+ buttons until they were satisfied that the lines were of equal length. The trial was finished when users selected
+      the ‘submit’ button.
+       </li> 
+    </ul>
+  </section>
+
+  <section class="sineillusion">
+    <h2 style="margin-bottom:2em;">Data Collection</h2>
+
+    <ul>
+      <li style="margin-bottom:2em;">
+      	User identification information: 
+      	a ‘fingerprint’ consisting of hashed browser and computer 
+      	characteristics was used to identify unique users
+      </li> 
+      <li style="margin-bottom:2em;">
+      	IP address localization (34.45.38.XX) provided location information
+      </li> 
+      <li style="margin-bottom:2em;"
+      	>
+      	Every user interaction was recorded with a timestamp
+      </li> 
+      <li style="margin-bottom:2em;">
+      	Trial finished when user clicked either ‘submit’ or ‘skip’ to opt-out of the trial.
+      </li> 
+    </ul>
+  </section>
+
+  <section class="sineillusion">
+    <h2>Experiment Design</h2>
+
+    <ul style="margin-bottom:2em;">
+      <li style="margin-bottom:1em;"> 
+      	12 (or more) trials, 6 of each correction type<br>
+        
+        <ul>
+          <li style="margin-bottom:.5em;"> 
+          	Each user completed trials starting at 0 and 1 for both correction types
+          </li> 
+
+          <li> 
+          	Additional trials were selected using starting weights between 
+          	0.25 and 0.75, with point density highest around 0.6
+          </li> 
+
+          <li> 
+          	After 12 trials, weights were chosen from starting weights between 0 and 1 
+          </li> 
+        </ul>
+       </li> 
+    </ul>
+
+<div class="chunk" id="startingweights"><div class="rimage center"><img src="figure/startingweights-1.png" title="plot of chunk startingweights" alt="plot of chunk startingweights" width="90%" height="auto" class="plot" /></div></div>
+
+  </section>
+
+  <section class="sineillusion">
+    <h2>Data Inclusion Criteria</h2>
+    
+    <ul>
+      <li>         <p>Trial recorded at least two user interactions:<br>
+        The user must adjust the weight value at least once and then click the submit button.<br>
+        <br></p>
+       </li> 
+
+      <li>         <p>User completed at least 4 trials<br>
+        <br></p>
+       </li> 
+
+      <li>
+	User selected a weight value that was not severely over-corrected or under corrected (i.e.&nbsp;weight value selected was plausible)
+       </li> 
+    </ul>
+  </section>
+
+  <section class="sineillusion">
+    <h2>Data Inclusion Criteria</h2>
+
+    <h5>Implausibly Over-corrected and Under-corrected Answers</h5>
+
+<div class="chunk" id="datainclusioncriteria"><div class="rimage center"><img src="figure/datainclusioncriteria-1.png" title="Answers more extreme than these were excluded from the analysis." alt="Answers more extreme than these were excluded from the analysis." width="100%" class="plot" /></div></div>
+  </section>
+  
+
+
+  <section class="sineillusion">
+    <h2>Results</h2><br>
+    <br>
+
+    <h2>Included Data</h2>
+
+    <p>Once exclusion criteria were applied, our data consisted of 125 participants who completed 1210 valid trials.</p>
+  </section>
+
+  <section class="sineillusion">
+    <h2>Psychophysics Model</h2>
+
+<div class="chunk" id="methodofadjustment"><div class="rimage center"><img src="figure/methodofadjustment-1.png" title="Analysis Idea for Method of Adjustment" alt="Analysis Idea for Method of Adjustment" width="70%" class="plot" /></div></div>
+  </section>
+
+  <section class="sineillusion">
+    <h2>Psychophysics Model</h2>
+
+    <p><small>Let $\gamma_X$ represent the optimal weight value for the $X$-correction and $\gamma_Y$ represent the optimal weight value for the $Y$
+    correction.</small></p><br>
+    <br>
+
+    <p>$\gamma_\ast = \frac{1}{2}(w_0 + w_1)$</p><br>
+    <br>
+
+    <p>where $w_0$ is the preferred weight when starting at 0, and $w_1$ is the preferred weight when starting at 1.</p>
+  </section>
+
+  <section class="sineillusion">
+    <h2>Psychophysics Model</h2>
+<div class="chunk" id="psychophysics"><div class="rimage center"><img src="figure/psychophysics-1.png" title="plot of chunk psychophysics" alt="plot of chunk psychophysics" width="80%" class="plot" /></div></div>
+  </section>
+
+  <section class="sineillusion">
+    <h2>Random Effects Model</h2>
+
+    <ul>
+      <li> $W_{ij}$ the weight chosen by participant $i$ on trial $j$ </li> 
+
+      <li style="list-style: none"><br>
+      $$1 \le i \le `r nparticipant2`, 1 \le j \le n_i$$<br> </li> 
+
+      <li> $T(i,j)$ the correction type, where $T(i,j) \in \{X, Y\}$ </li> 
+
+      <li style="list-style: none"><br> </li> 
+
+      <li> Starting weight $X_{ij}$ </li> 
+
+      <li style="list-style: none"><br>
+      <br> </li> 
+
+      <li> $\alpha_\ast$, the lowest acceptable weight for correction type $\ast$ </li> 
+
+      <li> $\beta$, the acceptable weight value interval width </li> 
+
+      <li> Participant-level random intercept $\gamma_{i, \ast}$ </li> 
+    </ul>
+  </section>
+
+  <section class="sineillusion">
+    <h2>Random Effects Model</h2><br>
+    <br>
+    $$ W_{ij} = \alpha_{T(i,j)} + \beta X_{ij} + \gamma_{i, T(i,j)} + \epsilon_{ij}$$<br>
+    <br>
+    $$\gamma_{iX} \stackrel{\text{ i.i.d.}}{\sim} N(0, \eta_X^2) \ \ \ \ \ \ \ \ \gamma_{iY} \stackrel{\text{ i.i.d.}}{\sim} N(0, \eta_Y^2) $$
+    $$\epsilon_{ij} \stackrel{\text{ i.i.d.}}{\sim} N(0, \sigma^2) \ \ \ \ \ \ \ \ \text{Cov}(\gamma, \epsilon) = 0$$<br>
+    <br>
+
+    <p>The range of acceptable values is $$(\alpha_\ast, \alpha_\ast + \beta)$$</p>
+  </section>
+
+  <section class="sineillusion">
+    <h2>Random Effects Model</h2><br>
+    <br>
+    $$ W_{ij} = \alpha_{T(i,j)} + \beta X_{ij} + \gamma_{i, T(i,j)} + \epsilon_{ij}$$<br>
+    <br>
+    $$\gamma_{iX} \stackrel{\text{ i.i.d.}}{\sim} N(0, \eta_X^2) \ \ \ \ \ \ \ \ \gamma_{iY} \stackrel{\text{ i.i.d.}}{\sim} N(0, \eta_Y^2) $$
+    $$\epsilon_{ij} \stackrel{\text{ i.i.d.}}{\sim} N(0, \sigma^2) \ \ \ \ \ \ \ \ \text{Cov}(\gamma, \epsilon) = 0$$<br>
+    <br>
+
+    <p>We can compare this model to the psychophysics model using the midpoint of this interval, $$\alpha_\ast+\beta/2$$</p>
+  </section>
+
+  <section class="sineillusion">
+    <h2>Random Effects Model</h2><strong>Results</strong>
+
+    <div style="text-align: center">
+
+<!-- html table generated in R 3.1.3 by xtable 1.7-1 package -->
+<!-- Tue Mar 24 13:40:09 2015 -->
+<TABLE border=1>
+<TR> <TH> Transformation </TH> <TH> Threshold </TH> <TH> Estimate </TH> <TH> 95% C.I. </TH>  </TR>
+  <TR> <TD align="center"> X </TD> <TD align="center"> Lower </TD> <TD align="center"> 0.097 </TD> <TD align="center"> (0.048, 0.149) </TD> </TR>
+  <TR> <TD align="center">  </TD> <TD align="center"> Upper </TD> <TD align="center"> 0.625 </TD> <TD align="center"> (0.570, 0.684) </TD> </TR>
+  <TR> <TD align="center"> Y </TD> <TD align="center"> Lower </TD> <TD align="center"> 0.143 </TD> <TD align="center"> (0.094, 0.187) </TD> </TR>
+  <TR> <TD align="center">  </TD> <TD align="center"> Upper </TD> <TD align="center"> 0.671 </TD> <TD align="center"> (0.622, 0.717) </TD> </TR>
+   </TABLE>
+
+    </div>
+  </section>
+
+  <section class="sineillusion">
+    <h2>Random Effects Model</h2>
+<div class="chunk" id="ranef"><div class="rimage center"><img src="figure/ranef-1.png" title="plot of chunk ranef" alt="plot of chunk ranef" width="80%" class="plot" /></div></div>
+  </section>
+
+  <section class="sineillusion">
+    <h2>Conclusions</h2>
+
+    <ul style="margin-bottom:2em;">
+      <li>
+	       Either correction is preferrable to an uncorrected graph
+      </li> 
+
+      <li>
+         Corrections do not have to be fully applied to break the illusion’s power
+      </li> 
+
+      <li>
+         The sine illusion is strong enough to make participants think that lines of unequal length are equal
+      </li> 
+    </ul>
+
+    <h3>Importance to Statistical Graphics</h3>
+
+    <p>
+    	We can’t judge variability accurately when there is a nonlinear trend. 
+    	Knowing is half the battle; having tools to screen for this effect could 
+    	also be helpful.
+    </p>
+  </section>
+</section>
+
+<section class="liefactorsine">
+  <section class="liefactorsine" class="center">
+    <h2>The Curse of Three Dimensions</h2>
+    <h3>Why Your Brain is Lying to You</h3>
+
+<div class="chunk" id="sineillusion-original2"><div class="rimage center"><img src="figure/sineillusion-original2-1.png" title="plot of chunk sineillusion-original2" alt="plot of chunk sineillusion-original2" width="45%" class="plot" /></div></div>
+
+  </section>
+
+  <section class="liefactorsine">
+    <h3>Three-Dimensional Context</h3>
+
+<div class="chunk" id="sinedemo2"><div class="rimage center"><img src="figure/sinedemo2-1.png" title="plot of chunk sinedemo2" alt="plot of chunk sinedemo2" width="80%" height="auto" class="plot" /></div></div>
+
+  </section>
+  
+  <section class="liefactorsine">
+    <h2>Case Study</h2>
+    <table style="width:100%">
+      <tr>
+        <td style="vertical-align:middle;" width="75%">
+          <p style="text-align:left;">
+          	D.W., a woman with strabismic amblyopia (lazy eye)
+          </p>
+
+          <ul style="margin:20px;font-size:80%;">
+            <li style="margin:10px">
+            	Developed independent muscle control over each eye as a result of 
+            	treatment (complete patching) to strengthen her non-dominant eye 
+            </li> 
+
+            <li style="margin:10px">
+            	Disrupted development of binocular depth perception 
+            </li> 
+          </ul>
+        </td>
+        <td style="vertical-align:middle;width:25%;">
+
+<div class="chunk" id="mullerlyer"><div class="rimage center"><img src="figure/mullerlyer-1.png" title="plot of chunk mullerlyer" alt="plot of chunk mullerlyer" width="50%" height="auto" class="plot" /></div></div>
+
+      </tr>
+    </table>
+
+    <p style="text-align:center">
+    	We asked DW to evaluate several plots of the sine illusion at various 
+    	correction levels used in the experiment, as well as other depth illusions.
+    </p>
+  </section>
+
+  <section class="liefactorsine">
+    <h2>Case Study</h2>
+    <h3>Results</h3>
+
+    <ul style="margin:20px;font-size:80%;">
+      <li style="margin:10px">
+      	D.W. was not susceptible to the sine 
+      	illusion or the Muller-Lyer illusion 
+      </li> 
+
+      <li style="margin:10px">
+      	D.W. identified the partially corrected 
+      	images as having the same line length as well 
+      </li> 
+
+      <li style="margin:10px">
+     		Only the fully corrected plot of $y=\exp(x)$ 
+     		seemed to have lines of different length 
+     	</li> 
+    </ul>
+  </section>
+  
+  <section class="liefactorsine">
+  	<h2> Understanding the Illusion </h2>
+
+<div class="chunk" id="orthogonalwidth"><div class="rimage center"><img src="figure/orthogonalwidth-1.png" title="plot of chunk orthogonalwidth" alt="plot of chunk orthogonalwidth" width="55%" class="plot" /></div></div>
+
+		<p> 
+			We can correct the illusion by increasing the blue line's length 
+			until the red line is equal to the actual distance. 
+		</p>
+	</section>
+
+  <section class="liefactorsine">
+    <h2 style="padding-bottom:40px">
+    	The Psychological Lie Factor
+    </h2>
+    $$ 
+    	\text{Lie Factor} = 
+    		\frac{\text{Effect Size}_{graphic}}
+    				 {\text{Effect Size}_{data}} 
+    $$
+
+    <p style="margin-bottom:3em;"></p>
+    
+		$$ 
+			\text{Lie Factor (Brain)} = 
+				\frac{\text{Effect Size}_{perception}}
+						 {\text{Effect Size}_{graphic}} 
+		$$
+
+    
+  </section>
+
+	<section class="liefactorsine">
+		<h2> Experiment goals </h2>
+		<ul style="vertical-align:middle">
+			<li style="padding:20px"> 
+				Estimate the size of the distortion due to the sine illusion </li>
+			<li style="padding:20px"> 
+				Establish whether the distortion is similar across functions </li>
+			<li style="padding:20px"> 
+				Explore the variability in individuals' estimated distortion <br>
+				Is the distortion similar? If so, illusion is probably not due to experience alone </li>
+		</ul>
+	</section>
+	
+	<section class="liefactorsine">
+		<h2> Experimental Design </h2>
+		<ul>
+			<li style="padding:20px"> 
+				Show participants 6 sets of plots with the illusion corrected to different degrees in each plot 
+			</li>
+				<ul>
+					<li style="padding:10px"> 3 underlying functions: $y=\sin(x)$, $y=\exp(x)$, and $y=x^{-1}$ </li>
+					<li style="padding:10px"> Participants are shown 5 plots of $y=\sin(x)$ and 5 plots of either $y=\exp(x)$ or $y=x^{-1}$ </li>
+				</ul>
+		</ul>
+	</section>
+
+  <section class="liefactorsine">
+    <h2>The Psychological Lie Factor</h2>
+    <p style="font-size:75%">
+    	In which graph is the size of the curve most consistent?
+    </p>
+
+<div class="chunk" id="sine-stimulicorrectionsize"><div class="rimage center"><img src="figure/sine-stimulicorrectionsize-1.png" title="plot of chunk sine-stimulicorrectionsize" alt="plot of chunk sine-stimulicorrectionsize" width="60%" height="auto" class="plot" /></div></div>
+
+  </section>
+
+  <section class="liefactorsine">
+    <h2 style="margin-bottom:2em;">The Psychological Lie Factor</h2>
+    <p style="font-size:75%">
+    	In which graph is the size of the curve most consistent?
+    </p>
+    
+<div class="chunk" id="sine-stimulicorrectionsize-diff"><div class="rimage center"><img src="figure/sine-stimulicorrectionsize-diff-1.png" title="plot of chunk sine-stimulicorrectionsize-diff" alt="plot of chunk sine-stimulicorrectionsize-diff" width="60%" height="auto" class="plot" /></div></div>
+
+  </section>
+
+  <section class="liefactorsine">
+    <h2>The Psychological Lie Factor</h2>
+    <p style="font-size:75%">
+    	In which graph is the size of the curve most consistent?
+    </p>
+    
+<div class="chunk" id="inv-stimulicorrectionsize"><div class="rimage center"><img src="figure/inv-stimulicorrectionsize-1.png" title="plot of chunk inv-stimulicorrectionsize" alt="plot of chunk inv-stimulicorrectionsize" width="60%" height="auto" class="plot" /></div></div>
+
+  </section>
+
+  <section class="liefactorsine">
+    <h2>The Psychological Lie Factor</h2>
+    <p style="font-size:75%">
+    	In which graph is the size of the curve most consistent?
+    </p>
+    
+<div class="chunk" id="exp-stimulicorrectionsize"><div class="rimage center"><img src="figure/exp-stimulicorrectionsize-1.png" title="plot of chunk exp-stimulicorrectionsize" alt="plot of chunk exp-stimulicorrectionsize" width="60%" height="auto" class="plot" /></div></div>
+
+  </section>
+  
+	<section class="liefactorsine">
+		<h2> Experimental Design </h2>
+		<ul>
+			<li style="padding:20px"> 
+				Show participants 6 sets of plots with the illusion corrected to different degrees in each plot 
+			</li>
+				<ul>
+					<li> 3 underlying functions: $y=\sin(x)$, $y=\exp(x)$, and $y=x^{-1}$ </li>
+					<li> An individual is shown 5 plots of $y=\sin(x)$ and 5 plots of either $y=\exp(x)$ or $y=x^{-1}$ </li>
+				</ul>
+			<li style="padding:20px"> 
+				Participants choose one of the 6 sub-plots which they believe has lines which are the most uniform
+			</li>
+			<li style="padding:20px"> 
+				Individuals completing fewer than 10 trials were removed from the dataset before analysis. <br>
+				Analyzed data: 106 individuals, 1542 total trials 
+			</li>
+		</ul>
+	</section>
+
+  <section class="liefactorsine">
+    <h2>The Psychological Lie Factor</h2>
+    <table style="padding:20px">
+    <tr>
+    	<td style="text-align:left;">
+    		<h3>Lie Factor</h3>
+	    </td> 
+	    <td style="text-align:center;padding:10px;" colspan=2>
+		    $$
+		    		D_k = \frac{\displaystyle\max_{1\leq k \leq 6} \{\text{ line length } \}}
+		    								{\displaystyle\min_{1\leq k \leq 6} \{\text{ line length } \}} 
+		    				= \displaystyle\max_{1\leq k \leq 6} \{\text{ line length } \} 
+		    $$
+    	</td>
+    </tr>
+    <tr>
+    	<td colspan=3 style="text-align:center;padding:40px;">
+    		As not all stimuli contain uncorrected plots...
+    	</td>
+    </tr>
+    <tr>
+    	<td rowspan=2 style="text-align:left;vertical-align:middle;">
+    		<h3>Psychological<br>Lie Factor</h3>
+	    </td> 
+	    <td style="text-align:center;">
+		    <p style="padding-bottom:20px;">For participant $i$ and plot $j$,</p>
+	    	$$
+	    		P_{ij}=\frac{D_{ijk}}{\min_{1\leq k \leq 6} D_{ijk}}
+	    	$$
+	    	
+    	</td>
+    	<td style="text-align:left;max-width=25%;">
+    	<p style="font-size:75%"> Of the options available,<br>how distorted was<br>the chosen plot? </p>
+    	</td>
+    </tr>
+		<tr>
+			<td></td>
+	  	<td style="text-align:center;font-size:75%;padding-bottom:20px;">
+	    	This adjustment has a very conservative bias.
+	  	</td>
+	  	<td></td>
+	  </tr>
+	  <tr>
+	  	<td style="text-align:center;padding-bottom:20px;" colspan=3>
+	    	<p> When the lineup includes an uncorrected plot, $P_{ij}=D_{ij}$. </p>
+	  	</td>
+	  </tr>
+	  </table>
+  </section>
+  
+  <section class="liefactorsine">
+  	<h2> Model Details </h2>
+  	<p style="padding-bottom:2em;"> Flat priors, truncated normal data model (since $P_{ij}\geq 1$) </p>
+		$$
+			\begin{align}
+				\text{Priors} \pi(\theta) & = 0.4, 1 \leq \theta \leq 2.5\\
+				\hphantom{\text{Priors}} \pi(\sigma) & = 2.5, .1 \leq \sigma\leq .5\\
+				\text{Data Model: } f(\theta | P, \mu, \theta) &\sim \text{trunc.}N(\mu, \theta), $\theta\geq 1$
+			\end{align}
+		$$
+	</section>
+
+  <section class="liefactorsine">
+    <h2> Results </h2>
+    <h3> 4 individuals who completed at least 5 trials of each function type </h3>
+    
+<div class="chunk" id="overacheivers"><div class="rimage center"><img src="figure/overacheivers-1.png" title="plot of chunk overacheivers" alt="plot of chunk overacheivers" width="60%" height="auto" class="plot" /></div></div>
+	</section>
+
+  <section class="liefactorsine">
+    <h2> Results </h2>
+    <h3> Individual and Group Estimates for $\theta$ </h3>
+<div class="chunk" id="spaghetti"><div class="rimage center"><img src="figure/spaghetti-1.png" title="plot of chunk spaghetti" alt="plot of chunk spaghetti" width="70%" height="auto" class="plot" /></div></div>
+
+    <p>
+    	Estimated posterior densities for participant-specific 
+    	$\theta_i$ (in color) and overall density for $\theta$ shown in black.
+    </p>
+  </section>
+
+  <section class="liefactorsine">
+    <h2>Results</h2>
+
+<div class="chunk" id="individualCI"><div class="rimage center"><img src="figure/individualCI-1.png" title="plot of chunk individualCI" alt="plot of chunk individualCI" width="70%" height="auto" class="plot" /></div></div>
+
+    <p>
+    	95% posterior predictive intervals for $\theta_i$, for each function type. 
+    	Vertical lines indicate the median estimate of overall $\theta$ with a
+    	95% credible interval.
+    </p>
+  </section>
+
 </section>
 
 <section>
-  <h2 class="title"> Visual Aptitude and Data Displays </h2>
   <section>
+    <h2 class="title">Visual Aptitude and Data Displays</h2>
+    
   </section>
+  
 </section>
 
 <section>
-  <h2 class="title"> Hierarchy of Visual Features </h2>
-  <h3 class="title"> Why group beats trend, but error beats group </h3>
   <section>
+    <h2 class="title">Hierarchy of Visual Features</h2>
+    <h3 class="title">Why group beats trend, but error beats group</h3>
   </section>
+  
 </section>
 
-</div> <!-- slides -->
-</div> <!-- reveal -->
 
-<script src="lib/js/head.min.js"></script>
-<script src="js/reveal.js"></script>
+</div><!-- slides -->
+</div><!-- reveal -->
+<script src="lib/js/head.min.js"></script> 
+<script src="js/reveal.js"></script> 
 <script>
-	// Full list of configuration options available at:
-	// https://github.com/hakimel/reveal.js#configuration
-	Reveal.initialize({
-		controls: true,
-		progress: true,
-		history: true,
-		center: false,
-		slideNumber: true,
-		width: 1200,
-		height: 800,
-		margin: 0.05,
-		transition: 'fade', // none/fade/slide/convex/concave/zoom
-		// Optional reveal.js plugins
-		dependencies: [
-			{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
-			{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-			{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-			{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
-			{ src: 'plugin/zoom-js/zoom.js', async: true },
-			{ src: 'plugin/notes/notes.js', async: true },
-			{ src: 'plugin/math/math.js', async: true }
-		]
-	});
+// Full list of configuration options available at:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: false,
+        slideNumber: true,
+        width: 1200,
+        height: 800,
+        margin: 0.05,
+        transition: 'fade', // none/fade/slide/convex/concave/zoom
+        // Optional reveal.js plugins
+        dependencies: [
+        { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+        { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: 'plugin/zoom-js/zoom.js', async: true },
+        { src: 'plugin/notes/notes.js', async: true },
+        { src: 'plugin/math/math.js', async: true }
+        ]
+        });
 </script>
-</body>
+	</body>
 </html>
