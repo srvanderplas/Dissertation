@@ -1176,8 +1176,9 @@ end.rcode-->
           </div>
         </td>
         <td style="padding-left:50px;vertical-align:bottom;">
+        <div class="fragment" data-fragment-index=4>
           <h5> <b> Evaluation Level </b> </h5>
-          <div style="font-size:75%;" class="fragment" data-fragment-index=4>
+          <div style="font-size:75%;" >
             <ul>
               <li> Participants evaluate 10 plots: </li>
               <ul>
@@ -1186,6 +1187,7 @@ end.rcode-->
               </ul>
             </ul>
           </div>
+        	</div>
         </td>
       </tr>
     </table>
@@ -1482,10 +1484,10 @@ ggplot(data=gvl.fixef[-1,]) +
   coord_flip() + 
   theme_bw() + 
   geom_hline(yintercept=1, colour="gray70") + 
-  ggtitle("Odds of Selecting Group vs Line Target \n (given one target was identified)") + 
+  ggtitle("Odds of Selecting Cluster vs Trend Target \n (given one target was identified)") + 
   xlab("Plot Type") + 
   geom_text(aes(y=0.25, x=label, label=letters)) + 
-  scale_y_continuous("Odds (Group vs Line) and 95% Wald Intervals\n(Reference level: Plain plot)", 
+  scale_y_continuous("Odds (Cluster vs Trend) and 95% Wald Intervals\n(Reference level: Plain plot)", 
                      breaks=c(0.2, 0.5, 1.0, 1.5, 2.0, 2.4), labels=c("<--Trend\n  Target", "0.5", "1.0", "1.5", "2.0", "Cluster-->\nTarget  "), limits=c(0.2, 2.4))
 end.rcode-->
     <p style="font-size:50%;text-align:center;">Plot types are significantly different if they do not share a letter</p>
