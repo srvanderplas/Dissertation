@@ -92,3 +92,7 @@ li.smalleqns span.MathJax{
 .reveal a {
   color:#000000;
 }
+
+.reveal p > a[id*="bib"], .reveal p > a[href*="#cite"] {
+	display:'none';
+}
