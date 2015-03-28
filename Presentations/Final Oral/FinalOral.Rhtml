@@ -214,9 +214,25 @@ axis.text = element_blank()) + coord_equal(ratio=1)
 end.rcode-->
   </section>
 
+	<section class="sineillusion overview">
+		<h2> Summary </h2>
+		<ul>
+			<li style="padding:10px;"> Derives $x$ and $y$ corrections to the sine illusion </li> 
+			<li style="padding:10px;"> Provides real-world examples of the sine illusion's effects </li>
+			<li style="padding:10px;"> Experimentally evaluated the illusion's strength (and the correction's utility) </li>
+			<li style="padding:10px;"> Experimental setup: Method of Adjustment, Data analyzed using linear random effects model </li>
+			<li style="padding:10px;"> Conclusion: Sine illusion corrections are effective, the illusion has a significant effect, and full correction is not required </li>
+		</ul>
+	</section>
+	
+	<section class="sineillusion overview">
+    <h2> Summary - Results </h2>
+		<img src="figure/ranef-1.png" width='80%' height='auto' />
+  </section>
+
   <section class="sineillusion">
     <h2>Example</h2>
-    <p>8-hour Average Ozone Levels in Houston, TX by temperature at Hobby Airport</p>
+    <p style="font-size:80%">8-hour Average Ozone Levels in Houston, TX by temperature at Hobby Airport</p>
 <!--begin.rcode  example-sineillusion, echo=FALSE, fig.width=5, fig.height=4, out.width="50%", out.height='auto'
 datasub <- read.csv(paste(datadir, "Ozone-subset.csv", sep=""))
 nsite <- length(unique(datasub$SiteID))
@@ -229,7 +245,7 @@ end.rcode-->
 
   <section class="sineillusion">
     <h2>Example</h2>
-    <p>Residual Ozone Levels in Houston, TX by temperature at Hobby Airport</p>
+    <p style="font-size:80%">Residual Ozone Levels in Houston, TX by temperature at Hobby Airport</p>
 
 <!--begin.rcode  example-sineillusion2,echo=F,fig.width=5, fig.height=4, dependson='example-sineillusion', out.width="50%", out.height='auto'
 b
@@ -264,14 +280,21 @@ end.rcode-->
   <section class="sineillusion">
     <h2>Explaining the Illusion</h2><small>The sine illusion results from misapplication of a three-dimensional visual heuristic to ambiguous
     two-dimensional images</small> 
-
-<!--begin.rcode  ribbon-illusion2, dev.args = list(bg = 'transparent'), echo=F, fig.width=8, fig.height=6, out.width='60%', fig.cap='Perspective plot of the same data, with a vanishing point closer to infinity'
+		<table>
+		<tr>
+		<td width="60%">
+<!--begin.rcode  ribbon-illusion2, dev.args = list(bg = 'transparent'), echo=F, fig.width=8, fig.height=6, out.width='100%', fig.cap='Perspective plot of the same data, with a vanishing point closer to infinity'
 usr <- par("usr")
 par(mar=c(0, 0, 0, 0))
 persp(x, z, data.persp,  xlab="", ylab="", zlab="", theta=0, phi=45, border="black", shade=.35, col="white", xlim=c(-pi/12, 2*pi+pi/12), ylim=c(-1.75, 1.75), scale=FALSE, box=FALSE, expand=3/pi, d=50) # , ltheta=0, lphi=-15
 end.rcode-->
-     <small>In this figure, the vanishing point has been moved towards infinity; the lines are straight and closer to the appearance of the sine illusion.
-    The three-dimensional appearance is still intact.</small>
+		</td>
+		<td style="font-size:75%">
+		In this figure, the vanishing point has been moved towards infinity: <br> the lines are straight and closer to the appearance of the sine illusion.<br><br>
+    The three-dimensional appearance is still intact.
+    </td>
+    </tr>
+    </table>
   </section>
   
   <section class="sineillusion">
@@ -279,6 +302,9 @@ end.rcode-->
 
     <h3>Context Matters</h3>
     
+		<table>
+		<tr>
+		<td width="60%">
 <!--begin.rcode originalgrid, echo=F, fig.width=7.5, fig.height=6, out.width='40%'
 f <- function(x) 2*sin(x)
 fprime <- function(x) 2*cos(x)
@@ -298,14 +324,19 @@ axis.text = element_blank(),
 plot.margin = unit(c(0,-.5,-.5,-1), "cm")) + coord_equal(ratio=1) + 
 geom_segment(size=2, data=dframe[c(31, 38),]) 
 end.rcode-->
-
-    <ul>
-      <li style="font-size:75%">
+		</td>
+		<td style="font-size:75%">
+<ul>
+      <li>
       		Cleveland and McGill (1984) demonstrated that we can compare the length of two lines accurately
       </li>
 
-      <li style="font-size:75%">Day and Stecher (1991) showed that the illusion persists if there is curvature in the underlying function</li>
+      <li>Day and Stecher (1991) showed that the illusion persists if there is curvature in the underlying function</li>
     </ul>
+    </td>
+    </tr>
+    </table>
+    
   </section>
 
   <section class="sineillusion">
@@ -573,7 +604,7 @@ end.rcode-->
 
   <section class="sineillusion">
     <h2>X-axis Transformation</h2>
-<!--begin.rcode xaxisdemoweight,echo=F,fig.width=12.5, fig.height=8.25, out.width='90%'
+<!--begin.rcode xaxisdemoweight,echo=F,fig.width=12.5, fig.height=8.25, out.width='75%'
 correctx <- function(z, fprime, a=0, b=2*pi, w=1) {
 	const <- integrate(function(x) abs(fprime(x)), a, b)$value
 	trans <- sapply(z, function(i) integrate(function(x) abs(fprime(x)), a, i)$value*(b-a)/const + a)
@@ -653,7 +684,10 @@ end.rcode-->
   <section class="sineillusion">
     <h2>Y-axis Transformation</h2>
     <h3>General Correction</h3>
-<!--begin.rcode y-generalcorrectioncartoon, echo=F, fig.width=7, fig.height=6, out.width='50%'
+    <table>
+		<tr>
+		<td width="60%">
+<!--begin.rcode y-generalcorrectioncartoon, echo=F, fig.width=7, fig.height=6, out.width='40%'
 f <- function(x) 2*sin(x)
 fprime <- function(x) 2*cos(x)
 f2prime <- function(x) -2*sin(x)
@@ -685,8 +719,14 @@ geom_text(data=dfsec, aes(x=sec.xend, y=sec.yend-.08, label="paste(group('(',lis
 geom_text(data=dfslope, aes(x=xend+.1, y=yend+.1, label="slope: paste(f, \"'\", (x))"), parse=TRUE, hjust=.75, vjust=1) +
 coord_equal(ratio=1) + theme(axis.title=element_blank(), axis.text=element_blank(), axis.ticks=element_blank(), axis.line=element_blank(), panel.grid=element_blank(), plot.margin = unit(c(-1,-1,-2,-2), "lines")) 
 end.rcode-->
-    <p style="font-size:75%;">If we extend the line length so that the extant width matches the original vertical length, our perceptions will match the original
+		</td>
+		<td style="font-size:75%">
+		<p>If we extend the line length so that the extant width matches the original vertical length, our perceptions will match the original
     data.</p>
+    </td>
+    </tr>
+    </table>
+    
   </section>
 
   <section class="sineillusion">
@@ -977,16 +1017,13 @@ end.rcode-->
   </section>
 
   <section class="sineillusion">
-    <h2 style="margin-bottom:2em;">Participants</h2>
+    <h2 style="margin-bottom:.5em;">Participants</h2>
 
-    <ul style="margin-bottom:2em;">
-      <li> Participants were recruited using <a href="https://aws.amazon.com/mturk/" target="_blank">Amazon Mechanical Turk</a> and <a href=
+    <ul style="text-align:left;">
+      <li style="margin-bottom:.5em;"> Participants were recruited using <a href="https://aws.amazon.com/mturk/" target="_blank">Amazon Mechanical Turk</a> and <a href=
       "http://reddit.com/r/samplesize" target="_blank">Reddit</a>.
        </li> 
-    </ul>
-
-    <ul>
-      <li> Using the <a href="http://glimmer.rstudio.com/srvanderplas/SineIllusionShiny/" target="_blank">shiny applet</a>, users could manipulate the
+      <li style="margin-bottom:.5em;"> Using the <a href="http://glimmer.rstudio.com/srvanderplas/SineIllusionShiny/" target="_blank">shiny applet</a>, users could manipulate the
       weight value presented using -/+ buttons until they were satisfied that the lines were of equal length. The trial was finished when users selected
       the ‘submit’ button.
        </li> 
@@ -994,7 +1031,7 @@ end.rcode-->
   </section>
 
   <section class="sineillusion">
-    <h2 style="margin-bottom:2em;">Data Collection</h2>
+    <h2 style="margin-bottom:.5em;">Data Collection</h2>
 
     <ul>
       <li style="margin-bottom:2em;">
@@ -1018,7 +1055,7 @@ end.rcode-->
   <section class="sineillusion">
     <h2>Experiment Design</h2>
 
-    <ul style="margin-bottom:2em;">
+    <ul style="margin-bottom:1em;">
       <li style="margin-bottom:1em;"> 
       	12 (or more) trials, 6 of each correction type<br>
         
@@ -1039,11 +1076,11 @@ end.rcode-->
        </li> 
     </ul>
 
-<!--begin.rcode  startingweights,echo=F,fig.width=8, fig.height=1.25, out.width='90%', out.height='auto'
+<!--begin.rcode startingweights, dev.args = list(bg = 'transparent'), echo=F, fig.width=8, fig.height=1.5, out.width='70%', out.height='auto', dpi=100
 diffs <- c(0, .5, .5, .5, .5, .25, .25, .25, .25, .25, .25, .25, .25, .1, .1, .05, .05, .05, .05, .05, .05, .025, .025, .025, .025, .025, .025, .025, .025, .025, .025, .025, .025, .05, .05, .05, .05, .1, .1, .1, .1, .1, .25, .25, .25, .25, .25, .25, .5, .5, .5, .5)
 wopts <- -4 +cumsum(diffs)
 w01 <- wopts[(wopts <= 0.75) & (wopts >= 0.25)]
-ggplot() + geom_vline(xintercept =c(0,1), colour="grey80") + theme_bw() + ylim(c(0.8, 1.2))+ geom_point(aes(x=wopts, y=rep(1, length(wopts))), size=1) + geom_point(aes(x=w01, y=rep(1, length(w01))), size=3) + theme(axis.ticks.y=element_blank(), axis.text.y=element_blank(), axis.title=element_blank())  + geom_point(aes(x=c(0, 1), y=rep(1, 2)),  size=5) + theme(axis.ticks.y=element_blank(), axis.text.y=element_blank(), plot.margin=unit(c(0,0,0,0), "cm")) + xlim(c(-0.05,1.05)) + ggtitle("Trial Starting Weights")
+ggplot() + geom_vline(xintercept =c(0,1), colour="grey80") + theme_bw() + ylim(c(0.9, 1.1))+ geom_point(aes(x=wopts, y=rep(1, length(wopts))), size=1) + geom_point(aes(x=w01, y=rep(1, length(w01))), size=3) + theme(axis.ticks.y=element_blank(), axis.text.y=element_blank(), axis.title=element_blank())  + geom_point(aes(x=c(0, 1), y=rep(1, 2)),  size=5) + theme(axis.ticks.y=element_blank(), axis.text.y=element_blank(), plot.background=element_rect(fill="transparent", color=NA)) + xlim(c(-0.05,1.05)) + ggtitle("Trial Starting Weights")
 end.rcode-->
 
   </section>
@@ -1052,17 +1089,14 @@ end.rcode-->
     <h2>Data Inclusion Criteria</h2>
     
     <ul>
-      <li>         <p>Trial recorded at least two user interactions:<br>
-        The user must adjust the weight value at least once and then click the submit button.<br>
-        <br></p>
+      <li style="margin-bottom:20px;">Trial recorded at least two user interactions:<br>
+        The user must adjust the weight value at least once and then click the submit button.
        </li> 
 
-      <li>         <p>User completed at least 4 trials<br>
-        <br></p>
+      <li style="margin-bottom:20px;"> User completed at least 4 trials
        </li> 
 
-      <li>
-	User selected a weight value that was not severely over-corrected or under corrected (i.e.&nbsp;weight value selected was plausible)
+      <li>	User selected a weight value that was not severely over-corrected or under corrected (i.e.&nbsp;weight value selected was plausible)
        </li> 
     </ul>
   </section>
@@ -1072,7 +1106,7 @@ end.rcode-->
 
     <h5>Implausibly Over-corrected and Under-corrected Answers</h5>
 
-<!--begin.rcode  datainclusioncriteria,echo=F,fig.width=8, fig.height=4, out.width='100%',fig.cap="Answers more extreme than these were excluded from the analysis."
+<!--begin.rcode  datainclusioncriteria, dev.args = list(bg = 'transparent'),echo=F,fig.width=8, fig.height=4, out.width='100%',fig.cap="Answers more extreme than these were excluded from the analysis."
 f <- sin
 fprime <- cos
 f2prime <- function(x) -sin(x)
@@ -1104,8 +1138,8 @@ correction.extremes <- rbind(ycorrlow,ycorrhigh,xcorrlow,xcorrhigh)
 qplot(data=correction.extremes, geom="segment", x=xstart, xend=xend, y=ystart, yend=yend) +
 facet_grid(corr~level) + ylab("") + xlab("")  +
 theme(panel.grid.major=element_blank(), panel.background = element_rect(fill = "white", 
-colour = "black"), plot.margin = unit(c(0,0,0,0), "cm"), 
-panel.grid.minor=element_blank(), panel.background=element_blank(),
+colour = "black"), plot.background=element_rect(fill="transparent", color=NA), 
+panel.grid.minor=element_blank(), strip.background=element_rect(fill="white", color="black"),
 axis.title = element_blank(), axis.ticks = element_blank(), 
 axis.text = element_blank()) + coord_equal(ratio=1)
 end.rcode-->
@@ -1307,9 +1341,8 @@ end.rcode-->
 
   <section class="sineillusion">
     <h2>Results</h2><br>
-    <br>
 
-    <h2>Included Data</h2>
+    <h3>Included Data</h3>
 
     <p>Once exclusion criteria were applied, our data consisted of 125 participants who completed 1210 valid trials.</p>
   </section>
@@ -1353,7 +1386,7 @@ scale_linetype_manual("", values=c("Detection Probability"=1, "Detection Thresho
 theme_bw() + 
 scale_y_continuous(breaks=c(0, .25, .5, .75, 1), labels=c("0", "0.25", "0.5", "0.75", "1.0")) + 
 scale_x_continuous(breaks=c(0, 2.5, 5, 7.5, 10)) + 
-theme(legend.position=c(.2, .58), legend.title=element_blank()) + 
+theme(legend.position=c(.2, .58), legend.title=element_blank(), legend.box.just="left") + 
 ggtitle("Method of Adjustment")
 end.rcode-->
   </section>
@@ -1361,11 +1394,10 @@ end.rcode-->
   <section class="sineillusion">
     <h2>Psychophysics Model</h2>
 
-    <p><small>Let $\gamma_X$ represent the optimal weight value for the $X$-correction and $\gamma_Y$ represent the optimal weight value for the $Y$
-    correction.</small></p><br>
-    <br>
+    <p>Let $\gamma_X$ represent the optimal weight value for the $X$-correction and $\gamma_Y$ represent the optimal weight value for the $Y$
+    correction.</p><br>
 
-    <p>$\gamma_\ast = \frac{1}{2}(w_0 + w_1)$</p><br>
+    $$\gamma_\ast = \frac{1}{2}(w_0 + w_1)$$
     <br>
 
     <p>where $w_0$ is the preferred weight when starting at 0, and $w_1$ is the preferred weight when starting at 1.</p>
@@ -1373,7 +1405,7 @@ end.rcode-->
 
   <section class="sineillusion">
     <h2>Psychophysics Model</h2>
-<!--begin.rcode psychophysics,echo=F,fig.width=8, fig.height=5, out.width='80%'
+<!--begin.rcode psychophysics, dev.args = list(bg = 'transparent'),echo=F,fig.width=8, fig.height=5, out.width='80%'
 dt.int <- ddply(user.avg.all, .(type), summarize, overall.avg=unique(overall.avg), sd=sd(avg))
 model <- lm(avg~type-1, data=user.avg.all)
 temp <- as.data.frame(cbind(coef(model), confint(model)))
@@ -1398,7 +1430,7 @@ scale_colour_manual("Transformation", values=c("#d6604d", "#4393c3"), guide="non
 scale_linetype_discrete("Model") +
 theme_bw() + #theme(legend.position="bottom") +
 xlim(c(-.2, 1.2)) + xlab("Optimal Weight") + ylab("Density") +
-theme(legend.position=c(.9,.8))
+theme(legend.position=c(.9,.8), plot.background=element_rect(fill="transparent", color=NA))
 end.rcode-->
   </section>
 
@@ -1406,19 +1438,15 @@ end.rcode-->
     <h2>Random Effects Model</h2>
 
     <ul>
-      <li> $W_{ij}$ the weight chosen by participant $i$ on trial $j$ </li> 
+      <li style="margin-bottom:10px"> $W_{ij}$ the weight chosen by participant $i$ on trial $j$ </li> 
 
-      <li style="list-style: none"><br>
-      $$1 \le i \le `r nparticipant2`, 1 \le j \le n_i$$<br> </li> 
+      $$1 \le i \le 125, 1 \le j \le n_i$$ </li> 
 
-      <li> $T(i,j)$ the correction type, where $T(i,j) \in \{X, Y\}$ </li> 
+      <li style="margin-top:10px;margin-bottom:30px"> $T(i,j)$ the correction type, where $T(i,j) \in \{X, Y\}$ </li> 
 
-      <li style="list-style: none"><br> </li> 
 
-      <li> Starting weight $X_{ij}$ </li> 
+      <li style="margin-bottom:30px"> Starting weight $X_{ij}$ </li> 
 
-      <li style="list-style: none"><br>
-      <br> </li> 
 
       <li> $\alpha_\ast$, the lowest acceptable weight for correction type $\ast$ </li> 
 
@@ -1430,26 +1458,32 @@ end.rcode-->
 
   <section class="sineillusion">
     <h2>Random Effects Model</h2><br>
-    <br>
-    $$ W_{ij} = \alpha_{T(i,j)} + \beta X_{ij} + \gamma_{i, T(i,j)} + \epsilon_{ij}$$<br>
-    <br>
-    $$\gamma_{iX} \stackrel{\text{ i.i.d.}}{\sim} N(0, \eta_X^2) \ \ \ \ \ \ \ \ \gamma_{iY} \stackrel{\text{ i.i.d.}}{\sim} N(0, \eta_Y^2) $$
-    $$\epsilon_{ij} \stackrel{\text{ i.i.d.}}{\sim} N(0, \sigma^2) \ \ \ \ \ \ \ \ \text{Cov}(\gamma, \epsilon) = 0$$<br>
-    <br>
 
-    <p>The range of acceptable values is $$(\alpha_\ast, \alpha_\ast + \beta)$$</p>
+    $$ W_{ij} = \alpha_{T(i,j)} + \beta X_{ij} + \gamma_{i, T(i,j)} + \epsilon_{ij}$$<br>
+    $$
+    \begin{align}
+    \gamma_{iX} &\stackrel{\text{ i.i.d.}}{\sim} N(0, \eta_X^2) \\
+    \gamma_{iY} &\stackrel{\text{ i.i.d.}}{\sim} N(0, \eta_Y^2) \\
+    \epsilon_{ij} &\stackrel{\text{ i.i.d.}}{\sim} N(0, \sigma^2)\\
+    \text{Cov}(\gamma, \epsilon) &= 0
+    \end{align}$$
+    <br>
+    <p style="margin-top:20px">The range of acceptable values is $$(\alpha_\ast, \alpha_\ast + \beta)$$</p>
   </section>
 
   <section class="sineillusion">
     <h2>Random Effects Model</h2><br>
-    <br>
+    
     $$ W_{ij} = \alpha_{T(i,j)} + \beta X_{ij} + \gamma_{i, T(i,j)} + \epsilon_{ij}$$<br>
+    $$
+    \begin{align}
+    \gamma_{iX} &\stackrel{\text{ i.i.d.}}{\sim} N(0, \eta_X^2) \\
+    \gamma_{iY} &\stackrel{\text{ i.i.d.}}{\sim} N(0, \eta_Y^2) \\
+    \epsilon_{ij} &\stackrel{\text{ i.i.d.}}{\sim} N(0, \sigma^2)\\
+    \text{Cov}(\gamma, \epsilon) &= 0
+    \end{align}$$
     <br>
-    $$\gamma_{iX} \stackrel{\text{ i.i.d.}}{\sim} N(0, \eta_X^2) \ \ \ \ \ \ \ \ \gamma_{iY} \stackrel{\text{ i.i.d.}}{\sim} N(0, \eta_Y^2) $$
-    $$\epsilon_{ij} \stackrel{\text{ i.i.d.}}{\sim} N(0, \sigma^2) \ \ \ \ \ \ \ \ \text{Cov}(\gamma, \epsilon) = 0$$<br>
-    <br>
-
-    <p>We can compare this model to the psychophysics model using the midpoint of this interval, $$\alpha_\ast+\beta/2$$</p>
+    <p>We can compare this model to the psychophysics model using the interval midpoint, $$\alpha_\ast+\beta/2$$</p>
   </section>
 
   <section class="sineillusion">
@@ -1483,7 +1517,7 @@ end.rcode-->
 
   <section class="sineillusion">
     <h2>Random Effects Model</h2>
-<!--begin.rcode ranef, echo=F, fig.width=8, fig.height=5, out.width='80%'
+<!--begin.rcode ranef, dev.args = list(bg = 'transparent'), echo=F, fig.width=8, fig.height=5, out.width='80%'
 
 ggplot() + theme_bw() + facet_grid(type~., scales="free") + ylim(c(0, 27)) +
 geom_rect(data=ints.all, aes(xmin=xmin, xmax=xmax, ymin=ymin, ymax=ymax), 
@@ -1503,7 +1537,7 @@ geom_errorbarh(aes(xmin=xmin, x=x, xmax=xmax, y=20, color=limit), data=ints) +
 geom_point(aes(x=ests, y=20), data=ests) +
 xlim(c(-.2, 1.2)) +
 geom_text(data=ints, aes(x=x, y=22.5, label=label), parse=TRUE) + 
-geom_text(data=ints.all, colour="grey30", aes(x=x, y=15.5, label="Range of\nacceptable weights")) + theme(plot.margin=unit(c(0,0,0,0), unit="cm"), legend.position=c(.92, .85))
+geom_text(data=ints.all, colour="grey30", aes(x=x, y=15.5, label="Range of\nacceptable weights")) + theme(plot.background=element_rect(fill="transparent", color=NA), panel.background=element_rect(fill="white", color="black"), legend.position=c(.92, .85))
 end.rcode-->
   </section>
 
@@ -1526,11 +1560,11 @@ end.rcode-->
 
     <h3>Importance to Statistical Graphics</h3>
 
-    <p>
-    	We can’t judge variability accurately when there is a nonlinear trend. 
-    	Knowing is half the battle; having tools to screen for this effect could 
+    <ul>
+    	<li> We can’t judge variability accurately when there is a nonlinear trend. </li>
+    	<li> Knowing is half the battle; having tools to screen for this effect could </li>
     	also be helpful.
-    </p>
+    </ul>
   </section>
 </section>
 
@@ -1540,6 +1574,9 @@ end.rcode-->
     <h3>Why Your Brain is Lying to You</h3>
 
 <!--begin.rcode  sineillusion-original2, dev.args = list(bg = 'transparent'), echo=FALSE, fig.width=6.125, fig.height=5, out.width='45%'
+f <- function(x) 2*sin(x)
+fprime <- function(x) 2*cos(x)
+f2prime <- function(x) -2*sin(x)
 qplot(x=x, xend=xend, y = ystart, yend=yend, geom="segment", data=createSine(40, 1, f=f, fprime=fprime, f2prime)) +
 	theme(panel.grid.major=element_blank(), 
 				panel.background = element_rect(fill = "transparent", colour = NA), 
@@ -1552,7 +1589,20 @@ qplot(x=x, xend=xend, y = ystart, yend=yend, geom="segment", data=createSine(40,
 end.rcode-->
 
   </section>
-
+	
+	<section class="liefactorsine overview">
+		<h2> Summary </h2>
+		<ul>
+			<li style="padding:10px"> Explores the illusion's perceptual foundation: misapplied depth perception </li>
+			<li style="padding:10px"> Examines the illusion using a psychological analogue to Tufte's Lie Factor </li>
+			<li style="padding:10px"> Case study: <br>An individual with no depth perception is immune to the illusion </li>
+			<li style="padding:10px"> Experiment varied underlying function, correction type, and correction weight </li>
+			<li style="padding:10px"> Conclusion: 
+			<ul> <li> Sine illusion is remarkably consistent across participants</li> <li> Illusion is likely due to underlying psychological heuristics rather than personal preferences or life experience </li> </ul>
+			</li>
+		</ul>
+	</section>
+	
   <section class="liefactorsine">
     <h3>Three-Dimensional Context</h3>
 
@@ -1604,7 +1654,7 @@ end.rcode-->
           	D.W., a woman with strabismic amblyopia (lazy eye)
           </p>
 
-          <ul style="margin:20px;font-size:80%;">
+          <ul style="margin:20px;font-size:85%;">
             <li style="margin:10px">
             	Developed independent muscle control over each eye as a result of 
             	treatment (complete patching) to strengthen her non-dominant eye 
@@ -1654,18 +1704,18 @@ end.rcode--></td>
     <h2>Case Study</h2>
     <h3>Results</h3>
 
-    <ul style="margin:20px;font-size:80%;">
-      <li style="margin:10px">
+    <ul style="margin:20px;font-size:85%;">
+      <li style="margin:20px">
       	D.W. was not susceptible to the sine 
       	illusion or the Muller-Lyer illusion 
       </li> 
 
-      <li style="margin:10px">
+      <li style="margin:20px">
       	D.W. identified the partially corrected 
       	images as having the same line length as well 
       </li> 
 
-      <li style="margin:10px">
+      <li style="margin:20px">
      		Only the fully corrected plot of $y=\exp(x)$ 
      		seemed to have lines of different length 
      	</li> 
@@ -1738,7 +1788,9 @@ end.rcode-->
 						 {\text{Effect Size}_{graphic}} 
 		$$
 
-    <!--rinline print(bib[key="tufte"], .opts=list(style="html"))-->
+<!--begin.rcode, echo=F, results='asis'
+ print(bib[["tufte"]], .opts=list(style="html", bib.style="authortitle"))
+end.rcode-->
   </section>
 
 	<section class="liefactorsine">
@@ -1934,12 +1986,11 @@ end.rcode-->
 	    	$$
 	    	
     	</td>
-    	<td style="text-align:left;max-width=25%;">
+    	<td style="text-align:right;max-width=20%;">
     	<p style="font-size:75%"> Of the options available,<br>how distorted was<br>the chosen plot? </p>
     	</td>
     </tr>
 		<tr>
-			<td></td>
 	  	<td style="text-align:center;font-size:75%;padding-bottom:20px;">
 	    	This adjustment has a very conservative bias.
 	  	</td>
@@ -1958,8 +2009,8 @@ end.rcode-->
   	<p style="padding-bottom:2em;"> Flat priors, truncated normal data model (since $P_{ij}\geq 1$) </p>
 		$$
 			\begin{align}
-				\text{Priors} \pi(\theta) & = 0.4, 1 \leq \theta \leq 2.5\\
-				\hphantom{\text{Priors}} \pi(\sigma) & = 2.5, .1 \leq \sigma\leq .5\\
+				\text{Priors: } \pi(\theta) & = 0.4, 1 \leq \theta \leq 2.5\\
+				\hphantom{\text{Priors: }} \pi(\sigma) & = 2.5, .1 \leq \sigma\leq .5\\
 				\text{Data Model: } f(\theta | P, \mu, \theta) &\sim \text{trunc.}N(\mu, \theta), $\theta\geq 1$
 			\end{align}
 		$$
@@ -1967,9 +2018,9 @@ end.rcode-->
 
   <section class="liefactorsine">
     <h2> Results </h2>
-    <h3> 4 individuals who completed at least 5 trials of each function type </h3>
+    <h4> 4 individuals who completed at least 5 trials of each function type </h4>
     
-<!--begin.rcode  overacheivers, echo=FALSE, fig.width=7, fig.height=3, dev.args = list(bg = 'transparent'), out.width='60%', out.height='auto', warning=FALSE, message=FALSE
+<!--begin.rcode  overacheivers, echo=FALSE, fig.width=7, fig.height=3.5, dev.args = list(bg = 'transparent'), out.width='80%', out.height='auto', warning=FALSE, message=FALSE
 load("../../Code/lieFactorSine/BayesAnalysis.Rdata")
 
 # Plot 4 individuals who did at least 6 figures of each trial 
@@ -1978,9 +2029,10 @@ qplot(data=subset(test.mean, ip.id%in%ipsubset),
   facet_grid(.~ip.id, labeller=par_labeller) + 
 	scale_colour_discrete("Function Type") + 
 	theme_bw() + 
-  theme(plot.background=element_rect(fill = "transparent", color=NA)) + 
+  theme(plot.background=element_rect(fill = "transparent", color=NA), legend.position="bottom", legend.background=element_rect(fill="transparent", color=NA)) + 
 	ylab("Density") + 
-	scale_x_continuous(breaks=c(1, 1.5, 2), limits=c(1, 2), name="Mean Psychological Lie Factor")
+	scale_x_continuous(breaks=c(1, 1.5, 2), limits=c(1, 2), name="Mean Psychological Lie Factor") + 
+	guides(color = guide_legend(override.aes = list(size = 3)))
 end.rcode-->
 	</section>
 
@@ -2027,13 +2079,389 @@ end.rcode-->
 
 </section>
 
+<!--begin.rcode visualAptitude-setup, echo=FALSE, include=FALSE 
+datadir <- "../../Data/VisualAptitude/"
+codedir <- "../../Code/VisualAptitude/"
+
+source(paste(codedir, "Analysis.R", sep=""))
+
+sanitize <- function(x){
+  str_replace(gsub("_", ".", x, fixed=T), "Pr\\((.{1,}))", "Pr$(\\1)$")
+}
+
+opts_chunk$set(dev="CairoPDF")
+end.rcode-->
+
 <section>
-  <section>
-    <h2 class="title">Visual Aptitude and Data Displays</h2>
+  <section class="visualaptitude center">
+    <h2>Visual Aptitude and Data Displays</h2>
     
   </section>
   
+	<section class="visualaptitude overview">
+		<h2> Summary </h2>
+		<ul>
+			<li style="padding:10px"> Explores the visual skills required to evaluate lineups </li>
+			<li style="padding:10px"> Compares performance on 3 blocks of 20 lineups each to performance on tests of visual reasoning and spatial aptitude </li>
+			<li style="padding:10px"> Participants: ISU Undergraduates </li>
+			<li style="padding:10px"> Conclusion: 
+			<ul> <li> Lineups are a classification task in a visual domain </li> <li> Overall, lineups do not appear to require specific visuospatial skills (outside of overall intelligence/aptitude) </li> <li> Lineup performance is mediated by demographic factors such as completion of Calculus I and STEM training. </li> </ul>
+			</li>
+		</ul>
+	</section>
+	
+	<section class="visualaptitude">
+		<h2> Visual Search Test </h2>
+		<table>
+			<tr>
+				<td width="45%">
+					<img src="../../Images/VisualAptitude/VisualSearch.png" width="100%" />
+				</td>
+				<td style="vertical-align:middle;"> 
+					Measures ability to locate a target in a field of distractors <br>
+					Participants complete up to 20 questions in 5 minutes. <br>
+					
+<!--begin.rcode, echo=F, results='asis'
+print(bib[["goldstein1973validity"]],.opts=list(style="html",no.print.fields="url",bib.style="authortitle"))
+# print(bib[["goldstein1973validity"]], .opts=list(style="html", no.print.fields=c("dateobj", "timestamp")))
+end.rcode-->
+				</td>
+			</tr>
+		</table>
+	</section>
+	
+	<section class="visualaptitude">
+		<h2> Figure Classification Test </h2>
+		<img src="../../Images/VisualAptitude/figureclassification.jpg" width="80%" />
+		<p> Measures ability to classify images according to ambiguous or unknown rules </p> <br>
+		<p> Participants complete up to 14 questions (each with 8 figures) in 8 minutes. </p> <br>
+	
+<!--begin.rcode, echo=F, results='asis'
+ print(bib[["educational1963kit"]], .opts=list(style="html", bib.style="authortitle"))
+end.rcode-->
+	</section>
+	
+	<section class="visualaptitude">
+		<h2> Card Rotation Test </h2>
+		<img src="../../Images/VisualAptitude/cardrotation.jpg" width="80%" />
+		<p> Measures ability to rotate objects in two dimensions </p> <br>
+		<p> Participants complete up to 20 questions (each with 8 figures) in 6 minutes. </p>  <br><br>
+	
+<!--begin.rcode, echo=F, results='asis'
+ print(bib[["educational1963kit"]], .opts=list(style="html", bib.style="authortitle"))
+end.rcode-->
+	</section>
+	
+	<section class="visualaptitude">
+		<h2> Paper Folding Test </h2>
+		<img src="../../Images/VisualAptitude/paperfolding.png" width="80%" />
+		<p> Measures ability to visualize and mentally manipulate objects in three dimensions. </p> <br>
+		<p> Participants complete up to 20 questions in 6 minutes. </p>  <br><br>
+		
+<!--begin.rcode, echo=F, results='asis'
+ print(bib[["educational1963kit"]], .opts=list(style="html", bib.style="authortitle"))
+end.rcode-->
+	</section>
+	
+	<section class="visualaptitude">
+		<h2> Lineups </h2>
+		<table>
+			<tr>
+				<td width="45%">
+					<img src="../../Images/VisualAptitude/Lineups1/boxplot_1_15_5_10_6.png" width="100%" />
+				</td>
+				<td style="vertical-align:middle;"> 
+					3 blocks of 20 lineups each <br><br>
+					Each set of lineups is from a different study <br><br>
+					Participants have 5 minutes to complete each block of 20 lineups <br><br>
+<!--begin.rcode, echo=F, results='asis'
+ print(bib[["majumder2013validation"]], .opts=list(style="html", bib.style="authortitle"))
+end.rcode-->
+				</td>
+			</tr>
+		</table>
+	</section>
+	
+	<section class="visualaptitude">
+		<h2> Scores </h2>	
+		<p style="text-align:left;margin:30px;">Scoring is calculated so that for each question, the expected score with random guessing would be 0 </p>
+		$$\# \text{correct answers } - 1/(k-1) \cdot \# \text{wrong answers}$$
+	</section>
+	
+	<section class="visualaptitude">
+		<h2> Scores </h2>
+		<table>
+			<tr>
+				<td width="60%">
+<!--begin.rcode scaledscores, eval=T, echo=F, fig.width=6, fig.height=4, out.width="100%", dev.args = list(bg = 'transparent')
+
+score.summary <- melt(ans.summary, measure.vars=21:25, value.name = "Score", variable.name = "Test")
+score.summary$Test <- factor(score.summary$Test, levels=c("lineup", "card_rot", "fig_class", "folding", "vis_search"), labels=c("Lineups", "Card Rotation", "Figure Class.", "Paper Folding", "Visual Search"))
+qrange$sqrt.k <- sqrt(qrange$k-1)
+qrange$Test <- factor(qrange$testtype, levels=c("lineup", "card_rot", "fig_class", "folding", "vis_search"), labels=c("Lineups", "Card Rotation", "Figure Class.", "Paper Folding", "Visual Search"))
+
+qr1 <- qrange
+qr1$Type <- "Theoretical Range"
+qr2 <- qrange
+qr2$Type <- "Scores indicating guessing"
+qr2$n <- with(qr2, -n/(k-1))
+
+qrange <- rbind(qr1, qr2)
+qrange$Type <- factor(qrange$Type)
+qrange$Type <- factor(qrange$Type, levels=levels(qrange$Type)[2:1])
+
+ggplot() + 
+  geom_bar(data=qrange, aes(width=.9, x=Test, y=n, fill=Type), 
+  				 stat="identity", position="identity", colour="#4F91A0", inherit.aes=F) +
+  scale_fill_manual("", values=c(NA, "#4F91A0")) + 
+  geom_boxplot(data=score.summary, aes(x=factor(Test), y=Score), inherit.aes=F, fill="#7DBAC8") +
+  theme_bw()  + 
+  ylab("Test Scores") + 
+  xlab("") +
+  theme(legend.position=c(.68,.125),  legend.box.just = "left", 
+        legend.key.height=unit(6, "mm"), 
+  			panel.grid.major=element_line(color=NA),
+  			panel.grid.minor=element_line(color="grey"),
+  			legend.key=element_rect(fill="transparent"),
+  			legend.background=element_rect(fill="transparent", color=NA),
+  			legend.title=element_blank(),
+  			panel.background=element_rect(fill="transparent", color=NA),
+  			plot.background=element_rect(fill="transparent", color=NA)) 
+
+end.rcode-->
+				</td>
+				<td style="vertical-align:middle;"> 
+					<ul>
+						<li style="padding-bottom:10px;"> No evidence of guessing<br> Scores do not contain 0 </li>
+						<li style="padding-top:10px;"> Score compression for Visual Search Task - too much time allotted </li>
+				</td>
+			</tr>
+		</table>
+  </section>
+  
+  <section class="visualaptitude">
+		<h2> Lineups & Demographics </h2>
+		
+<!--begin.rcode VisReasoningCategorical, echo=F, fig.width=9, fig.height=5.5, message=F, warning=F, out.width="80%", dev.args = list(bg = 'transparent')
+# lineup.summary.categorical <- rbind(lineup.summary.categorical, data.frame(id=1, lineup=NA, variable="verbal_skills", value=1))
+lineup.summary.categorical <- rbind(lineup.summary.categorical, data.frame(id=1, lineup=NA, variable="math_skills", value=1))
+lineup.summary.categorical$variable <- factor(lineup.summary.categorical$variable, labels=c("Age", "Sex", "Math/Science Research", "Statistics Class", "Calculus 1", "Verbal Skills", "Math Skills", "Art Skills", "AutoCAD Experience", "STEM Major", "Video Game Hrs/Wk"))
+lineup.summary.categorical$value[lineup.summary.categorical$value=="f"] <- "Female"
+lineup.summary.categorical$value[lineup.summary.categorical$value=="m"] <- "Male"
+lineup.summary.categorical$value[lineup.summary.categorical$value=="y"] <- "TRUE"
+lineup.summary.categorical$value[lineup.summary.categorical$value=="n"] <- "FALSE"
+
+tmp <- dlply(lineup.summary.categorical, .(variable), function(df){
+    tmp <- anova(lm(lineup~factor(value, ordered=F), data=df))
+    coefs <- as.data.frame(tmp)[1,]
+    coefs$level <- gsub("factor(value, ordered = F)", unique(df$variable), rownames(coefs), fixed=T)
+    rownames(coefs) <- NULL
+    coefs <- coefs[,c(6, 1:5)]
+    names(coefs) <- c("Variable", "DF", "Sum.of.Squares", "Mean.Squared", "F.value", "p.value")
+    coefs
+})
+
+tmp <- rbind.fill(tmp)
+tmp <- tmp[order(tmp$p.value, decreasing=F),]
+
+lineup.summary.categorical$variable <- factor(lineup.summary.categorical$variable, levels=unique(tmp$Variable))
+lineup.summary.categorical$value <- factor(lineup.summary.categorical$value, levels=c("0","1", "2","3","4","5","[1, 2)", "[2, 5)", "5+", "18-20", "21+", "TRUE", "FALSE", "Female", "Male"))
+
+qplot(data=lineup.summary.categorical, x=value, y=lineup, geom="boxplot", fill=I("grey")) + 
+  facet_wrap(~variable, scales="free_x", ncol=4) + xlab("") + 
+  ylab("Scaled Lineup Score") + 
+  geom_point(aes(x=value, y=lineup), shape=1, size=3) + 
+  theme_bw()
+end.rcode-->
+	</section>
+	
+  <section class="visualaptitude">
+		<h2> Lineups & Demographics </h2>
+		
+<!--begin.rcode ttests, echo=F, results='asis', eval=T, fig.width=9, fig.height=5.5, message=F, warning=F, out.width="80%"
+tmp <- dlply(lineup.summary.categorical, .(variable), function(df){
+    tmp <- anova(lm(lineup~factor(value, ordered=F), data=df))
+    coefs <- as.data.frame(tmp)[1,]
+    coefs$level <- gsub("factor(value, ordered = F)", unique(df$variable), rownames(coefs), fixed=T)
+    rownames(coefs) <- NULL
+    coefs <- coefs[,c(6, 1:5)]
+    names(coefs) <- c("Variable", "DF", "Sum.of.Squares", "MeanSq", "F", "p.val")
+    coefs
+})
+
+tmp <- rbind.fill(tmp)
+tmp2 <- tmp[order(tmp$p.val, decreasing=F),-3]
+tmp2$Variable <- gsub("Math/Science", "STEM", gsub(" Experience", "", gsub(" Hrs/Wk", " hrs", tmp2$Variable)), fixed=T)
+print(xtable(tmp2, digits=c(1, 1, 0, 3, 2, 3)), type="html", include.rownames=F, html.table.attributes="style='font-size:75%;' width='100%' class='categoricalRes'")
+end.rcode-->
+	</section>
+	
+	 <section class="visualaptitude">
+		<h2> Lineups and Visual Aptitude </h2>
+		
+<!--begin.rcode VisReasoningSPM, echo=F, fig.width=5, fig.height=5, message=F, warning=F, out.width="45%", dev.args = list(bg = 'transparent')
+data <- ans.summary[,c("lineup", "vis_search", "fig_class", "card_rot", "folding")]
+grid <- expand.grid(x=1:ncol(data), y=1:ncol(data))
+grid <- subset(grid, x != y & x<y)
+
+all <- do.call("rbind", lapply(1:nrow(grid), function(i) {
+  xcol <- grid[i, "x"]
+  ycol <- grid[i, "y"]
+
+  rbind.fill(
+    data.frame(
+      xvar = names(data)[ycol], 
+      yvar = names(data)[xcol],
+      x = data[, xcol], 
+      y = data[, ycol], 
+      points = T,
+      data
+    ),
+    data.frame(
+      yvar = names(data)[ycol], 
+      xvar = names(data)[xcol],
+      x = mean(range(data[, ycol])), 
+      y = mean(range(data[, xcol])),
+      label = round(cor(data[,xcol], data[,ycol]), 3),
+      points = F
+    )
+  )
+}))
+all$xvar <- factor(all$xvar, levels=names(data))
+all$yvar <- factor(all$yvar, levels=names(data))
+densities <- do.call("rbind", lapply(1:ncol(data), function(i) {
+    tmp <- density(data[,i], cut = 1, adjust=.75)
+    data.frame(
+      xvar = names(data)[i], 
+      yvar = names(data)[i],
+      x = tmp$x, 
+      y = tmp$y/max(tmp$y)* diff(range(tmp$x)) + min(tmp$x)
+    )
+  }))
+fix.names <- function(values){
+  values %>% 
+    str_replace("lineup", "Lineups") %>% 
+    str_replace("vis_search", "Vis. Search") %>%
+    str_replace("fig_class", "Fig. Class.") %>% 
+    str_replace("card_rot", "Card Rot.") %>%
+    str_replace("folding", "Paper Fold.")
+}
+
+ggplot()+
+  geom_point(data=subset(all, points), aes(x=x, y=y), shape=1) + 
+  geom_smooth(data=subset(all, points), aes(x=x, y=y), method="lm") + 
+  geom_text(data=subset(all, !points), aes(x=x, y=y, label=paste0("Corr. = \n", label))) + 
+  geom_line(data=densities, aes(x=x, y=y)) + 
+  facet_grid(xvar~yvar, scales="free", labeller = labeller(xvar=fix.names, yvar=fix.names)) + 
+  theme_bw() + 
+  theme(axis.title=element_blank(),
+        plot.margin=unit(c(0,0,0,0), unit="mm"))
+end.rcode-->
+	</section>
+	
+	 <section class="visualaptitude">
+		<h2> Lineups and Visual Aptitude </h2>
+		<h4> Principal Components Analysis </h4>
+		<ul> 
+		<li style="margin:20px"> Lineups are most similar to the figure classification task in PC space </li>
+		<li style="margin:20px"> The first PC is always a measure of "general aptitude" and is the only statistically significant linear predictor of lineup performance </li>
+		<li style="margin:20px"> Each lineup task may require different visual skills </li>
+		</ul>
+	</section>
+	
+	<section class="visualaptitude">
+		<h2> Visual Aptitude by Lineup Type </h2>
+		
+<!--begin.rcode LineupTypeSPM, echo=F, fig.width=8, fig.height=4, dpi=100, message=F, warning=F, out.width="100%", dev.args = list(bg = 'transparent')
+data <- lineup.section.summary[,c("lineup_1", "lineup_2", "lineup_3", "vis_search", "fig_class", "card_rot", "folding")]
+grid <- expand.grid(x=1:ncol(data), y=1:ncol(data))
+grid <- subset(grid, x != y & x<y)
+
+score.max <- c(20, 20, 20, 25, 112, 160, 20)
+dnames <- names(data)
+data <- as.data.frame(do.call("cbind", llply(1:7, function(x) data[[x]]/score.max[x])))
+names(data) <- dnames
+all <- do.call("rbind", lapply(1:nrow(grid), function(i) {
+  xcol <- grid[i, "x"]
+  ycol <- grid[i, "y"]
+
+  rbind.fill(
+    data.frame(
+      yvar = names(data)[ycol], 
+      xvar = names(data)[xcol],
+      y = data[, xcol], 
+      x = data[, ycol], 
+      points = T,
+      data
+    ),
+    data.frame(
+      yvar = names(data)[ycol], 
+      xvar = names(data)[xcol],
+      y = mean(range(data[, ycol])), 
+      x = mean(range(data[, xcol])),
+      label = round(cor(data[,xcol], data[,ycol]), 3),
+      points = F
+    )
+  )
+}))
+all$xvar <- factor(all$xvar, levels=names(data))
+all$yvar <- factor(all$yvar, levels=names(data))
+densities <- do.call("rbind", lapply(1:ncol(data), function(i) {
+    tmp <- density(data[,i], cut = 1, adjust=.75)
+    data.frame(
+      xvar = names(data)[i], 
+      yvar = names(data)[i],
+      x = tmp$x, 
+      y = tmp$y/max(tmp$y)* diff(range(tmp$x)) + min(tmp$x)
+    )
+  }))
+fix.names <- function(values){
+  values %>% 
+    str_replace("lineup", "Lineups") %>% 
+    str_replace("Lineups_", "Lineup ") %>%
+    str_replace("vis_search", "Visual Search") %>%
+    str_replace("fig_class", "Figure Class.") %>% 
+    str_replace("card_rot", "Card Rotation") %>%
+    str_replace("folding", "Paper Folding")
+}
+
+all2 <- subset(all, grepl("lineup", xvar) & points & !grepl("vis_search", yvar))
+# names(all2)[1:4] <- c("yvar", "xvar", "y", "x")
+all2mean <- rbind(
+  ddply(subset(all2, !grepl("lineup", yvar)), .(xvar, yvar), summarize, label=paste0("rho == ", round(cor(x,y), 3)), x=min(x)-diff(range(x))/5, y=max(y)+diff(range(y))/5+.1, hjust=0, vjust=1, size=3),
+  ddply(subset(all2, grepl("lineup", xvar) & grepl("lineup", yvar)), .(xvar, yvar), function(df){
+    with(df, data.frame(xvar=unique(yvar), yvar=unique(xvar), 
+                        x=.5, y=.5, 
+                        label=paste0("rho == ", round(cor(x,y),3)),
+                        hjust=.5, vjust=.5, size=4))
+    })
+)
+ggplot()+
+  geom_point(data=subset(all2, points), aes(x=x, y=y), shape=1) + 
+  geom_smooth(data=subset(all2, points), aes(x=x, y=y), method="lm") + 
+  geom_text(data=all2mean, aes(x=x, y=y, label=label, hjust=hjust, vjust=vjust, size=size), parse=T) + 
+  scale_size_identity() + 
+  geom_line(data=subset(densities, grepl("lineup", xvar)), aes(x=x, y=y)) + 
+  facet_grid(xvar~yvar, labeller = labeller(xvar=fix.names, yvar=fix.names)) + 
+  theme_bw() + 
+  theme(axis.title=element_blank(), plot.background=element_rect(fill="transparent", color=NA)) + 
+	scale_x_continuous(breaks=c(0, .25, .5, .75, 1), labels=c("0.0", ".25", ".50", ".75", "1.0")) #+ 
+	# scale_y_continuous(breaks=c(0, .25, .5, .75, 1), labels=c("0", ".25", ".50", ".75", "1"))
+end.rcode-->
+	</section>
+	
+	<section class="visualaptitude">
+		<h2> Visual Aptitude by Lineup Type </h2>
+		<ul> <li style="margin:30px"> Lineups which test distribution differences are more correlated with the Figure Classification test </li> <li style="margin:30px"> Lineup Set 3 (QQ plots) is more correlated with the card rotation and paper folding tests </li>
+		<li style="margin:30px"> Different lineup types should be examined more closely to determine whether some lineup types recruit specific spatial skills </li></ul>
+	</section> 
 </section>
+
+<!--begin.rcode featurehierarchy-setup, echo=F
+datadir <- "../../Data/FeatureHierarchy/"
+imgdir <- "../../Figure/FeatureHierarchy/"
+codedir <- "../../Code/FeatureHierarchy/"
+end.rcode-->
 
 <section>
   <section>
@@ -2041,6 +2469,1832 @@ end.rcode-->
     <h3 class="title">Why group beats trend, but error beats group</h3>
   </section>
   
+   <section>
+  	<h2> Outline </h2>
+  	<ul>
+  	  <li style="margin:20px"> <a href="#" class="navigate-down">Human Perception & Statistical Graphics</a> </li>
+      <li style="margin:20px"> <a href="#/experiment">Experimental Structure</a> </li> 
+        <ul style="font-size:80%">
+          <li> <a href="#/model">Model</a> </li>
+          <li> <a href="#/parameter-sim">Parameter Structure</a> </li>
+          <li> <a href="#/plot-aesthetics">Plot Aesthetics</a> </li>
+        </ul>
+      <li style="margin:20px"> <a href="#/results">Results</a> </li>
+        <ul style="font-size:80%">
+          <li> <a href="#/single-target">Accuracy</a> </li>
+          <li> <a href="#/verbal-reasoning">Participant Reasoning</a> </li>
+          <li> <a href="#/response-time">Response Time</a> </li>
+        </ul>
+      <li style="margin:20px"> <a href="#/conclusion">Conclusions & Future Work</a> </li>
+    </ul>
+  </section>
+<section class="center">
+    <h2 class="title"> Human Perception and Statistical Graphics </h2>
+  </section>
+
+
+
+  <section>
+    <h2><span style="font-size:80%;vertical-align:middle;"> Preattentive Feature Detection </span></h3>
+    <table class="noborder nopadding">
+    <tr>
+    <td width='50%'>
+      <ul style="margin:20px;">
+        <li> Preattentive perception occurs before conscious attention is focused on the stimulus </li>
+        <li> Occurs within 200 ms </li>
+      </ul>
+<!--begin.rcode preattentive-interference, class="fragment", fragIndex=2, echo=F, fig.width=4, fig.height=4, out.width='40%', out.height='auto', fig.show='hold'
+set.seed(51581139)
+
+data <- data.frame(x=runif(30, 0, 1), y=runif(30, 0, 1), shape1=1)
+data$shape1[15] <- 2
+ggplot() +
+  geom_point(data=data, aes(x=x, y=y, shape=factor(shape1)), size=5) + 
+  scale_shape_manual(guide="none", values=c(1,0))+
+  xlab(NULL) + ylab(NULL) + 
+  theme_minimal() + 
+  theme(axis.text=element_blank(), axis.ticks=element_blank(), axis.title=element_blank(),
+        line=element_blank(), rect=element_blank(), text=element_blank(), title=element_blank(),
+        panel.background = element_rect(fill = "transparent", colour = NA),
+        plot.background = element_rect(fill = "transparent", colour = NA),
+        plot.margin=unit(c(0,0,0,0), "cm"))
+
+set.seed(51581139)
+data <- data.frame(x=runif(30, 0, 1), y=runif(30, 0, 1), shape1=1)
+data$shape1[24] <- 2
+ggplot() +
+  geom_point(data=data, aes(x=x, y=y, color=factor(shape1)), shape=16, size=5) + 
+  scale_color_manual(guide="none", values=c("#5E70AF", "#FFBC79")) + 
+  geom_point(data=data, aes(x=x, y=y), shape=1, size=5, color="black") + 
+  xlab(NULL) + ylab(NULL) + 
+  theme_minimal() + 
+  theme(axis.text=element_blank(), axis.ticks=element_blank(), axis.title=element_blank(),
+        line=element_blank(), rect=element_blank(), text=element_blank(), title=element_blank(),
+        panel.background = element_rect(fill = "transparent", colour = NA),
+        plot.background = element_rect(fill = "transparent", colour = NA),
+        plot.margin=unit(c(0,0,0,0), "cm"))
+
+# set.seed(51581139)
+# data <- data.frame(x=runif(30, 0, 1), y=runif(30, 0, 1), shape1=sample(1:2, size=30, replace=T))
+# data$color1 <- data$shape1
+# data[8, c("shape1", "color1")] <- c(1,2)
+# ggplot() +
+#   geom_point(data=data, aes(x=x, y=y, shape=c(16, 15)[shape1], color=factor(color1)), size=5) + 
+#   geom_point(data=data, aes(x=x, y=y, shape=c(1, 0)[shape1]), size=5, color="black") + 
+#   scale_color_manual(guide="none", values=c("#5E70AF", "#FFBC79")) + 
+#   scale_shape_identity()+
+#   xlab(NULL) + ylab(NULL) + 
+#   theme_minimal() + 
+#   theme(axis.text=element_blank(), axis.ticks=element_blank(), axis.title=element_blank(),
+#         line=element_blank(), rect=element_blank(), text=element_blank(), title=element_blank(),
+#         panel.background = element_rect(fill = "transparent", colour = NA),
+#         plot.background = element_rect(fill = "transparent", colour = NA),
+#         plot.margin=unit(c(0,0,0,0), "cm"))
+end.rcode-->
+    </td><td width='auto'>
+      <div class="fragment" data-fragment-index=3>
+        <p>Hierarchy of features (accuracy): </p>
+        <table width='60%'>
+            <tr>
+              <td style="vertical-align:middle;text-align:center;border:1px solid;" width=25%>1</td>
+              <td style="vertical-align:middle;text-align:center;border:1px solid;">color*</td>
+            </tr><tr>
+              <td style="vertical-align:middle;text-align:center;border:1px solid;">2</td>
+              <td style="vertical-align:middle;text-align:center;border:1px solid;">shape<br>intensity<br> letters (HQX)</td>
+            </tr><tr>
+              <td style="vertical-align:middle;text-align:center;border:1px solid;">3</td>
+              <td style="vertical-align:middle;text-align:center;border:1px solid;"> letters (HEF)</td>
+            </tr>
+          </table>
+        <p style="text-align:left;font-size:75%">* For the 95% with normal color vision </p>
+        <p  style="font-size:75%;"> Cleveland & McGill (1985)<br> Lewandowsky & Spence (1989) </p>
+      </div>
+    </td>
+    </tr>
+    </table>
+
+  </section>
+
+
+  <section>
+    <h2> Perception of Statistical Plots </h2>
+    <table>
+    <tr>
+    <td width='60%' style="vertical-align:middle;">
+      <ul style="margin-bottom:30px">
+        <li style="margin-top:20px;margin-bottom:20px"> We don't perceive plots preattentively, but some research has studied preattentive plot perception <p style="font-size:75%">(Healy & Enns, 1999, 2012)</p>
+        </li>
+        
+        <li style="margin-top:20px;margin-bottom:20px"> Preattentive feature detection impacts ease and accuracy of reading statistical plots </li> 
+          
+      </ul>
+    </td>
+    <td style="text-align:center">
+      <img style="margin-top:10%" class="fragment" src="image/bicycle-parts.png" width='60%' height="auto"/> 
+      <br>
+      <img class="fragment" src="image/bicycle-whole.png" width='60%' height="auto"/> 
+    </td>
+    </table>
+  </section>
+
+  <section>
+    <h2> Gestalt Laws of Perception </h2>
+    <table>
+      <tr>
+        <td style="vertical-align:top;">
+          <ul style="margin-bottom:20px;margin-top:20px;width:95%;">
+            <li style="margin-bottom:20px"> Rules that make sense of complex visual information through experience </li>
+            <li style="margin-top:20px;margin-bottom:20px"> "Top-down" rules organize information hierarchically </li>
+            <li style="margin-top:20px;margin-bottom:20px"> Subconsciously order and group visual input </li>
+          </ul>
+        </td>
+        <td style="vertical-align:top;text-align:center;" width="40%">
+          <a href="https://en.wikipedia.org/wiki/Illusory_contours" target="_blank">
+            <img src="image/missingTriangle.svg" width='75%' height='auto'/>
+          </a>
+        </td>
+      </tr>
+    </table>
+    <p style="margin-top:50px"> "The whole is different from the sum of the parts" </p>
+  </section>
+  <section>
+    <h2> Gestalt Laws </h2>
+    <table width="100%">
+      <tr>
+        <td style="vertical-align:top;" width="60%">
+<!--begin.rcode gestalt, dev.args = list(bg = 'transparent'), echo=FALSE, fig.width=6, fig.height=4, out.width='100%'
+logit <- function(x, a, b){
+  exp((x-a)/b)/(1+exp((x-a)/b))
+}
+  data <- rbind(
+    data.frame(
+      x = c(1, 2, 4, 5, 7, 8), 
+      y = 4.5,
+      group = 1,
+      label = "Proximity"
+    ),
+    data.frame(
+      x = c(1:8), 
+      y = 3.75,
+      group = rep(1:2, each=2, times=2),
+      label = "Similarity"
+    ),
+    data.frame(
+      x = c(seq(1, 4, length.out=50), seq(1, 4, length.out=50), 
+            seq(4.825, 6.375, length.out=25), rev(seq(4.825, 6.375, length.out=25)), 
+            rev(seq(6.625, 8.125, length.out=25)), seq(6.625, 8.125, length.out=25)),
+      y = 2.55 + .9*
+        c(logit(seq(1, 4, length.out=50), 2.5, .75), logit(seq(1, 4, length.out=50), 2.5, -.75),
+          logit(seq(4.75, 6.25, length.out=25), 6.25, .75), logit(rev(seq(4.75, 6.25, length.out=25)), 6.25, -.75),
+          logit(rev(seq(6.5, 8, length.out=25)), 6.5, .75), logit(seq(6.5, 8, length.out=25), 6.5, -.75)),
+      group = rep(1:4, each=50),
+      label = "Continuity"
+    ),
+    data.frame(
+      x = c(1.5, 2.5, 4, 5, 6.5, 7.5), 
+      y = 2,
+      group = c(1, 2, 2, 1, 1, 2),
+      label = "Common Region"
+    )
+  ) 
+  
+  ggplot() + 
+    geom_point(data=subset(data, label!="Continuity"), aes(x=x, y=y, group=group, color = factor(group)), size=5) + 
+    geom_point(data=subset(data, label!="Continuity"), aes(x=x, y=y, group=group), shape=1, color="black", size=5) + 
+    geom_path(data=subset(data, label=="Continuity"), aes(x=x, y=y, group=group), inherit.aes=F) + 
+    geom_rect(aes(xmin=c(1, 3.5, 6), xmax=c(3, 5.5, 8), ymin=rep(1.75, 3), ymax=rep(2.25, 3)), inherit.aes=F, fill=NA, color="black") + 
+    scale_color_manual(guide="none", values=c("#FDFEFF", "#4F91AD")) + 
+    geom_text(aes(x=rep(-1, 4), y=c(2, 3, 3.75, 4.5), label=c("Common\nRegion", "Continuity", "Similarity", "Proximity")), hjust=0, vjust=.5) + 
+    xlab(NULL) + ylab(NULL) + 
+    ylim(c(1.5, 4.75)) + 
+    theme_minimal()  + 
+    theme(axis.text=element_blank(), axis.ticks=element_blank(), axis.title=element_blank(),
+    line=element_blank(), rect=element_blank(), text=element_blank(), title=element_blank(),
+    panel.background = element_rect(fill = "transparent", colour = NA),
+    plot.background = element_rect(fill = "transparent", colour = NA),
+    plot.margin=unit(c(0,0,0,0), "cm"))
+end.rcode-->
+        </td>
+        <td style="vertical-align:middle;font-size:60%;" width="40%">
+          <ul>
+          <li class="fragment" data-fragment-index=2 style="margin-top:20px;margin-bottom:60px;">
+          3 groups of 2 white dots
+          </li>
+          <li class="fragment" data-fragment-index=3 style="margin-top:60px;margin-bottom:60px;">
+          4 groups of 2 white or blue dots
+          </li>
+          <li class="fragment" data-fragment-index=4 style="margin-top:60px;margin-bottom:100px;">
+          2 continuous s-shape curves, 2 v-shaped curves
+          </li>
+          <li class="fragment" data-fragment-index=5 style="margin-top:60px;margin-bottom:60px;">
+          3 groups of 1 white and 1 blue dot
+          </li>
+        </td>
+      </tr>
+    </table>
+  </section>
+  
+<!--begin.rcode experiment-setup, echo=FALSE, include=FALSE, cache=TRUE
+source(paste0(codedir, "MixtureLineups.R"))
+source(paste0(codedir, "theme_lineup.R"))
+lineups <- read.csv(paste0(datadir, "data-picture-details-gini.csv"), stringsAsFactors=FALSE)
+lineups$pic_id_old <- lineups$pic_id
+lineups$pic_id <- 1:nrow(lineups)
+
+users <- read.csv(paste0(datadir, "turk16_users_anon.csv"), stringsAsFactors=F, header=F)
+names(users) <- c("nick_name", "age", "gender", "education", "ip_address")
+users$age <- factor(users$age, levels=0:10, labels=c("NA", "<18", "18-25", "26-30", "31-35", "36-40", "41-45", "45-50", "51-55", "56-60", "61+"))
+users$gender <- factor(users$gender, levels=0:2, labels=c("NA", "Male", "Female"))
+users$education <- factor(users$education, levels=0:5, labels=c("NA", "High School or less", "Some college", "Bachelor's degree", "Some graduate school", "Graduate degree"))
+
+userdata <- read.csv(paste0(datadir, "turk16_results_anon.csv"), stringsAsFactors=FALSE)
+userdata$response.id <- 1:nrow(userdata)
+# table(userdata$ip_address, userdata$nick_name)
+
+tmp <- merge(userdata[!is.na(userdata$pic_id),], lineups[,c("pic_id", "sample_size", "test_param", "param_value", "p_value", "obs_plot_location")], all.x=T, all.y=F)
+tmp$k <- as.numeric(substr(tmp$param_value, 3, 3))
+tmp$sd.line <- as.numeric(substr(tmp$param_value, 12, 15))
+tmp$sd.cluster <- as.numeric(substr(tmp$param_value, 25, 28))
+
+correct.ans <- function(x,y){
+  x1 <- as.numeric(str_trim(unlist(str_split(x, ","))))
+  answers <- str_trim(unlist(str_split(y, ",")))
+  lineplot <- as.numeric(answers[1])
+  groupplot <- as.numeric(answers[2])
+  giniplot <- ifelse(groupplot==as.numeric(answers[3]) | lineplot==as.numeric(answers[3]), NA, as.numeric(answers[3]))
+  c(n.answers=length(x1), trend.correct=lineplot%in%x1, cluster.correct=groupplot%in%x1, both.correct = lineplot%in%x1 & groupplot%in%x1, neither.correct=!(lineplot%in%x1 | groupplot%in%x1), none.correct=!(lineplot%in%x1 | groupplot%in%x1 | giniplot%in%x1), gini.correct=giniplot%in%x1)
+}
+
+useranswers <- ddply(tmp, .(response.id), function(df) correct.ans(df$response_no, df$obs_plot_location))
+useranswers <- merge(useranswers, tmp)
+useranswers$plottype <- gsub("turk16-", "", useranswers$test_param)
+useranswers$plottype <- factor(useranswers$plottype, levels=c("plain", "trend", "color", "shape", "colorShape", "colorEllipse", "colorTrend",  "trendError", "colorShapeEllipse", "colorEllipseTrendError"))
+useranswers$sd.cluster <- factor(useranswers$sd.cluster)
+useranswers$sd.line <- factor(useranswers$sd.line)
+useranswers$k <- factor(useranswers$k)
+useranswers$start_time <- ymd_hms(useranswers$start_time)
+useranswers$end_time <- ymd_hms(useranswers$end_time)
+useranswers <- ddply(useranswers, .(param_value, test_param), transform, param_idx=as.numeric(factor(pic_id)))
+useranswers <- ddply(useranswers, .(ip_address, nick_name), transform, ntrials = length(unique(pic_id)), trial.no = rank(start_time), trial.num=order(start_time))
+
+# Remove data from <18 participants
+useranswers <- filter(useranswers, !nick_name%in%users$nick_name[users$age=="<18"])
+users <- filter(users, age!="<18")
+
+modeldata <- useranswers[,c(1, 2, 9:30, 3:8)]
+
+# Remove data from participants who did not complete 10 trials
+incomplete.participants <- unique(modeldata$nick_name[modeldata$ntrials<10])
+incomplete.participant.data <- sum(modeldata$ntrials<10)
+message(paste0(sum(modeldata$ntrials<10), " trials removed because participant completed <10 trials total."))
+# Remove data from participants who completed > 10 trials
+modeldata <- filter(modeldata, ntrials>=10)
+extra.participant.data <- sum(modeldata$trial.num>10)
+message(paste0(sum(modeldata$trial.num>10), " trials removed because participant >10 trials."))
+modeldata <- filter(modeldata, trial.num<=10)
+# Remove users from database who didn't complete any trials
+message(paste0(sum(!users$nick_name%in%modeldata$nick_name), " users removed from user database - no trials found."))
+users <- users %>% filter(nick_name%in%modeldata$nick_name)
+modeldata <- modeldata[,-30]
+
+modeldata$outcome <- paste(c("", "trend")[1+as.numeric(modeldata$trend.correct==1)], 
+                           c("", "cluster")[1+as.numeric(modeldata$cluster.correct==1)], 
+                           c("", "neither")[1+as.numeric(modeldata$neither.correct==1)], 
+                           c("", "gini")[1+as.numeric(modeldata$gini.correct==1)], 
+                           sep="")
+modeldata$outcome[modeldata$both.correct==1] <- "both"
+modeldata$first.trial <- modeldata$trial.no == 1
+modeldata$simpleoutcome <- gsub("gini", "", modeldata$outcome)
+modeldata$simpleoutcome <- factor(modeldata$simpleoutcome, levels=c("neither", "cluster", "trend","both"))
+
+modeldata <- merge(modeldata, lineups[,c("pic_id", "data_name", "param_value")], all.x=T, all.y=T)
+modeldata$dataset <- factor(str_extract(modeldata$data_name, "set-\\d{1,3}") %>% str_replace("set-", "") %>% as.numeric)
+modeldata$individualID <- factor(sprintf("%s-%s", modeldata$ip_address, modeldata$nick_name))
+modeldata$k <- factor(modeldata$k, levels=c(3, 5))
+modeldata$parameter.value <- factor(gsub("set-\\d{1,3}-", "", modeldata$data_name))
+modeldata$start_time <- ymd_hms(modeldata$start_time)
+modeldata$end_time <- ymd_hms(modeldata$end_time)
+modeldata$trial.time <- with(modeldata, end_time-start_time)
+modeldata <- ddply(modeldata, .(k), transform, trend.diff=c("easy", "medium", "hard")[as.numeric(droplevels(sd.line))], cluster.diff=c("easy", "medium", "hard")[as.numeric(droplevels(sd.cluster))])
+modeldata$trend.diff <- factor(modeldata$trend.diff, levels=c("easy", "medium", "hard"))
+modeldata$cluster.diff <- factor(modeldata$cluster.diff, levels=c("easy", "medium", "hard"))
+modeldata$cluster.diff2 <- factor(modeldata$cluster.diff, levels=c("easy", "medium", "hard"), labels=c("Cluster: Easy", "Cluster: Medium", "Cluster: Hard"))
+modeldata$trend.diff2 <- factor(modeldata$trend.diff, levels=c("easy", "medium", "hard"), labels=c("Trend: Easy", "Trend: Medium", "Trend: Hard"))
+
+parameter.design <- unique(modeldata[,c("dataset", "k", "trend.diff", "cluster.diff")])
+
+plot.eval.tab <- apply(with(modeldata, table(dataset, plottype)), 1:2, sum)
+
+# long dataset for table-esque plots
+modeldata.long <- melt(modeldata, id.vars=which(!grepl("(correct)|(outcome)", names(modeldata))), value.vars=c("trend.correct", "cluster.correct", "neither.correct"), value.name="correct", variable.name="answer.type")
+modeldata.long$answer.type <- gsub(".correct", "", modeldata.long$answer.type)
+modeldata.long <- filter(modeldata.long, answer.type%in%c("cluster", "trend", "neither"))
+modeldata.long$correct <- as.numeric(modeldata.long$correct)
+modeldata.long$answer.type <- factor(modeldata.long$answer.type, levels=c("cluster", "trend", "neither"))
+modeldata.long$plottype <- 
+  modeldata.long$plottype %>%
+  str_replace("color", "Color + ") %>% 
+  str_replace("[sS]hape", "Shape + ") %>%
+  str_replace("[tT]rend", "Trend + ") %>%
+  str_replace("Ellipse", "Ellipse + ") %>%
+  str_replace("Error", "Error + ") %>%
+  str_replace("plain", "Plain") %>%
+  str_replace("( \\+ )$", "") %>% 
+  factor(levels=c("Plain", "Color", "Shape", "Trend", "Trend + Error", 
+                  "Color + Shape", "Color + Ellipse", "Color + Trend", 
+                  "Color + Shape + Ellipse", "Color + Ellipse + Trend + Error"),
+         labels=c("Plain", "Color", "Shape", "Trend", "Trend + Error", 
+                  "Color + Shape", "Color + Ellipse", "Color + Trend", 
+                  "Color + Shape + Ellipse", "Color + Ellipse + Trend + Error"))
+
+
+totaltime <- ddply(modeldata, .(individualID), summarize, total.experiment.time = max(end_time)-min(start_time))
+
+colors <-  c("#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", 
+             "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf")
+shapes <- c(1,0,3,4,8,5,2,6,-0x25C1, -0x25B7)
+
+colortm <- read.csv(paste0(datadir, "color-perceptual-kernel.csv"))
+# colortm[3,4] <- 0
+# colortm[4,3] <- 0
+colortm[8,] <- 0
+colortm[,8] <- 0
+
+shapetm <- read.csv(paste0(datadir, "shape-perceptual-kernel.csv"))
+# shapetm[9:10,] <- 0
+# shapetm[, 9:10] <- 0
+shapetm[9,] <- 0
+shapetm[,9] <- 0
+shapetm[10,] <- 0
+shapetm[,10] <- 0
+
+color3pal <- best.combo(3, colors, colortm)
+color5pal <- best.combo(5, colors, colortm)
+shape3pal <- best.combo(3, shapes, shapetm)
+shape5pal <- best.combo(5, shapes, shapetm)
+end.rcode-->
+	
+	<section id="experiment">
+    <div> <h2>Experiment:</h2> <h3> How do plot aesthetics affect <br>perception of statistical plots? </h3></div>
+<!--begin.rcode motivation, dev.args = list(bg = 'transparent'), echo=F, fig.width=4, fig.height=4, out.width='300px', out.height='300px', fig.show='hold'
+
+  set.seed(50980)
+  data <- mixture.sim(lambda=0, K=3, N=45, sd.trend=.25, sd.cluster=.20)
+  qplot(data=data, x=x, y=y, geom="point", size=I(3)) + 
+  geom_smooth(method="lm", se=F, color="black") + 
+    xlim(c(-2, 2)) + ylim(c(-2, 2)) + 
+    xlab(NULL) + ylab(NULL) + 
+    theme_minimal()  + 
+    theme(axis.text=element_blank(), axis.title=element_blank(),
+          text=element_blank(), title=element_blank(),
+          panel.border = element_rect(fill=NA, color="black"),
+          panel.background = element_rect(fill = "grey90", colour = NA),
+          plot.background = element_rect(fill = "transparent", colour = NA),
+          plot.margin=unit(c(0,0,0,0), "cm"))
+  
+  set.seed(50980)
+  data <- mixture.sim(lambda=1, K=3, N=45, sd.trend=.25, sd.cluster=.20)
+  qplot(data=data, x=x, y=y, color=factor(group), geom="point", size=I(3)) + 
+    scale_color_discrete(guide="none") + 
+    xlim(c(-2, 2)) + ylim(c(-2, 2)) + 
+    xlab(NULL) + ylab(NULL) + 
+    theme_minimal()  + 
+    theme(axis.text=element_blank(), axis.title=element_blank(),
+          text=element_blank(), title=element_blank(),
+          panel.border = element_rect(fill=NA, color="black"),
+          panel.background = element_rect(fill = "grey90", colour = NA),
+          plot.background = element_rect(fill = "transparent", colour = NA),
+          plot.margin=unit(c(0,0,0,0), "cm"))
+  
+end.rcode-->
+  </section>
+    
+  <section>
+    <h2> Lineups: <span style="font-size:60%"> "Which plot is the most different?"</span> </h2>
+    <table width="100%" style="noborder nopadding">
+      <tr>
+        <td width="45%" style="text-align:center;vertical-align:top;">
+<!--begin.rcode testlineup, echo=F, fig.width=6, fig.height=6, out.width='100%', out.height='auto', cache=T
+data <- read.csv("../../Images/FeatureHierarchy/Turk16/Data/test-set-10-k-3-sdline-0.20-sdgroup-0.25.csv")
+gen.plot(dd=data, aes=NULL, stats=NULL)
+end.rcode-->
+          <p style="color: #add9e4;text-align:center;"> Answer: 9 </p>
+        </td>
+        <td style="vertical-align:top;">
+        <div class="fragment" data-fragment-index=2>
+          <h4> <b> Standard design: </b> </h4>
+            <ul style="font-size:85%">
+              <li class=fragment data-fragment-index=2> One "target" plot <br>(real data or generated from $H_A$) </li>
+              <li class=fragment data-fragment-index=3> 19 null plots generated from $H_0$ </li>
+              <li class=fragment data-fragment-index=4> $P(\text{select target}) = 0.05$ under $H_0$ </li>
+              <li class=fragment data-fragment-index=5> Allows quantification of significance for graphical findings</li>
+            </ul>
+            <p style="font-size:50%"> Buja, A., Cook, D., Hofmann, H., Lawrence, M., Lee, E. K., Swayne, D. F., and Wickham, H. (2009). Statistical inference for exploratory data analysis and model diagnostics, <i>Phil. Transac.</i> </p>
+            <p style="font-size:50%"> Majumder, M., Hofmann, H., and Cook, D. (2013). Validation of visual statistical inference, applied to linear models, <i>JASA</i></p>
+            <p style="font-size:50%"> Wickham, H., Cook, D., Hofmann, H., and Buja, A. (2010). Graphical inference for infovis, <i>TVCG</i></p>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </section>
+  
+<!--begin.rcode lineup-pic-stats, echo=F, include=F, cache=T
+# lineup.pics <- ddply(modeldata, .(pic_id), summarise, plottype=unique(plottype), data_name=unique(data_name), parameter.value=unique(parameter.value), dataset=unique(dataset), diff.correct = mean(cluster.correct)-mean(trend.correct), trend.correct=mean(trend.correct), cluster.correct=mean(cluster.correct), neither.correct=mean(neither.correct))
+# # lineup.pics <- melt(lineup.pics, id.vars = c("parameter.value", "data_name", "param_value", "pic_id"), variable.name="outcome", value.name="pct")
+# 
+# lineup.pics$plottype.num = as.numeric(factor(lineup.pics$plottype))-1
+# qplot(data=lineup.pics, x=diff.correct, y=dataset, shape=factor(plottype.num), size=I(3)) + scale_shape_manual("", values=as.character(0:9), labels=levels(factor(lineup.pics$plottype)))
+
+# Want dataset 48
+
+plot48ans <- subset(modeldata, dataset==48 & plottype%in%c("colorEllipse", "trendError"))
+plot48ans <- ddply(plot48ans, .(response.id), function(df){
+  response <- unlist(str_split(df$response_no, ","))
+  df2 <- data.frame()
+  for(i in response){
+    df2 <- rbind(df2, data.frame(df[,c(1:8)], response_no=i, df[,10:41]))
+  }
+  df2
+})
+
+
+sample.lineup.pcts <- ddply(plot48ans, .(plottype), function(df){
+  sapply(1:20, function(i) sprintf("%.1f", sum(df$response_no==i)/length(df$response_no)*100))
+})
+end.rcode-->
+
+  <section>
+    <h2> Lineups: <span style="font-size:60%"> "Which plot is the most different?"</span> </h2>
+    <table width="100%">
+      <tr>
+        <td width="45%" style="text-align:center;vertical-align:top;"> 
+          <img src="image/set-48-k-5-sdline-0.45-sdgroup-0.25-TREND.png" width='100%' height='auto'/>
+          <p style="color: #add9e4;"> Trend target: 12, Cluster target: 5 </p>
+        </td>
+        <td width="54%" style="margin-left:30px;text-align:left;vertical-align:top;">
+          <div class="fragment" data-fragment-index=2 style="text-align:left; display:inline-block;">
+            <h4> <b> Modification: </b> </h4>
+            <ul style="font-size:85%"><li>Two targets, each from a different model </li>
+            <li> Null plots: 50% mixture of the two models </li></ul>
+          </div>
+          <div class="fragment" data-fragment-index=3 style="text-align:center;display:inline-block;margin-top:30px;">
+            <h4> <b> Participant Responses </b> </h4>
+            <table>
+              <tr>
+                <td style="text-align:right;padding-left:20px;padding-top:20px;padding-right:20px;"> Plot 12: </td> <td style="text-align:right;padding-top:20px;"> <!--rinline sample.lineup.pcts[2,13]-->% </td>
+                <td style="text-align:right;padding-left:20px;padding-top:20px;">(Trend target)</td>
+              </tr>
+              <tr>
+                <td style="text-align:right;padding-left:20px;padding-top:20px;padding-right:20px;"> Plot 5: </td> <td style="text-align:right;padding-top:20px;"> <!--rinline sample.lineup.pcts[2, 6]-->% </td>
+                <td style="text-align:right;padding-left:20px;padding-top:20px;">(Cluster target)</td>
+              </tr>
+              <tr>
+                <td style="text-align:right;padding-left:20px;padding-top:20px;padding-right:20px;"> Other: </td> <td style="text-align:right;padding-top:20px;"> <!--rinline sprintf("%.1f", sum(as.numeric(sample.lineup.pcts[2, c(2:21)[-c(12, 5)]])))-->% </td>
+              </tr>
+            </table>
+            Sample size: 22
+          </div>
+        </td>
+      </tr>
+    </table>
+  </section>
+  
+  <section>
+    <h2> Lineups: <span style="font-size:60%"> "Which plot is the most different?"</span> </h2>
+    <table width="100%">
+      <tr>
+        <td width="45%" style="text-align:center;vertical-align:top;"> 
+          <img src="image/set-48-k-5-sdline-0.45-sdgroup-0.25-COLOR.png" width='100%' height='auto'/>
+          <p style="color: #add9e4;"> Trend target: 12, Cluster target: 5 </p>
+        </td>
+        <td width="54%" style="margin-left:30px;text-align:left;vertical-align:top;">
+          <div class="fragment" data-fragment-index=2 style="text-align:left; display:inline-block;">
+            <h4> <b> Modification: </b> </h4>
+            <ul style="font-size:85%"><li>Two targets, each from a different model </li>
+            <li> Null plots: 50% mixture of the two models </li></ul>
+          </div>
+          <div class="fragment" data-fragment-index=3 style="text-align:center;display:inline-block;margin-top:30px;">
+            <h4> <b> Participant Responses </b> </h4>
+            <table>
+              <tr>
+                <td style="text-align:right;padding-left:20px;padding-top:20px;padding-right:20px;"> Plot 12: </td> <td style="text-align:right;padding-top:20px;"> <!--rinline sample.lineup.pcts[1,13]-->% </td>
+                <td style="text-align:right;padding-left:20px;padding-top:20px;">(Trend target)</td>
+              </tr>
+              <tr>
+                <td style="text-align:right;padding-left:20px;padding-top:20px;padding-right:20px;"> Plot 5: </td> <td style="text-align:right;padding-top:20px;"> <!--rinline sample.lineup.pcts[1, 6]-->% </td>
+                <td style="text-align:right;padding-left:20px;padding-top:20px;">(Cluster target)</td>
+              </tr>
+              <tr>
+                <td style="text-align:right;padding-left:20px;padding-top:20px;padding-right:20px;"> Plot 18: </td> <td style="text-align:right;padding-top:20px;"> <!--rinline sample.lineup.pcts[1, 19]-->% </td>
+              </tr>
+              <tr>
+                <td style="text-align:right;padding-left:20px;padding-top:20px;padding-right:20px;"> Other: </td> <td style="text-align:right;padding-top:20px;"> <!--rinline sprintf("%.1f", sum(as.numeric(sample.lineup.pcts[1, c(2:21)[-c(12, 5, 18)]])))-->% </td>
+              </tr>
+            </table>
+            Sample size: 31
+          </div>
+        </td>
+      </tr>
+    </table>
+  </section>
+  
+  <section id="model">
+    <h2> Data-Generating Models </h2>
+<!--begin.rcode datamodels, dev.args = list(bg = 'transparent'), echo=F, fig.width=4, fig.height=4, out.width='300px', out.height='300px', fig.show='hold'
+
+  set.seed(50980)
+  data <- mixture.sim(lambda=0, K=3, N=45, sd.trend=.25, sd.cluster=.20)
+  qplot(data=data, x=x, y=y, geom="point", size=I(3), shape=I(1)) + 
+    xlim(c(-2, 2)) + ylim(c(-2, 2)) + 
+    xlab(NULL) + ylab(NULL) + 
+    geom_text(aes(x=-1.9, y=1.9, label="Trend Model"), hjust=0, vjust=1, size=6) +
+    theme_minimal()  + 
+    theme(axis.text=element_blank(), axis.title=element_blank(),
+          text=element_blank(), title=element_blank(),
+          panel.border = element_rect(fill=NA, color="black"),
+          panel.background = element_rect(fill = "grey90", colour = NA),
+          plot.background = element_rect(fill = "transparent", colour = NA),
+          plot.margin=unit(c(0,0,0,0), "cm"))
+  set.seed(50980)
+  data <- mixture.sim(lambda=.5, K=3, N=45, sd.trend=.25, sd.cluster=.20)
+  qplot(data=data, x=x, y=y, geom="point", size=I(3), shape=I(1)) + 
+    xlim(c(-2, 2)) + ylim(c(-2, 2)) + 
+    xlab(NULL) + ylab(NULL) + 
+    geom_text(aes(x=-1.9, y=1.9, label="50% Mixture"), hjust=0, vjust=1, size=6) +
+    theme_minimal()  + 
+    theme(axis.text=element_blank(), axis.title=element_blank(),
+          text=element_blank(), title=element_blank(),
+          panel.border = element_rect(fill=NA, color="black"),
+          panel.background = element_rect(fill = "grey90", colour = NA),
+          plot.background = element_rect(fill = "transparent", colour = NA),
+          plot.margin=unit(c(0,0,0,0), "cm"))
+  set.seed(50980)
+  data <- mixture.sim(lambda=1, K=3, N=45, sd.trend=.25, sd.cluster=.20)
+  qplot(data=data, x=x, y=y, geom="point", size=I(3), shape=I(1)) + 
+    xlim(c(-2, 2)) + ylim(c(-2, 2)) + 
+    xlab(NULL) + ylab(NULL) + 
+    geom_text(aes(x=-1.9, y=1.9, label="Cluster Model"), hjust=0, vjust=1, size=6) +
+    theme_minimal()  + 
+    theme(axis.text=element_blank(), axis.title=element_blank(),
+          text=element_blank(), title=element_blank(),
+          panel.border = element_rect(fill=NA, color="black"),
+          panel.background = element_rect(fill = "grey90", colour = NA),
+          plot.background = element_rect(fill = "transparent", colour = NA),
+          plot.margin=unit(c(0,0,0,0), "cm"))
+  
+end.rcode-->
+    <div style="font-size:75%;margin-top:30px;">
+    <table class="noborder nowidth">
+      <tr>
+        <td colspan=3 style="text-align:center;border-bottom: 1px solid;"> Parameters </td>
+      </tr><tr>
+        <td width="300px" style="text-align:center;vertical-align:middle;" rowspan=2> $\sigma_T$: Variability in $y$</td>
+        <td width="300px" style="text-align:center;vertical-align:middle;" rowspan=2> $\lambda$: Mixing parameter </td>
+        <td width="300px" style="text-align:center;vertical-align:middle;"> $K$: # clusters </td>
+      </tr><tr>
+        <td width="300px" style="text-align:center;vertical-align:middle;">$\sigma_C$: Variability around cluster centers</td>
+      </tr><tr>
+        <td colspan=3 style="text-align:center;border-top: 1px solid;">
+    </table>
+    </div>
+  </section>
+  
+  <section>
+    <h2> Trend Model $M_T$ </h2>
+    <p style="text-align:left;"><b>Input: </b>sample size $N$, $\sigma_T$ standard deviation from the line $y=x$</p>
+    <p style="text-align:left;"><b>Output: </b> vectors $x$ and $y$ with $N$ observations </p>
+    <ol>
+      <li class="fragment"> Generate $\tilde{x}_i$, $i=1, ..., N$, as a seq. of evenly spaced points from $[-1, 1]$. </li>
+      <li class="fragment"> Jitter $\tilde{x}_i$ by adding small perturbations</li>
+      <li class="fragment"> Generate $y_i$ as a linear function of $x_i$: $y_i = x_i + e_i$, $e_i \sim N(0, \sigma^2_T)$.</li>
+      <li class="fragment"> Center and scale $x_i$, $y_i$</li>
+    </ol>
+  </section>
+  
+  <section>
+    <h2> Trend Model $M_T$ </h2>
+<!--begin.rcode trends, fig.width=12, fig.height=3, out.width="90%", out.height='auto', echo=F
+  sd <- c(0.1, 0.2, 0.3, 0.4)
+  res <- ldply(sd, function(x) { data.frame(sd.trend=x, sim.line(N=45, sd.trend=x)) })
+  res <- ddply(res, .(sd.trend), function(df){
+    df[,c("x", "y")] <- scale(df[,c("x", "y")])
+    df
+  })
+  res$label <- paste("sigma[T] :",res$sd.trend)
+  xlim <- c(min(c(-2, res$x)), max(c(2, res$x)))+c(-0.1, 0.1)
+  ylim <- c(min(c(-2, res$y)), max(c(2, res$y)))+c(-0.1, 0.1)
+  
+  qplot(x,y, data=res, pch=I(1), ylab=NULL, xlab=NULL) + facet_grid(facets=.~label, labeller="label_parsed") + 
+    theme(aspect.ratio=1, plot.margin=unit(c(0,0,0,0), "cm")) + theme_bw() +
+    scale_x_continuous(breaks=c(-2, -1, 0, 1, 2), limits=xlim) + scale_y_continuous(breaks=c(-2, -1, 0, 1, 2), limits=ylim) 
+end.rcode-->
+  </section>
+
+  <section>
+    <h2> Cluster Model $M_C$ </h2>
+    <p style="text-align:left;"><b>Input: </b>sample size $N$, number of clusters $K$, cluster std. dev. $\sigma_C$ </p>
+    <p style="text-align:left;"><b>Output: </b> vectors $\mathbf{x}$ and $\mathbf{y}$ with $N$ observations </p>
+    <ol>
+      <li style="margin-bottom:20px" class="fragment smalleqns"> Generate $K$ cluster centers $(c^x, c^y)$ on a $K\times K$ grid; center and scale </li>
+      <li style="margin-bottom:20px" class="fragment smalleqns"> Sample group sizes $g = (g_1, ..., g_K)$ with $N = \sum_{i=1}^K g_i$ </li>
+      <li style="margin-bottom:20px" class="fragment">Generate points $(\mathbf{x},\mathbf{y})$ with perturbations $ N(\mathbf{0}, \sigma^2_C)$ </li>
+      <li style="margin-bottom:20px" class="fragment">Center and scale $x_i$, $y_i$</li>
+    </ol>
+  </section>
+  
+  <section>
+    <h2> Cluster Model $M_C$ </h2>
+<!--begin.rcode clusters, fig.width=11.5, fig.height=6, out.width="80%", out.height='auto', echo=F
+sd <- c(0.15, 0.2, 0.25, 0.3)
+
+res <- ldply(sd, function(x) { set.seed(325098573); data.frame(sd.cluster=x, sim.clusters(K=3, N=45, sd.cluster=x)) })
+res$K <- 3
+res$color <- color3pal[res$group]
+res$shape <- shape3pal[res$group]
+res2 <- ldply(sd, function(x) { set.seed(325098573); data.frame(sd.cluster=x, sim.clusters(K=5, N=75, sd.cluster=x)) })
+res2$K <- 5
+res2$color <- color5pal[res2$group]
+res2$shape <- shape5pal[res2$group]
+res <- rbind(res, res2)
+res <- ddply(res, .(K, sd.cluster), function(df){
+  df[,c("x", "y")] <- scale(df[,c("x", "y")])
+  df
+})
+res$label <- paste("sigma[C] :",res$sd.cluster)
+res$Klabel <- paste("K :",res$K)
+ggplot(aes(x=x, y=y, color=color, shape=shape), data=res) + 
+  geom_point() + 
+  facet_grid(facets=Klabel~label, labeller="label_parsed") + theme_bw() + 
+  theme(plot.margin=unit(c(0,0,0,0), "cm"), legend.position="none") + 
+  scale_shape_identity() + scale_color_identity() + theme(aspect.ratio=1) + 
+  xlab(NULL) + ylab(NULL)
+end.rcode-->
+  </section>
+  
+  <section>
+    <h2> Null Model $M_0$ </h2>
+    <p style="text-align:left;"><b>Input: </b>sample size $N$, number of clusters $K$, $\sigma_C$, $\sigma_T$, and mixing parameter $\lambda$ </p>
+    <p style="text-align:left;"><b>Output: </b> vectors $\mathbf{x}$ and $\mathbf{y}$ with $N$ observations </p>
+    
+    <ol> 
+      <li style="margin-bottom:20px" class="fragment"> Generate datasets from $M_C$ and $M_T$</li>
+      <li style="margin-bottom:20px" class="fragment"> Select $n_c \sim \text{Binomial}(N, \lambda)$ points from the data generated by $M_C$ </li>
+      <li style="margin-bottom:20px" class="fragment"> Select $n_T = N - n_c$ points from the data generated by $M_T$ </li>
+      <li style="margin-bottom:20px" class="fragment"> Center and scale the points in $x$ and $y$ </li> 
+      <li style="margin-bottom:20px" class="fragment"> Assign groups using hierarchical clustering </li> 
+    </ol> 
+  </section>
+  
+  <section>
+    <h2> Null Model $M_0$ </h2>
+<!--begin.rcode lambda, fig.width=10, fig.height=4.5, out.width="80%", out.height='auto', echo=F
+lambda <- c(0, .25, .5, .75, 1)
+
+res <- ldply(lambda, function(x) { set.seed(325098573); data.frame(lambda=x, K=5, mixture.sim(K=5, N=75, sd.cluster=.2, sd.trend=.25, lambda=x)) })
+res$color <- color5pal[res$group]
+res$shape <- shape5pal[res$group]
+res2 <- ldply(lambda, function(x) { set.seed(325098573); data.frame(lambda=x, K=3, mixture.sim(K=3, N=45, sd.cluster=.2, sd.trend=.25, lambda=x)) })
+res2$color <- color3pal[res2$group]
+res2$shape <- shape3pal[res2$group]
+res <- rbind(res, res2)
+
+res$label <- paste("lambda :",res$lambda)
+res$klabel <- paste("K :", res$K)
+ggplot(aes(x=x, y=y, color=color, shape=shape), data=res) + 
+  geom_point() + 
+  facet_grid(facets=klabel~label, labeller="label_parsed") + theme_bw() + 
+  theme(plot.margin=unit(c(0,0,0,0), "cm"), legend.position="none") + 
+  scale_shape_identity() + scale_color_identity() + theme(aspect.ratio=1) + 
+  xlab(NULL) + ylab(NULL)
+end.rcode-->
+  </section>
+
+  <section>
+    <h2> Measuring Signal Strength </h2>
+    <table>
+    <tr style="border-bottom:1px solid;">
+      <td style="margin-bottom:20px;text-align:center;"> <b>Trend</b> </td>
+      <td style="margin-bottom:20px;"> $$\displaystyle R^2 = \frac{SS_{Reg}}{SS_{Tot}}$$ </td>
+    </tr>
+    <tr>
+      <td style="margin-top:20px;text-align:center;"> <b>Cluster</b> </td>
+      <td style="margin-top:20px;"> For $(x_{ij}, y_{ij})$ the $j$th point in cluster $i$ 
+      <p style="font-size:75%;">$$SS_{C} = \sum_{i=1}^K\limits \sum_{j=1}^{N_i}\limits \left(x_{ij} - \overline{x}_{i}\right)^2 + \left(y_{ij} - \overline{y}_{i} \right)^2$$
+      $$SS_{Tot} = \sum_{i=1}^K\limits \sum_{j=1}^{N_i}\limits \left(x_{ij} - \overline{x}\right)^2 + \left(y_{ij} - \overline{y} \right)^2$$</p>
+      Define $C^2 := \frac{SS_C}{SS_{Tot}}$ to measure cluster cohesion.
+      </td>
+    </tr>
+    </table>
+  </section>
+  
+  <section id="parameter-sim">
+    <h2> Parameter Values: Simulation </h2> 
+    For all combinations of 
+    <span style="margin-left:5%;display:inline-block;vertical-align:middle;text-align:left;">
+    $\sigma_T\in\{0.2, 0.25, ..., 0.5\}$<br>
+    $\sigma_C\in\{0.1, 0.15, ..., 0.4\}$<br>
+    $K\in\{3,5\}$</span>
+    <ol width="80%" style="margin-top:40px;"> 
+      <li> Generate 1000 datasets consisting of the following sub-plot datasets:<br> 1 from $M_T$, 1 from $M_C$, and 18 from $M_0$ </li>
+      <li> For each lineup dataset, calculate the following: </li>
+      <ol style="list-style-type:decimal;margin-left:10%;">
+        <li> Trend target $R^2$</li>
+        <li> Maximum null plot $R^2$ </li>
+        <li> Cluster target $C^2$</li>
+        <li> Maximum null plot $C^2$ </li>
+      </ol>
+    </ol>
+  </section>
+  
+  <section>
+    <h2> Simulation: One Parameter Set </h2> 
+<!--begin.rcode simulation1,echo=F, fig.width=6, fig.height=3, out.width="70%", out.height="auto"
+sT = 0.25
+sC = 0.20
+N = 45
+K = 3
+M = 1000
+
+load("../../Data/FeatureHierarchy/nulldist.Rdata")
+
+longres <- melt(res, id.vars=1:4, variable.name="type", value.name = "value")
+longres$dist <- c("Data", "Most Extreme of   \n18 Null Dists")[1+grepl("null", longres$type)]
+longres$dist <- factor(longres$dist, levels=c("Most Extreme of   \n18 Null Dists","Data"))
+longres$type <- gsub("null.", "", longres$type, fixed=T)
+longres$Statistic <- longres$type
+longres$Statistic[longres$type=="cluster"] <- "Statistic: C^2"
+longres$Statistic[longres$type=="line"] <- "Statistic: R^2"
+longres$Statistic[longres$type=="gini"] <- "Gini Impurity"
+longres$Statistic <- factor(longres$Statistic, levels=c("Statistic: R^2", "Statistic: C^2", "Gini Impurity"))
+
+qplot(data=subset(longres, Statistic != "Gini Impurity"), x=value, y=..density.., stat="density", color=dist, fill=dist, geom="area", alpha=I(.5), 
+      xlab="Simulated Distribution of Test Statistic", 
+      ylab="Density", 
+      position="identity") + 
+  facet_grid(.~Statistic, labeller=label_parsed) + 
+  scale_color_manual("", values=c("black",  "gray")) + 
+  scale_fill_manual("", values=c("transparent", "gray")) +  
+  theme_bw() + theme(legend.position=c(.23, .87), legend.direction="horizontal") + xlim(c(.5,1))
+end.rcode-->
+    <p> For $\sigma_T=0.25$, $\sigma_C=0.20$, and $K=3$, it is harder to (numerically) identify data generated by $M_T$ than to identify data from $M_C$, compared to the relevant null plot statistic. </p>
+  </section>
+  
+  <section>
+    <h2> Simulation: Parameter Space </h2> 
+<!--begin.rcode simulation2,echo=F, fig.width=10, fig.height=6, out.width="60%", out.height="auto"
+load("../../Data/FeatureHierarchy/SimulationDatasetCriteriaTurk16.Rdata")
+
+dataset.criteria$ParameterSet <- with(dataset.criteria, sprintf("sdT%.2f-sdC%.2f", sd.trend, sd.cluster))
+dataset.criteria$ParameterSet[dataset.criteria$type=="cluster"] <- with(dataset.criteria[dataset.criteria$type=="cluster",], sprintf("sdC%.2f-sdT%.2f", sd.cluster, sd.trend))
+dataset.criteria$dist <- factor(dataset.criteria$dist, levels=c("Max(18 Nulls)", "Data"))
+
+dataset.criteria$lsc <- paste("sigma[C]: ", round(dataset.criteria$sd.cluster, 2))
+dataset.criteria$lst <- paste("sigma[T]: ", round(dataset.criteria$sd.trend, 2))
+dataset.criteria$lK <- paste("K: ", dataset.criteria$K)
+qplot(data=subset(dataset.criteria, type=="line"), x=LB, xend=UB, y=sd.cluster, yend=sd.cluster, color=dist, geom="segment") +
+  geom_point(aes(x=LB, y=sd.cluster, color=dist))  + 
+  geom_point(aes(x=UB, y=sd.cluster, color=dist)) + 
+  facet_grid(lst~lK, scales="free", labeller="label_parsed")  + theme_bw() + 
+  scale_color_brewer("Distribution",palette="Set1") + theme(legend.position=c(.5, 0), legend.justification=c(1, 0)) + 
+  xlab("Interquartile intervals of Max (18) null distribution (blue) \nand target distribution (red) of linearity measured in R squared.") + 
+  ylab(expression("Cluster variability":sigma[C]))
+end.rcode-->
+    <p> Values of $\sigma_T = .25, .35, .45$ will provide easy, medium, and hard difficulty levels for trend target identification. </p>
+  </section>
+  
+  <section>
+    <h2> Simulation: Parameter Space </h2> 
+<!--begin.rcode simulation3,echo=F, fig.width=10, fig.height=6, out.width="60%", out.height="auto"
+qplot(data=subset(dataset.criteria, type=="cluster"), x=LB, xend=UB, y=sd.trend, yend=sd.trend, color=dist, geom="segment") +
+  geom_point(aes(x=LB, y=sd.trend, color=dist))  + 
+  geom_point(aes(x=UB, y=sd.trend, color=dist)) + 
+  facet_grid(lsc~lK, scales="free", labeller="label_parsed")  + theme_bw() + 
+  scale_color_brewer("Distribution", palette="Set1") + theme(legend.position=c(.5, 0), legend.justification=c(1, 0)) + xlab("Interquartile intervals of Max (18) null distribution (blue) \nand target distribution (red) of amount of clustering.") + ylab(expression( "Variability along the trend":sigma[T]))
+end.rcode-->
+    <p> Values of <span style="display:inline-block;vertical-align:middle;"> $K=3: \sigma_C = \{.25, .3, .35\}$<br> $K=5: \sigma_C= \{.2, .25, .3\}$</span> will provide easy, medium, and hard difficulty levels for cluster target identification. </p>
+  </section>
+  
+  <section id="plot-aesthetics">
+    <h2> Plot Aesthetic Combinations </h2>
+    <table style="border-collapse: collapse; font-size:75%; margin-bottom:40px;">
+      <tr>
+        <td colspan=2></td><td class="bb" colspan=3 style="text-align:center;">Line Emphasis</td>
+      </tr><tr style="text-align:center;">
+        <td></td>
+        <td class="bb br">Strength</td>
+        <td class="bb" style="text-align:center;background-color:#d3ebf1;">0</td>
+        <td class="bb" style="text-align:center;background-color:#9ad0de;">1</td>
+        <td class="bb br" style="text-align:center;background-color:#87c7d7;">2</td>
+      </tr><tr>
+        <td rowspan=4 style="vertical-align:middle;">Cluster<br>Emphasis</td>
+        <td class="br bl" style="text-align:center;background-color:#d3ebf1;">0</td>
+        <td style="text-align:center;background-color:#d3ebf1;">Plain</td>
+        <td style="text-align:center;background-color:#9ad0de;">Line</td>
+        <td class="br" style="text-align:center;background-color:#87c7d7;">Line + Pred. Interval</td>
+      </tr><tr>
+        <td class="br bl" style="text-align:center;background-color:#9ad0de;">1</td>
+        <td style="text-align:center;background-color:#9ad0de;">Color<br>Shape</td>
+        <td style="text-align:center;background-color:#d3ebf1">Color + Line</td>
+        <td class="br"></td>
+      </tr><tr>
+        <td class="br bl" style="text-align:center;background-color:#87c7d7;">2</td>
+        <td style="text-align:center;background-color:#87c7d7;">Color + Shape<br>Color + Ellipse</td>
+        <td></td>
+        <td class="br" style="text-align:center;background-color:#d3ebf1;">Color + Ellipse + <br>Line + Pred. Interval</td>
+      </tr><tr>
+        <td class="br bb bl" style="text-align:center;background-color:#73bed1;">3</td>
+        <td class="bb" style="text-align:center;background-color:#73bed1;">Color + Shape + Ellipse</td>
+        <td class="bb"></td>
+        <td class="bb br"></td>
+      </tr>
+    </table>
+    <div style="display:inline-block;width:40%;vertical-align:middle;">
+<!--begin.rcode color-shape-palettes, fig.width=4, fig.height=2, out.width="90%", out.height="auto", echo=F
+ggplot() + 
+  geom_point(aes(x=rep(c(2:4, 1:5), times=2), 
+                 y=c(rep(1.1, 3), rep(0.6, 5), rep(0.9, 3), rep(0.4, 5)), 
+                 shape=c(rep(16, 8), shape3pal, shape5pal), 
+                 color=c(color3pal, color5pal, rep("black", 8))), size=5) + 
+  scale_shape_identity() + 
+  scale_color_identity() +
+  xlim(c(0.75, 5.25)) + ylim(c(0.25, 1.25)) + 
+  xlab(NULL) + ylab(NULL) + 
+  theme_minimal()  + 
+  theme(axis.text=element_blank(), axis.title=element_blank(),
+        line=element_blank(),
+        text=element_blank(), title=element_blank(),
+        panel.background = element_rect(fill = "white", colour = NA),
+        plot.background = element_rect(fill = "transparent", colour = NA),
+        plot.margin=unit(c(0,0,0,0), "cm"))
+end.rcode-->
+  </div><div style="display:inline-block;width:50%;vertical-align:middle;font-size:80%;">
+    Palettes selected to provide maximum perceptual distance (&#199;. Demiralp, et al., 2014).<br>
+    Shapes conform to guidelines in Robinson (2003) and Lewandowsky & Spence (1989).
+  </div>
+  </section>
+  
+  <section>
+    <h2> Plot Aesthetic Combinations </h2>
+<!--begin.rcode plot-aes-demo, fig.width=4, fig.height=4, out.width="200px", out.height="200px", echo=F, include=T, fig.show="hold"
+
+set.seed(325095273)
+data <- mixture.sim(K=5, N=75, sd.cluster=.20, sd.trend=.25, lambda=0.5)
+plot.parms <- expand.grid(
+  color = c(0,1),
+  shape = c(0,1),
+  reg = c(0,1),
+  err = c(0,1),
+  ell = c(0,1)
+)[c(
+  1, # control
+  2, # color
+  3, # shape
+  4, # color + shape
+  18, # color + ellipse
+  20, # color + shape + ellipse
+  5, # trend
+  13, # trend + error
+  6, # color + trend
+  30 # color + ellipse + trend + error
+),]
+
+
+# function to create a list of chosen aesthetics
+get.aes <- function(r){
+  c("Color", "Shape")[which(as.logical(r[1:2]))]
+}
+
+# function to create a list of chosen statistics
+get.stats <- function(r){
+  c("Reg. Line", "Error Bands", "Ellipses")[which(as.logical(r[3:5]))]
+}
+ # lines and ellipses are not data structure, so reduce contrast to emphasize points!  
+  # Set other geoms/aids
+
+
+model <- lm(y~x, data=data)
+range <- diff(range(data$x))
+newdata <- data.frame(x=seq(min(data$x), max(data$x), length.out=400))
+tmp <-   data.frame(.sample=1, x=newdata$x, 
+             predict.lm(model, newdata=newdata, interval="prediction", level=0.9))
+
+for(i in 1:10){
+  stats <- get.stats(plot.parms[i,])
+  aes <- get.aes(plot.parms[i,])
+  pointsize <- 5
+  
+  plot <- ggplot(data=data, aes(x=x, y=y)) + theme_lineup() 
+  if("Reg. Line"%in%stats){
+    plot <- plot + geom_smooth(method="lm", color="grey30", se=F, fullrange=TRUE)
+  } 
+  if("Error Bands"%in%stats){
+    if("Shade Error Bands"%in%stats & "Error Bands"%in%stats){
+      plot <- plot + 
+        geom_line(data=tmp, aes(x=x, y=lwr), linetype=2, inherit.aes=F) + 
+        geom_line(data=tmp, aes(x=x, y=upr), linetype=2, inherit.aes=F) + 
+        geom_ribbon(data=tmp, aes(x=x, ymin=lwr, ymax=upr), fill="black", color="transparent", alpha=.1, inherit.aes=F)
+    } else {
+      plot <- plot + 
+        geom_line(data=tmp, aes(x=x, y=lwr), linetype=2, inherit.aes=F) + 
+        geom_line(data=tmp, aes(x=x, y=upr), linetype=2, inherit.aes=F)
+    }
+  }
+  
+  if("Ellipses"%in%stats){
+    if("Color"%in%aes){
+      if("Shade Ellipses"%in%stats){
+        plot <- plot + stat_ellipse(geom="polygon", level=.9, aes(fill=factor(group), colour=factor(group)), alpha=0.1) + 
+          scale_fill_manual(guide="none", values=color5pal)
+      } else {
+        plot <- plot + stat_ellipse(geom="polygon", level=.9, aes(colour=factor(group)), alpha=0.2, fill="transparent")
+      }
+    } else if("Shape"%in%aes){
+      plot <- plot + stat_ellipse(geom="polygon", level=.9, aes(group=factor(group)), 
+                                  colour="grey15", fill="transparent")
+    } else {
+      plot <- plot + stat_ellipse(geom="polygon", level=.9, aes(group=factor(group)), 
+                                  colour="grey15", fill="transparent")
+    }
+  }
+  
+  if("Shade Ellipses"%in%stats & "Ellipses" %in% stats){
+    plot <- plot + stat_ellipse(geom="polygon", level=.9, aes(group=factor(group)), alpha=0.1, fill="black", color="transparent") 
+  }
+  
+  # points on top of everything
+  # Set Aesthetics
+  if(length(aes)==0){
+    plot <- plot + geom_point(size=pointsize, shape=1) + 
+      scale_shape_discrete(solid=F)
+  } else if(length(aes)==1){
+    if("Color"%in%aes){
+      plot <- plot + geom_point(aes(color=factor(group)), size=pointsize, shape=1) + 
+        scale_color_manual(guide="none", values=color5pal)
+    } else {
+      plot <- plot + geom_point(aes(shape=factor(group)), size=pointsize) + 
+        scale_shape_manual(guide="none", values=shape5pal)
+    }
+  } else {
+    plot <- plot + geom_point(aes(color=factor(group), shape=factor(group)), size=pointsize) + 
+      scale_color_manual(guide="none", values=color5pal) + 
+      scale_shape_manual(guide="none", values=shape5pal)
+  }
+  
+  plot <- plot +
+  xlab(NULL) + ylab(NULL) + 
+  theme_minimal()  + 
+  theme(axis.text=element_blank(), axis.title=element_blank(),
+        line=element_blank(),
+        text=element_blank(), title=element_blank(),
+        panel.background = element_rect(fill = "white", colour = NA),
+        plot.background = element_rect(fill = "transparent", colour = NA),
+        plot.margin=unit(c(0,0,0,0), "cm"))
+  print(plot)
+}
+
+end.rcode-->
+  </section>
+  
+  <section>
+    <h2> Experimental Structure </h2>
+    <table class="noborder">
+      <tr>
+        <td style="padding-right:50px;vertical-align:top;">
+          <div style="vertical-align:top;display:inline-block;">
+            <h5> <b>Model Parameters</b> </h5>
+            <div style="font-size:70%;">
+              <ul>
+                <li> Trend Strength <span style="text-align:right">$\sigma_T =$ easy, med., hard </span></li>
+                <li> Cluster Strength <span style="text-align:right">$\sigma_C =$ easy, med., hard </span></li>
+                <li> Number of Clusters <span style="text-align:right">$K =$ 3, 5 </span></li>
+              <ul>
+            </div>
+          </div>
+        </td>
+        <td style="padding-left:50px;vertical-align:top;">
+          <div class="fragment" data-fragment-index=3>
+          <h5> <b>Plot Level</b> </h5>
+          <div style="font-size:75%;">
+            <ul>
+              <li> 18 parameter combinations </li>
+              <li> 3 datasets/parameter combination </li>
+              <li> 10 plot types for each dataset <br>
+                   = 540 total plots </li>
+            </ul>
+          </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td style="padding-right:50px;vertical-align:top;">
+          <div class="fragment" data-fragment-index=2>
+          <h4 style="text-align:center"> <b>Plot Aesthetics</b> </h4>
+          <div style="font-size:70%;display:inline-block;">
+            <ul>
+              <li> Plain </li>
+              <li> Trend </li>
+              <li> Trend + Error </li>
+              <li> Color + Trend </li>
+              <li> Color + Ellipse<br>+ Trend + Error </li>
+            </ul>
+          </div>
+          <div style="font-size:70%;display:inline-block;">
+            <ul>
+              <li> Color </li>
+              <li> Shape </li>
+              <li> Color + Shape </li>
+              <li> Color + Ellipse </li>
+              <li> Color + Shape<br>+ Ellipse </li>
+            </ul>
+          </div>
+          </div>
+        </td>
+        <td style="padding-left:50px;vertical-align:bottom;">
+        <div class="fragment" data-fragment-index=4>
+          <h5> <b> Evaluation Level </b> </h5>
+          <div style="font-size:75%;" >
+            <ul>
+              <li> Participants evaluate 10 plots: </li>
+              <ul>
+                <li> 1 of each aesthetic </li>
+                <li> 1 of each combination of $\sigma_T$ and $\sigma_C$<br>randomized over $K$ </li>
+              </ul>
+            </ul>
+          </div>
+        	</div>
+        </td>
+      </tr>
+    </table>
+  </section>
+  
+  <section>
+    <h2>Data Collection</h2>
+      <ul style="margin-bottom:30px">
+        <li> Participants recruited through Amazon Mechanical Turk </li>
+        <li> Experiment ran for <!--rinline round(as.numeric(difftime(max(modeldata$end_time), min(modeldata$start_time), units="hours")), 2) --> hours </li>
+        <li> <!--rinline length(unique(userdata$nick_name))-->  individuals completed <!--rinline nrow(userdata)--> evaluations </li> <br>
+        <li> Data removed: </li>
+        <ul>
+          <li> Participants who did not complete 10 trials: <br>
+               <!--rinline length(incomplete.participants)--> participants, 
+               <!--rinline incomplete.participant.data--> trials </li>
+          <li> Any trials in excess of 10 for each participant (<!--rinline extra.participant.data--> trials)</li>
+        </ul>
+      </ul>
+      <p> Final dataset: <!--rinline nrow(modeldata)--> trials completed by <!--rinline length(unique(modeldata$individualID))--> participants. </p>
+  </section>
+  
+  <section>
+    <h2>Data Collection</h2>
+      <h3> Participants provided: </h3>
+      <ul style="margin:.2em">
+        <li> Demographic information: age range, gender, education level </li>
+        <li> 10 plot evaluations
+        <ul>
+          <li> Target plot identification (one or more sub-plots) </li>
+          <li> Level of confidence in their answer (1 = least, 5=most)  </li> 
+          <li> Reasoning <br> (i.e. "Strongest linear relationship", "Clustered points", "Odd shape") </li>
+        </ul>
+      </ul>
+  </section>  
+  
+  <section class="center" id="results">
+    <h2>Results</h2>
+    <ul> 
+      <li style="margin:10px"> <a href="#/single-target">Accuracy</a> </li>
+        <ul>
+          <li> <a href="#/single-target">Single Target Selection</a> </li>
+          <li> <a href="#/faceoff">Cluster vs. Trend Target Selection</a> </li>
+        </ul>
+      <li style="margin:10px"> <a href="#/verbal-reasoning">Participant Reasoning</a> </li> 
+      <li style="margin:10px"> <a href="#/response-time">Response Time</a> </li>
+    </ul>
+  </section>
+  
+  <section>
+    <h2> Target Identification </h2>
+<!--begin.rcode target-aggregate, echo=F, include=T, fig.width=8, fig.height=4, out.width='70%', out.height='auto'
+user.data <- modeldata %>% group_by(individualID) %>% 
+summarize(answers=length(individualID),
+          cluster=sum(cluster.correct),
+          trend=sum(trend.correct))
+clusters <- as.data.frame(table(user.data$cluster))
+trends <- as.data.frame(table(user.data$trend))
+names(clusters) <- c("x", "Cluster")
+clusters$Trend <- trends$Freq 
+clm <- melt(clusters, measure.var=2:3)
+
+ggplot() + geom_point(aes(x, value, colour=variable, shape=variable), size=3, data=clm) + theme_bw() + scale_colour_brewer("Target", palette="Set1") + scale_shape_discrete("Target") + theme(legend.position=c(.85, .9), legend.direction="horizontal") + ylab("Number of participants") + xlab("Number of target identifications (out of ten)") + geom_line(aes(x, value, colour=variable, group=variable), data=clm) + ggtitle("Target Identification by Participants")
+end.rcode-->
+    <p> Participants selected more cluster targets than line targets, however, 5 plot types were expected to emphasize clustering, and only 2 plot types were expected to emphasize trends. </p>
+  </section>
+  
+  <section class="center" id="single-target">
+    <h2> Modeling Single Target Selection </h2>
+  </section> 
+  
+  <section>
+    <h2> Modeling Single Target Selection </h2>
+    <br></br>
+    $$
+    \begin{align}
+    \text{logit }P(\text{target selection}) & =  \textbf{X}\beta + \textbf{J}\gamma + \textbf{K}\eta + \epsilon, \\
+    \text{where } \beta_i & \hphantom{\sim} \text{describe the effect of specific plot types}\\
+    \hphantom{where } \gamma_j & \overset{iid}{\sim} N\left(0, \sigma^2_{\text{dataset}}\right)\\
+    \hphantom{where } \eta_k & \overset{iid}{\sim} N\left(0, \sigma^2_{\text{participant}}\right)\\
+    \text{and } \epsilon_{ijk} & \overset{iid}{\sim}  N\left(0, \sigma^2_e\right)
+    \end{align}
+    $$
+    <p> Dataset and participant effects are orthogonal by design </p>
+    <p> Variability due to model parameters is contained within the random effects for dataset </p>
+  </section>
+  
+  <section id="line-target">
+    <h2> Trend Target Identification </h2>
+    <table width="100%">
+    <tr>
+      <td width="50%">
+<!--begin.rcode line-target, echo=F, include=T, fig.width=5, fig.height=5, out.width='100%', out.height='auto'
+line.model <- glmer(trend.correct ~ plottype + (1|individualID) + (1|dataset), 
+                    data = modeldata, 
+                    family = binomial(link="logit"), 
+                    control=glmerControl(optimizer="bobyqa"))
+line.fixef <- data.frame(summary(line.model)$coefficients, confint(line.model, method="Wald"))
+names(line.fixef) <- c("Estimate", "StdError", "Z", "p value", "LB", "UB")
+line.fixef$OR <- exp(line.fixef[,1])
+line.fixef$label <- gsub("(Intercept)", "", gsub("plottype", "", rownames(line.fixef)), fixed=T)
+
+type_compare <- glht(line.model, mcp(plottype="Tukey"))
+line.fixef$letters <- cld(type_compare)$mcletters$Letters
+
+line.fixef.aes <- line.fixef[grepl("(color)|([Ss]hape)|([Tt]rend)|(Ellipse)|(Error)", rownames(line.fixef)),]
+line.fixef.aes <- line.fixef.aes[order(line.fixef.aes$OR, decreasing = T),]
+line.fixef.aes$label <- 
+  line.fixef.aes$label %>% 
+  str_replace("color", "Color + ") %>% 
+  str_replace("[sS]hape", "Shape\n + ") %>%
+  str_replace("[tT]rend", "Trend + ") %>%
+  str_replace("Ellipse", "Ellipse\n + ") %>%
+  str_replace("Error", "Error") %>%
+  str_replace("(\\n? ?\\+ )$", "")
+line.fixef.aes$label <- factor(line.fixef.aes$label, levels=line.fixef.aes$label[order(line.fixef.aes$OR, decreasing = T)], ordered=T)
+line.fixef.aes$LB <- exp(line.fixef.aes$LB)
+line.fixef.aes$UB <- exp(line.fixef.aes$UB)
+
+qplot(data=line.fixef.aes, x=label, y=OR, ymin=LB, ymax=UB, geom="pointrange") + 
+  geom_text(aes(x=label, y=0, label=letters)) + 
+  coord_flip() + 
+  ylab("Odds + 95% Wald Interval\n (Reference level: Plain plot)") + 
+  xlab("") + 
+  geom_hline(yintercept=1, colour="gray70") +
+  ggtitle("Odds of Selecting Trend Target Plot") + 
+  theme_bw()
+end.rcode-->
+      <p style="font-size:50%;text-align:center;">Plot types are significantly different if they do not share a letter</p>
+      </td><td style="font-size:80%;vertical-align:middle;">
+        <p style="margin-bottom:30px"> Participants are <!--rinline sprintf("%.2f", line.fixef$OR[line.fixef$label=="trendError"])--> times as likely to select trend targets when plots have trend lines and prediction intervals. </p>
+        <p> Participants are <!--rinline sprintf("%.2f", line.fixef$OR[line.fixef$label=="colorShapeEllipse"])--> times as likely to select trend targets when plots have color, shape, and ellipse aesthetics. </p>
+      </td>
+    </tr>
+    </table>
+  </section>
+  
+  <section id="cluster-target">
+    <h2> Cluster Target Identification </h2>
+    <table>
+    <tr>
+      <td width="50%">
+<!--begin.rcode cluster-target, echo=F, include=T, fig.width=5, fig.height=5, out.width='100%', out.height='auto'
+group.model <- glmer(cluster.correct~ plottype + (1|individualID) + (1|dataset), 
+                     data = modeldata, 
+                     family = binomial(link="logit"), 
+                     control=glmerControl(optimizer="bobyqa"))
+group.fixef <- data.frame(summary(group.model)$coefficients, confint(group.model, method="Wald"))
+names(group.fixef) <- c("Estimate", "StdError", "Z", "p value", "LB", "UB")
+group.fixef$OR <- exp(group.fixef[,1])
+group.fixef$label <- gsub("(Intercept)", "", gsub("plottype", "", rownames(group.fixef)), fixed=T)
+
+type_compare <- glht(group.model, mcp(plottype="Tukey"))
+group.fixef$letters <- cld(type_compare)$mcletters$Letters
+
+group.fixef2 <- group.fixef[2:10,]
+group.fixef2 <- group.fixef2[order(group.fixef2$OR, decreasing = T),]
+group.fixef2$label <- 
+  group.fixef2$label %>% 
+  str_replace("color", "Color + ") %>% 
+  str_replace("[sS]hape", "Shape\n + ") %>%
+  str_replace("[tT]rend", "Trend + ") %>%
+  str_replace("Ellipse", "Ellipse\n + ") %>%
+  str_replace("Error", "Error") %>%
+  str_replace("(\\n? ?\\+ )$", "")
+group.fixef2$label <- factor(group.fixef2$label, levels=group.fixef2$label[order(group.fixef2$OR, decreasing = T)], ordered=T)
+group.fixef2$LB <- exp(group.fixef2$LB)
+group.fixef2$UB <- exp(group.fixef2$UB)
+
+qplot(data=group.fixef2, x=label, y=OR, ymin=LB, ymax=UB, geom="pointrange") + 
+  geom_text(aes(x=label, y=0.3, label=letters)) + 
+  coord_flip() + 
+  scale_y_continuous("Odds + 95% Wald Interval\n (Reference level: Plain plot)", breaks=c(.5, .75, 1, 1.25)) + 
+  xlab("") + 
+  geom_hline(yintercept=1, colour="gray70") +
+  ggtitle("Odds of Selecting Cluster Target Plot") + 
+  theme_bw()
+end.rcode-->
+  <p style="font-size:50%;text-align:center;">Plot types are significantly different if they do not share a letter</p>
+      </td><td style="font-size:80%;vertical-align:middle;">
+        <p style="margin-bottom:10px"> Participants are <!--rinline sprintf("%.2f", group.fixef$OR[group.fixef$label=="shape"])--> times as likely to select cluster targets when plots have shape aesthetics. </p>
+        <p> Participants are <!--rinline sprintf("%.2f", group.fixef$OR[group.fixef$label=="colorEllipse"])--> times as likely to select cluster targets when plots have color and ellipse aesthetics. What happened? </p>
+      </td>
+    </tr>
+  </table>
+  </section>
+  
+<!--begin.rcode giniExampleStats, echo=F, include=F, cache=T
+
+plot1ans <- subset(modeldata, dataset==1 & plottype=="colorShapeEllipse")
+plot1ans <- ddply(plot1ans, .(response.id), function(df){
+  response <- unlist(str_split(df$response_no, ","))
+  df2 <- data.frame()
+  for(i in response){
+    df2 <- rbind(df2, data.frame(df[,c(1:8)], response_no=i, df[,10:41]))
+  }
+  df2
+})
+
+
+plot1ans.pcts <- sapply(1:20, function(i) sprintf("%.1f", sum(plot1ans$response_no==i)/length(plot1ans$response_no)*100))
+end.rcode-->
+  <section>
+    <h2> Cluster Target Identification </h2>
+    <table width="100%">
+      <tr>
+        <td width="50%" style="text-align:center;vertical-align:top;"> 
+          <img src="image/lineup-ellipse-issue.png", width='100%', height='auto'/>
+          <p style="color: #add9e4;"> Trend target: 20, Cluster target: 11 </p>
+        </td>
+        <td width="54%" style="margin-left:30px;text-align:left;vertical-align:top;">
+          <div class="fragment" style="text-align:center;display:inline-block;">
+            <h4> <b> Participant Responses </b> </h4>
+            <table>
+              <tr>
+                <td style="text-align:right;padding-left:20px;padding-top:20px;padding-right:20px;"> Plot 20: </td> 
+                <td style="text-align:right;padding-top:20px;"> <!--rinline plot1ans.pcts[20]-->% </td>
+                <td style="text-align:right;padding-left:20px;padding-top:20px;">(Trend target)</td>
+              </tr>
+              <tr>
+                <td style="text-align:right;padding-left:20px;padding-top:20px;padding-right:20px;"> Plot 11: </td> 
+                <td style="text-align:right;padding-top:20px;"> <!--rinline plot1ans.pcts[11]-->% </td>
+                <td style="text-align:right;padding-left:20px;padding-top:20px;">(Cluster target)</td>
+              </tr>
+              <tr>
+                <td style="text-align:right;padding-left:20px;padding-top:20px;padding-right:20px;"> Plot 16: </td> <td style="text-align:right;padding-top:20px;"> <!--rinline plot1ans.pcts[16]-->% </td>
+              </tr>
+              <tr>
+                <td style="text-align:right;padding-left:20px;padding-top:20px;padding-right:20px;"> Plot 12: </td> <td style="text-align:right;padding-top:20px;"> <!--rinline plot1ans.pcts[12]-->% </td>
+              </tr>
+              <tr>
+                <td style="text-align:right;padding-left:20px;padding-top:20px;padding-right:20px;"> Plot 13: </td> <td style="text-align:right;padding-top:20px;"> <!--rinline plot1ans.pcts[13]-->% </td>
+              </tr>
+              <tr>
+                <td colspan=2> Sample size: <!--rinline nrow(plot1ans)--> </td>
+              </tr>
+            </table>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </section>
+  
+  <section class="center" id="faceoff">
+    <h2> Faceoff: Cluster vs. Trend? </h2>
+  </section>
+    
+  <section>
+    <h2> Cluster vs. Trend </h2>
+    <p style="text-align:left;">Define $C_{ijk}$ to be the event <br>{Participant $k$ selects the cluster target for dataset $j$ with aesthetic set $i$},<br> and $T_{ijk}$ to be the analogous selection of the trend target.</p> 
+    <br>
+    $$
+    \begin{align}
+    \text{logit }P(C_{ijk} | C_{ijk}\cup T_{ijk}) & =  \textbf{X}\beta + \textbf{J}\gamma + \textbf{K}\eta + \epsilon, \\
+    \text{where } \beta_i & \hphantom{\sim} \text{describe plot types}\\
+    \hphantom{where } \gamma_j & \overset{iid}{\sim} N\left(0, \sigma^2_{\text{dataset}}\right)\\
+    \hphantom{where } \eta_k & \overset{iid}{\sim} N\left(0, \sigma^2_{\text{participant}}\right)\\
+    \text{and } \epsilon_{ijk} & \overset{iid}{\sim}  N\left(0, \sigma^2_e\right)
+    \end{align}
+    $$
+
+  </section>
+  
+  <section>
+    <h2> Cluster vs. Trend </h2>
+    <table>
+    <tr>
+      <td width="50%">
+<!--begin.rcode cluster-vs-line, echo=F, include=T, fig.width=5, fig.height=5, out.width='100%', out.height='auto'
+gvl.model <- glmer(cluster.correct~plottype + (1|data_name) + (1|individualID), data=subset(modeldata, trend.correct | cluster.correct), family=binomial(), control=glmerControl(optimizer="bobyqa"))
+gvl.fixef <- data.frame(confint(gvl.model, method="Wald"))
+names(gvl.fixef) <- c("LB", "UB")
+gvl.fixef$OR <- fixef(gvl.model)
+
+suppressMessages(require(multcomp))
+type_compare <- glht(gvl.model, mcp(plottype="Tukey"))
+gvl.fixef$letters <- cld(type_compare)$mcletters$Letters
+gvl.fixef$label <- gsub("plottype", "", names(fixef(gvl.model)))
+gvl.fixef.old <- gvl.fixef
+
+gvl.fixef$label <- gvl.fixef$label %>% 
+  str_replace("color", "Color + ") %>% 
+  str_replace("[sS]hape", "Shape\n + ") %>%
+  str_replace("[tT]rend", "Trend + ") %>%
+  str_replace("Ellipse", "Ellipse\n + ") %>%
+  str_replace("Error", "Error") %>%
+  str_replace("(\\n? ?\\+ )$", "") %>% 
+  reorder(gvl.fixef$OR)
+
+ggplot(data=gvl.fixef[-1,]) + 
+  geom_pointrange(aes(x=label, y=exp(OR), ymin=exp(LB), ymax=exp(UB))) + 
+  coord_flip() + 
+  theme_bw() + 
+  geom_hline(yintercept=1, colour="gray70") + 
+  ggtitle("Odds of Selecting Cluster vs Trend Target \n (given one target was identified)") + 
+  xlab("Plot Type") + 
+  geom_text(aes(y=0.25, x=label, label=letters)) + 
+  scale_y_continuous("Odds (Cluster vs Trend) and 95% Wald Intervals\n(Reference level: Plain plot)", 
+                     breaks=c(0.2, 0.5, 1.0, 1.5, 2.0, 2.4), labels=c("<--Trend\n  Target", "0.5", "1.0", "1.5", "2.0", "Cluster-->\nTarget  "), limits=c(0.2, 2.4))
+end.rcode-->
+    <p style="font-size:50%;text-align:center;">Plot types are significantly different if they do not share a letter</p>
+      </td><td style="font-size:80%;vertical-align:middle;">
+        <p style="margin-bottom:10px"> Participants are <!--rinline sprintf("%.2f", exp(gvl.fixef.old$OR[gvl.fixef.old$label=="colorShapeEllipse"]))--> times as likely to select cluster targets when plots have color, shape, and ellipse aesthetics. </p>
+        <p> Participants are <!--rinline sprintf("%.2f", exp(gvl.fixef.old$OR[gvl.fixef.old$label=="trendError"]))--> times as likely to select cluster targets when plots have trend line and prediction interval aesthetics. </p>
+      </td>
+    </tr>
+  </table>
+  </section>
+  
+  <section>
+    <h2> Mixed Signals? </h2>
+    <h4> Exploring the gestalt of plots with conflicting aesthetics </h4>
+    <div align="center">
+    <table class="nopadding noborder nowidth">
+      <tr>
+        <td style="vertical-align:middle;text-align:center;">
+<!--begin.rcode gestaltplots8, dev.args = list(bg = 'transparent'), class="fragment", fragIndex=2, echo=F, fig.width=4, fig.height=4, out.width='275px', out.height='275px'
+
+  set.seed(51980)
+  data <- mixture.sim(lambda=0, K=5, N=75, sd.trend=.25, sd.cluster=.20)
+  model <- lm(y~x, data=data)
+  range <- diff(range(data$x))
+  newdata <- data.frame(x=seq(min(data$x)-.1*range, max(data$x)+.1*range, length.out=400))
+  ci <- data.frame(.sample=1, x=newdata$x, 
+                   predict.lm(model, newdata=newdata, interval="prediction", level=0.9))
+  qplot(data=data, x=x, y=y, geom="point", size=I(3), shape=I(1), color=factor(group)) + 
+    geom_line(aes(x=x, y=fit), color="black", data=ci) + 
+    scale_color_manual(guide="none", values=color5pal) + 
+    xlim(c(-2.4, 2.4)) + ylim(c(-2.4, 2.4)) + 
+    xlab(NULL) + ylab(NULL) + 
+    geom_text(aes(x=-2.3, y=2.3, label="Continuity (points) + \nContinuity (line)"), hjust=0, vjust=1, size=5, inherit.aes=FALSE) +
+    geom_text(aes(x=2.3, y=-2.3, label="Similarity (color)"), hjust=1, vjust=0, size=5, inherit.aes=FALSE) +
+    theme_minimal()  + 
+    theme(axis.text=element_blank(), axis.title=element_blank(),
+          text=element_blank(), title=element_blank(),
+          panel.border = element_rect(fill=NA, color="black"),
+          panel.background = element_rect(fill = "grey90", colour = NA),
+          plot.background = element_rect(fill = "transparent", colour = NA),
+          plot.margin=unit(c(0,0,0,0), "cm"))
+  
+end.rcode-->
+        </td>
+        <td style="vertical-align:middle;text-align:center;">
+<!--begin.rcode gestaltplots9, dev.args = list(bg = 'transparent'), class="fragment", fragIndex=2, echo=F, fig.width=4, fig.height=4, out.width='275px', out.height='275px'
+
+  set.seed(51980)
+  data <- mixture.sim(lambda=.5, K=5, N=75, sd.trend=.25, sd.cluster=.20)
+  model <- lm(y~x, data=data)
+  range <- diff(range(data$x))
+  newdata <- data.frame(x=seq(min(data$x)-.1*range, max(data$x)+.1*range, length.out=400))
+  ci <- data.frame(.sample=1, x=newdata$x, 
+                   predict.lm(model, newdata=newdata, interval="prediction", level=0.9))
+  qplot(data=data, x=x, y=y, geom="point", size=I(3), shape=I(1), color=factor(group)) + 
+    geom_line(aes(x=x, y=fit), color="black", data=ci) + 
+    scale_color_manual(guide="none", values=color5pal) + 
+    xlim(c(-2.4, 2.4)) + ylim(c(-2.4, 2.4)) + 
+    xlab(NULL) + ylab(NULL) + 
+    geom_text(aes(x=-2.3, y=2.3, label="Continuity (line)"), hjust=0, vjust=1, size=5, inherit.aes=FALSE) +
+    geom_text(aes(x=2.3, y=-2.3, label="Similarity (color)"), hjust=1, vjust=0, size=5, inherit.aes=FALSE) +
+    theme_minimal()  + 
+    theme(axis.text=element_blank(), axis.title=element_blank(),
+          text=element_blank(), title=element_blank(),
+          panel.border = element_rect(fill=NA, color="black"),
+          panel.background = element_rect(fill = "grey90", colour = NA),
+          plot.background = element_rect(fill = "transparent", colour = NA),
+          plot.margin=unit(c(0,0,0,0), "cm"))
+  
+end.rcode-->
+        </td>
+        <td style="vertical-align:middle;text-align:center;">
+<!--begin.rcode gestaltplots10, dev.args = list(bg = 'transparent'), class="fragment", fragIndex=2, echo=F, fig.width=4, fig.height=4, out.width='275px', out.height='275px'
+
+  set.seed(51980)
+  data <- mixture.sim(lambda=1, K=5, N=75, sd.trend=.25, sd.cluster=.20)
+  model <- lm(y~x, data=data)
+  range <- diff(range(data$x))
+  newdata <- data.frame(x=seq(min(data$x)-.1*range, max(data$x)+.1*range, length.out=400))
+  ci <- data.frame(.sample=1, x=newdata$x, 
+                   predict.lm(model, newdata=newdata, interval="prediction", level=0.9))
+  qplot(data=data, x=x, y=y, geom="point", size=I(3), shape=I(1), color=factor(group)) + 
+    geom_line(aes(x=x, y=fit), color="black", data=ci) + 
+    scale_color_manual(guide="none", values=color5pal) + 
+    xlim(c(-2.4, 2.4)) + ylim(c(-2.4, 2.4)) + 
+    xlab(NULL) + ylab(NULL) + 
+    geom_text(aes(x=-2.3, y=2.3, label="Continuity (line)"), hjust=0, vjust=1, size=5, inherit.aes=FALSE) +
+    geom_text(aes(x=2.3, y=-2.3, label="Proximity (points)\n + Similarity (color)"), hjust=1, vjust=0, size=5, inherit.aes=FALSE) +
+    theme_minimal()  + 
+    theme(axis.text=element_blank(), axis.title=element_blank(),
+          text=element_blank(), title=element_blank(),
+          panel.border = element_rect(fill=NA, color="black"),
+          panel.background = element_rect(fill = "grey90", colour = NA),
+          plot.background = element_rect(fill = "transparent", colour = NA),
+          plot.margin=unit(c(0,0,0,0), "cm"))
+  
+end.rcode-->
+        </td>
+        <td width="15%"  class="fragment" data-fragment-index=2 style="vertical-align:middle;text-align:left;font-size:50%;">
+        Participants are <!--rinline sprintf("%.2f", exp(gvl.fixef.old$OR[gvl.fixef.old$label=="colorTrend"]))--> times as likely to select the cluster target with color + trend line, relative to the plain plot.
+        </td>
+      </tr>
+      <tr>
+        <td style="vertical-align:middle;text-align:center;">
+<!--begin.rcode gestaltplots11, dev.args = list(bg = 'transparent'), class="fragment", fragIndex=3, echo=F, include=T, fig.width=4, fig.height=4, out.width='275px', out.height='275px'
+
+  set.seed(51980)
+  data <- mixture.sim(lambda=0, K=5, N=75, sd.trend=.25, sd.cluster=.20)
+  model <- lm(y~x, data=data)
+  range <- diff(range(data$x))
+  newdata <- data.frame(x=seq(min(data$x)-.1*range, max(data$x)+.1*range, length.out=400))
+  ci <- data.frame(.sample=1, x=newdata$x, 
+                   predict.lm(model, newdata=newdata, interval="prediction", level=0.9))
+  qplot(data=data, x=x, y=y, geom="point", size=I(3), shape=I(1), color=factor(group)) + 
+    geom_line(aes(x=x, y=fit), color="black", data=ci) + 
+    stat_ellipse(geom="polygon", level=.9, aes(colour=factor(group)), alpha=0.2, fill=NA) + 
+    geom_line(aes(x=x, y=lwr), lty=2, color="black", data=ci) + 
+    geom_line(aes(x=x, y=upr), lty=2, color="black", data=ci) + 
+    scale_color_manual(guide="none", values=color5pal) + 
+    xlim(c(-2.4, 2.4)) + ylim(c(-2.4, 2.4)) + 
+    xlab(NULL) + ylab(NULL) + 
+    geom_text(aes(x=-2.3, y=2.3, label="Continuity (points) + \nContinuity (line) + \nCommon Region\n(error bands)"), hjust=0, vjust=1, size=5, inherit.aes=FALSE) + 
+    geom_text(aes(x=2.3, y=-2.3, label="Similarity (color)\n + Common Region (ellipse)"), hjust=1, vjust=0, size=5, inherit.aes=FALSE) +
+    theme_minimal()  + 
+    theme(axis.text=element_blank(), axis.title=element_blank(),
+          text=element_blank(), title=element_blank(),
+          panel.border = element_rect(fill=NA, color="black"),
+          panel.background = element_rect(fill = "grey90", colour = NA),
+          plot.background = element_rect(fill = "transparent", colour = NA),
+          plot.margin=unit(c(0,0,0,0), "cm"))
+  
+end.rcode-->
+        </td>
+        <td style="vertical-align:middle;text-align:center;">
+<!--begin.rcode gestaltplots12, dev.args = list(bg = 'transparent'), class="fragment", fragIndex=3, echo=F, include=T, fig.width=4, fig.height=4, out.width='275px', out.height='275px'
+
+  set.seed(51980)
+  data <- mixture.sim(lambda=.5, K=5, N=75, sd.trend=.25, sd.cluster=.20)
+  model <- lm(y~x, data=data)
+  range <- diff(range(data$x))
+  newdata <- data.frame(x=seq(min(data$x)-.1*range, max(data$x)+.1*range, length.out=400))
+  ci <- data.frame(.sample=1, x=newdata$x, 
+                   predict.lm(model, newdata=newdata, interval="prediction", level=0.9))
+  qplot(data=data, x=x, y=y, geom="point", size=I(3), shape=I(1), color=factor(group)) + 
+    geom_line(aes(x=x, y=fit), color="black", data=ci) + 
+    stat_ellipse(geom="polygon", level=.9, aes(colour=factor(group)), alpha=0.2, fill=NA) + 
+    geom_line(aes(x=x, y=lwr), lty=2, color="black", data=ci) + 
+    geom_line(aes(x=x, y=upr), lty=2, color="black", data=ci) + 
+    scale_color_manual(guide="none", values=color5pal) + 
+    xlim(c(-2.4, 2.4)) + ylim(c(-2.4, 2.4)) + 
+    xlab(NULL) + ylab(NULL) + 
+    geom_text(aes(x=-2.3, y=2.3, label="Continuity (line) + \nCommon Region\n(error bands)"), hjust=0, vjust=1, size=5, inherit.aes=FALSE) + 
+    geom_text(aes(x=2.3, y=-2.3, label="Similarity (color)\n + Common Region (ellipse)"), hjust=1, vjust=0, size=5, inherit.aes=FALSE) +
+    theme_minimal()  + 
+    theme(axis.text=element_blank(), axis.title=element_blank(),
+          text=element_blank(), title=element_blank(),
+          panel.border = element_rect(fill=NA, color="black"),
+          panel.background = element_rect(fill = "grey90", colour = NA),
+          plot.background = element_rect(fill = "transparent", colour = NA),
+          plot.margin=unit(c(0,0,0,0), "cm"))
+  
+end.rcode-->
+        </td>
+        <td style="vertical-align:middle;text-align:center;">
+<!--begin.rcode gestaltplots13, dev.args = list(bg = 'transparent'), class="fragment", fragIndex=3, echo=F, include=T, fig.width=4, fig.height=4, out.width='275px', out.height='275px'
+
+  set.seed(51980)
+  data <- mixture.sim(lambda=1, K=5, N=75, sd.trend=.25, sd.cluster=.20)
+  model <- lm(y~x, data=data)
+  range <- diff(range(data$x))
+  newdata <- data.frame(x=seq(min(data$x)-.1*range, max(data$x)+.1*range, length.out=400))
+  ci <- data.frame(.sample=1, x=newdata$x, 
+                   predict.lm(model, newdata=newdata, interval="prediction", level=0.9))
+  qplot(data=data, x=x, y=y, geom="point", size=I(3), shape=I(1), color=factor(group)) + 
+    geom_line(aes(x=x, y=fit), color="black", data=ci) + 
+    stat_ellipse(geom="polygon", level=.9, aes(colour=factor(group)), alpha=0.2, fill=NA) + 
+    geom_line(aes(x=x, y=lwr), lty=2, color="black", data=ci) + 
+    geom_line(aes(x=x, y=upr), lty=2, color="black", data=ci) + 
+    scale_color_manual(guide="none", values=color5pal) + 
+    xlim(c(-2.4, 2.4)) + ylim(c(-2.4, 2.4)) + 
+    xlab(NULL) + ylab(NULL) + 
+    geom_text(aes(x=-2.3, y=2.3, label="Continuity (line) + \nCommon Region\n(error bands)"), hjust=0, vjust=1, size=5, inherit.aes=FALSE) + 
+    geom_text(aes(x=2.3, y=-2.3, label="Proximity (points)\n + Similarity (color)\n + Common Region (ellipse)"), hjust=1, vjust=0, size=5, inherit.aes=FALSE) +
+    theme_minimal()  + 
+    theme(axis.text=element_blank(), axis.title=element_blank(),
+          text=element_blank(), title=element_blank(),
+          panel.border = element_rect(fill=NA, color="black"),
+          panel.background = element_rect(fill = "grey90", colour = NA),
+          plot.background = element_rect(fill = "transparent", colour = NA),
+          plot.margin=unit(c(0,0,0,0), "cm"))
+  
+end.rcode-->
+        </td>
+        <td width="15%" class="fragment" data-fragment-index=3 style="vertical-align:middle;text-align:left;font-size:50%;">
+        Participants are <!--rinline sprintf("%.2f", exp(gvl.fixef.old$OR[gvl.fixef.old$label=="colorEllipseTrendError"]))--> times as likely to select the cluster target with color + ellipse + trend line + error, relative to the plain plot.
+        </td>
+      </tr>
+    </table>
+    </div>
+  </section>
+  
+  <section class="center" id="verbal-reasoning">
+    <h2> Participant Reasoning </h2>
+  </section>
+  
+  <section>
+    <h2> Participant Reasoning </h2>
+      <h3> Plain Plots </h3>
+<!--begin.rcode wordles-plain, echo=F, include=T, fig.width=4, fig.height=4, out.width='350px', out.height='350px'
+lexicaldata <- modeldata
+lexicaldata$choice_reason <- tolower(lexicaldata$choice_reason)
+lexicaldata$choice_reason <- gsub("^_", "", lexicaldata$choice_reason)
+
+words <- lexicaldata %>% group_by(plottype, simpleoutcome) %>% 
+  summarize(list = paste(choice_reason, collapse=" ")) %>% filter(simpleoutcome != "both", plottype %in% c("plain", "color", "trend", "colorEllipse"))
+
+library(wordcloud)
+library(tm)
+for (i in 1:3) {
+words.corpus <- Corpus(DataframeSource(data.frame(words$list[i])))
+words.corpus <- tm_map(words.corpus, removePunctuation)
+
+tdm <- TermDocumentMatrix(words.corpus)
+m <- as.matrix(tdm)
+v <- sort(rowSums(m),decreasing=TRUE)
+d <- data.frame(word = names(v),freq=v)
+pal <- brewer.pal(9, "BuGn")
+pal <- pal[-(1:2)]
+# png(sprintf("wordcloud/wordcloud-%s-%s.png",words$plottype[i], words$simpleoutcome[i]), width=960,height=600)
+wordcloud(d$word,d$freq, scale=c(8,.3),min.freq=2,max.words=100, random.order=T, rot.per=.15, colors="black", vfont=c("sans serif","plain"))
+# dev.off()
+}
+end.rcode-->
+    <div align="center">
+    <table class="noborder nowidth nopadding">
+      <tr>
+        <td width='350px' style="text-align:center;"> Neither Target<br>(N=127) </td><td width='350px' style="text-align:center;"> Cluster Target<br>(N=712) </td> <td width='350px' style="text-align:center;"> Trend Target<br>(N=355) </td>
+      </tr>
+    </table>
+    </div>
+  </section>
+  <section>
+    <h2> Participant Reasoning </h2>
+      <h3> Trend line </h3>
+<!--begin.rcode wordles-line, dependson='wordles', echo=F, include=T, fig.width=4, fig.height=4, out.width='350px', out.height='350px'
+for (i in 4:6) {
+words.corpus <- Corpus(DataframeSource(data.frame(words$list[i])))
+words.corpus <- tm_map(words.corpus, removePunctuation)
+
+tdm <- TermDocumentMatrix(words.corpus)
+m <- as.matrix(tdm)
+v <- sort(rowSums(m),decreasing=TRUE)
+d <- data.frame(word = names(v),freq=v)
+pal <- brewer.pal(9, "BuGn")
+pal <- pal[-(1:2)]
+# png(sprintf("wordcloud/wordcloud-%s-%s.png",words$plottype[i], words$simpleoutcome[i]), width=960,height=600)
+wordcloud(d$word,d$freq, scale=c(8,.3),min.freq=2,max.words=100, random.order=T, rot.per=.15, colors="black", vfont=c("sans serif","plain"))
+# dev.off()
+}
+end.rcode-->
+    <div align="center">
+    <table class="noborder nowidth nopadding">
+      <tr>
+        <td width='350px' style="text-align:center;"> Neither Target<br>(N=159) </td><td width='350px' style="text-align:center;"> Cluster Target<br>(N=694) </td> <td width='350px' style="text-align:center;"> Trend Target<br>(N=333) </td>
+      </tr>
+    </table>
+    </div>
+  </section>
+  <section>
+    <h2> Participant Reasoning </h2>
+      <h3> Color Plots </h3>
+<!--begin.rcode wordles-color, dependson='wordles', echo=F, include=T, fig.width=4, fig.height=4, out.width='350px', out.height='350px'
+for (i in 7:9) {
+words.corpus <- Corpus(DataframeSource(data.frame(words$list[i])))
+words.corpus <- tm_map(words.corpus, removePunctuation)
+
+tdm <- TermDocumentMatrix(words.corpus)
+m <- as.matrix(tdm)
+v <- sort(rowSums(m),decreasing=TRUE)
+d <- data.frame(word = names(v),freq=v)
+pal <- brewer.pal(9, "BuGn")
+pal <- pal[-(1:2)]
+# png(sprintf("wordcloud/wordcloud-%s-%s.png",words$plottype[i], words$simpleoutcome[i]), width=960,height=600)
+wordcloud(d$word,d$freq, scale=c(8,.3),min.freq=2,max.words=100, random.order=T, rot.per=.15, colors="black", vfont=c("sans serif","plain"))
+# dev.off()
+}
+end.rcode-->
+    <div align="center">
+    <table class="noborder nowidth nopadding">
+      <tr>
+        <td width='350px' style="text-align:center;"> Neither Target<br>(N=188)</td><td width='350px' style="text-align:center;"> Cluster Target<br>(N=715) </td> <td width='350px' style="text-align:center;"> Trend Target<br>(N=292) </td>
+      </tr>
+    </table>
+    </div>
+  </section>
+  <section>
+    <h2> Participant Reasoning </h2>
+      <h3> Color + Ellipse Plots </h3>
+<!--begin.rcode wordles-colorEllipse, dependson='wordles', echo=F, include=T, fig.width=4, fig.height=4, out.width='350px', out.height='350px'
+for (i in 10:12) {
+words.corpus <- Corpus(DataframeSource(data.frame(words$list[i])))
+words.corpus <- tm_map(words.corpus, removePunctuation)
+
+tdm <- TermDocumentMatrix(words.corpus)
+m <- as.matrix(tdm)
+v <- sort(rowSums(m),decreasing=TRUE)
+d <- data.frame(word = names(v),freq=v)
+pal <- brewer.pal(9, "BuGn")
+pal <- pal[-(1:2)]
+# png(sprintf("wordcloud/wordcloud-%s-%s.png",words$plottype[i], words$simpleoutcome[i]), width=960,height=600)
+wordcloud(d$word,d$freq, scale=c(8,.3),min.freq=2,max.words=100, random.order=T, rot.per=.15, colors="black", vfont=c("sans serif","plain"))
+# dev.off()
+}
+end.rcode-->
+    <div align="center">
+    <table class="noborder nowidth nopadding">
+      <tr>
+        <td width='350px' style="text-align:center;"> Neither Target<br>(N=347) </td><td width='350px' style="text-align:center;"> Cluster Target<br>(N=621) </td> <td width='350px' style="text-align:center;"> Trend Target<br>(N=222) </td>
+      </tr>
+    </table>
+    </div>
+  </section>
+
+  <section class="center" id="response-time">
+    <h2> Response Time </h2>
+  </section>
+  
+  <section>
+    <h2> Summary: Response Time </h2>
+    <ul style="font-size:75%">
+      <li> First trials take more time than subsequent trials </li>
+      <li> Participants take more time to evaluate plots with more aesthetics </li>
+      <li> Participants who identify a single target are faster than those who did not successfully identify a target; Identifying both targets takes the most time </li>
+    </ul>
+<!--begin.rcode response-time-aes-small, echo=F, include=T, fig.width=9, fig.height=4, out.width='60%', out.height='auto'
+library(lubridate)
+
+# modeldata$time_taken <- as.numeric(ymd_hms(modeldata$end_time) - ymd_hms(modeldata$start_time))
+time.model <- lmer(log(as.numeric(trial.time))~ simpleoutcome:plottype + first.trial  + (1|individualID) + (1|dataset), data=modeldata)
+
+coefs <- data.frame(exp(confint(time.model, method="Wald")))[-c(1:2),]
+names(coefs) <- c("low", "high")
+coefs$estimate <- exp(fixef(time.model)[-c(1:2)])
+coefs$name <- names(fixef(time.model))[-c(1:2)]
+ll <- ldply(strsplit(coefs$name, split=":"), function(x) x)
+coefs$outcome <- gsub("simpleoutcome", "", ll$V1)
+coefs$plottype <- gsub("plottype", "", ll$V2)
+coefs$simple <- coefs$outcome %in% c("both") - coefs$outcome%in%c("neither")
+coefs$simple <- factor(coefs$simple)
+levels(coefs$simple) <- c("Neither", "Cluster, Trend", "Both")
+coefs$outcome <- factor(coefs$outcome, levels=c("neither", "cluster", "trend", "both"))
+
+coefs$plottype <- coefs$plottype %>% 
+  str_replace("color", "Color + ") %>% 
+  str_replace("[sS]hape", "Shape + ") %>%
+  str_replace("[tT]rend", "Trend + ") %>%
+  str_replace("Ellipse", "Ellipse + ") %>%
+  str_replace("Error", "Error + ") %>%
+  str_replace("plain", "Plain") %>%
+  str_replace("( \\+ )$", "")
+coefs$plottype <- factor(coefs$plottype)
+
+coefs <- ddply(coefs, .(plottype), transform, avg.est=mean(estimate))
+coefs$plottype <- with(coefs, reorder(plottype, avg.est))
+
+coefs$outcome <- factor(coefs$outcome, levels=c("neither", "trend", "cluster", "both"), labels=c("Neither", "Trend", "Cluster", "Both"))
+coefs$out.factor <- factor(str_replace(as.character(coefs$outcome), "Trend|Cluster", "Single"), levels=c("Neither", "Single", "Both"), labels=c("Neither Target", "Single Target", "Both Targets"))
+coefs$pos <- as.numeric(factor(coefs$plottype)) + as.numeric(coefs$out.factor=="Single Target")*(as.numeric(coefs$outcome)-2.5)*1/3
+
+qplot(x=estimate, y=pos, data=coefs, colour=outcome, shape=outcome, size=I(3)) + theme_bw() + 
+  scale_colour_brewer("Target Identified", palette="Set1") +
+  scale_shape_manual("Target Identified", values=c(4, 1, 2, 8)) +
+  geom_segment(aes(x=low, xend=high, y=pos, yend=pos),guide="none") + 
+  scale_y_continuous(breaks=1:10, labels=levels(coefs$plottype)) + 
+  xlab("Additional time to evaluate plot (in seconds) given outcome") + ylab("") + 
+  theme(legend.position="bottom") + 
+  ggtitle("Evaluation Time by Aesthetics and Outcome") + 
+  facet_grid(.~out.factor, scales="free_x")
+end.rcode-->
+
+  </section>
+
+  
+  <section>
+    <h2> Response Time </h2>
+    <br></br>
+    $$
+    \begin{align}
+    \log(\text{Trial Time}) &\sim \textbf{X}\beta + \textbf{J}\gamma + \textbf{K}\eta + \epsilon\\
+    \text{where } \beta_i & \text{ describe outcome and aesthetic combinations,}\\
+    & \text{ plus an initial trial effect}\\
+    \hphantom{where } \gamma_j & \overset{iid}{\sim} N\left(0, \sigma^2_{\text{dataset}}\right)\\
+    \hphantom{where } \eta_k & \overset{iid}{\sim} N\left(0, \sigma^2_{\text{participant}}\right)\\
+    \text{and } \epsilon_{ijk} & \overset{iid}{\sim}  N\left(0, \sigma^2_e\right)
+    \end{align}
+    $$
+  </section>
+    
+  <section>
+    <h2> Response Time </h2>
+<!--begin.rcode response-time-aes, echo=F, include=T, fig.width=9, fig.height=4, out.width='90%', out.height='auto'
+qplot(x=estimate, y=pos, data=coefs, colour=outcome, shape=outcome, size=I(3)) + theme_bw() + 
+  scale_colour_brewer("Target Identified", palette="Set1") +
+  scale_shape_manual("Target Identified", values=c(4, 1, 2, 8)) +
+  geom_segment(aes(x=low, xend=high, y=pos, yend=pos),guide="none") + 
+  scale_y_continuous(breaks=1:10, labels=levels(coefs$plottype)) + 
+  xlab("Additional time to evaluate plot (in seconds) given outcome") + ylab("") + 
+  theme(legend.position="bottom") + 
+  ggtitle("Evaluation Time by Aesthetics and Outcome") + 
+  facet_grid(.~out.factor, scales="free_x")
+end.rcode-->
+  <p style="font-size:75%"> Participants take more time to evaluate plots with more aesthetics. <br>Participants who identified a single target plot were faster than participants who could not identify a target plot.  </p>
+  </section>
+  
+  <section>
+    <h2> Response Time </h2>
+<!--begin.rcode response-time-parms, echo=F, include=T, fig.width=9, fig.height=8, out.width='50%', out.height='auto', warning=FALSE, message=FALSE
+time.model2 <- lmer(log(as.numeric(trial.time))~ first.trial + plottype + simpleoutcome:trend.diff:cluster.diff:k  + (1|individualID) , data=modeldata)
+
+coefs <- data.frame(exp(confint(time.model2, method="Wald")))[-(1:11),]
+names(coefs) <- c("low", "high")
+coefs$estimate <- exp(fixef(time.model2)[-(1:11)])
+coefs$name <- names(fixef(time.model2))[-(1:11)]
+ll <- ldply(strsplit(coefs$name, split=":"), function(x) x)
+coefs$outcome <- gsub("simpleoutcome", "", ll$V1)
+coefs$trend.diff <- gsub("trend\\.diff", "", ll$V2)
+coefs$trend.diff <- factor(coefs$trend.diff, levels=c("easy", "medium", "hard"), labels=paste0("Trend:", c("Easy", "Medium", "Hard")))
+coefs$cluster.diff <- gsub("cluster\\.diff", "", ll$V3)
+coefs$cluster.diff <- factor(coefs$cluster.diff, levels=c("easy", "medium", "hard"), labels=paste0("Cluster:", c("Easy", "Medium", "Hard")))
+coefs$k <- gsub("k", "", ll$V4)
+coefs$simple <- coefs$outcome %in% c("both") - coefs$outcome%in%c("neither")
+coefs$simple <- factor(coefs$simple)
+levels(coefs$simple) <- c("Neither", "Cluster, Trend", "Both")
+
+coefs$outcome <- factor(coefs$outcome, levels=c("neither", "cluster", "trend", "both"), labels=c("Neither Identified", "Cluster Identified", "Trend Identified", "Both Identified"))
+coefs$pos <- as.numeric(factor(coefs$k)) + (as.numeric(factor(coefs$trend.diff))-2)/4
+
+qplot(estimate, pos, data=subset(coefs, outcome!="Both Identified"), colour=trend.diff, size=I(4), shape=trend.diff) + theme_bw() + 
+  scale_colour_manual("Trend", values=c("#7bccc4", "#2b8cbe", "#084081")) +
+  scale_shape_discrete("Trend") + 
+  geom_segment(aes(x=low, xend=high, y=pos, yend=pos)) + 
+  facet_grid(cluster.diff~outcome) + 
+  scale_y_continuous(breaks=1:2, labels=unique(coefs$k), limits=c(0.5,2.5)) + 
+  xlab("Additional time to evaluate each plot type (in seconds) given outcome") + ylab("K") + 
+  ggtitle("Evaluation Time by Model Parameters and Outcome")
+end.rcode-->
+  </section>
+  
+  <section class='center' id="conclusion">
+    <h2> Discussion </h2>
+  </section>
+  
+  <section>
+    <h2> Conclusions </h2>
+    <ul>
+      <li style="margin:20px"> Plot aesthetics influence perception of ambiguous data displays </li>
+      <li style="margin:20px"> Aesthetic effects are not additive: <br>
+      Conflict conditions don't show similar/neutral results </li>
+      <li style="margin:20px"> Aesthetics which recruit new gestalt heuristics have more influence, and we can quantify the size of that influence </li>
+      <li style="margin:20px"> Uneven groups in null plots emphasize different features <br>(but still show the importance of aesthetic/heuristic interactions) </li>
+      <ul style="font-size:75%">
+      <li style="margin:20px"> The lineup method allows us to examine <u>why</u> participants switched hypotheses from "Linear relationship" or "Clusters of points" to "Uneven groups" <br>
+      <p> Similar to a Type III error: the error of giving the right answer to the wrong problem (A.W. Kimball) </p></li></ul>
+    </ul>
+  </section>
+  
+  <section>
+    <h2> Future Work </h2>
+    <ul> 
+      <li style="margin:20px"> Restrict group sizes so null plots have the same objects as target plots </li>
+      <li style="margin:20px"> Explore the effect of different types of common region for error bands and ellipses - shading, bounding boxes, etc. </li>
+      <li style="margin:20px"> Test ellipse and error band aesthetics alone and with trend lines and color to examine interaction effects</li> 
+      <li style="margin:20px"> Test plotted statistics (trend line, ellipses, error bands) with and without data points to examine interactions between heuristics from the data and heuristics from summary statistics</li> 
+    </ul>
+  </section>
 </section>
 
 
@@ -2059,7 +4313,7 @@ end.rcode-->
         slideNumber: true,
         width: 1200,
         height: 800,
-        margin: 0.05,
+        margin: 0.1,
         transition: 'fade', // none/fade/slide/convex/concave/zoom
         // Optional reveal.js plugins
         dependencies: [
