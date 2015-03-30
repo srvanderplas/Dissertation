@@ -106,10 +106,34 @@
 
 
 <section>
-  <section>
-    <h2>Outline</h2>
+	<section>
+		<h2> Purpose </h2>
+		<h3 style="text-align:center;padding-top:10%;padding-bottom:10%;padding-left:5%;padding-right:5%;"> How do we effectively communicate with graphics? </h3>
+	</section>
+	
+	<section>
+		<h2> Papers </h2>
+		<ul>
+			<li>Visual Illusions in Statistical Graphics</li>
+			<ul>
+			<li><b>Signs of the Sine Illusion:</b> Why We Need to Care</li>
+			<li><b>The Curse of Three Dimensions:</b> Why Your Brain is Lying to You</li>
+			</ul>
+			<li>Fundamental Skills for Graphical Perception</li>
+			<ul>
+			<li><b>Spatial Reasoning and Data Displays</b></li>
+			</ul>
+			<li> Quantifying the Effects of Plot Aesthetics </li>
+			<ul>
+			<li><b>Statistical Graphics and the Hierarchy of Visual Features</b></li>
+			</ul>
+		</ul>
+	</section>
+	
+	<section>
+    <h2 style="padding-bottom:20px">Visual Illusions in Statistical Graphics</h2>
 
-    <ul style="width:95%;">
+    <ul style="width:80%;">
       <li style="margin-bottom:20px;margin-top:10px;">
         <b>Signs of the Sine Illusion:</b> Why We Need to Care
 
@@ -142,9 +166,9 @@
   </section>
 
   <section>
-    <h2>Outline</h2>
-
-    <ul style="margin-bottom:20px;margin-top:10px;width:95%;">
+    <h2> Fundamental Skills for Graphical Perception </h2>
+    
+    <ul style="margin-bottom:30px;margin-top:30px;width:80%;">
       <li style="margin-bottom:20px;margin-top:10px;"><b>Spatial Reasoning and Data Displays</b></li>
 
       <li style="list-style: none; display: inline">
@@ -156,7 +180,12 @@
           <li>Submitted to InfoVis 2015</li>
         </ul>
       </li>
-
+		</ul>
+	</section>
+	
+  <section>
+    <h2>Quantifying the Effects of Plot Aesthetics </h2>
+		<ul style="margin-bottom:30px;margin-top:30px;width:80%;">
       <li style="margin-bottom:20px;margin-top:10px;"><b>Statistical Graphics and the Hierarchy of Visual Features</b></li>
 
       <li style="list-style: none; display: inline">
@@ -171,6 +200,14 @@
         </ul>
       </li>
     </ul>
+  </section>
+  
+  <section>
+  	<h2> Lineup Protocol </h2>
+<!--
+
+-->
+
   </section>
 </section>
 
@@ -1283,15 +1320,14 @@ In: <EM>Journal of the American Statistical Association</EM> 108.503 (2013), pp.
 
 
 <section>
+	<section class="center">
+		<h2> Hierarchy of Visual Features </h2>
+	</section>
+
   <section>
-    <h2 class="title">Hierarchy of Visual Features</h2>
-    <h3 class="title">Why group beats trend, but error beats group</h3>
-  </section>
-  
-   <section>
   	<h2> Outline </h2>
   	<ul>
-  	  <li style="margin:20px"> <a href="#" class="navigate-down">Human Perception & Statistical Graphics</a> </li>
+  	  <li style="margin:20px"> <a href="#" class="navigate-right">Human Perception & Statistical Graphics</a> </li>
       <li style="margin:20px"> <a href="#/experiment">Experimental Structure</a> </li> 
         <ul style="font-size:80%">
           <li> <a href="#/model">Model</a> </li>
@@ -1307,45 +1343,21 @@ In: <EM>Journal of the American Statistical Association</EM> 108.503 (2013), pp.
       <li style="margin:20px"> <a href="#/conclusion">Conclusions & Future Work</a> </li>
     </ul>
   </section>
-<section class="center">
+
+
+
+  <section class="center">
     <h2 class="title"> Human Perception and Statistical Graphics </h2>
   </section>
 
 
 
   <section>
-    <h2><span style="font-size:80%;vertical-align:middle;"> Preattentive Feature Detection </span></h3>
-    <table class="noborder nopadding">
-    <tr>
-    <td width='50%'>
-      <ul style="margin:20px;">
-        <li> Preattentive perception occurs before conscious attention is focused on the stimulus </li>
-        <li> Occurs within 200 ms </li>
-      </ul>
+    <h2><span style="font-size:80%;vertical-align:middle;"> Preattentive Feature Detection </span></h2>
+			Preattentive perception occurs before conscious attention is focused on the stimulus, within the first 200 ms <br>
 <span class='fragment' data-fragment-index=2><div class="chunk" id="preattentive-interference"><div class="rimage center"><img src="figure/preattentive-interference-1.png" title="plot of chunk preattentive-interference" alt="plot of chunk preattentive-interference" width="40%" height="auto" class="plot" />
 <img src="figure/preattentive-interference-2.png" title="plot of chunk preattentive-interference" alt="plot of chunk preattentive-interference" width="40%" height="auto" class="plot" /></div></div></span>
 
-    </td><td width='auto'>
-      <div class="fragment" data-fragment-index=3>
-        <p>Hierarchy of features (accuracy): </p>
-        <table width='60%'>
-            <tr>
-              <td style="vertical-align:middle;text-align:center;border:1px solid;" width=25%>1</td>
-              <td style="vertical-align:middle;text-align:center;border:1px solid;">color*</td>
-            </tr><tr>
-              <td style="vertical-align:middle;text-align:center;border:1px solid;">2</td>
-              <td style="vertical-align:middle;text-align:center;border:1px solid;">shape<br>intensity<br> letters (HQX)</td>
-            </tr><tr>
-              <td style="vertical-align:middle;text-align:center;border:1px solid;">3</td>
-              <td style="vertical-align:middle;text-align:center;border:1px solid;"> letters (HEF)</td>
-            </tr>
-          </table>
-        <p style="text-align:left;font-size:75%">* For the 95% with normal color vision </p>
-        <p  style="font-size:75%;"> Cleveland & McGill (1985)<br> Lewandowsky & Spence (1989) </p>
-      </div>
-    </td>
-    </tr>
-    </table>
 
   </section>
 
@@ -1416,10 +1428,13 @@ In: <EM>Journal of the American Statistical Association</EM> 108.503 (2013), pp.
       </tr>
     </table>
   </section>
-  
 
-	
-	<section id="experiment">
+
+
+
+
+<section id="experiment">
+  <section>
     <div> <h2>Experiment:</h2> <h3> How do plot aesthetics affect <br>perception of statistical plots? </h3></div>
 <div class="chunk" id="motivation"><div class="rimage center"><img src="figure/motivation-1.png" title="plot of chunk motivation" alt="plot of chunk motivation" width="300px" height="300px" class="plot" />
 <img src="figure/motivation-2.png" title="plot of chunk motivation" alt="plot of chunk motivation" width="300px" height="300px" class="plot" /></div></div>
@@ -1439,7 +1454,7 @@ In: <EM>Journal of the American Statistical Association</EM> 108.503 (2013), pp.
             <ul style="font-size:85%">
               <li class=fragment data-fragment-index=2> One "target" plot <br>(real data or generated from $H_A$) </li>
               <li class=fragment data-fragment-index=3> 19 null plots generated from $H_0$ </li>
-              <li class=fragment data-fragment-index=4> $P(\text{select target}) = 0.05$ under $H_0$ </li>
+              <li class=fragment data-fragment-index=4> $P(\text{select target}| H_0) = 0.05$ </li>
               <li class=fragment data-fragment-index=5> Allows quantification of significance for graphical findings</li>
             </ul>
             <p style="font-size:50%"> Buja, A., Cook, D., Hofmann, H., Lawrence, M., Lee, E. K., Swayne, D. F., and Wickham, H. (2009). Statistical inference for exploratory data analysis and model diagnostics, <i>Phil. Transac.</i> </p>
@@ -1554,16 +1569,13 @@ In: <EM>Journal of the American Statistical Association</EM> 108.503 (2013), pp.
     <p style="text-align:left;"><b>Input: </b>sample size $N$, $\sigma_T$ standard deviation from the line $y=x$</p>
     <p style="text-align:left;"><b>Output: </b> vectors $x$ and $y$ with $N$ observations </p>
     <ol>
-      <li class="fragment"> Generate $\tilde{x}_i$, $i=1, ..., N$, as a seq. of evenly spaced points from $[-1, 1]$. </li>
-      <li class="fragment"> Jitter $\tilde{x}_i$ by adding small perturbations</li>
-      <li class="fragment"> Generate $y_i$ as a linear function of $x_i$: $y_i = x_i + e_i$, $e_i \sim N(0, \sigma^2_T)$.</li>
-      <li class="fragment"> Center and scale $x_i$, $y_i$</li>
+      <li class="fragment" data-fragment-index=2> Generate $\tilde{x}_i$, $i=1, ..., N$, as a seq. of evenly spaced points from $[-1, 1]$. </li>
+      <li class="fragment" data-fragment-index=3> Jitter $\tilde{x}_i$ by adding small perturbations</li>
+      <li class="fragment" data-fragment-index=4> Generate $y_i$ as a linear function of $x_i$: $y_i = x_i + e_i$, $e_i \sim N(0, \sigma^2_T)$.</li>
+      <li class="fragment" data-fragment-index=5> Center and scale $x_i$, $y_i$</li>
     </ol>
-  </section>
-  
-  <section>
-    <h2> Trend Model $M_T$ </h2>
-<div class="chunk" id="trends"><div class="rimage center"><img src="figure/trends-1.png" title="plot of chunk trends" alt="plot of chunk trends" width="90%" height="auto" class="plot" /></div></div>
+<span class='fragment' data-fragment-index=6><div class="chunk" id="trends"><div class="rimage center"><img src="figure/trends-1.png" title="plot of chunk trends" alt="plot of chunk trends" width="80%" height="auto" class="plot" /></div></div></span>
+
   </section>
 
   <section>
@@ -1573,7 +1585,7 @@ In: <EM>Journal of the American Statistical Association</EM> 108.503 (2013), pp.
     <ol>
       <li style="margin-bottom:20px" class="fragment smalleqns"> Generate $K$ cluster centers $(c^x, c^y)$ on a $K\times K$ grid; center and scale </li>
       <li style="margin-bottom:20px" class="fragment smalleqns"> Sample group sizes $g = (g_1, ..., g_K)$ with $N = \sum_{i=1}^K g_i$ </li>
-      <li style="margin-bottom:20px" class="fragment">Generate points $(\mathbf{x},\mathbf{y})$ with perturbations $ N(\mathbf{0}, \sigma^2_C)$ </li>
+      <li style="margin-bottom:20px" class="fragment">Jitter points around cluster centers by $ N(\mathbf{0}, \sigma^2_C)$ </li>
       <li style="margin-bottom:20px" class="fragment">Center and scale $x_i$, $y_i$</li>
     </ol>
   </section>
@@ -1640,28 +1652,15 @@ In: <EM>Journal of the American Statistical Association</EM> 108.503 (2013), pp.
   </section>
   
   <section>
-    <h2> Simulation: One Parameter Set </h2> 
+    <span style="display:inline"><h2> Simulation:  </h2> <h4>$\sigma_T=0.25$, $\sigma_C=0.20$, and $K=3$</h4></span>
 <div class="chunk" id="simulation1"><div class="rimage center"><img src="figure/simulation1-1.png" title="plot of chunk simulation1" alt="plot of chunk simulation1" width="70%" height="auto" class="plot" /></div></div>
-    <p> For $\sigma_T=0.25$, $\sigma_C=0.20$, and $K=3$, it is harder to (numerically) identify data generated by $M_T$ than to identify data from $M_C$, compared to the relevant null plot statistic. </p>
-  </section>
-  
-  <section>
-    <h2> Simulation: Parameter Space </h2> 
-<div class="chunk" id="simulation2"><div class="rimage center"><img src="figure/simulation2-1.png" title="plot of chunk simulation2" alt="plot of chunk simulation2" width="60%" height="auto" class="plot" /></div></div>
-    <p> Values of $\sigma_T = .25, .35, .45$ will provide easy, medium, and hard difficulty levels for trend target identification. </p>
-  </section>
-  
-  <section>
-    <h2> Simulation: Parameter Space </h2> 
-<div class="chunk" id="simulation3"><div class="rimage center"><img src="figure/simulation3-1.png" title="plot of chunk simulation3" alt="plot of chunk simulation3" width="60%" height="auto" class="plot" /></div></div>
-    <p> Values of <span style="display:inline-block;vertical-align:middle;"> $K=3: \sigma_C = \{.25, .3, .35\}$<br> $K=5: \sigma_C= \{.2, .25, .3\}$</span> will provide easy, medium, and hard difficulty levels for cluster target identification. </p>
   </section>
   
   <section id="plot-aesthetics">
     <h2> Plot Aesthetic Combinations </h2>
     <table style="border-collapse: collapse; font-size:75%; margin-bottom:40px;">
       <tr>
-        <td colspan=2></td><td class="bb" colspan=3 style="text-align:center;">Line Emphasis</td>
+        <td colspan=2></td><td class="bb" colspan=3 style="text-align:center;">Trend Emphasis</td>
       </tr><tr style="text-align:center;">
         <td></td>
         <td class="bb br">Strength</td>
@@ -1751,9 +1750,9 @@ In: <EM>Journal of the American Statistical Association</EM> 108.503 (2013), pp.
             <ul>
               <li> Plain </li>
               <li> Trend </li>
-              <li> Trend + Error </li>
+              <li> Trend + Pred. Int. </li>
               <li> Color + Trend </li>
-              <li> Color + Ellipse<br>+ Trend + Error </li>
+              <li> Color + Ellipse<br>+ Trend + Pred. Int. </li>
             </ul>
           </div>
           <div style="font-size:70%;display:inline-block;">
@@ -1814,8 +1813,10 @@ In: <EM>Journal of the American Statistical Association</EM> 108.503 (2013), pp.
           <li> Reasoning <br> (i.e. "Strongest linear relationship", "Clustered points", "Odd shape") </li>
         </ul>
       </ul>
-  </section>  
-  
+  </section>
+
+
+
   <section class="center" id="results">
     <h2>Results</h2>
     <ul> 
@@ -1835,10 +1836,37 @@ In: <EM>Journal of the American Statistical Association</EM> 108.503 (2013), pp.
     <p> Participants selected more cluster targets than line targets, however, 5 plot types were expected to emphasize clustering, and only 2 plot types were expected to emphasize trends. </p>
   </section>
   
+  <section>
+    <h2> Modeling Target Selection </h2>
+    <table><tr><td class="fragment">
+     $$\text{logit }Y$$</td><td class="fragment"> $$ = \textbf{X}\beta$$ </td><td class="fragment"> $$+ \textbf{J}\gamma$$</td><td class="fragment">$$ + \textbf{K}\eta + \epsilon$$</td></tr>
+    <tr>
+    	<td></td>
+    	<td colspan=3 class="fragment" style="text-align:center;"> where fixed effects $\beta_i$ describe <br>the effect of specific plot types</td>
+    </tr>    
+    <tr>
+    	<td></td>
+    	<td colspan=3 class="fragment"> $\gamma_j \overset{iid}{\sim} N\left(0, \sigma^2_{\text{dataset}}\right)$ </td>
+    </tr>    
+    <tr>
+    	<td></td>
+    	<td colspan=3 class="fragment"> $\eta_k \overset{iid}{\sim} N\left(0, \sigma^2_{\text{participant}}\right)$ </td>
+    </tr>    
+    <tr>
+    	<td></td>    	
+    	<td colspan=3 class="fragment"> $\epsilon_{ijk} \overset{iid}{\sim}  N\left(0, \sigma^2_e\right)$ </td>
+    </tr>
+    </table>
+
+    <p> Dataset and participant effects are orthogonal by design </p>
+    <p> Variability due to model parameters is contained within the random effects for dataset </p>
+  </section>
+  
+  
   <section class="center" id="single-target">
     <h2> Modeling Single Target Selection </h2>
   </section> 
-  
+  <!--
   <section>
     <h2> Modeling Single Target Selection </h2>
     <br></br>
@@ -1853,33 +1881,35 @@ In: <EM>Journal of the American Statistical Association</EM> 108.503 (2013), pp.
     $$
     <p> Dataset and participant effects are orthogonal by design </p>
     <p> Variability due to model parameters is contained within the random effects for dataset </p>
-  </section>
+  </section>-->
   
   <section id="line-target">
-    <h2> Trend Target Identification </h2>
+    <h2> Target: Trend Plot $M_T$ </h2>
+    $Y = \text{Participant selected the plot generated by }M_T$
+
+<div class="chunk" id="line-target"><div class="rimage center"><img src="figure/line-target-1.png" title="plot of chunk line-target" alt="plot of chunk line-target" width="65%" height="auto" class="plot" /></div></div>
+      <p style="font-size:50%;text-align:center;">Plot types are significantly different if they do not share a letter</p>
     <table width="100%">
     <tr>
-      <td width="50%">
-<div class="chunk" id="line-target"><div class="rimage center"><img src="figure/line-target-1.png" title="plot of chunk line-target" alt="plot of chunk line-target" width="100%" height="auto" class="plot" /></div></div>
-      <p style="font-size:50%;text-align:center;">Plot types are significantly different if they do not share a letter</p>
-      </td><td style="font-size:80%;vertical-align:middle;">
-        <p style="margin-bottom:30px"> Participants are <code class="knitr inline">1.77</code> times as likely to select trend targets when plots have trend lines and prediction intervals. </p>
+      <td style="font-size:70%;vertical-align:top;">
         <p> Participants are <code class="knitr inline">0.37</code> times as likely to select trend targets when plots have color, shape, and ellipse aesthetics. </p>
-      </td>
+      </td><td width="50%" style="font-size:70%;vertical-align:top;"><p style="margin-bottom:30px"> Participants are <code class="knitr inline">1.77</code> times as likely to select trend targets when plots have trend lines and prediction intervals. </p></td>
     </tr>
     </table>
   </section>
   
   <section id="cluster-target">
-    <h2> Cluster Target Identification </h2>
+    <h2> Target: Cluster Plot $M_C$ </h2>
+    $Y = \text{Participant selected the plot generated by }M_C$
+
+<div class="chunk" id="cluster-target"><div class="rimage center"><img src="figure/cluster-target-1.png" title="plot of chunk cluster-target" alt="plot of chunk cluster-target" width="65%" height="auto" class="plot" /></div></div>
+  <p style="font-size:50%;text-align:center;">Plot types are significantly different if they do not share a letter</p>
+
     <table>
     <tr>
-      <td width="50%">
-<div class="chunk" id="cluster-target"><div class="rimage center"><img src="figure/cluster-target-1.png" title="plot of chunk cluster-target" alt="plot of chunk cluster-target" width="100%" height="auto" class="plot" /></div></div>
-  <p style="font-size:50%;text-align:center;">Plot types are significantly different if they do not share a letter</p>
-      </td><td style="font-size:80%;vertical-align:middle;">
-        <p style="margin-bottom:10px"> Participants are <code class="knitr inline">1.19</code> times as likely to select cluster targets when plots have shape aesthetics. </p>
+      <td style="font-size:70%;vertical-align:top;">
         <p> Participants are <code class="knitr inline">0.67</code> times as likely to select cluster targets when plots have color and ellipse aesthetics. What happened? </p>
+      </td><td width="50%" style="font-size:70%;vertical-align:top;"><p style="margin-bottom:10px"> Participants are <code class="knitr inline">1.19</code> times as likely to select cluster targets when plots have shape aesthetics. </p>
       </td>
     </tr>
   </table>
@@ -1933,30 +1963,25 @@ In: <EM>Journal of the American Statistical Association</EM> 108.503 (2013), pp.
     
   <section>
     <h2> Cluster vs. Trend </h2>
-    <p style="text-align:left;">Define $C_{ijk}$ to be the event <br>{Participant $k$ selects the cluster target for dataset $j$ with aesthetic set $i$},<br> and $T_{ijk}$ to be the analogous selection of the trend target.</p> 
-    <br>
+    <p style="text-align:left;margin-bottom:2em">Define $C_{ijk}$ to be the event <br>{Participant $k$ selects the cluster target for dataset $j$ with aesthetic set $i$},<br> and $T_{ijk}$ to be the analogous selection of the trend target.</p> 
+
     $$
-    \begin{align}
-    \text{logit }P(C_{ijk} | C_{ijk}\cup T_{ijk}) & =  \textbf{X}\beta + \textbf{J}\gamma + \textbf{K}\eta + \epsilon, \\
-    \text{where } \beta_i & \hphantom{\sim} \text{describe plot types}\\
-    \hphantom{where } \gamma_j & \overset{iid}{\sim} N\left(0, \sigma^2_{\text{dataset}}\right)\\
-    \hphantom{where } \eta_k & \overset{iid}{\sim} N\left(0, \sigma^2_{\text{participant}}\right)\\
-    \text{and } \epsilon_{ijk} & \overset{iid}{\sim}  N\left(0, \sigma^2_e\right)
-    \end{align}
+    \text{logit }P(C_{ijk} | C_{ijk}\cup T_{ijk})  =  \textbf{X}\beta + \textbf{J}\gamma + \textbf{K}\eta + \epsilon
     $$
 
   </section>
   
   <section>
     <h2> Cluster vs. Trend </h2>
+<div class="chunk" id="cluster-vs-line"><div class="rimage center"><img src="figure/cluster-vs-line-1.png" title="plot of chunk cluster-vs-line" alt="plot of chunk cluster-vs-line" width="65%" height="auto" class="plot" /></div></div>
+    <p style="font-size:50%;text-align:center;">Plot types are significantly different if they do not share a letter</p>
+
     <table>
     <tr>
-      <td width="50%">
-<div class="chunk" id="cluster-vs-line"><div class="rimage center"><img src="figure/cluster-vs-line-1.png" title="plot of chunk cluster-vs-line" alt="plot of chunk cluster-vs-line" width="100%" height="auto" class="plot" /></div></div>
-    <p style="font-size:50%;text-align:center;">Plot types are significantly different if they do not share a letter</p>
-      </td><td style="font-size:80%;vertical-align:middle;">
+      <td width="50%" style="font-size:80%;vertical-align:top;">
+      <p> Participants are <code class="knitr inline">0.53</code> times as likely to select cluster targets when plots have trend line and prediction interval aesthetics. </p>
+      </td><td style="font-size:80%;vertical-align:top;">
         <p style="margin-bottom:10px"> Participants are <code class="knitr inline">1.78</code> times as likely to select cluster targets when plots have color, shape, and ellipse aesthetics. </p>
-        <p> Participants are <code class="knitr inline">0.53</code> times as likely to select cluster targets when plots have trend line and prediction interval aesthetics. </p>
       </td>
     </tr>
   </table>
@@ -1998,7 +2023,7 @@ In: <EM>Journal of the American Statistical Association</EM> 108.503 (2013), pp.
 
         </td>
         <td width="15%" class="fragment" data-fragment-index=3 style="vertical-align:middle;text-align:left;font-size:50%;">
-        Participants are <code class="knitr inline">0.59</code> times as likely to select the cluster target with color + ellipse + trend line + error, relative to the plain plot.
+        Participants are <code class="knitr inline">0.59</code> times as likely to select the cluster target with color + ellipse + trend line + pred. int., relative to the plain plot.
         </td>
       </tr>
     </table>
@@ -2108,7 +2133,10 @@ In: <EM>Journal of the American Statistical Association</EM> 108.503 (2013), pp.
 <div class="chunk" id="response-time-parms"><div class="rimage center"><img src="figure/response-time-parms-1.png" title="plot of chunk response-time-parms" alt="plot of chunk response-time-parms" width="50%" height="auto" class="plot" /></div></div>
   </section>
   
-  <section class='center' id="conclusion">
+
+
+<section id="conclusion">
+  <section class='center'>
     <h2> Discussion </h2>
   </section>
   
@@ -2135,6 +2163,26 @@ In: <EM>Journal of the American Statistical Association</EM> 108.503 (2013), pp.
       <li style="margin:20px"> Test plotted statistics (trend line, ellipses, error bands) with and without data points to examine interactions between heuristics from the data and heuristics from summary statistics</li> 
     </ul>
   </section>
+
+  
+  <section>
+  	<section class="center">
+  		<h2> Simulation Details </h2>
+  	</section>
+  	  
+  <section>
+    <h2> Simulation: Parameter Space </h2> 
+<div class="chunk" id="simulation2"><div class="rimage center"><img src="figure/simulation2-1.png" title="plot of chunk simulation2" alt="plot of chunk simulation2" width="60%" height="auto" class="plot" /></div></div>
+    <p> Values of $\sigma_T = .25, .35, .45$ will provide easy, medium, and hard difficulty levels for trend target identification. </p>
+  </section>
+  
+  <section>
+    <h2> Simulation: Parameter Space </h2> 
+<div class="chunk" id="simulation3"><div class="rimage center"><img src="figure/simulation3-1.png" title="plot of chunk simulation3" alt="plot of chunk simulation3" width="60%" height="auto" class="plot" /></div></div>
+    <p> Values of <span style="display:inline-block;vertical-align:middle;"> $K=3: \sigma_C = \{.25, .3, .35\}$<br> $K=5: \sigma_C= \{.2, .25, .3\}$</span> will provide easy, medium, and hard difficulty levels for cluster target identification. </p>
+  </section>
+
+
 </section>
 
 
