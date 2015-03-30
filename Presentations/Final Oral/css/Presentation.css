@@ -43,10 +43,15 @@ body {
   border: none;
 }
 
-.reveal .nopadding, .reveal .nopadding td , .reveal .nopadding img{
+.reveal .nopadding td , .reveal .nopadding img{
   padding:0em;
   margin:0em;
 }
+.reveal table.nopadding {
+	padding:.5em;
+  margin:0em;
+}
+
 
 .reveal .br {
   border-right:1px solid;

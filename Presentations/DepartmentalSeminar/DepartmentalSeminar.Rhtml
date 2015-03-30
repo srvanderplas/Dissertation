@@ -158,14 +158,8 @@ end.rcode-->
 
 
   <section>
-    <h2><span style="font-size:80%;vertical-align:middle;"> Preattentive Feature Detection </span></h3>
-    <table class="noborder nopadding">
-    <tr>
-    <td width='50%'>
-      <ul style="margin:20px;">
-        <li> Preattentive perception occurs before conscious attention is focused on the stimulus </li>
-        <li> Occurs within 200 ms </li>
-      </ul>
+    <h2><span style="font-size:80%;vertical-align:middle;"> Preattentive Feature Detection </span></h2>
+			Preattentive perception occurs before conscious attention is focused on the stimulus, within the first 200 ms <br>
 <!--begin.rcode preattentive-interference, class="fragment", fragIndex=2, echo=F, fig.width=4, fig.height=4, out.width='40%', out.height='auto', fig.show='hold'
 set.seed(51581139)
 
@@ -214,27 +208,6 @@ ggplot() +
 #         plot.background = element_rect(fill = "transparent", colour = NA),
 #         plot.margin=unit(c(0,0,0,0), "cm"))
 end.rcode-->
-    </td><td width='auto'>
-      <div class="fragment" data-fragment-index=3>
-        <p>Hierarchy of features (accuracy): </p>
-        <table width='60%'>
-            <tr>
-              <td style="vertical-align:middle;text-align:center;border:1px solid;" width=25%>1</td>
-              <td style="vertical-align:middle;text-align:center;border:1px solid;">color*</td>
-            </tr><tr>
-              <td style="vertical-align:middle;text-align:center;border:1px solid;">2</td>
-              <td style="vertical-align:middle;text-align:center;border:1px solid;">shape<br>intensity<br> letters (HQX)</td>
-            </tr><tr>
-              <td style="vertical-align:middle;text-align:center;border:1px solid;">3</td>
-              <td style="vertical-align:middle;text-align:center;border:1px solid;"> letters (HEF)</td>
-            </tr>
-          </table>
-        <p style="text-align:left;font-size:75%">* For the 95% with normal color vision </p>
-        <p  style="font-size:75%;"> Cleveland & McGill (1985)<br> Lewandowsky & Spence (1989) </p>
-      </div>
-    </td>
-    </tr>
-    </table>
 
   </section>
 
@@ -462,15 +435,15 @@ modeldata.long$plottype <-
   str_replace("[sS]hape", "Shape + ") %>%
   str_replace("[tT]rend", "Trend + ") %>%
   str_replace("Ellipse", "Ellipse + ") %>%
-  str_replace("Error", "Error + ") %>%
+  str_replace("Error", "Pred. Int. + ") %>%
   str_replace("plain", "Plain") %>%
   str_replace("( \\+ )$", "") %>% 
-  factor(levels=c("Plain", "Color", "Shape", "Trend", "Trend + Error", 
+  factor(levels=c("Plain", "Color", "Shape", "Trend", "Trend + Pred. Int.", 
                   "Color + Shape", "Color + Ellipse", "Color + Trend", 
-                  "Color + Shape + Ellipse", "Color + Ellipse + Trend + Error"),
-         labels=c("Plain", "Color", "Shape", "Trend", "Trend + Error", 
+                  "Color + Shape + Ellipse", "Color + Ellipse + Trend + Pred. Int."),
+         labels=c("Plain", "Color", "Shape", "Trend", "Trend + Pred. Int.", 
                   "Color + Shape", "Color + Ellipse", "Color + Trend", 
-                  "Color + Shape + Ellipse", "Color + Ellipse + Trend + Error"))
+                  "Color + Shape + Ellipse", "Color + Ellipse + Trend + Pred. Int."))
 
 
 totaltime <- ddply(modeldata, .(individualID), summarize, total.experiment.time = max(end_time)-min(start_time))
@@ -552,7 +525,7 @@ end.rcode-->
             <ul style="font-size:85%">
               <li class=fragment data-fragment-index=2> One "target" plot <br>(real data or generated from $H_A$) </li>
               <li class=fragment data-fragment-index=3> 19 null plots generated from $H_0$ </li>
-              <li class=fragment data-fragment-index=4> $P(\text{select target}) = 0.05$ under $H_0$ </li>
+              <li class=fragment data-fragment-index=4> $P(\text{select target}| H_0) = 0.05$ </li>
               <li class=fragment data-fragment-index=5> Allows quantification of significance for graphical findings</li>
             </ul>
             <p style="font-size:50%"> Buja, A., Cook, D., Hofmann, H., Lawrence, M., Lee, E. K., Swayne, D. F., and Wickham, H. (2009). Statistical inference for exploratory data analysis and model diagnostics, <i>Phil. Transac.</i> </p>
@@ -730,16 +703,12 @@ end.rcode-->
     <p style="text-align:left;"><b>Input: </b>sample size $N$, $\sigma_T$ standard deviation from the line $y=x$</p>
     <p style="text-align:left;"><b>Output: </b> vectors $x$ and $y$ with $N$ observations </p>
     <ol>
-      <li class="fragment"> Generate $\tilde{x}_i$, $i=1, ..., N$, as a seq. of evenly spaced points from $[-1, 1]$. </li>
-      <li class="fragment"> Jitter $\tilde{x}_i$ by adding small perturbations</li>
-      <li class="fragment"> Generate $y_i$ as a linear function of $x_i$: $y_i = x_i + e_i$, $e_i \sim N(0, \sigma^2_T)$.</li>
-      <li class="fragment"> Center and scale $x_i$, $y_i$</li>
+      <li class="fragment" data-fragment-index=2> Generate $\tilde{x}_i$, $i=1, ..., N$, as a seq. of evenly spaced points from $[-1, 1]$. </li>
+      <li class="fragment" data-fragment-index=3> Jitter $\tilde{x}_i$ by adding small perturbations</li>
+      <li class="fragment" data-fragment-index=4> Generate $y_i$ as a linear function of $x_i$: $y_i = x_i + e_i$, $e_i \sim N(0, \sigma^2_T)$.</li>
+      <li class="fragment" data-fragment-index=5> Center and scale $x_i$, $y_i$</li>
     </ol>
-  </section>
-  
-  <section>
-    <h2> Trend Model $M_T$ </h2>
-<!--begin.rcode trends, fig.width=12, fig.height=3, out.width="90%", out.height='auto', echo=F
+<!--begin.rcode trends, dev.args = list(bg = 'transparent'), fig.width=5, fig.height=1.5, dpi=200, class="fragment", fragIndex=6, out.width="80%", out.height='auto', echo=F
   sd <- c(0.1, 0.2, 0.3, 0.4)
   res <- ldply(sd, function(x) { data.frame(sd.trend=x, sim.line(N=45, sd.trend=x)) })
   res <- ddply(res, .(sd.trend), function(df){
@@ -752,7 +721,9 @@ end.rcode-->
   
   qplot(x,y, data=res, pch=I(1), ylab=NULL, xlab=NULL) + facet_grid(facets=.~label, labeller="label_parsed") + 
     theme(aspect.ratio=1, plot.margin=unit(c(0,0,0,0), "cm")) + theme_bw() +
-    scale_x_continuous(breaks=c(-2, -1, 0, 1, 2), limits=xlim) + scale_y_continuous(breaks=c(-2, -1, 0, 1, 2), limits=ylim) 
+    scale_x_continuous(breaks=c(-2, -1, 0, 1, 2), limits=xlim) + scale_y_continuous(breaks=c(-2, -1, 0, 1, 2), limits=ylim)   + 
+    theme(panel.border = element_rect(fill=NA, color="black"),
+          plot.background = element_rect(fill = "transparent", colour = NA))
 end.rcode-->
   </section>
 
@@ -763,14 +734,14 @@ end.rcode-->
     <ol>
       <li style="margin-bottom:20px" class="fragment smalleqns"> Generate $K$ cluster centers $(c^x, c^y)$ on a $K\times K$ grid; center and scale </li>
       <li style="margin-bottom:20px" class="fragment smalleqns"> Sample group sizes $g = (g_1, ..., g_K)$ with $N = \sum_{i=1}^K g_i$ </li>
-      <li style="margin-bottom:20px" class="fragment">Generate points $(\mathbf{x},\mathbf{y})$ with perturbations $ N(\mathbf{0}, \sigma^2_C)$ </li>
+      <li style="margin-bottom:20px" class="fragment">Jitter points around cluster centers by $ N(\mathbf{0}, \sigma^2_C)$ </li>
       <li style="margin-bottom:20px" class="fragment">Center and scale $x_i$, $y_i$</li>
     </ol>
   </section>
   
   <section>
     <h2> Cluster Model $M_C$ </h2>
-<!--begin.rcode clusters, fig.width=11.5, fig.height=6, out.width="80%", out.height='auto', echo=F
+<!--begin.rcode clusters, dev.args = list(bg = 'transparent'), fig.width=5, fig.height=3, dpi=200, out.width="80%", out.height='auto', echo=F
 sd <- c(0.15, 0.2, 0.25, 0.3)
 
 res <- ldply(sd, function(x) { set.seed(325098573); data.frame(sd.cluster=x, sim.clusters(K=3, N=45, sd.cluster=x)) })
@@ -791,9 +762,10 @@ res$Klabel <- paste("K :",res$K)
 ggplot(aes(x=x, y=y, color=color, shape=shape), data=res) + 
   geom_point() + 
   facet_grid(facets=Klabel~label, labeller="label_parsed") + theme_bw() + 
-  theme(plot.margin=unit(c(0,0,0,0), "cm"), legend.position="none") + 
   scale_shape_identity() + scale_color_identity() + theme(aspect.ratio=1) + 
-  xlab(NULL) + ylab(NULL)
+  xlab(NULL) + ylab(NULL)  + 
+    theme(panel.border = element_rect(fill=NA, color="black"), legend.position="none",
+          plot.background = element_rect(fill = "transparent", colour = NA))
 end.rcode-->
   </section>
   
@@ -813,7 +785,7 @@ end.rcode-->
   
   <section>
     <h2> Null Model $M_0$ </h2>
-<!--begin.rcode lambda, fig.width=10, fig.height=4.5, out.width="80%", out.height='auto', echo=F
+<!--begin.rcode lambda, dev.args = list(bg = 'transparent'), dpi=200, fig.width=5, fig.height=2.5, out.width="80%", out.height='auto', echo=F
 lambda <- c(0, .25, .5, .75, 1)
 
 res <- ldply(lambda, function(x) { set.seed(325098573); data.frame(lambda=x, K=5, mixture.sim(K=5, N=75, sd.cluster=.2, sd.trend=.25, lambda=x)) })
@@ -831,7 +803,9 @@ ggplot(aes(x=x, y=y, color=color, shape=shape), data=res) +
   facet_grid(facets=klabel~label, labeller="label_parsed") + theme_bw() + 
   theme(plot.margin=unit(c(0,0,0,0), "cm"), legend.position="none") + 
   scale_shape_identity() + scale_color_identity() + theme(aspect.ratio=1) + 
-  xlab(NULL) + ylab(NULL)
+  xlab(NULL) + ylab(NULL)  + 
+    theme(panel.border = element_rect(fill=NA, color="black"), legend.position="none",
+          plot.background = element_rect(fill = "transparent", colour = NA))
 end.rcode-->
   </section>
 
@@ -873,8 +847,8 @@ end.rcode-->
   </section>
   
   <section>
-    <h2> Simulation: One Parameter Set </h2> 
-<!--begin.rcode simulation1,echo=F, fig.width=6, fig.height=3, out.width="70%", out.height="auto"
+    <span style="display:inline"><h2> Simulation:  </h2> <h4>$\sigma_T=0.25$, $\sigma_C=0.20$, and $K=3$</h4></span>
+<!--begin.rcode simulation1, echo=F, fig.width=5.5, fig.height=2.75, dpi=200, out.width="70%", out.height="auto"
 sT = 0.25
 sC = 0.20
 N = 45
@@ -900,51 +874,15 @@ qplot(data=subset(longres, Statistic != "Gini Impurity"), x=value, y=..density..
   facet_grid(.~Statistic, labeller=label_parsed) + 
   scale_color_manual("", values=c("black",  "gray")) + 
   scale_fill_manual("", values=c("transparent", "gray")) +  
-  theme_bw() + theme(legend.position=c(.23, .87), legend.direction="horizontal") + xlim(c(.5,1))
+  theme_bw() + theme(legend.position=c(.24, .87), legend.direction="horizontal") + xlim(c(.5,1))
 end.rcode-->
-    <p> For $\sigma_T=0.25$, $\sigma_C=0.20$, and $K=3$, it is harder to (numerically) identify data generated by $M_T$ than to identify data from $M_C$, compared to the relevant null plot statistic. </p>
-  </section>
-  
-  <section>
-    <h2> Simulation: Parameter Space </h2> 
-<!--begin.rcode simulation2,echo=F, fig.width=10, fig.height=6, out.width="60%", out.height="auto"
-load("../../Data/FeatureHierarchy/SimulationDatasetCriteriaTurk16.Rdata")
-
-dataset.criteria$ParameterSet <- with(dataset.criteria, sprintf("sdT%.2f-sdC%.2f", sd.trend, sd.cluster))
-dataset.criteria$ParameterSet[dataset.criteria$type=="cluster"] <- with(dataset.criteria[dataset.criteria$type=="cluster",], sprintf("sdC%.2f-sdT%.2f", sd.cluster, sd.trend))
-dataset.criteria$dist <- factor(dataset.criteria$dist, levels=c("Max(18 Nulls)", "Data"))
-
-dataset.criteria$lsc <- paste("sigma[C]: ", round(dataset.criteria$sd.cluster, 2))
-dataset.criteria$lst <- paste("sigma[T]: ", round(dataset.criteria$sd.trend, 2))
-dataset.criteria$lK <- paste("K: ", dataset.criteria$K)
-qplot(data=subset(dataset.criteria, type=="line"), x=LB, xend=UB, y=sd.cluster, yend=sd.cluster, color=dist, geom="segment") +
-  geom_point(aes(x=LB, y=sd.cluster, color=dist))  + 
-  geom_point(aes(x=UB, y=sd.cluster, color=dist)) + 
-  facet_grid(lst~lK, scales="free", labeller="label_parsed")  + theme_bw() + 
-  scale_color_brewer("Distribution",palette="Set1") + theme(legend.position=c(.5, 0), legend.justification=c(1, 0)) + 
-  xlab("Interquartile intervals of Max (18) null distribution (blue) \nand target distribution (red) of linearity measured in R squared.") + 
-  ylab(expression("Cluster variability":sigma[C]))
-end.rcode-->
-    <p> Values of $\sigma_T = .25, .35, .45$ will provide easy, medium, and hard difficulty levels for trend target identification. </p>
-  </section>
-  
-  <section>
-    <h2> Simulation: Parameter Space </h2> 
-<!--begin.rcode simulation3,echo=F, fig.width=10, fig.height=6, out.width="60%", out.height="auto"
-qplot(data=subset(dataset.criteria, type=="cluster"), x=LB, xend=UB, y=sd.trend, yend=sd.trend, color=dist, geom="segment") +
-  geom_point(aes(x=LB, y=sd.trend, color=dist))  + 
-  geom_point(aes(x=UB, y=sd.trend, color=dist)) + 
-  facet_grid(lsc~lK, scales="free", labeller="label_parsed")  + theme_bw() + 
-  scale_color_brewer("Distribution", palette="Set1") + theme(legend.position=c(.5, 0), legend.justification=c(1, 0)) + xlab("Interquartile intervals of Max (18) null distribution (blue) \nand target distribution (red) of amount of clustering.") + ylab(expression( "Variability along the trend":sigma[T]))
-end.rcode-->
-    <p> Values of <span style="display:inline-block;vertical-align:middle;"> $K=3: \sigma_C = \{.25, .3, .35\}$<br> $K=5: \sigma_C= \{.2, .25, .3\}$</span> will provide easy, medium, and hard difficulty levels for cluster target identification. </p>
   </section>
   
   <section id="plot-aesthetics">
     <h2> Plot Aesthetic Combinations </h2>
     <table style="border-collapse: collapse; font-size:75%; margin-bottom:40px;">
       <tr>
-        <td colspan=2></td><td class="bb" colspan=3 style="text-align:center;">Line Emphasis</td>
+        <td colspan=2></td><td class="bb" colspan=3 style="text-align:center;">Trend Emphasis</td>
       </tr><tr style="text-align:center;">
         <td></td>
         <td class="bb br">Strength</td>
@@ -1159,9 +1097,9 @@ end.rcode-->
             <ul>
               <li> Plain </li>
               <li> Trend </li>
-              <li> Trend + Error </li>
+              <li> Trend + Pred. Int. </li>
               <li> Color + Trend </li>
-              <li> Color + Ellipse<br>+ Trend + Error </li>
+              <li> Color + Ellipse<br>+ Trend + Pred. Int. </li>
             </ul>
           </div>
           <div style="font-size:70%;display:inline-block;">
@@ -1257,10 +1195,37 @@ end.rcode-->
     <p> Participants selected more cluster targets than line targets, however, 5 plot types were expected to emphasize clustering, and only 2 plot types were expected to emphasize trends. </p>
   </section>
   
+  <section>
+    <h2> Modeling Target Selection </h2>
+    <table><tr><td class="fragment">
+     $$\text{logit }Y$$</td><td class="fragment"> $$ = \textbf{X}\beta$$ </td><td class="fragment"> $$+ \textbf{J}\gamma$$</td><td class="fragment">$$ + \textbf{K}\eta + \epsilon$$</td></tr>
+    <tr>
+    	<td></td>
+    	<td colspan=3 class="fragment" style="text-align:center;"> where fixed effects $\beta_i$ describe <br>the effect of specific plot types</td>
+    </tr>    
+    <tr>
+    	<td></td>
+    	<td colspan=3 class="fragment"> $\gamma_j \overset{iid}{\sim} N\left(0, \sigma^2_{\text{dataset}}\right)$ </td>
+    </tr>    
+    <tr>
+    	<td></td>
+    	<td colspan=3 class="fragment"> $\eta_k \overset{iid}{\sim} N\left(0, \sigma^2_{\text{participant}}\right)$ </td>
+    </tr>    
+    <tr>
+    	<td></td>    	
+    	<td colspan=3 class="fragment"> $\epsilon_{ijk} \overset{iid}{\sim}  N\left(0, \sigma^2_e\right)$ </td>
+    </tr>
+    </table>
+
+    <p> Dataset and participant effects are orthogonal by design </p>
+    <p> Variability due to model parameters is contained within the random effects for dataset </p>
+  </section>
+  
+  
   <section class="center" id="single-target">
     <h2> Modeling Single Target Selection </h2>
   </section> 
-  
+  <!--
   <section>
     <h2> Modeling Single Target Selection </h2>
     <br></br>
@@ -1275,14 +1240,13 @@ end.rcode-->
     $$
     <p> Dataset and participant effects are orthogonal by design </p>
     <p> Variability due to model parameters is contained within the random effects for dataset </p>
-  </section>
+  </section>-->
   
   <section id="line-target">
-    <h2> Trend Target Identification </h2>
-    <table width="100%">
-    <tr>
-      <td width="50%">
-<!--begin.rcode line-target, echo=F, include=T, fig.width=5, fig.height=5, out.width='100%', out.height='auto'
+    <h2> Target: Trend Plot $M_T$ </h2>
+    $Y = \text{Participant selected the plot generated by }M_T$
+
+<!--begin.rcode line-target, echo=F, include=T, fig.width=8, fig.height=3.75, dpi=200, out.width='65%', out.height='auto'
 line.model <- glmer(trend.correct ~ plottype + (1|individualID) + (1|dataset), 
                     data = modeldata, 
                     family = binomial(link="logit"), 
@@ -1300,17 +1264,17 @@ line.fixef.aes <- line.fixef.aes[order(line.fixef.aes$OR, decreasing = T),]
 line.fixef.aes$label <- 
   line.fixef.aes$label %>% 
   str_replace("color", "Color + ") %>% 
-  str_replace("[sS]hape", "Shape\n + ") %>%
+  str_replace("[sS]hape", "Shape + ") %>%
   str_replace("[tT]rend", "Trend + ") %>%
-  str_replace("Ellipse", "Ellipse\n + ") %>%
-  str_replace("Error", "Error") %>%
+  str_replace("Ellipse", "Ellipse + ") %>%
+  str_replace("Error", "Pred. Int.") %>%
   str_replace("(\\n? ?\\+ )$", "")
 line.fixef.aes$label <- factor(line.fixef.aes$label, levels=line.fixef.aes$label[order(line.fixef.aes$OR, decreasing = T)], ordered=T)
 line.fixef.aes$LB <- exp(line.fixef.aes$LB)
 line.fixef.aes$UB <- exp(line.fixef.aes$UB)
 
 qplot(data=line.fixef.aes, x=label, y=OR, ymin=LB, ymax=UB, geom="pointrange") + 
-  geom_text(aes(x=label, y=0, label=letters)) + 
+  geom_text(aes(x=label, y=OR, label=letters), vjust=-0.3) + 
   coord_flip() + 
   ylab("Odds + 95% Wald Interval\n (Reference level: Plain plot)") + 
   xlab("") + 
@@ -1319,20 +1283,20 @@ qplot(data=line.fixef.aes, x=label, y=OR, ymin=LB, ymax=UB, geom="pointrange") +
   theme_bw()
 end.rcode-->
       <p style="font-size:50%;text-align:center;">Plot types are significantly different if they do not share a letter</p>
-      </td><td style="font-size:80%;vertical-align:middle;">
-        <p style="margin-bottom:30px"> Participants are <!--rinline sprintf("%.2f", line.fixef$OR[line.fixef$label=="trendError"])--> times as likely to select trend targets when plots have trend lines and prediction intervals. </p>
+    <table width="100%">
+    <tr>
+      <td style="font-size:70%;vertical-align:top;">
         <p> Participants are <!--rinline sprintf("%.2f", line.fixef$OR[line.fixef$label=="colorShapeEllipse"])--> times as likely to select trend targets when plots have color, shape, and ellipse aesthetics. </p>
-      </td>
+      </td><td width="50%" style="font-size:70%;vertical-align:top;"><p style="margin-bottom:30px"> Participants are <!--rinline sprintf("%.2f", line.fixef$OR[line.fixef$label=="trendError"])--> times as likely to select trend targets when plots have trend lines and prediction intervals. </p></td>
     </tr>
     </table>
   </section>
   
   <section id="cluster-target">
-    <h2> Cluster Target Identification </h2>
-    <table>
-    <tr>
-      <td width="50%">
-<!--begin.rcode cluster-target, echo=F, include=T, fig.width=5, fig.height=5, out.width='100%', out.height='auto'
+    <h2> Target: Cluster Plot $M_C$ </h2>
+    $Y = \text{Participant selected the plot generated by }M_C$
+
+<!--begin.rcode cluster-target, echo=F, include=T, fig.width=8, fig.height=3.75, dpi=200, out.width='65%', out.height='auto'
 group.model <- glmer(cluster.correct~ plottype + (1|individualID) + (1|dataset), 
                      data = modeldata, 
                      family = binomial(link="logit"), 
@@ -1350,28 +1314,31 @@ group.fixef2 <- group.fixef2[order(group.fixef2$OR, decreasing = T),]
 group.fixef2$label <- 
   group.fixef2$label %>% 
   str_replace("color", "Color + ") %>% 
-  str_replace("[sS]hape", "Shape\n + ") %>%
+  str_replace("[sS]hape", "Shape + ") %>%
   str_replace("[tT]rend", "Trend + ") %>%
-  str_replace("Ellipse", "Ellipse\n + ") %>%
-  str_replace("Error", "Error") %>%
+  str_replace("Ellipse", "Ellipse + ") %>%
+  str_replace("Error", "Pred. Int.") %>%
   str_replace("(\\n? ?\\+ )$", "")
 group.fixef2$label <- factor(group.fixef2$label, levels=group.fixef2$label[order(group.fixef2$OR, decreasing = T)], ordered=T)
 group.fixef2$LB <- exp(group.fixef2$LB)
 group.fixef2$UB <- exp(group.fixef2$UB)
 
 qplot(data=group.fixef2, x=label, y=OR, ymin=LB, ymax=UB, geom="pointrange") + 
-  geom_text(aes(x=label, y=0.3, label=letters)) + 
+  geom_text(aes(x=label, y=OR, label=letters), vjust=-0.3) + 
   coord_flip() + 
-  scale_y_continuous("Odds + 95% Wald Interval\n (Reference level: Plain plot)", breaks=c(.5, .75, 1, 1.25)) + 
+  scale_y_continuous("Odds + 95% Wald Interval for\n (Reference level: Plain plot)", breaks=c(.5, .75, 1, 1.25)) + 
   xlab("") + 
   geom_hline(yintercept=1, colour="gray70") +
   ggtitle("Odds of Selecting Cluster Target Plot") + 
   theme_bw()
 end.rcode-->
   <p style="font-size:50%;text-align:center;">Plot types are significantly different if they do not share a letter</p>
-      </td><td style="font-size:80%;vertical-align:middle;">
-        <p style="margin-bottom:10px"> Participants are <!--rinline sprintf("%.2f", group.fixef$OR[group.fixef$label=="shape"])--> times as likely to select cluster targets when plots have shape aesthetics. </p>
+
+    <table>
+    <tr>
+      <td style="font-size:70%;vertical-align:top;">
         <p> Participants are <!--rinline sprintf("%.2f", group.fixef$OR[group.fixef$label=="colorEllipse"])--> times as likely to select cluster targets when plots have color and ellipse aesthetics. What happened? </p>
+      </td><td width="50%" style="font-size:70%;vertical-align:top;"><p style="margin-bottom:10px"> Participants are <!--rinline sprintf("%.2f", group.fixef$OR[group.fixef$label=="shape"])--> times as likely to select cluster targets when plots have shape aesthetics. </p>
       </td>
     </tr>
   </table>
@@ -1439,26 +1406,17 @@ end.rcode-->
     
   <section>
     <h2> Cluster vs. Trend </h2>
-    <p style="text-align:left;">Define $C_{ijk}$ to be the event <br>{Participant $k$ selects the cluster target for dataset $j$ with aesthetic set $i$},<br> and $T_{ijk}$ to be the analogous selection of the trend target.</p> 
-    <br>
+    <p style="text-align:left;margin-bottom:2em">Define $C_{ijk}$ to be the event <br>{Participant $k$ selects the cluster target for dataset $j$ with aesthetic set $i$},<br> and $T_{ijk}$ to be the analogous selection of the trend target.</p> 
+
     $$
-    \begin{align}
-    \text{logit }P(C_{ijk} | C_{ijk}\cup T_{ijk}) & =  \textbf{X}\beta + \textbf{J}\gamma + \textbf{K}\eta + \epsilon, \\
-    \text{where } \beta_i & \hphantom{\sim} \text{describe plot types}\\
-    \hphantom{where } \gamma_j & \overset{iid}{\sim} N\left(0, \sigma^2_{\text{dataset}}\right)\\
-    \hphantom{where } \eta_k & \overset{iid}{\sim} N\left(0, \sigma^2_{\text{participant}}\right)\\
-    \text{and } \epsilon_{ijk} & \overset{iid}{\sim}  N\left(0, \sigma^2_e\right)
-    \end{align}
+    \text{logit }P(C_{ijk} | C_{ijk}\cup T_{ijk})  =  \textbf{X}\beta + \textbf{J}\gamma + \textbf{K}\eta + \epsilon
     $$
 
   </section>
   
   <section>
     <h2> Cluster vs. Trend </h2>
-    <table>
-    <tr>
-      <td width="50%">
-<!--begin.rcode cluster-vs-line, echo=F, include=T, fig.width=5, fig.height=5, out.width='100%', out.height='auto'
+<!--begin.rcode cluster-vs-line, echo=F, include=T, fig.width=8, fig.height=4.5, out.width='65%', out.height='auto'
 gvl.model <- glmer(cluster.correct~plottype + (1|data_name) + (1|individualID), data=subset(modeldata, trend.correct | cluster.correct), family=binomial(), control=glmerControl(optimizer="bobyqa"))
 gvl.fixef <- data.frame(confint(gvl.model, method="Wald"))
 names(gvl.fixef) <- c("LB", "UB")
@@ -1472,10 +1430,10 @@ gvl.fixef.old <- gvl.fixef
 
 gvl.fixef$label <- gvl.fixef$label %>% 
   str_replace("color", "Color + ") %>% 
-  str_replace("[sS]hape", "Shape\n + ") %>%
+  str_replace("[sS]hape", "Shape + ") %>%
   str_replace("[tT]rend", "Trend + ") %>%
-  str_replace("Ellipse", "Ellipse\n + ") %>%
-  str_replace("Error", "Error") %>%
+  str_replace("Ellipse", "Ellipse + ") %>%
+  str_replace("Error", "Pred. Int.") %>%
   str_replace("(\\n? ?\\+ )$", "") %>% 
   reorder(gvl.fixef$OR)
 
@@ -1486,14 +1444,18 @@ ggplot(data=gvl.fixef[-1,]) +
   geom_hline(yintercept=1, colour="gray70") + 
   ggtitle("Odds of Selecting Cluster vs Trend Target \n (given one target was identified)") + 
   xlab("Plot Type") + 
-  geom_text(aes(y=0.25, x=label, label=letters)) + 
+  geom_text(aes(x=label, y=exp(OR), label=letters), vjust=-0.3) + 
   scale_y_continuous("Odds (Cluster vs Trend) and 95% Wald Intervals\n(Reference level: Plain plot)", 
                      breaks=c(0.2, 0.5, 1.0, 1.5, 2.0, 2.4), labels=c("<--Trend\n  Target", "0.5", "1.0", "1.5", "2.0", "Cluster-->\nTarget  "), limits=c(0.2, 2.4))
 end.rcode-->
     <p style="font-size:50%;text-align:center;">Plot types are significantly different if they do not share a letter</p>
-      </td><td style="font-size:80%;vertical-align:middle;">
+
+    <table>
+    <tr>
+      <td width="50%" style="font-size:80%;vertical-align:top;">
+      <p> Participants are <!--rinline sprintf("%.2f", exp(gvl.fixef.old$OR[gvl.fixef.old$label=="trendError"]))--> times as likely to select cluster targets when plots have trend line and prediction interval aesthetics. </p>
+      </td><td style="font-size:80%;vertical-align:top;">
         <p style="margin-bottom:10px"> Participants are <!--rinline sprintf("%.2f", exp(gvl.fixef.old$OR[gvl.fixef.old$label=="colorShapeEllipse"]))--> times as likely to select cluster targets when plots have color, shape, and ellipse aesthetics. </p>
-        <p> Participants are <!--rinline sprintf("%.2f", exp(gvl.fixef.old$OR[gvl.fixef.old$label=="trendError"]))--> times as likely to select cluster targets when plots have trend line and prediction interval aesthetics. </p>
       </td>
     </tr>
   </table>
@@ -1518,10 +1480,10 @@ end.rcode-->
   qplot(data=data, x=x, y=y, geom="point", size=I(3), shape=I(1), color=factor(group)) + 
     geom_line(aes(x=x, y=fit), color="black", data=ci) + 
     scale_color_manual(guide="none", values=color5pal) + 
-    xlim(c(-2.4, 2.4)) + ylim(c(-2.4, 2.4)) + 
+    xlim(c(-2.6, 2.6)) + ylim(c(-2.6, 2.6)) + 
     xlab(NULL) + ylab(NULL) + 
-    geom_text(aes(x=-2.3, y=2.3, label="Continuity (points) + \nContinuity (line)"), hjust=0, vjust=1, size=5, inherit.aes=FALSE) +
-    geom_text(aes(x=2.3, y=-2.3, label="Similarity (color)"), hjust=1, vjust=0, size=5, inherit.aes=FALSE) +
+    geom_text(aes(x=-2.5, y=2.5, label="Continuity (points) + \nContinuity (line)"), hjust=0, vjust=1, size=7, inherit.aes=FALSE, data=data.frame()) +
+    geom_text(aes(x=2.5, y=-2.5, label="Similarity (color)"), hjust=1, vjust=0, size=7, inherit.aes=FALSE, data=data.frame()) +
     theme_minimal()  + 
     theme(axis.text=element_blank(), axis.title=element_blank(),
           text=element_blank(), title=element_blank(),
@@ -1545,10 +1507,10 @@ end.rcode-->
   qplot(data=data, x=x, y=y, geom="point", size=I(3), shape=I(1), color=factor(group)) + 
     geom_line(aes(x=x, y=fit), color="black", data=ci) + 
     scale_color_manual(guide="none", values=color5pal) + 
-    xlim(c(-2.4, 2.4)) + ylim(c(-2.4, 2.4)) + 
+    xlim(c(-2.6, 2.6)) + ylim(c(-2.6, 2.6)) + 
     xlab(NULL) + ylab(NULL) + 
-    geom_text(aes(x=-2.3, y=2.3, label="Continuity (line)"), hjust=0, vjust=1, size=5, inherit.aes=FALSE) +
-    geom_text(aes(x=2.3, y=-2.3, label="Similarity (color)"), hjust=1, vjust=0, size=5, inherit.aes=FALSE) +
+    geom_text(aes(x=-2.5, y=2.5, label="Continuity (line)"), hjust=0, vjust=1, size=7, inherit.aes=FALSE, data=data.frame()) +
+    geom_text(aes(x=2.5, y=-2.5, label="Similarity (color)"), hjust=1, vjust=0, size=7, inherit.aes=FALSE, data=data.frame()) +
     theme_minimal()  + 
     theme(axis.text=element_blank(), axis.title=element_blank(),
           text=element_blank(), title=element_blank(),
@@ -1572,10 +1534,10 @@ end.rcode-->
   qplot(data=data, x=x, y=y, geom="point", size=I(3), shape=I(1), color=factor(group)) + 
     geom_line(aes(x=x, y=fit), color="black", data=ci) + 
     scale_color_manual(guide="none", values=color5pal) + 
-    xlim(c(-2.4, 2.4)) + ylim(c(-2.4, 2.4)) + 
+    xlim(c(-2.6, 2.6)) + ylim(c(-2.6, 2.6)) + 
     xlab(NULL) + ylab(NULL) + 
-    geom_text(aes(x=-2.3, y=2.3, label="Continuity (line)"), hjust=0, vjust=1, size=5, inherit.aes=FALSE) +
-    geom_text(aes(x=2.3, y=-2.3, label="Proximity (points)\n + Similarity (color)"), hjust=1, vjust=0, size=5, inherit.aes=FALSE) +
+    geom_text(aes(x=-2.5, y=2.5, label="Continuity (line)"), hjust=0, vjust=1, size=7, inherit.aes=FALSE, data=data.frame()) +
+    geom_text(aes(x=2.5, y=-2.5, label="Proximity (points)\n + Similarity (color)"), hjust=1, vjust=0, size=7, inherit.aes=FALSE, data=data.frame()) +
     theme_minimal()  + 
     theme(axis.text=element_blank(), axis.title=element_blank(),
           text=element_blank(), title=element_blank(),
@@ -1607,10 +1569,10 @@ end.rcode-->
     geom_line(aes(x=x, y=lwr), lty=2, color="black", data=ci) + 
     geom_line(aes(x=x, y=upr), lty=2, color="black", data=ci) + 
     scale_color_manual(guide="none", values=color5pal) + 
-    xlim(c(-2.4, 2.4)) + ylim(c(-2.4, 2.4)) + 
+    xlim(c(-2.6, 2.6)) + ylim(c(-2.6, 2.6)) + 
     xlab(NULL) + ylab(NULL) + 
-    geom_text(aes(x=-2.3, y=2.3, label="Continuity (points) + \nContinuity (line) + \nCommon Region\n(error bands)"), hjust=0, vjust=1, size=5, inherit.aes=FALSE) + 
-    geom_text(aes(x=2.3, y=-2.3, label="Similarity (color)\n + Common Region (ellipse)"), hjust=1, vjust=0, size=5, inherit.aes=FALSE) +
+    geom_text(aes(x=-2.5, y=2.5, label="Continuity (points) + \nContinuity (line) + \nCommon Region\n(error bands)"), hjust=0, vjust=1, size=7, inherit.aes=FALSE, data=data.frame()) + 
+    geom_text(aes(x=2.5, y=-2.5, label="Similarity (color)\n + Common Region (ellipse)"), hjust=1, vjust=0, size=7, inherit.aes=FALSE, data=data.frame()) +
     theme_minimal()  + 
     theme(axis.text=element_blank(), axis.title=element_blank(),
           text=element_blank(), title=element_blank(),
@@ -1637,10 +1599,10 @@ end.rcode-->
     geom_line(aes(x=x, y=lwr), lty=2, color="black", data=ci) + 
     geom_line(aes(x=x, y=upr), lty=2, color="black", data=ci) + 
     scale_color_manual(guide="none", values=color5pal) + 
-    xlim(c(-2.4, 2.4)) + ylim(c(-2.4, 2.4)) + 
+    xlim(c(-2.6, 2.6)) + ylim(c(-2.6, 2.6)) + 
     xlab(NULL) + ylab(NULL) + 
-    geom_text(aes(x=-2.3, y=2.3, label="Continuity (line) + \nCommon Region\n(error bands)"), hjust=0, vjust=1, size=5, inherit.aes=FALSE) + 
-    geom_text(aes(x=2.3, y=-2.3, label="Similarity (color)\n + Common Region (ellipse)"), hjust=1, vjust=0, size=5, inherit.aes=FALSE) +
+    geom_text(aes(x=-2.5, y=2.5, label="Continuity (line) + \nCommon Region\n(error bands)"), hjust=0, vjust=1, size=7, inherit.aes=FALSE, data=data.frame()) + 
+    geom_text(aes(x=2.5, y=-2.5, label="Similarity (color)\n + Common Region (ellipse)"), hjust=1, vjust=0, size=7, inherit.aes=FALSE, data=data.frame()) +
     theme_minimal()  + 
     theme(axis.text=element_blank(), axis.title=element_blank(),
           text=element_blank(), title=element_blank(),
@@ -1667,10 +1629,10 @@ end.rcode-->
     geom_line(aes(x=x, y=lwr), lty=2, color="black", data=ci) + 
     geom_line(aes(x=x, y=upr), lty=2, color="black", data=ci) + 
     scale_color_manual(guide="none", values=color5pal) + 
-    xlim(c(-2.4, 2.4)) + ylim(c(-2.4, 2.4)) + 
+    xlim(c(-2.6, 2.6)) + ylim(c(-2.6, 2.6)) + 
     xlab(NULL) + ylab(NULL) + 
-    geom_text(aes(x=-2.3, y=2.3, label="Continuity (line) + \nCommon Region\n(error bands)"), hjust=0, vjust=1, size=5, inherit.aes=FALSE) + 
-    geom_text(aes(x=2.3, y=-2.3, label="Proximity (points)\n + Similarity (color)\n + Common Region (ellipse)"), hjust=1, vjust=0, size=5, inherit.aes=FALSE) +
+    geom_text(aes(x=-2.5, y=2.5, label="Continuity (line) + \nCommon Region\n(error bands)"), hjust=0, vjust=1, size=7, inherit.aes=FALSE, data=data.frame()) + 
+    geom_text(aes(x=2.5, y=-2.5, label="Proximity (points)\n + Similarity (color)\n + Common Region (ellipse)"), hjust=1, vjust=0, size=7, inherit.aes=FALSE, data=data.frame()) +
     theme_minimal()  + 
     theme(axis.text=element_blank(), axis.title=element_blank(),
           text=element_blank(), title=element_blank(),
@@ -1682,7 +1644,7 @@ end.rcode-->
 end.rcode-->
         </td>
         <td width="15%" class="fragment" data-fragment-index=3 style="vertical-align:middle;text-align:left;font-size:50%;">
-        Participants are <!--rinline sprintf("%.2f", exp(gvl.fixef.old$OR[gvl.fixef.old$label=="colorEllipseTrendError"]))--> times as likely to select the cluster target with color + ellipse + trend line + error, relative to the plain plot.
+        Participants are <!--rinline sprintf("%.2f", exp(gvl.fixef.old$OR[gvl.fixef.old$label=="colorEllipseTrendError"]))--> times as likely to select the cluster target with color + ellipse + trend line + pred. int., relative to the plain plot.
         </td>
       </tr>
     </table>
@@ -1845,7 +1807,7 @@ coefs$plottype <- coefs$plottype %>%
   str_replace("[sS]hape", "Shape + ") %>%
   str_replace("[tT]rend", "Trend + ") %>%
   str_replace("Ellipse", "Ellipse + ") %>%
-  str_replace("Error", "Error + ") %>%
+  str_replace("Error", "Pred. Int. + ") %>%
   str_replace("plain", "Plain") %>%
   str_replace("( \\+ )$", "")
 coefs$plottype <- factor(coefs$plottype)
@@ -1965,6 +1927,47 @@ end.rcode-->
       <li style="margin:20px"> Test ellipse and error band aesthetics alone and with trend lines and color to examine interaction effects</li> 
       <li style="margin:20px"> Test plotted statistics (trend line, ellipses, error bands) with and without data points to examine interactions between heuristics from the data and heuristics from summary statistics</li> 
     </ul>
+  </section>
+</section>
+  
+  <section>
+  	<section class="center">
+  		<h2> Simulation Details </h2>
+  	</section>
+  	  
+  <section>
+    <h2> Simulation: Parameter Space </h2> 
+<!--begin.rcode simulation2,echo=F, fig.width=10, fig.height=6, out.width="60%", out.height="auto"
+load("../../Data/FeatureHierarchy/SimulationDatasetCriteriaTurk16.Rdata")
+
+dataset.criteria$ParameterSet <- with(dataset.criteria, sprintf("sdT%.2f-sdC%.2f", sd.trend, sd.cluster))
+dataset.criteria$ParameterSet[dataset.criteria$type=="cluster"] <- with(dataset.criteria[dataset.criteria$type=="cluster",], sprintf("sdC%.2f-sdT%.2f", sd.cluster, sd.trend))
+dataset.criteria$dist <- factor(dataset.criteria$dist, levels=c("Max(18 Nulls)", "Data"))
+
+dataset.criteria$lsc <- paste("sigma[C]: ", round(dataset.criteria$sd.cluster, 2))
+dataset.criteria$lst <- paste("sigma[T]: ", round(dataset.criteria$sd.trend, 2))
+dataset.criteria$lK <- paste("K: ", dataset.criteria$K)
+qplot(data=subset(dataset.criteria, type=="line"), x=LB, xend=UB, y=sd.cluster, yend=sd.cluster, color=dist, geom="segment") +
+  geom_point(aes(x=LB, y=sd.cluster, color=dist))  + 
+  geom_point(aes(x=UB, y=sd.cluster, color=dist)) + 
+  facet_grid(lst~lK, scales="free", labeller="label_parsed")  + theme_bw() + 
+  scale_color_brewer("Distribution",palette="Set1") + theme(legend.position=c(.5, 0), legend.justification=c(1, 0)) + 
+  xlab("Interquartile intervals of Max (18) null distribution (blue) \nand target distribution (red) of linearity measured in R squared.") + 
+  ylab(expression("Cluster variability":sigma[C]))
+end.rcode-->
+    <p> Values of $\sigma_T = .25, .35, .45$ will provide easy, medium, and hard difficulty levels for trend target identification. </p>
+  </section>
+  
+  <section>
+    <h2> Simulation: Parameter Space </h2> 
+<!--begin.rcode simulation3,echo=F, fig.width=10, fig.height=6, out.width="60%", out.height="auto"
+qplot(data=subset(dataset.criteria, type=="cluster"), x=LB, xend=UB, y=sd.trend, yend=sd.trend, color=dist, geom="segment") +
+  geom_point(aes(x=LB, y=sd.trend, color=dist))  + 
+  geom_point(aes(x=UB, y=sd.trend, color=dist)) + 
+  facet_grid(lsc~lK, scales="free", labeller="label_parsed")  + theme_bw() + 
+  scale_color_brewer("Distribution", palette="Set1") + theme(legend.position=c(.5, 0), legend.justification=c(1, 0)) + xlab("Interquartile intervals of Max (18) null distribution (blue) \nand target distribution (red) of amount of clustering.") + ylab(expression( "Variability along the trend":sigma[T]))
+end.rcode-->
+    <p> Values of <span style="display:inline-block;vertical-align:middle;"> $K=3: \sigma_C = \{.25, .3, .35\}$<br> $K=5: \sigma_C= \{.2, .25, .3\}$</span> will provide easy, medium, and hard difficulty levels for cluster target identification. </p>
   </section>
 </section>
 
