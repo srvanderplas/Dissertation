@@ -114,3 +114,7 @@ li.smalleqns span.MathJax{
 .reveal ul li {
 	margin:30px;
 }
+
+.reveal .small {
+	font-size:75%;
+}

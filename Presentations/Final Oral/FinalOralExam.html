@@ -105,7 +105,7 @@
 <section>
   <!-- Introduction -->
 
-  <h1>Perception of Statistical Graphics</h1>
+  <h1>Perception in Statistical Graphics</h1>
 
   <h3>Susan VanderPlas</h3>
 
@@ -171,16 +171,6 @@
 		
 	</section>
 	
-	<section>
-		<h2> Signs of the Sine Illusion </h2>
-		<h3><b> Impact </b></h3>
-		<ul>
-			<li> Raise awareness </li>
-			<li> Possibility of correcting the distortion </li>
-			<li> Quantification of correction strength required </li>
-		</ul>
-	</section>
-	
 	<section id="curse">
 		<h2> The Curse of Three Dimensions </h2>
 		<h4 style="padding:0px;padding-top:10px"> Student Paper Award (ASA Stat. Graphics, 2014) </h4>
@@ -200,11 +190,16 @@
 	</section>
 	
 	<section>
-		<h2> The Curse of Three Dimensions </h2>
+		<h2> Signs of the Sine Illusion </h2>
 		<h3><b> Impact </b></h3>
-		
-		<h4 style="margin-top:10%"> Awareness of the cause of the illusion </h4>
+		<ul>
+			<li> Increase awareness of the illusion </li>
+			<li> Implement two useful corrections </li>
+			<li> Quantify correction strength required </li>
+			<li> Identify the cause of the illusion </li>
+		</ul>
 	</section>
+	
 </section>
 
 <section>
@@ -220,7 +215,7 @@
 		</td><td style="vertical-align:middle;">
 			<ul>
 				<li> A data plot is inserted among decoys </li>
-				<li> If the observer picks out the data plot, this is evidence that it differs from the decoys </li>
+				<li> If the observer picks out the data plot, this is evidence that the data plot differs from the decoys </li>
 			</ul>
 		</td></tr></table>
 	</section>
@@ -229,10 +224,42 @@
 		<h2> Lineups - Methodology </h2>
 		
 		<ul>
-			<li> Hypothesis Test: Decoys created under $H_0$ </li>
-			<li> If data is identifiable, we reject $H_0$ for the data </li>
+			<li> Hypothesis Test: Decoys created under $H_0$ <br> If data is identifiable, we reject $H_0$ for the data </li>
 			<li> Suppose for $K$ participants, $k$ identify the data plot. <br>
-					 Visual p-value: $P(X\geq k | H_0)$ </li>
+					 Visual p-value: <span style="padding-left:50px">$P(X\geq k | H_0)$ </span></li>
+			<li> For the previous lineup, </li>
+			<ul>
+				<li> KS Test p-value: 0.0000 </li>
+				<li> Lineup p-values for 5 participants, $k$ who identify plot 7: </li>
+<span class='small'><table>
+ <thead>
+  <tr>
+   <th style="text-align:center;"> $k$ </th>
+   <th style="text-align:center;"> 0 </th>
+   <th style="text-align:center;"> 1 </th>
+   <th style="text-align:center;"> 2 </th>
+   <th style="text-align:center;"> 3 </th>
+   <th style="text-align:center;"> 4 </th>
+   <th style="text-align:center;"> 5 </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;"> p-value </td>
+   <td style="text-align:center;"> &nbsp;&nbsp;1.0000&nbsp;&nbsp; </td>
+   <td style="text-align:center;"> &nbsp;&nbsp;0.2262&nbsp;&nbsp; </td>
+   <td style="text-align:center;"> &nbsp;&nbsp;0.0226&nbsp;&nbsp; </td>
+   <td style="text-align:center;"> &nbsp;&nbsp;0.0012&nbsp;&nbsp; </td>
+   <td style="text-align:center;"> &nbsp;&nbsp;0.0000&nbsp;&nbsp; </td>
+   <td style="text-align:center;"> &nbsp;&nbsp;0.0000&nbsp;&nbsp; </td>
+  </tr>
+</tbody>
+</table>
+
+</span>
+
+			</ul>
+			<li> Objective test of whether we see structure in the data display </li>
 		</ul>
 	</section>
 </section>
@@ -242,10 +269,7 @@
 <section>
   <section class="center" id="aptitude">
     <h2> Fundamental Skills for Graphical Perception </h2>
-  </section>
-  
-  <section>
-    <h3> Fundamental Skills for Graphical Perception </h3>
+    
   	<h4> Submitted to Infovis 2015 </h4>
   	
   	<h4 style="margin:30px;"> What skills are necessary to evaluate lineups? </h4>
@@ -253,9 +277,10 @@
   
   <section>
     <h3> Fundamental Skills for Graphical Perception </h3>
+    <h4> Figure Classification </h4>
     
-    <img src="../../Images/VisualAptitude/figureclassification.jpg" width='80%' height='auto' alt="Figure Classification Test"/>
-			<p style="padding:20px" class="fragment" data-fragment-index=2> Measures ability to classify images according to inferred rules </p>
+    <img src="figure/figureclassification.jpg" width='80%' height='auto' alt="Figure Classification Test"/>
+			<p style="padding:20px"> Measures ability to classify images according to inferred rules </p>
 			
 			<p style="font-size:75%">
 				French, J. W., R. B. Ekstrom and L. A. Price. 
@@ -268,22 +293,34 @@
     <h3> Fundamental Skills for Graphical Perception </h3>
     
     <h3><b> Study Setup </b></h3>
+    <table><tr><td width="50%" style="vertical-align:top;">
     <ul>
     	<li> 3 blocks of 20 lineups </li>
     	<li> 4 tests of Visuospatial ability </li>
     	<li> Demographic Information </li>
     </ul>
+    </td><td width="50%" style="vertical-align:top;">
+    <ul>
+    	<li> Participants: 38 ISU Undergraduates </li>
+    	<li> Scores on validated cognitive tests were similar to other populations </li>
+    </ul>
+    </td></tr></table>
   </section>
     
   <section>
     <h3> Fundamental Skills for Graphical Perception </h3>
     
     <h3><b> Results </b></h3>
+    <table><tr><td>
     <ul> 
     	<li> Lineups: a classification task in a visual domain </li> 
-    	<li> Specific visuospatial skills (outside of overall aptitude) are not required</li> 
+    	<li> Specific visuospatial skills (outside of overall aptitude) are not required </li> 
     	<li> Demographic factors such as completion of Calculus I and STEM training are also important </li> 
     </ul>
+    </td><td width="50%" style="text-align:center;">
+    <img src="figure/fig-biplots-pca5-1.png" width="75%" height="auto"/><br>
+    <p style="text-align:center;font-size:75%">PC1 shows general aptitude </p>
+    </td></tr></table>
   </section>
 </section>
 
@@ -293,7 +330,7 @@
 <div class="chunk" id="motivation"><div class="rimage center"><img src="figure/motivation-1.png" title="plot of chunk motivation" alt="plot of chunk motivation" width="300px" height="300px" class="plot" />
 <img src="figure/motivation-2.png" title="plot of chunk motivation" alt="plot of chunk motivation" width="300px" height="300px" class="plot" /></div></div>
 
-    <h3> Intended for submission to JASA </h3>
+    <h4 style="padding-top:20px"> Intended for submission to JCGS </h4>
 	</section>
 	
 	<section>
@@ -317,12 +354,7 @@
           <p style="color: #add9e4;"> Trend: 18, Cluster: 13 </p>
         </td>
         <td width="54%" style="margin-left:30px;text-align:left;vertical-align:top;">
-          <div class="fragment" data-fragment-index=2 style="text-align:left; display:inline-block;">
-            <h4> <b> Modification: </b> </h4>
-            <ul style="font-size:85%"><li>Two targets, each from a different model </li>
-            <li> Null plots: 50% mixture of the two models </li></ul>
-          </div>
-          <div class="fragment" data-fragment-index=3 style="text-align:center;display:inline-block;margin-top:30px;">
+          <div class="fragment" data-fragment-index=2 style="text-align:center;display:inline-block;margin-top:30px;">
             <h4> <b> Participant Responses </b> </h4>
             <table>
               <tr>
@@ -353,27 +385,32 @@
           <p style="color: #add9e4;"> Trend: 18, Cluster: 13 </p>
         </td>
         <td width="54%" style="margin-left:30px;text-align:left;vertical-align:top;">
-          <div class="fragment" data-fragment-index=2 style="text-align:left; display:inline-block;">
-            <h4> <b> Modification: </b> </h4>
-            <ul style="font-size:85%"><li>Two targets, each from a different model </li>
-            <li> Null plots: 50% mixture of the two models </li></ul>
-          </div>
-          <div class="fragment" data-fragment-index=3 style="text-align:center;display:inline-block;margin-top:30px;">
+          <div class="fragment" data-fragment-index=2 style="text-align:center;display:inline-block;margin-top:30px;">
             <h4> <b> Participant Responses </b> </h4>
-            <table>
+						<table>
               <tr>
-                <td style="text-align:right;padding-left:20px;padding-top:20px;padding-right:20px;"> Plot 18: </td> <td style="text-align:right;padding-top:20px;"> <code class="knitr inline">0.0</code>% </td>
-                <td style="text-align:right;padding-left:20px;padding-top:20px;">(Trend target)</td>
+                <td style="text-align:right;padding-left:20px;padding-top:20px;padding-right:20px;vertical-align:top;"> Plot 18: </td> 
+                <td style="text-align:right;padding-top:20px;vertical-align:top;"> <code class="knitr inline">0.0</code>% <br>
+                	<p style="color:#404040"> <code class="knitr inline">68.2</code>% </p></td>
+                <td style="text-align:right;padding-left:20px;padding-top:20px;vertical-align:top;">(Trend target)</td>
               </tr>
               <tr>
-                <td style="text-align:right;padding-left:20px;padding-top:20px;padding-right:20px;"> Plot 13: </td> <td style="text-align:right;padding-top:20px;"> <code class="knitr inline">78.6</code>% </td>
-                <td style="text-align:right;padding-left:20px;padding-top:20px;">(Cluster target)</td>
+                <td style="text-align:right;padding-left:20px;padding-top:20px;padding-right:20px;vertical-align:top;"> Plot 13: </td> 
+                <td style="text-align:right;padding-top:20px;vertical-align:top;"> <code class="knitr inline">78.6</code>% <br>
+                	<p style="color:#404040"> <code class="knitr inline">9.1</code>% </p> </td>
+                <td style="text-align:right;padding-left:20px;padding-top:20px;vertical-align:top;">(Cluster target)</td>
               </tr>
               <tr>
-                <td style="text-align:right;padding-left:20px;padding-top:20px;padding-right:20px;"> Other: </td> <td style="text-align:right;padding-top:20px;"> <code class="knitr inline">21.3</code>% </td>
+                <td style="text-align:right;padding-left:20px;padding-top:20px;padding-right:20px;vertical-align:top;"> Other: </td> 
+                <td style="text-align:right;padding-top:20px;vertical-align:top;"> 
+                	<code class="knitr inline">21.3</code>% 
+                </td>
               </tr>
             </table>
             Sample size: 14
+            
+            <p style="font-size:75%;">Previous plot's responses are shown in <span style="color:#404040">grey</span></p>
+            
           </div>
         </td>
       </tr>
@@ -383,24 +420,22 @@
   <section>
     <h3><b> Quantifying the Effect of Plot Aesthetics </b></h3>
   	<h3> Results </h3>
-  	<table>
+  	<table width="100%">
   		<tr>
-  			<th style="text-align:center;"> Good for Trends: </th>
-  			<th style="text-align:center;">  Not as good:  </th>
-  		</th>
+  			<th style="text-align:center;" colspan=2 width="50%"> Good for Trends: </th>
+  			<th style="text-align:center;" colspan=2 width="50%">  Not as good:  </th>
+  		</tr>
   		<tr>
-  			<td style="text-align:center;vertical-align:top;padding-right:1em;"> 
-  				<ul>
-  					<li> Trend line + Pred. Int. <br><br><br><br></li>
-  					<li> Trend line<br> Plain </li>
-  				</ul>
-  			</td>
-  			<td style="text-align:center;vertical-align:top;padding-left:1em;">
-  				<ul>
-  					<li> Shape<br> Color + Shape <br> Color <br><br></li>
-  					<li> Color + Ellipse<br> Color + Shape + Ellipse </li>
-  				</ul>
-  			</td>
+  			<td style="text-align:center;border-bottom:1px solid;" width="25%">1</td>
+  			<td style="text-align:center;border-bottom:1px solid;" width="25%">2</td>
+  			<td style="text-align:center;border-bottom:1px solid;" width="25%">3</td>
+  			<td style="text-align:center;border-bottom:1px solid;" width="25%">4</td>
+  		</tr>
+  		<tr>
+  			<td style="vertical-align:top;"> Trend line <br>+ Pred. Int. </td>
+  			<td style="vertical-align:top;"> Trend line<br><br> Plain </td>
+  			<td style="vertical-align:top;"> Shape<br><br> Color + Shape <br><br> Color </td>
+  			<td style="vertical-align:top;"> Color + Ellipse<br><br> Color + Shape<br> + Ellipse </td>
   		</tr>
   	</table>
   </section>
@@ -426,6 +461,26 @@
     </tr>
   </table>
   </section>
+  
+  <section>
+    <h3><b> Quantifying the Effect of Plot Aesthetics </b></h3>
+  	<h3> Impact </h3>
+  	<ul>
+  		<li> Aesthetics matter for plot design </li> 
+  		<li> To emphasize linear relationships, use intervals as well as a trend line </li>
+  		<li> To emphasize clustering, use similarity (color or shape) and/or bounding ellipses </li>
+  	</ul>
+  </section>
+</section>
+
+<section>
+	<h2> Conclusions </h2>
+	<ul>
+		<li> It's important to consider the visual system when designing statistical plots </li>
+		<li> Optical illusions can impact our conclusions from graphics </li>
+		<li> Our ability to read statistical plots and identify visually significant results depends on mathematical training and reasoning ability </li>
+		<li> Plot aesthetics can be effectively used to highlight important information in data displays </li>
+	</ul>
 </section>
 
 
