@@ -1,0 +1,111 @@
+---
+title: "Narration: Final Oral Exam Slides"
+author: "Susan VanderPlas"
+date: "March 31, 2015"
+output: html_document
+---
+
+# Perception in Statistical Graphics
+
+## Purpose: 
+The overarching theme of my research has been to explore how to best use graphics to communicate statistical information.
+
+## Papers: 
+My dissertation is composed of papers on three topics. 
+- The sine illusion is an optical illusion which affects statistical graphics; my work on this illusion is split into two papers which cover different components of the illusion.
+- In the next paper, I examine the visual reasoning and spatial skills necessary to perceive graphics. 
+- Finally, I examine the effect of plot elements on our conclusions when viewing data displays. 
+
+# Visual Illusions in Statistical Graphics
+This is the sine illusion. Even though the lines are the same length, they appear to be longer at the top and bottom of the figure and shorter in the center region, due to the illusion of depth in the image. 
+
+## Signs of the Sine Illusion
+The first paper examines the sine illusion in statistical graphics, providing several examples of real-world data. We implement transformations to remove the illusion's effects, and quantify the effect of the illusion and correction experimentally. 
+
+### Summary of Results
+The results of the experiment are summarized in this figure. The x-axis shows the amount of correction; 0 indicates that the illusion is uncorrected, and 1 indicates that the illusion is fully corrected. The x-correction is shown in the top plot and they y-correction is shown in the bottom plot. For both correction types, we see that there is a range of acceptable correction values; the endpoints of this range are shown in the histograms (for the overall population estimates) and in the lighter lines, which are estimated values for individuals. 
+
+As 0 is not included in the interval, we can conclude that the sine illusion does significantly alter our perception of variability in plotted data; as 1 is not included in the interval, we can conclude that we do not have to fully correct a plot in order to remove the illusion's effect. 
+
+## The Curse of Three Dimensions
+This paper examines the illusion from a cognitive perspective, identifying the illusion as resulting from the misapplication of depth heuristics, with supporting evidence from a case study. Our participant evaluated many different sine-illusion plots, and was not affected by the illusion, but also did not identify most of the corrected plots as having variable line length. She does not have depth perception due to an extreme lazy eye which was treated with complete patching - this led to development of independent muscle control over each eye, but disrupted the development of binocular depth perception. This condition is rare, but the unique lack of susceptibility to the illusion suggests that the illusion results from misapplied depth perception. 
+
+### Depth Perception
+This image demonstrates the basis of the sine illusion in misapplied depth perception heuristics; the illusion produces an effect which is very similar to a ribbon; when the vanishing point is moved further away from the viewer, this similarity becomes even stronger. 
+
+## Impact
+These two studies taken together increase awareness of the illusion (since we cannot avoid it's presence), propose useful corrections for mitigating the illusion's effects within statistical graphics, quantify the strength of the correction required, and identify the probable perceptual cause of the illusion. 
+
+# Lineup Primer
+The next two pieces of my dissertation deal with an experimental methodology known as "lineups". I will quickly introduce the foundation of that work before discussing my contribution to this topic. 
+
+## Plot
+Lineups are a set of plots consisting of one "data plot" and 19 decoy plots. Generally, if the observer identifies the data plot, this provides evidence that the data plot is different from the decoy plot in some graphical feature. 
+
+## Statistics
+Specifically, lineups are a visual hypothesis test. Decoy plots are created under the null hypothesis, and if the data plot is identifiable, we reject $H_0$ for the data. 
+
+If we have $K$ total participants, and $k$ identify the data plot, we can construct a visual p-value. 
+
+Considering the previous lineup, a Kolmogorov-Smirnov test on the data produced a p-value of 0. As $k$ committee members identified plot 7 as the data plot, the lineup p-value is then ____. 
+
+In addition to the visual hypothesis test, lineups serve as an objective test of whether we see structure in the data display. They are similar to target-search paradigms in cognitive psychology, and can be used to quantify graphical findings even without the underlying hypothesis testing framework.
+
+# Fundamental Skills for Graphical Perception
+This paper examines the cognitive skills required to examine lineups. We ask participants to evaluate these plots, but it may be that lineups require specific skills for successful evaluation. 
+
+## Figure Classification
+We use several previously validated cognitive tests, such as the figure classification test, to evaluate visual reasoning ability. 
+
+In this test, participants are expected to infer classification rules from the top row of images, and use those rules to classify the bottom set of pictures. Participants need to identify that group 1 is composed of straight and curved lines, group 2 is composed only of curved lines, and group 3 is composed of only straight lines. 
+
+We also used the paper folding and card rotation tests; these 3 tests are previously validated as part of the "Kit of reference tests for cognitive factors". In addition to those tests, we also used the visual search task, which measures participants' ability to locate a target in a field of distractors (much as lineups do). 
+
+## Study Setup
+The study consisted of 3 blocks of 20 linesup, where each block of lineups was constructed to examine different plot types using the same datasets. Set 1 examined boxplots and alternatives to boxplots, Set 2 examined boxplots and modifications of boxplots, such as violin plots, and Set 3 examined modifications of qq plots. 
+
+Each block of lineups was completed between tests of visuospatial ability. In addition to these tests, we also collected demographic information about factors known to influence cognitive test performance and experience with data displays - age, major, STEM field, research participation, and other factors. 
+
+38 ISU undergraduates completed the experiment, and their scores on the 3 factor-referenced cognitive tests were similar to those reported for validation populations. 
+
+## Results
+
+Among other analyses, we used principal components to examine the (highly correlated) relationships between test scores. The first principal component was positive for all tests, and is likely to capture variance in general aptitude. The second and third components are shown here; they demonstrate that lineups are most similar to the figure classification test. This is sensible, as lineups require viewers to infer the commonalities between null plots and identify the plot which does not appear to conform. 
+
+In addition, specific visuospatial skills do not appear to be necessary for general lineup performance, outside of overall aptitude. Demographic factors, such as STEM training and Calc 1 completion do appear to be important.
+
+# Quantifying the Effect of Plot Aesthetics
+
+We discussed this experiment in more depth on Monday, but the overall goal was to examine the effect of plot aesthetics on the interpretation of ambiguous data displays. 
+
+## Summary
+We utilized two data models, one which generated trend data, and one which generated cluster data; a mixture model was used to transition between the two data models. We tested 10 combinations of plot aesthetics - I will demonstrate on the next slide. 
+
+## Lineups
+Which of these plots appears the most different? 
+
+We use a modification of the lineup protocol; instead of evaluating the visual significance of a data plot relative to decoy plots, we will compare two data plots, with decoy plots displaying a mixture of the two distinct data models. This allows us to examine the effect of plot aesthetics on the perceived dominant data model. In this plot, 68% of participants identified the trend target in plot 18. We will consider a plot with different aesthetics in the next slide. 
+
+## Lineups (2)
+Which of these plots appears the most different? 
+
+In this lineup, we have color and bounding ellipse aesthetics. In contrast to the previous lineup with the exact same underlying data, almost 80% of participants indicated that plot 13 was the most different, compared with less than 10% of participants when trend line and prediction interval aesthetics were present. This shows that plot aesthetics have a dramatic impact on participants' detection of specific data features. 
+
+## Trend Model
+When we model the probability of trend target selection, we conclude that participants have the highest probability of recognizing the trend target when line and prediction interval aesthetics were chosen. Other plot types are fairly neutral, such as trend line or plots with no aesthetics. Aesthetics which emphasize grouping, such as color and shape, decrease the probability of trend plot selection, and the addition of ellipse aesthetics further decreases probability of trend plot selection. 
+
+## Trend vs. Cluster Model
+When we condition on participants selection of either target, we can directly model the probability of one target selection over the other. Here, we see that color and shape are not significantly different (which contradicts "conventional wisdom" that shapes are not as easy to read). Plots with trend lines and prediction intervals are significantly different from all other plots; plots with color, shape, and ellipse aesthetics are significantly different from trend lines and plots with no aesthetics. 
+
+## Conclusions
+From this study, we can conclude that aesthetics are an important part of plot design. Aesthetics which emphasize continuity, such as intervals, should be used to direct viewer attention towards linear relationships. Aesthetics which emphasize similarity and spatial proximity should be used when clustering is present in the data. 
+
+# Conclusions
+It's important to consider the visual system when using graphics to communicate data features or statistical results. 
+- Illusions can distort the perception of data, even when the underlying plot accurately displays that data. 
+- Our ability to read statistical plots depends on mathematical training and reasoning ability, so plots aimed at audiences with less mathematical training should be visually simpler to reduce cognitive load. 
+- Plots should also be carefully constructed so that plot aesthetics contribute to the features of the dataset, rather than distracting from relevant features.  
+# Future Work
+This work lays some basic infrastructure for exploring the perception of statistical graphics; more work is certainly necessary to evaluate the construction of data displays scientifically. 
+- Visual skills may be required for certain plot types; more work should be done to quantify which skills are required for drawing reasonable conclusions.
+- Many more studies can be conducted utilizing the two-target lineup paradigm to determine which aesthetics are most useful for highlighting certain features of the data. 
