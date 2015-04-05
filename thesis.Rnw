@@ -75,18 +75,18 @@ opts_chunk$set(fig.path='Figure', cache.path='cache/', fig.align='center', fig.w
 \addtocontents{toc}{\def\protect\@chapapp{CHAPTER\ }}
 %-------------------------------------------------------------------------------
 %Optional Acknowledgements
-% \cleardoublepage \phantomsection
-% \include{Preface/acknowl}
+\cleardoublepage \phantomsection
+\include{Preface/acknowl}
 %-------------------------------------------------------------------------------
 %Optional thesis abstract
-% \cleardoublepage \phantomsection
-% \include{Preface/abstract}
+\cleardoublepage \phantomsection
+\include{Preface/abstract}
 %-------------------------------------------------------------------------------
 \newpage
 \pagenumbering{arabic}
 %-------------------------------------------------------------------------------
-<<overview, child='Body/Overview.Rnw'>>=
-@
+%  <<overview, child='Body/Overview.Rnw'>>=
+%  @
 <<litReview, child='Body/LitReview.Rnw'>>=
 @
 <<sineIllusion, child='Body/SineIllusion.Rnw'>>=
@@ -96,6 +96,8 @@ opts_chunk$set(fig.path='Figure', cache.path='cache/', fig.align='center', fig.w
 <<visualaReasoning, child='Body/VisualAptitude.Rnw'>>=
 @
 <<featureHierarchy, child='Body/FeatureHierarchy.Rnw'>>=
+@
+<<Conclusion, child='Body/Conclusion.Rnw'>>=
 @
 %-------------------------------------------------------------------------------
 % \include{Appendix/appendix1}
