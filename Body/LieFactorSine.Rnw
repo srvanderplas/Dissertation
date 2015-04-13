@@ -42,7 +42,7 @@ source(paste0(codedir, "BayesAnalysis.R")) # generate pics for analysis without 
 %% Abstract
 % One of the basic principles of information graphics is that the data should be accurately reflected in the chart. Tufte's lie factor was created with the idea that graphs that do not represent the underlying data accurately should be avoided. In this paper, we examine a second level of graph distortion that occurs during the perceptual process. The human visual system is largely optimized for perception of three dimensions. Generally, the brain processes potential  ambiguities in the rendering as the most-common three-dimensional object. This can lead to visual distortions, such as occur with the Necker figure or in the M\"uller-Lyer illusion. We discuss the underlying psychological mechanisms for the distortions, examine the effect these distortions have on  judgments, and consider the implications for graph design. Using the sine illusion as a case study, we quantify the effects of the distortion that create a ``perceptual lie factor" for the sine illusion.
 
-\noindent\hfil\textit{Intended for submission to IEEE Transactions on Applied Perception}\hfil
+% \noindent\hfil\textit{Intended for submission to IEEE Transactions on Applied Perception}\hfil
 
 
 \section{Introduction}

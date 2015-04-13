@@ -1,4 +1,4 @@
-	\chapter{FEATURE HIERARCHY IN STATISTICAL GRAPHICS}\label{featurehierarchy}
+\chapter{FEATURE HIERARCHY IN STATISTICAL GRAPHICS}\label{featurehierarchy}
 
 \Sexpr{set_parent('../thesis.Rnw')}
 \graphicspath{{Figure/FeatureHierarchy/}{Images/FeatureHierarchy/}}
@@ -48,7 +48,7 @@ source(paste0(codedir, "MixtureLineups.R"))
 source(paste0(codedir, "theme_lineup.R"))
 @
 
-\noindent\hfil\textit{Intended for submission to JCGS or JASA}\hfil
+% \noindent\hfil\textit{Intended for submission to JCGS or JASA}\hfil
 
 \section{Introduction and background}
 Numerical information can be difficult to communicate effectively in raw form, due to limits on attention span, short term memory, and information storage mechanisms within the human brain. 

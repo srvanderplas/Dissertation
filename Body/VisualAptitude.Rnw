@@ -40,7 +40,7 @@ sanitize <- function(x){
 
 
 \chapter{SPATIAL REASONING AND DATA DISPLAYS}\label{VisualAptitude}\label{visualreasoning}
-\noindent\hfil\textit{Submitted to IEEE Transactions on Visualization and Computer Graphics, January 2015}\hfil
+% \noindent\hfil\textit{Submitted to IEEE Transactions on Visualization and Computer Graphics, January 2015}\hfil
 
 \section{Introduction}
 Data displays provide quick summaries of data, models, and results, but not all displays are equally good, nor is any data display equally useful to all viewers. 
