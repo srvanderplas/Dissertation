@@ -50,7 +50,7 @@
 
 \usepackage{alltt}
 %---------------------------------------------------
-\usepackage{color}
+% \usepackage{color}
 \usepackage[dvipsnames,svgnames,table]{xcolor}
 \usepackage{wrapfig,float}
 \usepackage{caption}
@@ -64,7 +64,6 @@
 \usepackage{sidecap}
 \usepackage{multirow}
 \usepackage{bbm}
-\usepackage[colorinlistoftodos]{todonotes}
 \usepackage{rotating}
 \usepackage[referable]{threeparttablex}
 \usepackage{footnote} % table footnotes
@@ -72,27 +71,32 @@
 %---------------------------------------------------
 
 % Standard, old-style thesis
-\usepackage{isutraditional}   \chaptertitle
+\usepackage{isutraditional}   
+\chaptertitle
+
 % Old-style, thesis numbering down to subsubsection
 \alternate
 \usepackage{rotating}
+
 % Bibliography without numbers or labels
 \usepackage{natbib}
 \bibliographystyle{apa}
-%\includeonly{titletoc,chapter1}
+
 %Optional Package to add PDF bookmarks and hypertext links
 \usepackage[pdftex,hypertexnames=false,linktocpage=true]{hyperref}
 \hypersetup{colorlinks=true,linkcolor=blue,anchorcolor=blue,citecolor=blue,filecolor=blue,urlcolor=blue,bookmarksnumbered=true,pdfview=FitB}
 
-\newcommand{\done}[2][inline]{\todo[color=SpringGreen, #1]{#2}}  % for todos that have been seen and dealt with
-\newcommand{\meh}[2][inline]{\todo[color=White, #1]{#2}}   % for todos that may no longer be relevant 
-\newcommand{\comment}[2][inline]{\todo[color=SkyBlue, #1]{#2}} % for comments that may not be "to-do"s
-\newcommand{\mcomment}[1]{\todo[color=SkyBlue]{#1}} % for margin comments
+% %------------------------------------------------------
 
-\newcommand{\newtext}[1]{\todo[inline, color=White]{ \color{OliveGreen}{#1}}} % new text - not necessarily something to be done
+% Force TOC/LOT/LOF to add a pagebreak if there isn't room 
+% for at least N lines on the current page
+\newcommand\chaptocbreak{
+	\addtocontents{toc}{\protect\needspace{4\baselineskip}}
+	\addtocontents{lof}{\protect\needspace{2\baselineskip}}
+	\addtocontents{lot}{\protect\needspace{2\baselineskip}}
+}
 
-\newcommand{\move}[1]{\todo[inline, color=Lime]{#1}} % new to do item
-
+% %------------------------------------------------------
 
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{algorithm}[theorem]{Algorithm}
@@ -131,8 +135,7 @@
 \newpage
 \pagenumbering{arabic}
 %-------------------------------------------------------------------------------
-%  <<overview, child='Body/Overview.Rnw'>>=
-%  @
+
 
 
 \graphicspath{{Figure/LitReview/}{Images/LitReview/}}
@@ -173,7 +176,7 @@ Another important region of the retina is the blindspot, the area where the opti
 \vspace{2cm}
 \end{minipage}}
 \end{center}
-\caption[Blind Spot]{Illustration of the blind spot in the retina. Close one eye, and focus the other on the appropriate letter (R if the right eye is still open, L if the left eye is still open). Place the paper approximately 1 foot from your eye, and move the paper toward or away from your face until you notice the other letter disappear. Your brain ``fills in" the other letter with the background.}\label{fig:blindspot}
+\caption[Demonstration of the blind spot in the retina]{Demonstration of the blind spot in the retina. Close one eye, and focus the other on the appropriate letter (R if the right eye is still open, L if the left eye is still open). Place the paper approximately 1 foot from your eye, and move the paper toward or away from your face until you notice the other letter disappear. Your brain ``fills in" the other letter with the background.}\label{fig:blindspot}
 \end{figure}
 
 Figure \ref{fig:ColorRange} shows the responsiveness of rods and each of the three types of cones to wavelengths of light in the visual spectrum. This image suggests that we have relatively good visual discrimination of the yellow-green portion of the color spectrum, but relatively poor discrimination of colors in the red and blue portions of the color spectrum. 
@@ -193,15 +196,15 @@ Once light hits the retina and causes a signal in the receptor cells, the inform
 \begin{subfigure}[b]{.45\linewidth}
   \centering
   \includegraphics[width=\linewidth]{HermannGrid}
-  \caption{\small Hermann Grid Illusion \label{fig:hermanngrid}}
+  \caption{\small Hermann grid illusion \label{fig:hermanngrid}}
 \end{subfigure}\hfill
 \begin{subfigure}[b]{.45\linewidth}
   \centering
   \includegraphics[width=\linewidth]{MachBands}
-  \caption{\small Mach Bands. 
+  \caption{\small Mach bands 
   \label{fig:machbands}}
 \end{subfigure}
-\caption[Inhibition Illusions]{Optical Illusions resulting from lateral inhibition. The Hermann Grid illusion causes dark circles to appear at the intersection of white lines; the Mach bands illusion causes the borders of adjacent rectangles to appear more strongly defined.} \label{fig:InhibitionIllusions}
+\caption[Inhibition illusions]{Optical Illusions resulting from lateral inhibition. The Hermann Grid illusion causes dark circles to appear at the intersection of white lines; the Mach bands illusion causes the borders of adjacent rectangles to appear more strongly defined.} \label{fig:InhibitionIllusions}
 \end{figure}
 
 Once neural impulses have left the retina through the optic nerve, they travel to the visual cortex by way of several specialized structures within the brain that process lower-level signals. Receptor cells in the visual cortex respond to specific angles, spatial locations, colors, and intensities, and arrays of these special 'feature detector cells' process the information into a form that higher-level processes can utilize. These higher-level processes are what we have previously called 'software': they are not directly related to the physical brain, but they do process information heuristically to produce higher-level reasoning and conclusions. In the next section, we explore some of the higher-level processes responsible for visual perception.
@@ -217,7 +220,7 @@ Selective attention is accomplished by focusing the fovea (the area with the hig
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=.5\linewidth]{SaccadesText}
-\caption[Saccades and Pauses]{A plot of saccades made while reading text. Saccades, shown by the lines, indicate ``jumps", while pauses are shown by circles, with size proportional to the time spent focusing on that area.}\label{fig:saccadestext}
+\caption[Saccades and pauses]{A plot of saccades made while reading text. Saccades, shown by the lines, indicate ``jumps", while pauses are shown by circles, with size proportional to the time spent focusing on that area.}\label{fig:saccadestext}
 \end{figure}
 
 Selective attention is generally necessary for perception to occur, though there is some information that is encoded automatically. Experiments such as the fairly famous \href{http://www.theinvisiblegorilla.com/videos.html}{``gorilla" film}\footnote{\url{http://www.theinvisiblegorilla.com/videos.html}} demonstrate that even when there is attention focused on a task, information extraneous to that task is not always encoded, that is, even when participants focused on counting the number of passes between players in the basketball game, they did not notice the gorilla walking through the middle of the court. It is important to understand which parts of a visual stimulus are the focus of a given perceptual task, because most of the information encoded by the brain is a result of selective attention. Eye-tracking can be an important tool useful to understand these perceptual processes, but participants are often able to report which parts of a stimulus contributed to their decision as well.
@@ -226,7 +229,7 @@ Within the brain, attention is important because it allows different regions of 
 
 \begin{figure}[htbp]\centering
 \includegraphics[width=.8\linewidth]{ParallelSerialFeatures}
-\caption[Parallel and Serial Feature Detection]{Examples of features detected serially or in parallel (Chapter 6, \protect\citealt{helander1997handbook})}\label{fig:parallelSerialFeatures}
+\caption[Parallel and serial feature detection]{Examples of features detected serially or in parallel (Chap. 6, \protect\citealt{helander1997handbook})}\label{fig:parallelSerialFeatures}
 \end{figure}
 
 Feature integration as a result of attention enables the brain to process a figure holistically and integrate all of the separate aspects of the object into a single perceptual experience. This processing is important for the most basic visual processes we take for granted, including object perception. 
@@ -260,7 +263,7 @@ We have discussed how visual stimuli are perceived and how objects are recognize
 
 \begin{figure}[htbp]\centering
 \includegraphics[width=.7\linewidth]{RotationTask}
-\caption[Rotation Task]{Rotation task \protect\citep{shepard1988mental}. Are the two images the same?}\label{fig:mentalRotation}
+\caption[Rotation task]{Rotation task \protect\citep{shepard1988mental}. Are the two images the same?}\label{fig:mentalRotation}
 \end{figure}
 
 In addition, \citet{kosslyn1978visual} showed that mental representation of distances in a figure are accurate and that the time to encode those distances is proportional to the distances in the actual figure. These studies suggest that the memory of an image (statistical graphic or otherwise) is a reasonably accurate facsimile of the original image (though the accuracy of the mental representation is of course likely to be moderated by attention and recall ability). 
@@ -269,7 +272,7 @@ Another facet of visual memory that will be important to understanding perceptio
 
 \begin{figure}[htbp]\centering
 \includegraphics[width=.4\linewidth]{DuckRabbitIllusion}
-\caption[Ambiguous Images]{An ambiguous image that could be either a rabbit or a duck. When participants were asked to identify the image initially, they could not provide an alternate interpretation of the figure later.}\label{fig:ambiguousrabbit}
+\caption[Ambiguous images]{An ambiguous image that could be either a rabbit or a duck. When participants were asked to identify the image initially, they could not provide an alternate interpretation of the figure later.}\label{fig:ambiguousrabbit}
 \end{figure}
 
 The ``software" of the visual system is of course more complex than the few modules listed here, but understanding attention, object perception, and how images are stored for later retrieval in the brain will make designing statistical graphics for the visual system easier and will also help with evaluating graphics based on the capabilities of the human visual system. 
@@ -325,7 +328,7 @@ Another common ``bug" in the visual system are mutations that change (or remove 
 \end{subfigure}\hfil
 \end{minipage}
 
-\caption[Colorblindness and Rainbow Color Schemes]{Rainbow color scheme with simulations of each of the six common types of color deficiency. The original image, on the left, is from \protect\citet{light2004end}. The top row of pictures on the right show simulations of the map when cones are entirely missing. The bottom row of pictures show simulations of the map when each cone is altered due to genetic mutation. }\label{fig:colorblindrainbow}
+\caption[Colorblindness and rainbow color schemes]{Rainbow color scheme with simulations of each of the six common types of color deficiency. The original image, on the left, is from \protect\citet{light2004end}. The top row of pictures on the right show simulations of the map when cones are entirely missing. The bottom row of pictures show simulations of the map when each cone is altered due to genetic mutation. }\label{fig:colorblindrainbow}
 \end{figure}
 % \comment{I can't tell a difference between the Protan* and Deuteran* pictures in figure \ref{fig:colorblindrainbow} at all. Is that just me?} % apparently not, normal color vision people seem to see it that way too. 
 
@@ -344,13 +347,13 @@ The ``software" programs presented in section \ref{Software} are generally effic
 \hfil
 \begin{subfigure}[b]{.4\linewidth}\centering\vspace{.5cm}
   \includegraphics[width=\linewidth]{FigureVase}\vspace{1cm}
-  \caption{Figure-Ground Illusion}
+  \caption{Figure-ground illusion}
 \end{subfigure}\hfill
 \begin{subfigure}[b]{.4\linewidth}\centering
   \includegraphics[width=\linewidth]{IllusoryContour}
-  \caption{Kanizsa Triangle Illusion}
+  \caption{Kanizsa triangle illusion}
 \end{subfigure}\hfil
-\caption[Gestalt Illusions]{Illusions due to misapplied or ambiguous Gestalt rules.}\label{fig:GestaltIllusions}
+\caption[Gestalt illusions]{Illusions due to misapplied or ambiguous Gestalt rules.}\label{fig:GestaltIllusions}
 \end{figure}
 
 The figure/ground illusion depends on the color of the top and bottom edges of the picture; if the edges are black, the vase appears to be the central part of the image; if the edges are white, the faces appear to be the central part of the image. When the edges are omitted, the image seems to oscillate between a vase and the profile view of two heads. This is a result of ambiguity in identifying which part of the image is the background; when the top and bottom edges are present, that cue is sufficient to resolve the illusion. The Kanizsa triangle demonstrates the Gestalt principles of good form and continuity: We perceive objects that are partially obscured by a floating white triangle, even though no such triangle actually exists. The illusory triangle produces an image that is much simpler (3 circles, a black triangle outline, and a white triangle) than the objects that are actually displayed (3 partial circles and three V shapes arranged pointing in toward a central point). In addition to the existence of the illusory contour, we also perceive some depth to the image; that is, the white triangle is perceived as being above the other components of the image \citep{coren1983subjective}, as this is the only way to make sense of the set of stimuli in a simple fashion. In general, these gestalt principles make sense of the natural world, but when applied to artificial contexts, they occasionally produce unexpected results. 
@@ -358,33 +361,32 @@ The figure/ground illusion depends on the color of the top and bottom edges of t
 \paragraph{Depth illusions} Other optical illusions occur due to the optimization of the visual system for three-dimensional perception. These three-dimensional heuristics can produce unexpected or misleading results when applied to two dimensional objects. 
 
 \begin{figure}[htbp]\centering
-\hfil
-\begin{subfigure}[b]{.35\linewidth}\centering
-  \includegraphics[width=\linewidth]{PonzoIllusion}
-  \caption{Ponzo Illusion}\label{fig:Ponzo}
-\end{subfigure}\hfill
-\begin{subfigure}[b]{.35\linewidth}\centering
-  \includegraphics[width=\linewidth]{NeckerCube}
-  \caption{Necker Cube}\label{fig:NeckerCube}
-\end{subfigure}\hfil
 
-\hfil
 \begin{subfigure}[b]{.35\linewidth}\centering
-  \includegraphics[width=\linewidth, angle=90]{MullerLyer}
-  \caption{Muller-Lyer Illusion}\label{fig:MullerLyer}
-\end{subfigure}\hfill
-\begin{subfigure}[b]{.35\linewidth}\centering
-  \includegraphics[width=\linewidth]{CheckerShadow}
-  \caption{Color Constancy Illusion}\label{fig:ColorConstancy}
+  \includegraphics[width=.95\linewidth]{PonzoIllusion}
+  \caption{Ponzo illusion}\label{fig:Ponzo}
 \end{subfigure}\hfil
-
-\caption[Depth Illusions]{Illusions due to misapplied depth perception.}\label{fig:DepthIllusions}
+\begin{subfigure}[b]{.35\linewidth}\centering
+  \includegraphics[width=.95\linewidth]{NeckerCube}
+  \caption{Necker cube}\label{fig:NeckerCube}
+\end{subfigure}
+\\\vspace{12pt}
+\\
+\begin{subfigure}[b]{.35\linewidth}\centering
+  \includegraphics[width=.95\linewidth, angle=90]{MullerLyer}
+  \caption{Muller-Lyer illusion}\label{fig:MullerLyer}
+\end{subfigure}\hfil
+\begin{subfigure}[b]{.35\linewidth}\centering
+  \includegraphics[width=.95\linewidth]{CheckerShadow}
+  \caption{Color constancy illusion}\label{fig:ColorConstancy}
+\end{subfigure}
+\caption[Depth illusions]{Illusions due to misapplied depth perception.}\label{fig:DepthIllusions}
 \end{figure}
 Figure \ref{fig:DepthIllusions} contains four of the more interesting optical illusions that result from ambiguous figures that trigger depth cues. The Ponzo illusion (figure \ref{fig:Ponzo}) suggests that the top line is longer than the bottom line, because of the implied convergence of the two vertical lines (to understand the natural scene that produces this illusion, consider railroad tracks converging at the horizon). The Necker Cube, shown in figure \ref{fig:NeckerCube}, can be seen such that the top-right face is closest to the viewer or alternately such that the bottom-left face is closest to the viewer. Due to the ambiguity in the image, it will often seem to ``flip" when the viewer temporarily loses focus on the image \citep{gregory1997knowledge}. The Muller-Lyer illusion (figure \ref{fig:MullerLyer}) is generally believed to result from misapplied depth cues as well - the left-most image would occur in nature as the exterior corner of a building, the middle image would occur when viewing an interior corner of the same building, further away from the viewer \citep{ward1977case, gregory1968perceptual, fisher1970experimental}. As a result of the illusion, the middle line appears to be longer than the first or third lines. Figure \ref{fig:mullerlyerhouse} shows the first two parts of the illusion in a context which removes the ambiguity through additional depth cues. The additional cues result in the resolution of the illusion. Finally, the color constancy illusion shown in figure \ref{fig:ColorConstancy} suggests that the square marked A is much darker than the square marked B, even though the two squares are the same color. This illusion results from our experiences with depth and shadows: square B is perceived to be the same color as the lighter-colored squares outside the shadow, while square A is perceived to be the same color as the other dark squares in the tile pattern, regardless of the actual color due to the shadow. 
 
 \begin{figure}[htbp]\centering
 \includegraphics[width=.5\linewidth]{mullerlyerhouse}
-\caption[Muller Lyer Real World Context]{The Muller-Lyer illusion in a non-ambiguous three-dimensional context.}\label{fig:mullerlyerhouse}
+\caption[Muller Lyer real world context]{The Muller-Lyer illusion in a non-ambiguous three-dimensional context.}\label{fig:mullerlyerhouse}
 \end{figure}
 
 Depth illusions in particular result from a conflict between our experience with the three-dimensional world and the appearance of two-dimensional ambiguous stimuli. The Necker cube ``flips" because there are two physical objects that could produce the same retinal image, the Muller-Lyer illusion exists because our experience with the three-dimensional world is harnessed inappropriately for a two-dimensional figure, and the color-constancy illusion exists because our brains automatically correct a pseudo three-dimensional image to represent the reality of that image in the real world. These conflicts occur in statistical graphics as well; Chapter \ref{sineillusion} explores statistical graphics that trigger a three-dimensional heuristic in the brain and lead to misleading conclusions.
@@ -395,7 +397,7 @@ Certain illusions do not lend themselves to simple classification. While many il
 
 \begin{figure}[htbp]\centering
 \includegraphics[width=.4\linewidth]{Poggendorff}
-\caption[The Poggendorff Illusion]{The Poggendorff Illusion. The left figure shows a black line which is obscured by a grey rectangle; it appears that the blue line would intersect the black line if the rectangle were not present. In fact, the black line and the red line are co-linear, and the blue line is parallel to both other lines.}\label{fig:poggendorff}
+\caption[Poggendorff illusion]{The Poggendorff Illusion. The left figure shows a black line which is obscured by a grey rectangle; it appears that the blue line would intersect the black line if the rectangle were not present. In fact, the black line and the red line are co-linear, and the blue line is parallel to both other lines.}\label{fig:poggendorff}
 \end{figure}
 
 \citet{gregory1963distortion, gregory1997knowledge} suggests the Poggendorff illusion is similar to the Muller-Lyer illusion in that it results from misapplied depth cues, but \citet{green1963poggendorff, ward1977case} found no evidence that participants viewed this illusion in any three-dimensional context. Instead, \citet{green1963poggendorff} suggests that the illusion results from a tendency to perceive acute angles as less acute and obtuse angles as less obtuse than the image suggests. As the illusion disappears as the angle of the line segment approaches horizontal, this seems to be a reasonable explanation, but it is almost certainly not complete \citep{morgan1999poggendorff}, as the illusion survives in forms which do not preserve the acute angle intersections. Regardless, this illusion can make it difficult to read line graphs \citep{amer2005bias, poulton1985geometric} if proper precautions (use of reference lines and grid lines) are not taken.
@@ -408,13 +410,13 @@ The second of these illusions is the cafe wall illusion, shown in figure \ref{fi
 \hfil
 \begin{subfigure}[b]{.4\linewidth}\centering
   \includegraphics[width=\linewidth]{CafeWall}
-  \caption{Original Cafe Wall Illusion}\label{fig:CafeWallOrig}
+  \caption{Original cafe wall illusion}\label{fig:CafeWallOrig}
 \end{subfigure}\hfil
 \begin{subfigure}[b]{.4\linewidth}\centering
   \includegraphics[width=\linewidth]{fig-cafewall}
-  \caption{Isoluminant Cafe Wall Illusion}\label{fig:CafeWallIso}
+  \caption{Isoluminant cafe wall illusion}\label{fig:CafeWallIso}
 \end{subfigure}\hfil
-\caption[Cafe Wall Illusion]{The Cafe Wall illusion. The lines between rows of black and white tiles are parallel but appear to be tilted. The second image shows the isoluminant version, which mitigates some of the illusion but does not entirely eliminate the effect.}\label{fig:cafewall}
+\caption[Cafe wall illusion]{The cafe wall illusion. The lines between rows of black and white tiles are parallel but appear to be tilted. The second image shows the isoluminant version, which mitigates some of the effect but does not entirely eliminate the illusion.}\label{fig:cafewall}
 \end{figure}
 
 The cafe wall illusion is in part due to the contrast between light and dark zones (as in the mach bands and hermann grid illusion), and much of the illusion is resolved when the black and white tiles are replaced with isoluminant colors, but some of the illusion still remains. \citet{westheimer2007irradiation} suggests that this portion of the illusion is because the position of a black-white border will be biased to appear closer to the black side of its physical location, an effect which is compounded in the cafe wall illusion to produce the appearance of tilted lines. This illusion, while not explicitly found in most statistical graphics, shows that even simple (and pleasant) configurations of geometric objects can wreak havoc in the brain under the right circumstances. In fact, the illusion is so simple that it is also known as the ``Kindergarten illusion", but its cause is sufficiently complex that it has not been fully explained by psychologists or neuroscientists. 
@@ -456,7 +458,7 @@ Much of the lower-level research within the statistical graphics literature has 
   \includegraphics[width=\linewidth]{fig-preattentive22}
   \caption{Interference}\label{fig:preattentiveinterference}
 \end{subfigure}
-\caption[Preattentive Features and Interference]{Shape and color are detected preattentively in figures (a) and (b), but interfere in figure (c) so that location of the target in (c) is no longer preattentive.}\label{fig:preattentive}
+\caption[Preattentive features and interference]{Shape and color are detected preattentively in figures (a) and (b), but interfere in figure (c) so that location of the target in (c) is no longer preattentive.}\label{fig:preattentive}
 \end{figure}
 
 Healey's work on preattentive perception is interesting, and provides a reasonable approach to creating graphics compatible with the human visual system, but his work is largely focused on multidimensional displays and his focus on preattentive processes limits the applicability of his work to statistical graphics. In particular, most graphics are created with the idea that a viewer will spend more than one second looking at the graph, so not all features need to be preattentive to be useful. In addition, many of the multidimensional displays he designs are very load-intensive to understand; with so many additional dimensions, the viewer must spend considerable time understanding the scales and legends which correspond to each variable (feature integration over multiple dimensions is time intensive and generally not preattentive). In the next section, we will examine the literature concerning higher-level graphical perception, including perception at the attentive level and which types of graphs are more accurately perceived by viewers. 
@@ -510,9 +512,9 @@ Working within this task-oriented framework, researchers have explored the ``sea
 \end{subfigure}\hfill
 \begin{subfigure}[b]{.45\linewidth}\centering
   \includegraphics[width=\linewidth]{fig-clustering2}
-  \caption{Proximity and Similarity-based grouping}
+  \caption{Proximity and similarity-based grouping}
 \end{subfigure}\hfill
-\caption[Chunking in Graphs]{The utility of chunking in graph perception. Graph (a) could potentially be described as three distinct clusters of points rather than 120 individual points, but it is much easier to draw conclusions from graph (b), which has colored points that clearly show the grouping structure in the data. The second figure would more probably be encoded and described as three groups of 40 points, which serves as a form of mental data compression.}\label{fig:clustering}
+\caption[Chunking in graphs]{The utility of chunking in graph perception. Graph (a) could potentially be described as three distinct clusters of points rather than 120 individual points, but it is much easier to draw conclusions from graph (b), which has colored points that clearly show the grouping structure in the data. The second figure would more probably be encoded and described as three groups of 40 points, which serves as a form of mental data compression.}\label{fig:clustering}
 \end{figure}
 
 Analyzing graphs using task-based models emphasizes the importance of spatial relationships between graphical elements. The gestalt laws of proximity and similarity dictate that items which are close together or physically similar (the same shape or color) are perceived as a group; this spatial perception creates ``chunks" of the graph which may be encoded as single objects and thus reduce the mental bandwidth necessary to process the image. Figure \ref{fig:clustering} shows the advantage of ``chunks" in graphs, as the second graph shown is much easier to describe and understand than the first graph, even without the contextual meanings of the variables. Of graphics that present information of similar complexity, graphics that require less effort to understand and search for relevant information are preferrable \citep{cleveland:1985}. More complex models of the graphical perception process suggest that data are integrated on a visual level and then further integrated on a cognitive level, to form successive clusters of information. Once these clusters are formed, further information can be integrated by comparing and contrasting different clusters to understand the higher-level meaning in the graph \citep{ratwani2008thinking}. Graph types which cater to this hierarchical clustering mechanism may be more easily understood by viewers than graphs that do not provide information in a manner easily assimilated by the human brain. Based on this information, facets of graphs may be particularly useful for mapping multidimensional data to provide ``chunks" of information in a relevant manner that can be integrated into the viewer's working conceptual understanding of the dataset. Additionally, color schemes and appropriate labeling of graph features which reduce the amount of work necessary to integrate numerical information from a legend into the visual representation of the graph facilitate graphical inference \citep{carpenter1998model}.
@@ -522,6 +524,8 @@ From a statistical perspective, much of the literature involved in understanding
 \subsubsection{Perception of Simple Graphs}
 A series of experiments by \citet{cleveland:1984, cleveland:1985} studied basic perceptual tasks in graphical perception to produce a relative ordering of graphical elements by the accuracy of participant conclusions. This ranking is shown in Table \ref{clevelandranking}. Other researchers \citep{kosslyn1994} have collapsed this ranking into position/length/angle and area/volume, as the difference in accuracy between categories 1, 2, and 3 is small compared to categories 4 and 5. 
 \begin{table}[htbp]\centering
+
+\caption[Cleveland \& McGill's ordering of graphical tasks]{\protect\citet{cleveland:1984, cleveland:1985} ordering of graphical tasks by accuracy (adapted from both papers and \protect\citealt{shah2005cambridge}). Higher-ranking tasks are easier for viewers than low-ranking tasks and should be preferred in graphical design.}\label{clevelandranking}
 \begin{tabular}{ll}
 \hline
 Rank & Task\\\hline
@@ -532,7 +536,6 @@ Rank & Task\\\hline
 5 & Volume, Density, Curvature\\
 6 & Shading, Color Saturation, Color Hue\\\hline
 \end{tabular}
-\caption[Cleveland \& McGill's ordering of graphical tasks]{\protect\citet{cleveland:1984, cleveland:1985} ordering of graphical tasks by accuracy (adapted from both papers and \protect\citealt{shah2005cambridge}). Higher-ranking tasks are easier for viewers than low-ranking tasks and should be preferred in graphical design.}\label{clevelandranking}
 \end{table}
 
 The particular task required of participants in experiments also has an effect; \citet{simkin1987information} found that readers were more accurate in determining position when presented with a bar graph, but when readers were presented with a pie chart, they were more accurate at determining proportional judgments (using angles). This finding contradicts \citet{cleveland:1984} to some degree and suggests that the experimental design and specific task are important in evaluating these sorts of user studies; the contradictory results also suggest that graph type is an important influence in determining what information viewers encode from the graph. This conflict also illustrates that the user's attention and past experience influence the judgments they make from a given graph: when participants were asked to provide a summary of the graphic, their answers depended on the type of display: bar charts elicited a comparison judgment, pie charts elicited proportional judgments \citep{simkin1987information}. Similarly, when presented with a line graph, viewers are more likely to summarize the graph in terms of the slope of the trend line (even when the x-axis is discrete); when presented with a bar graph, viewers summarize the information using discrete comparisons \citep{carswell1987information, shah2005cambridge}. The task and the graph format interact to influence viewer perceptions, thus, when creating graphics, statisticians should match appropriate graphical formats to meaningful conclusions about the data. 
@@ -543,7 +546,7 @@ It is important to consider working memory when constructing graphical scales (p
 
 Other graph features can also influence viewer inferences: multiple studies suggest that our mental schematic for a graph is most consistent with a $45^\circ$ trend line \citep{cleveland:88, tversky1989perceptual}. ``Banking to $45^\circ$" is a commonly-cited recommendation for optimal graphics (it is also quite old, according to \citet{wickham2013graphical}), and does have some limited utility in reducing the strength of the line-width illusion (a more thorough discussion of this heuristic is provided in Chapter \ref{sineillusion}). Axis scale transformations can make it easier for viewers to spot outliers of data conforming to skewed distributions (though this does require some domain-specific knowledge of statistical distributions), and appropriately labeled graphs can reduce the working memory requirements by reducing the number of ``back-and-forth" comparisons required to pass information into working memory \citep{shah2005cambridge}. 
 
-While graph perception is commonly limited by working memory considerations, there is some evidence that we perceive and process graphical information differently than numerical algorithms: \citet{bobko1979perception} found that participants underestimated correlation coefficients when estimating correlation strength, particularly under unequal variance; their estimates were in fact more closely aligned with $r^2$. In addition, visual estimation tends to discount the effect of perceived outliers, producing a more robust estimator than numeric estimators designed for that purpose \citep{lewandowsky1989perception}. Finally, some evidence suggests that when visually estimating lines of best fit, we fit the slope of the first principal component rather than the least squares regression line; that is, we consider variability in $x$ and $y$ rather than only considering variability in $y$\citep{mosteller1981eye}. While these studies do not offer theoretical explanations or attempt to provide causal explanations, human perception of data displays does appear to differ from computational exploration in meaningful ways. 
+While graph perception is commonly limited by working memory considerations, there is some evidence that we perceive and process graphical information differently than numerical algorithms: \citet{bobko1979perception} found that participants underestimated correlation coefficients when estimating correlation strength, particularly under unequal variance; their estimates were in fact more closely aligned with $r^2$. In addition, visual estimation tends to discount the effect of perceived outliers, producing a more robust estimator than numeric estimators designed for that purpose \citep{lewandowsky1989perception}. Finally, some evidence suggests that when visually estimating lines of best fit, we fit the slope of the first principal component rather than the least squares regression line; that is, we consider variability in $x$ and $y$ rather than only considering variability in $y$ \citep{mosteller1981eye}. While these studies do not offer theoretical explanations or attempt to provide causal explanations, human perception of data displays does appear to differ from computational exploration in meaningful ways. 
 
 These studies indicate that it is important to consider the cognitive processing of statistical graphics as well as the data used to generate these graphics: the type of graph, color scheme, annotations, aspect ratio, legends, and axis transformations can all influence the amount of mental processing required to draw conclusions from a graph, as well as the types of conclusions that graph viewers are likely to draw. Many of these features were studied in relative isolation, using simple graphs that may lack real-world context. More complex, domain specific graphs may create higher cognitive load and recruit previously acquired knowledge; experiments using simple, bland graphics may not be applicable to more complex graphics meant for experts. What follows is a summary of the relatively sparse literature on these sorts of real-world graphics. 
 
@@ -566,7 +569,7 @@ Psychophysics studies are generally concerned with the ability to detect a stimu
 
 \begin{figure}[htbp]\centering
 \includegraphics[width=.5\linewidth]{fig-methodoflimits}
-\caption[The Method of Limits]{Demonstration of the method of limits. In this experiment, three trials were performed, two trials starting from 0 and increasing, and one trial starting at 9.5 and decreasing. The empirical detection threshold is the threshold at which detection occurs 50\% of the time, and is shown in red. }\label{fig:methodoflimits}
+\caption[Method of limits]{Demonstration of the method of limits. In this experiment, three trials were performed, two trials starting from 0 and increasing, and one trial starting at 9.5 and decreasing. The empirical detection threshold is the threshold at which detection occurs 50\% of the time, and is shown in red. }\label{fig:methodoflimits}
 \end{figure}
 
 \paragraph{Method of Adjustment} This method is similar to the method of limits, except that the stimulus intensity is adjusted by the observer (not the experimenter) in a continuous manner until the observer can just barely detect the stimulus. This procedure may be repeated several times, with trials averaged to produce a mean value for the absolute threshold. Figure \ref{fig:methodofadjustment} demonstrates this procedure. 
@@ -574,7 +577,7 @@ Psychophysics studies are generally concerned with the ability to detect a stimu
 
 \begin{figure}[htbp]\centering
 \includegraphics[width=.5\linewidth]{fig-methodofadjustment.pdf}
-\caption[The Method of Adjustment]{Demonstration of the method of adjustment. In this experiment, four trials were performed, two trials starting from 0 and increasing, and two trials starting at 10 and decreasing. The empirical detection threshold is the threshold at which detection occurs 50\% of the time, and is shown in red. \label{fig:methodofadjustment}}
+\caption[Method of adjustment]{Demonstration of the method of adjustment. In this experiment, four trials were performed, two trials starting from 0 and increasing, and two trials starting at 10 and decreasing. The empirical detection threshold is the threshold at which detection occurs 50\% of the time, and is shown in red. \label{fig:methodofadjustment}}
 \end{figure}
 
 \paragraph{Measuring the Difference Threshold} The difference threshold, discussed in section \ref{logarithmicperception}, is the smallest detectable difference between two stimuli. This threshold can be measured using either the method of limits or the method of adjustment. Rather than increasing the absolute intensity of the stimulus as discussed above, two stimuli are given: one with constant intensity and one whose intensity may vary either continuously or incrementally (depending on the method utilized). The participant is instructed to identify the point at which the two stimuli are indistinguishable (if the varied stimulus is approaching the constant stimulus) or the point at which the two stimuli are distinguishable (if the varied stimulus is diverging from the constant stimulus). 
@@ -591,7 +594,7 @@ Many psychological experiments utilize straightforward methods to address hypoth
 
 \begin{figure}[htbp]\centering
 \includegraphics[width=.7\linewidth]{VisualSearch}
-\caption[Visual Search Task]{Visual Search Task. Participants were asked to locate the figure (1-24) most similar to the central ``target" figure.}\label{fig:visualsearch}
+\caption[Visual search task]{Visual Search Task. Participants were asked to locate the figure (1-24) most similar to the central ``target" figure.}\label{fig:visualsearch}
 \end{figure}
 
 Visual search tasks can be used to measure the efficiency of a participant's visual search abilities (and focus on a task) to serve as a baseline for more complicated visual tasks. They can also be used to examine feature binding and common mistakes that may indicate relevant distractor stimuli. Even when reaction time is not directly measured, these tasks are typically given under time pressure, to establish a baseline performance that is below 100\% performance on the task. This time pressure allows experimenters to avoid response compression, so that the number of questions completed within the time limit provides an approximate measure of response time.
@@ -601,7 +604,7 @@ Eye tracking studies are often utilized in order to understand which parts or fe
 
 \begin{figure}[htbp]\centering
 \includegraphics[width=.4\linewidth]{EyeTrackingGear}
-\caption[Eye Tracking Equipment]{Eye tracking equipment \protect\citep{babcock2004building}. The cameras allow researchers to determine what part of a scene the wearer is viewing.}\label{fig:eyetracking}
+\caption[Eye tracking equipment]{Eye tracking equipment \protect\citep{babcock2004building}. The cameras allow researchers to determine what part of a scene the wearer is viewing.}\label{fig:eyetracking}
 \end{figure}
 
 Eye tracking studies have been performed on statistical graphics as well \citep{zhao2013mind}, utilizing a visual search task and examining which graphics participants compared to determine the target plot.
@@ -617,7 +620,7 @@ While not all of the experimental control procedures discussed here are appropri
 
 \begin{figure}[htbp]\centering
 \includegraphics[width=.3\linewidth]{fig-mask}
-\caption[Sample Image Mask]{Sample mask used to ``erase'' the retina in some psychological experiments which test stimuli for short time periods ($<$1 s). The mask removes any afterimage the participant might have, ensuring that the stimuli is only available for the specified period. }\label{fig:mask}
+\caption[Sample image mask]{Sample mask used to ``erase'' the retina in some psychological experiments which test stimuli for short time periods ($<$1 s). The mask removes any afterimage the participant might have, ensuring that the stimuli is only available for the specified period. }\label{fig:mask}
 \end{figure}
 
 \paragraph{Priming} Broadly, priming is a technique that can be used to subconsciously bias a participant towards a certain conclusion. In cognitive psychology research, priming can be used to test word association (i.e. participants are quicker to identify an apple if they have just heard the word ``fruit" than if they heard the unrelated word ``pen"); in statistical graphics, priming effects are more likely to occur due to instructions or examples provided to participants at the start of a testing session. If an initial example contains notable outliers, participants are more likely to look for and recognize graphs with outliers than graphs with other notable features. Examples must be designed in such a way to avoid activating these priming affects as much as possible. 
@@ -635,7 +638,7 @@ The grammar of graphics, detailed in \citet{wilkinson2006grammar}, is a framewor
 \begin{figure}[htbp]\centering
 \begin{subfigure}[b]{.33\linewidth}\centering
   \includegraphics[width=\linewidth]{fig-irisdatagrammar1}
-  \caption{Stacked Density Plot}
+  \caption{Stacked density plot}
 \end{subfigure}\hfill
 \begin{subfigure}[b]{.33\linewidth}\centering
   \includegraphics[width=\linewidth]{fig-irisdatagrammar2}
@@ -666,7 +669,7 @@ The grammar of graphics, detailed in \citet{wilkinson2006grammar}, is a framewor
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-\caption{ggplot2 code to produce figure \protect\ref{fig:grammarplots}}\label{fig:grammarcode}
+\caption[Ggplot2 code demonstrating the grammar of graphics]{\texttt{ggplot2} code to produce figure \protect\ref{fig:grammarplots}}\label{fig:grammarcode}
 \end{figure}
 
 \subsubsection{Testing Statistical Graphics using Lineups}
@@ -679,6 +682,7 @@ One useful tool for testing statistical graphics is the concept of a lineup. Lin
 \caption[Lineup for testing statistical graphics]{Lineup of the iris data, comparing sepal width to petal width. The target data is in plot 5, other plots generated by permuting petal width.}\label{fig:lineupexample}
 \end{figure}
 In addition to the visual inference protocols lineups were designed to fulfill \citep{buja2009statistical}, they also provide a method to easily quantify (on a statistical level) the ``power" of a plot; if two lineups are generated from the same data, but one allows participants to more frequently detect the target plot, then that lineup provides more perceptual power. The lineup protocol provides a useful tool for examining some of the issues discussed for complex, domain specific graphs. When combined with the grammar of graphics approach \citep{wickham2010graphical}, lineups have the potential to be extremely useful for studying the perception of graphs which present the same data in different forms.
+\chaptocbreak
 
 
 \graphicspath{{Figure/sineIllusion/}{Images/sineIllusion/}}
@@ -696,7 +700,7 @@ In addition to the visual inference protocols lineups were designed to fulfill \
 
 
 
-\chapter{SIGNS OF THE SINE ILLUSION -- WHY WE NEED TO CARE}\label{SineIllusionChapter}\label{sineillusion}
+\chapter{SIGNS OF THE SINE ILLUSION: WHY WE NEED TO CARE}\label{SineIllusionChapter}\label{sineillusion}
 %% Abstract
 % Graphical representations have to be true to the data they display. Computational tools ensure this on a technical level. But we also need to take `flaws' of the human perceptual system into account. The sine illusion provides an example where human perception leads to systematic bias in the assessment of the optical stimulus, with a particularly notable impact on perception of time-series data with a seasonal component. In this paper, we discuss the reasons for the illusion and various strategies  useful to break the illusion or reduce its strength. We demonstrate the presence of the illusion in real-world and theoretical situations. We also present data from a user study which demonstrate the dramatic effect the sine illusion can have on conclusions drawn from displayed data.
 % \noindent\hfil\textit{Accepted to the Journal of Computational and Graphical Statistics, July 2014}\hfil
@@ -710,15 +714,15 @@ Graphics are powerful tools for summarizing large or complex data, but they rely
 \begin{subfigure}[b]{.45\linewidth}
   \centering
   \includegraphics[width=\linewidth]{fig-example1}
-  \caption[Scatterplot of Ozone and Temperature in Houston, 2011.]{\small Scatterplot of Ozone and Temperature in Houston, 2011. A loess fit is overlaid to show the overall trend.  \label{fig:example1}}
+  \caption[Scatterplot of ozone and temperature in Houston, 2011.]{\small Scatterplot of ozone and temperature in Houston, 2011. A loess fit is overlaid to show the overall trend.  \label{fig:example1}}
 \end{subfigure}\hfill
 \begin{subfigure}[b]{.45\linewidth}
   \centering
   \includegraphics[width=\linewidth]{fig-example2}
-  \caption[Residual Ozone]{\small Scatterplots of Ozone and Temperature de-trended according to the loess fit in (a). \\ \phantom{text to get to the next line}
+  \caption[Residual Ozone]{\small Scatterplots of ozone and temperature de-trended according to the loess fit in (a). \\ \phantom{text to get to the next line}
   \label{fig:example2}}
 \end{subfigure}
-\caption[Scatterplots of Ozone and Temperature in Houston, 2011]{\label{fig:exampleFull1} Scatterplots of Ozone and Temperature in Houston, 2011. The increase in variability over the temperature range is more pronounced in the de-trended plot on the right.}
+\caption[Scatterplots of ozone and temperature in Houston, 2011]{\label{fig:exampleFull1} Scatterplots of ozone and temperature in Houston, 2011. The increase in variability over the temperature range is more pronounced in the de-trended plot on the right.}
 \end{figure}
 
 As a first example let us consider the relationship between ozone concentration and temperature. Ozone concentrations were measured from 21 locations in the Houston area \citep{epa}, and temperature data is provided by the NCDC \citep{noaa} site at Hobby International Airport, located near the center of Houston. 
@@ -811,7 +815,7 @@ The sine illusion demonstrated in figures \ref{fig:exampleFull1} and \ref{fig:or
 \begin{figure}[h!tbp]
 \centering
 \includegraphics[keepaspectratio=TRUE,width=.7\linewidth]{PlayfairExportImports}
-\caption[Imports to and Exports from the East Indies in the 1700s]{Playfair's graph of exports to and imports from the East Indies demonstrates that the line width illusion is not only found on sinusoidal curves but is present whenever the slope of the lines change dramatically. The increase in both imports and exports circa 1763 does not appear to portray as large of a deficit as that in 1710, even though they are of similar magnitude.}
+\caption[Imports to and exports from the East Indies in the 1700s]{Playfair's graph of exports to and imports from the East Indies demonstrates that the line width illusion is not only found on sinusoidal curves but is present whenever the slope of the lines change dramatically. The increase in both imports and exports circa 1763 does not appear to portray as large of a deficit as that in 1710, even though they are of similar magnitude.}
 \label{fig:playfair-debt}
 \end{figure}
 
@@ -1127,7 +1131,7 @@ In the following two sections we make use of Taylor approximations of first and 
 \includegraphics[keepaspectratio=TRUE,width=0.9\linewidth]{fig-generalcorrectioncartoon3}
 \caption{Quadratic Approximation}\label{fig:quadratic-GeneralCorrection}
 \end{subfigure}
-\caption[Methods based on Approximations to f(x)]{(a) uses a first-order Taylor series approximation to $f(x)$ and (b) uses a second-order Taylor series approximation to $f(x)$. The intersection of the function $f(x) \pm \ell/2$ and the orthogonal line,  $(x_1, y_1), (x_2, y_2)$ must be obtained to determine the necessary correction factor.}\label{fig:linear.quadratic} 
+\caption[Methods based on approximations to f(x)]{(a) uses a first-order Taylor series approximation to $f(x)$ and (b) uses a second-order Taylor series approximation to $f(x)$. The intersection of the function $f(x) \pm \ell/2$ and the orthogonal line,  $(x_1, y_1), (x_2, y_2)$ must be obtained to determine the necessary correction factor.}\label{fig:linear.quadratic} 
 \end{figure}
 
 \subsubsection{Linear Approximation to $f(x)$}\hfill\newline
@@ -1220,7 +1224,7 @@ This gives the results as shown in equations (\ref{eqn.q1}) and (\ref{eqn.q2})
 \end{knitrout}
 \caption{Quadratic correction}
 \end{subfigure}
-\caption[Quadratic Approximation]{
+\caption[Linear and quadratic approximations to the Y-axis transformation]{Linear and quadratic approximations to the Y-axis transformation. 
 In the quadratic approximation top and bottom segments of the vertical lines are adjusted separately.}
 \label{fig:GeneralQuadraticCorrection} 
 \end{figure}
@@ -1244,9 +1248,7 @@ Similar to the correction of the $x$-axis,  we can use a weighted approach to fi
 
 In order to more fully understand the sine illusion and test the proposed corrections, we created an applet to allow users to investigate the illusion's prominence with respect to its parameters. Users can examine the sine illusion by changing line length, the function's amplitude, and compare corrections in $x$-axis and $y$-values to uncorrected data.  All corrections proposed in this paper are  implemented in the applet located at \url{http://glimmer.rstudio.com/srvanderplas/SineIllusion/}.
 
-We employed a second applet to collect data on users' preferences on the amount of correction used, i.e.~we are interested in identifying a range of `optimal weights' in each of the corrections. This applet presents users with a graph that is the result of a correction in $x$ or $y$ with a randomly selected starting weight value. Users are asked to adjust the graph until the illusion  (a) is no longer apparent (adjustment of weights from the bottom) or (b) becomes visible (adjustments of weights from the top).
-
-Both applets are implemented in {\tt shiny} \citep{shiny}. 
+We employed a second applet to collect data on users' preferences on the amount of correction used, i.e.~we are interested in identifying a range of `optimal weights' in each of the corrections. This applet presents users with a graph that is the result of a correction in $x$ or $y$ with a randomly selected starting weight value. Users are asked to adjust the graph until the illusion  (a) is no longer apparent (adjustment of weights from the bottom) or (b) becomes visible (adjustments of weights from the top). Both applets are implemented using {\tt shiny} \citep{shiny}. 
 
 The graphs in the data-collection applet are adjusted using a plus/minus button to either increase or decrease the amount of correction used. Underlying this adjustment is the value of the weight $w$ as defined in eqns.~(\ref{eqn.xtrans.weighted}) and~(\ref{eqn.ytrans.weighted}). The numerical value of $w$ was hidden from the user to prevent anchoring to a specific numerical value.
 
@@ -1256,7 +1258,7 @@ It is of additional interest to determine whether and how much these optimal wei
 
 \begin{figure}\centering
 \includegraphics[width=.92\linewidth]{shiny}
-\caption[Screenshot of Data Collection Website]{\label{fig:shiny.app} Screenshot of the shiny application used to collect information of observers' preference with respect to an optimal correction for the illusion under each of the  transformations discussed in the previous section. }
+\caption[Screenshot of data collection website]{\label{fig:shiny.app} Screenshot of the shiny application used to collect information of observers' preference with respect to an optimal correction for the illusion under each of the  transformations discussed in the previous section. }
 \end{figure}
 
 Figure~\ref{fig:shiny.app} shows a screenshot of the applet used to collect user data. This applet is  available online at \url{http://glimmer.rstudio.com/srvanderplas/SineIllusionShiny/}. 
@@ -1349,6 +1351,7 @@ The fitted model parameters are shown in tables \ref{fixedeffectsresults} and \r
 
 
 \begin{table}[htbp]\centering
+\caption[Sine illusion model: fixed effects]{Fixed effect estimates of model~(\ref{model1}) for the boundaries for reasonable weights. In parentheses,  95\% parametric bootstrap confidence intervals are given based on model (\ref{model1}) ($N$=1000).}\label{fixedeffectsresults}
 \begin{tabular}{cclcc}
   \hline
 Transformation & Threshold &  \multicolumn{1}{c}{Parameter} & Estimate & 95\% C.I. \\ 
@@ -1359,9 +1362,9 @@ X & Lower & $\alpha_X$ & 0.097 & (0.045, 0.150) \\
    & Upper& $\alpha_Y + \beta$  & 0.671 & (0.626, 0.718) \\ 
    \hline
 \end{tabular}
-\caption[Sine Illusion Model: Fixed Effects]{Fixed effect estimates of model~(\ref{model1}) for the boundaries for reasonable weights. In parentheses,  95\% parametric bootstrap confidence intervals are given based on model (\ref{model1}) ($N$=1000).}\label{fixedeffectsresults}
 \end{table}
 \begin{table}[hbtp]\centering
+\caption[Sine illusion model: random effects]{Overview of random effects for model~(\ref{model1}), including 95\% confidence intervals based on parameteric boostrap results ($N$=1000).}\label{randomeffectsresults}
 \begin{tabular}{rcccc}
   \hline
 Groups & Correction & Parameter & Estimate & 95\% C.I. \\ 
@@ -1371,7 +1374,6 @@ Groups & Correction & Parameter & Estimate & 95\% C.I. \\
   Residual &  &$\sigma$ &  0.304 & (0.290, 0.317) \\ 
    \hline
 \end{tabular}
-\caption[Sine Illusion Model: Random Effects]{Overview of random effects for model~(\ref{model1}), including 95\% confidence intervals based on parameteric boostrap results ($N$=1000).}\label{randomeffectsresults}
 \end{table}
 
 Table \ref{randomeffectsresults} gives an overview of the variance estimates. 95\% confidence intervals are, based on 1000-fold parametric bootstrap of model~\ref{model1}. All variance components are significant and relevant; variability within a single individual's trials is about half the size of variability across  participants. 
@@ -1406,7 +1408,7 @@ Figure~\ref{fig:gasprices} shows daily gas prices for a time frame between 1995 
 
 
 \end{knitrout}
-\caption[US Gas prices from 1995 to 2014]{US Gas prices from 1995 to 2014. Gas prices steadily increase over the time frame, with some dramatic short-term developments. Peaks and troughs seem to exhibit more variability in daily prices than times of dramatic changes. This is an effect of the sine-illusion, which hides a fairly steady increase in variance in daily gas prices over time.}\label{fig:gasprices}
+\caption[US gasoline prices from 1995 to 2014]{US gasoline prices from 1995 to 2014. Gas prices steadily increase over the time frame, with some dramatic short-term developments. Peaks and troughs seem to exhibit more variability in daily prices than times of dramatic changes. This is an effect of the sine-illusion, which hides a fairly steady increase in variance in daily gas prices over time.}\label{fig:gasprices}
 \end{figure}
 \begin{figure}\centering
 \begin{knitrout}
@@ -1433,7 +1435,7 @@ Figure \ref{fig:gasprices-x-correct} shows the results from the $X$ transformati
 \begin{figure}
 \centering
 \includegraphics[keepaspectratio=TRUE,width=.92\linewidth]{gas-x-corrected}
-\caption[Gas price data, X transformation]{Gas price data corrected using the $X$ transformation with $w=1$ and with $w=0.36$. }
+\caption[Gasoline price data, X transformation]{Gasoline price data corrected using the $X$ transformation with $w=1$ and with $w=0.36$. }
 \label{fig:gasprices-x-correct}
 \end{figure}
 The minor effect of the weighted transformation on individual x-values contrasts with the effectiveness of the transformation in reducing the illusion; this is best seen in the fitted line, which is distinctly (piecewise) curved in the uncorrected data and appears to be much more piecewise linear in the corrected data, even at the reduced weighted value. 
@@ -1444,7 +1446,7 @@ in the full transformation  it is clear that the variance is nearly constant bet
 \begin{figure}[h]
 \centering
 \includegraphics[keepaspectratio=TRUE,width=.92\linewidth]{gas-y-corrected}
-\caption[Gas price data, Y transformation]{Gas price data corrected using the $Y$ transformation with $w=1$ and with $w=0.40$. }
+\caption[Gasoline price data, Y transformation]{Gasoline price data corrected using the $Y$ transformation with $w=1$ and with $w=0.40$. }
 \label{fig:gasprices-y-correct}
 \end{figure}
 
@@ -1457,6 +1459,7 @@ Our primary goal is to raise awareness of the illusion and its implications for 
 
 The data for this study was collected with approval from  IRB-ID 13-257.
 
+\chaptocbreak
 
 
 \graphicspath{{Figure/lieFactorSine/}{Images/lieFactorSine/}}
@@ -1472,7 +1475,7 @@ The data for this study was collected with approval from  IRB-ID 13-257.
 
 
 
-\chapter{THE CURSE OF THREE DIMENSIONS: WHY YOUR BRAIN IS LYING TO YOU}\label{LieFactorChapter}\label{liefactor}
+\chapter[THE CURSE OF THREE DIMENSIONS:\\ WHY YOUR BRAIN IS LYING TO YOU]{THE CURSE OF THREE DIMENSIONS: WHY YOUR BRAIN IS LYING TO YOU}\label{LieFactorChapter}\label{liefactor}
 %% Abstract
 % One of the basic principles of information graphics is that the data should be accurately reflected in the chart. Tufte's lie factor was created with the idea that graphs that do not represent the underlying data accurately should be avoided. In this paper, we examine a second level of graph distortion that occurs during the perceptual process. The human visual system is largely optimized for perception of three dimensions. Generally, the brain processes potential  ambiguities in the rendering as the most-common three-dimensional object. This can lead to visual distortions, such as occur with the Necker figure or in the M\"uller-Lyer illusion. We discuss the underlying psychological mechanisms for the distortions, examine the effect these distortions have on  judgments, and consider the implications for graph design. Using the sine illusion as a case study, we quantify the effects of the distortion that create a ``perceptual lie factor" for the sine illusion.
 
@@ -1493,7 +1496,7 @@ Impossible objects, such as the Penrose triangle \citep{penrose1958impossible}, 
 
 \begin{figure}[htbp]\centering
 \includegraphics[keepaspectratio=TRUE,width=.8\linewidth, trim=0in .25in 0in 0in]{fig-neckercube}
-\caption[Necker Cube]{The Necker Cube is a so-called ``ambiguous object" because two different transparent objects  produce the same retinal image (and thus the same perceptual experience). Commonly, the image seems to transition instantaneously from one possible mental representation to the other.}\label{fig:Necker} 
+\caption[Necker cube]{The Necker cube is a so-called ``ambiguous object" because two different transparent objects  produce the same retinal image (and thus the same perceptual experience). Commonly, the image seems to transition instantaneously from one possible mental representation to the other.}\label{fig:Necker} 
 \end{figure}
 
 In non-illusory contexts, experience with the real world informs the choice between multiple possibilities of rendering a three-dimensional object from the same two-dimensional representation. This indicates that processing occurs ``top down" in that our previous experience influences our current perceptions. Without this top-down influence, the brain would not be able to map a two-dimensional image back to a three-dimensional object. One of the most well studied examples of the influence of top-down processing is the M\"uller-Lyer illusion, shown in figure~\ref{fig:mullerlyer}.
@@ -1525,7 +1528,7 @@ Figure~\ref{fig:sineillusion} shows the sine illusion in its original form \cite
 
 \begin{figure}\centering
 \includegraphics[keepaspectratio=TRUE,trim=0in .5in 0in .5in]{fig-sinedemo}
-\caption[Sine Illusion]{The classic sine illusion. Each vertical line has the same length, though the lines at the peak and trough of the curve appear longer.}\label{fig:sineillusion}
+\caption[Sine illusion]{The classic sine illusion. Each vertical line has the same length, though the lines at the peak and trough of the curve appear longer.}\label{fig:sineillusion}
 \end{figure}
 
 
@@ -1643,7 +1646,7 @@ For each of the stimuli, participants were asked to answer the question: ``In wh
 \begin{figure}
 \centering
 \includegraphics[width=.6\linewidth, trim=.65in 0in .65in 0in]{fig-stimulicorrectionsize2}
-\caption[The effect of the transformation]{De-trended line lengths for figure~\ref{fig:sinestimuli}, demonstrating the distortion present due to the correction factor in each sub-plot. Comparing the distortion in the chosen sub-plot to the undistorted data produces an estimate of the psychological lie factor. }\label{fig:sinestimulinotrend}
+\caption[Effect of the transformation]{De-trended line lengths for figure~\ref{fig:sinestimuli}, demonstrating the distortion present due to the correction factor in each sub-plot. Comparing the distortion in the chosen sub-plot to the undistorted data produces an estimate of the psychological lie factor. }\label{fig:sinestimulinotrend}
 \end{figure}
 
 \begin{figure}[tb]
@@ -1847,6 +1850,7 @@ As Tufte advocated for charts that showed the data without distortion, our goal 
 
 
 
+\chaptocbreak
 
 
 \graphicspath{{Figure/VisualAptitude/}{../Figure/VisualAptitude/}{Images/VisualAptitude/}{../Images/VisualAptitude/}}
@@ -1873,7 +1877,7 @@ Spatial ability becomes more important when more complicated graphical displays 
 \begin{figure}[htp]
 \centering
 \includegraphics[width=.5\linewidth]{lineup}
-\caption[Sample Lineup]{Sample lineup of boxplots. Participants are instructed to choose the plot which appears most different from the others. In this lineup, plot 4 is the target plot, because the two groups have a large difference in medians.\label{fig:lineup}}
+\caption[Sample lineup]{Sample lineup of boxplots. Participants are instructed to choose the plot which appears most different from the others. In this lineup, plot 4 is the target plot, because the two groups have a large difference in medians.\label{fig:lineup}}
 \end{figure}
 
 Figure~\ref{fig:lineup} shows a sample lineup of boxplots; participants are expected to identify the most different among the plots shown. In this example, sub-plot 4 is the target  because of the noticeably different locations of the two boxplot medians.
@@ -1932,7 +1936,7 @@ Participants are asked to complete several cognitive tests designed to measure s
 The \textbf{visual searching task} (VST), shown in Figure~\ref{fig:VST}, is designed to test a participant's ability to find a target stimulus in a field of distractors, thus making the visual search task similar in concept to lineups. Historically, visual search has been used as a measure of brain damage \citep{goldstein1973validity,demita1981validity,moerland1986neuropsychological}; however, similar tasks have been used to measure cognitive performance in a variety of situations, for example under the influence of drugs in~\citep{anderson1983interactive}. The similarity to the lineup protocol as well as the simplicity of the test and its' lack of color justify the slight deviation from forms of visual search tasks typically used in normal populations. 
 \begin{figure}[htp]\centering
 \includegraphics[width=.6\linewidth]{VisualSearch}
-\caption[Visual Search Task]{Visual Search Task (VST). Participants are instructed to find the plot numbered 1-24 which matches the plot labeled ``Target". Participants will complete up to 25 of these tasks in 5 minutes.}\label{fig:VST}
+\caption[Visual search task]{Visual search task (VST). Participants are instructed to find the plot numbered 1-24 which matches the plot labeled ``Target". Participants will complete up to 25 of these tasks in 5 minutes.}\label{fig:VST}
 \end{figure}
 
 
@@ -1944,15 +1948,15 @@ The figure classification test requires the same type of reasoning as the lineup
   \centering
   \begin{subfigure}[b]{.75\linewidth}
   \includegraphics[width=\linewidth]{figureclassification}
-  \caption[Figure Classification Task]{Figure Classification Task. Participants classify each figure in the second row as belonging to one of the groups above. Participants complete up to 14 of these tasks (each consisting of 8 figures to classify) in 8 minutes.\label{fig:figureclassification}}
+  \caption[Figure classification task]{Figure classification task. Participants classify each figure in the second row as belonging to one of the groups above. Participants complete up to 14 of these tasks (each consisting of 8 figures to classify) in 8 minutes.\label{fig:figureclassification}}
   \end{subfigure}
   \begin{subfigure}[b]{.75\linewidth}
   \includegraphics[width=\linewidth]{cardrotation}
-  \caption[Card Rotation Task]{Card Rotation Task. Participants mark each figure on the right hand side as either the same as or different than the figure on the left hand side of the dividing line. Participants complete up to 20 of these tasks (each consisting of 8 figures) in 6 minutes.\label{fig:cardrotation}}
+  \caption[Card rotation task]{Card rotation task. Participants mark each figure on the right hand side as either the same as or different than the figure on the left hand side of the dividing line. Participants complete up to 20 of these tasks (each consisting of 8 figures) in 6 minutes.\label{fig:cardrotation}}
   \end{subfigure}
   \begin{subfigure}[b]{.75\linewidth}
   \includegraphics[width=\linewidth]{paperfolding}
-  \caption[Paper Folding Task]{Paper Folding Task. Participants are instructed to pick the figure matching the sequence of steps shown on the left-hand side. Participants  complete up to 20 of these tasks in 6 minutes.\label{fig:paperfolding}}
+  \caption[Paper folding task]{Paper folding task. Participants are instructed to pick the figure matching the sequence of steps shown on the left-hand side. Participants  complete up to 20 of these tasks in 6 minutes.\label{fig:paperfolding}}
   \end{subfigure}
   \caption[Tests of spatial ability]{Tests of spatial ability from \protect\citet{ekstrom1976manual}.}   \label{fig:tests}
 \end{figure}
@@ -1989,12 +1993,14 @@ All test results were scored so that random guessing produces an expected value 
 This allows us to compare each participant's score in light of how many problems were attempted as well as the number of correct responses. Combining accuracy and speed into a single number does not only make a comparison of test scores easier,  this scoring mechanism is also used on many standardized tests, such as the SAT and the battery of psychological tests~\citep{diamond1973correction, ekstrom1976manual} from which parts of this test are drawn. The advantage of using tests from the Kit of Factor Referenced Cognitive tests~\citep{ekstrom1976manual} is that the tests are extremely well studied (including an extensive meta-analysis in~\citep{voyer1995magnitude} of the spatial tests we are using in this study) and comparison data are available from the validation of these factors~\citep{schaie1998longitudinal,hampson1990variations,mayer1994whom} and previous versions of the kit~\citep{educational1963kit}.
 
 \section{Results}\label{sec:results}
-Results are based on an evaluation of 38 undergraduate students at Iowa State University. 61\% of the participants were in STEM fields, the others were distributed relatively evenly between agriculture, business, and the social sciences. Students were evenly distributed by gender, and were between 18 and 24 years of age with only one exception. This is reasonably representative\footnote{\url{http://www.registrar.iastate.edu/sites/default/files/uploads/stats/university/F14summary.pdf}} of the university as a whole; in the fall 2014 semester, 26\% of students were associated with the college of engineering, 24\% were associated with the college of liberal arts and sciences, 15\% were associated with the college of human sciences, 7\% with the college of design, 13\% with the business school, and 15\% with the school of agriculture.  
+Results are based on an evaluation of 38 undergraduate students at Iowa State University. 61\% of the participants were in STEM fields, the others were distributed relatively evenly between agriculture, business, and the social sciences. Students were evenly distributed by gender, and were between 18 and 24 years of age with only one exception. This is reasonably representative\footnote{\url{http://registrar.iastate.edu/sites/default/files/uploads/stats/university/F14summary.pdf}} of the university as a whole; in the fall 2014 semester, 26\% of students were associated with the college of engineering, 24\% were associated with the college of liberal arts and sciences, 15\% were associated with the college of human sciences, 7\% with the college of design, 13\% with the business school, and 15\% with the school of agriculture.  
 
 \subsection{Comparison of Spatial Tests with Previously Validated Results}
 The card rotation, paper folding, and figure classification tests have been validated using different populations, many of which are demographically similar to Iowa State students (naval recruits, college students, late high-school students, and 9th grade students). We compare Iowa State students' unscaled scores in Table~\ref{tab:scorecomparison}, adjusting data from other populations to account for subpopulation structure and test length. 
 
-\begin{table}[htb]
+\begin{table}[htb]\centering
+\caption[Comparison of scores for cognitive tasks with previously validated results]{Comparison of scores from Iowa State students and scores reported in~\protect\citep{ekstrom1976manual}. Scaled scores are calculated based on information reported in the manual, scaled to account for differences in the number of questions answered during this experiment. Data shown are from the population most similar to ISU students, out of the data available. The visual search task~\protect\citep{goldstein1973validity,demita1981validity,moerland1986neuropsychological} is not part of the Kit of Factor Referenced Cognitive Test data, and thus we do not have comparison data for the form used in this experiment.
+\label{tab:scorecomparison}}
 \begin{tabular}{rlllc}
 \hline
   & Card Rotation & Paper Folding & Figure Classification & Visual Search  \\\hline
@@ -2016,8 +2022,6 @@ Unscaled Scores & 44.0 (24.6)\footnotemark[3]
               & \parbox[t]{.2\linewidth}{\footnotesize suburban 11th \& 12th \\ grade students\\(288-300 males, \\317-329 females)}
               & \\\hline
 \end{tabular}
-\caption[Comparison of scores for cognitive tasks.]{Comparison of scores from Iowa State students and scores reported in~\protect\citep{ekstrom1976manual}. Scaled scores are calculated based on information reported in the manual, scaled to account for differences in the number of questions answered during this experiment. Data shown are from the population most similar to ISU students, out of the data available. The visual search task~\protect\citep{goldstein1973validity,demita1981validity,moerland1986neuropsychological} is not part of the Kit of Factor Referenced Cognitive Test data, and thus we do not have comparison data for the form used in this experiment.
-\label{tab:scorecomparison}}
 \end{table}
 
 Table~\ref{tab:scorecomparison} shows mean scores and standard deviation for ISU students and other populations. Values have been adjusted to accommodate for differences in test procedures and sub-population structure; for instance,  some data is reported for a single part of a two-part test, or results are reported for each gender separately. 
@@ -2076,7 +2080,7 @@ In future experiments, participants should be given less time (or more questions
 
 \begin{figure*}[h!tb]\centering
 \includegraphics[width=.85\linewidth]{fig-VisReasoningCategorical-1}
-\caption[Visual Aptitude Study Results]{Demographic characteristics of participants compared with lineup score. Categories are ordered by effect size; majoring in a STEM field, calculus completion, hours spent playing video games per week, and sex are all associated with a significant difference in lineup score. }\label{fig:visualaptitudecat}
+\caption[Demographic characteristics of participants and lineup scores]{Demographic characteristics of participants compared with lineup score. Categories are ordered by effect size; majoring in a STEM field, calculus completion, hours spent playing video games per week, and sex are all associated with a significant difference in lineup score. }\label{fig:visualaptitudecat}
 \end{figure*}
 
 %Next, we examine the effect of demographic factors on lineup performance. 
@@ -2136,11 +2140,11 @@ A principal component analysis (PCA) of the four established visuo-spatial tests
 PC1 is essentially an average across all tests representing a general ``visual intelligence" factor. The other principal components span another two dimensions, while the last dimension is weak (at 6\%). 
 PC2 differentiates the figure classification test from the visual searching test, whereas PC3 differentiates these two tests from the paper folding test. 
 
-% latex table generated in R 3.1.2 by xtable 1.7-1 package
-% Tue Mar 10 18:38:33 2015
+% latex table generated in R 3.1.3 by xtable 1.7-1 package
+% Wed Apr 15 09:21:07 2015
 \begin{table}[htb]
 \centering
-\caption[Spatial ability test PC importance matrix]{Importance of principal components in an analysis of four tests of spatial ability: figure classification, paper folding, card rotation, and visual search.\label{tab:PCAvariance4}} 
+\caption[Spatial ability test principal component importance matrix]{Importance of principal components in an analysis of four tests of spatial ability: figure classification, paper folding, card rotation, and visual search.\label{tab:PCAvariance4}} 
 {\footnotesize
 \begin{tabular}{rrrrr}
   \hline
@@ -2156,11 +2160,11 @@ Standard deviation & 1.61 & 0.81 & 0.73 & 0.49 \\
 
 Table~\ref{tab:PCAvariance4} contains the proportion of the variance in the four cognitive tasks represented by each principal component. PC1 accounts for about 60\% of the variance; Figure~\ref{fig:biplots4} and Table~\ref{tab:PCArotation4} confirm that PC1 is a measure of the similarity between all 4 tests; that is, a participant's general (or visual) aptitude. PC2 differentiates the figure classification test from the visual searching test, while PC3 differentiates these two from the paper folding test. PC4 is not particularly significant (it accounts for 5.9\% of the variance), but it differentiates the card rotation task from the paper folding task.
 
-% latex table generated in R 3.1.2 by xtable 1.7-1 package
-% Tue Mar 10 18:38:33 2015
+% latex table generated in R 3.1.3 by xtable 1.7-1 package
+% Wed Apr 15 09:21:07 2015
 \begin{table}[htb]
 \centering
-\caption[Spatial ability tests PC rotation matrix]{Rotation matrix for principal component analysis of the four cognitive tests (visual search, paper folding, card rotation, figure classification).\label{tab:PCArotation4}} 
+\caption[Spatial ability test principal component rotation matrix]{Rotation matrix for principal component analysis of the four cognitive tests (visual search, paper folding, card rotation, figure classification).\label{tab:PCArotation4}} 
 \begin{tabular}{rrrrr}
   \hline
  & PC1 & PC2 & PC3 & PC4 \\ 
@@ -2194,11 +2198,11 @@ According to Table~\ref{tab:PCArotation4}, the first three principal components 
 \subsubsection{Principal Component Analysis of Cognitive Tests and the Lineup Task }
 Incorporating the lineup task into the principal component analysis, we find the principal components to be fairly similar to the four-component analysis. 
 Table~\ref{tab:PCAvariance5} shows the importance of each principal component. From the distribution of the variance components, we see that the lineup test  spans an additional dimension within the space of the four established tests. 
-% latex table generated in R 3.1.2 by xtable 1.7-1 package
-% Tue Mar 10 18:38:33 2015
+% latex table generated in R 3.1.3 by xtable 1.7-1 package
+% Wed Apr 15 09:21:08 2015
 \begin{table}[ht]
 \centering
-\caption{Importance of principal components, analyzing all five tests.\label{tab:PCAvariance5}} 
+\caption[Importance of principal components for all five tests]{Importance of principal components, analyzing all five tests.\label{tab:PCAvariance5}} 
 {\footnotesize
 \begin{tabular}{rrrrrr}
   \hline
@@ -2213,11 +2217,11 @@ Standard deviation & 1.73 & 0.84 & 0.75 & 0.70 & 0.48 \\
 \end{table}
 
 
-% latex table generated in R 3.1.2 by xtable 1.7-1 package
-% Tue Mar 10 18:38:33 2015
+% latex table generated in R 3.1.3 by xtable 1.7-1 package
+% Wed Apr 15 09:21:08 2015
 \begin{table}[ht]
 \centering
-\caption{PCA Rotation matrix for all five tests. 
+\caption[Principal component analysis rotation matrix for all five tests]{Principal component analysis rotation matrix for all five tests.
              \label{tab:PCArotation5}} 
 \begin{tabular}{rrrrrr}
   \hline
@@ -2274,11 +2278,11 @@ A principal component of the five math/stats questions splits the variables into
 
 We fit a linear model of lineup scores in the thus modified demographic variables and the test scores from the visuo-spatial tests, selecting the best model using AIC and stepwise backwards selection. The result is shown in Table~\ref{tab:m1}. Only two covariates stay in the model: PC1 and MATH, reflecting two dimensions of what affects lineup scores. We can think of PC1 as a measure of innate visual or intellectual ability, while the MATH score is a matter of both ability and training. The remaining principal components were not sufficiently associated with lineup score to be included in the model.
 
-% latex table generated in R 3.1.2 by xtable 1.7-1 package
-% Tue Mar 10 18:38:34 2015
+% latex table generated in R 3.1.3 by xtable 1.7-1 package
+% Wed Apr 15 09:21:08 2015
 \begin{table}[ht]
 \centering
-\caption{Estimates for a linear model of lineup scores.} 
+\caption[Estimates for a linear model of lineup scores]{Estimates for a linear model of lineup scores.} 
 \label{tab:m1}
 \begin{tabular}{rrrrr}
   \hline
@@ -2314,45 +2318,45 @@ The experiment in the first lineup section examined the use of boxplots, density
 \includegraphics[keepaspectratio=T,width=\linewidth]{Lineups1/histogram_1_15_5_4_13}
 \caption{Histogram}
 \end{subfigure}
-\caption[Lineup Set 1 Examples]{Types of plots in the first set of lineups. These plots are used to compare two distributions. }
+\caption[Lineup set 1 examples]{Types of plots in the first set of lineups. These plots are used to compare two distributions. }
 \end{figure}
 \subsection{Lineup Set 2}
 The second lineup section also explored two groups of data, this time comparing boxplots, bee swarm boxplots, boxplots with overlaid jittered data, and violin plots. Participants were much more accurate in this experiment than in the experiment described previously, because of the types of plots compared as well as the underlying data distributions. 
 \begin{figure}[htbp]\centering
 \begin{subfigure}[b]{.49\linewidth}
-\includegraphics[keepaspectratio=T,width=.45\linewidth]{Lineups2/file147f94f6965d7}
+\includegraphics[keepaspectratio=T,width=\linewidth]{Lineups2/file147f94f6965d7}
 \caption{Boxplots.}
 \end{subfigure}
 \begin{subfigure}[b]{.49\linewidth}
-\includegraphics[keepaspectratio=T,width=.45\linewidth]{Lineups2/file147f9e65f0e4}
+\includegraphics[keepaspectratio=T,width=\linewidth]{Lineups2/file147f9e65f0e4}
 \caption{Boxplots with jittered points.}
 \end{subfigure}
 \begin{subfigure}[b]{.49\linewidth}
-\includegraphics[keepaspectratio=T,width=.45\linewidth]{Lineups2/file147f9fc58d73}
+\includegraphics[keepaspectratio=T,width=\linewidth]{Lineups2/file147f9fc58d73}
 \caption{Bee swarm boxplots.}
 \end{subfigure}
 \begin{subfigure}[b]{.49\linewidth}
-\includegraphics[keepaspectratio=T,width=.45\linewidth]{Lineups2/file147f93acbb7e4}
+\includegraphics[keepaspectratio=T,width=\linewidth]{Lineups2/file147f93acbb7e4}
 \caption{Violin plots.}
 \end{subfigure}
-\caption[Lineup Set 2 Examples]{Types of plots in the second set of lineups. These plots are used to compare two distributions. }
+\caption[Lineup set 2 examples]{Types of plots in the second set of lineups. These plots are used to compare two distributions. }
 \end{figure}
 \subsection{Lineup Set 3}
 The final lineup section explored QQ-plots from various model simulations, using reference lines, acceptance bands, and rotation to determine which plots allowed participants to most effectively identify violations of normality. Rotated QQ-plots showed lower performance because participants were able to more accurately compare acceptance bands to residuals, and thus could identify that the reference bands were too liberal. As a result, performance was somewhat lower for rotated plots, even though participants were more accurate when comparing the residuals to the reference bands.
 \begin{figure}[htbp]\centering
 \begin{subfigure}[b]{.49\linewidth}
-\includegraphics[keepaspectratio=T,width=.45\linewidth]{Lineups3/file13876a225d34-single}
+\includegraphics[keepaspectratio=T,width=\linewidth]{Lineups3/file13876a225d34-single}
 \caption{QQ-plot with guide line.}
 \end{subfigure}
 \begin{subfigure}[b]{.49\linewidth}
-\includegraphics[keepaspectratio=T,width=.45\linewidth]{Lineups3/file13877c93dc78-single}
+\includegraphics[keepaspectratio=T,width=\linewidth]{Lineups3/file13877c93dc78-single}
 \caption{QQ-plot with acceptance bands.}
 \end{subfigure}
 \begin{subfigure}[b]{.49\linewidth}
-\includegraphics[keepaspectratio=T,width=.45\linewidth]{Lineups3/file13878e5c92f-single}
+\includegraphics[keepaspectratio=T,width=\linewidth]{Lineups3/file13878e5c92f-single}
 \caption{QQ-plot rotated 45 degrees.}
 \end{subfigure}
-\caption[Lineup Set 3 Examples]{Types of plots in the third set of lineups. These plots are used to assess residual normality. }
+\caption[Lineup set 3 examples]{Types of plots in the third set of lineups. These plots are used to assess residual normality. }
 \end{figure}
 
 \subsubsection{Cognitive Test Scores and Lineup Performance by Lineup Task}
@@ -2375,7 +2379,7 @@ Principal component analysis separates multivariate data into orthogonal compone
 
 \begin{figure}[ht]\centering
 \includegraphics[width=.5\linewidth]{fig-lineupblockpca-1}
-\caption[Principal component influence]{Principal Component influence plot, showing each input variable's contribution to the principal component, scaled by the proportion of variability in the data contained in the principal component.\label{fig:influence}}
+\caption[Principal component influence]{Principal component influence plot, showing each input variable's contribution to the principal component, scaled by the proportion of variability in the data contained in the principal component.\label{fig:influence}}
 \end{figure}
 
 For variables $X_i$, $i=1, ..., K$ a principal component analysis results in a set of $K$ principal  components $PC_j$, $j=1, ..., K$, given as the rows of the rotation matrix, $M$ (which has dimension $K\times K$, indexed by $i$ and $j$ respectively).
@@ -2446,6 +2450,7 @@ As the figure classification test is different from the lineup task, this will n
 The demographic results from this study indicate that in future lineup studies, it may be important to record information about participants' mathematical training, so that studies can be compared across participant pools with more reliability. 
 
 All results and data shown here were collected and analyzed in accordance with IRB \# 13-581.
+\chaptocbreak
 
 \chapter{FEATURE HIERARCHY IN STATISTICAL GRAPHICS}\label{featurehierarchy}
 
@@ -2500,7 +2505,7 @@ For example, rather than perceiving four legs, a tail, two eyes, two ears, and a
 
 
 \end{knitrout}
-\caption[Gestalt principles applied to statistical plots]{\label{fig:gestalt} \emph{Proximity} renders the fifty points of the first scatterplot as two distinct (and equal-sized) groups. Shapes and colors create different groups of points in the middle scatterplot, invoking the Gestalt principle of \emph{Similarity}. \emph{Continuity} renders the points in the scatterplot on the right hand side into two groups of points on curves: one a straight line with an upward slope, the other a curve that initially decreases and at the end of the range shows an uptick.} 
+\caption[Gestalt principles in statistical plots]{\label{fig:gestalt} Gestalt principals in statistical plots.\emph{Proximity} renders the fifty points of the first scatterplot as two distinct (and equal-sized) groups. Shapes and colors create different groups of points in the middle scatterplot, invoking the Gestalt principle of \emph{Similarity}. \emph{Continuity} renders the points in the scatterplot on the right hand side into two groups of points on curves: one a straight line with an upward slope, the other a curve that initially decreases and at the end of the range shows an uptick.} 
 \end{figure}
 
 The plots in figure \ref{fig:gestalt} demonstrate several of the gestalt principles which combine to order our perceptual experience from the top down. These laws help to order our perception of charts as well: points which are colored or shaped the same are perceived as belonging to a group (similarity), points within a bounding interval or ellipse are perceived as belonging to the same group (common region), and regression lines with confidence intervals are perceived as single units (continuity, connectedness, closure, and/or common region depending on the rendering of the intervals). 
@@ -2667,6 +2672,9 @@ Models $M_C$, $M_T$, and $M_0$ provide the foundation for this experiment; by ma
 \begin{table}[h]
   \rowcolors{2}{gray!25}{white}
 \begin{center}
+
+\caption[Parameter settings for generation of lineup datasets]{Parameter settings for generation of lineup datasets. \label{tab:parameters}}
+
 \begin{tabular}{lll}
 \bf Parameter & \bf Description & \bf Choices\\\hline
 $K$ & \# Clusters &  \begin{tabular}{l}3, 5 \end{tabular} \\
@@ -2676,7 +2684,6 @@ $\sigma_C$ & Scatter around cluster centers & \begin{tabular}{ll} .25, .30, .35 
 \\\hline
 \end{tabular}
 \end{center}
-\caption{Parameter settings for generation of lineup datasets. \label{tab:parameters}}
 \end{table}
 
 The parameter values were chosen after examining the parameter space through simulation of 1000 lineup datasets for each combination of $\sigma_T\in\{0.2, 0.25, ..., 0.5\}$, $\sigma_C\in\{0.1, 0.15, ..., 0.4\}$, and $K\in\{3,5\}$. Each lineup dataset consists of one trend target dataset generated using $M_T$, one cluster target dataset generated from $M_C$, and 18 null datasets generated from $M_0$; for each of these sub-lineup datasets generated, the previously described statistics for trend and cluster strength were computed. We compared the statistics for the relevant target plot to the most extreme value for the 18 null plots, using both density plots (as shown in figure \ref{fig:targetsignal-0}) and higher-level summaries as shown in figures \ref{fig:simulationLineIntervals} and \ref{fig:simulationClusterIntervals}. 
@@ -2718,7 +2725,7 @@ Additionally, we note that there is an interaction between $\sigma_C$ and $\sigm
 
 
 \end{knitrout}
-\caption[Simulated IQR of $R^2$ values]{Simulated interquartile range of $R^2$ values for target and null data distributions. \label{fig:simulationLineIntervals}}
+\caption[Simulated interquartile range of $R^2$ values]{Simulated interquartile range of $R^2$ values for target and null data distributions. \label{fig:simulationLineIntervals}}
 \end{figure}
 
 \begin{figure}[ht]\centering
@@ -2732,7 +2739,7 @@ Additionally, we note that there is an interaction between $\sigma_C$ and $\sigm
 
 
 \end{knitrout}
-\caption[Simulated IQR of $C^2$ cluster cohesion values]{Simulated interquartile range of $C^2$ (cluster cohesion) values for target and null data distributions. \label{fig:simulationClusterIntervals}}
+\caption[Simulated interquartile range of $C^2$ cluster cohesion values]{Simulated interquartile range of $C^2$ (cluster cohesion) values for target and null data distributions. \label{fig:simulationClusterIntervals}}
 \end{figure}
 
 Using information from the simulation, we identified values of $\sigma_T$ and $\sigma_C$ corresponding to ``easy", ``medium" and ``hard" numerical comparisons between corresponding target data sets and null data sets. It is important to note that the numerical measures we have described in equations \eqref{eq:linearMeasure} and \eqref{eq:clusterMeasure} only provide information on the numerical discriminability of the target datasets from the null datasets; the simulation cannot provide us with information on the perceptual discriminability, and it has been established that human perception of scatterplots does not replicate statistical measures exactly \citep{bobko1979perception, mosteller1981eye, lewandowsky1989perception}.
@@ -2804,6 +2811,7 @@ Gestalt perceptual theory suggests that perceptual features such as shape, color
 
 \begin{table}[h]
 \centering
+\caption[Aesthetics affecting perception of statistical plots]{Plot aesthetics and statistical layers which impact perception of statistical plots, according to gestalt theory. \label{tab:plotaesthetics}}
 \begin{tabular}{ccccc}
 \begin{tabular}{c} \phantom{.}\\ \phantom{.} \end{tabular} && \multicolumn{3}{c}{\cellcolor{gray!25} Line Emphasis} \\
 & Strength & 0 & 1 & 2 \\
@@ -2813,7 +2821,6 @@ Gestalt perceptual theory suggests that perceptual features such as shape, color
 Line + Prediction \end{tabular}\\
 \cellcolor{gray!25}\begin{tabular}{c} \phantom{.}\\ \phantom{.} \end{tabular} & 3 & \cellcolor{gray!35} Color + Shape + Ellipse 
 \end{tabular}
-\caption[Aesthetics affecting perception of statistical plots]{Plot aesthetics and statistical layers which impact perception of statistical plots, according to gestalt theory. \label{tab:plotaesthetics}}
 \end{table}
 
 We expect that relative to a plot with no extra aesthetics or statistical layers, the addition of color, shape, and 95\% boundary ellipses  increases the probability of a participant selecting the target plot with data generated from $M_C$, the cluster model, and that the addition of these aesthetics  decreases the probability of a participant selecting the target plot with data generated from $M_T$, the trend model. 
@@ -2899,7 +2906,7 @@ Each plot was evaluated by between 11 and 37 individuals
 
 
 \end{knitrout}
-\caption{\label{fig:demographics}Basic demographics of participants.}
+\caption[Basic demographics of participants]{\label{fig:demographics}Basic demographics of participants.}
 \end{figure}
 
 
@@ -2931,9 +2938,9 @@ For plot type $i$, displaying dataset $j=1, ..., 54$ and participant $k=1, ..., 
 \begin{align}
 \text{logit }P(\text{target identification}) & =  \textbf{X}\beta + \textbf{J}\gamma + \textbf{K}\eta + \epsilon, \label{eqn:linearModel}\\
 \text{where } \beta_i & \hphantom{\sim} \text{describe the effect of specific plot types}\nonumber\\
-\hphantom{where } \gamma_j & \overset{iid}{\sim} N\left(0, \sigma^2_{\text{data}}\right)\text{, the random effect for dataset specific characteristics}\nonumber\\
-\hphantom{where } \eta_k & \overset{iid}{\sim} N\left(0, \sigma^2_{\text{participant}}\right)\text{, the random effect for participant characteristics}\nonumber\\
-\text{and } \epsilon_{ijk} & \overset{iid}{\sim}  N\left(0, \sigma^2_e\right)\text{, the error associated with a single trial evaluation} \nonumber
+\hphantom{where } \gamma_j & \overset{iid}{\sim} N\left(0, \sigma^2_{\text{data}}\right)\text{, the random effect for dataset}\nonumber\\
+\hphantom{where } \eta_k & \overset{iid}{\sim} N\left(0, \sigma^2_{\text{participant}}\right)\text{, the random effect for participant}\nonumber\\
+\text{and } \epsilon_{ijk} & \overset{iid}{\sim}  N\left(0, \sigma^2_e\right)\text{, the error associated with a single evaluation} \nonumber
 \end{align}
 
 Random effects for dataset and participant are assumed to be orthogonal to one another, as participants only see an individual dataset one time. We note that any variance due to parameters $K$, $\sigma_T$, and $\sigma_C$ is contained within $\sigma^2_{\text{data}}$ and can be examined using a subsequent model. 
@@ -2959,7 +2966,7 @@ The trend line aesthetic does not significantly increase trend target plot recog
 
 
 \end{knitrout}
-\caption[Odds of detecting the trend target plot for each aesthetic]{Odds of detecting the trend target plot for each aesthetic. Only the combination of Trend + Error significantly increases the odds of trend target plot detection relative to the control plot (plain scatterplot). \label{fig:linear.fixef}}
+\caption[Odds of detecting the trend target plot for each plot type]{Odds of detecting the trend target plot for each  plot type, relative to a plain scatterplot. Only the combination of Trend + Error significantly increases the odds of trend target plot detection relative to the control plot (plain scatterplot). \label{fig:linear.fixef}}
 \end{figure}
 
 Once error bands are added to the plot, many other heuristics may be applied: closure (perception of a closed object even if it is incomplete), common region, and connectedness (depending on the style of the error bands). For the 95\% intervals in the stimuli plots, closure and common region are the most likely heuristics recruited with the addition of error bands (a ribbon-style interval would recruit connectedness as well). The results are consistent with this idea: only the combined closure and continuity emphasis of trend + error bands significantly increases the probability that participants will identify the target plot generated under $M_T$. 
@@ -2980,7 +2987,7 @@ We now examine the probability of selecting the cluster target plot as a functio
 
 
 \end{knitrout}
-\caption[Odds of detecting the cluster target plot for each aesthetic]{Odds of detecting the cluster target plot for each aesthetic, relative to a plain scatterplot. The presence of error lines or bounding ellipses significantly decreases the probability of correct target detection, and no aesthetic successfully increases the probability of correct target detection. This may be due to differences in cluster size for null plots, with data generated under $M_0$ compared with the cluster target plot displaying data generated under $M_C$. \label{fig:group.fixef}}
+\caption[Odds of detecting the cluster target plot for each  plot type]{Odds of detecting the cluster target plot for each  plot type, relative to a plain scatterplot. The presence of error lines or bounding ellipses significantly decreases the probability of correct target detection, and no aesthetic successfully increases the probability of correct target detection. This may be due to differences in cluster size for null plots, with data generated under $M_0$ compared with the cluster target plot displaying data generated under $M_C$. \label{fig:group.fixef}}
 \end{figure}
 
 Figure \ref{fig:group.fixef} contains odds and 95\% Wald intervals of the estimated fixed effects obtained by fitting equation \ref{eqn:linearModel} to a binary indicator of successful cluster target identification. 

@@ -58,7 +58,7 @@ Another important region of the retina is the blindspot, the area where the opti
 \vspace{2cm}
 \end{minipage}}
 \end{center}
-\caption[Blind Spot]{Illustration of the blind spot in the retina. Close one eye, and focus the other on the appropriate letter (R if the right eye is still open, L if the left eye is still open). Place the paper approximately 1 foot from your eye, and move the paper toward or away from your face until you notice the other letter disappear. Your brain ``fills in" the other letter with the background.}\label{fig:blindspot}
+\caption[Demonstration of the blind spot in the retina]{Demonstration of the blind spot in the retina. Close one eye, and focus the other on the appropriate letter (R if the right eye is still open, L if the left eye is still open). Place the paper approximately 1 foot from your eye, and move the paper toward or away from your face until you notice the other letter disappear. Your brain ``fills in" the other letter with the background.}\label{fig:blindspot}
 \end{figure}
 
 Figure \ref{fig:ColorRange} shows the responsiveness of rods and each of the three types of cones to wavelengths of light in the visual spectrum. This image suggests that we have relatively good visual discrimination of the yellow-green portion of the color spectrum, but relatively poor discrimination of colors in the red and blue portions of the color spectrum. 
@@ -78,15 +78,15 @@ Once light hits the retina and causes a signal in the receptor cells, the inform
 \begin{subfigure}[b]{.45\linewidth}
   \centering
   \includegraphics[width=\linewidth]{HermannGrid}
-  \caption{\small Hermann Grid Illusion \label{fig:hermanngrid}}
+  \caption{\small Hermann grid illusion \label{fig:hermanngrid}}
 \end{subfigure}\hfill
 \begin{subfigure}[b]{.45\linewidth}
   \centering
   \includegraphics[width=\linewidth]{MachBands}
-  \caption{\small Mach Bands. 
+  \caption{\small Mach bands 
   \label{fig:machbands}}
 \end{subfigure}
-\caption[Inhibition Illusions]{Optical Illusions resulting from lateral inhibition. The Hermann Grid illusion causes dark circles to appear at the intersection of white lines; the Mach bands illusion causes the borders of adjacent rectangles to appear more strongly defined.} \label{fig:InhibitionIllusions}
+\caption[Inhibition illusions]{Optical Illusions resulting from lateral inhibition. The Hermann Grid illusion causes dark circles to appear at the intersection of white lines; the Mach bands illusion causes the borders of adjacent rectangles to appear more strongly defined.} \label{fig:InhibitionIllusions}
 \end{figure}
 
 Once neural impulses have left the retina through the optic nerve, they travel to the visual cortex by way of several specialized structures within the brain that process lower-level signals. Receptor cells in the visual cortex respond to specific angles, spatial locations, colors, and intensities, and arrays of these special 'feature detector cells' process the information into a form that higher-level processes can utilize. These higher-level processes are what we have previously called 'software': they are not directly related to the physical brain, but they do process information heuristically to produce higher-level reasoning and conclusions. In the next section, we explore some of the higher-level processes responsible for visual perception.
@@ -102,7 +102,7 @@ Selective attention is accomplished by focusing the fovea (the area with the hig
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=.5\linewidth]{SaccadesText}
-\caption[Saccades and Pauses]{A plot of saccades made while reading text. Saccades, shown by the lines, indicate ``jumps", while pauses are shown by circles, with size proportional to the time spent focusing on that area.}\label{fig:saccadestext}
+\caption[Saccades and pauses]{A plot of saccades made while reading text. Saccades, shown by the lines, indicate ``jumps", while pauses are shown by circles, with size proportional to the time spent focusing on that area.}\label{fig:saccadestext}
 \end{figure}
 
 Selective attention is generally necessary for perception to occur, though there is some information that is encoded automatically. Experiments such as the fairly famous \href{http://www.theinvisiblegorilla.com/videos.html}{``gorilla" film}\footnote{\url{http://www.theinvisiblegorilla.com/videos.html}} demonstrate that even when there is attention focused on a task, information extraneous to that task is not always encoded, that is, even when participants focused on counting the number of passes between players in the basketball game, they did not notice the gorilla walking through the middle of the court. It is important to understand which parts of a visual stimulus are the focus of a given perceptual task, because most of the information encoded by the brain is a result of selective attention. Eye-tracking can be an important tool useful to understand these perceptual processes, but participants are often able to report which parts of a stimulus contributed to their decision as well.
@@ -111,7 +111,7 @@ Within the brain, attention is important because it allows different regions of 
 
 \begin{figure}[htbp]\centering
 \includegraphics[width=.8\linewidth]{ParallelSerialFeatures}
-\caption[Parallel and Serial Feature Detection]{Examples of features detected serially or in parallel (Chapter 6, \protect\citealt{helander1997handbook})}\label{fig:parallelSerialFeatures}
+\caption[Parallel and serial feature detection]{Examples of features detected serially or in parallel (Chap. 6, \protect\citealt{helander1997handbook})}\label{fig:parallelSerialFeatures}
 \end{figure}
 
 Feature integration as a result of attention enables the brain to process a figure holistically and integrate all of the separate aspects of the object into a single perceptual experience. This processing is important for the most basic visual processes we take for granted, including object perception. 
@@ -145,7 +145,7 @@ We have discussed how visual stimuli are perceived and how objects are recognize
 
 \begin{figure}[htbp]\centering
 \includegraphics[width=.7\linewidth]{RotationTask}
-\caption[Rotation Task]{Rotation task \protect\citep{shepard1988mental}. Are the two images the same?}\label{fig:mentalRotation}
+\caption[Rotation task]{Rotation task \protect\citep{shepard1988mental}. Are the two images the same?}\label{fig:mentalRotation}
 \end{figure}
 
 In addition, \citet{kosslyn1978visual} showed that mental representation of distances in a figure are accurate and that the time to encode those distances is proportional to the distances in the actual figure. These studies suggest that the memory of an image (statistical graphic or otherwise) is a reasonably accurate facsimile of the original image (though the accuracy of the mental representation is of course likely to be moderated by attention and recall ability). 
@@ -154,7 +154,7 @@ Another facet of visual memory that will be important to understanding perceptio
 
 \begin{figure}[htbp]\centering
 \includegraphics[width=.4\linewidth]{DuckRabbitIllusion}
-\caption[Ambiguous Images]{An ambiguous image that could be either a rabbit or a duck. When participants were asked to identify the image initially, they could not provide an alternate interpretation of the figure later.}\label{fig:ambiguousrabbit}
+\caption[Ambiguous images]{An ambiguous image that could be either a rabbit or a duck. When participants were asked to identify the image initially, they could not provide an alternate interpretation of the figure later.}\label{fig:ambiguousrabbit}
 \end{figure}
 
 The ``software" of the visual system is of course more complex than the few modules listed here, but understanding attention, object perception, and how images are stored for later retrieval in the brain will make designing statistical graphics for the visual system easier and will also help with evaluating graphics based on the capabilities of the human visual system. 
@@ -210,7 +210,7 @@ Another common ``bug" in the visual system are mutations that change (or remove 
 \end{subfigure}\hfil
 \end{minipage}
 
-\caption[Colorblindness and Rainbow Color Schemes]{Rainbow color scheme with simulations of each of the six common types of color deficiency. The original image, on the left, is from \protect\citet{light2004end}. The top row of pictures on the right show simulations of the map when cones are entirely missing. The bottom row of pictures show simulations of the map when each cone is altered due to genetic mutation. }\label{fig:colorblindrainbow}
+\caption[Colorblindness and rainbow color schemes]{Rainbow color scheme with simulations of each of the six common types of color deficiency. The original image, on the left, is from \protect\citet{light2004end}. The top row of pictures on the right show simulations of the map when cones are entirely missing. The bottom row of pictures show simulations of the map when each cone is altered due to genetic mutation. }\label{fig:colorblindrainbow}
 \end{figure}
 % \comment{I can't tell a difference between the Protan* and Deuteran* pictures in figure \ref{fig:colorblindrainbow} at all. Is that just me?} % apparently not, normal color vision people seem to see it that way too. 
 
@@ -229,13 +229,13 @@ The ``software" programs presented in section \ref{Software} are generally effic
 \hfil
 \begin{subfigure}[b]{.4\linewidth}\centering\vspace{.5cm}
   \includegraphics[width=\linewidth]{FigureVase}\vspace{1cm}
-  \caption{Figure-Ground Illusion}
+  \caption{Figure-ground illusion}
 \end{subfigure}\hfill
 \begin{subfigure}[b]{.4\linewidth}\centering
   \includegraphics[width=\linewidth]{IllusoryContour}
-  \caption{Kanizsa Triangle Illusion}
+  \caption{Kanizsa triangle illusion}
 \end{subfigure}\hfil
-\caption[Gestalt Illusions]{Illusions due to misapplied or ambiguous Gestalt rules.}\label{fig:GestaltIllusions}
+\caption[Gestalt illusions]{Illusions due to misapplied or ambiguous Gestalt rules.}\label{fig:GestaltIllusions}
 \end{figure}
 
 The figure/ground illusion depends on the color of the top and bottom edges of the picture; if the edges are black, the vase appears to be the central part of the image; if the edges are white, the faces appear to be the central part of the image. When the edges are omitted, the image seems to oscillate between a vase and the profile view of two heads. This is a result of ambiguity in identifying which part of the image is the background; when the top and bottom edges are present, that cue is sufficient to resolve the illusion. The Kanizsa triangle demonstrates the Gestalt principles of good form and continuity: We perceive objects that are partially obscured by a floating white triangle, even though no such triangle actually exists. The illusory triangle produces an image that is much simpler (3 circles, a black triangle outline, and a white triangle) than the objects that are actually displayed (3 partial circles and three V shapes arranged pointing in toward a central point). In addition to the existence of the illusory contour, we also perceive some depth to the image; that is, the white triangle is perceived as being above the other components of the image \citep{coren1983subjective}, as this is the only way to make sense of the set of stimuli in a simple fashion. In general, these gestalt principles make sense of the natural world, but when applied to artificial contexts, they occasionally produce unexpected results. 
@@ -243,33 +243,32 @@ The figure/ground illusion depends on the color of the top and bottom edges of t
 \paragraph{Depth illusions} Other optical illusions occur due to the optimization of the visual system for three-dimensional perception. These three-dimensional heuristics can produce unexpected or misleading results when applied to two dimensional objects. 
 
 \begin{figure}[htbp]\centering
-\hfil
-\begin{subfigure}[b]{.35\linewidth}\centering
-  \includegraphics[width=\linewidth]{PonzoIllusion}
-  \caption{Ponzo Illusion}\label{fig:Ponzo}
-\end{subfigure}\hfill
-\begin{subfigure}[b]{.35\linewidth}\centering
-  \includegraphics[width=\linewidth]{NeckerCube}
-  \caption{Necker Cube}\label{fig:NeckerCube}
-\end{subfigure}\hfil
 
-\hfil
 \begin{subfigure}[b]{.35\linewidth}\centering
-  \includegraphics[width=\linewidth, angle=90]{MullerLyer}
-  \caption{Muller-Lyer Illusion}\label{fig:MullerLyer}
-\end{subfigure}\hfill
-\begin{subfigure}[b]{.35\linewidth}\centering
-  \includegraphics[width=\linewidth]{CheckerShadow}
-  \caption{Color Constancy Illusion}\label{fig:ColorConstancy}
+  \includegraphics[width=.95\linewidth]{PonzoIllusion}
+  \caption{Ponzo illusion}\label{fig:Ponzo}
 \end{subfigure}\hfil
-
-\caption[Depth Illusions]{Illusions due to misapplied depth perception.}\label{fig:DepthIllusions}
+\begin{subfigure}[b]{.35\linewidth}\centering
+  \includegraphics[width=.95\linewidth]{NeckerCube}
+  \caption{Necker cube}\label{fig:NeckerCube}
+\end{subfigure}
+\\\vspace{12pt}
+\\
+\begin{subfigure}[b]{.35\linewidth}\centering
+  \includegraphics[width=.95\linewidth, angle=90]{MullerLyer}
+  \caption{Muller-Lyer illusion}\label{fig:MullerLyer}
+\end{subfigure}\hfil
+\begin{subfigure}[b]{.35\linewidth}\centering
+  \includegraphics[width=.95\linewidth]{CheckerShadow}
+  \caption{Color constancy illusion}\label{fig:ColorConstancy}
+\end{subfigure}
+\caption[Depth illusions]{Illusions due to misapplied depth perception.}\label{fig:DepthIllusions}
 \end{figure}
 Figure \ref{fig:DepthIllusions} contains four of the more interesting optical illusions that result from ambiguous figures that trigger depth cues. The Ponzo illusion (figure \ref{fig:Ponzo}) suggests that the top line is longer than the bottom line, because of the implied convergence of the two vertical lines (to understand the natural scene that produces this illusion, consider railroad tracks converging at the horizon). The Necker Cube, shown in figure \ref{fig:NeckerCube}, can be seen such that the top-right face is closest to the viewer or alternately such that the bottom-left face is closest to the viewer. Due to the ambiguity in the image, it will often seem to ``flip" when the viewer temporarily loses focus on the image \citep{gregory1997knowledge}. The Muller-Lyer illusion (figure \ref{fig:MullerLyer}) is generally believed to result from misapplied depth cues as well - the left-most image would occur in nature as the exterior corner of a building, the middle image would occur when viewing an interior corner of the same building, further away from the viewer \citep{ward1977case, gregory1968perceptual, fisher1970experimental}. As a result of the illusion, the middle line appears to be longer than the first or third lines. Figure \ref{fig:mullerlyerhouse} shows the first two parts of the illusion in a context which removes the ambiguity through additional depth cues. The additional cues result in the resolution of the illusion. Finally, the color constancy illusion shown in figure \ref{fig:ColorConstancy} suggests that the square marked A is much darker than the square marked B, even though the two squares are the same color. This illusion results from our experiences with depth and shadows: square B is perceived to be the same color as the lighter-colored squares outside the shadow, while square A is perceived to be the same color as the other dark squares in the tile pattern, regardless of the actual color due to the shadow. 
 
 \begin{figure}[htbp]\centering
 \includegraphics[width=.5\linewidth]{mullerlyerhouse}
-\caption[Muller Lyer Real World Context]{The Muller-Lyer illusion in a non-ambiguous three-dimensional context.}\label{fig:mullerlyerhouse}
+\caption[Muller Lyer real world context]{The Muller-Lyer illusion in a non-ambiguous three-dimensional context.}\label{fig:mullerlyerhouse}
 \end{figure}
 
 Depth illusions in particular result from a conflict between our experience with the three-dimensional world and the appearance of two-dimensional ambiguous stimuli. The Necker cube ``flips" because there are two physical objects that could produce the same retinal image, the Muller-Lyer illusion exists because our experience with the three-dimensional world is harnessed inappropriately for a two-dimensional figure, and the color-constancy illusion exists because our brains automatically correct a pseudo three-dimensional image to represent the reality of that image in the real world. These conflicts occur in statistical graphics as well; Chapter \ref{sineillusion} explores statistical graphics that trigger a three-dimensional heuristic in the brain and lead to misleading conclusions.
@@ -280,7 +279,7 @@ Certain illusions do not lend themselves to simple classification. While many il
 
 \begin{figure}[htbp]\centering
 \includegraphics[width=.4\linewidth]{Poggendorff}
-\caption[The Poggendorff Illusion]{The Poggendorff Illusion. The left figure shows a black line which is obscured by a grey rectangle; it appears that the blue line would intersect the black line if the rectangle were not present. In fact, the black line and the red line are co-linear, and the blue line is parallel to both other lines.}\label{fig:poggendorff}
+\caption[Poggendorff illusion]{The Poggendorff Illusion. The left figure shows a black line which is obscured by a grey rectangle; it appears that the blue line would intersect the black line if the rectangle were not present. In fact, the black line and the red line are co-linear, and the blue line is parallel to both other lines.}\label{fig:poggendorff}
 \end{figure}
 
 \citet{gregory1963distortion, gregory1997knowledge} suggests the Poggendorff illusion is similar to the Muller-Lyer illusion in that it results from misapplied depth cues, but \citet{green1963poggendorff, ward1977case} found no evidence that participants viewed this illusion in any three-dimensional context. Instead, \citet{green1963poggendorff} suggests that the illusion results from a tendency to perceive acute angles as less acute and obtuse angles as less obtuse than the image suggests. As the illusion disappears as the angle of the line segment approaches horizontal, this seems to be a reasonable explanation, but it is almost certainly not complete \citep{morgan1999poggendorff}, as the illusion survives in forms which do not preserve the acute angle intersections. Regardless, this illusion can make it difficult to read line graphs \citep{amer2005bias, poulton1985geometric} if proper precautions (use of reference lines and grid lines) are not taken.
@@ -307,13 +306,13 @@ qplot(data=df, xmin=x, xmax=xend, ymin=y, ymax=y+1, fill=color, geom="rect") +
 \hfil
 \begin{subfigure}[b]{.4\linewidth}\centering
   \includegraphics[width=\linewidth]{CafeWall}
-  \caption{Original Cafe Wall Illusion}\label{fig:CafeWallOrig}
+  \caption{Original cafe wall illusion}\label{fig:CafeWallOrig}
 \end{subfigure}\hfil
 \begin{subfigure}[b]{.4\linewidth}\centering
   \includegraphics[width=\linewidth]{fig-cafewall}
-  \caption{Isoluminant Cafe Wall Illusion}\label{fig:CafeWallIso}
+  \caption{Isoluminant cafe wall illusion}\label{fig:CafeWallIso}
 \end{subfigure}\hfil
-\caption[Cafe Wall Illusion]{The Cafe Wall illusion. The lines between rows of black and white tiles are parallel but appear to be tilted. The second image shows the isoluminant version, which mitigates some of the illusion but does not entirely eliminate the effect.}\label{fig:cafewall}
+\caption[Cafe wall illusion]{The cafe wall illusion. The lines between rows of black and white tiles are parallel but appear to be tilted. The second image shows the isoluminant version, which mitigates some of the effect but does not entirely eliminate the illusion.}\label{fig:cafewall}
 \end{figure}
 
 The cafe wall illusion is in part due to the contrast between light and dark zones (as in the mach bands and hermann grid illusion), and much of the illusion is resolved when the black and white tiles are replaced with isoluminant colors, but some of the illusion still remains. \citet{westheimer2007irradiation} suggests that this portion of the illusion is because the position of a black-white border will be biased to appear closer to the black side of its physical location, an effect which is compounded in the cafe wall illusion to produce the appearance of tilted lines. This illusion, while not explicitly found in most statistical graphics, shows that even simple (and pleasant) configurations of geometric objects can wreak havoc in the brain under the right circumstances. In fact, the illusion is so simple that it is also known as the ``Kindergarten illusion", but its cause is sufficiently complex that it has not been fully explained by psychologists or neuroscientists. 
@@ -397,7 +396,7 @@ qplot(data=data, x=x, y=y, color=factor(color), shape=factor(shape), size=I(5))+
   \includegraphics[width=\linewidth]{fig-preattentive22}
   \caption{Interference}\label{fig:preattentiveinterference}
 \end{subfigure}
-\caption[Preattentive Features and Interference]{Shape and color are detected preattentively in figures (a) and (b), but interfere in figure (c) so that location of the target in (c) is no longer preattentive.}\label{fig:preattentive}
+\caption[Preattentive features and interference]{Shape and color are detected preattentively in figures (a) and (b), but interfere in figure (c) so that location of the target in (c) is no longer preattentive.}\label{fig:preattentive}
 \end{figure}
 
 Healey's work on preattentive perception is interesting, and provides a reasonable approach to creating graphics compatible with the human visual system, but his work is largely focused on multidimensional displays and his focus on preattentive processes limits the applicability of his work to statistical graphics. In particular, most graphics are created with the idea that a viewer will spend more than one second looking at the graph, so not all features need to be preattentive to be useful. In addition, many of the multidimensional displays he designs are very load-intensive to understand; with so many additional dimensions, the viewer must spend considerable time understanding the scales and legends which correspond to each variable (feature integration over multiple dimensions is time intensive and generally not preattentive). In the next section, we will examine the literature concerning higher-level graphical perception, including perception at the attentive level and which types of graphs are more accurately perceived by viewers. 
@@ -465,9 +464,9 @@ qplot(data=data, x=x, y=y, color=group) + scale_color_brewer(palette="Set1", gui
 \end{subfigure}\hfill
 \begin{subfigure}[b]{.45\linewidth}\centering
   \includegraphics[width=\linewidth]{fig-clustering2}
-  \caption{Proximity and Similarity-based grouping}
+  \caption{Proximity and similarity-based grouping}
 \end{subfigure}\hfill
-\caption[Chunking in Graphs]{The utility of chunking in graph perception. Graph (a) could potentially be described as three distinct clusters of points rather than 120 individual points, but it is much easier to draw conclusions from graph (b), which has colored points that clearly show the grouping structure in the data. The second figure would more probably be encoded and described as three groups of 40 points, which serves as a form of mental data compression.}\label{fig:clustering}
+\caption[Chunking in graphs]{The utility of chunking in graph perception. Graph (a) could potentially be described as three distinct clusters of points rather than 120 individual points, but it is much easier to draw conclusions from graph (b), which has colored points that clearly show the grouping structure in the data. The second figure would more probably be encoded and described as three groups of 40 points, which serves as a form of mental data compression.}\label{fig:clustering}
 \end{figure}
 
 Analyzing graphs using task-based models emphasizes the importance of spatial relationships between graphical elements. The gestalt laws of proximity and similarity dictate that items which are close together or physically similar (the same shape or color) are perceived as a group; this spatial perception creates ``chunks" of the graph which may be encoded as single objects and thus reduce the mental bandwidth necessary to process the image. Figure \ref{fig:clustering} shows the advantage of ``chunks" in graphs, as the second graph shown is much easier to describe and understand than the first graph, even without the contextual meanings of the variables. Of graphics that present information of similar complexity, graphics that require less effort to understand and search for relevant information are preferrable \citep{cleveland:1985}. More complex models of the graphical perception process suggest that data are integrated on a visual level and then further integrated on a cognitive level, to form successive clusters of information. Once these clusters are formed, further information can be integrated by comparing and contrasting different clusters to understand the higher-level meaning in the graph \citep{ratwani2008thinking}. Graph types which cater to this hierarchical clustering mechanism may be more easily understood by viewers than graphs that do not provide information in a manner easily assimilated by the human brain. Based on this information, facets of graphs may be particularly useful for mapping multidimensional data to provide ``chunks" of information in a relevant manner that can be integrated into the viewer's working conceptual understanding of the dataset. Additionally, color schemes and appropriate labeling of graph features which reduce the amount of work necessary to integrate numerical information from a legend into the visual representation of the graph facilitate graphical inference \citep{carpenter1998model}.
@@ -477,6 +476,8 @@ From a statistical perspective, much of the literature involved in understanding
 \subsubsection{Perception of Simple Graphs}
 A series of experiments by \citet{cleveland:1984, cleveland:1985} studied basic perceptual tasks in graphical perception to produce a relative ordering of graphical elements by the accuracy of participant conclusions. This ranking is shown in Table \ref{clevelandranking}. Other researchers \citep{kosslyn1994} have collapsed this ranking into position/length/angle and area/volume, as the difference in accuracy between categories 1, 2, and 3 is small compared to categories 4 and 5. 
 \begin{table}[htbp]\centering
+
+\caption[Cleveland \& McGill's ordering of graphical tasks]{\protect\citet{cleveland:1984, cleveland:1985} ordering of graphical tasks by accuracy (adapted from both papers and \protect\citealt{shah2005cambridge}). Higher-ranking tasks are easier for viewers than low-ranking tasks and should be preferred in graphical design.}\label{clevelandranking}
 \begin{tabular}{ll}
 \hline
 Rank & Task\\\hline
@@ -487,7 +488,6 @@ Rank & Task\\\hline
 5 & Volume, Density, Curvature\\
 6 & Shading, Color Saturation, Color Hue\\\hline
 \end{tabular}
-\caption[Cleveland \& McGill's ordering of graphical tasks]{\protect\citet{cleveland:1984, cleveland:1985} ordering of graphical tasks by accuracy (adapted from both papers and \protect\citealt{shah2005cambridge}). Higher-ranking tasks are easier for viewers than low-ranking tasks and should be preferred in graphical design.}\label{clevelandranking}
 \end{table}
 
 The particular task required of participants in experiments also has an effect; \citet{simkin1987information} found that readers were more accurate in determining position when presented with a bar graph, but when readers were presented with a pie chart, they were more accurate at determining proportional judgments (using angles). This finding contradicts \citet{cleveland:1984} to some degree and suggests that the experimental design and specific task are important in evaluating these sorts of user studies; the contradictory results also suggest that graph type is an important influence in determining what information viewers encode from the graph. This conflict also illustrates that the user's attention and past experience influence the judgments they make from a given graph: when participants were asked to provide a summary of the graphic, their answers depended on the type of display: bar charts elicited a comparison judgment, pie charts elicited proportional judgments \citep{simkin1987information}. Similarly, when presented with a line graph, viewers are more likely to summarize the graph in terms of the slope of the trend line (even when the x-axis is discrete); when presented with a bar graph, viewers summarize the information using discrete comparisons \citep{carswell1987information, shah2005cambridge}. The task and the graph format interact to influence viewer perceptions, thus, when creating graphics, statisticians should match appropriate graphical formats to meaningful conclusions about the data. 
@@ -498,7 +498,7 @@ It is important to consider working memory when constructing graphical scales (p
 
 Other graph features can also influence viewer inferences: multiple studies suggest that our mental schematic for a graph is most consistent with a $45^\circ$ trend line \citep{cleveland:88, tversky1989perceptual}. ``Banking to $45^\circ$" is a commonly-cited recommendation for optimal graphics (it is also quite old, according to \citet{wickham2013graphical}), and does have some limited utility in reducing the strength of the line-width illusion (a more thorough discussion of this heuristic is provided in Chapter \ref{sineillusion}). Axis scale transformations can make it easier for viewers to spot outliers of data conforming to skewed distributions (though this does require some domain-specific knowledge of statistical distributions), and appropriately labeled graphs can reduce the working memory requirements by reducing the number of ``back-and-forth" comparisons required to pass information into working memory \citep{shah2005cambridge}. 
 
-While graph perception is commonly limited by working memory considerations, there is some evidence that we perceive and process graphical information differently than numerical algorithms: \citet{bobko1979perception} found that participants underestimated correlation coefficients when estimating correlation strength, particularly under unequal variance; their estimates were in fact more closely aligned with $r^2$. In addition, visual estimation tends to discount the effect of perceived outliers, producing a more robust estimator than numeric estimators designed for that purpose \citep{lewandowsky1989perception}. Finally, some evidence suggests that when visually estimating lines of best fit, we fit the slope of the first principal component rather than the least squares regression line; that is, we consider variability in $x$ and $y$ rather than only considering variability in $y$\citep{mosteller1981eye}. While these studies do not offer theoretical explanations or attempt to provide causal explanations, human perception of data displays does appear to differ from computational exploration in meaningful ways. 
+While graph perception is commonly limited by working memory considerations, there is some evidence that we perceive and process graphical information differently than numerical algorithms: \citet{bobko1979perception} found that participants underestimated correlation coefficients when estimating correlation strength, particularly under unequal variance; their estimates were in fact more closely aligned with $r^2$. In addition, visual estimation tends to discount the effect of perceived outliers, producing a more robust estimator than numeric estimators designed for that purpose \citep{lewandowsky1989perception}. Finally, some evidence suggests that when visually estimating lines of best fit, we fit the slope of the first principal component rather than the least squares regression line; that is, we consider variability in $x$ and $y$ rather than only considering variability in $y$ \citep{mosteller1981eye}. While these studies do not offer theoretical explanations or attempt to provide causal explanations, human perception of data displays does appear to differ from computational exploration in meaningful ways. 
 
 These studies indicate that it is important to consider the cognitive processing of statistical graphics as well as the data used to generate these graphics: the type of graph, color scheme, annotations, aspect ratio, legends, and axis transformations can all influence the amount of mental processing required to draw conclusions from a graph, as well as the types of conclusions that graph viewers are likely to draw. Many of these features were studied in relative isolation, using simple graphs that may lack real-world context. More complex, domain specific graphs may create higher cognitive load and recruit previously acquired knowledge; experiments using simple, bland graphics may not be applicable to more complex graphics meant for experts. What follows is a summary of the relatively sparse literature on these sorts of real-world graphics. 
 
@@ -552,7 +552,7 @@ qplot(x=x, y=y, geom="line", linetype='Detection Curve', color='Detection Curve'
 
 \begin{figure}[htbp]\centering
 \includegraphics[width=.5\linewidth]{fig-methodoflimits}
-\caption[The Method of Limits]{Demonstration of the method of limits. In this experiment, three trials were performed, two trials starting from 0 and increasing, and one trial starting at 9.5 and decreasing. The empirical detection threshold is the threshold at which detection occurs 50\% of the time, and is shown in red. }\label{fig:methodoflimits}
+\caption[Method of limits]{Demonstration of the method of limits. In this experiment, three trials were performed, two trials starting from 0 and increasing, and one trial starting at 9.5 and decreasing. The empirical detection threshold is the threshold at which detection occurs 50\% of the time, and is shown in red. }\label{fig:methodoflimits}
 \end{figure}
 
 \paragraph{Method of Adjustment} This method is similar to the method of limits, except that the stimulus intensity is adjusted by the observer (not the experimenter) in a continuous manner until the observer can just barely detect the stimulus. This procedure may be repeated several times, with trials averaged to produce a mean value for the absolute threshold. Figure \ref{fig:methodofadjustment} demonstrates this procedure. 
@@ -599,7 +599,7 @@ qplot(data=data, x=start, y=trial, xend=end, yend=trial, geom="segment") +
 @
 \begin{figure}[htbp]\centering
 \includegraphics[width=.5\linewidth]{fig-methodofadjustment.pdf}
-\caption[The Method of Adjustment]{Demonstration of the method of adjustment. In this experiment, four trials were performed, two trials starting from 0 and increasing, and two trials starting at 10 and decreasing. The empirical detection threshold is the threshold at which detection occurs 50\% of the time, and is shown in red. \label{fig:methodofadjustment}}
+\caption[Method of adjustment]{Demonstration of the method of adjustment. In this experiment, four trials were performed, two trials starting from 0 and increasing, and two trials starting at 10 and decreasing. The empirical detection threshold is the threshold at which detection occurs 50\% of the time, and is shown in red. \label{fig:methodofadjustment}}
 \end{figure}
 
 \paragraph{Measuring the Difference Threshold} The difference threshold, discussed in section \ref{logarithmicperception}, is the smallest detectable difference between two stimuli. This threshold can be measured using either the method of limits or the method of adjustment. Rather than increasing the absolute intensity of the stimulus as discussed above, two stimuli are given: one with constant intensity and one whose intensity may vary either continuously or incrementally (depending on the method utilized). The participant is instructed to identify the point at which the two stimuli are indistinguishable (if the varied stimulus is approaching the constant stimulus) or the point at which the two stimuli are distinguishable (if the varied stimulus is diverging from the constant stimulus). 
@@ -616,7 +616,7 @@ Many psychological experiments utilize straightforward methods to address hypoth
 
 \begin{figure}[htbp]\centering
 \includegraphics[width=.7\linewidth]{VisualSearch}
-\caption[Visual Search Task]{Visual Search Task. Participants were asked to locate the figure (1-24) most similar to the central ``target" figure.}\label{fig:visualsearch}
+\caption[Visual search task]{Visual Search Task. Participants were asked to locate the figure (1-24) most similar to the central ``target" figure.}\label{fig:visualsearch}
 \end{figure}
 
 Visual search tasks can be used to measure the efficiency of a participant's visual search abilities (and focus on a task) to serve as a baseline for more complicated visual tasks. They can also be used to examine feature binding and common mistakes that may indicate relevant distractor stimuli. Even when reaction time is not directly measured, these tasks are typically given under time pressure, to establish a baseline performance that is below 100\% performance on the task. This time pressure allows experimenters to avoid response compression, so that the number of questions completed within the time limit provides an approximate measure of response time.
@@ -626,7 +626,7 @@ Eye tracking studies are often utilized in order to understand which parts or fe
 
 \begin{figure}[htbp]\centering
 \includegraphics[width=.4\linewidth]{EyeTrackingGear}
-\caption[Eye Tracking Equipment]{Eye tracking equipment \protect\citep{babcock2004building}. The cameras allow researchers to determine what part of a scene the wearer is viewing.}\label{fig:eyetracking}
+\caption[Eye tracking equipment]{Eye tracking equipment \protect\citep{babcock2004building}. The cameras allow researchers to determine what part of a scene the wearer is viewing.}\label{fig:eyetracking}
 \end{figure}
 
 Eye tracking studies have been performed on statistical graphics as well \citep{zhao2013mind}, utilizing a visual search task and examining which graphics participants compared to determine the target plot.
@@ -657,7 +657,7 @@ ggplot(data=data) +
 @
 \begin{figure}[htbp]\centering
 \includegraphics[width=.3\linewidth]{fig-mask}
-\caption[Sample Image Mask]{Sample mask used to ``erase'' the retina in some psychological experiments which test stimuli for short time periods ($<$1 s). The mask removes any afterimage the participant might have, ensuring that the stimuli is only available for the specified period. }\label{fig:mask}
+\caption[Sample image mask]{Sample mask used to ``erase'' the retina in some psychological experiments which test stimuli for short time periods ($<$1 s). The mask removes any afterimage the participant might have, ensuring that the stimuli is only available for the specified period. }\label{fig:mask}
 \end{figure}
 
 \paragraph{Priming} Broadly, priming is a technique that can be used to subconsciously bias a participant towards a certain conclusion. In cognitive psychology research, priming can be used to test word association (i.e. participants are quicker to identify an apple if they have just heard the word ``fruit" than if they heard the unrelated word ``pen"); in statistical graphics, priming effects are more likely to occur due to instructions or examples provided to participants at the start of a testing session. If an initial example contains notable outliers, participants are more likely to look for and recognize graphs with outliers than graphs with other notable features. Examples must be designed in such a way to avoid activating these priming affects as much as possible. 
@@ -691,7 +691,7 @@ ggplot(data=iris, aes(x=Sepal.Width, group=Species, fill=Species)) +
 \begin{figure}[htbp]\centering
 \begin{subfigure}[b]{.33\linewidth}\centering
   \includegraphics[width=\linewidth]{fig-irisdatagrammar1}
-  \caption{Stacked Density Plot}
+  \caption{Stacked density plot}
 \end{subfigure}\hfill
 \begin{subfigure}[b]{.33\linewidth}\centering
   \includegraphics[width=\linewidth]{fig-irisdatagrammar2}
@@ -719,7 +719,7 @@ ggplot(data=iris, aes(x=Sepal.Width, fill=Species)) +
   geom_histogram(position="stack")
 
 @
-\caption{ggplot2 code to produce figure \protect\ref{fig:grammarplots}}\label{fig:grammarcode}
+\caption[Ggplot2 code demonstrating the grammar of graphics]{\texttt{ggplot2} code to produce figure \protect\ref{fig:grammarplots}}\label{fig:grammarcode}
 \end{figure}
 
 \subsubsection{Testing Statistical Graphics using Lineups}

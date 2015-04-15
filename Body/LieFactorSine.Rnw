@@ -38,7 +38,7 @@ source(paste0(codedir, "BayesAnalysis.R")) # generate pics for analysis without 
 @
 
 
-\chapter{THE CURSE OF THREE DIMENSIONS: WHY YOUR BRAIN IS LYING TO YOU}\label{LieFactorChapter}\label{liefactor}
+\chapter[THE CURSE OF THREE DIMENSIONS:\\ WHY YOUR BRAIN IS LYING TO YOU]{THE CURSE OF THREE DIMENSIONS: WHY YOUR BRAIN IS LYING TO YOU}\label{LieFactorChapter}\label{liefactor}
 %% Abstract
 % One of the basic principles of information graphics is that the data should be accurately reflected in the chart. Tufte's lie factor was created with the idea that graphs that do not represent the underlying data accurately should be avoided. In this paper, we examine a second level of graph distortion that occurs during the perceptual process. The human visual system is largely optimized for perception of three dimensions. Generally, the brain processes potential  ambiguities in the rendering as the most-common three-dimensional object. This can lead to visual distortions, such as occur with the Necker figure or in the M\"uller-Lyer illusion. We discuss the underlying psychological mechanisms for the distortions, examine the effect these distortions have on  judgments, and consider the implications for graph design. Using the sine illusion as a case study, we quantify the effects of the distortion that create a ``perceptual lie factor" for the sine illusion.
 
@@ -59,7 +59,7 @@ Impossible objects, such as the Penrose triangle \citep{penrose1958impossible}, 
 
 \begin{figure}[htbp]\centering
 \includegraphics[keepaspectratio=TRUE,width=.8\linewidth, trim=0in .25in 0in 0in]{fig-neckercube}
-\caption[Necker Cube]{The Necker Cube is a so-called ``ambiguous object" because two different transparent objects  produce the same retinal image (and thus the same perceptual experience). Commonly, the image seems to transition instantaneously from one possible mental representation to the other.}\label{fig:Necker} 
+\caption[Necker cube]{The Necker cube is a so-called ``ambiguous object" because two different transparent objects  produce the same retinal image (and thus the same perceptual experience). Commonly, the image seems to transition instantaneously from one possible mental representation to the other.}\label{fig:Necker} 
 \end{figure}
 
 In non-illusory contexts, experience with the real world informs the choice between multiple possibilities of rendering a three-dimensional object from the same two-dimensional representation. This indicates that processing occurs ``top down" in that our previous experience influences our current perceptions. Without this top-down influence, the brain would not be able to map a two-dimensional image back to a three-dimensional object. One of the most well studied examples of the influence of top-down processing is the M\"uller-Lyer illusion, shown in figure~\ref{fig:mullerlyer}.
@@ -91,7 +91,7 @@ Figure~\ref{fig:sineillusion} shows the sine illusion in its original form \cite
 
 \begin{figure}\centering
 \includegraphics[keepaspectratio=TRUE,trim=0in .5in 0in .5in]{fig-sinedemo}
-\caption[Sine Illusion]{The classic sine illusion. Each vertical line has the same length, though the lines at the peak and trough of the curve appear longer.}\label{fig:sineillusion}
+\caption[Sine illusion]{The classic sine illusion. Each vertical line has the same length, though the lines at the peak and trough of the curve appear longer.}\label{fig:sineillusion}
 \end{figure}
 
 
@@ -227,7 +227,7 @@ For each of the stimuli, participants were asked to answer the question: ``In wh
 \begin{figure}
 \centering
 \includegraphics[width=.6\linewidth, trim=.65in 0in .65in 0in]{fig-stimulicorrectionsize2}
-\caption[The effect of the transformation]{De-trended line lengths for figure~\ref{fig:sinestimuli}, demonstrating the distortion present due to the correction factor in each sub-plot. Comparing the distortion in the chosen sub-plot to the undistorted data produces an estimate of the psychological lie factor. }\label{fig:sinestimulinotrend}
+\caption[Effect of the transformation]{De-trended line lengths for figure~\ref{fig:sinestimuli}, demonstrating the distortion present due to the correction factor in each sub-plot. Comparing the distortion in the chosen sub-plot to the undistorted data produces an estimate of the psychological lie factor. }\label{fig:sinestimulinotrend}
 \end{figure}
 
 \begin{figure}[tb]

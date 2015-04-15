@@ -37,7 +37,7 @@ source(paste(codedir, "functions.r", sep=""))
 
 
 
-\chapter{SIGNS OF THE SINE ILLUSION -- WHY WE NEED TO CARE}\label{SineIllusionChapter}\label{sineillusion}
+\chapter{SIGNS OF THE SINE ILLUSION: WHY WE NEED TO CARE}\label{SineIllusionChapter}\label{sineillusion}
 %% Abstract
 % Graphical representations have to be true to the data they display. Computational tools ensure this on a technical level. But we also need to take `flaws' of the human perceptual system into account. The sine illusion provides an example where human perception leads to systematic bias in the assessment of the optical stimulus, with a particularly notable impact on perception of time-series data with a seasonal component. In this paper, we discuss the reasons for the illusion and various strategies  useful to break the illusion or reduce its strength. We demonstrate the presence of the illusion in real-world and theoretical situations. We also present data from a user study which demonstrate the dramatic effect the sine illusion can have on conclusions drawn from displayed data.
 % \noindent\hfil\textit{Accepted to the Journal of Computational and Graphical Statistics, July 2014}\hfil
@@ -57,15 +57,15 @@ qplot(data=datasub, x=jitter(Tmax), y=resid, geom="point", shape=I(1), colour=I(
 \begin{subfigure}[b]{.45\linewidth}
   \centering
   \includegraphics[width=\linewidth]{fig-example1}
-  \caption[Scatterplot of Ozone and Temperature in Houston, 2011.]{\small Scatterplot of Ozone and Temperature in Houston, 2011. A loess fit is overlaid to show the overall trend.  \label{fig:example1}}
+  \caption[Scatterplot of ozone and temperature in Houston, 2011.]{\small Scatterplot of ozone and temperature in Houston, 2011. A loess fit is overlaid to show the overall trend.  \label{fig:example1}}
 \end{subfigure}\hfill
 \begin{subfigure}[b]{.45\linewidth}
   \centering
   \includegraphics[width=\linewidth]{fig-example2}
-  \caption[Residual Ozone]{\small Scatterplots of Ozone and Temperature de-trended according to the loess fit in (a). \\ \phantom{text to get to the next line}
+  \caption[Residual Ozone]{\small Scatterplots of ozone and temperature de-trended according to the loess fit in (a). \\ \phantom{text to get to the next line}
   \label{fig:example2}}
 \end{subfigure}
-\caption[Scatterplots of Ozone and Temperature in Houston, 2011]{\label{fig:exampleFull1} Scatterplots of Ozone and Temperature in Houston, 2011. The increase in variability over the temperature range is more pronounced in the de-trended plot on the right.}
+\caption[Scatterplots of ozone and temperature in Houston, 2011]{\label{fig:exampleFull1} Scatterplots of ozone and temperature in Houston, 2011. The increase in variability over the temperature range is more pronounced in the de-trended plot on the right.}
 \end{figure}
 
 As a first example let us consider the relationship between ozone concentration and temperature. Ozone concentrations were measured from \Sexpr{nsite} locations in the Houston area \citep{epa}, and temperature data is provided by the NCDC \citep{noaa} site at Hobby International Airport, located near the center of Houston. 
@@ -191,7 +191,7 @@ The sine illusion demonstrated in figures \ref{fig:exampleFull1} and \ref{fig:or
 \begin{figure}[h!tbp]
 \centering
 \includegraphics[keepaspectratio=TRUE,width=.7\linewidth]{PlayfairExportImports}
-\caption[Imports to and Exports from the East Indies in the 1700s]{Playfair's graph of exports to and imports from the East Indies demonstrates that the line width illusion is not only found on sinusoidal curves but is present whenever the slope of the lines change dramatically. The increase in both imports and exports circa 1763 does not appear to portray as large of a deficit as that in 1710, even though they are of similar magnitude.}
+\caption[Imports to and exports from the East Indies in the 1700s]{Playfair's graph of exports to and imports from the East Indies demonstrates that the line width illusion is not only found on sinusoidal curves but is present whenever the slope of the lines change dramatically. The increase in both imports and exports circa 1763 does not appear to portray as large of a deficit as that in 1710, even though they are of similar magnitude.}
 \label{fig:playfair-debt}
 \end{figure}
 
@@ -900,7 +900,7 @@ qplot(data=df.real, x=x, y=y, geom="line") +
 \includegraphics[keepaspectratio=TRUE,width=0.9\linewidth]{fig-generalcorrectioncartoon3}
 \caption{Quadratic Approximation}\label{fig:quadratic-GeneralCorrection}
 \end{subfigure}
-\caption[Methods based on Approximations to f(x)]{(a) uses a first-order Taylor series approximation to $f(x)$ and (b) uses a second-order Taylor series approximation to $f(x)$. The intersection of the function $f(x) \pm \ell/2$ and the orthogonal line,  $(x_1, y_1), (x_2, y_2)$ must be obtained to determine the necessary correction factor.}\label{fig:linear.quadratic} 
+\caption[Methods based on approximations to f(x)]{(a) uses a first-order Taylor series approximation to $f(x)$ and (b) uses a second-order Taylor series approximation to $f(x)$. The intersection of the function $f(x) \pm \ell/2$ and the orthogonal line,  $(x_1, y_1), (x_2, y_2)$ must be obtained to determine the necessary correction factor.}\label{fig:linear.quadratic} 
 \end{figure}
 
 \subsubsection{Linear Approximation to $f(x)$}\hfill\newline
@@ -993,7 +993,7 @@ qplot(x=x, xend=x, y=y+ellx4.u, yend=y-ellx4.l, geom="segment", data=dframe, lin
 @
 \caption{Quadratic correction}
 \end{subfigure}
-\caption[Quadratic Approximation]{
+\caption[Linear and quadratic approximations to the Y-axis transformation]{Linear and quadratic approximations to the Y-axis transformation. 
 In the quadratic approximation top and bottom segments of the vertical lines are adjusted separately.}
 \label{fig:GeneralQuadraticCorrection} 
 \end{figure}
@@ -1038,9 +1038,7 @@ Similar to the correction of the $x$-axis,  we can use a weighted approach to fi
 
 In order to more fully understand the sine illusion and test the proposed corrections, we created an applet to allow users to investigate the illusion's prominence with respect to its parameters. Users can examine the sine illusion by changing line length, the function's amplitude, and compare corrections in $x$-axis and $y$-values to uncorrected data.  All corrections proposed in this paper are  implemented in the applet located at \url{http://glimmer.rstudio.com/srvanderplas/SineIllusion/}.
 
-We employed a second applet to collect data on users' preferences on the amount of correction used, i.e.~we are interested in identifying a range of `optimal weights' in each of the corrections. This applet presents users with a graph that is the result of a correction in $x$ or $y$ with a randomly selected starting weight value. Users are asked to adjust the graph until the illusion  (a) is no longer apparent (adjustment of weights from the bottom) or (b) becomes visible (adjustments of weights from the top).
-
-Both applets are implemented in {\tt shiny} \citep{shiny}. 
+We employed a second applet to collect data on users' preferences on the amount of correction used, i.e.~we are interested in identifying a range of `optimal weights' in each of the corrections. This applet presents users with a graph that is the result of a correction in $x$ or $y$ with a randomly selected starting weight value. Users are asked to adjust the graph until the illusion  (a) is no longer apparent (adjustment of weights from the bottom) or (b) becomes visible (adjustments of weights from the top). Both applets are implemented using {\tt shiny} \citep{shiny}. 
 
 The graphs in the data-collection applet are adjusted using a plus/minus button to either increase or decrease the amount of correction used. Underlying this adjustment is the value of the weight $w$ as defined in eqns.~(\ref{eqn.xtrans.weighted}) and~(\ref{eqn.ytrans.weighted}). The numerical value of $w$ was hidden from the user to prevent anchoring to a specific numerical value.
 
@@ -1050,7 +1048,7 @@ It is of additional interest to determine whether and how much these optimal wei
 
 \begin{figure}\centering
 \includegraphics[width=.92\linewidth]{shiny}
-\caption[Screenshot of Data Collection Website]{\label{fig:shiny.app} Screenshot of the shiny application used to collect information of observers' preference with respect to an optimal correction for the illusion under each of the  transformations discussed in the previous section. }
+\caption[Screenshot of data collection website]{\label{fig:shiny.app} Screenshot of the shiny application used to collect information of observers' preference with respect to an optimal correction for the illusion under each of the  transformations discussed in the previous section. }
 \end{figure}
 
 Figure~\ref{fig:shiny.app} shows a screenshot of the applet used to collect user data. This applet is  available online at \url{http://glimmer.rstudio.com/srvanderplas/SineIllusionShiny/}. 
@@ -1401,7 +1399,7 @@ rownames(temp) <- c("X", "Y")
 names(temp)[1] <- "Estimate"
 temp <- temp[,c(1, 4)]
 dt <- xtable(temp)
-print(dt)
+print(dt, caption.placement="top")
 @
 
 According to this analysis, the optimum transformation value for $x$ is \Sexpr{round(user.avg.x, 2)}, and the optimum transformation value for $y$ is \Sexpr{round(user.avg.y, 2)}. Figure \ref{fig:psycho} shows the estimates and 95\% Wald intervals for the mean, as well as estimated density of participant-level responses. 
@@ -1444,7 +1442,7 @@ fixefsCIs <- fixefsCIs[,c(4,5,6,7)]
 fixefsCIs$Transformation <- c("X", "", "Y", "")
 names(fixefsCIs)[4] <- "95% C.I."
 fixeftab <- xtable(fixefsCIs, align=c("c","c", "c", "c", "c"), digits=3)
-# print(fixeftab, include.rownames=FALSE, file=paste(imgdir, "fixef.txt", sep=""), floating=FALSE)
+print(fixeftab, include.rownames=FALSE, file=paste(imgdir, "fixef.txt", sep=""), floating=FALSE, caption.placement="top")
 
 
 #####################
@@ -1470,9 +1468,10 @@ ranefCIs <- ranefCIs[,4:7]
 names(ranefCIs)[4] <- "95% C.I."
 
 ranefCIstab <- xtable(ranefCIs, align=c("r","r", "c", "c", "c"), digits=3)
-# print(ranefCIstab, include.rownames=FALSE, file=paste(imgdir, "ranef.txt", sep=""), floating=FALSE)
+print(ranefCIstab, include.rownames=FALSE, file=paste(imgdir, "ranef.txt", sep=""), floating=FALSE, caption.placement="top")
 @
 \begin{table}[htbp]\centering
+\caption[Sine illusion model: fixed effects]{Fixed effect estimates of model~(\ref{model1}) for the boundaries for reasonable weights. In parentheses,  95\% parametric bootstrap confidence intervals are given based on model (\ref{model1}) ($N$=1000).}\label{fixedeffectsresults}
 \begin{tabular}{cclcc}
   \hline
 Transformation & Threshold &  \multicolumn{1}{c}{Parameter} & Estimate & 95\% C.I. \\ 
@@ -1483,9 +1482,9 @@ X & Lower & $\alpha_X$ & 0.097 & (0.045, 0.150) \\
    & Upper& $\alpha_Y + \beta$  & 0.671 & (0.626, 0.718) \\ 
    \hline
 \end{tabular}
-\caption[Sine Illusion Model: Fixed Effects]{Fixed effect estimates of model~(\ref{model1}) for the boundaries for reasonable weights. In parentheses,  95\% parametric bootstrap confidence intervals are given based on model (\ref{model1}) ($N$=1000).}\label{fixedeffectsresults}
 \end{table}
 \begin{table}[hbtp]\centering
+\caption[Sine illusion model: random effects]{Overview of random effects for model~(\ref{model1}), including 95\% confidence intervals based on parameteric boostrap results ($N$=1000).}\label{randomeffectsresults}
 \begin{tabular}{rcccc}
   \hline
 Groups & Correction & Parameter & Estimate & 95\% C.I. \\ 
@@ -1495,7 +1494,6 @@ Groups & Correction & Parameter & Estimate & 95\% C.I. \\
   Residual &  &$\sigma$ &  0.304 & (0.290, 0.317) \\ 
    \hline
 \end{tabular}
-\caption[Sine Illusion Model: Random Effects]{Overview of random effects for model~(\ref{model1}), including 95\% confidence intervals based on parameteric boostrap results ($N$=1000).}\label{randomeffectsresults}
 \end{table}
 
 Table \ref{randomeffectsresults} gives an overview of the variance estimates. 95\% confidence intervals are, based on 1000-fold parametric bootstrap of model~\ref{model1}. All variance components are significant and relevant; variability within a single individual's trials is about half the size of variability across  participants. 
@@ -1562,7 +1560,7 @@ ggplot(data=gasprices)  +
   ylab("Price per gallon (USD)") + theme_bw()+ xlab("Time")  + geom_point(aes(x=1995, y=0), size=0.1) + theme(plot.margin=unit(c(0,0.5,0,0), "cm"))
 #  ggtitle("Price of Gasoline in the US, 1995-2014")
 @
-\caption[US Gas prices from 1995 to 2014]{US Gas prices from 1995 to 2014. Gas prices steadily increase over the time frame, with some dramatic short-term developments. Peaks and troughs seem to exhibit more variability in daily prices than times of dramatic changes. This is an effect of the sine-illusion, which hides a fairly steady increase in variance in daily gas prices over time.}\label{fig:gasprices}
+\caption[US gasoline prices from 1995 to 2014]{US gasoline prices from 1995 to 2014. Gas prices steadily increase over the time frame, with some dramatic short-term developments. Peaks and troughs seem to exhibit more variability in daily prices than times of dramatic changes. This is an effect of the sine-illusion, which hides a fairly steady increase in variance in daily gas prices over time.}\label{fig:gasprices}
 \end{figure}
 \begin{figure}\centering
 <<gaspricevariance,echo=F,include=T, fig.width=6, fig.height=2.5, out.width=".7\\linewidth", dependson='gasprices'>>=
@@ -1656,7 +1654,7 @@ Figure \ref{fig:gasprices-x-correct} shows the results from the $X$ transformati
 \begin{figure}
 \centering
 \includegraphics[keepaspectratio=TRUE,width=.92\linewidth]{gas-x-corrected}
-\caption[Gas price data, X transformation]{Gas price data corrected using the $X$ transformation with $w=1$ and with $w=0.36$. }
+\caption[Gasoline price data, X transformation]{Gasoline price data corrected using the $X$ transformation with $w=1$ and with $w=0.36$. }
 \label{fig:gasprices-x-correct}
 \end{figure}
 The minor effect of the weighted transformation on individual x-values contrasts with the effectiveness of the transformation in reducing the illusion; this is best seen in the fitted line, which is distinctly (piecewise) curved in the uncorrected data and appears to be much more piecewise linear in the corrected data, even at the reduced weighted value. 
@@ -1667,7 +1665,7 @@ in the full transformation  it is clear that the variance is nearly constant bet
 \begin{figure}[h]
 \centering
 \includegraphics[keepaspectratio=TRUE,width=.92\linewidth]{gas-y-corrected}
-\caption[Gas price data, Y transformation]{Gas price data corrected using the $Y$ transformation with $w=1$ and with $w=0.40$. }
+\caption[Gasoline price data, Y transformation]{Gasoline price data corrected using the $Y$ transformation with $w=1$ and with $w=0.40$. }
 \label{fig:gasprices-y-correct}
 \end{figure}
 

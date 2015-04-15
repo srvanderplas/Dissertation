@@ -1,5 +1,5 @@
-% latex table generated in R 3.0.3 by xtable 1.7-1 package
-% Tue Mar 18 13:22:37 2014
+% latex table generated in R 3.1.3 by xtable 1.7-1 package
+% Wed Apr 15 09:21:05 2015
 \begin{tabular}{rccc}
   \hline
 Groups & Correction & Estimate & 95\% C.I. \\ 

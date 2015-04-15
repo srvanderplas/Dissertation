@@ -56,7 +56,7 @@ Spatial ability becomes more important when more complicated graphical displays 
 \begin{figure}[htp]
 \centering
 \includegraphics[width=.5\linewidth]{lineup}
-\caption[Sample Lineup]{Sample lineup of boxplots. Participants are instructed to choose the plot which appears most different from the others. In this lineup, plot 4 is the target plot, because the two groups have a large difference in medians.\label{fig:lineup}}
+\caption[Sample lineup]{Sample lineup of boxplots. Participants are instructed to choose the plot which appears most different from the others. In this lineup, plot 4 is the target plot, because the two groups have a large difference in medians.\label{fig:lineup}}
 \end{figure}
 
 Figure~\ref{fig:lineup} shows a sample lineup of boxplots; participants are expected to identify the most different among the plots shown. In this example, sub-plot 4 is the target  because of the noticeably different locations of the two boxplot medians.
@@ -115,7 +115,7 @@ Participants are asked to complete several cognitive tests designed to measure s
 The \textbf{visual searching task} (VST), shown in Figure~\ref{fig:VST}, is designed to test a participant's ability to find a target stimulus in a field of distractors, thus making the visual search task similar in concept to lineups. Historically, visual search has been used as a measure of brain damage \citep{goldstein1973validity,demita1981validity,moerland1986neuropsychological}; however, similar tasks have been used to measure cognitive performance in a variety of situations, for example under the influence of drugs in~\citep{anderson1983interactive}. The similarity to the lineup protocol as well as the simplicity of the test and its' lack of color justify the slight deviation from forms of visual search tasks typically used in normal populations. 
 \begin{figure}[htp]\centering
 \includegraphics[width=.6\linewidth]{VisualSearch}
-\caption[Visual Search Task]{Visual Search Task (VST). Participants are instructed to find the plot numbered 1-24 which matches the plot labeled ``Target". Participants will complete up to 25 of these tasks in 5 minutes.}\label{fig:VST}
+\caption[Visual search task]{Visual search task (VST). Participants are instructed to find the plot numbered 1-24 which matches the plot labeled ``Target". Participants will complete up to 25 of these tasks in 5 minutes.}\label{fig:VST}
 \end{figure}
 
 
@@ -127,15 +127,15 @@ The figure classification test requires the same type of reasoning as the lineup
   \centering
   \begin{subfigure}[b]{.75\linewidth}
   \includegraphics[width=\linewidth]{figureclassification}
-  \caption[Figure Classification Task]{Figure Classification Task. Participants classify each figure in the second row as belonging to one of the groups above. Participants complete up to 14 of these tasks (each consisting of 8 figures to classify) in 8 minutes.\label{fig:figureclassification}}
+  \caption[Figure classification task]{Figure classification task. Participants classify each figure in the second row as belonging to one of the groups above. Participants complete up to 14 of these tasks (each consisting of 8 figures to classify) in 8 minutes.\label{fig:figureclassification}}
   \end{subfigure}
   \begin{subfigure}[b]{.75\linewidth}
   \includegraphics[width=\linewidth]{cardrotation}
-  \caption[Card Rotation Task]{Card Rotation Task. Participants mark each figure on the right hand side as either the same as or different than the figure on the left hand side of the dividing line. Participants complete up to 20 of these tasks (each consisting of 8 figures) in 6 minutes.\label{fig:cardrotation}}
+  \caption[Card rotation task]{Card rotation task. Participants mark each figure on the right hand side as either the same as or different than the figure on the left hand side of the dividing line. Participants complete up to 20 of these tasks (each consisting of 8 figures) in 6 minutes.\label{fig:cardrotation}}
   \end{subfigure}
   \begin{subfigure}[b]{.75\linewidth}
   \includegraphics[width=\linewidth]{paperfolding}
-  \caption[Paper Folding Task]{Paper Folding Task. Participants are instructed to pick the figure matching the sequence of steps shown on the left-hand side. Participants  complete up to 20 of these tasks in 6 minutes.\label{fig:paperfolding}}
+  \caption[Paper folding task]{Paper folding task. Participants are instructed to pick the figure matching the sequence of steps shown on the left-hand side. Participants  complete up to 20 of these tasks in 6 minutes.\label{fig:paperfolding}}
   \end{subfigure}
   \caption[Tests of spatial ability]{Tests of spatial ability from \protect\citet{ekstrom1976manual}.}   \label{fig:tests}
 \end{figure}
@@ -172,12 +172,14 @@ All test results were scored so that random guessing produces an expected value 
 This allows us to compare each participant's score in light of how many problems were attempted as well as the number of correct responses. Combining accuracy and speed into a single number does not only make a comparison of test scores easier,  this scoring mechanism is also used on many standardized tests, such as the SAT and the battery of psychological tests~\citep{diamond1973correction, ekstrom1976manual} from which parts of this test are drawn. The advantage of using tests from the Kit of Factor Referenced Cognitive tests~\citep{ekstrom1976manual} is that the tests are extremely well studied (including an extensive meta-analysis in~\citep{voyer1995magnitude} of the spatial tests we are using in this study) and comparison data are available from the validation of these factors~\citep{schaie1998longitudinal,hampson1990variations,mayer1994whom} and previous versions of the kit~\citep{educational1963kit}.
 
 \section{Results}\label{sec:results}
-Results are based on an evaluation of \Sexpr{nrow(ans)} undergraduate students at Iowa State University. \Sexpr{round(sum(ans.summary$stem)/nrow(ans.summary)*100)}\% of the participants were in STEM fields, the others were distributed relatively evenly between agriculture, business, and the social sciences. Students were evenly distributed by gender, and were between 18 and 24 years of age with only one exception. This is reasonably representative\footnote{\url{http://www.registrar.iastate.edu/sites/default/files/uploads/stats/university/F14summary.pdf}} of the university as a whole; in the fall 2014 semester, 26\% of students were associated with the college of engineering, 24\% were associated with the college of liberal arts and sciences, 15\% were associated with the college of human sciences, 7\% with the college of design, 13\% with the business school, and 15\% with the school of agriculture.  
+Results are based on an evaluation of \Sexpr{nrow(ans)} undergraduate students at Iowa State University. \Sexpr{round(sum(ans.summary$stem)/nrow(ans.summary)*100)}\% of the participants were in STEM fields, the others were distributed relatively evenly between agriculture, business, and the social sciences. Students were evenly distributed by gender, and were between 18 and 24 years of age with only one exception. This is reasonably representative\footnote{\url{http://registrar.iastate.edu/sites/default/files/uploads/stats/university/F14summary.pdf}} of the university as a whole; in the fall 2014 semester, 26\% of students were associated with the college of engineering, 24\% were associated with the college of liberal arts and sciences, 15\% were associated with the college of human sciences, 7\% with the college of design, 13\% with the business school, and 15\% with the school of agriculture.  
 
 \subsection{Comparison of Spatial Tests with Previously Validated Results}
 The card rotation, paper folding, and figure classification tests have been validated using different populations, many of which are demographically similar to Iowa State students (naval recruits, college students, late high-school students, and 9th grade students). We compare Iowa State students' unscaled scores in Table~\ref{tab:scorecomparison}, adjusting data from other populations to account for subpopulation structure and test length. 
 
-\begin{table}[htb]
+\begin{table}[htb]\centering
+\caption[Comparison of scores for cognitive tasks with previously validated results]{Comparison of scores from Iowa State students and scores reported in~\protect\citep{ekstrom1976manual}. Scaled scores are calculated based on information reported in the manual, scaled to account for differences in the number of questions answered during this experiment. Data shown are from the population most similar to ISU students, out of the data available. The visual search task~\protect\citep{goldstein1973validity,demita1981validity,moerland1986neuropsychological} is not part of the Kit of Factor Referenced Cognitive Test data, and thus we do not have comparison data for the form used in this experiment.
+\label{tab:scorecomparison}}
 \begin{tabular}{rlllc}
 \hline
   & Card Rotation & Paper Folding & Figure Classification & Visual Search  \\\hline
@@ -199,8 +201,6 @@ Unscaled Scores & 44.0 (24.6)\footnotemark[3]
               & \parbox[t]{.2\linewidth}{\footnotesize suburban 11th \& 12th \\ grade students\\(288-300 males, \\317-329 females)}
               & \\\hline
 \end{tabular}
-\caption[Comparison of scores for cognitive tasks.]{Comparison of scores from Iowa State students and scores reported in~\protect\citep{ekstrom1976manual}. Scaled scores are calculated based on information reported in the manual, scaled to account for differences in the number of questions answered during this experiment. Data shown are from the population most similar to ISU students, out of the data available. The visual search task~\protect\citep{goldstein1973validity,demita1981validity,moerland1986neuropsychological} is not part of the Kit of Factor Referenced Cognitive Test data, and thus we do not have comparison data for the form used in this experiment.
-\label{tab:scorecomparison}}
 \end{table}
 
 Table~\ref{tab:scorecomparison} shows mean scores and standard deviation for ISU students and other populations. Values have been adjusted to accommodate for differences in test procedures and sub-population structure; for instance,  some data is reported for a single part of a two-part test, or results are reported for each gender separately. 
@@ -324,7 +324,7 @@ embedFonts(paste0(imgdir, "fig-VisReasoningCategorical-1.pdf"))
 @
 \begin{figure*}[h!tb]\centering
 \includegraphics[width=.85\linewidth]{fig-VisReasoningCategorical-1}
-\caption[Visual Aptitude Study Results]{Demographic characteristics of participants compared with lineup score. Categories are ordered by effect size; majoring in a STEM field, calculus completion, hours spent playing video games per week, and sex are all associated with a significant difference in lineup score. }\label{fig:visualaptitudecat}
+\caption[Demographic characteristics of participants and lineup scores]{Demographic characteristics of participants compared with lineup score. Categories are ordered by effect size; majoring in a STEM field, calculus completion, hours spent playing video games per week, and sex are all associated with a significant difference in lineup score. }\label{fig:visualaptitudecat}
 \end{figure*}
 
 %Next, we examine the effect of demographic factors on lineup performance. 
@@ -445,12 +445,12 @@ PC2 differentiates the figure classification test from the visual searching test
 
 <<pcasummary4,echo=F, results='asis'>>=
 pca2 <- prcomp(ans.summary[,c("card_rot", "fig_class", "folding", "vis_search")], scale=T, retx=T)
-print(xtable(summary(pca2), caption=c("Importance of principal components in an analysis of four tests of spatial ability: figure classification, paper folding, card rotation, and visual search.\\label{tab:PCAvariance4}", "Spatial ability test PC importance matrix"),digits=2), sanitize.text.function=sanitize, sanitize.rownames.function=sanitize, sanitize.colnames.function=sanitize, size="footnotesize", table.placement="htb", caption.placement="top")
+print(xtable(summary(pca2), caption=c("Importance of principal components in an analysis of four tests of spatial ability: figure classification, paper folding, card rotation, and visual search.\\label{tab:PCAvariance4}", "Spatial ability test principal component importance matrix"),digits=2), sanitize.text.function=sanitize, sanitize.rownames.function=sanitize, sanitize.colnames.function=sanitize, size="footnotesize", table.placement="htb", caption.placement="top")
 @
 Table~\ref{tab:PCAvariance4} contains the proportion of the variance in the four cognitive tasks represented by each principal component. PC1 accounts for about \Sexpr{round(summary(pca2)$importance[3,1],1)*100}\% of the variance; Figure~\ref{fig:biplots4} and Table~\ref{tab:PCArotation4} confirm that PC1 is a measure of the similarity between all 4 tests; that is, a participant's general (or visual) aptitude. PC2 differentiates the figure classification test from the visual searching test, while PC3 differentiates these two from the paper folding test. PC4 is not particularly significant (it accounts for \Sexpr{round(summary(pca2)$importance[2,4]*100,1)}\% of the variance), but it differentiates the card rotation task from the paper folding task.
 
 <<pcarotation4,echo=F, results='asis'>>=
-print(xtable(pca2$rotation, caption=c("Rotation matrix for principal component analysis of the four cognitive tests (visual search, paper folding, card rotation, figure classification).\\label{tab:PCArotation4}", "Spatial ability tests PC rotation matrix"),digits=2), sanitize.text.function=sanitize, sanitize.rownames.function=sanitize, sanitize.colnames.function=sanitize, table.placement="htb", caption.placement="top")
+print(xtable(pca2$rotation, caption=c("Rotation matrix for principal component analysis of the four cognitive tests (visual search, paper folding, card rotation, figure classification).\\label{tab:PCArotation4}", "Spatial ability test principal component rotation matrix"),digits=2), sanitize.text.function=sanitize, sanitize.rownames.function=sanitize, sanitize.colnames.function=sanitize, table.placement="htb", caption.placement="top")
 @
 
 <<biplot-pca4, fig.cap="", fig.width=4.5, fig.height=4.5, warning=F, message=F, out.width='.45\\linewidth', comment="|", fig.scap="Biplots of principal components 1-4 with observations", fig.cap="Biplots of principal components 1-4 with observations. Principal component analysis was performed on the four cognitive tests used to understand the association between the cognitive skills required for these tests and the skills required for the lineup protocol.  \\label{fig:biplots4}", echo=F, fig.env="figure">>=
@@ -466,12 +466,12 @@ According to Table~\ref{tab:PCArotation4}, the first three principal components 
 Incorporating the lineup task into the principal component analysis, we find the principal components to be fairly similar to the four-component analysis. 
 Table~\ref{tab:PCAvariance5} shows the importance of each principal component. From the distribution of the variance components, we see that the lineup test  spans an additional dimension within the space of the four established tests. 
 <<pcasummary5,echo=F, results='asis'>>=
-print(xtable(summary(pca), caption="Importance of principal components, analyzing all five tests.\\label{tab:PCAvariance5}",digits=2), sanitize.text.function=sanitize, sanitize.rownames.function=sanitize, sanitize.colnames.function=sanitize, size="footnotesize", table.placement="ht", caption.placement="top")
+print(xtable(summary(pca), caption=c("Importance of principal components, analyzing all five tests.\\label{tab:PCAvariance5}", "Importance of principal components for all five tests"),digits=2), sanitize.text.function=sanitize, sanitize.rownames.function=sanitize, sanitize.colnames.function=sanitize, size="footnotesize", table.placement="ht", caption.placement="top")
 @
 
 <<pcarotation5,echo=F, results='asis'>>=
-print(xtable(pca$rotation, caption="PCA Rotation matrix for all five tests. 
-             \\label{tab:PCArotation5}",digits=2), sanitize.text.function=sanitize, sanitize.rownames.function=sanitize, sanitize.colnames.function=sanitize, table.placement="ht", caption.placement="top")
+print(xtable(pca$rotation, caption=c("Principal component analysis rotation matrix for all five tests.
+             \\label{tab:PCArotation5}", "Principal component analysis rotation matrix for all five tests"),digits=2), sanitize.text.function=sanitize, sanitize.rownames.function=sanitize, sanitize.colnames.function=sanitize, table.placement="ht", caption.placement="top")
 @
 From the rotation matrix (see Table~\ref{tab:PCArotation5}) we see that  
 the first principal component, PC1, is again essentially an average across all tests and accounts for \Sexpr{round(summary(pca)$importance[3,1]*100,1)}\% of the variance in the data. 
@@ -550,7 +550,7 @@ We fit a linear model of lineup scores in the thus modified demographic variable
 
 <<modelresults, echo=FALSE, results='asis'>>=
 library(xtable)
-print(xtable(summary(m1), caption="Estimates for a linear model of lineup scores.", label="tab:m1"), caption.placement="top")
+print(xtable(summary(m1), caption=c("Estimates for a linear model of lineup scores.", "Estimates for a linear model of lineup scores"), label="tab:m1"), caption.placement="top")
 @
 \subsection{Lineup Types}
 Each of the three sets of 20 lineups was taken from previous studies on different designs to investigate which plot type most effectively conveyed important characteristics of the underlying data set. 
@@ -575,45 +575,45 @@ The experiment in the first lineup section examined the use of boxplots, density
 \includegraphics[keepaspectratio=T,width=\linewidth]{Lineups1/histogram_1_15_5_4_13}
 \caption{Histogram}
 \end{subfigure}
-\caption[Lineup Set 1 Examples]{Types of plots in the first set of lineups. These plots are used to compare two distributions. }
+\caption[Lineup set 1 examples]{Types of plots in the first set of lineups. These plots are used to compare two distributions. }
 \end{figure}
 \subsection{Lineup Set 2}
 The second lineup section also explored two groups of data, this time comparing boxplots, bee swarm boxplots, boxplots with overlaid jittered data, and violin plots. Participants were much more accurate in this experiment than in the experiment described previously, because of the types of plots compared as well as the underlying data distributions. 
 \begin{figure}[htbp]\centering
 \begin{subfigure}[b]{.49\linewidth}
-\includegraphics[keepaspectratio=T,width=.45\linewidth]{Lineups2/file147f94f6965d7}
+\includegraphics[keepaspectratio=T,width=\linewidth]{Lineups2/file147f94f6965d7}
 \caption{Boxplots.}
 \end{subfigure}
 \begin{subfigure}[b]{.49\linewidth}
-\includegraphics[keepaspectratio=T,width=.45\linewidth]{Lineups2/file147f9e65f0e4}
+\includegraphics[keepaspectratio=T,width=\linewidth]{Lineups2/file147f9e65f0e4}
 \caption{Boxplots with jittered points.}
 \end{subfigure}
 \begin{subfigure}[b]{.49\linewidth}
-\includegraphics[keepaspectratio=T,width=.45\linewidth]{Lineups2/file147f9fc58d73}
+\includegraphics[keepaspectratio=T,width=\linewidth]{Lineups2/file147f9fc58d73}
 \caption{Bee swarm boxplots.}
 \end{subfigure}
 \begin{subfigure}[b]{.49\linewidth}
-\includegraphics[keepaspectratio=T,width=.45\linewidth]{Lineups2/file147f93acbb7e4}
+\includegraphics[keepaspectratio=T,width=\linewidth]{Lineups2/file147f93acbb7e4}
 \caption{Violin plots.}
 \end{subfigure}
-\caption[Lineup Set 2 Examples]{Types of plots in the second set of lineups. These plots are used to compare two distributions. }
+\caption[Lineup set 2 examples]{Types of plots in the second set of lineups. These plots are used to compare two distributions. }
 \end{figure}
 \subsection{Lineup Set 3}
 The final lineup section explored QQ-plots from various model simulations, using reference lines, acceptance bands, and rotation to determine which plots allowed participants to most effectively identify violations of normality. Rotated QQ-plots showed lower performance because participants were able to more accurately compare acceptance bands to residuals, and thus could identify that the reference bands were too liberal. As a result, performance was somewhat lower for rotated plots, even though participants were more accurate when comparing the residuals to the reference bands.
 \begin{figure}[htbp]\centering
 \begin{subfigure}[b]{.49\linewidth}
-\includegraphics[keepaspectratio=T,width=.45\linewidth]{Lineups3/file13876a225d34-single}
+\includegraphics[keepaspectratio=T,width=\linewidth]{Lineups3/file13876a225d34-single}
 \caption{QQ-plot with guide line.}
 \end{subfigure}
 \begin{subfigure}[b]{.49\linewidth}
-\includegraphics[keepaspectratio=T,width=.45\linewidth]{Lineups3/file13877c93dc78-single}
+\includegraphics[keepaspectratio=T,width=\linewidth]{Lineups3/file13877c93dc78-single}
 \caption{QQ-plot with acceptance bands.}
 \end{subfigure}
 \begin{subfigure}[b]{.49\linewidth}
-\includegraphics[keepaspectratio=T,width=.45\linewidth]{Lineups3/file13878e5c92f-single}
+\includegraphics[keepaspectratio=T,width=\linewidth]{Lineups3/file13878e5c92f-single}
 \caption{QQ-plot rotated 45 degrees.}
 \end{subfigure}
-\caption[Lineup Set 3 Examples]{Types of plots in the third set of lineups. These plots are used to assess residual normality. }
+\caption[Lineup set 3 examples]{Types of plots in the third set of lineups. These plots are used to assess residual normality. }
 \end{figure}
 
 \subsubsection{Cognitive Test Scores and Lineup Performance by Lineup Task}
@@ -714,14 +714,14 @@ rotation$Var1 <- factor(rotation$Var1,
                         labels=c("Visual Search", "Paper Folding", "Card Rotation", "Figure Class.", "Lineup Test 3", "Lineup Test 2", "Lineup Test 1"))
 library(grid) # needed for arrow function
 loadfonts()
-qplot(x=0,  y=Var1, xend=value*importance, yend=Var1, geom="segment", data=rotation, arrow=arrow(length=unit(0.1, "cm"))) + facet_wrap(~Var2, ncol=4) + xlab("Influence") + ggtitle("Lineup Types and Visual Aptitude") + ylab("") + theme_bw() 
+qplot(x=0,  y=Var1, xend=value*importance, yend=Var1, geom="segment", data=rotation, arrow=arrow(length=unit(0.1, "cm"))) + facet_wrap(~Var2, ncol=7) + xlab("Influence") + ggtitle("Lineup Types and Visual Aptitude") + ylab("") + theme_bw() 
 ggsave(paste0(imgdir, "fig-lineupblockpca-1.pdf"), width=6, height=4)
 embedFonts(paste0(imgdir, "fig-lineupblockpca-1.pdf"))
 @
 
 \begin{figure}[ht]\centering
 \includegraphics[width=.5\linewidth]{fig-lineupblockpca-1}
-\caption[Principal component influence]{Principal Component influence plot, showing each input variable's contribution to the principal component, scaled by the proportion of variability in the data contained in the principal component.\label{fig:influence}}
+\caption[Principal component influence]{Principal component influence plot, showing each input variable's contribution to the principal component, scaled by the proportion of variability in the data contained in the principal component.\label{fig:influence}}
 \end{figure}
 
 For variables $X_i$, $i=1, ..., K$ a principal component analysis results in a set of $K$ principal  components $PC_j$, $j=1, ..., K$, given as the rows of the rotation matrix, $M$ (which has dimension $K\times K$, indexed by $i$ and $j$ respectively).

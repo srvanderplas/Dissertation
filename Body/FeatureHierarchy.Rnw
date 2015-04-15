@@ -101,7 +101,7 @@ y2 <- x2 + rnorm(25, sd=0.1)
 
 qplot(c(x1,x2),c(y1,y2)) + theme_bw() + xlab("x") + ylab("y") 
 @
-\caption[Gestalt principles applied to statistical plots]{\label{fig:gestalt} \emph{Proximity} renders the fifty points of the first scatterplot as two distinct (and equal-sized) groups. Shapes and colors create different groups of points in the middle scatterplot, invoking the Gestalt principle of \emph{Similarity}. \emph{Continuity} renders the points in the scatterplot on the right hand side into two groups of points on curves: one a straight line with an upward slope, the other a curve that initially decreases and at the end of the range shows an uptick.} 
+\caption[Gestalt principles in statistical plots]{\label{fig:gestalt} Gestalt principals in statistical plots.\emph{Proximity} renders the fifty points of the first scatterplot as two distinct (and equal-sized) groups. Shapes and colors create different groups of points in the middle scatterplot, invoking the Gestalt principle of \emph{Similarity}. \emph{Continuity} renders the points in the scatterplot on the right hand side into two groups of points on curves: one a straight line with an upward slope, the other a curve that initially decreases and at the end of the range shows an uptick.} 
 \end{figure}
 
 The plots in figure \ref{fig:gestalt} demonstrate several of the gestalt principles which combine to order our perceptual experience from the top down. These laws help to order our perception of charts as well: points which are colored or shaped the same are perceived as belonging to a group (similarity), points within a bounding interval or ellipse are perceived as belonging to the same group (common region), and regression lines with confidence intervals are perceived as single units (continuity, connectedness, closure, and/or common region depending on the rendering of the intervals). 
@@ -310,6 +310,9 @@ Models $M_C$, $M_T$, and $M_0$ provide the foundation for this experiment; by ma
 \begin{table}[h]
   \rowcolors{2}{gray!25}{white}
 \begin{center}
+
+\caption[Parameter settings for generation of lineup datasets]{Parameter settings for generation of lineup datasets. \label{tab:parameters}}
+
 \begin{tabular}{lll}
 \bf Parameter & \bf Description & \bf Choices\\\hline
 $K$ & \# Clusters &  \begin{tabular}{l}3, 5 \end{tabular} \\
@@ -319,7 +322,6 @@ $\sigma_C$ & Scatter around cluster centers & \begin{tabular}{ll} .25, .30, .35 
 \\\hline
 \end{tabular}
 \end{center}
-\caption{Parameter settings for generation of lineup datasets. \label{tab:parameters}}
 \end{table}
 
 The parameter values were chosen after examining the parameter space through simulation of 1000 lineup datasets for each combination of $\sigma_T\in\{0.2, 0.25, ..., 0.5\}$, $\sigma_C\in\{0.1, 0.15, ..., 0.4\}$, and $K\in\{3,5\}$. Each lineup dataset consists of one trend target dataset generated using $M_T$, one cluster target dataset generated from $M_C$, and 18 null datasets generated from $M_0$; for each of these sub-lineup datasets generated, the previously described statistics for trend and cluster strength were computed. We compared the statistics for the relevant target plot to the most extreme value for the 18 null plots, using both density plots (as shown in figure \ref{fig:targetsignal-0}) and higher-level summaries as shown in figures \ref{fig:simulationLineIntervals} and \ref{fig:simulationClusterIntervals}. 
@@ -442,7 +444,7 @@ qplot(data=subset(dataset.criteria, type=="line"), x=LB, xend=UB, y=sd.cluster, 
   facet_grid(lst~lK, scales="free", labeller="label_parsed")  + theme_bw() + 
   scale_color_brewer("Distribution",palette="Set1") + theme(legend.position="bottom") + xlab("Interquartile intervals of Max (18) null distribution (blue) \nand target distribution (red) of linearity measured in R squared.") + ylab(expression("Cluster variability":sigma[C]))
 @
-\caption[Simulated IQR of $R^2$ values]{Simulated interquartile range of $R^2$ values for target and null data distributions. \label{fig:simulationLineIntervals}}
+\caption[Simulated interquartile range of $R^2$ values]{Simulated interquartile range of $R^2$ values for target and null data distributions. \label{fig:simulationLineIntervals}}
 \end{figure}
 
 \begin{figure}[ht]\centering
@@ -453,7 +455,7 @@ qplot(data=subset(dataset.criteria, type=="cluster"), x=LB, xend=UB, y=sd.trend,
   facet_grid(lsc~lK, scales="free", labeller="label_parsed")  + theme_bw() + 
   scale_color_brewer("Distribution", palette="Set1") + theme(legend.position="bottom") + xlab("Interquartile intervals of Max (18) null distribution (blue) \nand target distribution (red) of amount of clustering.") + ylab(expression( "Variability along the trend":sigma[T]))
 @
-\caption[Simulated IQR of $C^2$ cluster cohesion values]{Simulated interquartile range of $C^2$ (cluster cohesion) values for target and null data distributions. \label{fig:simulationClusterIntervals}}
+\caption[Simulated interquartile range of $C^2$ cluster cohesion values]{Simulated interquartile range of $C^2$ (cluster cohesion) values for target and null data distributions. \label{fig:simulationClusterIntervals}}
 \end{figure}
 
 Using information from the simulation, we identified values of $\sigma_T$ and $\sigma_C$ corresponding to ``easy", ``medium" and ``hard" numerical comparisons between corresponding target data sets and null data sets. It is important to note that the numerical measures we have described in equations \eqref{eq:linearMeasure} and \eqref{eq:clusterMeasure} only provide information on the numerical discriminability of the target datasets from the null datasets; the simulation cannot provide us with information on the perceptual discriminability, and it has been established that human perception of scatterplots does not replicate statistical measures exactly \citep{bobko1979perception, mosteller1981eye, lewandowsky1989perception}.
@@ -525,6 +527,7 @@ Gestalt perceptual theory suggests that perceptual features such as shape, color
 
 \begin{table}[h]
 \centering
+\caption[Aesthetics affecting perception of statistical plots]{Plot aesthetics and statistical layers which impact perception of statistical plots, according to gestalt theory. \label{tab:plotaesthetics}}
 \begin{tabular}{ccccc}
 \begin{tabular}{c} \phantom{.}\\ \phantom{.} \end{tabular} && \multicolumn{3}{c}{\cellcolor{gray!25} Line Emphasis} \\
 & Strength & 0 & 1 & 2 \\
@@ -534,7 +537,6 @@ Gestalt perceptual theory suggests that perceptual features such as shape, color
 Line + Prediction \end{tabular}\\
 \cellcolor{gray!25}\begin{tabular}{c} \phantom{.}\\ \phantom{.} \end{tabular} & 3 & \cellcolor{gray!35} Color + Shape + Ellipse 
 \end{tabular}
-\caption[Aesthetics affecting perception of statistical plots]{Plot aesthetics and statistical layers which impact perception of statistical plots, according to gestalt theory. \label{tab:plotaesthetics}}
 \end{table}
 
 We expect that relative to a plot with no extra aesthetics or statistical layers, the addition of color, shape, and 95\% boundary ellipses  increases the probability of a participant selecting the target plot with data generated from $M_C$, the cluster model, and that the addition of these aesthetics  decreases the probability of a participant selecting the target plot with data generated from $M_T$, the trend model. 
@@ -725,7 +727,7 @@ qplot(age, data=users) + theme_bw() + xlab("Age of participants") + ylab("# Part
 # users$education2 <- factor(users$education, levels=c("High School or less", "Some college", "Bachelor's degree", "Some graduate school", "Graduate degree"), labels=c("High\n School\n or less", "Some\n college", "Bachelor's\n degree", "Some \ngraduate\n school", "Graduate\n degree"))
 qplot(education, data=users) + theme_bw() + xlab("(self-reported) Highest level of participants' education") + ylab("# Participants") + ggtitle("Participant Education Levels")
 @
-\caption{\label{fig:demographics}Basic demographics of participants.}
+\caption[Basic demographics of participants]{\label{fig:demographics}Basic demographics of participants.}
 \end{figure}
 
 
@@ -760,9 +762,9 @@ For plot type $i$, displaying dataset $j=1, ..., 54$ and participant $k=1, ..., 
 \begin{align}
 \text{logit }P(\text{target identification}) & =  \textbf{X}\beta + \textbf{J}\gamma + \textbf{K}\eta + \epsilon, \label{eqn:linearModel}\\
 \text{where } \beta_i & \hphantom{\sim} \text{describe the effect of specific plot types}\nonumber\\
-\hphantom{where } \gamma_j & \overset{iid}{\sim} N\left(0, \sigma^2_{\text{data}}\right)\text{, the random effect for dataset specific characteristics}\nonumber\\
-\hphantom{where } \eta_k & \overset{iid}{\sim} N\left(0, \sigma^2_{\text{participant}}\right)\text{, the random effect for participant characteristics}\nonumber\\
-\text{and } \epsilon_{ijk} & \overset{iid}{\sim}  N\left(0, \sigma^2_e\right)\text{, the error associated with a single trial evaluation} \nonumber
+\hphantom{where } \gamma_j & \overset{iid}{\sim} N\left(0, \sigma^2_{\text{data}}\right)\text{, the random effect for dataset}\nonumber\\
+\hphantom{where } \eta_k & \overset{iid}{\sim} N\left(0, \sigma^2_{\text{participant}}\right)\text{, the random effect for participant}\nonumber\\
+\text{and } \epsilon_{ijk} & \overset{iid}{\sim}  N\left(0, \sigma^2_e\right)\text{, the error associated with a single evaluation} \nonumber
 \end{align}
 
 Random effects for dataset and participant are assumed to be orthogonal to one another, as participants only see an individual dataset one time. We note that any variance due to parameters $K$, $\sigma_T$, and $\sigma_C$ is contained within $\sigma^2_{\text{data}}$ and can be examined using a subsequent model. 
@@ -821,7 +823,7 @@ names(line.fixef.aes)[9] <- "Tukey Post Hoc Differences"
 #print(xtable(line.fixef.aes[,c(8, 1:4, 9)], caption=c("Fitted values of fixed effects for the model described in \\eqref{eqn:linearModel}. Only Trend+Error plots significantly increase the probability of detecting the trend target plot (with data generated from $M_T$), while most other aesthetic combinations decrease the probability of detecting the trend target plot.", "Fixed effects for trend target logistic model"), label="tab:line.fixef", align=c('r', 'r', 'r', 'r', 'r', 'r', 'r'), digits=c(0, 0, 4, 4, 2, 4, 0)), include.rownames=F, file="figure/linear-fixef-table")
 print(xtable(line.fixef.aes[,c(8, 1:4)], caption=c("Fitted values of fixed effects for the model described in \\eqref{eqn:linearModel}. Only Trend+Error plots significantly increase the probability of detecting the trend target plot (with data generated from $M_T$), while most other aesthetic combinations decrease the probability of detecting the trend target plot.", "Fixed effects for trend target logistic model"), label="tab:line.fixef", align=c('r', 'r', 'r', 'r', 'r', 'r'), digits=c(0, 0, 4, 4, 2, 4)), include.rownames=F, file=paste0(imgdir, "linear-fixef-table.tex"))
 @
-\caption[Odds of detecting the trend target plot for each aesthetic]{Odds of detecting the trend target plot for each aesthetic. Only the combination of Trend + Error significantly increases the odds of trend target plot detection relative to the control plot (plain scatterplot). \label{fig:linear.fixef}}
+\caption[Odds of detecting the trend target plot for each plot type]{Odds of detecting the trend target plot for each  plot type, relative to a plain scatterplot. Only the combination of Trend + Error significantly increases the odds of trend target plot detection relative to the control plot (plain scatterplot). \label{fig:linear.fixef}}
 \end{figure}
 
 Once error bands are added to the plot, many other heuristics may be applied: closure (perception of a closed object even if it is incomplete), common region, and connectedness (depending on the style of the error bands). For the 95\% intervals in the stimuli plots, closure and common region are the most likely heuristics recruited with the addition of error bands (a ribbon-style interval would recruit connectedness as well). The results are consistent with this idea: only the combined closure and continuity emphasis of trend + error bands significantly increases the probability that participants will identify the target plot generated under $M_T$. 
@@ -876,7 +878,7 @@ names(group.fixef2)[9] <- "Tukey Post Hoc Differences"
 print(xtable(group.fixef2[,c(8, 1:4)], caption=c("Fitted values of fixed effects for the model described in section~\ref{sec:groupModel}.", "Fixed effects for cluster target logistic model"), label="tab:group.fixef", align=c('r', 'r', 'r', 'r', 'r', 'r'), digits=c(0, 0, 4, 4, 2, 4)), include.rownames=F, file=paste0(imgdir, "group-fixef-table.tex"))
 
 @
-\caption[Odds of detecting the cluster target plot for each aesthetic]{Odds of detecting the cluster target plot for each aesthetic, relative to a plain scatterplot. The presence of error lines or bounding ellipses significantly decreases the probability of correct target detection, and no aesthetic successfully increases the probability of correct target detection. This may be due to differences in cluster size for null plots, with data generated under $M_0$ compared with the cluster target plot displaying data generated under $M_C$. \label{fig:group.fixef}}
+\caption[Odds of detecting the cluster target plot for each  plot type]{Odds of detecting the cluster target plot for each  plot type, relative to a plain scatterplot. The presence of error lines or bounding ellipses significantly decreases the probability of correct target detection, and no aesthetic successfully increases the probability of correct target detection. This may be due to differences in cluster size for null plots, with data generated under $M_0$ compared with the cluster target plot displaying data generated under $M_C$. \label{fig:group.fixef}}
 \end{figure}
 
 Figure \ref{fig:group.fixef} contains odds and 95\% Wald intervals of the estimated fixed effects obtained by fitting equation \ref{eqn:linearModel} to a binary indicator of successful cluster target identification. 
@@ -1072,7 +1074,7 @@ coefs2$name <- coefs2$name %>%
 coefs2$Interval <- sprintf("(%.2f, %.2f)", coefs2$low, coefs2$high)
 names(coefs2)[3:5] <- c("Estimate", "Effect", "95% Confidence Interval")
 
-print(xtable(coefs2[,c(4, 3, 5)], caption=c("Exponentiated estimates for parameters describing plot type and first trial effects. We model log evaluation time as a function of plot type, first trial, and data generation parameters, with a random effect for participant. Additional parameters and intervals are shown in figure \\ref{fig:timemodel-pars}.", "Fixed effects for trial time model including data parameters."), label="tab:timemodel-pars", align=c('r', 'r', 'r', 'r'), digits=c(0, 0, 3, 0)), include.rownames=F, file=paste0(imgdir, "timemodel-pars-fixef-table.tex"))
+print(xtable(coefs2[,c(4, 3, 5)], caption=c("Fixed effects for trial time model including data parameters. Parameter estimates describing plot type and first trial effects have been exponentiated. We model log evaluation time as a function of plot type, first trial, and data generation parameters, with a random effect for participant. Additional parameters and intervals are shown in figure \\ref{fig:timemodel-pars}.", "Fixed effects for trial time model including data parameters"), label="tab:timemodel-pars", align=c('r', 'r', 'r', 'r'), digits=c(0, 0, 3, 0)), include.rownames=F, file=paste0(imgdir, "timemodel-pars-fixef-table.tex"), caption.placement="top")
 @
 \caption[Log evaluation time by outcome and plot parameters]{\label{fig:timemodel-pars} Results of a model describing log evaluation time by evaluation outcome and plot type.}
 \end{figure}

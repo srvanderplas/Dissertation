@@ -958,6 +958,29 @@ For the Major Program\fi\fi}
 \ps@threepartheadings
 %%%%
 
+% % Fix Table and Figure added in front of numbers in TOC
+%------------------------------------------------------
+
+\usepackage[titles]{tocloft}
+\usepackage{needspace}
+
+\renewcommand{\cftfigpresnum}{Figure\ } % Text to add before figure number
+\newlength{\mylenf}
+\settowidth{\mylenf}{\bfseries\cftfigpresnum\cftfigaftersnum} % extra space
+\addtolength{\cftfignumwidth}{\mylenf} % add the extra space
+
+\renewcommand{\cfttabpresnum}{Table\ }
+\newlength{\mylent}
+\settowidth{\mylent}{\bfseries\cfttabpresnum\cfttabaftersnum}
+\addtolength{\cfttabnumwidth}{\mylent}
+
+\renewcommand{\cftchappresnum}{CHAPTER\ }
+\newlength{\mylenc}
+\settowidth{\mylenc}{\bfseries\cftchappresnum\cftchapaftersnum}
+\addtolength{\cftchapnumwidth}{\mylenc}
+
+%------------------------------------------------------
+% Must come before TOC redefinitions.
 
 % Protects added (JAS05 / JAS09)
 \renewcommand{\contentsname}
@@ -1060,11 +1083,13 @@ For the Major Program\fi\fi}
               \fi} 
 
 %  Chapter
-\renewcommand{\chapter}{\if@openright\cleardoublepage\else\clearpage\fi
+\renewcommand{\chapter}{
+                    \if@openright\cleardoublepage\else\clearpage\fi
                     \thispagestyle{threepartheadings}%
                     \global\@topnum\z@
                     \@afterindentfalse
-                    \secdef\@chapter\@schapter}
+                    \secdef\@chapter\@schapter
+                    }
 
 \def\@makechapterhead#1{%             % Heading for \chapter command.
   \vspace*{15\p@}%                    % Space at top of text page (JAS11) 50 to 15
@@ -1125,6 +1150,8 @@ For the Major Program\fi\fi}
 \@afterindenttrue
 \makeatother
 %%%%
+
+\usepackage[all]{nowidow} % remove all widows 
 
 \widowpenalty=450                         % three times normal widow penalty
 \clubpenalty=450                          % three times normal orphan penalty

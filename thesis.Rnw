@@ -1,7 +1,7 @@
 % Template file for a standard thesis
 \documentclass[11pt]{isuthesis}
 %---------------------------------------------------
-\usepackage{color}
+% \usepackage{color}
 \usepackage[dvipsnames,svgnames,table]{xcolor}
 \usepackage{wrapfig,float}
 \usepackage{caption}
@@ -15,7 +15,6 @@
 \usepackage{sidecap}
 \usepackage{multirow}
 \usepackage{bbm}
-\usepackage[colorinlistoftodos]{todonotes}
 \usepackage{rotating}
 \usepackage[referable]{threeparttablex}
 \usepackage{footnote} % table footnotes
@@ -23,27 +22,32 @@
 %---------------------------------------------------
 
 % Standard, old-style thesis
-\usepackage{isutraditional}   \chaptertitle
+\usepackage{isutraditional}   
+\chaptertitle
+
 % Old-style, thesis numbering down to subsubsection
 \alternate
 \usepackage{rotating}
+
 % Bibliography without numbers or labels
 \usepackage{natbib}
 \bibliographystyle{apa}
-%\includeonly{titletoc,chapter1}
+
 %Optional Package to add PDF bookmarks and hypertext links
 \usepackage[pdftex,hypertexnames=false,linktocpage=true]{hyperref}
 \hypersetup{colorlinks=true,linkcolor=blue,anchorcolor=blue,citecolor=blue,filecolor=blue,urlcolor=blue,bookmarksnumbered=true,pdfview=FitB}
 
-\newcommand{\done}[2][inline]{\todo[color=SpringGreen, #1]{#2}}  % for todos that have been seen and dealt with
-\newcommand{\meh}[2][inline]{\todo[color=White, #1]{#2}}   % for todos that may no longer be relevant 
-\newcommand{\comment}[2][inline]{\todo[color=SkyBlue, #1]{#2}} % for comments that may not be "to-do"s
-\newcommand{\mcomment}[1]{\todo[color=SkyBlue]{#1}} % for margin comments
+% %------------------------------------------------------
 
-\newcommand{\newtext}[1]{\todo[inline, color=White]{ \color{OliveGreen}{#1}}} % new text - not necessarily something to be done
+% Force TOC/LOT/LOF to add a pagebreak if there isn't room 
+% for at least N lines on the current page
+\newcommand\chaptocbreak{
+	\addtocontents{toc}{\protect\needspace{4\baselineskip}}
+	\addtocontents{lof}{\protect\needspace{2\baselineskip}}
+	\addtocontents{lot}{\protect\needspace{2\baselineskip}}
+}
 
-\newcommand{\move}[1]{\todo[inline, color=Lime]{#1}} % new to do item
-
+% %------------------------------------------------------
 
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{algorithm}[theorem]{Algorithm}
@@ -85,16 +89,19 @@ opts_chunk$set(fig.path='Figure', cache.path='cache/', fig.align='center', fig.w
 \newpage
 \pagenumbering{arabic}
 %-------------------------------------------------------------------------------
-%  <<overview, child='Body/Overview.Rnw'>>=
-%  @
+
 <<litReview, child='Body/LitReview.Rnw'>>=
 @
+\chaptocbreak
 <<sineIllusion, child='Body/SineIllusion.Rnw'>>=
 @
+\chaptocbreak
 <<lieFactorSine, child='Body/LieFactorSine.Rnw'>>=
 @
+\chaptocbreak
 <<visualaReasoning, child='Body/VisualAptitude.Rnw'>>=
 @
+\chaptocbreak
 <<featureHierarchy, child='Body/FeatureHierarchy.Rnw'>>=
 @
 <<Conclusion, child='Body/Conclusion.Rnw'>>=
