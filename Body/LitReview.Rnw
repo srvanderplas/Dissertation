@@ -369,9 +369,7 @@ The figure/ground illusion depends on the color of the top and bottom edges of t
 \begin{subfigure}[b]{.35\linewidth}\centering
   \includegraphics[width=.95\linewidth]{NeckerCube}
   \caption{Necker cube}\label{fig:NeckerCube}
-\end{subfigure}
-\\\vspace{12pt}
-\\
+\end{subfigure}\vspace*{12pt}
 \begin{subfigure}[b]{.35\linewidth}\centering
   \includegraphics[width=.95\linewidth, angle=90]{MullerLyer}
   \caption{Muller-Lyer illusion}\label{fig:MullerLyer}
