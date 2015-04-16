@@ -228,7 +228,16 @@ Selective attention is generally necessary for perception to occur, though there
 Within the brain, attention is important because it allows different regions of the brain which process color, shape, and position to integrate these perceptions into a multifaceted mental representation of the object \citep{goldstein}. This process, known as binding, is essential to coherently encode a scene into working memory. Feature integration theory \citep{treisman1980feature} suggests that these separate streams of information are initially encoded in the preattentive stage of object perception; focusing on the object triggers the binding of these separate streams into a single coherent stream of information. Many single features, such as color, length, and texture are \emph{preattentive}, because they can be pinpointed in an image without focused attention (and thus can be located faster), but specific combinations of color and shape require attention (because the features must be bound together) and are thus more difficult to search. Preattentive features are generally processed in parallel (that is, the entire scene is processed nearly simultaneously), while features requiring attention are processed serially. Examples of features processed  serially and in parallel are shown in figure \ref{fig:parallelSerialFeatures}, taken from Chapter 6 of \citet{helander1997handbook}. The importance of preattentive processing to statistical graphics is discussed in Section \ref{LowLevelGraphics}, which includes a demonstration of preattentive search in figure \ref{fig:preattentive}. 
 
 \begin{figure}[htbp]\centering
-\includegraphics[width=.8\linewidth]{ParallelSerialFeatures}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+
+{\centering \includegraphics[width=.9\linewidth]{Figure/LitReview/fig-parallel-serial-1} 
+
+}
+
+
+
+\end{knitrout}
 \caption[Parallel and serial feature detection]{Examples of features detected serially or in parallel (Chap. 6, \protect\citealt{helander1997handbook})}\label{fig:parallelSerialFeatures}
 \end{figure}
 
@@ -369,9 +378,7 @@ The figure/ground illusion depends on the color of the top and bottom edges of t
 \begin{subfigure}[b]{.35\linewidth}\centering
   \includegraphics[width=.95\linewidth]{NeckerCube}
   \caption{Necker cube}\label{fig:NeckerCube}
-\end{subfigure}
-\\\vspace{12pt}
-\\
+\end{subfigure}\vspace*{12pt}
 \begin{subfigure}[b]{.35\linewidth}\centering
   \includegraphics[width=.95\linewidth, angle=90]{MullerLyer}
   \caption{Muller-Lyer illusion}\label{fig:MullerLyer}
@@ -637,15 +644,15 @@ The grammar of graphics, detailed in \citet{wilkinson2006grammar}, is a framewor
 
 \begin{figure}[htbp]\centering
 \begin{subfigure}[b]{.33\linewidth}\centering
-  \includegraphics[width=\linewidth]{fig-irisdatagrammar1}
+  \includegraphics[width=\linewidth]{fig-irisdatagrammar-1}
   \caption{Stacked density plot}
 \end{subfigure}\hfill
 \begin{subfigure}[b]{.33\linewidth}\centering
-  \includegraphics[width=\linewidth]{fig-irisdatagrammar2}
+  \includegraphics[width=\linewidth]{fig-irisdatagrammar-2}
   \caption{Dotplot}
 \end{subfigure}\hfill
 \begin{subfigure}[b]{.33\linewidth}\centering
-  \includegraphics[width=\linewidth]{fig-irisdatagrammar3}
+  \includegraphics[width=\linewidth]{fig-irisdatagrammar-3}
   \caption{Histogram}
 \end{subfigure}\hfill
 \caption{Three different plots of iris data, created using the grammar of graphics}\label{fig:grammarplots}
