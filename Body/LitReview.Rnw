@@ -791,30 +791,30 @@ library(ggplot2)
 
 # Density plot
 ggplot(data=iris, aes(x=Sepal.Width, group=Species, fill=Species)) + 
-  geom_density(position="stack") + theme(legend.position=c(.8, .8)) + xlab("Sepal Width") + theme_bw()
+  geom_density(position="stack") + xlab("Sepal Width") + theme_bw() + theme(legend.position=c(.8, .8))
 
 # Dotplot 
 ggplot(data=iris, aes(x=Sepal.Width, group=Species, fill=Species)) + 
-  geom_dotplot(method='histodot', stackgroups=TRUE) + theme(legend.position=c(.8, .8)) + theme(axis.text.y=element_blank()) + ylab("") + xlab("Sepal Width") + theme_bw()
+  geom_dotplot(method='histodot', stackgroups=TRUE) + theme(axis.text.y=element_blank()) + ylab("") + xlab("Sepal Width") + theme_bw() + theme(legend.position=c(.8, .8))
 
 
 # Histogram
 ggplot(data=iris, aes(x=Sepal.Width, group=Species, fill=Species)) + 
-  geom_histogram(position="stack") + theme(legend.position=c(.8, .8)) + xlab("Sepal Width") + theme_bw()
+  geom_histogram(position="stack") + xlab("Sepal Width") + theme_bw() + theme(legend.position=c(.8, .8))
 
 @
 
 \begin{figure}[htbp]\centering
 \begin{subfigure}[b]{.33\linewidth}\centering
-  \includegraphics[width=\linewidth]{fig-irisdatagrammar1}
+  \includegraphics[width=\linewidth]{fig-irisdatagrammar-1}
   \caption{Stacked density plot}
 \end{subfigure}\hfill
 \begin{subfigure}[b]{.33\linewidth}\centering
-  \includegraphics[width=\linewidth]{fig-irisdatagrammar2}
+  \includegraphics[width=\linewidth]{fig-irisdatagrammar-2}
   \caption{Dotplot}
 \end{subfigure}\hfill
 \begin{subfigure}[b]{.33\linewidth}\centering
-  \includegraphics[width=\linewidth]{fig-irisdatagrammar3}
+  \includegraphics[width=\linewidth]{fig-irisdatagrammar-3}
   \caption{Histogram}
 \end{subfigure}\hfill
 \caption{Three different plots of iris data, created using the grammar of graphics}\label{fig:grammarplots}
