@@ -110,7 +110,125 @@ Selective attention is generally necessary for perception to occur, though there
 Within the brain, attention is important because it allows different regions of the brain which process color, shape, and position to integrate these perceptions into a multifaceted mental representation of the object \citep{goldstein}. This process, known as binding, is essential to coherently encode a scene into working memory. Feature integration theory \citep{treisman1980feature} suggests that these separate streams of information are initially encoded in the preattentive stage of object perception; focusing on the object triggers the binding of these separate streams into a single coherent stream of information. Many single features, such as color, length, and texture are \emph{preattentive}, because they can be pinpointed in an image without focused attention (and thus can be located faster), but specific combinations of color and shape require attention (because the features must be bound together) and are thus more difficult to search. Preattentive features are generally processed in parallel (that is, the entire scene is processed nearly simultaneously), while features requiring attention are processed serially. Examples of features processed  serially and in parallel are shown in figure \ref{fig:parallelSerialFeatures}, taken from Chapter 6 of \citet{helander1997handbook}. The importance of preattentive processing to statistical graphics is discussed in Section \ref{LowLevelGraphics}, which includes a demonstration of preattentive search in figure \ref{fig:preattentive}. 
 
 \begin{figure}[htbp]\centering
-\includegraphics[width=.8\linewidth]{ParallelSerialFeatures}
+<<parallel-serial, echo=F, include=T, fig.width=10, fig.height=7, out.width=".9\\linewidth">>=
+
+# Empty theme definition
+new_theme_empty <- theme_bw(base_size=16)
+new_theme_empty$line <- element_blank()
+new_theme_empty$strip.text <- element_blank()
+new_theme_empty$axis.text <- element_blank()
+# new_theme_empty$plot.title <- element_blank()
+new_theme_empty$axis.title <- element_blank()
+new_theme_empty$plot.margin <- structure(c(0, 0, -1, -1), unit = "lines", valid.unit = 3L, class = "unit")
+
+
+parallel.points <- data.frame(
+  color = c("red", "orange", "yellow", "green", "blue",
+            "grey90", "grey70", "grey50", "grey30", "grey10"),
+  shape = 16,
+  x = rep(1:5, times=2),
+  y = rep(c(5, 4), each=5)
+)
+
+gen.angles <- function(angle1=runif(1, 0, pi), angle2=runif(1, 0, pi/2), length=1, x=0, y=0){
+  line1 <- data.frame(
+    x = x,
+    xend = x + length*cos(angle1),
+    y = y,
+    yend = y + length*sin(angle1)
+    )
+  line2 <- data.frame(
+    x = line1$xend,
+    xend = line1$xend + length*cos(angle2),
+    y = line1$yend,
+    yend = line1$yend + length*sin(angle2)
+  )
+  pacman <- rbind(line1, line2)
+  pacman[,1:2] <- pacman[,1:2] - mean(range(unlist(pacman[,1:2]))) + x
+  pacman[,3:4] <- pacman[,3:4] - mean(range(unlist(pacman[,3:4]))) + y
+  pacman
+}
+
+gen.slopes <- function(angle=runif(1, 0, pi), length=.5, x=0, y=0){
+  data.frame(
+    x = x - length*cos(angle)/2,
+    xend = x + length*cos(angle)/2,
+    y = y - length*sin(angle)/2,
+    yend = y + length*sin(angle)/2
+    )
+}
+
+angle.set <- sample(seq(0, pi/2, length.out=5), 5)
+ystart <- 1 - sample(seq(.25, .625, length.out=5), 5)
+yend <- ystart + sample(seq(.2, 1, length.out=5), 5)
+parallel.segments <- rbind.fill(
+  do.call("rbind", lapply(1:5, function(i) gen.slopes(x=i, angle=angle.set[i], length=.5, y=2))), # slope
+  do.call("rbind", lapply(1:5, function(i) gen.angles(x=i, length=.5, y=3))), # angles
+  data.frame( x = 1:5, xend = 1:5, y=ystart , yend=yend) # length
+)
+
+parallel <-
+  ggplot() + new_theme_empty +
+  geom_point(aes(x=x, y=y, color=color, shape=shape), data=parallel.points, size=8) + scale_shape_identity() + scale_color_identity() +
+  geom_segment(aes(x=x, xend=xend, y=y, yend=yend), data=parallel.segments) +
+  geom_text(aes(x=0, y=1:5, label=c("Length", "Slope", "Angle", "Value", "Color")), hjust=0, vjust=.5) +
+  ggtitle("Parallel Detection") 
+
+serial.points <- data.frame(
+    x = c(rep(1:5, times=2), 3.5, 1.75),
+    y = c(rep(c(5, 4), each=5), 2, 2.2),
+    shape = c(15, 16, 17, 8, 3, rep(16, 5), 1, 5),
+    size = c(rep(8, 5), c(4, 6, 8, 10, 12), 10, 8)
+  )
+
+serial.lines <- data.frame(
+    x = jitter(
+      c(cos(c(seq(0, pi, length.out=5), rev(seq(pi, 0, length.out=5))))/2+1.5,
+        seq(2.5, 3.25, length.out=4), 3.5, 3.5, rev(seq(2.5, 3.25, length.out=4)),
+        seq(4, 5, length.out=3), rev(seq(4, 5, length.out=4)), seq(4, 5, length.out=3))
+      ),
+    y = c(sin(seq(pi/2, 3*pi/2, length.out=10))^2/+3,
+          sin(seq(pi/2, 3*pi/2, length.out=10))/2+3,
+          rnorm(10, 3, .25)),
+    group = rep(1:3, each=10)
+  )
+
+serial.lines2 <- ddply(serial.lines, .(group), function(df){
+  xspline <- data.frame(spline(x=1:nrow(df), y=df$x, n=100))
+  yspline <- data.frame(spline(x=1:nrow(df), y=df$y, n=100))
+
+  tmp <- data.frame(x=xspline$y, y=yspline$y, group=unique(df$group))
+  tmp$y <- (tmp$y-mean(tmp$y))/(max(tmp$y) - min(tmp$y))/1.5 + 3
+  return(tmp)
+})
+
+serial.rects <- data.frame(
+    xmin = c(1.375, 2.1, 2.5),
+    xmax = c(5, 4, 3.25),
+    ymin = c(1.6, 1.8, 1.9),
+    ymax = c(2.4, 2.2, 2.15)
+  )
+
+serial.segments <- data.frame(
+  x = c(seq(1.25, 2, length.out=4), seq(2.5, 3.25, length.out=4), rep(4.25, 4)),
+  xend = c(seq(1.25, 2, length.out=4), seq(3, 3.75, length.out=4), rep(5, 4)),
+  y = c(rep(.625, 4), rev(seq(.5, .9, length.out=4)), seq(.75, 1.25, length.out=4)),
+  yend = c(rep(1.375, 4), rev(seq(1, 1.4, length.out=4)), seq(.75, 1.25, length.out=4))
+)
+
+
+serial <- ggplot() + new_theme_empty +
+  geom_point(aes(x=x, y=y, size=size, shape=shape), data=serial.points) +
+  geom_path(aes(x=x, y=y, group=group), data=serial.lines2, color="black") +
+  geom_rect(aes(xmin=xmin, xmax=xmax, ymin=ymin, ymax=ymax), data=serial.rects, fill="transparent", color="black") +
+  geom_segment(aes(x=x, xend=xend, y=y, yend=yend), data=serial.segments) +
+  scale_shape_identity() +
+  scale_size_identity() +
+  geom_text(aes(x=0, y=rev(1:5), label=c("Shape", "Area", "Curvature", "Containment", "Orientation")), hjust=0, vjust=.5) +
+  ggtitle("Serial Detection") 
+
+grid.arrange(parallel, serial, ncol=2)
+@
 \caption[Parallel and serial feature detection]{Examples of features detected serially or in parallel (Chap. 6, \protect\citealt{helander1997handbook})}\label{fig:parallelSerialFeatures}
 \end{figure}
 
